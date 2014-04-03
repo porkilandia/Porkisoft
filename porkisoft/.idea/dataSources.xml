@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3529487864">
+    <data-source source="LOCAL" name="Django default" uuid="b6b85f32-c311-464a-ba6e-e19ef79fc446">
+      <driver-ref>mysql</driver-ref>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql:///porkisoftdb</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfcbdfc6dfc3dfd9dfc5dfc4df98df9adf9adf93</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
