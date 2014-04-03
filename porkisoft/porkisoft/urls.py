@@ -1,12 +1,16 @@
 from django.conf.urls import patterns, include, url
 
+from inventario.views import *
+
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'porkisoft.views.home', name='home'),
+    url(r'^listaProd/$', listaProductos, name='listadoP'),
+    url(r'^addprod/',productosFRM),
     # url(r'^porkisoft/', include('porkisoft.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

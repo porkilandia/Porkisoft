@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<form ID="formulario" ACTION="" METHOD="post">
+    {% csrf_token %}
+
+    {{ form.as_ul }}
+
+    <input type="submit" value="Añadir Producto" />
+</form>
+</body>
+</html>

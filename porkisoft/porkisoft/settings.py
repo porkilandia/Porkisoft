@@ -1,7 +1,9 @@
 # Django settings for porkisoft project.
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -31,7 +33,7 @@ TIME_ZONE = 'America/Bogota'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'es-CO'
+LANGUAGE_CODE = 'ES-CO'
 
 SITE_ID = 1
 
@@ -67,6 +69,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    BASE_DIR + '/templates/static',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -77,7 +80,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -105,7 +108,7 @@ ROOT_URLCONF = 'porkisoft.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'porkisoft.wsgi.application'
 
-import os
+
 
 TEMPLATE_DIRS = (os.path.join (os.path.dirname (__file__), '..', 'inventario/templates').replace ('\\', '/'),)
 

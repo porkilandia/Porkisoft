@@ -8,11 +8,12 @@ class Producto(models.Model):
     vrCompraProducto = models.IntegerField(verbose_name = 'Valor de Compra')
     gravado = models.BooleanField(verbose_name = 'Gravado')
     utilidadProducto = models.IntegerField(verbose_name = 'Ulilidad')
-    rentabilidadProducto = models.IntegerField(verbose_name = 'Rentabilidad')
+    rentabilidadProducto = models.DecimalField(verbose_name = 'Rentabilidad',max_digits=5, decimal_places=2 )
     refrigerado = models.BooleanField(verbose_name = 'Refrigerado')
     congelado = models.BooleanField(verbose_name = 'Congelado')
     
     def __unicode__(self):
+
         return self.nombreProducto
         
 
