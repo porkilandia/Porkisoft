@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^listaProd/$', listaProductos, name='listadoP'),
     url(r'^addprod/',agregar_producto),
     url(r'^borrar/(?P<id_producto>\d+)',borrar_producto),
+    url(r'^editar/(?P<id_producto>\d+)',editar_producto),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     # Uncomment the next line to enable the admin:

@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block titulo %}Agregar Producto{% endblock titulo %}
+{% block titulo %}Editar Producto{% endblock titulo %}
 {% block contenido %}
-    <h3>Agregar Producto</h3>
 <form method="post" class="form-actions">{% csrf_token %}
     {{ formulario.as_p }}
     <br/><br/><br/>
     <input type="submit" class="btn btn-primary">
+    <a href="{% url inventario.views.listaProductos %}" class="btn">Cancelar</a>
 </form>
 {% endblock contenido %}

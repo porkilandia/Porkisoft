@@ -2,6 +2,7 @@
 
 {% block titulo %}Productos{% endblock titulo %}
 {% block contenido %}
+    <h2>Productos</h2>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -9,12 +10,15 @@
             <td>Peso</td>
             <td>Costo</td>
             <td>Vr. Compra</td>
+            <td>Vr. Venta</td>
             <td>Gravado</td>
+            <td>Excento</td>
+            <td>Excluido</td>
             <td>Utilidad</td>
             <td>Rentabilidad</td>
             <td>Refrigerado</td>
             <td>Congelado</td>
-            <td></td>
+            <td>Acciones</td>
         </tr>
         </thead>
         {% for producto in productos %}
@@ -23,14 +27,18 @@
             <td>{{ producto.pesoProducto }}</td>
             <td>{{ producto.costoProducto }}</td>
             <td>{{ producto.vrCompraProducto }}</td>
+            <td>{{ producto.vrVentaProducto }}</td>
             <td>{{ producto.gravado }}</td>
+            <td>{{ producto.excento }}</td>
+            <td>{{ producto.excluido }}</td>
             <td>{{ producto.utilidadProducto }}</td>
             <td>{{ producto.rentabilidadProducto }}</td>
             <td>{{ producto.refrigerado }}</td>
             <td>{{ producto.congelado }}</td>
             <td>
-                <a href="#"class="btn">Editar</a>
-                <a href="{% url inventario.views.borrar_producto producto.id %}"class="btn btn-danger">Borrar</a>
+                <a href="{% url inventario.views.editar_producto producto.id %}"class="btn">Editar</a>
+                <a href="{% url inventario.views.borrar_producto producto.id %}
+                         "class="btn btn-danger">Borrar</a>
 
             </td>
 
