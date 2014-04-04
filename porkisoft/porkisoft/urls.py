@@ -10,12 +10,10 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^listaProd/$', listaProductos, name='listadoP'),
-    url(r'^addprod/',productosFRM),
-    # url(r'^porkisoft/', include('porkisoft.foo.urls')),
-
+    url(r'^addprod/',agregar_producto),
+    url(r'^borrar/(?P<id_producto>\d+)',borrar_producto),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 )

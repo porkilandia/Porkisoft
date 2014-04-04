@@ -6,6 +6,7 @@ class Producto(models.Model):
     pesoProducto = models.DecimalField(verbose_name = 'Peso Producto (grs)',max_digits=9, decimal_places=3)
     costoProducto = models.IntegerField(verbose_name = 'Costo Producto')
     vrCompraProducto = models.IntegerField(verbose_name = 'Valor de Compra')
+    vrVentaProducto = models.IntegerField(verbose_name = 'Valor de Venta')
     gravado = models.BooleanField(verbose_name = 'Gravado')
     utilidadProducto = models.IntegerField(verbose_name = 'Ulilidad')
     rentabilidadProducto = models.DecimalField(verbose_name = 'Rentabilidad',max_digits=5, decimal_places=2 )

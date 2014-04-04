@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>{% block titulo %}{% endblock titulo %}</title>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="well">
+        <h2>Porkisoft</h2>
+        {% block contenido %}{% endblock contenido %}
+    </div>
+</div>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+</body>
+</html>

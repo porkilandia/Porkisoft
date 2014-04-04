@@ -2,7 +2,7 @@
 
 {% block titulo %}Productos{% endblock titulo %}
 {% block contenido %}
-    <table class="table table-strip">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <td>Nombre</td>
@@ -28,9 +28,21 @@
             <td>{{ producto.rentabilidadProducto }}</td>
             <td>{{ producto.refrigerado }}</td>
             <td>{{ producto.congelado }}</td>
-            <td></td>
+            <td>
+                <a href="#"class="btn">Editar</a>
+                <a href="{% url inventario.views.borrar_producto producto.id %}"class="btn btn-danger">Borrar</a>
+
+            </td>
 
         </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
         {% endfor %}
     </table>
+    <a href="{% url inventario.views.agregar_producto %}" class="btn btn-primary" >Agregar producto</a>
 {% endblock contenido %}

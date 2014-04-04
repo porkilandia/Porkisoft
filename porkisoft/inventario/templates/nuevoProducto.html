@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<form ID="formulario" ACTION="" METHOD="post">
-    {% csrf_token %}
-
-    {{ form.as_ul }}
-
-    <input type="submit" value="Añadir Producto" />
+{% extends 'base.html' %}
+{% block titulo %}Agregar Producto{% endblock titulo %}
+{% block contenido %}
+<form method="post" class="form-actions">{% csrf_token %}
+    {{ formulario.as_p }}
+    <br/><br/><br/>
+    <input type="submit" class="btn btn-primary">
 </form>
-</body>
-</html>
+{% endblock contenido %}
