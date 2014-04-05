@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block titulo %}Agregar Sub Producto{% endblock titulo %}
+{% block contenido %}
+    <h3>Agregar Sub Producto</h3>
+
+    <table class="table">
+        <tr>
+            <td>
+                <form method="post" class="form-actions">{% csrf_token %}
+                {{ formulario.as_p }}
+                 <br/><br/><br/>
+                <input type="submit" class="btn btn-primary">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+{% endblock contenido %}

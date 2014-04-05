@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Sub Productos{% endblock titulo %}
+{% block contenido %}
+    <h2>Sub Productos</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>Nombre</td>
+            <td>Costo</td>
+            <td>Vr. Compra</td>
+            <td>Vr. Venta</td>
+            <td>Gravado</td>
+            <td>Excento</td>
+            <td>Excluido</td>
+            <td>Utilidad</td>
+            <td>Rentabilidad</td>
+            <td>Refrigerado</td>
+            <td>Congelado</td>
+            <td>Acciones</td>
+        </tr>
+        </thead>
+        {% for subproducto in subproductos %}
+        <tr>
+            <td>{{ subproducto.nombreSubProducto }}</td>
+            <td>{{ subproducto.costoSubProducto }}</td>
+            <td>{{ subproducto.vrCompraSubProducto }}</td>
+            <td>{{ subproducto.vrVentaSubProducto }}</td>
+            <td>{{ subproducto.gravado }}</td>
+            <td>{{ subproducto.excento }}</td>
+            <td>{{ subproducto.excluido }}</td>
+            <td>{{ subproducto.utilidadSubProducto }}</td>
+            <td>{{ subproducto.rentabilidadSubProducto }}</td>
+            <td>{{ subproducto.refrigerado }}</td>
+            <td>{{ subproducto.congelado }}</td>
+            <td>
+                <a href="{% url inventario.views.editarSubproducto subproducto.id %}"class="btn">Editar</a>
+                <a href="{% url inventario.views.borrarSubproducto subproducto.id %}
+                         "class="btn btn-danger">Borrar</a>
+
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <a href="{% url inventario.views.AgregarSubProducto %}" class="btn btn-primary" >Agregar</a>
+{% endblock contenido %}

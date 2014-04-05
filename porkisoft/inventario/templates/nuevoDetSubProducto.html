@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Detalle Sub Productos{% endblock titulo %}
+{% block contenido %}
+    <h2>Detalle Sub Productos</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>Sub Producto</td>
+            <td>Producto</td>
+            <td>Peso Producto</td>
+            <td>Unidades</td>
+
+
+        </tr>
+        </thead>
+        {% for detsubproducto in detsubproductos %}
+        <tr>
+            <td>{{ detsubproducto.subproducto }}</td>
+            <td>{{ detsubproducto.producto }}</td>
+            <td>{{ detsubproducto.pesoUnitProducto }}</td>
+            <td>{{ detsubproducto.unidades }}</td>
+            <td>
+                <a href=""class="btn">Editar</a>
+                <a href="{% url inventario.views.borrarSubproducto subproducto.id %}
+                         "class="btn btn-danger">Borrar</a>
+
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+
+    <h3>Agregar Detalle Sub Producto</h3>
+
+    <table class="table">
+        <tr>
+            <td>
+                <form method="post" class="form-actions">{% csrf_token %}
+                {{ formulario.as_p }}
+                 <br/><br/><br/>
+                <input type="submit" class="btn btn-primary">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+{% endblock contenido %}
