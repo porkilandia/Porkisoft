@@ -1,8 +1,7 @@
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
-
-from inventario.Forms.forms import ProductoForm ,SubProductoForm,DetSubProductoForm
-from inventario.models import Producto,SubProducto,DetalleSubProducto
+from inventario.Forms.forms import ProductoForm SubProductoForm,DetSubProductoForm
+from inventario.models import *
 
 
 
@@ -27,12 +26,12 @@ def index(request):
 
 def agregar_producto(request):
     if request.method == 'POST':
-        formulario = ProductoForm(request.POST)
+        formulario = Producto(request.POST)
         if formulario.is_valid():
             formulario.save()
             return HttpResponseRedirect('/listaProd')
     else:
-        formulario =ProductoForm()
+        formulario =Producto()
 
     return render_to_response('nuevoProducto.html',{'formulario':formulario},
                               context_instance = RequestContext(request))
@@ -45,12 +44,12 @@ def borrar_producto(request, id_producto):
 def editar_producto(request, id_producto):
     producto = Producto.objects.get(pk=id_producto)
     if request.method == 'POST':
-        formulario = ProductoForm(request.POST, instance=producto)
+        formulario = Producto(request.POST, instance=producto)
         if formulario.is_valid():
             formulario.save()
             return HttpResponseRedirect('/listaProd')
     else:
-        formulario = ProductoForm(instance=producto)
+        formulario = Producto(instance=producto)
     return  render_to_response('modificaProducto.html',{'formulario':formulario},
                                context_instance = RequestContext(request))
 
