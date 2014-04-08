@@ -1,10 +1,8 @@
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
-from inventario.Forms.forms import ProductoForm SubProductoForm,DetSubProductoForm
+
+from inventario.Forms.forms import *
 from inventario.models import *
-
-
-
 
 
 # Create your views here.
@@ -83,7 +81,6 @@ def AgregarDetSubProducto(request):
 
     return render_to_response('nuevoDetSubProducto.html',{'formulario':formulario , 'detsubproductos':detsubproductos},
                               context_instance = RequestContext(request))
-
 
 def prueba(request,id_subproducto):
     subrpoductos = SubProducto.objects.get(pk = id_subproducto)

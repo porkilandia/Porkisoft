@@ -1,0 +1,28 @@
+body
+{
+    background: #eaeaea;
+    color: #404a50;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    text-align: center;
+}
+
+header
+{
+    background: #9eb4cc;
+    width: 100%;
+    margin:0,0,1em,0;
+    padding: 0.5em 0;
+}
+header h1
+{
+    font-size: 2em;
+    margin: 0;
+}
+
+header h2
+{
+    font-size: 1.5em;
+    font-weight: normal;
+    margin: 0;
+}
