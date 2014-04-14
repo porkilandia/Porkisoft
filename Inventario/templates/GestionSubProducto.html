@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ titulo }}{% endblock titulo %}
+{% block contenido %}
+
+     <table class="tabla">
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Costo</th>
+            <th>Vr. Compra</th>
+            <th>Vr. Venta</th>
+            <th>Gravado</th>
+            <th>Excento</th>
+            <th>Excluido</th>
+            <th>Utilidad</th>
+            <th>Rentabilidad</th>
+            <th>Refrigerado</th>
+            <th>Congelado</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+            <td>{{ subrpoductos.codigoSubProducto }}</td>
+            <td>{{ subrpoductos.nombreSubProducto }}</td>
+            <td>{{ subrpoductos.costoSubProducto }}</td>
+            <td>{{ subrpoductos.vrCompraSubProducto }}</td>
+            <td>{{ subrpoductos.vrVentaSubProducto }}</td>
+            <td>{{ subrpoductos.gravado }}</td>
+            <td>{{ subrpoductos.excento }}</td>
+            <td>{{ subrpoductos.excluido }}</td>
+            <td>{{ subrpoductos.utilidadSubProducto }}</td>
+            <td>{{ subrpoductos.rentabilidadSubProducto }}</td>
+            <td>{{ subrpoductos.refrigerado }}</td>
+            <td>{{ subrpoductos.congelado }}</td>
+
+
+        </tr>
+        </tbody>
+
+     </table>
+
+     <table id="detalleSP" class="tabla">
+        <thead>
+        <tr>
+            <th>Sub Producto</th>
+            <th>Producto</th>
+            <th>Peso Grs.</th>
+            <th>unidades</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for desubproducto in desubproductos %}
+        <tr>
+            <td>{{ desubproducto.subproducto }}</td>
+            <td>{{ desubproducto.producto }}</td>
+            <td>{{ desubproducto.pesoUnitProducto }}</td>
+            <td>{{ desubproducto.unidades }}</td>
+            <td>
+                <a href="{% url 'Inventario.views.borrarDetalleSp' desubproducto.id %}" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+            </td>
+
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+        <tr>
+
+            <th>Peso/cant Total</th>
+            <th>{{ TPeso }}</th>
+            <th>{{ Tunds }}</th>
+
+
+        </tr>
+
+      </table>
+
+    <form method="post">{% csrf_token %}
+         <fieldset id="agregarDetalle">
+             <legend>Detalle Sub Producto</legend>
+              <div>
+                  {{ formulario }}
+              </div>
+              <br/>
+          <input type="submit" class="btn btn-primary">
+         </fieldset>
+     </form>
+
+{% endblock contenido %}

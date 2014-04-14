@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1531600741">
+    <data-source source="LOCAL" name="MySQL - porkisoftdb@localhost [2]" uuid="07d5feac-0672-44dc-b9f9-63af7161cb1e">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/porkisoftdb</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfcbdfc6dfc3dfd9dfc5dfc4df98df9adf9adf93</user-password>
+      <schema-pattern>porkisoftdb.*</schema-pattern>
+      <default-schemas>porkisoftdb.*</default-schemas>
+      <driver-properties>
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+      </driver-properties>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Django default" uuid="33993894-60d9-446b-9aa8-b98a8b8e16c0">
+      <driver-ref>mysql</driver-ref>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql:///porkisoftdb</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfcbdfc6dfc3dfd9dfc5dfc4df98df9adf9adf93</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

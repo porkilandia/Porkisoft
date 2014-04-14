@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block titulo %}Agregar Producto{% endblock titulo %}
+{% block contenido %}
+
+       <form method="post" class="form-actions">{% csrf_token %}
+         <fieldset>
+             <legend>Nuevo Producto</legend>
+              <div>
+                  {{ formulario }}
+              </div>
+              <br/>
+          <input type="submit">
+         </fieldset>
+     </form>
+
+{% endblock contenido %}
