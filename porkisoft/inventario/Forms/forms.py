@@ -1,6 +1,5 @@
-from django.forms import ModelForm
-
-from inventario.models import *
+from django.forms import ModelForm,forms,models
+from Inventario.models import *
 
 
 class ProductoForm(ModelForm):
@@ -12,6 +11,8 @@ class SubProductoForm(ModelForm):
         model = SubProducto
 
 class DetSubProductoForm(ModelForm):
+
     class Meta:
         model = DetalleSubProducto
+
 

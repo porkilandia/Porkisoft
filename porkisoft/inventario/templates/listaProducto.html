@@ -2,26 +2,30 @@
 
 {% block titulo %}Productos{% endblock titulo %}
 {% block contenido %}
-    <h2>Productos</h2>
-    <table class="table table-bordered">
+
+    <h2>Listado de Productos</h2>
+    <table id="tablaProductos" class="tabla" >
+
         <thead>
         <tr>
-            <td>Nombre</td>
-            <td>Costo</td>
-            <td>Vr. Compra</td>
-            <td>Vr. Venta</td>
-            <td>Gravado</td>
-            <td>Excento</td>
-            <td>Excluido</td>
-            <td>Utilidad</td>
-            <td>Rentabilidad</td>
-            <td>Refrigerado</td>
-            <td>Congelado</td>
-            <td>Acciones</td>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Costo</th>
+            <th>Vr. Compra</th>
+            <th>Vr. Venta</th>
+            <th>Gravado</th>
+            <th>Excento</th>
+            <th>Excluido</th>
+            <th>Utilidad</th>
+            <th>Rentabilidad</th>
+            <th>Refrigerado</th>
+            <th>Congelado</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         {% for producto in productos %}
         <tr>
+            <td>{{ producto.codigoProducto }}</td>
             <td>{{ producto.nombreProducto }}</td>
             <td>{{ producto.costoProducto }}</td>
             <td>{{ producto.vrCompraProducto }}</td>
@@ -34,9 +38,8 @@
             <td>{{ producto.refrigerado }}</td>
             <td>{{ producto.congelado }}</td>
             <td>
-                <a href="{% url inventario.views.editar_producto producto.id %}"class="btn">Editar</a>
-                <a href="{% url inventario.views.borrar_producto producto.id %}
-                         "class="btn btn-danger">Borrar</a>
+                <a href="{% url 'Inventario.views.editar_producto' producto.codigoProducto %}"><img src="{{ STATIC_URL }}img/modificar.png"></a>
+                <a href="{% url 'Inventario.views.borrar_producto' producto.codigoProducto %}" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
 
             </td>
 
@@ -50,5 +53,14 @@
 
         {% endfor %}
     </table>
-    <a href="{% url inventario.views.agregar_producto %}" class="btn btn-primary" >Agregar producto</a>
+    <form method="post" class="form-actions">{% csrf_token %}
+         <fieldset id="agregarProducto">
+             <legend>Nuevo Producto</legend>
+              <div>
+                  {{ formulario }}
+              </div>
+              <br/>
+          <input type="submit">
+         </fieldset>
+     </form>
 {% endblock contenido %}

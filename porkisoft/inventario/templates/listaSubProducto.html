@@ -3,28 +3,28 @@
 {% block titulo %}Sub Productos{% endblock titulo %}
 {% block contenido %}
     <h2>Sub Productos</h2>
-    <table class="table table-bordered">
+    <table id="ListaSubp" class="tabla">
         <thead>
         <tr>
-            <td>Nombre</td>
-            <td>Costo</td>
-            <td>Vr. Compra</td>
-            <td>Vr. Venta</td>
-            <td>Gravado</td>
-            <td>Excento</td>
-            <td>Excluido</td>
-            <td>Utilidad</td>
-            <td>Rentabilidad</td>
-            <td>Refrigerado</td>
-            <td>Congelado</td>
-            <td>Acciones</td>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Costo</th>
+            <th>Vr. Venta</th>
+            <th>Gravado</th>
+            <th>Excento</th>
+            <th>Excluido</th>
+            <th>Utilidad</th>
+            <th>Rentabilidad</th>
+            <th>Refrigerado</th>
+            <th>Congelado</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         {% for subproducto in subproductos %}
         <tr>
+            <td>{{ subproducto.codigoSubProducto }}</td>
             <td>{{ subproducto.nombreSubProducto }}</td>
             <td>{{ subproducto.costoSubProducto }}</td>
-            <td>{{ subproducto.vrCompraSubProducto }}</td>
             <td>{{ subproducto.vrVentaSubProducto }}</td>
             <td>{{ subproducto.gravado }}</td>
             <td>{{ subproducto.excento }}</td>
@@ -34,21 +34,33 @@
             <td>{{ subproducto.refrigerado }}</td>
             <td>{{ subproducto.congelado }}</td>
             <td>
-                <a href="{% url inventario.views.editarSubproducto subproducto.id %}"class="btn">Editar</a>
-                <a href="{% url inventario.views.borrarSubproducto subproducto.id %}
-                         "class="btn btn-danger">Borrar</a>
-
+                <a href="{% url 'Inventario.views.AgregarDetSubProducto' subproducto.codigoSubProducto %}"><img src="{{ STATIC_URL }}img/adicionar.png"></a>
+                <a href="{% url 'Inventario.views.editarSubproducto' subproducto.codigoSubProducto %}"><img src="{{ STATIC_URL }}img/modificar.png"></a>
+                <a href="{% url 'Inventario.views.borrarSubproducto' subproducto.codigoSubProducto %}"><img src="{{ STATIC_URL }}img/borrar.png"></a>
             </td>
 
         </tr>
             {% empty %}
             <tr>
-                <td colspan="9">
+                <td colspan="13">
                    Ningun producto para mostrar
                 </td>
             </tr>
 
         {% endfor %}
+
+       
     </table>
-    <a href="{% url inventario.views.AgregarSubProducto %}" class="btn btn-primary" >Agregar</a>
+    <form method="post">{% csrf_token %}
+         <fieldset id="agregarSubproducto">
+             <legend>Nuevo Sub Producto</legend>
+              <div>
+                  {{ formulario }}
+              </div>
+              <br/>
+          <input type="submit" class="btn btn-primary">
+         </fieldset>
+     </form>
+
 {% endblock contenido %}
+

@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
 {% block titulo %}Agregar Producto{% endblock titulo %}
 {% block contenido %}
-    <h3>Agregar Producto</h3>
-<form method="post" class="form-actions">{% csrf_token %}
-    {{ formulario.as_p }}
-    <br/><br/><br/>
-    <input type="submit" class="btn btn-primary">
-</form>
+
+       <form method="post" class="form-actions">{% csrf_token %}
+         <fieldset>
+             <legend>Nuevo Producto</legend>
+              <div>
+                  {{ formulario }}
+              </div>
+              <br/>
+          <input type="submit">
+         </fieldset>
+     </form>
+
 {% endblock contenido %}

@@ -2,6 +2,20 @@
 
 {% block titulo %}Detalle Sub Productos{% endblock titulo %}
 {% block contenido %}
+    <h3>Agregar Detalle Sub Producto</h3>
+
+    <table class="table">
+        <tr>
+            <td>
+                <form method="post" class="form-actions">{% csrf_token %}
+                {{ formulario.as_p }}
+                 <br/><br/><br/>
+                <input type="submit" class="btn btn-primary">
+                </form>
+            </td>
+        </tr>
+    </table>
+
     <h2>Detalle Sub Productos</h2>
     <table class="table table-bordered">
         <thead>
@@ -21,9 +35,8 @@
             <td>{{ detsubproducto.pesoUnitProducto }}</td>
             <td>{{ detsubproducto.unidades }}</td>
             <td>
-                <a href=""class="btn">Editar</a>
-                <a href="{% url inventario.views.borrarSubproducto subproducto.id %}
-                         "class="btn btn-danger">Borrar</a>
+                <a href="#"class="btn">Editar</a>
+                <a href="#"class="btn btn-danger">Borrar</a>
 
             </td>
 
@@ -38,18 +51,6 @@
         {% endfor %}
     </table>
 
-    <h3>Agregar Detalle Sub Producto</h3>
 
-    <table class="table">
-        <tr>
-            <td>
-                <form method="post" class="form-actions">{% csrf_token %}
-                {{ formulario.as_p }}
-                 <br/><br/><br/>
-                <input type="submit" class="btn btn-primary">
-                </form>
-            </td>
-        </tr>
-    </table>
 
 {% endblock contenido %}

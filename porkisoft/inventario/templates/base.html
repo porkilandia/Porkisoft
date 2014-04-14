@@ -3,46 +3,46 @@
 <head>
 
     <title>{% block titulo %}{% endblock titulo %}</title>
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
+
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/miCss.css"/>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/normalize.css"/>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery.dataTable.css"/>
+
+
 
 </head>
 <body>
-<header>
+<header >
     <hgroup>
-        <h1>APLICATIVO</h1>
-        <h2>subtitulo del aplicativo</h2>
+        <h1>S     I       C       V</h1>
+        <h2>Sistema de Gestion de Inventario Costos y puntos de Venta</h2>
     </hgroup>
 
 </header>
 <section>
+            <img src="#">
 
-        <section id="panel-izquierdo" >
-            <article>
+            <nav>
                 <ul>
-                    <li><a href="#">uno</a> </li>
-                    <li><a href="#">dos</a> </li>
-                    <li><a href="#">tres</a> </li>
+                    <li ><a href="/listaProd" >Listado De productos</a> </li>
+                    <li><a href="/verSubProductos">Listado Sub Productos</a> </li>
+
                 </ul>
-            </article>
-        </section>
-        <section id="panel-central" >
-            <article>
-                 <div class="container">
-                    <div class="well">
-                        {% block contenido %}{% endblock contenido %}
-                    </div>
-                </div>
-            </article>
+            </nav>
+
+
+        <section id="panel-central"  >
+            {% block contenido %}{% endblock contenido %}
         </section>
         <footer>
-            <p>Este ess el footer de la pagina</p>
+            {% block pie %} {% endblock pie %}
         </footer>
 </section>
-
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/acciones.js"></script>
+
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
+
 </body>
 </html>

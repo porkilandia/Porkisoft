@@ -2,9 +2,11 @@
 {% block titulo %}Editar Producto{% endblock titulo %}
 {% block contenido %}
 <form method="post" class="form-actions">{% csrf_token %}
-    {{ formulario.as_p }}
-    <br/><br/><br/>
+    <table>
+      {{ formulario.as_table }}
+    </table>
+     <br/><br/><br/>
     <input type="submit" class="btn btn-primary">
-    <a href="{% url inventario.views.listaProductos %}" class="btn">Cancelar</a>
+    <a href="{% url 'Inventario.views.listaProductos' %}" class="btn">Cancelar</a>
 </form>
 {% endblock contenido %}
