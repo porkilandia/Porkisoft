@@ -87,7 +87,7 @@ nav ul li a:hover
     color: #000000;
     text-decoration: none;
 }
-#agregarDetalle ,#agregarSubproducto, #agregarProducto
+#agregarDetalle ,#agregarSubproducto, #agregarProducto, #agregarBodega
 {
     position: fixed;
     right: 1em;

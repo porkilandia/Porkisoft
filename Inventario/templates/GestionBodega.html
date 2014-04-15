@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Bodegas{% endblock titulo %}
+{% block contenido %}
+
+    <h2>Listado de Bodegas</h2>
+    <table id="tablabodegas" class="tabla" >
+
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        {% for bodega in bodegas %}
+        <tr>
+            <td>{{ bodega.codigoBodega }}</td>
+            <td>{{ bodega.nombreBodega }}</td>
+            <td>{{ bodega.direccionBodega }}</td>
+            <td>{{ bodega.telefonoBodega }}</td>
+
+            <td>
+                <a href="{% url 'Inventario.views.editarBodega' bodega.codigoBodega %}"><img src="{{ STATIC_URL }}img/modificar.png"></a>
+                <a href="{% url 'Inventario.views.borrarBodega' bodega.codigoBodega %}" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-actions">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Bodega</legend>
+              <div>
+                  {{ formulario }}
+              </div>
+              <br/>
+          <input type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}

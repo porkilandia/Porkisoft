@@ -8,6 +8,7 @@ from Inventario.models import *
 
 
 
+
 # Create your views here.
 
 def home(request):
@@ -26,7 +27,7 @@ def listaProductos(request):
     else:
         formulario =ProductoForm()
 
-    return render_to_response('listaProducto.html',{'formulario':formulario,'productos':productos },
+    return render_to_response('GestionProducto.html',{'formulario':formulario,'productos':productos },
                               context_instance = RequestContext(request))
 
 def borrar_producto(request, id_producto):
@@ -44,7 +45,7 @@ def editar_producto(request, id_producto):
             return HttpResponseRedirect('/listaProd')
     else:
         formulario = ProductoForm(instance=producto)
-    return  render_to_response('listaProducto.html',{'formulario':formulario,'productos':productos },
+    return  render_to_response('GestionProducto.html',{'formulario':formulario,'productos':productos },
                                context_instance = RequestContext(request))
 
 #******************************************************************************************
@@ -61,7 +62,7 @@ def listaSubProductos(request):
     else:
         formulario =SubProductoForm()
 
-    return render_to_response('listaSubProducto.html',{'formulario':formulario,'subproductos':subproductos },
+    return render_to_response('GestionSubProducto.html',{'formulario':formulario,'subproductos':subproductos },
                               context_instance = RequestContext(request))
 
 
@@ -82,7 +83,7 @@ def editarSubproducto(request, idSproducto):
     else:
         formulario = SubProductoForm(instance=sproducto)
 
-    return  render_to_response('listaSubProducto.html',{'formulario':formulario,'subproductos':subproductos},
+    return  render_to_response('GestionSubProducto.html',{'formulario':formulario,'subproductos':subproductos},
                                context_instance = RequestContext(request))
 
 def AgregarDetSubProducto(request,id_subproducto):
@@ -106,7 +107,7 @@ def AgregarDetSubProducto(request,id_subproducto):
     else:
         formulario = DetSubProductoForm(initial={'subproducto':id_subproducto})
 
-    return render_to_response('GestionSubProducto.html',{'Tunds':totalUnd,'TPeso':totalPeso,'formulario':formulario,
+    return render_to_response('GestionDetalleSubProducto.html',{'Tunds':totalUnd,'TPeso':totalPeso,'formulario':formulario,
                                                          'subrpoductos': subrpoductos,
                                                          'desubproductos': desubproductos},
                                                         context_instance = RequestContext(request))
@@ -115,3 +116,38 @@ def borrarDetalleSp(request, idDetalle):
     detsubproducto = DetalleSubProducto.objects.get(pk=idDetalle)
     detsubproducto.delete()
     return  HttpResponseRedirect('/verSubProductos')
+
+#**************************************BODEGA****************************************************
+
+def GestionBodega(request):
+    bodegas = Bodega.objects.all()
+    if request.method == 'POST':
+        formulario = BodegaForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/bodega')
+    else:
+        formulario = BodegaForm()
+
+    return render_to_response('GestionBodega.html',{'formulario':formulario,'bodegas':bodegas },
+                              context_instance = RequestContext(request))
+
+
+def editarBodega(request, idBodega):
+    bodegas = Bodega.objects.all()
+    bodega = Bodega.objects.get(pk=idBodega)
+    if request.method == 'POST':
+        formulario = BodegaForm(request.POST, instance=bodega)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/bodega')
+    else:
+        formulario = BodegaForm(instance=bodega)
+
+    return  render_to_response('GestionBodega.html',{'formulario':formulario,'bodegas':bodegas},
+                               context_instance = RequestContext(request))
+
+def borrarBodega(request,idbodega ):
+    bodega = Bodega.objects.get(pk=idbodega)
+    bodega.delete()
+    return  HttpResponseRedirect('/bodega')

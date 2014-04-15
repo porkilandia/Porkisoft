@@ -16,4 +16,8 @@ class DetSubProductoForm(ModelForm):
     class Meta:
         model = DetalleSubProducto
 
+class BodegaForm(ModelForm):
+    class Meta:
+        model = Bodega
+
 

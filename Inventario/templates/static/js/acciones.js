@@ -9,6 +9,10 @@ $(document).on('ready', inicio);
 
          "sDom": '<"top"i>rt<"bottom"flp><"clear">'
     });
+     $('#tablabodegas').dataTable({
+
+         "sDom": '<"top"i>rt<"bottom"flp><"clear">'
+    });
 
     $('#borrador').on('click',pregunta);
  }
