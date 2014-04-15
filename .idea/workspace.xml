@@ -2,110 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59073fdf-8b0c-4e5a-a787-1a51b86e03fd" name="Default" comment="se eliminan archivos innecesarios como plantillas que ya no se utilizan, se reordenan las plantillas con : Gestion+nombre de el modelo que manejan">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/templates/GestionBodega.html" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\modificaProducto.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\nuevoDetSubProducto.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\nuevoProducto.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\nuevoSubProducto.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Fabricacion\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Fabricacion\admin.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Fabricacion\migrations\0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Fabricacion\migrations\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Fabricacion\models.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Fabricacion\tests.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Fabricacion\views.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Nomina\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Nomina\admin.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Nomina\migrations\0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Nomina\migrations\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Nomina\models.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Nomina\tests.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Nomina\views.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Telemercadeo\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Telemercadeo\admin.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Telemercadeo\migrations\0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Telemercadeo\migrations\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Telemercadeo\models.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Telemercadeo\tests.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Telemercadeo\views.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Ventas\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Ventas\admin.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Ventas\migrations\0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Ventas\migrations\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Ventas\models.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Ventas\tests.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\Ventas\views.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\Forms\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\Forms\forms.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\admin.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\migrations\0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\migrations\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\models.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\GestionSubProducto.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\Home.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\base.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\index.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\listaProducto.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\listaSubProducto.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\modificaProducto.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\nuevoDetSubProducto.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\nuevoProducto.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\nuevoSubProducto.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\css\bootstrap-responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\css\bootstrap-responsive.min.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\css\bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\css\bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\css\jquery.dataTables.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\css\miCSS.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\Sorting icons.psd" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\adicionar.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\back_disabled.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\back_enabled.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\back_enabled_hover.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\borrar.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\forward_disabled.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\forward_enabled.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\forward_enabled_hover.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\glyphicons-halflings-white.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\glyphicons-halflings.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\modificar.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\sort_asc.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\sort_asc_disabled.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\sort_both.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\sort_desc.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\img\sort_desc_disabled.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\js\acciones.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\js\bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\js\bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\js\jquery.dataTables.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\js\jquery.dataTables.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\templates\static\js\jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\tests.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\urls.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\inventario\views.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\settings.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\static\css\bootstrap-responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\static\css\bootstrap-responsive.min.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\static\css\bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\static\css\bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\static\css\normalize.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\static\img\glyphicons-halflings-white.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\static\img\glyphicons-halflings.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\static\js\bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\static\js\bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\static\js\jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\urls.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\porkisoft\wsgi.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Inventario/templates/GestionSubProducto.html" afterPath="$PROJECT_DIR$/Inventario/templates/GestionDetalleSubProducto.html" />
-      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\listaProducto.html" afterPath="$PROJECT_DIR$/Inventario/templates/GestionProducto.html" />
-      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\listaSubProducto.html" afterPath="$PROJECT_DIR$/Inventario/templates/GestionSubProducto.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/templates/static/js/acciones.js" afterPath="$PROJECT_DIR$/Inventario/templates/static/js/acciones.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/templates/base.html" afterPath="$PROJECT_DIR$/Inventario/templates/base.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/addpersona.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/bodega.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/no.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/ok.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProvedor.html" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\GestionBodega.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionBodega.html" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\GestionDetalleSubProducto.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleSubProducto.html" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\GestionProducto.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\GestionSubProducto.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSubProducto.html" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\Home.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Home.html" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\base.html" afterPath="$PROJECT_DIR$/porkisoft/templates/base.html" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\css\jquery.dataTables.css" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/jquery.dataTables.css" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\css\miCSS.css" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/miCSS.css" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\Sorting icons.psd" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/Sorting icons.psd" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\adicionar.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/adicionar.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\back_disabled.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/back_disabled.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\back_enabled.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/back_enabled.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\back_enabled_hover.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/back_enabled_hover.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\borrar.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/borrar.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\favicon.ico" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/favicon.ico" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\forward_disabled.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/forward_disabled.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\forward_enabled.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/forward_enabled.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\forward_enabled_hover.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/forward_enabled_hover.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\glyphicons-halflings-white.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/glyphicons-halflings-white.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\glyphicons-halflings.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/glyphicons-halflings.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\modificar.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/modificar.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\sort_asc.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/sort_asc.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\sort_asc_disabled.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/sort_asc_disabled.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\sort_both.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/sort_both.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\sort_desc.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/sort_desc.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img\sort_desc_disabled.png" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/sort_desc_disabled.png" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\js\acciones.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\js\jquery.dataTables.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery.dataTables.js" />
+      <change type="MOVED" beforePath="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\js\jquery.dataTables.min.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery.dataTables.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/Forms/forms.py" afterPath="$PROJECT_DIR$/Inventario/Forms/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/templates/static/css/miCSS.css" afterPath="$PROJECT_DIR$/Inventario/templates/static/css/miCSS.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/models.py" afterPath="$PROJECT_DIR$/Inventario/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/settings.py" afterPath="$PROJECT_DIR$/porkisoft/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/urls.py" afterPath="$PROJECT_DIR$/Inventario/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/views.py" afterPath="$PROJECT_DIR$/Inventario/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -131,13 +67,85 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="51" selection-start="1312" selection-end="1319" vertical-scroll-proportion="-24.23077" vertical-offset="250" max-vertical-offset="1080">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Inventario/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="149" column="33" selection-start="5831" selection-end="5831" vertical-scroll-proportion="0.6685083" vertical-offset="2617" max-vertical-offset="3160">
+            <state line="210" column="105" selection-start="8361" selection-end="8361" vertical-scroll-proportion="0.0" vertical-offset="3784" max-vertical-offset="4340">
               <folding>
                 <element signature="e#0#69#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GestionCompras.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="52" column="85" selection-start="1559" selection-end="1559" vertical-scroll-proportion="-14.230769" vertical-offset="670" max-vertical-offset="1300">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="miCSS.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/miCSS.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="89" column="79" selection-start="1321" selection-end="1321" vertical-scroll-proportion="0.0" vertical-offset="3067" max-vertical-offset="4140">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="acciones.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="3" selection-start="58" selection-end="58" vertical-scroll-proportion="0.107913665" vertical-offset="0" max-vertical-offset="700">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Inventario/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="127" column="64" selection-start="6176" selection-end="6176" vertical-scroll-proportion="0.0" vertical-offset="1957" max-vertical-offset="2860">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="23" selection-start="699" selection-end="699" vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="860">
+              <folding>
+                <marker date="1397575496977" expanded="true" signature="99:140" placeholder="..." />
+                <marker date="1397575496977" expanded="true" signature="115:140" placeholder="..." />
+                <marker date="1397575496977" expanded="true" signature="566:605" placeholder="..." />
+                <marker date="1397575496977" expanded="true" signature="582:605" placeholder="..." />
+                <marker date="1397575496977" expanded="true" signature="635:674" placeholder="..." />
+                <marker date="1397575496977" expanded="true" signature="651:674" placeholder="..." />
+                <marker date="1397575496977" expanded="true" signature="711:757" placeholder="..." />
+                <marker date="1397575496977" expanded="true" signature="727:757" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Inventario/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="18" selection-start="365" selection-end="371" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -163,13 +171,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/porkisoft/models.py" />
-        <option value="$PROJECT_DIR$/porkisoft/admin.py" />
-        <option value="$PROJECT_DIR$/porkisoft/Media/bootstrap/base.html" />
-        <option value="$PROJECT_DIR$/porkisoft/static/bootstrap/base.html" />
-        <option value="$PROJECT_DIR$/porkisoft/urls.py" />
-        <option value="$PROJECT_DIR$/inventario/admin.py" />
-        <option value="$PROJECT_DIR$/inventario/templates/modificaProducto.html" />
         <option value="$PROJECT_DIR$/inventario/templates/nuevoProducto.html" />
         <option value="$PROJECT_DIR$/inventario/templates/listaProducto.html" />
         <option value="$PROJECT_DIR$/inventario/templates/static/js/acciones.js" />
@@ -190,7 +191,6 @@
         <option value="$PROJECT_DIR$/Ventas/models.py" />
         <option value="$PROJECT_DIR$/Nomina/models.py" />
         <option value="$PROJECT_DIR$/Telemercadeo/models.py" />
-        <option value="$PROJECT_DIR$/porkisoft/settings.py" />
         <option value="$PROJECT_DIR$/Fabricacion/models.py" />
         <option value="$PROJECT_DIR$/Inventario/admin.py" />
         <option value="$PROJECT_DIR$/Fabricacion/admin.py" />
@@ -205,14 +205,23 @@
         <option value="$PROJECT_DIR$/Inventario/templates/listaProducto.html" />
         <option value="$PROJECT_DIR$/Inventario/templates/static/js/jquery.dataTables.js" />
         <option value="$PROJECT_DIR$/Inventario/templates/GestionSubProducto.html" />
-        <option value="$PROJECT_DIR$/Inventario/models.py" />
         <option value="$PROJECT_DIR$/Inventario/templates/static/js/acciones.js" />
-        <option value="$PROJECT_DIR$/Inventario/Forms/forms.py" />
         <option value="$PROJECT_DIR$/Inventario/templates/static/css/miCSS.css" />
         <option value="$PROJECT_DIR$/Inventario/templates/base.html" />
-        <option value="$PROJECT_DIR$/Inventario/urls.py" />
         <option value="$PROJECT_DIR$/Inventario/templates/GestionBodega.html" />
+        <option value="$PROJECT_DIR$/Inventario/templates/GestionProductoBodega.html" />
+        <option value="$PROJECT_DIR$/Inventario/templates/GestionProducto.html" />
+        <option value="$PROJECT_DIR$/porkisoft/settings.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProvedor.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html" />
+        <option value="$PROJECT_DIR$/Inventario/models.py" />
+        <option value="$PROJECT_DIR$/Inventario/Forms/forms.py" />
+        <option value="$PROJECT_DIR$/Inventario/urls.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/base.html" />
         <option value="$PROJECT_DIR$/Inventario/views.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/static/css/miCSS.css" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
       </list>
     </option>
   </component>
@@ -302,6 +311,140 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Inventario" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Inventario" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Inventario" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Forms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fabricacion" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope">
@@ -337,18 +480,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\templates\static\img" />
+      <recent name="C:\Users\Javier\Documents\GitHub\Porkisoft\Inventario\templates\static\img" />
       <recent name="C:\Users\Javier\Google Drive\Proyecto Porkilandia\PorkisoftGIT\porkisoft\Inventario\templates\static\img" />
       <recent name="C:\Users\Javier\Google Drive\Proyecto Porkilandia\PorkisoftGIT\porkisoft\Inventario\templates" />
       <recent name="C:\Users\Javier\Google Drive\Proyecto Porkilandia\PorkisoftGIT\porkisoft\Inventario\templates\static\css" />
-      <recent name="C:\Users\Javier\Google Drive\Proyecto Porkilandia\PorkisoftGIT\porkisoft\Inventario\templates\static\js" />
-      <recent name="C:\Users\Javier\Google Drive\Proyecto Porkilandia\PorkisoftGIT\porkisoft\Fabricacion" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\templates\Inventario" />
+      <recent name="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft" />
       <recent name="C:\Users\Javier\Google Drive\Proyecto Porkilandia\PorkisoftGIT\porkisoft\Inventario\templates\static\css" />
       <recent name="C:\Users\JavierAlexander\Google Drive\Proyecto Porkilandia\PorkisoftGIT\porkisoft\porkisoft\static" />
       <recent name="C:\Users\JavierAlexander\Google Drive\Proyecto Porkilandia\PorkisoftGIT\porkisoft\inventario\templates" />
-      <recent name="C:\Users\JavierAlexander\Google Drive\Proyecto Porkilandia\PorkisoftGIT\porkisoft\porkisoft" />
-      <recent name="C:\Users\JavierAlexander\Google Drive\Proyecto Porkilandia\PorkisoftGIT\porkisoft\inventario" />
     </key>
   </component>
   <component name="RunManager" selected="Django server.porkisoft">
@@ -660,7 +803,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32649574" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2473525" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21860817" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21860817" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31965813" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -714,13 +857,6 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Inventario/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="15" selection-start="2425" selection-end="2436" vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="2900">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/models.py">
-      <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="72" selection-start="503" selection-end="503" vertical-scroll-proportion="0.0" vertical-offset="160" max-vertical-offset="560">
           <folding />
         </state>
@@ -738,7 +874,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/templates/GestionProducto.html">
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="25" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="940" />
       </provider>
@@ -845,7 +981,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/templates/Home.html">
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="22" selection-start="127" selection-end="127" vertical-scroll-proportion="0.15779093" vertical-offset="0" max-vertical-offset="507">
           <folding />
@@ -860,18 +996,6 @@
     <entry file="file://$PROJECT_DIR$/Nomina/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="90" selection-start="419" selection-end="419" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="11" selection-start="4523" selection-end="4523" vertical-scroll-proportion="0.64631957" vertical-offset="2220" max-vertical-offset="3340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="0" selection-start="2952" selection-end="2952" vertical-scroll-proportion="2.2262118" vertical-offset="0" max-vertical-offset="2460" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Ventas/models.py">
@@ -921,19 +1045,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/templates/GestionSubProducto.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="16" selection-start="1431" selection-end="1431" vertical-scroll-proportion="0.8471954" vertical-offset="302" max-vertical-offset="1440">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/templates/static/css/jquery.dataTables.css">
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/jquery.dataTables.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="131" column="0" selection-start="2506" selection-end="2587" vertical-scroll-proportion="0.39568347" vertical-offset="2400" max-vertical-offset="4580" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/templates/static/js/jquery.dataTables.js">
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/jquery.dataTables.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4939" column="10" selection-start="150465" selection-end="150465" vertical-scroll-proportion="-14.325967" vertical-offset="106159" max-vertical-offset="241700" />
       </provider>
@@ -943,73 +1060,143 @@
         <state line="3666" column="51" selection-start="99318" selection-end="99318" vertical-scroll-proportion="0.67329544" vertical-offset="72843" max-vertical-offset="182100" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/templates/GestionProducto.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="0" selection-end="2164" vertical-scroll-proportion="-17.423077" vertical-offset="867" max-vertical-offset="1440">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/templates/static/css/miCSS.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="14" selection-start="1383" selection-end="1383" vertical-scroll-proportion="0.0" vertical-offset="1687" max-vertical-offset="4140">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/templates/static/js/acciones.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="344" selection-end="344" vertical-scroll-proportion="0.56390977" vertical-offset="0" max-vertical-offset="600" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="7" selection-start="1280" selection-end="1280" vertical-scroll-proportion="0.7740113" vertical-offset="489" max-vertical-offset="1020">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="55" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="560">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/templates/GestionBodega.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="83" selection-start="863" selection-end="863" vertical-scroll-proportion="0.6138996" vertical-offset="202" max-vertical-offset="1140">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="2860">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/templates/GestionDetalleSubProducto.html">
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleSubProducto.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="63" column="83" selection-start="1949" selection-end="1949" vertical-scroll-proportion="1.6216216" vertical-offset="420" max-vertical-offset="2120">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSubProducto.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="16" selection-start="1431" selection-end="1431" vertical-scroll-proportion="1.4313346" vertical-offset="0" max-vertical-offset="1440">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/img/no.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="49" selection-start="513" selection-end="513" vertical-scroll-proportion="-3.0769231" vertical-offset="300" max-vertical-offset="1140">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="0" selection-start="2952" selection-end="2952" vertical-scroll-proportion="0.77163905" vertical-offset="821" max-vertical-offset="2440">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="112" column="75" selection-start="4024" selection-end="4024" vertical-scroll-proportion="0.0323741" vertical-offset="2222" max-vertical-offset="3340">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="96" selection-start="1935" selection-end="1935" vertical-scroll-proportion="-18.461538" vertical-offset="360" max-vertical-offset="1500">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionBodega.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="0" selection-start="0" selection-end="1485" vertical-scroll-proportion="0.92263055" vertical-offset="543" max-vertical-offset="1140">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="23" selection-start="699" selection-end="699" vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="860">
+          <folding>
+            <marker date="1397575496977" expanded="true" signature="99:140" placeholder="..." />
+            <marker date="1397575496977" expanded="true" signature="115:140" placeholder="..." />
+            <marker date="1397575496977" expanded="true" signature="566:605" placeholder="..." />
+            <marker date="1397575496977" expanded="true" signature="582:605" placeholder="..." />
+            <marker date="1397575496977" expanded="true" signature="635:674" placeholder="..." />
+            <marker date="1397575496977" expanded="true" signature="651:674" placeholder="..." />
+            <marker date="1397575496977" expanded="true" signature="711:757" placeholder="..." />
+            <marker date="1397575496977" expanded="true" signature="727:757" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="0" selection-start="0" selection-end="1535" vertical-scroll-proportion="-17.923077" vertical-offset="654" max-vertical-offset="1240">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="127" column="64" selection-start="6176" selection-end="6176" vertical-scroll-proportion="0.0" vertical-offset="2077" max-vertical-offset="2860">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="18" selection-start="365" selection-end="371" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="51" selection-start="1312" selection-end="1319" vertical-scroll-proportion="-24.23077" vertical-offset="250" max-vertical-offset="1080">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/img/addpersona.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Inventario/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="149" column="33" selection-start="5831" selection-end="5831" vertical-scroll-proportion="0.6685083" vertical-offset="2617" max-vertical-offset="3160">
+        <state line="210" column="105" selection-start="8361" selection-end="8361" vertical-scroll-proportion="0.0" vertical-offset="3784" max-vertical-offset="4340">
           <folding>
             <element signature="e#0#69#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProvedor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="12" selection-start="1356" selection-end="1654" vertical-scroll-proportion="0.7351779" vertical-offset="768" max-vertical-offset="1300">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/miCSS.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="79" selection-start="1321" selection-end="1321" vertical-scroll-proportion="0.0" vertical-offset="3067" max-vertical-offset="4140">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="85" selection-start="1559" selection-end="1559" vertical-scroll-proportion="-14.230769" vertical-offset="670" max-vertical-offset="1300">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="3" selection-start="58" selection-end="58" vertical-scroll-proportion="0.107913665" vertical-offset="0" max-vertical-offset="700">
+          <folding />
         </state>
       </provider>
     </entry>

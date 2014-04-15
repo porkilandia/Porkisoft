@@ -1,6 +1,11 @@
 $(document).on('ready', inicio);
  function inicio()
  {
+   
+     $('#tablaCompras').dataTable({
+
+         "sDom": '<"top"i>rt<"bottom"flp><"clear">'
+    });
      $('#tablaProductos').dataTable({
 
          "sDom": '<"top"i>rt<"bottom"flp><"clear">'

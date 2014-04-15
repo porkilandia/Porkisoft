@@ -9,8 +9,10 @@ urlpatterns = patterns('',
     url(r'^listaProd/$', listaProductos),
     url(r'^verSubProductos/$',listaSubProductos),
     url(r'^bodega/$',GestionBodega),
-
-
+    url(r'^provedor/$',GestionProvedor),
+    url(r'^ganado/$',GestionGanado),
+     url(r'^compra/$',GestionCompra),
+    url(r'^productoBodega/(?P<idproducto>\d+)',GestionProductoBodega),
     url(r'^addDSprod/(?P<id_subproducto>\d+)',AgregarDetSubProducto, name='gestionSp'),
     url(r'^borrar/(?P<id_producto>\d+)',borrar_producto),
     url(r'^borrarSP/(?P<idSubproducto>\d+)',borrarSubproducto),

@@ -69,7 +69,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    (os.path.join(BASE_DIR, "Inventario/templates/static")),
+    (os.path.join(BASE_DIR, "porkisoft/templates/static")),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -110,7 +110,7 @@ WSGI_APPLICATION = 'porkisoft.wsgi.application'
 
 
 
-TEMPLATE_DIRS = (os.path.join (os.path.dirname (__file__), '..', 'Inventario/templates').replace ('\\', '/'),)
+TEMPLATE_DIRS = (os.path.join (os.path.dirname (__file__), '..', 'porkisoft/templates').replace ('\\', '/'),)
 
 INSTALLED_APPS = (
     'django.contrib.auth',

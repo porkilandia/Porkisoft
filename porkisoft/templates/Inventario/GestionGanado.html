@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Bodegas{% endblock titulo %}
+{% block contenido %}
+
+    <h2>Listado de Bodegas</h2>
+    <table id="tablabodegas" class="tabla" >
+
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Genero</th>
+            <th>Peso en Pie</th>
+            <th>Precio Kilo en Pie</th>
+            <th>Precio Total</th>
+            <th>Diferencia Pie/Canal</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        {% for ganado in ganados %}
+        <tr>
+            <td>{{ ganado.codigoGanado }}</td>
+            <td>{{ ganado.genero }}</td>
+            <td>{{ ganado.pesoEnPie }}</td>
+            <td>{{ ganado.precioKiloEnPie }}</td>
+            <td>{{ ganado.precioTotal }}</td>
+            <td>{{ ganado.difPieCanal }}</td>
+
+
+            <td>
+                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
+                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-actions">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Bodega</legend>
+              <div>
+                  {{ formulario }}
+              </div>
+              <br/>
+          <input type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}

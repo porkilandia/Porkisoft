@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Bodegas{% endblock titulo %}
+{% block contenido %}
+
+    <h2>Listado de Provedores</h2>
+    <table id="tablabodegas" class="tabla" >
+
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>E-Mail</th>
+            <th>Contacto</th>
+            <th>Ciudad</th>
+            <th>Departamento</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        {% for provedor in provedores %}
+        <tr>
+            <td>{{ provedor.codigoProveedor }}</td>
+            <td>{{ provedor.nombreProv }}</td>
+            <td>{{ provedor.direccionProv }}</td>
+            <td>{{ provedor.telefonoProv }}</td>
+            <td>{{ provedor.email }}</td>
+            <td>{{ provedor.contacto }}</td>
+            <td>{{ provedor.ciudad }}</td>
+            <td>{{ provedor.departamento }}</td>
+
+            <td>
+                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
+                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun Registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-actions">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Proveedor</legend>
+              <div>
+                  {{ formulario }}
+              </div>
+              <br/>
+          <input type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}

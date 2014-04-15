@@ -27,7 +27,7 @@ def listaProductos(request):
     else:
         formulario =ProductoForm()
 
-    return render_to_response('GestionProducto.html',{'formulario':formulario,'productos':productos },
+    return render_to_response('Inventario/GestionProducto.html',{'formulario':formulario,'productos':productos },
                               context_instance = RequestContext(request))
 
 def borrar_producto(request, id_producto):
@@ -45,7 +45,7 @@ def editar_producto(request, id_producto):
             return HttpResponseRedirect('/listaProd')
     else:
         formulario = ProductoForm(instance=producto)
-    return  render_to_response('GestionProducto.html',{'formulario':formulario,'productos':productos },
+    return  render_to_response('Inventario/GestionProducto.html',{'formulario':formulario,'productos':productos },
                                context_instance = RequestContext(request))
 
 #******************************************************************************************
@@ -62,7 +62,7 @@ def listaSubProductos(request):
     else:
         formulario =SubProductoForm()
 
-    return render_to_response('GestionSubProducto.html',{'formulario':formulario,'subproductos':subproductos },
+    return render_to_response('Inventario/GestionSubProducto.html',{'formulario':formulario,'subproductos':subproductos },
                               context_instance = RequestContext(request))
 
 
@@ -83,7 +83,7 @@ def editarSubproducto(request, idSproducto):
     else:
         formulario = SubProductoForm(instance=sproducto)
 
-    return  render_to_response('GestionSubProducto.html',{'formulario':formulario,'subproductos':subproductos},
+    return  render_to_response('Inventario/GestionSubProducto.html',{'formulario':formulario,'subproductos':subproductos},
                                context_instance = RequestContext(request))
 
 def AgregarDetSubProducto(request,id_subproducto):
@@ -107,7 +107,7 @@ def AgregarDetSubProducto(request,id_subproducto):
     else:
         formulario = DetSubProductoForm(initial={'subproducto':id_subproducto})
 
-    return render_to_response('GestionDetalleSubProducto.html',{'Tunds':totalUnd,'TPeso':totalPeso,'formulario':formulario,
+    return render_to_response('Inventario/GestionDetalleSubProducto.html',{'Tunds':totalUnd,'TPeso':totalPeso,'formulario':formulario,
                                                          'subrpoductos': subrpoductos,
                                                          'desubproductos': desubproductos},
                                                         context_instance = RequestContext(request))
@@ -129,7 +129,7 @@ def GestionBodega(request):
     else:
         formulario = BodegaForm()
 
-    return render_to_response('GestionBodega.html',{'formulario':formulario,'bodegas':bodegas },
+    return render_to_response('Inventario/GestionBodega.html',{'formulario':formulario,'bodegas':bodegas },
                               context_instance = RequestContext(request))
 
 
@@ -144,10 +144,69 @@ def editarBodega(request, idBodega):
     else:
         formulario = BodegaForm(instance=bodega)
 
-    return  render_to_response('GestionBodega.html',{'formulario':formulario,'bodegas':bodegas},
+    return  render_to_response('Inventario/GestionBodega.html',{'formulario':formulario,'bodegas':bodegas},
                                context_instance = RequestContext(request))
 
 def borrarBodega(request,idbodega ):
     bodega = Bodega.objects.get(pk=idbodega)
     bodega.delete()
     return  HttpResponseRedirect('/bodega')
+
+def GestionProductoBodega(request,idproducto):
+    productoBodegas = ProductoBodega.objects.all()
+    if request.method == 'POST':
+        formulario = ProductoBodegaForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/productoBodega')
+    else:
+        formulario = ProductoBodegaForm(initial={'producto':idproducto})
+
+    return render_to_response('Inventario/GestionProductoBodega.html',{'formulario':formulario,'productoBodegas':productoBodegas },
+                              context_instance = RequestContext(request))
+
+#*****************************************PROVEEDOR**************************************************
+
+def GestionProvedor(request):
+    provedores = Proveedor.objects.all()
+    if request.method == 'POST':
+        formulario = ProvedorForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/provedor')
+    else:
+        formulario = ProvedorForm()
+
+    return render_to_response('Inventario/GestionProvedor.html',{'formulario':formulario,'provedores':provedores },
+                              context_instance = RequestContext(request))
+
+#************************************************GANADO*******************************************************
+
+def GestionGanado(request):
+    ganados = Ganado.objects.all()
+    if request.method == 'POST':
+        formulario = GanadoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/provedor')
+    else:
+        formulario = GanadoForm()
+
+    return render_to_response('Inventario/GestionGanado.html',{'formulario':formulario,'ganados':ganados },
+                              context_instance = RequestContext(request))
+
+#**********************************************COMPRA***********************************************************
+
+def GestionCompra(request):
+
+    compras = Compra.objects.all()
+    if request.method == 'POST':
+        formulario = CompraForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/verSubProductos/')
+    else:
+        formulario =CompraForm()
+
+    return render_to_response('Inventario/GestionCompras.html',{'formulario':formulario,'compras':compras },
+                              context_instance = RequestContext(request))

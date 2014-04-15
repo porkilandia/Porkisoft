@@ -87,7 +87,7 @@ nav ul li a:hover
     color: #000000;
     text-decoration: none;
 }
-#agregarDetalle ,#agregarSubproducto, #agregarProducto, #agregarBodega
+#agregarDetalle ,#agregarSubproducto, #agregarProducto, #agregarBodega,#compras
 {
     position: fixed;
     right: 1em;
@@ -164,7 +164,7 @@ nav ul li a:hover
 }
 #panel-central form fieldset
 {
-  background: #008dd3;
+  background: #fcfcfd;
   box-shadow: 0.5em 0.5em 2em #7c8086;
   border-radius: 0.5em;
   float: left;

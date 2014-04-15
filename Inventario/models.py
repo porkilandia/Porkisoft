@@ -124,8 +124,8 @@ class Ganado(models.Model):
     codigoGanado = models.AutoField(primary_key=True, verbose_name='Codigo Ganado')
     genero = models.CharField(verbose_name='Genero', choices=OpGenero, max_length=7)
     pesoEnPie = models.DecimalField(verbose_name = 'Peso en Pie (grs)',max_digits=9, decimal_places=3)
-    precioKiloEnPie = models.IntegerField()
-    precioTotal = models.IntegerField()
+    precioKiloEnPie = models.IntegerField(verbose_name='Precio Kilo en Pie')
+    precioTotal = models.IntegerField(verbose_name='Precio Total')
     difPieCanal = models.DecimalField(verbose_name='Diferencia de pie A canal',max_digits=9, decimal_places=3)
 
     def __unicode__(self):
