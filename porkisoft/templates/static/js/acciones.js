@@ -1,7 +1,8 @@
 $(document).on('ready', inicio);
  function inicio()
  {
-   
+     $('#id_precioTotal').on('focus',calculoGanado);
+
      $('#tablaCompras').dataTable({
 
          "sDom": '<"top"i>rt<"bottom"flp><"clear">'
@@ -18,12 +19,19 @@ $(document).on('ready', inicio);
 
          "sDom": '<"top"i>rt<"bottom"flp><"clear">'
     });
+function calculoGanado(){
 
-    $('#borrador').on('click',pregunta);
- }
-function pregunta(){
 
-    if(confirm('Desea usted borrar el registro?'))this.form.submit();
+         var pesoEnPie = $('#id_pesoEnPie').val();
+         var vrKiloEnPie = $('#id_precioKiloEnPie').val();
+         var total = pesoEnPie * vrKiloEnPie;
+            $('#id_precioTotal').val(total);
+
+
+
 }
+
+ }
+
 
 

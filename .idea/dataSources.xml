@@ -19,7 +19,7 @@
     <data-source source="LOCAL" name="Django default" uuid="33993894-60d9-446b-9aa8-b98a8b8e16c0">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql:///porkisoftdb</jdbc-url>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/porkisoftdb</jdbc-url>
       <user-name>root</user-name>
       <user-password>dfcbdfc6dfc3dfd9dfc5dfc4df98df9adf9adf93</user-password>
       <libraries />

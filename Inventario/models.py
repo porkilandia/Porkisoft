@@ -17,7 +17,6 @@ class Producto(models.Model):
     codigoProducto = models.AutoField(primary_key=True, verbose_name='Codigo Producto')
     nombreProducto = models.CharField(verbose_name = 'Nombre Producto',max_length=50)
     costoProducto = models.IntegerField(verbose_name = 'Costo Producto')
-    vrCompraProducto = models.IntegerField(verbose_name = 'Valor de Compra')
     vrVentaProducto = models.IntegerField(verbose_name = 'Valor de Venta')
     utilidadProducto = models.IntegerField(verbose_name = 'Ulilidad')
     rentabilidadProducto = models.DecimalField(verbose_name = 'Rentabilidad',max_digits=5, decimal_places=2 )
@@ -110,8 +109,8 @@ class Compra(models.Model):
     codigoCompra = models.AutoField(primary_key=True)
     encargado = models.ForeignKey(Empleado)
     proveedor = models.ForeignKey(Proveedor)
-    fechaCompra = models.DateTimeField(verbose_name='Fecha', auto_now=True)
-    vrCompra = models.IntegerField(verbose_name='Valor Compra')
+    fechaCompra = models.DateField(verbose_name='Fecha', auto_now=True, blank=True,null=True)
+    vrCompra = models.IntegerField(verbose_name='Valor Compra', default=0)
 
     def __unicode__(self):
         return self.codigoCompra
@@ -126,14 +125,18 @@ class Ganado(models.Model):
     pesoEnPie = models.DecimalField(verbose_name = 'Peso en Pie (grs)',max_digits=9, decimal_places=3)
     precioKiloEnPie = models.IntegerField(verbose_name='Precio Kilo en Pie')
     precioTotal = models.IntegerField(verbose_name='Precio Total')
-    difPieCanal = models.DecimalField(verbose_name='Diferencia de pie A canal',max_digits=9, decimal_places=3)
+    difPieCanal = models.DecimalField(verbose_name='Diferencia de pie A canal',default=0,max_digits=9, decimal_places=3)
+    fechaIngreso = models.DateField(auto_now=True, blank=True, null=True)
 
     def __unicode__(self):
-        return self.lote
+        return self.codigoGanado
 
 class DetalleCompra(models.Model):
     compra = models.ForeignKey(Compra)
-    producto = models.ForeignKey(Producto, null=True)
-    ganado = models.ForeignKey(Ganado, null=True)
+    producto = models.ForeignKey(Producto, null=True, blank=True)
+    ganado = models.ForeignKey(Ganado, null=True, blank=True)
     pesoProducto = models.DecimalField(verbose_name = 'Peso Producto (grs)',max_digits=9, decimal_places=3,null= True,default=0)
     unidades = models.IntegerField(verbose_name='Unidades', null= True,default=0)
+    vrCompraProducto = models.IntegerField(verbose_name = 'Valor de Compra')
+    subtotal = models.IntegerField(default=0)
+    estado = models.BooleanField()

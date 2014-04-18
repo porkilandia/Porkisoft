@@ -9,6 +9,7 @@ from Inventario.models import *
 
 
 
+
 # Create your views here.
 
 def home(request):
@@ -182,13 +183,53 @@ def GestionProvedor(request):
 
 #************************************************GANADO*******************************************************
 
-def GestionGanado(request):
-    ganados = Ganado.objects.all()
+def GestionGanado(request,idcompra):
+
+    ganados = Ganado.objects.order_by('-codigoGanado')
+    compra = Compra.objects.get(pk = idcompra)
+    detallecompra = DetalleCompra()
+    ganado = Ganado()
+
+
     if request.method == 'POST':
         formulario = GanadoForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/provedor')
+
+            ganado.codigoGanado = ganados[0].codigoGanado
+            ganado.genero = request.POST.get('genero')
+            ganado.pesoEnPie = request.POST.get('pesoEnPie')
+            ganado.precioKiloEnPie = request.POST.get('precioKiloEnPie')
+            ganado.precioTotal = request.POST.get('precioTotal')
+            ganado.difPieCanal = request.POST.get('difPieCanal')
+
+            detallecompra.compra = compra
+            detallecompra.ganado = ganado
+            detallecompra.pesoProducto = 0
+            detallecompra.unidades = 1
+            detallecompra.vrCompraProducto = ganado.precioTotal
+            detallecompra.estado = False
+            detallecompra.subtotal = ganado.precioTotal
+            detallecompra.save()
+
+            artCompra = DetalleCompra.objects.filter(compra = idcompra)
+            totalCompra = 0
+
+            for dcmp in artCompra:
+                totalCompra += dcmp.subtotal
+
+            compraTotal = Compra(
+                                codigoCompra = compra.codigoCompra,
+                                encargado = compra.encargado,
+                                proveedor = compra.proveedor,
+                                fechaCompra = compra.fechaCompra,
+                                vrCompra = totalCompra )
+
+
+            compraTotal.save()
+
+
+            return HttpResponseRedirect('/ganado/'+idcompra)
     else:
         formulario = GanadoForm()
 
@@ -204,9 +245,44 @@ def GestionCompra(request):
         formulario = CompraForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/verSubProductos/')
+            return HttpResponseRedirect('/compra')
     else:
         formulario =CompraForm()
 
     return render_to_response('Inventario/GestionCompras.html',{'formulario':formulario,'compras':compras },
                               context_instance = RequestContext(request))
+
+def GestionDetalleCompra(request,idcompra):
+
+    compra = Compra.objects.get(pk = idcompra)
+    detcompras = DetalleCompra.objects.filter(compra = idcompra)
+    totalCompra  = 0
+    for dcmp in detcompras: # clacular los totales de la lista de detalles de subproducto
+                totalCompra += dcmp.subtotal
+
+    if request.method == 'POST':
+        formulario = DetalleCompraForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            detcompras = DetalleCompra.objects.filter(compra = idcompra)
+            totalCompra  = 0
+            for dcmp in detcompras: # clacular los totales de la lista de detalles de subproducto
+                totalCompra += dcmp.subtotal
+
+            compraTotal = Compra(
+                                codigoCompra = compra.codigoCompra,
+                                encargado = compra.encargado,
+                                proveedor = compra.proveedor,
+                                fechaCompra = compra.fechaCompra,
+                                vrCompra = totalCompra )
+
+            compraTotal.save()
+
+            return HttpResponseRedirect('/detcompra/'+ idcompra)
+    else:
+        formulario = DetalleCompraForm(initial={'compra':idcompra})
+
+    return render_to_response('Inventario/GestionDetalleCompra.html',{'formulario':formulario,
+                                                         'compra': compra,
+                                                         'detcompras': detcompras, 'totalCompra':totalCompra},
+                                                        context_instance = RequestContext(request))

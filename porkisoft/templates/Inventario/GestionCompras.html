@@ -25,6 +25,7 @@
             <td>{{ compra.vrCompra }}</td>
 
             <td>
+                <a href="{% url 'Inventario.views.GestionDetalleCompra' compra.codigoCompra %}"><img src="{{ STATIC_URL }}img/adicionar.png"></a>
                 <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
                 <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
 
@@ -47,13 +48,14 @@
                   {{ formulario }}
               </div>
               <br/>
-          <fieldset>
+          <fieldset style="text-align: center">
               <legend>Acciones</legend>
-             <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
-             <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+             <input type="image" src="{{ STATIC_URL }}img/save.png" width="30" height="30" border="0" alt="Guardar">
+              <a href="#"><img src="{{ STATIC_URL }}img/operario.png"></a>
+              <a href="{% url 'Inventario.views.GestionProvedor' %}"><img src="{{ STATIC_URL }}img/provedor.png"></a>
           </fieldset>
 
-          <input type="submit">
+
          </fieldset>
      </form>
 {% endblock contenido %}

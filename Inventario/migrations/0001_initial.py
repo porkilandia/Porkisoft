@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
 from south.db import db
 from south.v2 import SchemaMigration
-from django.db import models
 
 
 class Migration(SchemaMigration):
@@ -123,7 +121,7 @@ class Migration(SchemaMigration):
             ('codigoCompra', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('encargado', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['Nomina.Empleado'])),
             ('proveedor', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['Inventario.Proveedor'])),
-            ('fechaCompra', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('fechaCompra', self.gf('django.db.models.fields.DateField')(auto_now=True, null=True, blank=True)),
             ('vrCompra', self.gf('django.db.models.fields.IntegerField')()),
         ))
         db.send_create_signal(u'Inventario', ['Compra'])
@@ -136,6 +134,7 @@ class Migration(SchemaMigration):
             ('precioKiloEnPie', self.gf('django.db.models.fields.IntegerField')()),
             ('precioTotal', self.gf('django.db.models.fields.IntegerField')()),
             ('difPieCanal', self.gf('django.db.models.fields.DecimalField')(max_digits=9, decimal_places=3)),
+            ('fechaIngreso', self.gf('django.db.models.fields.DateField')(auto_now=True, null=True, blank=True)),
         ))
         db.send_create_signal(u'Inventario', ['Ganado'])
 
@@ -143,10 +142,12 @@ class Migration(SchemaMigration):
         db.create_table(u'Inventario_detallecompra', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('compra', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['Inventario.Compra'])),
-            ('producto', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['Inventario.Producto'], null=True)),
-            ('ganado', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['Inventario.Ganado'], null=True)),
+            ('producto', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['Inventario.Producto'], null=True, blank=True)),
+            ('ganado', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['Inventario.Ganado'], null=True, blank=True)),
             ('pesoProducto', self.gf('django.db.models.fields.DecimalField')(default=0, null=True, max_digits=9, decimal_places=3)),
             ('unidades', self.gf('django.db.models.fields.IntegerField')(default=0, null=True)),
+            ('subtotal', self.gf('django.db.models.fields.IntegerField')()),
+            ('estado', self.gf('django.db.models.fields.BooleanField')()),
         ))
         db.send_create_signal(u'Inventario', ['DetalleCompra'])
 
@@ -201,17 +202,19 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Compra'},
             'codigoCompra': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'encargado': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['Nomina.Empleado']"}),
-            'fechaCompra': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'fechaCompra': ('django.db.models.fields.DateField', [], {'auto_now': 'True', 'null': 'True', 'blank': 'True'}),
             'proveedor': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['Inventario.Proveedor']"}),
             'vrCompra': ('django.db.models.fields.IntegerField', [], {})
         },
         u'Inventario.detallecompra': {
             'Meta': {'object_name': 'DetalleCompra'},
             'compra': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['Inventario.Compra']"}),
-            'ganado': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['Inventario.Ganado']", 'null': 'True'}),
+            'estado': ('django.db.models.fields.BooleanField', [], {}),
+            'ganado': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['Inventario.Ganado']", 'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'pesoProducto': ('django.db.models.fields.DecimalField', [], {'default': '0', 'null': 'True', 'max_digits': '9', 'decimal_places': '3'}),
-            'producto': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['Inventario.Producto']", 'null': 'True'}),
+            'producto': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['Inventario.Producto']", 'null': 'True', 'blank': 'True'}),
+            'subtotal': ('django.db.models.fields.IntegerField', [], {}),
             'unidades': ('django.db.models.fields.IntegerField', [], {'default': '0', 'null': 'True'})
         },
         u'Inventario.detallesubproducto': {
@@ -238,6 +241,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Ganado'},
             'codigoGanado': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'difPieCanal': ('django.db.models.fields.DecimalField', [], {'max_digits': '9', 'decimal_places': '3'}),
+            'fechaIngreso': ('django.db.models.fields.DateField', [], {'auto_now': 'True', 'null': 'True', 'blank': 'True'}),
             'genero': ('django.db.models.fields.CharField', [], {'max_length': '7'}),
             'pesoEnPie': ('django.db.models.fields.DecimalField', [], {'max_digits': '9', 'decimal_places': '3'}),
             'precioKiloEnPie': ('django.db.models.fields.IntegerField', [], {}),
