@@ -1,0 +1,103 @@
+#nav {
+    top: 6.6em;
+    left: 0;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    width: 100%;
+    z-index:2;
+}
+#nav ul {
+    background-color: #d3070b;
+    border-radius: 0 0 0.5em 0.5em;
+    box-shadow: 0.5em 0.5em 1.5em #6c686f;
+    height:35px;
+    list-style:none outside none;
+    margin:0;
+    padding:1em;
+}
+#nav ul ul {
+    background-color: #d3070b;
+    display:none;
+    height:auto;
+    left:0;
+    padding:1em;
+    position:absolute;
+    top:49px;
+    width:220px;
+
+    background-image:-webkit-gradient(left center , #F8FAFF 0%, #B8D1F8 15%, #FFFFFF 15%, #FFFFFF 100%);
+    background-image:-moz-linear-gradient(left center , #F8FAFF 0%, #B8D1F8 15%, #FFFFFF 15%, #FFFFFF 100%);
+}
+#nav ul ul ul {
+    display:none;
+    left:168px;
+    position:absolute;
+    top:-1px;
+    width:168px;
+}
+#nav ul li {
+    float:left;
+    margin:0;
+    position:relative;
+}
+#nav ul li a {
+
+    color: #ececec;
+    cursor:default;
+    display:block;
+    padding:1.2em 1.2em 1.2em;
+    text-decoration:none;
+}
+#nav ul li span {
+    color: #ececec;
+    cursor:default;
+    display:block;
+    padding:1em 3em 1em 1em;
+    position:relative;
+}
+#personas
+{
+    background:url("../img/personas.png") no-repeat scroll 95% center transparent;
+}
+#inventario
+{
+    background:url("../img/inventario.jpg") no-repeat scroll 95% center transparent;
+}
+#nav ul ul li span {
+    background:url("../img/menu-img/s.gif") no-repeat scroll 97% center transparent;
+}
+#nav ul ul li {
+    float:none;
+    margin-right:0;
+    padding:1px;
+    text-indent:10px;
+}
+#nav ul ul li a,#nav ul ul li span {
+    padding:3px 3px 5px 2px;
+}
+#nav ul ul li a img,#nav ul ul li span img {
+    border-width:0;
+    float:left;
+    margin-right:5px;
+    vertical-align:middle;
+}
+#nav ul li:hover > a,#nav ul li:hover > span {
+    background-color: #d3070b;
+    border:1px solid #deff7c;
+    border-radius: 1em;
+    color: #deff7c;
+    text-shadow: 0 0 1.5em #ececec;
+}
+#nav img.close {
+    display:none;
+    height:100%;
+    left:0;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:-1;
+}
+#nav ul li span:focus + ul,#nav ul li ul:hover,#nav ul:hover + img.close {
+    display:block;
+}

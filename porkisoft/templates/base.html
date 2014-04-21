@@ -6,44 +6,57 @@
 
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/miCSS.css"/>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery.dataTable.css"/>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/menu.css"/>
+
+
+
 
 
 
 </head>
 <body>
-<header >
-    <hgroup>
-        <h1>S     I       C       V</h1>
-        <h2>Sistema de Gestion de Inventario Costos y puntos de Venta</h2>
-    </hgroup>
+
+<header>
+     <img src="{{ STATIC_URL }}img/logo.png">
 
 </header>
+
+
 <section>
-            <img src="#">
-
-            <nav>
+        <div id="nav">
                 <ul>
-                    <li ><a href="/provedor" >Proveedor</a> </li>
-                    <li ><a href="/ganado" >Ganado</a> </li>
-                    <li ><a href="/compra" >Compras</a> </li>
-                    <li ><a href="/bodega" >Bodegas</a> </li>
-                    <li ><a href="/listaProd" >Productos</a> </li>
-                    <li><a href="/verSubProductos">Sub Productos</a> </li>
+                    <li><span id="inventario" tabindex="1">Inventario</span>
+                        <ul>
+                            <li><a href="/listaProd"><img src="{{ STATIC_URL }}img/item.png" alt="" />Gestionar Producto</a></li>
+                            <li><a href="/verSubProductos"><img src="{{ STATIC_URL }}img/item.png" alt="" />Gestionar Sub Productos</a></li>
+                            <li><a href="/compra"><img src="{{ STATIC_URL }}img/item.png" alt="" />Compras</a></li>
+                            <li><a href="/ganado"><img src="{{ STATIC_URL }}img/item.png" alt="" />Ganado</a></li>
+                            <li><a href="/bodega"><img src="{{ STATIC_URL }}img/item.png" alt="" />Bodega</a></li>
 
+
+                        </ul>
+                    </li>
+                    <li><span id="personas" tabindex="1">Personas</span>
+                        <ul>
+                            <li><a href="#"><img src="{{ STATIC_URL }}img/item.png" alt="" />Empleado</a></li>
+                            <li><a href="/provedor"><img src="{{ STATIC_URL }}img/item.png" alt="" />Proveedor</a></li>
+                            <li><a href="#"><img src="{{ STATIC_URL }}img/item.png" alt="" />Cliente</a></li>
+                        </ul>
+                    </li>
+
+                    <img class="close" src="images/spacer.gif" alt="" />
                 </ul>
-            </nav>
-
+            </div>
 
         <section id="panel-central"  >
-            {% block contenido %}{% endblock contenido %}
+           {% block contenido %}{% endblock contenido %}
         </section>
-        <footer>
-            {% block pie %} {% endblock pie %}
-        </footer>
+
 </section>
         <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/acciones.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
+
 
 </body>
 </html>

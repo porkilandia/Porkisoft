@@ -8,26 +8,32 @@ body
 
 header
 {
-    background: #008ed4;
+    background:  #f3c702;
     color: #f5f5f5;
-    width: 100%;
+    height: 74px;
     left: 0;
     margin:0 0 0 0;
-    padding: 0.5em 0;
+    padding: 0.5em 0.5em;
     position: fixed;
     right: 0;
     top: 0;
+    width: 100%;
 
-    text-align: center;
+}
+header h1 , header img
+{
+    display:inline-block;
 }
 header h1
 {
+    font-family: "Balzac DB Medium";
     font-size: 4em;
     margin: 0;
 }
 
 header h2
 {
+
     font-size: 1em;
     font-weight: normal;
     margin: 0;
@@ -43,50 +49,7 @@ footer
     right: 0;
     text-align: center;
 }
-nav
-{
-    background:  #008ed4;
-    color: #f5f5f5;
-    top: 7em;
-    left: 0;
-    padding: 0.5em;
-    position: fixed;
-    right: 0;
-    text-align: center;
-    width: 100%;
-}
 
-nav ul
-{
-    list-style-type: none;
-
-
-}
-nav ul li
-{
-    display: inline-block;
-    margin: 1em 0 0 0;
-    text-align: center;
-}
-
-nav ul li a
-{
-    background: #2d4057;
-    box-shadow: 0.5em 0.5em 1em #293552;
-    border-radius: 0.3em;
-    color: #ffffff;
-    font-size: 0.9em;
-    padding: 0.5em 1em;
-    text-decoration: none;
-    width: 100%;
-}
-
-nav ul li a:hover
-{
-    background: #ffffff;
-    color: #000000;
-    text-decoration: none;
-}
 #agregarDetalle ,#agregarSubproducto, #agregarProducto, #agregarBodega,#compras
 {
     position: fixed;
@@ -100,12 +63,12 @@ nav ul li a:hover
     bottom: 9em;
     height: 500px;
     left: 0;
-    margin: 12em 0 0 0;
+    margin: 11em 0 0 0;
     overflow-y: auto;
     padding: 2em;
     position: fixed;
     right: 0;
-    top:0.3em ;
+    top:0 ;
     width: auto;
 }
 
@@ -182,8 +145,8 @@ nav ul li a:hover
 }
 .tabla th
 {
-    background: #008dd3;
-    color: #f4f4f4;
+    background: #F6E414;
+    color: #770203;
     text-align: center;
 }
 .tabla tr
@@ -197,5 +160,113 @@ nav ul li a:hover
     border-color: #293552;
     border-style: solid;
 
-
 }
+/************************************************************************************************/
+ /* el menú en si mismo */
+  .mi-menu  {
+    border-radius: 5px;
+    list-style-type: none;
+    margin: 0 auto; /* si queremos centrarlo */
+    padding: 0;
+    /* la altura y su ancho dependerán de los textos */
+    height: 40px;
+    width: 510px;
+    /* el color de fondo */
+    background: #555;
+    background: -moz-linear-gradient(#555,#222);
+    background: -webkit-linear-gradient(#555,#222);
+    background: -o-linear-gradient(#555,#222);
+    background: -ms-linear-gradient(#555,#222);
+    background: linear-gradient(#555,#222);
+  }
+
+  /* si es necesario, evitamos que Blogger de problemas con los saltos de línea cuando escribimos el HTML */
+  .mi-menu  br { display:none; }
+
+  /* cada item del menu */
+  .mi-menu  li {
+    display: block;
+    float: left; /* la lista se ve horizontal */
+    height: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+  .mi-menu li a {
+    border-left: 1px solid #000;
+    border-right: 1px solid #666;
+    color: #EEE;
+    display: block;
+    font-family: Tahoma;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 28px;
+    padding: 0 14px;
+    margin: 6px 0;
+    text-decoration: none;
+    /* animamos el cambio de color de los textos */
+    -webkit-transition: color .2s ease-in-out;
+    -moz-transition: color .2s ease-in-out;
+    -o-transition: color .2s ease-in-out;
+    -ms-transition: color .2s ease-in-out;
+    transition: color .2s ease-in-out;
+  }
+  /* eliminamos los bordes del primer y el último */
+  .mi-menu li:first-child a { border-left: none; }
+  .mi-menu li:last-child a{ border-right: none; }
+  /* efecto hover cambia el color */
+  .mi-menu li:hover > a { color: Crimson; }
+
+  /* los submenús */
+  .mi-menu ul {
+    border-radius: 0 0 5px 5px;
+    left: 0;
+    margin: 0;
+    opacity: 0; /* no son visibles */
+    position: absolute;
+    top: 40px; /* se ubican debajo del enlace principal */
+    /* el color de fondo */
+    background: #222;
+    background: -moz-linear-gradient(#222,#555);
+    background: -webkit-linear-gradient(#22,#555);
+    background: -o-linear-gradient(#222,#555);
+    background: -ms-linear-gradient(#222,#555);
+    background: linear-gradient(#222,#555);
+    /* animamos su visibildiad */
+    -moz-transition: opacity .25s ease .1s;
+    -webkit-transition: opacity .25s ease .1s;
+    -o-transition: opacity .25s ease .1s;
+    -ms-transition: opacity .25s ease .1s;
+    transition: opacity .25s ease .1s;
+  }
+  /* son visibes al poner el cursor encima */
+  .mi-menu li:hover > ul { opacity: 1; }
+
+   /* cada un ode los items de los submenús */
+  .mi-menu ul li {
+    height: 0; /* no son visibles */
+    overflow: hidden;
+    padding: 0;
+    /* animamos su visibildiad */
+    -moz-transition: height .25s ease .1s;
+    -webkit-transition: height .25s ease .1s;
+    -o-transition: height .25s ease .1s;
+    -ms-transition: height .25s ease .1s;
+    transition: height .25s ease .1s;
+  }
+  .mi-menu li:hover > ul li {
+    height: 36px; /* los mostramos */
+    overflow: visible;
+    padding: 0;
+  }
+  .mi-menu ul li a {
+    border: none;
+    border-bottom: 1px solid #111;
+    margin: 0;
+    /* el ancho dependerá de los textos a utilizar */
+    padding: 5px 20px;
+    width: 100px;
+  }
+  /* el último n otiene un borde */
+  .mi-menu ul li:last-child a { border: none; }
