@@ -32,20 +32,28 @@
                             <li><a href="/compra"><img src="{{ STATIC_URL }}img/item.png" alt="" />Compras</a></li>
                             <li><a href="/ganado"><img src="{{ STATIC_URL }}img/item.png" alt="" />Ganado</a></li>
                             <li><a href="/bodega"><img src="{{ STATIC_URL }}img/item.png" alt="" />Bodega</a></li>
+                            <li><a href="/desposte"><img src="{{ STATIC_URL }}img/item.png" alt="" />Desposte</a></li>
 
 
                         </ul>
                     </li>
                     <li><span id="personas" tabindex="1">Personas</span>
                         <ul>
-                            <li><a href="#"><img src="{{ STATIC_URL }}img/item.png" alt="" />Empleado</a></li>
+                            <li><span id="empleado" tabindex="1"><img src="{{ STATIC_URL }}img/item.png" alt="" />Empleado</span>
+                                <ul>
+                                    <li><a href="/empleado/"><img src="{{ STATIC_URL }}img/item.png" alt="" />Gestion de Empleado</a></li>
+                                    <li><a href="/cargo"><img src="{{ STATIC_URL }}img/item.png" alt="" />Gestion de Cargos</a></li>
+                                </ul>
+                            </li>
                             <li><a href="/provedor"><img src="{{ STATIC_URL }}img/item.png" alt="" />Proveedor</a></li>
                             <li><a href="#"><img src="{{ STATIC_URL }}img/item.png" alt="" />Cliente</a></li>
                         </ul>
                     </li>
 
                     <img class="close" src="images/spacer.gif" alt="" />
+                    {{ hoy }}
                 </ul>
+
             </div>
 
         <section id="panel-central"  >

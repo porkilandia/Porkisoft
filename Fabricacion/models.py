@@ -29,8 +29,19 @@ class LimpezaTajado(models.Model):
     def __int__(self):
         return self.codigoTajado
 
+class PlanillaDesposte(models.Model):
+    codigoPlanilla = models.AutoField(primary_key=True)
+    fechaDesposte = models.DateField(verbose_name='Fecha de Desposte', auto_now=True)
+    resesADespostar = models.IntegerField(verbose_name='Reses A Despostar')
+    totalDespostado = models.DecimalField(verbose_name='TotalDespostado',max_digits=9, decimal_places=3)
+    difCanalADespostado = models.DecimalField(verbose_name='Diferencia de Canal/Desposte',max_digits=9, decimal_places=3)
+
+    def __unicode__(self):
+        return self.codigoPlanilla
+
 class Canal (models.Model):
     codigoCanal = models.AutoField(primary_key=True)
+    planilla = models.ForeignKey(PlanillaDesposte,null=True, blank=True)
     ganado = models.ForeignKey(Ganado)
     pesoPiernas = models.DecimalField(verbose_name = 'Peso Piernas (grs)',max_digits=9, decimal_places=3)
     pesoBrazos = models.DecimalField(verbose_name = 'Peso Brazos (grs)',max_digits=9, decimal_places=3)
@@ -39,19 +50,6 @@ class Canal (models.Model):
     def __unicode__(self):
         return self.numeroCanal
 
-class PlanillaDesposte(models.Model):
-    codigoPlanilla = models.AutoField(primary_key=True)
-    fechaDesposte = models.DateTimeField(verbose_name='Fecha de Desposte', auto_now=True)
-    resesADespostar = models.IntegerField(verbose_name='Reses A Despostar')
-    totalDespostado = models.DecimalField(verbose_name='TotalDespostado',max_digits=9, decimal_places=3)
-    difCanalADespostado = models.DecimalField(verbose_name='Diferencia de Canal A Despostado',max_digits=9, decimal_places=3)
-
-    def __unicode__(self):
-        return self.nuemroPlanilla
-
-class DesposteCanal(models.Model):
-    canal = models.ForeignKey(Canal)
-    planillaDesposte = models.ForeignKey(PlanillaDesposte)
 
 class DetallePlanilla (models.Model):
     planilla = models.ForeignKey(PlanillaDesposte)
@@ -114,3 +112,7 @@ class Apanado(models.Model):
 
     def __int__(self):
         return self.codigoApanado
+
+class comodin(models.Model):
+    pass
+

@@ -53,7 +53,12 @@
                   {{ formulario }}
               </div>
               <br/>
-          <input type="submit">
+
+         <fieldset style="text-align: center">
+              <legend>Acciones</legend>
+             <input type="image" src="{{ STATIC_URL }}img/save.png" width="30" height="30" border="0" alt="Guardar">
+             <a href="/detcompra/{{ compra }}"><img src="{{ STATIC_URL }}img/lista.png"></a>
+          </fieldset>
          </fieldset>
      </form>
 {% endblock contenido %}

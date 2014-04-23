@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Sub Productos{% endblock titulo %}
+{% block contenido %}
+<h2>Detalle Desposte</h2>
+
+<table class="tabla">
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Fecha</th>
+            <th>Reses a Depostar</th>
+            <th>Diferencia Canal/desposte</th>.GestionProvedor
+            <th>Total Despostado</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ desposte.codigoPlanilla }}</td>
+            <td>{{ desposte.fechaDesposte }}</td>
+            <td>{{ desposte.resesADespostar }}</td>
+            <td>{{ desposte.difCanalADespostado }}</td>
+            <td>{{ desposte.totalDespostado }}</td>
+
+
+        </tr>
+
+    </tbody>
+</table>
+<br/>
+<table class="tabla">
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Ganado</th>
+            <th>Planilla</th>
+            <th>Peso Brazos</th>
+            <th>Peso Piernas</th>
+            <th>Peso Total</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for canal in canales  %}
+        <tr>
+            <td>{{ canal.codigoCanal }}</td>
+            <td>{{ canal.ganado }}</td>
+            <td>{{ canal.planilla }}</td>
+            <td>{{ canal.pesoBrazos }}</td>
+            <td>{{ canal.pesoPiernas }}</td>
+            <td>{{ canal.peosTotalCanal }}</td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="13">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    <tr>
+        <th colspan="5">Total Canales</th>
+        <th>{{ totalCanal }}</th>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<table class="tabla">
+    <thead>
+        <tr>
+            <th>Planilla</th>
+            <th>Producto</th>
+            <th>Cant/Piezas</th>
+            <th>Peso Producto</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for detalleDesposte in detalleDespostes %}
+        <tr>
+            <td>{{ detalleDesposte.planilla }}</td>
+            <td>{{ detalleDesposte.producto }}</td>
+            <td>{{ detalleDesposte.CantPiezas }}</td>
+            <td>{{ detalleDesposte.PesoProducto }}</td>
+
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="13">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+
+    <tr>
+        <th colspan="3">Total Canales</th>
+        <th>{{ totalDesposte }}</th>
+    </tr>
+    </tbody>
+</table>
+
+
+    <form method="post">{% csrf_token %}
+         <fieldset id="desposte">
+             <legend>Detalle</legend>
+              <div>
+                  {{ formulario }}
+              </div>
+              <br/>
+          <fieldset style="text-align: center">
+              <legend>Acciones</legend>
+             <input type="image" src="{{ STATIC_URL }}img/save.png" width="30" height="30" border="0" alt="Guardar">
+             <a href="/compra/"><img src="{{ STATIC_URL }}img/carne.png"></a>
+          </fieldset>
+         </fieldset>
+     </form>
+
+{% endblock contenido %}

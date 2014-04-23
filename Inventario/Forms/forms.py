@@ -1,6 +1,11 @@
-from django.forms import ModelForm
+from datetime import *
 
+from django.forms import *
+
+from Fabricacion.models import *
 from Inventario.models import *
+from  Nomina.models import *
+
 
 class ProvedorForm(ModelForm):
     class Meta:
@@ -38,3 +43,29 @@ class CompraForm(ModelForm):
 class DetalleCompraForm(ModelForm):
     class Meta:
         model = DetalleCompra
+
+class DesposteForm(ModelForm):
+    class Meta:
+        model = PlanillaDesposte
+
+class CanalForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CanalForm,self).__init__(*args, **kwargs)
+
+        if (PlanillaDesposte.objects.all()):
+            self.fields['planilla'].queryset = PlanillaDesposte.objects.filter(fechaDesposte = datetime.today())
+
+    class Meta:
+        model=Canal
+
+class DetalleDesposteForm(ModelForm):
+    class Meta:
+        model = DetallePlanilla
+
+class EmpleadoForm(ModelForm):
+    class Meta:
+        model = Empleado
+
+class CargoForm(ModelForm):
+    class Meta:
+        model = Cargo

@@ -93,6 +93,7 @@ class DetalleTraslado (models.Model):
 
 class Proveedor (models.Model):
     codigoProveedor = models.AutoField(primary_key=True)
+    nit = models.CharField(verbose_name='Nit', max_length=11)
     nombreProv= models.CharField(max_length=50,verbose_name='Nombre')
     direccionProv = models.CharField(max_length=50, verbose_name='Direccion')
     telefonoProv = models.CharField(max_length=10,verbose_name='Telefono')

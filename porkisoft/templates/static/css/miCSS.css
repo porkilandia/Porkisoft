@@ -50,7 +50,7 @@ footer
     text-align: center;
 }
 
-#agregarDetalle ,#agregarSubproducto, #agregarProducto, #agregarBodega,#compras
+#agregarDetalle ,#agregarSubproducto, #agregarProducto, #agregarBodega,#compras, #desposte
 {
     position: fixed;
     right: 1em;
@@ -140,6 +140,8 @@ footer
 }
 .tabla
 {
+
+    box-shadow: 0.5em 0.5em 1em #7c8086;
     border-collapse: collapse;
     font-size: 1em;
 }
@@ -147,6 +149,7 @@ footer
 {
     background: #F6E414;
     color: #770203;
+    font-size: 1.1em;
     text-align: center;
 }
 .tabla tr

@@ -10,6 +10,7 @@ from Inventario.models import *
 
 
 
+
 # Create your views here.
 
 def home(request):
@@ -205,7 +206,7 @@ def GestionGanado(request,idcompra):
 
             detallecompra.compra = compra
             detallecompra.ganado = ganado
-            detallecompra.pesoProducto = 0
+            detallecompra.pesoProducto = request.POST.get('precioTotal')
             detallecompra.unidades = 1
             detallecompra.vrCompraProducto = ganado.precioTotal
             detallecompra.estado = False
@@ -214,6 +215,10 @@ def GestionGanado(request,idcompra):
 
             artCompra = DetalleCompra.objects.filter(compra = idcompra)
             totalCompra = 0
+            totalPesoFactura = 0
+
+            for dcmp in artCompra:
+                totalPesoFactura += dcmp.pesoProducto
 
             for dcmp in artCompra:
                 totalCompra += dcmp.subtotal
@@ -233,7 +238,7 @@ def GestionGanado(request,idcompra):
     else:
         formulario = GanadoForm()
 
-    return render_to_response('Inventario/GestionGanado.html',{'formulario':formulario,'ganados':ganados },
+    return render_to_response('Inventario/GestionGanado.html',{'formulario':formulario,'ganados':ganados,'compra':idcompra },
                               context_instance = RequestContext(request))
 
 #**********************************************COMPRA***********************************************************
@@ -286,3 +291,138 @@ def GestionDetalleCompra(request,idcompra):
                                                          'compra': compra,
                                                          'detcompras': detcompras, 'totalCompra':totalCompra},
                                                         context_instance = RequestContext(request))
+
+def GestionDesposte(request):
+    despostes = PlanillaDesposte.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = DesposteForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/desposte/')
+    else:
+        formulario =DesposteForm()
+
+    return render_to_response('Inventario/GestionDesposte.html',{'formulario':formulario,'despostes':despostes},
+                              context_instance = RequestContext(request))
+
+def GestionCanal(request,idganado):
+    canal = Canal.objects.filter(ganado = idganado)
+    ganado = Ganado.objects.get(pk = idganado)
+    compra = DetalleCompra.objects.get(ganado = idganado)
+    objCompra = Compra.objects.get(pk = compra.compra.codigoCompra)
+    codigoCompra = compra.compra.codigoCompra
+
+    detalleCompra = DetalleCompra()
+
+
+    if request.method == 'POST':
+        formulario = CanalForm(request.POST)
+
+        if formulario.is_valid():
+
+            formulario.save()
+            detalleCompra.id = compra.id
+            detalleCompra.compra = objCompra
+            detalleCompra.ganado = ganado
+            detalleCompra.pesoProducto = compra.pesoProducto
+            detalleCompra.unidades = compra.unidades
+            detalleCompra.vrCompraProducto = compra.vrCompraProducto
+            detalleCompra.subtotal = compra.subtotal
+            detalleCompra.estado = True
+            detalleCompra.save()
+            return HttpResponseRedirect('/canal/'+ idganado)
+    else:
+        formulario = CanalForm(initial={'ganado':idganado})
+
+    return render_to_response('Inventario/GestionCanal.html',{'formulario':formulario,'ganado':ganado,'canal':canal,
+                                                              'codigoCompra':codigoCompra},
+                              context_instance = RequestContext(request))
+
+def GestionCanalDetalleDesposte(request, idplanilla):
+    desposte = PlanillaDesposte.objects.get(pk = idplanilla)
+    canales = Canal.objects.filter(planilla = idplanilla)
+    detalleDespostes = DetallePlanilla.objects.filter(planilla = idplanilla)
+    totalReses = canales.count()
+    totalDesposte = 0
+    totalCanal = 0
+
+    for detplanilla in detalleDespostes:
+        totalDesposte += detplanilla.PesoProducto
+    for canal in canales :
+        totalCanal += canal.peosTotalCanal
+
+    if request.method == 'POST':
+        formulario = DetalleDesposteForm(request.POST)
+
+        if formulario.is_valid():
+            formulario.save()
+
+            desposte = PlanillaDesposte.objects.get(pk = idplanilla)
+            canales = Canal.objects.filter(planilla = idplanilla)
+            detalleDespostes = DetallePlanilla.objects.filter(planilla = idplanilla)
+
+            totalDesposte = 0
+            totalCanal = 0
+
+            for detplanilla in detalleDespostes:
+                totalDesposte += detplanilla.PesoProducto
+
+            for canal in canales :
+                totalCanal += canal.peosTotalCanal
+
+            difCanalDesposte = totalCanal - totalDesposte
+
+            desposte = PlanillaDesposte(
+                codigoPlanilla = idplanilla,
+                fechaDesposte = desposte.fechaDesposte,
+                resesADespostar = totalReses,
+                totalDespostado = totalDesposte,
+                difCanalADespostado = difCanalDesposte
+            )
+            desposte.save()
+            return HttpResponseRedirect('/detalleDesposte/'+ idplanilla)
+    else:
+        formulario = DetalleDesposteForm(initial={'planilla':idplanilla})
+
+    return render_to_response('Inventario/GestionCanalDetalleDesposte.html',{'formulario':formulario,'desposte':desposte
+                                                                            ,'canales':canales,'detalleDespostes':detalleDespostes,
+                                                                             'totalCanal':totalCanal,'totalDesposte':totalDesposte},
+                              context_instance = RequestContext(request))
+
+#**************************************************** EMPLEADOS ************************************************
+
+def GestionEmpleados(request):
+
+    empleados = Empleado.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = EmpleadoForm(request.POST)
+
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/empleado/')
+    else:
+        formulario =EmpleadoForm()
+
+    return render_to_response('Inventario/GestionEmpleados.html',{'formulario':formulario,'empleados':empleados },
+                              context_instance = RequestContext(request))
+
+def GestionCargos(request):
+
+    cargos = Cargo.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = CargoForm(request.POST)
+
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/cargo/')
+    else:
+        formulario = CargoForm()
+
+    return render_to_response('Inventario/Cargo.html',{'formulario':formulario,'cargos':cargos },
+                              context_instance = RequestContext(request))

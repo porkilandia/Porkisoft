@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Sub Productos{% endblock titulo %}
+{% block contenido %}
+    <h2>Desposte</h2>
+    <table id="ListaSubp" class="tabla">
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Fecha</th>
+            <th>Reses a Despostar</th>
+            <th>Total Desposte</th>
+            <th>Dif Canal/Desposte</th>
+
+        </tr>
+        </thead>
+        {% for desposte in despostes %}
+        <tr>
+            <td>{{ desposte.codigoPlanilla }}</td>
+            <td>{{ desposte.fechaDesposte }}</td>
+            <td>{{ desposte.resesADespostar }}</td>
+            <td>{{ desposte.totalDespostado }}</td>
+            <td>{{ desposte.difCanalADespostado }}</td>
+
+            <td>
+                <a href="{% url 'Inventario.views.GestionCanalDetalleDesposte' desposte.codigoPlanilla %}"><img src="{{ STATIC_URL }}img/adicionar.png"></a>
+                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
+                <a href="#"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="13">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+    <form method="post">{% csrf_token %}
+         <fieldset id="desposte">
+             <legend>Planilla Desposte</legend>
+              <div>
+                  {{ formulario }}
+              </div>
+              <br/>
+          <input type="submit" class="btn btn-primary">
+         </fieldset>
+     </form>
+
+{% endblock contenido %}

@@ -38,16 +38,6 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'Fabricacion', ['LimpezaTajado'])
 
-        # Adding model 'Canal'
-        db.create_table(u'Fabricacion_canal', (
-            ('codigoCanal', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('ganado', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['Inventario.Ganado'])),
-            ('pesoPiernas', self.gf('django.db.models.fields.DecimalField')(max_digits=9, decimal_places=3)),
-            ('pesoBrazos', self.gf('django.db.models.fields.DecimalField')(max_digits=9, decimal_places=3)),
-            ('peosTotalCanal', self.gf('django.db.models.fields.DecimalField')(max_digits=9, decimal_places=3)),
-        ))
-        db.send_create_signal(u'Fabricacion', ['Canal'])
-
         # Adding model 'PlanillaDesposte'
         db.create_table(u'Fabricacion_planilladesposte', (
             ('codigoPlanilla', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -58,13 +48,16 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'Fabricacion', ['PlanillaDesposte'])
 
-        # Adding model 'DesposteCanal'
-        db.create_table(u'Fabricacion_despostecanal', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('canal', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['Fabricacion.Canal'])),
-            ('planillaDesposte', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['Fabricacion.PlanillaDesposte'])),
+        # Adding model 'Canal'
+        db.create_table(u'Fabricacion_canal', (
+            ('codigoCanal', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('planilla', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['Fabricacion.PlanillaDesposte'], null=True, blank=True)),
+            ('ganado', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['Inventario.Ganado'])),
+            ('pesoPiernas', self.gf('django.db.models.fields.DecimalField')(max_digits=9, decimal_places=3)),
+            ('pesoBrazos', self.gf('django.db.models.fields.DecimalField')(max_digits=9, decimal_places=3)),
+            ('peosTotalCanal', self.gf('django.db.models.fields.DecimalField')(max_digits=9, decimal_places=3)),
         ))
-        db.send_create_signal(u'Fabricacion', ['DesposteCanal'])
+        db.send_create_signal(u'Fabricacion', ['Canal'])
 
         # Adding model 'DetallePlanilla'
         db.create_table(u'Fabricacion_detalleplanilla', (
@@ -151,14 +144,11 @@ class Migration(SchemaMigration):
         # Deleting model 'LimpezaTajado'
         db.delete_table(u'Fabricacion_limpezatajado')
 
-        # Deleting model 'Canal'
-        db.delete_table(u'Fabricacion_canal')
-
         # Deleting model 'PlanillaDesposte'
         db.delete_table(u'Fabricacion_planilladesposte')
 
-        # Deleting model 'DesposteCanal'
-        db.delete_table(u'Fabricacion_despostecanal')
+        # Deleting model 'Canal'
+        db.delete_table(u'Fabricacion_canal')
 
         # Deleting model 'DetallePlanilla'
         db.delete_table(u'Fabricacion_detalleplanilla')
@@ -200,7 +190,8 @@ class Migration(SchemaMigration):
             'ganado': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['Inventario.Ganado']"}),
             'peosTotalCanal': ('django.db.models.fields.DecimalField', [], {'max_digits': '9', 'decimal_places': '3'}),
             'pesoBrazos': ('django.db.models.fields.DecimalField', [], {'max_digits': '9', 'decimal_places': '3'}),
-            'pesoPiernas': ('django.db.models.fields.DecimalField', [], {'max_digits': '9', 'decimal_places': '3'})
+            'pesoPiernas': ('django.db.models.fields.DecimalField', [], {'max_digits': '9', 'decimal_places': '3'}),
+            'planilla': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['Fabricacion.PlanillaDesposte']", 'null': 'True', 'blank': 'True'})
         },
         u'Fabricacion.condimentado': {
             'Meta': {'object_name': 'Condimentado'},
@@ -210,12 +201,6 @@ class Migration(SchemaMigration):
             'pesoProductoACondimentar': ('django.db.models.fields.DecimalField', [], {'max_digits': '9', 'decimal_places': '3'}),
             'pesoProductoCondimentado': ('django.db.models.fields.DecimalField', [], {'max_digits': '9', 'decimal_places': '3'}),
             'producto': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['Inventario.Producto']"})
-        },
-        u'Fabricacion.despostecanal': {
-            'Meta': {'object_name': 'DesposteCanal'},
-            'canal': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['Fabricacion.Canal']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'planillaDesposte': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['Fabricacion.PlanillaDesposte']"})
         },
         u'Fabricacion.detalleenlagunado': {
             'Meta': {'object_name': 'DetalleEnlagunado'},
@@ -294,7 +279,8 @@ class Migration(SchemaMigration):
         u'Inventario.ganado': {
             'Meta': {'object_name': 'Ganado'},
             'codigoGanado': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'difPieCanal': ('django.db.models.fields.DecimalField', [], {'max_digits': '9', 'decimal_places': '3'}),
+            'difPieCanal': ('django.db.models.fields.DecimalField', [], {'default': '0', 'max_digits': '9', 'decimal_places': '3'}),
+            'fechaIngreso': ('django.db.models.fields.DateField', [], {'auto_now': 'True', 'null': 'True', 'blank': 'True'}),
             'genero': ('django.db.models.fields.CharField', [], {'max_length': '7'}),
             'pesoEnPie': ('django.db.models.fields.DecimalField', [], {'max_digits': '9', 'decimal_places': '3'}),
             'precioKiloEnPie': ('django.db.models.fields.IntegerField', [], {}),
@@ -312,7 +298,6 @@ class Migration(SchemaMigration):
             'refrigerado': ('django.db.models.fields.BooleanField', [], {}),
             'rentabilidadProducto': ('django.db.models.fields.DecimalField', [], {'max_digits': '5', 'decimal_places': '2'}),
             'utilidadProducto': ('django.db.models.fields.IntegerField', [], {}),
-            'vrCompraProducto': ('django.db.models.fields.IntegerField', [], {}),
             'vrVentaProducto': ('django.db.models.fields.IntegerField', [], {})
         },
         u'Nomina.cargo': {

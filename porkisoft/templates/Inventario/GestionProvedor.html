@@ -3,12 +3,12 @@
 {% block titulo %}Bodegas{% endblock titulo %}
 {% block contenido %}
 
-    <h2>Listado de Provedores</h2>
-    <table id="tablabodegas" class="tabla" >
+   <h2><img width="35" src="{{ STATIC_URL }}img/provedor.png"> Listado de Provedores</h2>
+    <table id="tablaproveedor" class="tabla" >
 
         <thead>
         <tr>
-            <th>Codigo</th>
+            <th>Nit</th>
             <th>Nombre</th>
             <th>Direccion</th>
             <th>Telefono</th>
@@ -21,7 +21,8 @@
         </thead>
         {% for provedor in provedores %}
         <tr>
-            <td>{{ provedor.codigoProveedor }}</td>
+
+            <td>{{ provedor.nit }}</td>
             <td>{{ provedor.nombreProv }}</td>
             <td>{{ provedor.direccionProv }}</td>
             <td>{{ provedor.telefonoProv }}</td>

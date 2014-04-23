@@ -9,7 +9,7 @@ class Cargo(models.Model):
         return self.nombreCargo
 
 class Empleado(models.Model):
-    codigoEmpleado = models.BigIntegerField(primary_key=True,verbose_name='Codigo Empleado')
+    codigoEmpleado = models.BigIntegerField(primary_key=True,verbose_name='Cedula')
     nombre = models.CharField(max_length= 50, verbose_name='Nombre')
     apellido = models.CharField(max_length= 50, verbose_name='Apellido')
     direccion = models.CharField(max_length=100,verbose_name='Direccion')
@@ -17,5 +17,5 @@ class Empleado(models.Model):
     cargo = models.ForeignKey(Cargo)
 
     def __unicode__(self):
-        cadena = self.nombre + self.apellido
+        cadena = self.nombre +' '+ self.apellido
         return cadena
