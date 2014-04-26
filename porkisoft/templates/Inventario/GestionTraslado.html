@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Traslados{% endblock titulo %}
+{% block contenido %}
+    <h2>Traslados</h2>
+    <table id="traslados" class="tabla">
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Desde</th>
+            <th>Hasta</th>
+            <th>Empleado</th>
+            <th>Fecha Traslado</th>
+            <th>Estado Traslado</th>
+            <th>Descripcion</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        {% for traslado in traslados %}
+        <tr>
+            <td>{{ traslado.codigoTraslado }}</td>
+            <td>{{ traslado.bodegaActual }}</td>
+            <td>{{ traslado.bodegaDestino }}</td>
+            <td>{{ traslado.empleado }}</td>
+            <td>{{ traslado.fechaTraslado }}</td>
+            <td>{{ traslado.estadoTraslado }}</td>
+            <td>{{ traslado.descripcionTraslado }}</td>
+
+            <td>
+                <a href="{% url 'Inventario.views.GestionDetalleTraslado' traslado.codigoTraslado %}"><img src="{{ STATIC_URL }}img/adicionar.png"></a>
+                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
+                <a href="#"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">
+                   Ningun Registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+
+
+    </table>
+    <form method="post">{% csrf_token %}
+         <fieldset id="agregarSubproducto">
+             <legend>Traslado</legend>
+              <div>
+                  {{ formulario }}
+              </div>
+              <br/>
+          <input type="submit" class="btn btn-primary">
+         </fieldset>
+     </form>
+
+{% endblock contenido %}

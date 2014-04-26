@@ -34,7 +34,7 @@ class PlanillaDesposte(models.Model):
     fechaDesposte = models.DateField(verbose_name='Fecha de Desposte', auto_now=True)
     resesADespostar = models.IntegerField(verbose_name='Reses A Despostar')
     totalDespostado = models.DecimalField(verbose_name='TotalDespostado',max_digits=9, decimal_places=3)
-    difCanalADespostado = models.DecimalField(verbose_name='Diferencia de Canal/Desposte',max_digits=9, decimal_places=3)
+    difCanalADespostado = models.DecimalField(verbose_name='Diferencia de Canal/Desposte',max_digits=11, decimal_places=3)
 
     def __unicode__(self):
         return self.codigoPlanilla

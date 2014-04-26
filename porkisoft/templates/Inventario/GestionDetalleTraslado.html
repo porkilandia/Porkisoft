@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ titulo }}{% endblock titulo %}
+{% block contenido %}
+
+     <table class="tabla">
+        <thead>
+        <tr>
+            
+            <th>Desde</th>
+            <th>Hasta</th>
+            <th>Responsable</th>
+            <th>Fecha de Traslado</th>
+            <th>Estado</th>
+
+
+
+        </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+            <td>{{ traslado.bodegaActual }}</td>
+            <td>{{ traslado.bodegaDestino }}</td>
+            <td>{{ traslado.empleado }}</td>
+            <td>{{ traslado.fechaTraslado }}</td>
+            <td>{{ traslado.estadoTraslado }}</td>
+
+        </tr>
+        </tbody>
+
+     </table>
+
+     <table id="detalleSP" class="tabla">
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Sub Producto</th>
+            <th>Cant Piezas</th>
+            <th>Peso</th>
+            <th>Unidades</th>
+            <th>Peso envio</th>
+            <th>Peso Llegada</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for detraslado in detraslados %}
+        <tr>
+            <td>{{ detraslado.producto }}</td>
+            <td>{{ detraslado.SubProducto }}</td>
+            <td>{{ detraslado.cantPiezas }}</td>
+            <td>{{ detraslado.pesoPiezasTraslado }}</td>
+            <td>{{ detraslado.unidadesTraslado }}</td>
+            <td>{{ detraslado.pesoEnvio }}</td>
+            <td>{{ detraslado.pesoLlegada }}</td>
+
+            <td>
+                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+            </td>
+
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+        <tr>
+
+            <th colspan="8"></th>
+
+        </tr>
+
+      </table>
+
+    <form method="post">{% csrf_token %}
+         <fieldset id="agregarDetalle">
+             <legend>Detalle Traslado</legend>
+              <div>
+                  {{ formulario }}
+              </div>
+              <br/>
+          <input type="submit" class="btn btn-primary">
+         </fieldset>
+     </form>
+
+{% endblock contenido %}

@@ -1,6 +1,7 @@
 from datetime import *
 
-from django.forms import *
+from django import forms
+from django.forms import ModelForm
 
 from Fabricacion.models import *
 from Inventario.models import *
@@ -69,3 +70,12 @@ class EmpleadoForm(ModelForm):
 class CargoForm(ModelForm):
     class Meta:
         model = Cargo
+
+class TrasladoForm(ModelForm):
+    bodegaDestino = forms.ModelChoiceField(queryset=Bodega.objects.all(), required=True)
+    class Meta:
+        model = Traslado
+
+class DetalleTrasladoForm(ModelForm):
+    class Meta:
+        model = DetalleTraslado

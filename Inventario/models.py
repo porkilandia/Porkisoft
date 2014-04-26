@@ -67,24 +67,26 @@ class SubProductoBodega(models.Model):
 class Traslado(models.Model):
 
     OpEstTraslado = (
-    ('ENV', 'Enviado'),
-    ('REC', 'Recibido'),
+    ('Enviado', 'Enviado'),
+    ('Recibido', 'Recibido'),
     )
+
+
     codigoTraslado = models.AutoField(verbose_name='Codigo Traslado', primary_key=True)
     bodegaActual = models.ForeignKey(Bodega)
-    bodegaDestino = models.IntegerField(verbose_name='Bodega Destino')
+    bodegaDestino = models.CharField(max_length=10,verbose_name='Bodega Destino')
     empleado = models.ForeignKey(Empleado)
-    fechaTraslado = models.DateTimeField(verbose_name='Fecha',auto_now=True)
+    fechaTraslado = models.DateField(verbose_name='Fecha',auto_now=True)
     estadoTraslado = models.CharField(verbose_name='Estado',max_length=9,choices=OpEstTraslado)
     descripcionTraslado = models.TextField(verbose_name='Descriopcion', max_length=200)
 
     def __unicode__(self):
-        return self.numeroTraslado
+        return self.codigoTraslado
 
 class DetalleTraslado (models.Model):
     traslado = models.ForeignKey(Traslado)
-    producto = models.ForeignKey(Producto,null=True)
-    SubProducto = models.ForeignKey(SubProducto,null=True)
+    producto = models.ForeignKey(Producto,null=True,blank=True)
+    SubProducto = models.ForeignKey(SubProducto,null=True,blank=True)
     cantPiezas = models.IntegerField(verbose_name='Cant. Piezas')
     pesoPiezasTraslado = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso Piezas (grs)',default=0,null=True)
     unidadesTraslado = models.IntegerField(verbose_name='Unidades', default=0,null=True)

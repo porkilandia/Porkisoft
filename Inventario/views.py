@@ -5,12 +5,6 @@ from Inventario.Forms.forms import *
 from Inventario.models import *
 
 
-
-
-
-
-
-
 # Create your views here.
 
 def home(request):
@@ -20,11 +14,31 @@ def home(request):
 
 def listaProductos(request):
     productos = Producto.objects.all().order_by('nombreProducto')
+    #Creacion de producto en cada bodega con valor inicial
+
+
+
+
+
 
     if request.method == 'POST':
         formulario = ProductoForm(request.POST)
         if formulario.is_valid():
             formulario.save()
+            producto = Producto.objects.get(nombreProducto = request.POST.get('nombreProducto'))
+
+            for bod in Bodega.objects.all():
+
+                bodegaInicial = ProductoBodega()
+                bodega = Bodega.objects.get(pk = bod.codigoBodega)
+
+                bodegaInicial.producto = producto
+                bodegaInicial.bodega = bodega
+                bodegaInicial.pesoProductoStock = 0
+                bodegaInicial.unidadesStock = 0
+                bodegaInicial.save()
+
+
             return HttpResponseRedirect('/listaProd')
     else:
         formulario =ProductoForm()
@@ -341,23 +355,44 @@ def GestionCanal(request,idganado):
                               context_instance = RequestContext(request))
 
 def GestionCanalDetalleDesposte(request, idplanilla):
+
     desposte = PlanillaDesposte.objects.get(pk = idplanilla)
     canales = Canal.objects.filter(planilla = idplanilla)
     detalleDespostes = DetallePlanilla.objects.filter(planilla = idplanilla)
+
     totalReses = canales.count()
     totalDesposte = 0
     totalCanal = 0
+
+    #proceso para guardar todos los productos despostados en la tabla producto.
+
+
 
     for detplanilla in detalleDespostes:
         totalDesposte += detplanilla.PesoProducto
     for canal in canales :
         totalCanal += canal.peosTotalCanal
 
+
+    totalCanal *= 1000
     if request.method == 'POST':
         formulario = DetalleDesposteForm(request.POST)
 
         if formulario.is_valid():
             formulario.save()
+
+            producto = Producto.objects.get(pk = request.POST.get('producto'))
+            bodega = Bodega.objects.get(pk = 5)
+            bodegaprodID = ProductoBodega.objects.get(bodega = 5,producto = producto.codigoProducto )
+
+            bodegaProducto = ProductoBodega()
+            bodegaProducto.id = bodegaprodID.id
+            bodegaProducto.producto = producto
+            bodegaProducto.bodega = bodega
+            bodegaProducto.pesoProductoStock = request.POST.get('PesoProducto')
+            bodegaProducto.unidadesStock = 0
+
+            bodegaProducto.save()
 
             desposte = PlanillaDesposte.objects.get(pk = idplanilla)
             canales = Canal.objects.filter(planilla = idplanilla)
@@ -371,8 +406,8 @@ def GestionCanalDetalleDesposte(request, idplanilla):
 
             for canal in canales :
                 totalCanal += canal.peosTotalCanal
-
-            difCanalDesposte = totalCanal - totalDesposte
+            totalCanal *= 1000
+            difCanalDesposte = (totalCanal - totalDesposte)/totalReses
 
             desposte = PlanillaDesposte(
                 codigoPlanilla = idplanilla,
@@ -381,6 +416,7 @@ def GestionCanalDetalleDesposte(request, idplanilla):
                 totalDespostado = totalDesposte,
                 difCanalADespostado = difCanalDesposte
             )
+
             desposte.save()
             return HttpResponseRedirect('/detalleDesposte/'+ idplanilla)
     else:
@@ -426,3 +462,75 @@ def GestionCargos(request):
 
     return render_to_response('Inventario/Cargo.html',{'formulario':formulario,'cargos':cargos },
                               context_instance = RequestContext(request))
+
+#********************************************TRASLADOS******************************************************
+def GestionTraslados(request):
+    traslados = Traslado.objects.all()
+    if request.method == 'POST':
+
+        formulario = TrasladoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/traslado/')
+    else:
+        formulario =TrasladoForm()
+
+    return render_to_response('Inventario/GestionTraslado.html',{'formulario':formulario,'traslados':traslados },
+                              context_instance = RequestContext(request))
+
+
+def GestionDetalleTraslado(request,idtraslado):
+
+    traslado = Traslado.objects.get(pk = idtraslado)
+    detraslados = DetalleTraslado.objects.filter(traslado = idtraslado)
+
+
+    if request.method == 'POST':
+        formulario = DetalleTrasladoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+
+            bodegaActual = ProductoBodega.objects.get(bodega = traslado.bodegaActual.codigoBodega,
+                                                      producto = request.POST.get('producto'))
+            destino = Bodega.objects.get(nombreBodega = traslado.bodegaDestino)
+            bodegaDestino = ProductoBodega.objects.get(bodega = destino.codigoBodega,
+                                                       producto = request.POST.get('producto'))
+
+
+            producto = Producto.objects.get(pk = request.POST.get('producto'))
+            #subproducto = SubProducto.objects.get(pk = request.POST.get('subproducto'))
+
+            pesoActualizado = bodegaActual.pesoProductoStock - int(request.POST.get('pesoPiezasTraslado'))
+            unidadesActualizadas = bodegaActual.unidadesStock - int(request.POST.get('unidadesTraslado'))
+
+            pesoDestinoActualizado = bodegaDestino.pesoProductoStock + int(request.POST.get('pesoPiezasTraslado'))
+            unidadesDestinoActualizadas = bodegaActual.unidadesStock + int(request.POST.get('unidadesTraslado'))
+
+            bodegaactual = ProductoBodega()
+            bodegaactual.bodega = Bodega.objects.get(pk = bodegaActual.bodega.codigoBodega)
+            bodegaactual.id = bodegaActual.id
+            bodegaactual.producto = producto
+            bodegaactual.pesoProductoStock = pesoActualizado
+            bodegaactual.unidadesStock = unidadesActualizadas
+
+            bodegaactual.save()
+
+            bodegadestino = ProductoBodega()
+            bodegadestino.id = bodegaDestino.id
+            bodegadestino.bodega = Bodega.objects.get(pk = bodegaDestino.bodega.codigoBodega)
+            bodegadestino.producto = producto
+            bodegadestino.pesoProductoStock = pesoDestinoActualizado
+            bodegadestino.unidadesStock = unidadesDestinoActualizadas
+
+
+            bodegadestino.save()
+
+            return HttpResponseRedirect('/dettraslado/'+ idtraslado)
+    else:
+        formulario = DetalleTrasladoForm(initial={'traslado':idtraslado})
+
+
+    return render_to_response('Inventario/GestionDetalleTraslado.html',{'formulario':formulario,
+                                                         'traslado': traslado,
+                                                         'detraslados': detraslados},
+                                                        context_instance = RequestContext(request))
