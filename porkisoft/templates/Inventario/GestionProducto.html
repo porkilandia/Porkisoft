@@ -17,9 +17,8 @@
            <th>Gravado</th>
            <th>Excento</th>
            <th>Excluido</th>
-           <th>Refrigerado</th>
-           <th>Congelado</th>
-            <th>Acciones</th>
+           <th>Grupo</th>
+           <th>Acciones</th>
         </tr>
         </thead>
         {% for producto in productos %}
@@ -34,8 +33,7 @@
             {% if producto.gravado %}<td><img src="{{ STATIC_URL }}img/ok.jpg"></td>{% else %}<td><img src="{{ STATIC_URL }}img/no.png"></td>{% endif %}
             {% if producto.excento %}<td><img src="{{ STATIC_URL }}img/ok.jpg"></td>{% else %}<td><img src="{{ STATIC_URL }}img/no.png"></td>{% endif %}
             {% if producto.excluido %}<td><img src="{{ STATIC_URL }}img/ok.jpg"></td>{% else %}<td><img src="{{ STATIC_URL }}img/no.png"></td>{% endif %}
-            {% if producto.refrigerado %}<td><img src="{{ STATIC_URL }}img/ok.jpg"></td>{% else %}<td><img src="{{ STATIC_URL }}img/no.png"></td>{% endif %}
-            {% if producto.congelado %}<td><img src="{{ STATIC_URL }}img/ok.jpg"></td>{% else %}<td><img src="{{ STATIC_URL }}img/no.png"></td>{% endif %}
+           <td>{{ producto.grupo }}</td>
 
             <td>
                 <a href="{% url 'Inventario.views.editar_producto' producto.codigoProducto %}"><img src="{{ STATIC_URL }}img/modificar.png"></a>

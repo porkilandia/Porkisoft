@@ -2,7 +2,7 @@
 {% block titulo %}{{ titulo }}{% endblock titulo %}
 {% block contenido %}
 
-    <table id="tablaProductos" class="table-striped" >
+    <table  class="table-striped" >
 
         <thead>
         <tr>
@@ -12,7 +12,6 @@
             <th>Vr. Deguello</th>
             <th>Vr. Trasporte</th>
 
-            <th>Acciones</th>
         </tr>
         </thead>
         <tr>
@@ -22,15 +21,10 @@
             <td>{{ sacrificio.vrDeguello }}</td>
             <td>{{ sacrificio.vrTransporte }}</td>
 
-            <td>
-                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
-                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
-                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/ver.png"></a>
 
-            </td>
         </tr>
     </table>
-
+<br/>
     <table  class="table-striped">
         <thead>
         <tr>
@@ -44,10 +38,6 @@
         <tr>
             <td>{{ limpieza.producto }}</td>
             <td>{{ limpieza.peso }}</td>
-            <td>
-                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
-            </td>
-
 
         </tr>
             {% empty %}
@@ -62,8 +52,8 @@
         <tr>
 
             <th>Peso/cant Total</th>
-            <th>{{ TPeso }}</th>
-            <th>{{ Tunds }}</th>
+            <th>{{ totalLimpieza }}</th>
+
 
 
         </tr>
@@ -79,6 +69,7 @@
               <br/> <br/>
           <legend>Acciones</legend>
           <input type="submit" value="Guardar" class="btn btn-primary">
+          <a href="/canal/{{ ganado }}"><input type="button" class="btn btn-default" value="Canal"></a>
          </fieldset>
      </form>
 

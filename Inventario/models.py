@@ -4,6 +4,14 @@ from Nomina.models import Empleado
 
 # Create your models here.
 
+class Grupo(models.Model):
+    nombreGrupo = models.CharField(verbose_name='Nombre', max_length=20)
+    refrigerado = models.BooleanField(verbose_name = 'Refrigerado')
+    congelado = models.BooleanField(verbose_name = 'Congelado')
+
+    def __unicode__(self):
+        return self.nombreGrupo
+
 class Bodega(models.Model):
     codigoBodega = models.AutoField(primary_key=True, verbose_name='Codigo Bodega')
     nombreBodega = models.CharField(max_length=50, verbose_name='Nombre')
@@ -15,6 +23,7 @@ class Bodega(models.Model):
 
 class Producto(models.Model):
     codigoProducto = models.AutoField(primary_key=True, verbose_name='Codigo Producto')
+    grupo = models.ForeignKey(Grupo)
     nombreProducto = models.CharField(verbose_name = 'Nombre Producto',max_length=50)
     costoProducto = models.IntegerField(verbose_name = 'Costo Producto')
     vrVentaProducto = models.IntegerField(verbose_name = 'Valor de Venta')
@@ -23,9 +32,6 @@ class Producto(models.Model):
     gravado = models.BooleanField(verbose_name = 'Gravado')
     excento = models.BooleanField(verbose_name='Excento')
     excluido = models.BooleanField(verbose_name='Excluido')
-    refrigerado = models.BooleanField(verbose_name = 'Refrigerado')
-    congelado = models.BooleanField(verbose_name = 'Congelado')
-
 
     def __unicode__(self):
         return self.nombreProducto
@@ -56,9 +62,9 @@ class DetalleSubProducto(models.Model):
 class ProductoBodega(models.Model):
     producto = models.ForeignKey(Producto)
     bodega = models.ForeignKey(Bodega)
-    pesoProductoStock = models.DecimalField(max_digits=9,decimal_places=2,verbose_name='Peso en  Stock')
-    pesoProductoKilos = models.IntegerField(verbose_name='Peso en  Stock(Kls)')
-    unidadesStock = models.IntegerField(verbose_name='Unidades en Stock')
+    pesoProductoStock = models.DecimalField(max_digits=9,decimal_places=2,verbose_name='Peso en  Stock', default=0)
+    pesoProductoKilos = models.IntegerField(verbose_name='Peso en  Stock(Kls)', default=0)
+    unidadesStock = models.IntegerField(verbose_name='Unidades en Stock', default=0)
 
 class SubProductoBodega(models.Model):
     subProducto = models.ForeignKey(SubProducto)
@@ -163,3 +169,4 @@ class LimpiezaSacrificio(models.Model):
     sacrificio = models.ForeignKey(Sacrificio)
     producto = models.ForeignKey(Producto)
     peso = models.DecimalField(verbose_name = 'Peso(grs)',max_digits=9, decimal_places=3)
+

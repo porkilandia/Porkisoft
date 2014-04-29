@@ -19,8 +19,8 @@
             <tr>
             <td>{{ ganado.codigoGanado}}</td>
             <td>{{ ganado.genero }}</td>
-            <td>{{ ganado.pesoEnPie }}</td>
-            <td>{{ ganado.difPieCanal }}</td>
+            <td>{{ ganado.pesoEnPie | floatformat }}Kg</td>
+            <td>{{ ganado.difPieCanal | floatformat:'2'}}%</td>
             <td>{{ ganado.fechaIngreso }}</td>
 
         </tr>
@@ -32,23 +32,27 @@
         <thead>
 
         <tr>
-            <th>Codigo</th>
+
             <th>Planilla</th>
             <th>Ganado</th>
             <th>Peso Brazos</th>
             <th>Peso Piernas</th>
-            <th>Total</th>
+            <th>Vr. Kilo Canal</th>
+            <th>Peso Canal(Kgr)</th>
+
         </tr>
         </thead>
         <tbody>
           {% for cnl in canal %}
         <tr>
-            <td>{{ cnl.codigoCanal }}</td>
+
             <td>{{ cnl.planilla }}</td>
             <td>{{ cnl.ganado }}</td>
-            <td>{{ cnl.pesoBrazos }}</td>
-            <td>{{ cnl.pesoPiernas }}</td>
-            <td>{{ cnl.peosTotalCanal }}</td>
+            <td>{{ cnl.pesoBrazos | floatformat }} Kg</td>
+            <td>{{ cnl.pesoPiernas | floatformat }} Kg</td>
+            <td>$ {{ cnl.vrKiloCanal }}</td>
+            <td>{{ cnl.peosTotalCanal | floatformat }} Kg</td>
+
         </tr>
 
         {% empty %}

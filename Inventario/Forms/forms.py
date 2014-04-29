@@ -85,6 +85,11 @@ class SacrificioForm(ModelForm):
         model = Sacrificio
 
 class LimpiezaSacrificioForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(LimpiezaSacrificioForm,self).__init__(*args, **kwargs)
+
+        self.fields['producto'].queryset = Producto.objects.filter(grupo = 2)
     class Meta:
         model = LimpiezaSacrificio
 

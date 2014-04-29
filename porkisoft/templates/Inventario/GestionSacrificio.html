@@ -26,10 +26,7 @@
             <td>{{ sacrificio.vrTransporte }}</td>
 
             <td>
-                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
-                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
                 <a href="{% url 'Inventario.views.GestionLimpiezaSacrificio' sacrificio.id %}" id="borrador"><img src="{{ STATIC_URL }}img/ver.png"></a>
-
             </td>
 
         </tr>
@@ -50,6 +47,7 @@
              <br/><br/>
              <legend>Acciones</legend>
              <input class="btn btn-primary" value="Guardar" type="submit">
+
          </fieldset>
     </form>
 

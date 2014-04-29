@@ -1,8 +1,11 @@
+from decimal import Decimal
+
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
 
 from Inventario.Forms.forms import *
 from Inventario.models import *
+
 
 
 
@@ -319,6 +322,10 @@ def GestionCanal(request,idganado):
     compra = DetalleCompra.objects.get(ganado = idganado)
     objCompra = Compra.objects.get(pk = compra.compra.codigoCompra)
     codigoCompra = compra.compra.codigoCompra
+    factura = Compra.objects.get(pk = compra.compra.codigoCompra)
+    sacrificio = Sacrificio.objects.get(ganado = idganado)
+    detcompra = DetalleCompra.objects.filter(compra = codigoCompra) # variable para conocer la cantidad de reces que se compraron
+
 
     detalleCompra = DetalleCompra()
 
@@ -326,9 +333,35 @@ def GestionCanal(request,idganado):
     if request.method == 'POST':
         formulario = CanalForm(request.POST)
 
-        if formulario.is_valid():
 
-            formulario.save()
+        if formulario.is_valid():
+            planilla = PlanillaDesposte.objects.get(pk = request.POST.get('planilla'))
+
+            vrKiloCanal = ((factura.vrCompra + sacrificio.vrDeguello + sacrificio.vrTransporte) -
+                          (sacrificio.vrPiel + sacrificio.vrMenudo))/ (int(request.POST.get('peosTotalCanal'))*detcompra.count())
+
+            canal = Canal()
+            canal.ganado = ganado
+            canal.planilla = planilla
+            canal.pesoPiernas = request.POST.get('pesoPiernas')
+            canal.pesoBrazos = request.POST.get('pesoBrazos')
+            canal.peosTotalCanal = request.POST.get('peosTotalCanal')
+            canal.vrKiloCanal = vrKiloCanal
+
+            canal.save()
+
+            ganadoUpd = Ganado()
+
+            ganadoUpd.codigoGanado = ganado.codigoGanado
+
+            ganadoUpd.genero=ganado.genero
+            ganadoUpd.pesoEnPie = ganado.pesoEnPie
+            ganadoUpd.precioKiloEnPie = ganado.precioKiloEnPie
+            ganadoUpd.precioTotal = ganado.precioTotal
+            ganadoUpd.difPieCanal = (ganado.pesoEnPie - Decimal(canal.peosTotalCanal))/100
+            ganadoUpd.fechaIngreso = ganado.fechaIngreso
+            ganadoUpd.save()
+
             detalleCompra.id = compra.id
             detalleCompra.compra = objCompra
             detalleCompra.ganado = ganado
@@ -531,39 +564,66 @@ def GestionDetalleTraslado(request,idtraslado):
 
 
 def GestionSacrificio(request,idganado):
-    sacrificios = Sacrificio.objects.all()
+    sacrificios = Sacrificio.objects.filter(ganado = idganado)
+    ganado = Ganado.objects.get(pk = idganado)
+    detalleCompraGanado = DetalleCompra.objects.get(ganado = ganado.codigoGanado)
+    detalleCompra = DetalleCompra.objects.filter(compra = detalleCompraGanado.compra)
+
 
     if request.method == 'POST':
         formSacrificio = SacrificioForm(request.POST)
 
         if formSacrificio.is_valid():
-            formSacrificio.save()
+
+            piel = detalleCompra.count()* int(request.POST.get('vrPiel'))
+            menudo = detalleCompra.count() * int(request.POST.get('vrMenudo'))
+            deguello = detalleCompra.count() * int(request.POST.get('vrDeguello'))
+            transporte = detalleCompra.count() * int(request.POST.get('vrTransporte'))
+            sacrificio = Sacrificio()
+
+            sacrificio.ganado= ganado
+            sacrificio.vrPiel = piel
+            sacrificio.vrMenudo = menudo
+            sacrificio.vrDeguello = deguello
+            sacrificio.vrTransporte = transporte
+
+            sacrificio.save()
 
             return HttpResponseRedirect('/sacrificio/'+idganado)
 
     else:
         formSacrificio = SacrificioForm(initial={'ganado':idganado})
-        formLimpieza = LimpiezaSacrificioForm()
 
-    return render_to_response('Inventario/GestionSacrificio.html',{'formSacrificio':formSacrificio,'sacrificios':sacrificios },
+
+    return render_to_response('Inventario/GestionSacrificio.html',{'formSacrificio':formSacrificio,
+                                                                   'sacrificios':sacrificios },
                               context_instance = RequestContext(request))
 
 def GestionLimpiezaSacrificio(request,idsacrificio):
+
     limpiezas = LimpiezaSacrificio.objects.filter(sacrificio= idsacrificio)
     sacrificio = Sacrificio.objects.get(pk = idsacrificio)
+    ganado = sacrificio.ganado.codigoGanado
+    totalLimpieza = 0
+
+    for limp in limpiezas:
+        totalLimpieza += limp.peso
 
     if request.method == 'POST':
-        formulario = SacrificioForm(request.POST)
+        formulario = LimpiezaSacrificioForm(request.POST)
 
         if formulario.is_valid():
             formulario.save()
 
-            return HttpResponseRedirect('/sacrificio/')
+
+            return HttpResponseRedirect('/limpiezasacrificio/'+idsacrificio)
 
     else:
         formulario = LimpiezaSacrificioForm(initial={'sacrificio':idsacrificio})
 
     return render_to_response('Inventario/GestionLimpiezaSacrificio.html',{'formulario':formulario,
                                                                            'sacrificio':sacrificio,
-                                                                           'limpiezas':limpiezas },
+                                                                           'limpiezas':limpiezas,
+                                                                           'totalLimpieza':totalLimpieza,
+                                                                           'ganado':ganado },
                               context_instance = RequestContext(request))
