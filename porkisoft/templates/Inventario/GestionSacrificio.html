@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Sacrificios{% endblock titulo %}
+{% block contenido %}
+
+    <h2>Sacrificios</h2>
+    <table id="tablaProductos" class="table-striped" >
+
+        <thead>
+        <tr>
+            <th>Ganado</th>
+            <th>Vr. Piel</th>
+            <th>Vr. Menudo</th>
+            <th>Vr. Deguello</th>
+            <th>Vr. Trasporte</th>
+
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        {% for sacrificio in sacrificios %}
+        <tr>
+            <td>{{ sacrificio.ganado }}</td>
+            <td>{{ sacrificio.vrPiel }}</td>
+            <td>{{ sacrificio.vrMenudo }}</td>
+            <td>{{ sacrificio.vrDeguello }}</td>
+            <td>{{ sacrificio.vrTransporte }}</td>
+
+            <td>
+                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
+                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+                <a href="{% url 'Inventario.views.GestionLimpiezaSacrificio' sacrificio.id %}" id="borrador"><img src="{{ STATIC_URL }}img/ver.png"></a>
+
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="12">
+                   Ningun Registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarProducto">
+             <legend>Sacrificio</legend>
+             {{ formSacrificio }}
+             <br/><br/>
+             <legend>Acciones</legend>
+             <input class="btn btn-primary" value="Guardar" type="submit">
+         </fieldset>
+    </form>
+
+{% endblock contenido %}

@@ -4,31 +4,34 @@
 {% block contenido %}
 
     <h2>Productos Por bodega</h2>
-    <table id="tablabodegas" class="tabla" >
+    <table id="tablabodegas" class="table-striped" >
 
         <thead>
         <tr>
             <th>Producto</th>
             <th>Bodega</th>
-            <th>Peso en Stock</th>
+            <th>Peso en Stock (Kg)</th>
+            <th>Peso en Stock (grs)</th>
             <th>Unidades en stock</th>
-            <th>Acciones</th>
+
         </tr>
         </thead>
         {% for productobodega in productoBodegas %}
-        <tr>
+            {% if productobodega.pesoProductoKilos <= 5 %}<tr style="background: indianred">{% else %}<tr>{% endif %}
             <td>{{ productobodega.producto}}</td>
             <td>{{ productobodega.bodega }}</td>
+            <td>{{ productobodega.pesoProductoKilos}}</td>
             <td>{{ productobodega.pesoProductoStock }}</td>
             <td>{{ productobodega.unidadesStock }}</td>
 
             <td>
-                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
-                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+                <a href="/compra/"><img src="{{ STATIC_URL }}img/pedido.png"></a>
+                {% if productobodega.pesoProductoKilos <= 5 %}{% else %}<a href="/traslado/"><img src="{{ STATIC_URL }}img/traslado.png"></a>{% endif %}
 
             </td>
 
         </tr>
+
             {% empty %}
             <tr>
                 <td colspan="9">
@@ -36,16 +39,9 @@
                 </td>
             </tr>
 
+
         {% endfor %}
+
     </table>
-    <form method="post" class="form-actions">{% csrf_token %}
-         <fieldset id="agregarBodega">
-             <legend>Bodega</legend>
-              <div>
-                  {{ formulario }}
-              </div>
-              <br/>
-          <input type="submit">
-         </fieldset>
-     </form>
+
 {% endblock contenido %}

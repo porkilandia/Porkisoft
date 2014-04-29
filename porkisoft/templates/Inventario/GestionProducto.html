@@ -4,7 +4,7 @@
 {% block contenido %}
 
     <h2>Listado de Productos</h2>
-    <table id="tablaProductos" class="tabla" >
+    <table id="tablaProductos" class="table-striped" >
 
         <thead>
         <tr>
@@ -13,7 +13,7 @@
             <th>Costo</th>
             <th>Vr. Venta</th>
             <th>Utilidad</th>
-            <th>Rentabilidad</th>
+            <th>Rent.</th>
            <th>Gravado</th>
            <th>Excento</th>
            <th>Excluido</th>
@@ -40,6 +40,7 @@
             <td>
                 <a href="{% url 'Inventario.views.editar_producto' producto.codigoProducto %}"><img src="{{ STATIC_URL }}img/modificar.png"></a>
                 <a href="{% url 'Inventario.views.borrar_producto' producto.codigoProducto %}" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+                <a href="{% url 'Inventario.views.GestionProductoBodega' producto.codigoProducto %}" id="borrador"><img src="{{ STATIC_URL }}img/ver.png"></a>
 
             </td>
 
@@ -53,14 +54,15 @@
 
         {% endfor %}
     </table>
-    <form method="post" class="form-actions">{% csrf_token %}
+
+    <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarProducto">
              <legend>Nuevo Producto</legend>
-              <div>
-                  {{ formulario }}
-              </div>
-              <br/>
-          <input type="submit">
+             {{ formulario }}
+             <br/><br/>
+             <legend>Acciones</legend>
+             <input class="btn btn-primary" value="Guardar" type="submit">
          </fieldset>
-     </form>
+    </form>
+
 {% endblock contenido %}

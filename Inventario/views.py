@@ -5,6 +5,9 @@ from Inventario.Forms.forms import *
 from Inventario.models import *
 
 
+
+
+
 # Create your views here.
 
 def home(request):
@@ -15,10 +18,6 @@ def home(request):
 def listaProductos(request):
     productos = Producto.objects.all().order_by('nombreProducto')
     #Creacion de producto en cada bodega con valor inicial
-
-
-
-
 
 
     if request.method == 'POST':
@@ -169,16 +168,9 @@ def borrarBodega(request,idbodega ):
     return  HttpResponseRedirect('/bodega')
 
 def GestionProductoBodega(request,idproducto):
-    productoBodegas = ProductoBodega.objects.all()
-    if request.method == 'POST':
-        formulario = ProductoBodegaForm(request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            return HttpResponseRedirect('/productoBodega')
-    else:
-        formulario = ProductoBodegaForm(initial={'producto':idproducto})
+    productoBodegas = ProductoBodega.objects.filter(producto = idproducto)
 
-    return render_to_response('Inventario/GestionProductoBodega.html',{'formulario':formulario,'productoBodegas':productoBodegas },
+    return render_to_response('Inventario/GestionProductoBodega.html',{'productoBodegas':productoBodegas },
                               context_instance = RequestContext(request))
 
 #*****************************************PROVEEDOR**************************************************
@@ -511,6 +503,7 @@ def GestionDetalleTraslado(request,idtraslado):
             bodegaactual.id = bodegaActual.id
             bodegaactual.producto = producto
             bodegaactual.pesoProductoStock = pesoActualizado
+            bodegaactual.pesoProductoKilos = pesoActualizado / 1000
             bodegaactual.unidadesStock = unidadesActualizadas
 
             bodegaactual.save()
@@ -519,6 +512,7 @@ def GestionDetalleTraslado(request,idtraslado):
             bodegadestino.id = bodegaDestino.id
             bodegadestino.bodega = Bodega.objects.get(pk = bodegaDestino.bodega.codigoBodega)
             bodegadestino.producto = producto
+            bodegadestino.pesoProductoKilos = pesoDestinoActualizado / 1000
             bodegadestino.pesoProductoStock = pesoDestinoActualizado
             bodegadestino.unidadesStock = unidadesDestinoActualizadas
 
@@ -534,3 +528,42 @@ def GestionDetalleTraslado(request,idtraslado):
                                                          'traslado': traslado,
                                                          'detraslados': detraslados},
                                                         context_instance = RequestContext(request))
+
+
+def GestionSacrificio(request,idganado):
+    sacrificios = Sacrificio.objects.all()
+
+    if request.method == 'POST':
+        formSacrificio = SacrificioForm(request.POST)
+
+        if formSacrificio.is_valid():
+            formSacrificio.save()
+
+            return HttpResponseRedirect('/sacrificio/'+idganado)
+
+    else:
+        formSacrificio = SacrificioForm(initial={'ganado':idganado})
+        formLimpieza = LimpiezaSacrificioForm()
+
+    return render_to_response('Inventario/GestionSacrificio.html',{'formSacrificio':formSacrificio,'sacrificios':sacrificios },
+                              context_instance = RequestContext(request))
+
+def GestionLimpiezaSacrificio(request,idsacrificio):
+    limpiezas = LimpiezaSacrificio.objects.filter(sacrificio= idsacrificio)
+    sacrificio = Sacrificio.objects.get(pk = idsacrificio)
+
+    if request.method == 'POST':
+        formulario = SacrificioForm(request.POST)
+
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/sacrificio/')
+
+    else:
+        formulario = LimpiezaSacrificioForm(initial={'sacrificio':idsacrificio})
+
+    return render_to_response('Inventario/GestionLimpiezaSacrificio.html',{'formulario':formulario,
+                                                                           'sacrificio':sacrificio,
+                                                                           'limpiezas':limpiezas },
+                              context_instance = RequestContext(request))

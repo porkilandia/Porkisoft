@@ -3,7 +3,7 @@
 {% block titulo %}Traslados{% endblock titulo %}
 {% block contenido %}
     <h2>Traslados</h2>
-    <table id="traslados" class="tabla">
+    <table id="traslados" class="table-striped">
         <thead>
         <tr>
             <th>Codigo</th>
@@ -44,14 +44,15 @@
 
 
     </table>
-    <form method="post">{% csrf_token %}
+    <form class="form-horizontal" method="post">{% csrf_token %}
          <fieldset id="agregarSubproducto">
              <legend>Traslado</legend>
-              <div>
+
                   {{ formulario }}
-              </div>
-              <br/>
-          <input type="submit" class="btn btn-primary">
+
+              <br/><br/>
+          <legend>Acciones</legend>
+          <input value="Guardar" type="submit" class="btn btn-primary">
          </fieldset>
      </form>
 

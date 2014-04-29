@@ -4,7 +4,7 @@
 {% block contenido %}
 
    <h2><img width="35" src="{{ STATIC_URL }}img/provedor.png"> Listado de Provedores</h2>
-    <table id="tablaproveedor" class="tabla" >
+    <table id="tablaproveedor" class="table-striped" >
 
         <thead>
         <tr>
@@ -47,14 +47,15 @@
 
         {% endfor %}
     </table>
-    <form method="post" class="form-actions">{% csrf_token %}
+    <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarBodega">
              <legend>Proveedor</legend>
-              <div>
+
                   {{ formulario }}
-              </div>
-              <br/>
-          <input type="submit">
+
+              <br/><br/>
+             <legend>Acciones</legend>
+          <input class="btn btn-primary" value="Guardar" type="submit">
          </fieldset>
      </form>
 {% endblock contenido %}

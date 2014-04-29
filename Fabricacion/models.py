@@ -46,6 +46,7 @@ class Canal (models.Model):
     pesoPiernas = models.DecimalField(verbose_name = 'Peso Piernas (grs)',max_digits=9, decimal_places=3)
     pesoBrazos = models.DecimalField(verbose_name = 'Peso Brazos (grs)',max_digits=9, decimal_places=3)
     peosTotalCanal = models.DecimalField(verbose_name = 'Peso Total (grs)',max_digits=9, decimal_places=3)
+    vrKiloCanal = models.IntegerField(verbose_name='Vr. Kilo Canal')
 
     def __unicode__(self):
         return self.numeroCanal

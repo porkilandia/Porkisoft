@@ -4,7 +4,7 @@
 {% block contenido %}
 
     <h2>Listado de Bodegas</h2>
-    <table id="tablabodegas" class="tabla" >
+    <table id="tablabodegas" class="table-striped" >
 
         <thead>
         <tr>
@@ -38,14 +38,14 @@
 
         {% endfor %}
     </table>
-    <form method="post" class="form-actions">{% csrf_token %}
+    <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarBodega">
              <legend>Bodega</legend>
-              <div>
+
                   {{ formulario }}
-              </div>
+
               <br/>
-          <input type="submit">
+          <input class="btn btn-default" value="Guardar" type="submit">
          </fieldset>
      </form>
 {% endblock contenido %}

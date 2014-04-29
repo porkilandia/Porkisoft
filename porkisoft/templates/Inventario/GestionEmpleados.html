@@ -4,7 +4,7 @@
 {% block contenido %}
 
     <h2>Listado de Empleados</h2>
-    <table id="tablaProductos" class="tabla" >
+    <table id="tablaempleado" class="table-striped" >
 
         <thead>
         <tr>
@@ -52,7 +52,8 @@
                   {{ formulario }}
               </div>
               <br/>
-          <input type="submit">
+          <legend>Acciones</legend>
+          <input value="Guardar" class="btn btn-primary" type="submit">
          </fieldset>
      </form>
 {% endblock contenido %}

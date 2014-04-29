@@ -2,7 +2,7 @@
 {% block titulo %}{{ titulo }}{% endblock titulo %}
 {% block contenido %}
 
-     <table class="tabla">
+     <table class="table-striped">
         <thead>
         <tr>
             
@@ -30,7 +30,7 @@
 
      </table>
 
-     <table id="detalleSP" class="tabla">
+     <table id="detalleSP" class="table-striped">
         <thead>
         <tr>
             <th>Producto</th>
@@ -83,8 +83,9 @@
               <div>
                   {{ formulario }}
               </div>
-              <br/>
-          <input type="submit" class="btn btn-primary">
+              <br/><br/>
+          <legend>Acciones</legend>
+          <input type="submit" value="Guardar" class="btn btn-primary">
          </fieldset>
      </form>
 

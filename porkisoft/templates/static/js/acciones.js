@@ -6,27 +6,38 @@ $(document).on('ready', inicio);
 
      $('#id_peosTotalCanal').on('focus',calculoCanal);
 
+
      $('#tablaCompras').dataTable({
 
-         "sDom": '<"bottom"i>rt<"top"flp><"clear">'
+         "sDom": '<"top"iflp<"clear">>',
+          "sPaginationType" : "full_numbers"
     });
      $('#tablaProductos').dataTable({
 
-         "sDom": '<"top"i>rt<"bottom"flp><"clear">'
+        "sDom": '<"top"iflp<"clear">>',
+          "sPaginationType" : "full_numbers"
     });
     $('#ListaSubp').dataTable({
 
-         "sDom": '<"top"i>rt<"bottom"flp><"clear">'
+         "sDom": '<"top"iflp<"clear">>',
+          "sPaginationType" : "full_numbers"
     });
      $('#tablabodegas').dataTable({
 
-         "sDom": '<"bottom"i>rt<"top"flp><"clear">'
+         "sDom": '<"top"iflp<"clear">>',
+          "sPaginationType" : "full_numbers"
     });
      $('#tablaproveedor').dataTable({
 
          "sDom": '<"top"iflp<"clear">>',
           "sPaginationType" : "full_numbers"
     });
+     $('#despostes').dataTable({
+
+         "sDom": '<"top"iflp<"clear">>',
+          "sPaginationType" : "full_numbers"
+       });
+ }
 function calculoGanado(){
 
 
@@ -47,7 +58,6 @@ function calculoGanado(){
          $('#id_peosTotalCanal').val(totalCanal);
      }
 
- }
 
 
 

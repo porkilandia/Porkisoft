@@ -57,6 +57,7 @@ class ProductoBodega(models.Model):
     producto = models.ForeignKey(Producto)
     bodega = models.ForeignKey(Bodega)
     pesoProductoStock = models.DecimalField(max_digits=9,decimal_places=2,verbose_name='Peso en  Stock')
+    pesoProductoKilos = models.IntegerField(verbose_name='Peso en  Stock(Kls)')
     unidadesStock = models.IntegerField(verbose_name='Unidades en Stock')
 
 class SubProductoBodega(models.Model):
@@ -143,3 +144,22 @@ class DetalleCompra(models.Model):
     vrCompraProducto = models.IntegerField(verbose_name = 'Valor de Compra')
     subtotal = models.IntegerField(default=0)
     estado = models.BooleanField()
+
+class Sacrificio(models.Model):
+    tipoPiel = (
+        (25000,'Calentana'),
+        (44000,'Firana'),
+    )
+    ganado = models.ForeignKey(Ganado)
+    vrPiel = models.IntegerField(verbose_name='Vr. Piel', choices=tipoPiel)
+    vrMenudo = models.IntegerField(verbose_name='Vr. Menudo', default=0)
+    vrDeguello = models.IntegerField(verbose_name='Vr. Deguello', default=0)
+    vrTransporte = models.IntegerField(verbose_name='Vr.Transporte', default=0)
+
+    def __unicode__(self):
+        return self.id
+
+class LimpiezaSacrificio(models.Model):
+    sacrificio = models.ForeignKey(Sacrificio)
+    producto = models.ForeignKey(Producto)
+    peso = models.DecimalField(verbose_name = 'Peso(grs)',max_digits=9, decimal_places=3)

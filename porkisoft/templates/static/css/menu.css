@@ -1,5 +1,5 @@
 #nav {
-    top: 6.6em;
+    top: 5.3em;
     left: 0;
     padding: 0;
     position: fixed;
@@ -8,10 +8,12 @@
     z-index:2;
 }
 #nav ul {
+
     background-color: #d3070b;
     border-radius: 0 0 0.5em 0.5em;
     box-shadow: 0.5em 0.5em 1.5em #6c686f;
-    height:35px;
+    font-size: 0.9em;
+    height:60px;
     list-style:none outside none;
     margin:0;
     padding:1em;
@@ -31,7 +33,7 @@
 }
 #nav ul ul ul {
     display:none;
-    left:168px;
+    left:210px;
     position:absolute;
     top:-1px;
     width:168px;
@@ -84,8 +86,7 @@
 }
 #nav ul li:hover > a,#nav ul li:hover > span {
     background-color: #d3070b;
-    border:1px solid #deff7c;
-    border-radius: 1em;
+    font-weight: bold;
     color: #deff7c;
     text-shadow: 0 0 1.5em #ececec;
 }

@@ -4,9 +4,11 @@
 
     <title>{% block titulo %}{% endblock titulo %}</title>
 
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/miCSS.css"/>
+    <!-- <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/miCSS.css"/> -->
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery.dataTable.css"/>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/menu.css"/>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css"/>
+
 
 
 
@@ -34,6 +36,7 @@
                             <li><a href="/bodega"><img src="{{ STATIC_URL }}img/item.png" alt="" />Bodega</a></li>
                             <li><a href="/desposte"><img src="{{ STATIC_URL }}img/item.png" alt="" />Desposte</a></li>
                             <li><a href="/traslado"><img src="{{ STATIC_URL }}img/item.png" alt="" />Traslado</a></li>
+                            <li><a href="/sacrificio"><img src="{{ STATIC_URL }}img/item.png" alt="" />Sacrificio</a></li>
 
 
                         </ul>
@@ -56,15 +59,21 @@
                 </ul>
 
             </div>
-
+        <div class="container-fluid">
         <section id="panel-central"  >
-           {% block contenido %}{% endblock contenido %}
+
+            {% block contenido %}{% endblock contenido %}
+
         </section>
+        </div>
 
 </section>
+
         <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/acciones.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 
 
 </body>

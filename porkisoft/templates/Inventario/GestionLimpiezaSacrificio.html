@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ titulo }}{% endblock titulo %}
+{% block contenido %}
+
+    <table id="tablaProductos" class="table-striped" >
+
+        <thead>
+        <tr>
+            <th>Ganado</th>
+            <th>Vr. Piel</th>
+            <th>Vr. Menudo</th>
+            <th>Vr. Deguello</th>
+            <th>Vr. Trasporte</th>
+
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>{{ sacrificio.ganado }}</td>
+            <td>{{ sacrificio.vrPiel }}</td>
+            <td>{{ sacrificio.vrMenudo }}</td>
+            <td>{{ sacrificio.vrDeguello }}</td>
+            <td>{{ sacrificio.vrTransporte }}</td>
+
+            <td>
+                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
+                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/ver.png"></a>
+
+            </td>
+        </tr>
+    </table>
+
+    <table  class="table-striped">
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+
+        </tr>
+        </thead>
+        <tbody>
+            {% for limpieza in limpiezas %}
+        <tr>
+            <td>{{ limpieza.producto }}</td>
+            <td>{{ limpieza.peso }}</td>
+            <td>
+                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+            </td>
+
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+        <tr>
+
+            <th>Peso/cant Total</th>
+            <th>{{ TPeso }}</th>
+            <th>{{ Tunds }}</th>
+
+
+        </tr>
+
+      </table>
+
+    <form class="form-horizontal" method="post">{% csrf_token %}
+         <fieldset id="agregarDetalle">
+             <legend>Detalle Sub Producto</legend>
+
+                  {{ formulario }}
+
+              <br/> <br/>
+          <legend>Acciones</legend>
+          <input type="submit" value="Guardar" class="btn btn-primary">
+         </fieldset>
+     </form>
+
+{% endblock contenido %}

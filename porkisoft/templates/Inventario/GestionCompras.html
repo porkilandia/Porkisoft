@@ -4,7 +4,7 @@
 {% block contenido %}
 
     <h2>Listado Compras</h2>
-    <table id="tablaCompras" class="tabla" >
+    <table id="tablaCompras" class="table-striped" >
 
         <thead>
         <tr>
@@ -41,20 +41,17 @@
 
         {% endfor %}
     </table>
-    <form method="post" class="form-actions">{% csrf_token %}
+    <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="compras">
              <legend>Proveedor</legend>
-              <div>
-                  {{ formulario }}
-              </div>
-              <br/>
-          <fieldset style="text-align: center">
-              <legend>Acciones</legend>
-             <input type="image" src="{{ STATIC_URL }}img/save.png" width="30" height="30" border="0" alt="Guardar">
-              <a href="#"><img src="{{ STATIC_URL }}img/operario.png"></a>
-              <a href="{% url 'Inventario.views.GestionProvedor' %}"><img src="{{ STATIC_URL }}img/provedor.png"></a>
-          </fieldset>
+                 {{ formulario }}
 
+              <br/><br/>
+
+              <legend>Acciones</legend>
+             <input type="submit" value="Guardar" class="btn btn-default">
+             <a href="#"><input type="button" value="Porvedor" class="btn btn-default"></a>
+             <a href="#"><input type="button" value="Empleado" class="btn btn-default"></a>
 
          </fieldset>
      </form>

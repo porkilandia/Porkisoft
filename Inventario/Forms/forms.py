@@ -79,3 +79,12 @@ class TrasladoForm(ModelForm):
 class DetalleTrasladoForm(ModelForm):
     class Meta:
         model = DetalleTraslado
+
+class SacrificioForm(ModelForm):
+    class Meta:
+        model = Sacrificio
+
+class LimpiezaSacrificioForm(ModelForm):
+    class Meta:
+        model = LimpiezaSacrificio
+

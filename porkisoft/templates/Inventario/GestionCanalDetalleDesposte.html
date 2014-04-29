@@ -4,7 +4,7 @@
 {% block contenido %}
 <h2>Detalle Desposte</h2>
 
-<table class="tabla">
+<table class="table-striped">
     <thead>
         <tr>
             <th>Codigo</th>
@@ -29,7 +29,7 @@
     </tbody>
 </table>
 <br/>
-<table class="tabla">
+<table class="table-striped">
     <thead>
         <tr>
             <th>Codigo</th>
@@ -68,7 +68,7 @@
     </tbody>
 </table>
 <br/>
-<table class="tabla">
+<table class="table-striped">
     <thead>
         <tr>
             <th>Planilla</th>
@@ -112,12 +112,11 @@
               <div>
                   {{ formulario }}
               </div>
-              <br/>
-          <fieldset style="text-align: center">
+              <br/><br/>
               <legend>Acciones</legend>
-             <input type="image" src="{{ STATIC_URL }}img/save.png" width="30" height="30" border="0" alt="Guardar">
-             <a href="/compra/"><img src="{{ STATIC_URL }}img/carne.png"></a>
-          </fieldset>
+             <input type="submit" class="btn btn-default">
+             <a href="/compra/"><input type="button" value="compra" class="btn btn-default"></a>
+
          </fieldset>
      </form>
 
