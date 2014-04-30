@@ -8,26 +8,39 @@
 
         <thead>
         <tr>
-            <th>Ganado</th>
-            <th>Vr. Piel</th>
+
+            <th>Fecha Compra</th>
+            <th>Fecha Sacrificio</th>
+            <th># Cabezas</th>
             <th>Vr. Menudo</th>
             <th>Vr. Deguello</th>
             <th>Vr. Trasporte</th>
+            <th> Piel</th>
+            <th> Cola</th>
+            <th> Creadillas</th>
+            <th> Recortes</th>
+            <th> Riñones</th>
+            <th> Desecho</th>
 
-            <th>Acciones</th>
+
         </tr>
         </thead>
         {% for sacrificio in sacrificios %}
         <tr>
-            <td>{{ sacrificio.ganado }}</td>
-            <td>{{ sacrificio.vrPiel }}</td>
-            <td>{{ sacrificio.vrMenudo }}</td>
-            <td>{{ sacrificio.vrDeguello }}</td>
-            <td>{{ sacrificio.vrTransporte }}</td>
 
-            <td>
-                <a href="{% url 'Inventario.views.GestionLimpiezaSacrificio' sacrificio.id %}" id="borrador"><img src="{{ STATIC_URL }}img/ver.png"></a>
-            </td>
+            <td>{{ compraActual.fechaCompra }}</td>
+            <td>{{ sacrificio.fechaSacrificio }}</td>
+            <td>{{ sacrificio.cantReses }}</td>
+            <td>${{ sacrificio.vrMenudo }}</td>
+            <td>${{ sacrificio.vrDeguello }}</td>
+            <td>${{ sacrificio.vrTransporte }}</td>
+            <td>${{ sacrificio.piel }}</td>
+            <td>{{ sacrificio.cola| floatformat }}gr</td>
+            <td>{{ sacrificio.creadillas| floatformat }}gr</td>
+            <td>{{ sacrificio.recortes| floatformat }}gr</td>
+            <td>{{ sacrificio.rinones| floatformat }}gr</td>
+            <td>{{ sacrificio.desecho| floatformat }}gr</td>
+
 
         </tr>
             {% empty %}

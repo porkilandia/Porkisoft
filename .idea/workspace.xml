@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="59073fdf-8b0c-4e5a-a787-1a51b86e03fd" name="Default" comment="Trabajo sobre el costeo de los productos">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanal.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanalDetalleDesposte.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanalDetalleDesposte.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionLimpiezaSacrificio.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionLimpiezaSacrificio.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html" />
+    <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionLimpiezaSacrificio.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleSacrificio.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSacrificio.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSacrificio.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/Forms/forms.py" afterPath="$PROJECT_DIR$/Inventario/Forms/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/models.py" afterPath="$PROJECT_DIR$/Fabricacion/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/models.py" afterPath="$PROJECT_DIR$/Inventario/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/urls.py" afterPath="$PROJECT_DIR$/Inventario/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/views.py" afterPath="$PROJECT_DIR$/Inventario/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -27,23 +29,35 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="DjangoConsoleOptions" module-name="porkisoft" is-module-sdk="true">
-    <option name="myUseModuleSdk" value="true" />
-    <option name="myModuleName" value="porkisoft" />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="porkisoft" />
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Inventario/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="611" column="18" selection-start="24183" selection-end="24183" vertical-scroll-proportion="0.0" vertical-offset="11610" max-vertical-offset="12500">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GestionGanado.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="58" column="30" selection-start="1652" selection-end="1652" vertical-scroll-proportion="-13.846154" vertical-offset="800" max-vertical-offset="1380">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Inventario/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="137" column="119" selection-start="6661" selection-end="6662" vertical-scroll-proportion="0.0" vertical-offset="2356" max-vertical-offset="3560">
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
+            <state line="183" column="8" selection-start="8774" selection-end="8774" vertical-scroll-proportion="0.0" vertical-offset="3194" max-vertical-offset="3800">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -51,63 +65,7 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="18" selection-start="2391" selection-end="2405" vertical-scroll-proportion="0.0" vertical-offset="700" max-vertical-offset="2500">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GestionLimpiezaSacrificio.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionLimpiezaSacrificio.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="35" selection-start="1662" selection-end="1662" vertical-scroll-proportion="-14.538462" vertical-offset="1042" max-vertical-offset="1640">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GestionProducto.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="32" selection-start="1420" selection-end="1420" vertical-scroll-proportion="-10.769231" vertical-offset="420" max-vertical-offset="1440">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GestionSacrificio.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSacrificio.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="0" selection-start="1448" selection-end="1448" vertical-scroll-proportion="-37.692307" vertical-offset="0" max-vertical-offset="1200">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Inventario/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="358" column="36" selection-start="14212" selection-end="14212" vertical-scroll-proportion="0.0" vertical-offset="6800" max-vertical-offset="12660">
-              <folding>
-                <element signature="e#0#69#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GestionCanal.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanal.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="57" selection-start="1370" selection-end="1370" vertical-scroll-proportion="0.5405405" vertical-offset="780" max-vertical-offset="1920">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GestionCanalDetalleDesposte.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanalDetalleDesposte.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="87" selection-start="1513" selection-end="1513" vertical-scroll-proportion="-10.0" vertical-offset="900" max-vertical-offset="2560">
+            <state line="49" column="0" selection-start="2389" selection-end="2389" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="2560">
               <folding />
             </state>
           </provider>
@@ -116,7 +74,34 @@
       <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="76" selection-start="2056" selection-end="2056" vertical-scroll-proportion="0.0" vertical-offset="1336" max-vertical-offset="1880">
+            <state line="85" column="45" selection-start="1871" selection-end="1871" vertical-scroll-proportion="0.0" vertical-offset="1154" max-vertical-offset="1720">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GestionDetalleSacrificio.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleSacrificio.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="40" column="33" selection-start="766" selection-end="987" vertical-scroll-proportion="-10.0" vertical-offset="540" max-vertical-offset="1880">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GestionSacrificio.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSacrificio.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="55" selection-start="1333" selection-end="1333" vertical-scroll-proportion="-12.307693" vertical-offset="500" max-vertical-offset="1460">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GestionCompras.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="46" selection-start="974" selection-end="974" vertical-scroll-proportion="-9.230769" vertical-offset="360" max-vertical-offset="1360">
               <folding />
             </state>
           </provider>
@@ -125,10 +110,17 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Inventario/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="16" selection-start="825" selection-end="830" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="840">
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
+            <state line="15" column="4" selection-start="471" selection-end="471" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="780">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GestionDetalleCompra.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="12" selection-start="333" selection-end="333" vertical-scroll-proportion="-0.4733728" vertical-offset="480" max-vertical-offset="2140">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -141,70 +133,21 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="jamen17@gmail.com" />
-        <option value="jamen17@gmail.comSe lei" />
-        <option value="jamen17@gmail.co" />
-        <option value="JamoDev" />
-      </list>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Nomina/admin.py" />
-        <option value="$PROJECT_DIR$/Telemercadeo/admin.py" />
-        <option value="$PROJECT_DIR$/Ventas/admin.py" />
-        <option value="$PROJECT_DIR$/Inventario/templates/modificaProducto.html" />
-        <option value="$PROJECT_DIR$/Inventario/templates/nuevoProducto.html" />
-        <option value="$PROJECT_DIR$/Inventario/templates/nuevoSubProducto.html" />
-        <option value="$PROJECT_DIR$/Inventario/templates/static/css/jquery.dataTables.css" />
-        <option value="$PROJECT_DIR$/Inventario/templates/listaSubProducto.html" />
-        <option value="$PROJECT_DIR$/Inventario/templates/listaProducto.html" />
-        <option value="$PROJECT_DIR$/Inventario/templates/static/js/jquery.dataTables.js" />
-        <option value="$PROJECT_DIR$/Inventario/templates/GestionSubProducto.html" />
-        <option value="$PROJECT_DIR$/Inventario/templates/static/js/acciones.js" />
-        <option value="$PROJECT_DIR$/Inventario/templates/static/css/miCSS.css" />
-        <option value="$PROJECT_DIR$/Inventario/templates/base.html" />
-        <option value="$PROJECT_DIR$/Inventario/templates/GestionBodega.html" />
-        <option value="$PROJECT_DIR$/Inventario/templates/GestionProductoBodega.html" />
-        <option value="$PROJECT_DIR$/Inventario/templates/GestionProducto.html" />
-        <option value="$PROJECT_DIR$/porkisoft/settings.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/Desposte.html" />
-        <option value="$PROJECT_DIR$/Fabricacion/admin.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/static/js/jquery.dataTables.min.js" />
-        <option value="$PROJECT_DIR$/Nomina/models.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/static/css/jquery.dataTables.css" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/static/css/miCSS.css" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/static/css/menu.css" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/Cargo.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionBodega.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDesposte.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleSubProducto.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleTraslado.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionEmpleados.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProvedor.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSubProducto.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionTraslado.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
-        <option value="$PROJECT_DIR$/Fabricacion/models.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/base.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleSacrificio.html" />
         <option value="$PROJECT_DIR$/Inventario/urls.py" />
-        <option value="$PROJECT_DIR$/Inventario/models.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html" />
+        <option value="$PROJECT_DIR$/Fabricacion/models.py" />
         <option value="$PROJECT_DIR$/Inventario/Forms/forms.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanalDetalleDesposte.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSacrificio.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionLimpiezaSacrificio.html" />
+        <option value="$PROJECT_DIR$/Inventario/models.py" />
         <option value="$PROJECT_DIR$/Inventario/views.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanal.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSacrificio.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" />
       </list>
     </option>
   </component>
@@ -214,39 +157,14 @@
     <option name="width" value="1370" />
     <option name="height" value="737" />
   </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-          <State>
-            <id>Django</id>
-          </State>
-          <State>
-            <id>Python</id>
-          </State>
-          <State>
-            <id>Spelling</id>
-          </State>
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>SpellCheckingInspection</id>
-          </State>
-        </selected-state>
-      </profile-state>
-    </entry>
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -265,6 +183,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -333,54 +252,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Inventario" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -417,61 +288,23 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Fabricacion" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
-    <property name="options.splitter.main.proportions" value="0.29833335" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.searchVisible" value="true" />
-    <property name="last_opened_file_path" value="/usr/bin" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistory" value="GestionC&#10;Ganado&#10;Canal&#10;GestionProducto&#10;GestionPro&#10;Subproducto&#10;GestionSub&#10;editar&#10;GestionGana&#10;ganado&#10;b" />
-    <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="dynamic.classpath" value="false" />
+    <property name="SearchEverywhereHistory" value="Canal&#10;GestionG&#10;GestionGana&#10;Ganado" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings />
     </option>
   </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/porkisoft/templates/static/img" />
-      <recent name="$PROJECT_DIR$/porkisoft/templates/static/css" />
-      <recent name="$PROJECT_DIR$/porkisoft/templates" />
-      <recent name="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\templates\static\img" />
-      <recent name="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\static\img" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft\templates\Inventario" />
-      <recent name="C:\Users\Javier\Documents\GitHub\Porkisoft\porkisoft" />
-      <recent name="C:\Users\Javier\Google Drive\Proyecto Porkilandia\PorkisoftGIT\porkisoft\Inventario\templates\static\css" />
-      <recent name="C:\Users\JavierAlexander\Google Drive\Proyecto Porkilandia\PorkisoftGIT\porkisoft\porkisoft\static" />
-      <recent name="C:\Users\JavierAlexander\Google Drive\Proyecto Porkilandia\PorkisoftGIT\porkisoft\inventario\templates" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Django server.porkisoft">
+  <component name="RunManager" selected="Django server.Porkisoft">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -517,23 +350,6 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.AppEngineServer" factoryName="App Engine server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="porkisoft" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="host" value="127.0.0.1" />
-      <option name="browserUrl" value="" />
-      <option name="additionalOptions" value="" />
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Nosetests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -562,31 +378,38 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="/usr/bin/python2.7" />
-      <option name="WORKING_DIRECTORY" value="/usr/bin" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="porkisoft" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="/usr/bin/python2.7/script" />
+      <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="PyRemoteDebugConfigurationType" factoryName="Python Remote Debug">
-      <module name="" />
-      <option name="PORT" value="0" />
-      <option name="HOST" value="null" />
-      <PathMappingSettings>
-        <option name="pathMappings">
-          <list />
-        </option>
-      </PathMappingSettings>
-      <option name="REDIRECT_OUTPUT" value="true" />
-      <option name="SUSPEND_AFTER_CONNECT" value="true" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python2.7" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="porkisoft" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -612,27 +435,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="/usr/bin/python2.7" />
-      <option name="WORKING_DIRECTORY" value="/usr/bin" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="porkisoft" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="0.0.0.0" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="http://127.0.0.1:8000/" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="true" />
-      <option name="customRunCommand" value="manage.py runserver" />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -675,13 +478,7 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
-      <option name="VM_PARAMETERS" value="" />
-      <option name="USER_CFG_CLASS" />
-      <option name="CONTEXT_PROVIDER" />
-      <method />
-    </configuration>
-    <configuration default="false" name="porkisoft" type="Python.DjangoServer" factoryName="Django server">
+    <configuration default="false" name="Porkisoft" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -689,160 +486,59 @@
         <env name="DJANGO_SETTINGS_MODULE" value="porkisoft.settings" />
       </envs>
       <option name="SDK_HOME" value="/usr/bin/python2.7" />
-      <option name="WORKING_DIRECTORY" value="/usr/bin" />
+      <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="porkisoft" />
       <option name="launchJavascriptDebuger" value="false" />
       <option name="port" value="8000" />
-      <option name="host" value="127.0.0.1" />
+      <option name="host" value="localhost" />
       <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="http://127.0.0.1:8000/home" />
+      <option name="browserUrl" value="http://localhost:8000/home" />
       <option name="runTestServer" value="false" />
       <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="true" />
-      <option name="customRunCommand" value="runserver" />
-      <RunnerSettings RunnerId="PyDebugRunner" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Django server.porkisoft" />
+      <item index="0" class="java.lang.String" itemvalue="Django server.Porkisoft" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
-  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
-    <option name="USER" value="" />
-    <option name="PASSWORD" value="" />
-    <option name="mySSHConnectionTimeout" value="30000" />
-    <option name="mySSHReadTimeout" value="30000" />
-    <option name="LAST_MERGED_REVISION" />
-    <option name="MERGE_DRY_RUN" value="false" />
-    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
-    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
-    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
-    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
-    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
-    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
-    <option name="FORCE_UPDATE" value="false" />
-    <option name="IGNORE_EXTERNALS" value="false" />
-    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="59073fdf-8b0c-4e5a-a787-1a51b86e03fd" name="Default" comment="" />
-      <created>1396481038726</created>
-      <updated>1396534427349</updated>
+      <changelist id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="" />
+      <created>1398862732741</created>
+      <updated>1398862732741</updated>
     </task>
-    <task id="LOCAL-00001" summary="Inicio del proyecto">
-      <created>1396481771785</created>
-      <updated>1396534427292</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Creacion del modelo de datos">
-      <created>1396539180563</created>
-      <updated>1396539180563</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Aplicando bootstrap">
-      <created>1396564445522</created>
-      <updated>1396564445522</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Creacion de CRUD para productos pendiente migrar el campo &quot;VrVentaProducto&quot;">
-      <created>1396569681074</created>
-      <updated>1396569681074</updated>
-    </task>
-    <task id="LOCAL-00005" summary="se agregan tablas">
-      <created>1396642697403</created>
-      <updated>1396642697403</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Trabajo sobre sub producto y veo la forma de evaluar que el nombre no se repita en la tabla">
-      <created>1396734393456</created>
-      <updated>1396734393456</updated>
-    </task>
-    <task id="LOCAL-00007" summary="se crean el resto de tablas">
-      <created>1396915018290</created>
-      <updated>1396915018290</updated>
-    </task>
-    <task id="LOCAL-00008" summary="aplicando css a la pagina base.html">
-      <created>1396995468870</created>
-      <updated>1396995468870</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Se parte todo el proyecto en varias aplicaciones">
-      <created>1397481119270</created>
-      <updated>1397481119270</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Verificando borrar de todas las plantillas">
-      <created>1397517934751</created>
-      <updated>1397517934751</updated>
-    </task>
-    <task id="LOCAL-00011" summary="se agregan funcionalidades a la orden de compra">
-      <created>1397839087472</created>
-      <updated>1397839087472</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Implementacion del nuevo menu de la aplicacion">
-      <created>1398118821024</created>
-      <updated>1398118821024</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Modulo de compras y desposte de ganado , estoy trabajando en este momento en resolver  las operaciones de el total de la compra">
-      <created>1398297412992</created>
-      <updated>1398297412992</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Modulo traslados y desposte completos, ademas de asignacion de cantidades de stock a productos">
-      <created>1398470642482</created>
-      <updated>1398470642482</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Trabajo sobre el costeo de los productos">
-      <created>1398799488880</created>
-      <updated>1398799488880</updated>
-    </task>
-    <option name="localTasksCounter" value="16" />
     <servers />
-  </component>
-  <component name="TodoView" selected-index="0">
-    <todo-panel id="selected-file">
-      <are-packages-shown value="false" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="false" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="false" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="false" />
-    </todo-panel>
-    <todo-panel id="default-changelist">
-      <are-packages-shown value="false" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="false" />
-    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="-3" width="1370" height="737" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32715008" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32209107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6728499" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32649574" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2473525" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28247735" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.529511" sideWeight="0.49960724" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.84705883" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23640484" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39632106" sideWeight="0.5003928" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5193929" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32546374" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32820514" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -857,375 +553,130 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
-    <MESSAGE value="Inicio del proyecto" />
-    <MESSAGE value="Creacion del modelo de datos" />
-    <MESSAGE value="Aplicando bootstrap" />
-    <MESSAGE value="Creacion de CRUD para productos pendiente migrar el campo &quot;VrVentaProducto&quot;" />
-    <MESSAGE value="se agregan tablas" />
-    <MESSAGE value="Trabajo sobre sub producto y veo la forma de evaluar que el nombre no se repita en la tabla" />
-    <MESSAGE value="se crean el resto de tablas" />
-    <MESSAGE value="aplicando css a la pagina base.html" />
-    <MESSAGE value="actualizacion de los templates de para modificar agregar y borrar todo en uno" />
-    <MESSAGE value="Se parte todo el proyecto en varias aplicaciones" />
-    <MESSAGE value="Completando el CRUD de productos y sub productos" />
-    <MESSAGE value="Completando el CRUD de productos y sub productos, y mejoras a la interfaz de usuario" />
-    <MESSAGE value="Verificando borrar de todas las plantillas" />
-    <MESSAGE value="se eliminan archivos innecesarios como plantillas que ya no se utilizan, se reordenan las plantillas con : Gestion+nombre de el modelo que manejan" />
-    <MESSAGE value="se agregan funcionalidades a la orden de compra" />
-    <MESSAGE value="Implementacion del nuevo menu de la aplicacion" />
-    <MESSAGE value="Modulo de compras y desposte de ganado , estoy trabajando en este momento en resolver  las operaciones de el total de la compra" />
-    <MESSAGE value="Modulo traslados y desposte completos, ademas de asignacion de cantidades de stock a productos" />
-    <MESSAGE value="Trabajo sobre el costeo de los productos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Trabajo sobre el costeo de los productos" />
-    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
-      <option name="time" value="13" />
-    </breakpoint-manager>
+    <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/img/addpersona.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/settings.py">
+    <entry file="file://$PROJECT_DIR$/Inventario/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="55" selection-start="2502" selection-end="2502" vertical-scroll-proportion="0.4886562" vertical-offset="1140" max-vertical-offset="3340" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/img/logo.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fabricacion/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="164" selection-end="164" vertical-scroll-proportion="0.27072757" vertical-offset="0" max-vertical-offset="591" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/jquery.dataTables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10987" column="29" selection-start="345134" selection-end="345142" vertical-scroll-proportion="0.33211678" vertical-offset="219158" max-vertical-offset="241700" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="22" selection-start="127" selection-end="127" vertical-scroll-proportion="-3.0769231" vertical-offset="0" max-vertical-offset="220" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ventas/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="81" selection-start="292" selection-end="292" vertical-scroll-proportion="0.23519458" vertical-offset="1" max-vertical-offset="600" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="591" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Nomina/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="32" selection-start="797" selection-end="797" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/db/models/manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="0" selection-start="5101" selection-end="5101" vertical-scroll-proportion="0.0" vertical-offset="2184" max-vertical-offset="5094">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/db/models/query.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="0" selection-start="3209" selection-end="3209" vertical-scroll-proportion="0.0" vertical-offset="1356" max-vertical-offset="30978" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/db/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="249" column="0" selection-start="7917" selection-end="7917" vertical-scroll-proportion="0.0" vertical-offset="4182" max-vertical-offset="4968" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/db/models/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="544" column="0" selection-start="24043" selection-end="24043" vertical-scroll-proportion="0.0" vertical-offset="9244" max-vertical-offset="18396" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/core/servers/basehttp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="0" selection-start="4483" selection-end="4483" vertical-scroll-proportion="0.0" vertical-offset="1921" max-vertical-offset="2898" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python2.7/threading.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="762" column="0" selection-start="27028" selection-end="27028" vertical-scroll-proportion="0.140255" vertical-offset="13639" max-vertical-offset="24066" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python2.7/SocketServer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="593" column="0" selection-start="19209" selection-end="19209" vertical-scroll-proportion="0.140255" vertical-offset="10525" max-vertical-offset="13194" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python2.7/wsgiref/simple_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="0" selection-start="3789" selection-end="3789" vertical-scroll-proportion="0.13485114" vertical-offset="2101" max-vertical-offset="2880" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python2.7/wsgiref/handlers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="0" selection-start="2959" selection-end="2959" vertical-scroll-proportion="0.13485114" vertical-offset="1381" max-vertical-offset="8136" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/contrib/staticfiles/handlers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="2298" selection-end="2298" vertical-scroll-proportion="0.74781084" vertical-offset="635" max-vertical-offset="1206" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/core/handlers/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="214" column="0" selection-start="7646" selection-end="7646" vertical-scroll-proportion="0.7793345" vertical-offset="3155" max-vertical-offset="3726" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="206" column="0" selection-start="9145" selection-end="9145" vertical-scroll-proportion="0.14336918" vertical-offset="3358" max-vertical-offset="5058" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/jquery.dataTables.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="89" selection-start="60109" selection-end="60109" vertical-scroll-proportion="-0.064638786" vertical-offset="2374" max-vertical-offset="2900" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/jquery.dataTables.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="33" selection-start="1872" selection-end="1872" vertical-scroll-proportion="0.0" vertical-offset="2400" max-vertical-offset="4560">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/menu.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="12" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="2180">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/Cargo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="39" selection-start="1121" selection-end="1121" vertical-scroll-proportion="0.6678967" vertical-offset="478" max-vertical-offset="1020">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionBodega.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="49" selection-start="165" selection-end="178" vertical-scroll-proportion="0.22140221" vertical-offset="0" max-vertical-offset="1140">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="61" selection-start="1728" selection-end="1728" vertical-scroll-proportion="0.73800737" vertical-offset="660" max-vertical-offset="1280">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDesposte.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="0" selection-start="1461" selection-end="1461" vertical-scroll-proportion="-35.384617" vertical-offset="0" max-vertical-offset="1180">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleTraslado.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="45" selection-start="2221" selection-end="2221" vertical-scroll-proportion="0.6642066" vertical-offset="1380" max-vertical-offset="1960">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionEmpleados.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="28" selection-start="161" selection-end="161" vertical-scroll-proportion="0.22140221" vertical-offset="0" max-vertical-offset="1280">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="10" selection-start="1744" selection-end="1744" vertical-scroll-proportion="0.6309963" vertical-offset="838" max-vertical-offset="1380">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="49" selection-start="180" selection-end="180" vertical-scroll-proportion="-0.73431736" vertical-offset="518" max-vertical-offset="1060">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProvedor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="14" selection-start="1561" selection-end="1561" vertical-scroll-proportion="0.48339483" vertical-offset="778" max-vertical-offset="1340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSubProducto.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="31" selection-start="2218" selection-end="2218" vertical-scroll-proportion="0.5463138" vertical-offset="911" max-vertical-offset="1440">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionTraslado.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="31" selection-start="1715" selection-end="1715" vertical-scroll-proportion="0.6678967" vertical-offset="718" max-vertical-offset="1280">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="8" selection-start="175" selection-end="188" vertical-scroll-proportion="0.31690142" vertical-offset="0" max-vertical-offset="1380">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/miCSS.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="14" selection-start="809" selection-end="857" vertical-scroll-proportion="0.5052817" vertical-offset="833" max-vertical-offset="5680">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="113" selection-start="1661" selection-end="1661" vertical-scroll-proportion="-10.576923" vertical-offset="485" max-vertical-offset="1700">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="71" selection-start="1762" selection-end="1762" vertical-scroll-proportion="-5.3846154" vertical-offset="1080" max-vertical-offset="2140">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="210" column="11" selection-start="3069" selection-end="3069" vertical-scroll-proportion="0.0" vertical-offset="3777" max-vertical-offset="119540">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleSubProducto.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="25" selection-start="0" selection-end="2807" vertical-scroll-proportion="-50.846153" vertical-offset="558" max-vertical-offset="2140">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="76" selection-start="2056" selection-end="2056" vertical-scroll-proportion="0.0" vertical-offset="1336" max-vertical-offset="1880">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="16" selection-start="825" selection-end="830" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="840">
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionLimpiezaSacrificio.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="35" selection-start="1662" selection-end="1662" vertical-scroll-proportion="-14.538462" vertical-offset="1042" max-vertical-offset="1640">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanalDetalleDesposte.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="87" selection-start="1513" selection-end="1513" vertical-scroll-proportion="-10.0" vertical-offset="900" max-vertical-offset="2560">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="32" selection-start="1420" selection-end="1420" vertical-scroll-proportion="-10.769231" vertical-offset="420" max-vertical-offset="1440">
+        <state line="600" column="52" selection-start="23923" selection-end="23923" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12760">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSacrificio.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="1448" selection-end="1448" vertical-scroll-proportion="-37.692307" vertical-offset="0" max-vertical-offset="1200">
+        <state line="28" column="74" selection-start="818" selection-end="818" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1200">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="76" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="840">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="4" selection-start="1871" selection-end="1871" vertical-scroll-proportion="0.0" vertical-offset="1352" max-vertical-offset="1920">
+          <folding>
+            <element signature="e#0#22#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="169" column="95" selection-start="8014" selection-end="8014" vertical-scroll-proportion="0.0" vertical-offset="3032" max-vertical-offset="3840">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Inventario/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="358" column="36" selection-start="14212" selection-end="14212" vertical-scroll-proportion="0.0" vertical-offset="6800" max-vertical-offset="12660">
-          <folding>
-            <element signature="e#0#69#0" expanded="true" />
-          </folding>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/.directory">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="568" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="30" selection-start="1652" selection-end="1652" vertical-scroll-proportion="-13.846154" vertical-offset="800" max-vertical-offset="1380">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="4" selection-start="471" selection-end="471" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleSacrificio.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="33" selection-start="766" selection-end="987" vertical-scroll-proportion="-10.0" vertical-offset="540" max-vertical-offset="1880">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="18" selection-start="2391" selection-end="2405" vertical-scroll-proportion="0.0" vertical-offset="700" max-vertical-offset="2500">
+        <state line="49" column="0" selection-start="2389" selection-end="2389" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="2560">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="45" selection-start="1871" selection-end="1871" vertical-scroll-proportion="0.0" vertical-offset="1154" max-vertical-offset="1720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="46" selection-start="974" selection-end="974" vertical-scroll-proportion="-9.230769" vertical-offset="360" max-vertical-offset="1360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="611" column="18" selection-start="24183" selection-end="24183" vertical-scroll-proportion="0.0" vertical-offset="11610" max-vertical-offset="12500">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSacrificio.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="55" selection-start="1333" selection-end="1333" vertical-scroll-proportion="-12.307693" vertical-offset="500" max-vertical-offset="1460">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Inventario/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="137" column="119" selection-start="6661" selection-end="6662" vertical-scroll-proportion="0.0" vertical-offset="2356" max-vertical-offset="3560">
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="57" selection-start="1370" selection-end="1370" vertical-scroll-proportion="0.5405405" vertical-offset="780" max-vertical-offset="1920">
+        <state line="183" column="8" selection-start="8774" selection-end="8774" vertical-scroll-proportion="0.0" vertical-offset="3194" max-vertical-offset="3800">
           <folding />
         </state>
       </provider>
     </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="12" selection-start="333" selection-end="333" vertical-scroll-proportion="-0.4733728" vertical-offset="480" max-vertical-offset="2140">
+          <folding />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
 

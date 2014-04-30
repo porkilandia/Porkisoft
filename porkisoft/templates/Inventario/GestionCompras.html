@@ -9,6 +9,7 @@
         <thead>
         <tr>
             <th>Codigo</th>
+            <th>Tipo</th>
             <th>Encargado</th>
             <th>Proveedor</th>
             <th>Fecha Compra</th>
@@ -19,6 +20,7 @@
         {% for compra in compras %}
         <tr>
             <td>{{ compra.codigoCompra }}</td>
+            <td>{{ compra.tipo }}</td>
             <td>{{ compra.encargado }}</td>
             <td>{{ compra.proveedor }}</td>
             <td>{{ compra.fechaCompra }}</td>
@@ -26,8 +28,10 @@
 
             <td>
                 <a href="{% url 'Inventario.views.GestionDetalleCompra' compra.codigoCompra %}"><img src="{{ STATIC_URL }}img/adicionar.png"></a>
-                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
-                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+                {% if compra.tipo == 'ganado' %}
+                <a href="{% url 'Inventario.views.GestionSacrificio' compra.codigoCompra %}"><img src="{{ STATIC_URL }}img/vaca.png"></a>
+                {% endif %}
+
 
             </td>
 

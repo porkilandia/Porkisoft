@@ -1,4 +1,6 @@
 from django.db import models
+from datetime import *
+
 
 from Nomina.models import Empleado
 
@@ -116,7 +118,14 @@ class Proveedor (models.Model):
         return self.nombreProv
 
 class Compra(models.Model):
+
+    tipoCompra = (
+        ('insumo','Insumo'),
+        ('ganado','Ganado'),
+    )
+
     codigoCompra = models.AutoField(primary_key=True)
+    tipo = models.CharField(max_length=10, verbose_name='Tipo de Compra',choices= tipoCompra)
     encargado = models.ForeignKey(Empleado)
     proveedor = models.ForeignKey(Proveedor)
     fechaCompra = models.DateField(verbose_name='Fecha', auto_now=True, blank=True,null=True)
@@ -130,8 +139,14 @@ class Ganado(models.Model):
         ('M','Macho'),
         ('H' , 'Hembra'),
     )
+    tipoPiel = (
+        (25000,'Calentana'),
+        (44000,'Firana'),
+    )
+
     codigoGanado = models.AutoField(primary_key=True, verbose_name='Codigo Ganado')
     genero = models.CharField(verbose_name='Genero', choices=OpGenero, max_length=7)
+    piel = models.IntegerField(verbose_name='Piel', choices= tipoPiel)
     pesoEnPie = models.DecimalField(verbose_name = 'Peso en Pie (grs)',max_digits=9, decimal_places=3)
     precioKiloEnPie = models.IntegerField(verbose_name='Precio Kilo en Pie')
     precioTotal = models.IntegerField(verbose_name='Precio Total')
@@ -145,28 +160,29 @@ class DetalleCompra(models.Model):
     compra = models.ForeignKey(Compra)
     producto = models.ForeignKey(Producto, null=True, blank=True)
     ganado = models.ForeignKey(Ganado, null=True, blank=True)
-    pesoProducto = models.DecimalField(verbose_name = 'Peso Producto (grs)',max_digits=9, decimal_places=3,null= True,default=0)
+    pesoProducto = models.DecimalField(verbose_name = 'Peso Producto (grs)',max_digits=15   , decimal_places=3,null= True,default=0)
     unidades = models.IntegerField(verbose_name='Unidades', null= True,default=0)
-    vrCompraProducto = models.IntegerField(verbose_name = 'Valor de Compra')
-    subtotal = models.IntegerField(default=0)
+    vrCompraProducto = models.BigIntegerField(verbose_name = 'Valor de Compra')
+    subtotal = models.BigIntegerField(default=0)
     estado = models.BooleanField()
 
 class Sacrificio(models.Model):
-    tipoPiel = (
-        (25000,'Calentana'),
-        (44000,'Firana'),
-    )
-    ganado = models.ForeignKey(Ganado)
-    vrPiel = models.IntegerField(verbose_name='Vr. Piel', choices=tipoPiel)
+
+
+
+    compra = models.ForeignKey(Compra)
+    cantReses = models.IntegerField(verbose_name='Cantidad reses',default=0)
+    piel = models.IntegerField(verbose_name='Piel',default=0)
     vrMenudo = models.IntegerField(verbose_name='Vr. Menudo', default=0)
     vrDeguello = models.IntegerField(verbose_name='Vr. Deguello', default=0)
     vrTransporte = models.IntegerField(verbose_name='Vr.Transporte', default=0)
+    cola = models.DecimalField(verbose_name = 'Peso Cola',max_digits=9, decimal_places=3,null= True,default=0)
+    rinones = models.DecimalField(verbose_name = 'Peso Rinyones',max_digits=9, decimal_places=3,null= True,default=0)
+    creadillas = models.DecimalField(verbose_name = 'Peso Creadillas',max_digits=9, decimal_places=3,null= True,default=0)
+    recortes = models.DecimalField(verbose_name = 'Peso Recortes',max_digits=9, decimal_places=3,null= True,default=0)
+    desecho = models.DecimalField(verbose_name = 'Peso Desecho',max_digits=9, decimal_places=3,null= True,default=0)
+    fechaSacrificio = models.DateField(verbose_name='Fecha Sacrificio',auto_now=True)
+
 
     def __unicode__(self):
         return self.id
-
-class LimpiezaSacrificio(models.Model):
-    sacrificio = models.ForeignKey(Sacrificio)
-    producto = models.ForeignKey(Producto)
-    peso = models.DecimalField(verbose_name = 'Peso(grs)',max_digits=9, decimal_places=3)
-

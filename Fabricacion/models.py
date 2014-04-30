@@ -40,6 +40,8 @@ class PlanillaDesposte(models.Model):
         return self.codigoPlanilla
 
 class Canal (models.Model):
+
+
     codigoCanal = models.AutoField(primary_key=True)
     planilla = models.ForeignKey(PlanillaDesposte,null=True, blank=True)
     ganado = models.ForeignKey(Ganado)
@@ -47,6 +49,7 @@ class Canal (models.Model):
     pesoBrazos = models.DecimalField(verbose_name = 'Peso Brazos (grs)',max_digits=9, decimal_places=3)
     peosTotalCanal = models.DecimalField(verbose_name = 'Peso Total (grs)',max_digits=9, decimal_places=3)
     vrKiloCanal = models.IntegerField(verbose_name='Vr. Kilo Canal')
+
 
     def __unicode__(self):
         return self.numeroCanal

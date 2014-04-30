@@ -6,20 +6,23 @@
 
         <thead>
         <tr>
-            <th>Ganado</th>
+
             <th>Vr. Piel</th>
             <th>Vr. Menudo</th>
             <th>Vr. Deguello</th>
             <th>Vr. Trasporte</th>
+            <th>Cant Reses Sacrif.</th>
+
 
         </tr>
         </thead>
         <tr>
-            <td>{{ sacrificio.ganado }}</td>
+
             <td>{{ sacrificio.vrPiel }}</td>
             <td>{{ sacrificio.vrMenudo }}</td>
             <td>{{ sacrificio.vrDeguello }}</td>
             <td>{{ sacrificio.vrTransporte }}</td>
+            <td>{{ sacrificio.cantReses }}</td>
 
 
         </tr>
@@ -28,16 +31,32 @@
     <table  class="table-striped">
         <thead>
         <tr>
-            <th>Producto</th>
-            <th>Peso</th>
+            <th>.......</th>
+            <th>Tipo Piel</th>
+            <th>Peso Cola</th>
+            <th>Peso Creadillas</th>
+            <th>Peso Recortes</th>
+            <th>Peso Riñones</th>
+            <th>Peso Tolay</th>
+            <th>Peso Desecho</th>
+
+
+
 
         </tr>
         </thead>
         <tbody>
-            {% for limpieza in limpiezas %}
+            {% for detalle in detalles %}
+
         <tr>
-            <td>{{ limpieza.producto }}</td>
-            <td>{{ limpieza.peso }}</td>
+            <th>Totales</th>
+            <th>{{ detalle.piel }}</th>
+            <th>{{ detalle.cola }}</th>
+            <th>{{ detalle.creadillas }}</th>
+            <th>{{ detalle.recortes }}</th>
+            <th>{{ detalle.rinones }}</th>
+            <th>{{ detalle.tolay }}</th>
+            <th>{{ detalle.desecho }}</th>
 
         </tr>
             {% empty %}
@@ -49,20 +68,13 @@
             {% endfor %}
 
         </tbody>
-        <tr>
 
-            <th>Peso/cant Total</th>
-            <th>{{ totalLimpieza }}</th>
-
-
-
-        </tr>
 
       </table>
 
     <form class="form-horizontal" method="post">{% csrf_token %}
          <fieldset id="agregarDetalle">
-             <legend>Detalle Sub Producto</legend>
+             <legend>Detalle Sacrificio</legend>
 
                   {{ formulario }}
 
