@@ -11,6 +11,7 @@
             <th>Reses a Despostar</th>
             <th>Total Desposte</th>
             <th>Dif Canal/Desposte</th>
+            <th>Acciones</th>
 
         </tr>
         </thead>
@@ -24,8 +25,6 @@
 
             <td>
                 <a href="{% url 'Inventario.views.GestionCanalDetalleDesposte' desposte.codigoPlanilla %}"><img src="{{ STATIC_URL }}img/adicionar.png"></a>
-                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
-                <a href="#"><img src="{{ STATIC_URL }}img/borrar.png"></a>
             </td>
 
         </tr>
@@ -42,12 +41,9 @@
     <form class="form-horizontal" method="post">{% csrf_token %}
          <fieldset id="desposte">
              <legend>Planilla Desposte</legend>
-
                   {{ formulario }}
-
-              <br/>
-          <legend>Acciones</legend>
-          <input type="submit" value="Guardar" class="btn btn-primary">
+             <input type="submit" value="Crear Planilla de Desposte" class="btn btn-primary">
+             <a href="/compra/"><input type="button" value="Volver" class="btn btn-default"></a>
          </fieldset>
      </form>
 

@@ -345,7 +345,7 @@ def GestionCanal(request,idganado):
             planilla = PlanillaDesposte.objects.get(pk = request.POST.get('planilla'))
 
             vrKiloCanal = ((factura.vrCompra + sacrificio.vrDeguello + sacrificio.vrTransporte) -
-                          (sacrificio.vrPiel + sacrificio.vrMenudo))/ (int(request.POST.get('peosTotalCanal'))*detcompra.count())
+                          (sacrificio.piel + sacrificio.vrMenudo))/ (int(request.POST.get('peosTotalCanal'))*detcompra.count())
 
             canal = Canal()
             canal.ganado = ganado
@@ -362,6 +362,7 @@ def GestionCanal(request,idganado):
             ganadoUpd.codigoGanado = ganado.codigoGanado
 
             ganadoUpd.genero=ganado.genero
+            ganadoUpd.piel= ganado.piel
             ganadoUpd.pesoEnPie = ganado.pesoEnPie
             ganadoUpd.precioKiloEnPie = ganado.precioKiloEnPie
             ganadoUpd.precioTotal = ganado.precioTotal

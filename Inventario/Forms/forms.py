@@ -48,6 +48,7 @@ class DetalleCompraForm(ModelForm):
 class DesposteForm(ModelForm):
     class Meta:
         model = PlanillaDesposte
+        exclude = ("resesADespostar","totalDespostado","difCanalADespostado")
 
 class CanalForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -58,6 +59,7 @@ class CanalForm(ModelForm):
 
     class Meta:
         model=Canal
+        exclude = ("vrKiloCanal",)
 
 class DetalleDesposteForm(ModelForm):
     class Meta:

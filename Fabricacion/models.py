@@ -32,9 +32,10 @@ class LimpezaTajado(models.Model):
 class PlanillaDesposte(models.Model):
     codigoPlanilla = models.AutoField(primary_key=True)
     fechaDesposte = models.DateField(verbose_name='Fecha de Desposte', auto_now=True)
-    resesADespostar = models.IntegerField(verbose_name='Reses A Despostar')
-    totalDespostado = models.DecimalField(verbose_name='TotalDespostado',max_digits=9, decimal_places=3)
-    difCanalADespostado = models.DecimalField(verbose_name='Diferencia de Canal/Desposte',max_digits=11, decimal_places=3)
+    resesADespostar = models.IntegerField(verbose_name='Reses A Despostar', default=0)
+    totalDespostado = models.DecimalField(verbose_name='TotalDespostado',max_digits=9, decimal_places=3, default=0)
+    difCanalADespostado = models.DecimalField(verbose_name='Diferencia de Canal/Desposte',max_digits=11,
+                                              decimal_places=3, default=0)
 
     def __unicode__(self):
         return self.codigoPlanilla
@@ -48,7 +49,7 @@ class Canal (models.Model):
     pesoPiernas = models.DecimalField(verbose_name = 'Peso Piernas (grs)',max_digits=9, decimal_places=3)
     pesoBrazos = models.DecimalField(verbose_name = 'Peso Brazos (grs)',max_digits=9, decimal_places=3)
     peosTotalCanal = models.DecimalField(verbose_name = 'Peso Total (grs)',max_digits=9, decimal_places=3)
-    vrKiloCanal = models.IntegerField(verbose_name='Vr. Kilo Canal')
+    vrKiloCanal = models.IntegerField(verbose_name='Vr. Kilo Canal',default=0)
 
 
     def __unicode__(self):
