@@ -323,18 +323,12 @@ def GestionDesposte(request):
     return render_to_response('Inventario/GestionDesposte.html',{'formulario':formulario,'despostes':despostes},
                               context_instance = RequestContext(request))
 
-def GestionCanal(request,idganado):
-    canal = Canal.objects.filter(ganado = idganado)
-    ganado = Ganado.objects.get(pk = idganado)
-    compra = DetalleCompra.objects.get(ganado = idganado)
-    objCompra = Compra.objects.get(pk = compra.compra.codigoCompra)
-    codigoCompra = compra.compra.codigoCompra
-    factura = Compra.objects.get(pk = compra.compra.codigoCompra)
-    sacrificio = Sacrificio.objects.get(compra = objCompra.codigoCompra)
-    detcompra = DetalleCompra.objects.filter(compra = codigoCompra) # variable para conocer la cantidad de reces que se compraron
+def GestionCanal(request,idrecepcion):
 
-
-    detalleCompra = DetalleCompra()
+    canal = Canal.objects.filter(recepcion = idrecepcion)#para renderizar las listas
+    recepcion = PlanillaRecepcion.objects.get(pk = idrecepcion)
+    compra = Compra.objects.get(pk = recepcion.compra.codigoCompra)
+    sacrificio = Sacrificio.objects.get(recepcion = idrecepcion)
 
 
     if request.method == 'POST':
@@ -342,49 +336,68 @@ def GestionCanal(request,idganado):
 
 
         if formulario.is_valid():
-            planilla = PlanillaDesposte.objects.get(pk = request.POST.get('planilla'))
 
-            vrKiloCanal = ((factura.vrCompra + sacrificio.vrDeguello + sacrificio.vrTransporte) -
-                          (sacrificio.piel + sacrificio.vrMenudo))/ (int(request.POST.get('peosTotalCanal'))*detcompra.count())
+            planilla = PlanillaDesposte.objects.get(pk = request.POST.get('planilla'))
+            canalesPlanilla = Canal.objects.filter(planilla = planilla.codigoPlanilla)# Canales por planilla
+
+            pesoCanales = 0
+
+            for canales in canalesPlanilla:
+                pesoCanales += canales.pesoPorkilandia
+
+
+            vrKiloCanal = ((compra.vrCompra + sacrificio.vrDeguello + sacrificio.vrTransporte) -
+                          (sacrificio.piel + sacrificio.vrMenudo))/ (pesoCanales + Decimal(request.POST.get('pesoPorkilandia')))
+
+            vrArrobaCanal = vrKiloCanal * Decimal(12.5)
 
             canal = Canal()
-            canal.ganado = ganado
+            canal.recepcion = recepcion
             canal.planilla = planilla
-            canal.pesoPiernas = request.POST.get('pesoPiernas')
-            canal.pesoBrazos = request.POST.get('pesoBrazos')
-            canal.peosTotalCanal = request.POST.get('peosTotalCanal')
+            canal.pesoFrigovito = request.POST.get('pesoFrigovito')
+            canal.pesoPorkilandia = request.POST.get('pesoPorkilandia')
+            canal.difPesos = request.POST.get('difPesos')
             canal.vrKiloCanal = vrKiloCanal
+            canal.vrArrobaCanal= vrArrobaCanal
 
             canal.save()
 
-            ganadoUpd = Ganado()
+            PesoTotalCanales = 0
+            TotalPesoPie = 0
+            canal = Canal.objects.filter(recepcion = idrecepcion)
+            detCompra = DetalleCompra.objects.filter(compra = compra.codigoCompra)
+            empleado = Empleado.objects.get(pk = recepcion.empleado.codigoEmpleado)
+            provedor= Proveedor.objects.get(pk = recepcion.provedor.codigoProveedor)
 
-            ganadoUpd.codigoGanado = ganado.codigoGanado
+            for det in detCompra:
+                ganado = Ganado.objects.get(pk = det.ganado.codigoGanado)
+                TotalPesoPie += ganado.pesoEnPie
 
-            ganadoUpd.genero=ganado.genero
-            ganadoUpd.piel= ganado.piel
-            ganadoUpd.pesoEnPie = ganado.pesoEnPie
-            ganadoUpd.precioKiloEnPie = ganado.precioKiloEnPie
-            ganadoUpd.precioTotal = ganado.precioTotal
-            ganadoUpd.difPieCanal = (ganado.pesoEnPie - Decimal(canal.peosTotalCanal))/100
-            ganadoUpd.fechaIngreso = ganado.fechaIngreso
-            ganadoUpd.save()
+            for cnl in canal:
+                PesoTotalCanales += cnl.pesoPorkilandia
 
-            detalleCompra.id = compra.id
-            detalleCompra.compra = objCompra
-            detalleCompra.ganado = ganado
-            detalleCompra.pesoProducto = compra.pesoProducto
-            detalleCompra.unidades = compra.unidades
-            detalleCompra.vrCompraProducto = compra.vrCompraProducto
-            detalleCompra.subtotal = compra.subtotal
-            detalleCompra.estado = True
-            detalleCompra.save()
-            return HttpResponseRedirect('/canal/'+ idganado)
+            recepcionUPD = PlanillaRecepcion(
+                                            codigoRecepcion = recepcion.codigoRecepcion,
+                                            compra = compra,
+                                            empleado = empleado,
+                                            tipoGanado = recepcion.tipoGanado,
+                                            fechaRecepcion = recepcion.fechaRecepcion,
+                                            cantCabezas = recepcion.cantCabezas,
+                                            provedor = provedor,
+                                            transporte = recepcion.transporte,
+                                            difPieCanal = ((TotalPesoPie - PesoTotalCanales)*100)/TotalPesoPie
+            )
+
+            recepcionUPD.save()
+
+
+
+
+            return HttpResponseRedirect('/canal/'+ idrecepcion)
     else:
-        formulario = CanalForm(initial={'ganado':idganado})
+        formulario = CanalForm(initial={'recepcion':idrecepcion})
 
-    return render_to_response('Inventario/GestionCanal.html',{'formulario':formulario,'ganado':ganado,'canal':canal,
-                                                              'codigoCompra':codigoCompra},
+    return render_to_response('Inventario/GestionCanal.html',{'formulario':formulario,'canal':canal,'recepcion':recepcion},
                               context_instance = RequestContext(request))
 
 def GestionCanalDetalleDesposte(request, idplanilla):
@@ -405,8 +418,7 @@ def GestionCanalDetalleDesposte(request, idplanilla):
     for detplanilla in detalleDespostes:
         totalDesposte += detplanilla.PesoProducto
     for canal in canales :
-        totalCanal += canal.peosTotalCanal
-
+        totalCanal += canal.pesoPorkilandia
     totalCanal *= 1000
 
     #costoCanalDesposte = totalCanal *
@@ -574,17 +586,17 @@ def GestionDetalleTraslado(request,idtraslado):
                                                         context_instance = RequestContext(request))
 
 
-def GestionSacrificio(request,idcompra):
+def GestionSacrificio(request,idrecepcion):
+
+    recepcion = PlanillaRecepcion.objects.get(pk = idrecepcion)
     sacrificios = Sacrificio.objects.all()
-    detalleCompra = DetalleCompra.objects.filter(compra = idcompra)
-    compraActual = Compra.objects.get(pk = idcompra)
+    detCompra = DetalleCompra.objects.filter(compra = recepcion.compra.codigoCompra)
 
-    totalpiel = 0
+    totalPieles = 0
 
-    for detcompra in detalleCompra:#Total pieles de ganados en compra
-        ganado = Ganado.objects.get(pk = detcompra.ganado.codigoGanado)
-        totalpiel += ganado.piel
-
+    for det in detCompra:
+        ganado = Ganado.objects.get(pk = det.ganado.codigoGanado)
+        totalPieles += ganado.piel
 
 
     if request.method == 'POST':
@@ -592,20 +604,19 @@ def GestionSacrificio(request,idcompra):
 
         if formSacrificio.is_valid():
 
+            cantCabezas = recepcion.cantCabezas
 
-            menudo = detalleCompra.count() * int(request.POST.get('vrMenudo'))
-            deguello = detalleCompra.count() * int(request.POST.get('vrDeguello'))
-            transporte = detalleCompra.count() * int(request.POST.get('vrTransporte'))
+            menudo = cantCabezas * 90000
+            deguello = cantCabezas * 82800
+            transporte = cantCabezas * 8000
+
             sacrificio = Sacrificio()
 
-            compra = Compra.objects.get(pk = idcompra)
-
-            sacrificio.compra = compra
-            sacrificio.piel = totalpiel
+            sacrificio.recepcion = recepcion
+            sacrificio.piel = totalPieles
             sacrificio.vrMenudo = menudo
             sacrificio.vrDeguello = deguello
             sacrificio.vrTransporte = transporte
-            sacrificio.cantReses = detalleCompra.count()
             sacrificio.cola = request.POST.get('cola')
             sacrificio.rinones = request.POST.get('rinones')
             sacrificio.creadillas = request.POST.get('creadillas')
@@ -614,13 +625,47 @@ def GestionSacrificio(request,idcompra):
 
             sacrificio.save()
 
-            return HttpResponseRedirect('/sacrificio/'+idcompra)
+            return HttpResponseRedirect('/sacrificio/'+idrecepcion)
 
     else:
-        formSacrificio = SacrificioForm(initial={'compra':idcompra})
+        formSacrificio = SacrificioForm(initial={'recepcion':idrecepcion})
 
 
     return render_to_response('Inventario/GestionSacrificio.html',{'formSacrificio':formSacrificio,
-                                                                   'sacrificios':sacrificios,
-                                                                   'compraActual':compraActual },
+                                                                   'sacrificios':sacrificios},
                               context_instance = RequestContext(request))
+
+
+#*******************************************Recepcion de ganado*******************************************
+
+def GestionPlanillaRecepcion(request , idcompra):
+
+    recepciones = PlanillaRecepcion.objects.filter(compra = idcompra)
+    detCompra = DetalleCompra.objects.filter(compra = idcompra)
+
+
+    if request.method == 'POST':
+        formulario = PlanillaRecepcionForm(request.POST)
+        if formulario.is_valid():
+
+            compra = Compra.objects.get(pk = idcompra)
+            empleado = Empleado.objects.get(pk = request.POST.get('empleado'))
+            provedor = Proveedor.objects.get(pk = request.POST.get('provedor'))
+
+            Recepcion = PlanillaRecepcion()
+            Recepcion.compra =compra
+            Recepcion.empleado = empleado
+            Recepcion.tipoGanado = request.POST.get('tipoGanado')
+            Recepcion.cantCabezas = detCompra.count()
+            Recepcion.provedor= provedor
+            Recepcion.transporte = request.POST.get('transporte')
+            Recepcion.save()
+
+            return HttpResponseRedirect('/recepcion'+ idcompra)
+    else:
+        formulario = PlanillaRecepcionForm(initial={'compra':idcompra})
+
+    return render_to_response('Inventario/GestionPlanillaRecepcion.html',{'formulario':formulario,'recepciones':recepciones },
+                              context_instance = RequestContext(request))
+
+

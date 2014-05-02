@@ -29,44 +29,48 @@
     </tbody>
 </table>
 <br/>
-<table class="table-striped">
-    <thead>
+<table  class="table-striped">
+        <thead>
+
         <tr>
-            <th>Codigo</th>
-            <th>Ganado</th>
+
             <th>Planilla</th>
-            <th>Peso Brazos</th>
-            <th>Peso Piernas</th>
-            <th>Peso Total</th>
+            <th>Peso Frigovito</th>
+            <th>Peso Porkilandia</th>
+            <th>Dif. de pesos</th>
+            <th>Vr. Kilo Canal</th>
+            <th>Vr. Arroba Canal</th>
 
 
         </tr>
-    </thead>
-    <tbody>
-        {% for canal in canales  %}
+        </thead>
+        <tbody>
+          {% for cnl in canales %}
         <tr>
-            <td>{{ canal.codigoCanal }}</td>
-            <td>{{ canal.ganado }}</td>
-            <td>{{ canal.planilla }}</td>
-            <td>{{ canal.pesoBrazos }}</td>
-            <td>{{ canal.pesoPiernas }}</td>
-            <td>{{ canal.peosTotalCanal }}</td>
+
+            <td>{{ cnl.planilla }}</td>
+            <td>{{ cnl.pesoFrigovito | floatformat }} Kg</td>
+            <td>{{ cnl.pesoPorkilandia | floatformat }} Kg</td>
+            <td>{{ cnl.difPesos | floatformat }} Kg</td>
+            <td>$ {{ cnl.vrKiloCanal }}</td>
+            <td>$ {{ cnl.vrArrobaCanal }}</td>
+
 
         </tr>
-            {% empty %}
+
+        {% empty %}
             <tr>
-                <td colspan="13">
-                   Por Favor Ingrese Canales Para el desposte en el Boton Agregar Canal
+                <td colspan="7">
+                   Ningun producto para mostrar
                 </td>
             </tr>
 
         {% endfor %}
-    <tr>
-        <th colspan="5">Total Canales</th>
-        <th>{{ totalCanal }}</th>
-    </tr>
-    </tbody>
-</table>
+
+        </tbody>
+
+
+      </table>
 <br/>
 <table class="table-striped">
     <thead>

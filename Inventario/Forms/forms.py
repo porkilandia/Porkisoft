@@ -85,5 +85,10 @@ class DetalleTrasladoForm(ModelForm):
 class SacrificioForm(ModelForm):
     class Meta:
         model = Sacrificio
-        exclude = ("compra","cantReses","piel")
+        exclude = ("compra","cantReses","piel","vrMenudo","vrDeguello","vrTransporte")
+
+class PlanillaRecepcionForm(ModelForm):
+    class Meta:
+        model = PlanillaRecepcion
+
 

@@ -40,7 +40,7 @@
             <th>Vr. Compra</th>
             <th>Subtotal</th>
             <th>Estado</th>
-            <th>Acciones</th>
+
         </tr>
         </thead>
         <tbody>
@@ -54,16 +54,6 @@
             <td>{{ detcompra.vrCompraProducto }}</td>
             <td>{{ detcompra.subtotal }}</td>
             {% if detcompra.estado == False %}<td>Pendiete</td>{% else %}<td><a href="/desposte/">Para Desposte</a></td>{% endif %}
-
-
-
-            <td>
-                {% if detcompra.ganado %}
-                    <a href="{% url 'Inventario.views.GestionCanal' detcompra.ganado %}"><img src="{{ STATIC_URL }}img/carne.png"></a>
-                {% else %}
-                    <a href="#"><img src="{{ STATIC_URL }}img/traslado.png"></a>
-                {% endif %}
-            </td>
 
         </tr>
             {% empty %}

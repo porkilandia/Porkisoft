@@ -12,13 +12,18 @@ urlpatterns = patterns('',
     url(r'^provedor/$',GestionProvedor),
     url(r'^ganado/(?P<idcompra>\d+)',GestionGanado),
     url(r'^compra/$',GestionCompra),
-    url(r'^sacrificio/(?P<idcompra>\d+)',GestionSacrificio),
+
+    url(r'^recepcion/(?P<idcompra>\d+)',GestionPlanillaRecepcion),
+    url(r'^canal/(?P<idrecepcion>\d+)',GestionCanal),
+
+    url(r'^sacrificio/(?P<idrecepcion>\d+)',GestionSacrificio),
+
     url(r'^desposte/$',GestionDesposte),
     url(r'^traslado/$',GestionTraslados),
     url(r'^dettraslado/(?P<idtraslado>\d+)',GestionDetalleTraslado),
     url(r'^cargo/$',GestionCargos),
     url(r'^detalleDesposte/(?P<idplanilla>\d+)',GestionCanalDetalleDesposte),
-    url(r'^canal/(?P<idganado>\d+)',GestionCanal),
+
     url(r'^empleado/$',GestionEmpleados),
     url(r'^detcompra/(?P<idcompra>\d+)',GestionDetalleCompra),
     url(r'^productoBodega/(?P<idproducto>\d+)',GestionProductoBodega),

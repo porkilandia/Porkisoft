@@ -1,6 +1,4 @@
 from django.db import models
-from datetime import *
-
 
 from Nomina.models import Empleado
 
@@ -150,7 +148,6 @@ class Ganado(models.Model):
     pesoEnPie = models.DecimalField(verbose_name = 'Peso en Pie (grs)',max_digits=9, decimal_places=3)
     precioKiloEnPie = models.IntegerField(verbose_name='Precio Kilo en Pie')
     precioTotal = models.IntegerField(verbose_name='Precio Total')
-    difPieCanal = models.DecimalField(verbose_name='Diferencia de pie A canal',default=0,max_digits=9, decimal_places=3)
     fechaIngreso = models.DateField(auto_now=True, blank=True, null=True)
 
     def __unicode__(self):
@@ -166,11 +163,37 @@ class DetalleCompra(models.Model):
     subtotal = models.BigIntegerField(default=0)
     estado = models.BooleanField()
 
+
+class PlanillaRecepcion(models.Model):
+
+    TipoGanado = (
+        ('Mayor','Mayor'),
+        ('Menor' , 'Menor'),
+    )
+
+    trans = (
+        ('Frigovito','Frigovito'),
+        ('Particular' , 'Particular'),
+    )
+    codigoRecepcion = models.AutoField(primary_key=True)
+    compra = models.ForeignKey(Compra)
+    empleado = models.ForeignKey(Empleado)
+    tipoGanado = models.CharField(verbose_name='Tipo Ganado', choices=TipoGanado, max_length=11)
+    fechaRecepcion = models.DateField(verbose_name='fechaRecepcion',auto_now=True)
+    cantCabezas = models.IntegerField(verbose_name='# Cabezas', default=0)
+    provedor = models.ForeignKey(Proveedor)
+    transporte = models.CharField(verbose_name='Transporte', choices=trans, max_length=11)
+    difPieCanal = models.DecimalField(verbose_name='Diferencia de pie A canal',default=0,max_digits=9, decimal_places=3)
+
+
+    def __unicode__(self):
+        return self.codigoRecepcion
+
+
 class Sacrificio(models.Model):
 
 
-
-    compra = models.ForeignKey(Compra)
+    recepcion = models.ForeignKey(PlanillaRecepcion)
     cantReses = models.IntegerField(verbose_name='Cantidad reses',default=0)
     piel = models.IntegerField(verbose_name='Piel',default=0)
     vrMenudo = models.IntegerField(verbose_name='Vr. Menudo', default=0)
@@ -186,3 +209,6 @@ class Sacrificio(models.Model):
 
     def __unicode__(self):
         return self.id
+
+
+

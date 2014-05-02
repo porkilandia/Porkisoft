@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ titulo }}{% endblock titulo %}
+{% block contenido %}
+
+     <table class="table-striped" >
+
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Encargado</th>
+            <th>Tipo Ganado</th>
+            <th>Fecha Recepcion</th>
+            <th>Cant. Cabezas</th>
+            <th>Proveedor</th>
+            <th>Transporte</th>
+
+
+        </tr>
+        </thead>
+
+        <tr>
+            <td>{{ recepcion.codigoRecepcion }}</td>
+            <td>{{ recepcion.empleado }}</td>
+            <td>{{ recepcion.tipoGanado }}</td>
+            <td>{{ recepcion.fechaRecepcion }}</td>
+            <td>{{ recepcion.cantCabezas }}</td>
+            <td>{{ recepcion.provedor }}</td>
+            <td>{{ recepcion.transporte }}</td>
+
+
+    </table>
+
+    <br/>
+
+     <table class="table-striped">
+        <thead>
+        <tr>
+            <th>Peso Frigovito</th>
+            <th>Peso Porkilandia</th>
+            <th>Diferencia</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for detalle in detalles %}
+        <tr>
+
+            <td>{{ detalle.pesoFrigovito }}</td>
+            <td>{{ detalle.pesoPorkilandia}}</td>
+            <td>{{ detalle.difPesos }}</td>
+
+            <td>
+                <a href="#"><img src="{{ STATIC_URL }}img/carne.png"></a>
+                <a href="#"><img src="{{ STATIC_URL }}img/traslado.png"></a>
+
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+            {% endfor %}
+        <tr>
+            <th colspan="4">Total Factura</th>
+            <th>{{ totalCompra  }}</th>
+        </tr>
+
+        </tbody>
+
+
+      </table>
+
+    <form method="post">{% csrf_token %}
+         <fieldset id="agregarDetalle">
+             <legend>Detalle Sub Producto</legend>
+
+                  {{ formulario }}
+
+              <br/>
+             <br/>
+                <legend>Acciones</legend>
+                 <input type="submit" value="Guardar" class="btn btn-primary">
+         </fieldset>
+     </form>
+
+{% endblock contenido %}

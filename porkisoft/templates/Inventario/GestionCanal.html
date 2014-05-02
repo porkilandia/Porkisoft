@@ -5,11 +5,15 @@
      <table class="table-striped">
         <thead>
         <tr>
-            <th>Codigo</th>
-            <th>Genero</th>
-            <th>Peso en Pie</th>
-            <th>Dif Pie/Canal</th>
-            <th>Fecha Ingreso</th>
+            <th>Recepcion</th>
+            <th>Compra</th>
+            <th>Encargado</th>
+            <th>Tipo Ganado</th>
+            <th>Fecha Recepcion</th>
+            <th># Cabezas</th>
+            <th>Proveedor</th>
+            <th>Transporte/th>
+            <th>Dif. Pie/Canal</th>
 
 
         </tr>
@@ -17,28 +21,34 @@
         <tbody>
 
             <tr>
-            <td>{{ ganado.codigoGanado}}</td>
-            <td>{{ ganado.genero }}</td>
-            <td>{{ ganado.pesoEnPie | floatformat }}Kg</td>
-            <td>{{ ganado.difPieCanal | floatformat:'2'}}%</td>
-            <td>{{ ganado.fechaIngreso }}</td>
+            <td>{{ recepcion.codigoRecepcion}}</td>
+                <td>{{ recepcion.compra}}</td>
+                <td>{{ recepcion.empleado}}</td>
+                <td>{{ recepcion.tipoGanado}}</td>
+                <td>{{ recepcion.fechaRecepcion}}</td>
+                <td>{{ recepcion.cantCabezas}}</td>
+                <td>{{ recepcion.provedor}}</td>
+                <td>{{ recepcion.transporte}}</td>
+                <td>{{ recepcion.difPieCanal | floatformat}}%</td>
+
 
         </tr>
         </tbody>
 
      </table>
 
-     <table id="detalleSP" class="table-striped">
+     <table  class="table-striped">
         <thead>
 
         <tr>
 
             <th>Planilla</th>
-            <th>Ganado</th>
-            <th>Peso Brazos</th>
-            <th>Peso Piernas</th>
+            <th>Peso Frigovito</th>
+            <th>Peso Porkilandia</th>
+            <th>Dif. de pesos</th>
             <th>Vr. Kilo Canal</th>
-            <th>Peso Canal(Kgr)</th>
+            <th>Vr. Arroba Canal</th>
+
 
         </tr>
         </thead>
@@ -47,17 +57,18 @@
         <tr>
 
             <td>{{ cnl.planilla }}</td>
-            <td>{{ cnl.ganado }}</td>
-            <td>{{ cnl.pesoBrazos | floatformat }} Kg</td>
-            <td>{{ cnl.pesoPiernas | floatformat }} Kg</td>
+            <td>{{ cnl.pesoFrigovito | floatformat }} Kg</td>
+            <td>{{ cnl.pesoPorkilandia | floatformat }} Kg</td>
+            <td>{{ cnl.difPesos | floatformat }} Kg</td>
             <td>$ {{ cnl.vrKiloCanal }}</td>
-            <td>{{ cnl.peosTotalCanal | floatformat }} Kg</td>
+            <td>$ {{ cnl.vrArrobaCanal }}</td>
+
 
         </tr>
 
         {% empty %}
             <tr>
-                <td colspan="6">
+                <td colspan="7">
                    Ningun producto para mostrar
                 </td>
             </tr>
@@ -67,7 +78,7 @@
         </tbody>
         <tr>
 
-            <th colspan="6"  style="text-align: center"><a href="/detcompra/{{ codigoCompra }}"><img src="{{ STATIC_URL }}img/atras.png"></a></th>
+            <th colspan="7"  style="text-align: center"><a href="/detcompra/{{ codigoCompra }}"><img src="{{ STATIC_URL }}img/atras.png"></a></th>
 
         </tr>
 

@@ -4,7 +4,7 @@ $(document).on('ready', inicio);
 
      $('#id_precioTotal').on('focus',calculoGanado);
 
-     $('#id_peosTotalCanal').on('focus',calculoCanal);
+     $('#id_difPesos').on('focus',calculoCanal);
 
 
      $('#tablaCompras').dataTable({
@@ -51,11 +51,11 @@ function calculoGanado(){
 }
      function calculoCanal(){
 
-         var pesoBrazos = $('#id_pesoBrazos').val();
-         var pesoPiernas = $('#id_pesoPiernas').val();
-         var totalCanal =  parseInt(pesoBrazos)+ parseInt(pesoPiernas);
+         var pesoPorkilandia = $('#id_pesoPorkilandia').val();
+         var pesoFrigovito = $('#id_pesoFrigovito').val();
+         var totalCanal =  pesoFrigovito - pesoPorkilandia;
 
-         $('#id_peosTotalCanal').val(totalCanal);
+         $('#id_difPesos').val(totalCanal.toFixed(2));
      }
 
 

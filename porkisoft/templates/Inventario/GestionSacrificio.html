@@ -9,9 +9,8 @@
         <thead>
         <tr>
 
-            <th>Fecha Compra</th>
+
             <th>Fecha Sacrificio</th>
-            <th># Cabezas</th>
             <th>Vr. Menudo</th>
             <th>Vr. Deguello</th>
             <th>Vr. Trasporte</th>
@@ -28,9 +27,8 @@
         {% for sacrificio in sacrificios %}
         <tr>
 
-            <td>{{ compraActual.fechaCompra }}</td>
+
             <td>{{ sacrificio.fechaSacrificio }}</td>
-            <td>{{ sacrificio.cantReses }}</td>
             <td>${{ sacrificio.vrMenudo }}</td>
             <td>${{ sacrificio.vrDeguello }}</td>
             <td>${{ sacrificio.vrTransporte }}</td>

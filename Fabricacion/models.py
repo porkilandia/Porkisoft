@@ -42,14 +42,14 @@ class PlanillaDesposte(models.Model):
 
 class Canal (models.Model):
 
-
+    recepcion = models.ForeignKey(PlanillaRecepcion)
     codigoCanal = models.AutoField(primary_key=True)
     planilla = models.ForeignKey(PlanillaDesposte,null=True, blank=True)
-    ganado = models.ForeignKey(Ganado)
-    pesoPiernas = models.DecimalField(verbose_name = 'Peso Piernas (grs)',max_digits=9, decimal_places=3)
-    pesoBrazos = models.DecimalField(verbose_name = 'Peso Brazos (grs)',max_digits=9, decimal_places=3)
-    peosTotalCanal = models.DecimalField(verbose_name = 'Peso Total (grs)',max_digits=9, decimal_places=3)
+    pesoFrigovito = models.DecimalField(verbose_name = 'Peso Frigovito',max_digits=9, decimal_places=3,null= True,default=0)
+    pesoPorkilandia = models.DecimalField(verbose_name = 'Peso Porkilandia',max_digits=9, decimal_places=3,null= True,default=0)
+    difPesos = models.DecimalField(verbose_name='Dif. Frig/Pork',default=0,max_digits=9, decimal_places=3)
     vrKiloCanal = models.IntegerField(verbose_name='Vr. Kilo Canal',default=0)
+    vrArrobaCanal = models.IntegerField(verbose_name='Vr. Arroba Canal',default=0)
 
 
     def __unicode__(self):
