@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleRecepcion.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionPlanillaRecepcion.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanal.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanal.html" />
+    <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="Trabajo sobre el proceso de cannal, los pasos son los siguientes &#10;* realizo una compra&#10;* ingreso el ganado que voy a comprar&#10;* regreso a la ventana de compras y diligencio la ficha de sacrificio&#10;* una vez diligenciada la ficha sacrificio paso a la creacion de una planilla de desposte&#10;* dentro de la compra visualizo el ganado que compre y luego uno a uno paso a canal las reses que quiero despostar&#10;* voy a desposte y las reses seleccionadas estan listas para ser despostadas.&#10;&#10;Realice un cambio grande aumente otro template RecepcionGanado el cual sirve para dar ingreso a los canales despues del sacrificio&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanalDetalleDesposte.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanalDetalleDesposte.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSacrificio.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSacrificio.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/base.html" afterPath="$PROJECT_DIR$/porkisoft/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/Forms/forms.py" afterPath="$PROJECT_DIR$/Inventario/Forms/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/models.py" afterPath="$PROJECT_DIR$/Fabricacion/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/models.py" afterPath="$PROJECT_DIR$/Inventario/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/urls.py" afterPath="$PROJECT_DIR$/Inventario/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/views.py" afterPath="$PROJECT_DIR$/Inventario/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="porkisoft.iws" />
@@ -60,7 +47,7 @@
       <file leaf-file-name="GestionCanalDetalleDesposte.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanalDetalleDesposte.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="31" selection-start="1097" selection-end="1097" vertical-scroll-proportion="0.3846154" vertical-offset="740" max-vertical-offset="2640">
+            <state line="99" column="21" selection-start="2381" selection-end="2381" vertical-scroll-proportion="0.23166023" vertical-offset="1860" max-vertical-offset="2640">
               <folding />
             </state>
           </provider>
@@ -72,6 +59,7 @@
             <state line="200" column="16" selection-start="8904" selection-end="8916" vertical-scroll-proportion="0.0" vertical-offset="3674" max-vertical-offset="4400">
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
+                <marker date="1399067704879" expanded="true" signature="7629:8521" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -99,7 +87,9 @@
         <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="50" column="4" selection-start="2636" selection-end="2636" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="2580">
-              <folding />
+              <folding>
+                <marker date="1399068339715" expanded="true" signature="2090:2854" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -530,7 +520,11 @@
       <created>1398902881387</created>
       <updated>1398902881387</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Trabajo sobre el proceso de cannal, los pasos son los siguientes &#10;* realizo una compra&#10;* ingreso el ganado que voy a comprar&#10;* regreso a la ventana de compras y diligencio la ficha de sacrificio&#10;* una vez diligenciada la ficha sacrificio paso a la creacion de una planilla de desposte&#10;* dentro de la compra visualizo el ganado que compre y luego uno a uno paso a canal las reses que quiero despostar&#10;* voy a desposte y las reses seleccionadas estan listas para ser despostadas.&#10;&#10;Realice un cambio grande aumente otro template RecepcionGanado el cual sirve para dar ingreso a los canales despues del sacrificio&#10;">
+      <created>1399073353986</created>
+      <updated>1399073353986</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -557,22 +551,22 @@
     <frame x="-2" y="-3" width="1370" height="737" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288364" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.84705883" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288364" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25755286" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25755286" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29915968" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288364" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288364" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -591,7 +585,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="Trabajo sobre el proceso de cannal, los pasos son los siguientes &#10;* realizo una compra&#10;* ingreso el ganado que voy a comprar&#10;* regreso a la ventana de compras y diligencio la ficha de sacrificio&#10;* una vez diligenciada la ficha sacrificio paso a la creacion de una planilla de desposte&#10;* dentro de la compra visualizo el ganado que compre y luego uno a uno paso a canal las reses que quiero despostar&#10;* voy a desposte y las reses seleccionadas estan listas para ser despostadas.&#10;&#10;debo incluir costos en todos estos procesos&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Trabajo sobre el proceso de cannal, los pasos son los siguientes &#10;* realizo una compra&#10;* ingreso el ganado que voy a comprar&#10;* regreso a la ventana de compras y diligencio la ficha de sacrificio&#10;* una vez diligenciada la ficha sacrificio paso a la creacion de una planilla de desposte&#10;* dentro de la compra visualizo el ganado que compre y luego uno a uno paso a canal las reses que quiero despostar&#10;* voy a desposte y las reses seleccionadas estan listas para ser despostadas.&#10;&#10;debo incluir costos en todos estos procesos&#10;" />
+    <MESSAGE value="Trabajo sobre el proceso de cannal, los pasos son los siguientes &#10;* realizo una compra&#10;* ingreso el ganado que voy a comprar&#10;* regreso a la ventana de compras y diligencio la ficha de sacrificio&#10;* una vez diligenciada la ficha sacrificio paso a la creacion de una planilla de desposte&#10;* dentro de la compra visualizo el ganado que compre y luego uno a uno paso a canal las reses que quiero despostar&#10;* voy a desposte y las reses seleccionadas estan listas para ser despostadas.&#10;&#10;Realice un cambio grande aumente otro template RecepcionGanado el cual sirve para dar ingreso a los canales despues del sacrificio&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trabajo sobre el proceso de cannal, los pasos son los siguientes &#10;* realizo una compra&#10;* ingreso el ganado que voy a comprar&#10;* regreso a la ventana de compras y diligencio la ficha de sacrificio&#10;* una vez diligenciada la ficha sacrificio paso a la creacion de una planilla de desposte&#10;* dentro de la compra visualizo el ganado que compre y luego uno a uno paso a canal las reses que quiero despostar&#10;* voy a desposte y las reses seleccionadas estan listas para ser despostadas.&#10;&#10;Realice un cambio grande aumente otro template RecepcionGanado el cual sirve para dar ingreso a los canales despues del sacrificio&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -645,7 +640,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="61" column="33" selection-start="1384" selection-end="1384" vertical-scroll-proportion="0.0" vertical-offset="1220" max-vertical-offset="1900">
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#0#22#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -682,7 +677,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="87" column="4" selection-start="1871" selection-end="1871" vertical-scroll-proportion="0.0" vertical-offset="1352" max-vertical-offset="1920">
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#0#22#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -737,7 +732,9 @@
     <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="4" selection-start="2636" selection-end="2636" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="2580">
-          <folding />
+          <folding>
+            <marker date="1399068339715" expanded="true" signature="2090:2854" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -781,6 +778,7 @@
         <state line="200" column="16" selection-start="8904" selection-end="8916" vertical-scroll-proportion="0.0" vertical-offset="3674" max-vertical-offset="4400">
           <folding>
             <element signature="e#0#28#0" expanded="true" />
+            <marker date="1399067704879" expanded="true" signature="7629:8521" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -789,7 +787,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="87" column="84" selection-start="2023" selection-end="2023" vertical-scroll-proportion="0.63369966" vertical-offset="1394" max-vertical-offset="2000">
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#0#22#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -824,7 +822,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanalDetalleDesposte.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="31" selection-start="1097" selection-end="1097" vertical-scroll-proportion="0.3846154" vertical-offset="740" max-vertical-offset="2640">
+        <state line="99" column="21" selection-start="2381" selection-end="2381" vertical-scroll-proportion="0.23166023" vertical-offset="1860" max-vertical-offset="2640">
           <folding />
         </state>
       </provider>
