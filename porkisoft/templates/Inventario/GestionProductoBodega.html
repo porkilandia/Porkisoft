@@ -10,24 +10,26 @@
         <tr>
             <th>Producto</th>
             <th>Bodega</th>
-            <th>Peso en Stock (Kg)</th>
+            <th>Peso en producto (Kg)</th>
             <th>Peso en Stock (grs)</th>
             <th>Unidades en stock</th>
 
         </tr>
         </thead>
         {% for productobodega in productoBodegas %}
-            {% if productobodega.pesoProductoKilos <= 5 %}<tr style="background: indianred">{% else %}<tr>{% endif %}
+            <tr>
             <td>{{ productobodega.producto}}</td>
             <td>{{ productobodega.bodega }}</td>
-            <td>{{ productobodega.pesoProductoKilos}}</td>
+            <td >{{ productobodega.pesoProductoKilos}}</td>
             <td>{{ productobodega.pesoProductoStock }}</td>
             <td>{{ productobodega.unidadesStock }}</td>
 
             <td>
-                <a href="/compra/"><img src="{{ STATIC_URL }}img/pedido.png"></a>
-                {% if productobodega.pesoProductoKilos <= 5 %}{% else %}<a href="/traslado/"><img src="{{ STATIC_URL }}img/traslado.png"></a>{% endif %}
-
+                {% if productobodega.pesoProductoStock > 5000 %}
+                     <a href="/traslado/"><img src="{{ STATIC_URL }}img/traslado.png"></a>
+                {% else %}
+                    <a href="/compra/"><img src="{{ STATIC_URL }}img/pedido.png"></a>
+                {% endif %}
             </td>
 
         </tr>

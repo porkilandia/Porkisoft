@@ -4,14 +4,15 @@
 {% block contenido %}
 <h2>Detalle Desposte</h2>
 
-<table class="table-striped">
+<table class="table dataTable">
     <thead>
         <tr>
             <th>Codigo</th>
             <th>Fecha</th>
             <th>Reses a Depostar</th>
-            <th>Dif Canal/desp X Res(grs)</th>.GestionProvedor
+            <th>Dif Canal/desp</th>.GestionProvedor
             <th>Total Despostado(grs)</th>
+            <th>Total Produccion(grs)</th>
 
         </tr>
     </thead>
@@ -22,14 +23,15 @@
             <td>{{ desposte.resesADespostar }}</td>
             <td>{{ desposte.difCanalADespostado |floatformat }}grs</td>
             <td>{{ desposte.totalDespostado|floatformat }}grs</td>
+            <td>{{ desposte.costoProduccionTotal|floatformat }}</td>
 
 
         </tr>
 
     </tbody>
 </table>
-<br/>
-<table  class="table-striped">
+
+<table  class="table dataTable">
         <thead>
 
         <tr>
@@ -71,8 +73,8 @@
 
 
       </table>
-<br/>
-<table class="table-striped">
+
+<table class="table dataTable">
     <thead>
         <tr>
             <th>Planilla</th>
@@ -119,7 +121,7 @@
               <br/><br/>
               <legend>Acciones</legend>
              <input type="submit" value="Guardar" class="btn btn-primary">
-             <a href="/compra/"><input type="button" value="compra" class="btn btn-default"></a>
+             <a href="/costoDesposte/{{ idplanilla }}"><input type="button" value="Costear" class="btn btn-default"></a>
 
          </fieldset>
      </form>

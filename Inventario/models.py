@@ -24,14 +24,15 @@ class Bodega(models.Model):
 class Producto(models.Model):
     codigoProducto = models.AutoField(primary_key=True, verbose_name='Codigo Producto')
     grupo = models.ForeignKey(Grupo)
+    porcentajeCalidad = models.DecimalField(verbose_name = 'Calidad',max_digits=5, decimal_places=2, default=0 )
     nombreProducto = models.CharField(verbose_name = 'Nombre Producto',max_length=50)
-    costoProducto = models.IntegerField(verbose_name = 'Costo Producto')
-    vrVentaProducto = models.IntegerField(verbose_name = 'Valor de Venta')
-    utilidadProducto = models.IntegerField(verbose_name = 'Ulilidad')
-    rentabilidadProducto = models.DecimalField(verbose_name = 'Rentabilidad',max_digits=5, decimal_places=2 )
-    gravado = models.BooleanField(verbose_name = 'Gravado')
-    excento = models.BooleanField(verbose_name='Excento')
-    excluido = models.BooleanField(verbose_name='Excluido')
+    costoProducto = models.BigIntegerField(verbose_name = 'Costo Producto', default=0)
+    vrVentaProducto = models.IntegerField(verbose_name = 'Valor de Venta', default=0)
+    utilidadProducto = models.IntegerField(verbose_name = 'Ulilidad', default=0)
+    rentabilidadProducto = models.DecimalField(verbose_name = 'Rentabilidad',max_digits=5, decimal_places=2, default=0 )
+    gravado = models.BooleanField(verbose_name = 'Gravado', default=False)
+    excento = models.BooleanField(verbose_name='Excento',default=False)
+    excluido = models.BooleanField(verbose_name='Excluido',default=False)
 
     def __unicode__(self):
         return self.nombreProducto

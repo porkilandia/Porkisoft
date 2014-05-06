@@ -421,7 +421,6 @@ def GestionCanalDetalleDesposte(request, idplanilla):
         totalCanal += canal.pesoPorkilandia
     totalCanal *= 1000
 
-    #costoCanalDesposte = totalCanal *
 
     if request.method == 'POST':
         formulario = DetalleDesposteForm(request.POST)
@@ -449,11 +448,14 @@ def GestionCanalDetalleDesposte(request, idplanilla):
             totalDesposte = 0
             totalCanal = 0
 
+
             for detplanilla in detalleDespostes:
                 totalDesposte += detplanilla.PesoProducto
 
             for canal in canales :
-                totalCanal += canal.peosTotalCanal
+                totalCanal += canal.pesoPorkilandia
+
+
             totalCanal *= 1000
             difCanalDesposte = (totalCanal - totalDesposte)/totalReses
 
@@ -462,18 +464,90 @@ def GestionCanalDetalleDesposte(request, idplanilla):
                 fechaDesposte = desposte.fechaDesposte,
                 resesADespostar = totalReses,
                 totalDespostado = totalDesposte,
-                difCanalADespostado = difCanalDesposte
+                difCanalADespostado = difCanalDesposte,
+                costoProduccionTotal = 0
             )
 
             desposte.save()
+
             return HttpResponseRedirect('/detalleDesposte/'+ idplanilla)
     else:
         formulario = DetalleDesposteForm(initial={'planilla':idplanilla})
 
-    return render_to_response('Inventario/GestionCanalDetalleDesposte.html',{'formulario':formulario,'desposte':desposte
+    return render_to_response('Inventario/GestionCanalDetalleDesposte.html',{'idplanilla':idplanilla,'formulario':formulario,'desposte':desposte
                                                                             ,'canales':canales,'detalleDespostes':detalleDespostes,
                                                                              'totalCanal':totalCanal,'totalDesposte':totalDesposte},
                               context_instance = RequestContext(request))
+
+
+def CostoDesposte(request, idplanilla):
+
+    desposte = PlanillaDesposte.objects.get(pk = idplanilla)
+    canales = Canal.objects.filter(planilla = idplanilla)
+
+    formulario = DetalleDesposteForm(initial={'planilla':idplanilla})
+
+    totalReses = canales.count()
+
+    canales = Canal.objects.filter(planilla = idplanilla)
+    detalleDespostes = DetallePlanilla.objects.filter(planilla = idplanilla)
+    totalDesposte = 0
+    totalCanal = 0
+    kiloCanal = 0
+    costoProduccionTotal = 0
+
+
+    for detplanilla in detalleDespostes:
+        totalDesposte += detplanilla.PesoProducto
+
+    for canal in canales :
+        totalCanal += canal.pesoPorkilandia
+        kiloCanal = canal.vrKiloCanal
+
+
+    costoCanal = totalCanal * kiloCanal #Hace referencia al costo del canal de reces despostadas
+    totalMOD = totalReses * 12839 # MOD en desposte
+    totalCIF = totalReses * 30173 # CIF en desposte
+    costoTotalDesposte = costoCanal + totalMOD + totalCIF
+    costoKiloDespostado = costoTotalDesposte / (totalDesposte/1000)
+    kilosPorArroba = Decimal(12.5)
+    costoArrobaDespostada = costoKiloDespostado * kilosPorArroba
+
+    for detplanilla in detalleDespostes:
+
+        prodActual= Producto.objects.get(pk = detplanilla.producto.codigoProducto)
+        costoKiloProducto = round(costoArrobaDespostada * prodActual.porcentajeCalidad)/ 100
+        costoProduccionProducto = Decimal(costoKiloProducto) * (detplanilla.PesoProducto/ 1000)
+        costoProduccionTotal += costoProduccionProducto
+
+    ajuste = (costoProduccionTotal - costoTotalDesposte)/ detalleDespostes.count()
+
+    for detplanilla in detalleDespostes:
+
+        prodActual= Producto.objects.get(pk = detplanilla.producto.codigoProducto)
+        costoKiloProducto = round((costoArrobaDespostada + ajuste) * prodActual.porcentajeCalidad)/ 100
+        grupo = Grupo.objects.get(pk = prodActual.grupo.id)
+
+        productoUPD = Producto()
+        productoUPD.codigoProducto = prodActual.codigoProducto
+        productoUPD.grupo = grupo
+        productoUPD.nombreProducto = prodActual.nombreProducto
+        productoUPD.costoProducto = costoKiloProducto
+        productoUPD.vrVentaProducto = prodActual.vrVentaProducto
+        productoUPD.utilidadProducto = prodActual.utilidadProducto
+        productoUPD.rentabilidadProducto = prodActual.rentabilidadProducto
+        productoUPD.porcentajeCalidad = prodActual.porcentajeCalidad
+        productoUPD.gravado = prodActual.gravado
+        productoUPD.excento = prodActual.excento
+        productoUPD.excluido = prodActual.excluido
+        productoUPD.save()
+
+    return render_to_response('Inventario/GestionCanalDetalleDesposte.html',{'idplanilla':idplanilla,'formulario':formulario,'desposte':desposte
+                                                                            ,'canales':canales,'detalleDespostes':detalleDespostes,
+                                                                             'totalCanal':totalCanal,'totalDesposte':totalDesposte},
+                                                                            context_instance = RequestContext(request))
+
+
 
 #**************************************************** EMPLEADOS ************************************************
 

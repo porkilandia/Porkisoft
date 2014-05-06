@@ -6,6 +6,16 @@ $(document).on('ready', inicio);
 
      $('#id_difPesos').on('focus',calculoCanal);
 
+     $('#tablaTraslados').dataTable({
+
+         "bPaginate": true,
+         "bLengthChange": true,
+         "bFilter": true,
+         "bSort": true,
+         "bInfo": true,
+         "bAutoWidth": true,
+         "aaSorting": [[ 4, "desc" ]]
+    });
 
      $('#tablaCompras').dataTable({
 
@@ -14,8 +24,13 @@ $(document).on('ready', inicio);
     });
      $('#tablaProductos').dataTable({
 
-        "sDom": '<"top"iflp<"clear">>',
-          "sPaginationType" : "full_numbers"
+        "bPaginate": true,
+         "bFilter": true,
+         "bSort": true,
+         "bInfo": true,
+         "bAutoWidth": true,
+         "bLengthChange": false
+
     });
     $('#ListaSubp').dataTable({
 
@@ -34,8 +49,12 @@ $(document).on('ready', inicio);
     });
      $('#despostes').dataTable({
 
-         "sDom": '<"top"iflp<"clear">>',
-          "sPaginationType" : "full_numbers"
+         "bPaginate": true,
+         "bFilter": true,
+         "bSort": true,
+         "bInfo": true,
+         "bAutoWidth": true,
+         "bLengthChange": false
        });
  }
 function calculoGanado(){

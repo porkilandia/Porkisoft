@@ -36,6 +36,7 @@ class PlanillaDesposte(models.Model):
     totalDespostado = models.DecimalField(verbose_name='TotalDespostado',max_digits=9, decimal_places=3, default=0)
     difCanalADespostado = models.DecimalField(verbose_name='Diferencia de Canal/Desposte',max_digits=11,
                                               decimal_places=3, default=0)
+    costoProduccionTotal = models.IntegerField(verbose_name='Costo Produccion Total',default=0)
 
     def __unicode__(self):
         return self.codigoPlanilla
