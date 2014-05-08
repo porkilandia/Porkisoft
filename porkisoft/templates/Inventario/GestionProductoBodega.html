@@ -4,7 +4,7 @@
 {% block contenido %}
 
     <h2>Productos Por bodega</h2>
-    <table id="tablabodegas" class="table-striped" >
+    <table id="tablabodegas" class="table" >
 
         <thead>
         <tr>
@@ -17,7 +17,11 @@
         </tr>
         </thead>
         {% for productobodega in productoBodegas %}
+            {% if productobodega.pesoProductoStock < 5000 %}
+            <tr style="background: indianred">
+            {% else %}
             <tr>
+            {% endif %}
             <td>{{ productobodega.producto}}</td>
             <td>{{ productobodega.bodega }}</td>
             <td >{{ productobodega.pesoProductoKilos}}</td>

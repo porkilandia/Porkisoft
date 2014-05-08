@@ -48,27 +48,36 @@
             <th>Dif. de pesos</th>
             <th>Vr. Kilo Canal</th>
             <th>Vr. Arroba Canal</th>
+            <th>Estado</th>
+            <th>-------</th>
 
 
         </tr>
         </thead>
         <tbody>
-          {% for cnl in canal %}
+          {% for cnl in canales %}
         <tr>
 
             <td>{{ cnl.planilla }}</td>
             <td>{{ cnl.pesoFrigovito | floatformat }} Kg</td>
-            <td>{{ cnl.pesoPorkilandia | floatformat }} Kg</td>
+            <td style="font-weight: bold">{{ cnl.pesoPorkilandia | floatformat }} Kg</td>
             <td>{{ cnl.difPesos | floatformat }} Kg</td>
             <td>$ {{ cnl.vrKiloCanal }}</td>
             <td>$ {{ cnl.vrArrobaCanal }}</td>
-
+            {% if cnl.estado == True %}
+                <td>A desposte</td>
+            {% else %}
+                <td>Pendiente</td>
+            {% endif %}
+            <td>
+                <a href="{% url 'Inventario.views.MarcarCanalDesposte' cnl.codigoCanal %}"><img src="{{ STATIC_URL }}img/carne.png"></a>
+            </td>
 
         </tr>
 
         {% empty %}
             <tr>
-                <td colspan="7">
+                <td colspan="8">
                    Ningun producto para mostrar
                 </td>
             </tr>
@@ -78,7 +87,7 @@
         </tbody>
         <tr>
 
-            <th colspan="7"  style="text-align: center"><a href="/detcompra/{{ codigoCompra }}"><img src="{{ STATIC_URL }}img/atras.png"></a></th>
+            <th colspan="8"  style="text-align: center"><a href="/desposte/"><img src="{{ STATIC_URL }}img/atras.png"></a></th>
 
         </tr>
 
@@ -90,7 +99,7 @@
 
                   {{ formulario }}
 
-              <br/>
+              <br/><br/>
              <legend>Acciones</legend>
              <input type="submit" class="btn btn-primary" value="Guardar">
              <a href="/desposte/"><input type="button" class="btn btn-default" value="Crear Planilla Desposte"/></a>

@@ -22,9 +22,9 @@
         <tr>
             <td>{{ ganado.codigoGanado }}</td>
             <td>{{ ganado.genero }}</td>
-            <td>{{ ganado.pesoEnPie }}</td>
-            <td>{{ ganado.precioKiloEnPie }}</td>
-            <td>{{ ganado.precioTotal }}</td>
+            <td>{{ ganado.pesoEnPie | floatformat }} Kg</td>
+            <td>$ {{ ganado.precioKiloEnPie }}</td>
+            <td>$ {{ ganado.precioTotal }}</td>
             <td>{{ ganado.difPieCanal }}</td>
             <td>{{ ganado.fechaIngreso }}</td>
 

@@ -15,6 +15,7 @@ class ProvedorForm(ModelForm):
 class ProductoForm(ModelForm):
     class Meta:
         model = Producto
+        exclude = ("costoProducto","vrVentaProducto","utilidadProducto","rentabilidadProducto")
 
 class SubProductoForm(ModelForm):
     class Meta:
@@ -40,6 +41,7 @@ class GanadoForm(ModelForm):
 class CompraForm(ModelForm):
     class Meta:
         model = Compra
+        exclude = ("vrCompra",)
 
 class DetalleCompraForm(ModelForm):
     class Meta:
@@ -48,7 +50,7 @@ class DetalleCompraForm(ModelForm):
 class DesposteForm(ModelForm):
     class Meta:
         model = PlanillaDesposte
-        exclude = ("resesADespostar","totalDespostado","difCanalADespostado")
+        exclude = ("resesADespostar","totalDespostado","difCanalADespostado","totalCanal",)
 
 class CanalForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -59,11 +61,12 @@ class CanalForm(ModelForm):
 
     class Meta:
         model=Canal
-        exclude = ("vrKiloCanal",)
+        exclude = ("vrKiloCanal","vrArrobaCanal")
 
 class DetalleDesposteForm(ModelForm):
     class Meta:
         model = DetallePlanilla
+
 
 class EmpleadoForm(ModelForm):
     class Meta:
@@ -90,5 +93,6 @@ class SacrificioForm(ModelForm):
 class PlanillaRecepcionForm(ModelForm):
     class Meta:
         model = PlanillaRecepcion
+        exclude = ("difPieCanal","cantCabezas",)
 
 

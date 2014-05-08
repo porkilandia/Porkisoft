@@ -9,7 +9,7 @@
 }
 #nav ul {
 
-    background-color: #d3070b;
+    background: linear-gradient(#d3070b, #86070b);
     border-radius: 0 0 0.5em 0.5em;
     box-shadow: 0.5em 0.5em 1.5em #6c686f;
     font-size: 0.9em;
@@ -58,14 +58,7 @@
     padding:1em 3em 1em 1em;
     position:relative;
 }
-#personas
-{
-    background:url("../img/personas.png") no-repeat scroll 95% center transparent;
-}
-#inventario
-{
-    background:url("../img/inventario.jpg") no-repeat scroll 95% center transparent;
-}
+
 #nav ul ul li span {
     background:url("../img/menu-img/s.gif") no-repeat scroll 97% center transparent;
 }
@@ -85,7 +78,7 @@
     vertical-align:middle;
 }
 #nav ul li:hover > a,#nav ul li:hover > span {
-    background-color: #d3070b;
+    background: linear-gradient(#d3070b, #86070b);
     font-weight: bold;
     color: #deff7c;
     text-shadow: 0 0 1.5em #ececec;

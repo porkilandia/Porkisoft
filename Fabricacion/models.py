@@ -33,7 +33,8 @@ class PlanillaDesposte(models.Model):
     codigoPlanilla = models.AutoField(primary_key=True)
     fechaDesposte = models.DateField(verbose_name='Fecha de Desposte', auto_now=True)
     resesADespostar = models.IntegerField(verbose_name='Reses A Despostar', default=0)
-    totalDespostado = models.DecimalField(verbose_name='TotalDespostado',max_digits=9, decimal_places=3, default=0)
+    totalDespostado = models.DecimalField(verbose_name='Total Despostado',max_digits=9, decimal_places=3, default=0)
+    totalCanal = models.DecimalField(verbose_name='Total Canal',max_digits=11, decimal_places=3, default=0)
     difCanalADespostado = models.DecimalField(verbose_name='Diferencia de Canal/Desposte',max_digits=11,
                                               decimal_places=3, default=0)
     costoProduccionTotal = models.IntegerField(verbose_name='Costo Produccion Total',default=0)
@@ -51,6 +52,7 @@ class Canal (models.Model):
     difPesos = models.DecimalField(verbose_name='Dif. Frig/Pork',default=0,max_digits=9, decimal_places=3)
     vrKiloCanal = models.IntegerField(verbose_name='Vr. Kilo Canal',default=0)
     vrArrobaCanal = models.IntegerField(verbose_name='Vr. Arroba Canal',default=0)
+    estado = models.BooleanField(verbose_name='A desposte')
 
 
     def __unicode__(self):
@@ -60,7 +62,6 @@ class Canal (models.Model):
 class DetallePlanilla (models.Model):
     planilla = models.ForeignKey(PlanillaDesposte)
     producto = models.ForeignKey(Producto)
-    CantPiezas = models.IntegerField(verbose_name='Cantidad Piezas')
     PesoProducto = models.DecimalField(max_digits=9,decimal_places=3, verbose_name='Peso Producto')
 
 class Formula(models.Model):

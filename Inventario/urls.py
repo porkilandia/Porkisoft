@@ -15,6 +15,7 @@ urlpatterns = patterns('',
 
     url(r'^recepcion/(?P<idcompra>\d+)',GestionPlanillaRecepcion),
     url(r'^canal/(?P<idrecepcion>\d+)',GestionCanal),
+    url(r'^marcarcanal/(?P<idcanal>\d+)',MarcarCanalDesposte),
 
     url(r'^sacrificio/(?P<idrecepcion>\d+)',GestionSacrificio),
 

@@ -11,15 +11,16 @@
 
 
             <th>Fecha Sacrificio</th>
-            <th>Vr. Menudo</th>
-            <th>Vr. Deguello</th>
-            <th>Vr. Trasporte</th>
-            <th> Piel</th>
-            <th> Cola</th>
-            <th> Creadillas</th>
-            <th> Recortes</th>
-            <th> Riñones</th>
-            <th> Desecho</th>
+            <th>Menudo</th>
+            <th>Deguello</th>
+            <th>Trasporte</th>
+            <th>Piel</th>
+            <th>Cola</th>
+            <th>Creadillas</th>
+            <th>Ubre</th>
+            <th>Recortes</th>
+            <th>Riñones</th>
+            <th>Desecho</th>
 
 
         </tr>
@@ -35,6 +36,7 @@
             <td>${{ sacrificio.piel }}</td>
             <td>{{ sacrificio.cola| floatformat }}gr</td>
             <td>{{ sacrificio.creadillas| floatformat }}gr</td>
+            <td>{{ sacrificio.ubre| floatformat }}gr</td>
             <td>{{ sacrificio.recortes| floatformat }}gr</td>
             <td>{{ sacrificio.rinones| floatformat }}gr</td>
             <td>{{ sacrificio.desecho| floatformat }}gr</td>

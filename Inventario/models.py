@@ -35,7 +35,9 @@ class Producto(models.Model):
     excluido = models.BooleanField(verbose_name='Excluido',default=False)
 
     def __unicode__(self):
-        return self.nombreProducto
+        cadena = self.nombreProducto +'('+ self.grupo.nombreGrupo+')'
+        return cadena
+
 
 class SubProducto(models.Model):
     codigoSubProducto= models.AutoField(verbose_name='Codigo', primary_key=True)
@@ -95,8 +97,7 @@ class DetalleTraslado (models.Model):
     traslado = models.ForeignKey(Traslado)
     producto = models.ForeignKey(Producto,null=True,blank=True)
     SubProducto = models.ForeignKey(SubProducto,null=True,blank=True)
-    cantPiezas = models.IntegerField(verbose_name='Cant. Piezas')
-    pesoPiezasTraslado = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso Piezas (grs)',default=0,null=True)
+    pesoTraslado = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso Traslado (grs)',default=0,null=True)
     unidadesTraslado = models.IntegerField(verbose_name='Unidades', default=0,null=True)
     pesoEnvio = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso Envio (grs)')
     pesoLlegada = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso Llegada (grs)', null=True, default=0)
@@ -204,6 +205,7 @@ class Sacrificio(models.Model):
     rinones = models.DecimalField(verbose_name = 'Peso Rinyones',max_digits=9, decimal_places=3,null= True,default=0)
     creadillas = models.DecimalField(verbose_name = 'Peso Creadillas',max_digits=9, decimal_places=3,null= True,default=0)
     recortes = models.DecimalField(verbose_name = 'Peso Recortes',max_digits=9, decimal_places=3,null= True,default=0)
+    ubre = models.DecimalField(verbose_name = 'Ubre',max_digits=9, decimal_places=3,null= True,default=0)
     desecho = models.DecimalField(verbose_name = 'Peso Desecho',max_digits=9, decimal_places=3,null= True,default=0)
     fechaSacrificio = models.DateField(verbose_name='Fecha Sacrificio',auto_now=True)
 

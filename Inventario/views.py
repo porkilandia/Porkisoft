@@ -1,15 +1,12 @@
+ # -*- coding: UTF-8 -*-
 from decimal import Decimal
+from math import ceil
 
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
 
 from Inventario.Forms.forms import *
 from Inventario.models import *
-
-
-
-
-
 
 # Create your views here.
 
@@ -325,7 +322,7 @@ def GestionDesposte(request):
 
 def GestionCanal(request,idrecepcion):
 
-    canal = Canal.objects.filter(recepcion = idrecepcion)#para renderizar las listas
+    canales = Canal.objects.filter(recepcion = idrecepcion)#para renderizar las listas
     recepcion = PlanillaRecepcion.objects.get(pk = idrecepcion)
     compra = Compra.objects.get(pk = recepcion.compra.codigoCompra)
     sacrificio = Sacrificio.objects.get(recepcion = idrecepcion)
@@ -397,38 +394,100 @@ def GestionCanal(request,idrecepcion):
     else:
         formulario = CanalForm(initial={'recepcion':idrecepcion})
 
-    return render_to_response('Inventario/GestionCanal.html',{'formulario':formulario,'canal':canal,'recepcion':recepcion},
+    return render_to_response('Inventario/GestionCanal.html',{'formulario':formulario,'canales':canales,'recepcion':recepcion},
                               context_instance = RequestContext(request))
+
+
+def MarcarCanalDesposte(request, idcanal):
+
+    canal = Canal.objects.get(pk=idcanal)
+    recepcion = PlanillaRecepcion.objects.get(pk = canal.recepcion.codigoRecepcion)
+    canales = Canal.objects.filter(recepcion = recepcion.codigoRecepcion)
+
+    if request.method == 'POST':
+        formulario = CanalForm(request.POST,instance=canal)
+        if formulario.is_valid():
+
+            formulario.save()
+            return HttpResponseRedirect('/canal/'+ str(recepcion.codigoRecepcion))
+    else:
+        formulario = CanalForm(initial={'estado':True},instance=canal)
+
+    return render_to_response('Inventario/GestionCanal.html',{'formulario':formulario,'canales':canales,'recepcion':recepcion},
+                              context_instance = RequestContext(request))
+
 
 def GestionCanalDetalleDesposte(request, idplanilla):
 
     desposte = PlanillaDesposte.objects.get(pk = idplanilla)
-    canales = Canal.objects.filter(planilla = idplanilla)
+    canales = Canal.objects.filter(planilla = idplanilla).filter(estado = True)
     detalleDespostes = DetallePlanilla.objects.filter(planilla = idplanilla)
+
+    for cnl in canales:
+        recepcion = PlanillaRecepcion.objects.get(pk = cnl.recepcion.codigoRecepcion)
+
+
+    totalCanales = Canal.objects.filter(planilla = idplanilla)
 
     totalReses = canales.count()
     totalDesposte = 0
     totalCanal = 0
-
+    sacrificio = 0
 
     #proceso para guardar todos los productos despostados en la tabla producto.
 
 
-
     for detplanilla in detalleDespostes:
         totalDesposte += detplanilla.PesoProducto
+
     for canal in canales :
         totalCanal += canal.pesoPorkilandia
+        sacrificio = Sacrificio.objects.get( recepcion = canal.recepcion.codigoRecepcion)
     totalCanal *= 1000
+
+    cola = (sacrificio.cola / totalCanales.count())*totalReses
+    rinon = (sacrificio.rinones / totalCanales.count())*totalReses
+    creadilla = (sacrificio.creadillas / totalCanales.count())*totalReses
+    recorte = (sacrificio.recortes /totalCanales.count())*totalReses
+    ubre = (sacrificio.ubre / totalCanales.count())*totalReses
 
 
     if request.method == 'POST':
         formulario = DetalleDesposteForm(request.POST)
 
         if formulario.is_valid():
-            formulario.save()
+
+            PesoProducto = 0
+            PesoProductoBodega = 0
+
 
             producto = Producto.objects.get(pk = request.POST.get('producto'))
+
+            if (producto.codigoProducto == 32):
+                PesoProducto = cola
+                PesoProductoBodega = sacrificio.cola
+            if (producto.codigoProducto == 33):
+                PesoProducto = rinon
+                PesoProductoBodega = sacrificio.rinones
+            if (producto.codigoProducto == 34):
+                PesoProducto = creadilla
+                PesoProductoBodega = sacrificio.creadillas
+            if (producto.codigoProducto == 36):
+                PesoProducto = ubre
+                PesoProductoBodega = sacrificio.ubre
+
+            detalleDesposte = DetallePlanilla()
+            detalleDesposte.planilla = desposte
+            detalleDesposte.producto = producto
+
+            if producto.grupo.id == 4 :
+                detalleDesposte.PesoProducto = PesoProducto
+            else:
+                 detalleDesposte.PesoProducto = request.POST.get('PesoProducto')
+
+
+            detalleDesposte.save()
+
             bodega = Bodega.objects.get(pk = 5)
             bodegaprodID = ProductoBodega.objects.get(bodega = 5,producto = producto.codigoProducto )
 
@@ -436,34 +495,50 @@ def GestionCanalDetalleDesposte(request, idplanilla):
             bodegaProducto.id = bodegaprodID.id
             bodegaProducto.producto = producto
             bodegaProducto.bodega = bodega
-            bodegaProducto.pesoProductoStock = request.POST.get('PesoProducto')
+
+            if producto.grupo.id == 4 :
+                bodegaProducto.pesoProductoStock = PesoProductoBodega
+            else:
+                bodegaProducto.pesoProductoStock = request.POST.get('PesoProducto')
+
             bodegaProducto.unidadesStock = 0
 
             bodegaProducto.save()
 
             desposte = PlanillaDesposte.objects.get(pk = idplanilla)
-            canales = Canal.objects.filter(planilla = idplanilla)
+            canales = Canal.objects.filter(planilla = idplanilla).filter(estado = True)
             detalleDespostes = DetallePlanilla.objects.filter(planilla = idplanilla)
+
+
 
             totalDesposte = 0
             totalCanal = 0
+            Desecho = 0
 
 
             for detplanilla in detalleDespostes:
+                producto = Producto.objects.get(pk = detplanilla.producto.codigoProducto)
+
+                if producto.grupo.id == 3:
+                    Desecho += detplanilla.PesoProducto
+
                 totalDesposte += detplanilla.PesoProducto
 
             for canal in canales :
                 totalCanal += canal.pesoPorkilandia
 
-
             totalCanal *= 1000
+
+
+
             difCanalDesposte = (totalCanal - totalDesposte)/totalReses
 
             desposte = PlanillaDesposte(
                 codigoPlanilla = idplanilla,
                 fechaDesposte = desposte.fechaDesposte,
                 resesADespostar = totalReses,
-                totalDespostado = totalDesposte,
+                totalDespostado = totalDesposte - Desecho,
+                totalCanal = totalCanal,
                 difCanalADespostado = difCanalDesposte,
                 costoProduccionTotal = 0
             )
@@ -483,63 +558,99 @@ def GestionCanalDetalleDesposte(request, idplanilla):
 def CostoDesposte(request, idplanilla):
 
     desposte = PlanillaDesposte.objects.get(pk = idplanilla)
-    canales = Canal.objects.filter(planilla = idplanilla)
+    canales = Canal.objects.filter(planilla = idplanilla).filter(estado = True)
+    planilla = PlanillaDesposte.objects.get(pk= idplanilla)
 
     formulario = DetalleDesposteForm(initial={'planilla':idplanilla})
 
     totalReses = canales.count()
 
-    canales = Canal.objects.filter(planilla = idplanilla)
+
     detalleDespostes = DetallePlanilla.objects.filter(planilla = idplanilla)
     totalDesposte = 0
     totalCanal = 0
     kiloCanal = 0
-    costoProduccionTotal = 0
 
-
-    for detplanilla in detalleDespostes:
-        totalDesposte += detplanilla.PesoProducto
 
     for canal in canales :
         totalCanal += canal.pesoPorkilandia
-        kiloCanal = canal.vrKiloCanal
+
+    canales = Canal.objects.filter(planilla = idplanilla) #para conocer el verdadero valor del kilo en canal
+    for cnl in canales:
+        kiloCanal = cnl.vrKiloCanal
+
+    costoProduccionTotal = 0
 
 
-    costoCanal = totalCanal * kiloCanal #Hace referencia al costo del canal de reces despostadas
+    #realizo los calculos generales de costo
+    costoCanal = ceil(totalCanal * kiloCanal) #Hace referencia al costo del canal de reces despostadas
     totalMOD = totalReses * 12839 # MOD en desposte
     totalCIF = totalReses * 30173 # CIF en desposte
-    costoTotalDesposte = costoCanal + totalMOD + totalCIF
-    costoKiloDespostado = costoTotalDesposte / (totalDesposte/1000)
-    kilosPorArroba = Decimal(12.5)
-    costoArrobaDespostada = costoKiloDespostado * kilosPorArroba
+    costoTotalDesposte = ceil(costoCanal + 100  + totalMOD + totalCIF)
+    costoKiloDespostado = ceil((Decimal(costoTotalDesposte) / planilla.totalDespostado)*1000)
+    kilosPorArroba = 12.5
+    costoArrobaDespostada = ceil(costoKiloDespostado * kilosPorArroba)
 
-    for detplanilla in detalleDespostes:
 
-        prodActual= Producto.objects.get(pk = detplanilla.producto.codigoProducto)
-        costoKiloProducto = round(costoArrobaDespostada * prodActual.porcentajeCalidad)/ 100
-        costoProduccionProducto = Decimal(costoKiloProducto) * (detplanilla.PesoProducto/ 1000)
+    for detalleplanilla in detalleDespostes:
+        prodActual= Producto.objects.get(pk = detalleplanilla.producto.codigoProducto)
+        costoKiloProducto = round(Decimal(costoArrobaDespostada) * prodActual.porcentajeCalidad)/ 100
+        costoProduccionProducto = ceil(Decimal(costoKiloProducto) * (detalleplanilla.PesoProducto/ 1000))
         costoProduccionTotal += costoProduccionProducto
 
-    ajuste = (costoProduccionTotal - costoTotalDesposte)/ detalleDespostes.count()
+    #*******************************Prueba de WHILE para crear un bucle de ajuste a la formula*****************
+
+    aumentoInicial = ceil((costoTotalDesposte * 100)/costoProduccionTotal)
+    arrobaAjustada = costoArrobaDespostada + aumentoInicial
+
+    while(costoProduccionTotal != costoTotalDesposte):
+
+        if costoProduccionTotal > costoTotalDesposte :
+            cpt = ceil(costoProduccionTotal)
+            ctd = ceil(costoTotalDesposte)
+            aux = ceil(costoProduccionTotal*100)
+            ajuste = ceil((costoTotalDesposte * 100)/costoProduccionTotal)
+            arrobaAjustada -= ceil(ajuste)
+            costoProduccionTotal = 0
+        else:
+            cpt = ceil(costoProduccionTotal)
+            ctd = ceil(costoTotalDesposte)
+            aux = ceil(costoProduccionTotal*100)
+            ajuste = ceil((costoTotalDesposte * 100)/costoProduccionTotal)
+            arrobaAjustada += ceil(ajuste)
+            costoProduccionTotal = 0
+
+
+        for detplan in detalleDespostes:
+            prodActual= Producto.objects.get(pk = detplan.producto.codigoProducto)
+            costoKiloProducto = round(Decimal(arrobaAjustada) * prodActual.porcentajeCalidad)/ 100
+            costoProduccionProducto = ceil(Decimal(costoKiloProducto) * (detplan.PesoProducto/ 1000))
+            costoProduccionTotal += costoProduccionProducto
+
+        if (((costoProduccionTotal - costoTotalDesposte) >= -1000) and ((costoProduccionTotal - costoTotalDesposte) <= 1000)):
+            break
+        #*******************************************************************************************************
 
     for detplanilla in detalleDespostes:
 
-        prodActual= Producto.objects.get(pk = detplanilla.producto.codigoProducto)
-        costoKiloProducto = round((costoArrobaDespostada + ajuste) * prodActual.porcentajeCalidad)/ 100
-        grupo = Grupo.objects.get(pk = prodActual.grupo.id)
+        #tomo el producto el cual voy a costear
+        producto = Producto.objects.get(pk = detplanilla.producto.codigoProducto)
+
+        costoKiloProducto = round(Decimal(arrobaAjustada) * producto.porcentajeCalidad)/ 100
+        grupo = Grupo.objects.get(pk = producto.grupo.id)
 
         productoUPD = Producto()
-        productoUPD.codigoProducto = prodActual.codigoProducto
+        productoUPD.codigoProducto = producto.codigoProducto
         productoUPD.grupo = grupo
-        productoUPD.nombreProducto = prodActual.nombreProducto
+        productoUPD.nombreProducto = producto.nombreProducto
         productoUPD.costoProducto = costoKiloProducto
-        productoUPD.vrVentaProducto = prodActual.vrVentaProducto
-        productoUPD.utilidadProducto = prodActual.utilidadProducto
-        productoUPD.rentabilidadProducto = prodActual.rentabilidadProducto
-        productoUPD.porcentajeCalidad = prodActual.porcentajeCalidad
-        productoUPD.gravado = prodActual.gravado
-        productoUPD.excento = prodActual.excento
-        productoUPD.excluido = prodActual.excluido
+        productoUPD.vrVentaProducto = producto.vrVentaProducto
+        productoUPD.utilidadProducto = producto.utilidadProducto
+        productoUPD.rentabilidadProducto = producto.rentabilidadProducto
+        productoUPD.porcentajeCalidad = producto.porcentajeCalidad
+        productoUPD.gravado = producto.gravado
+        productoUPD.excento = producto.excento
+        productoUPD.excluido = producto.excluido
         productoUPD.save()
 
     return render_to_response('Inventario/GestionCanalDetalleDesposte.html',{'idplanilla':idplanilla,'formulario':formulario,'desposte':desposte
@@ -622,10 +733,10 @@ def GestionDetalleTraslado(request,idtraslado):
             producto = Producto.objects.get(pk = request.POST.get('producto'))
             #subproducto = SubProducto.objects.get(pk = request.POST.get('subproducto'))
 
-            pesoActualizado = bodegaActual.pesoProductoStock - int(request.POST.get('pesoPiezasTraslado'))
+            pesoActualizado = bodegaActual.pesoProductoStock - int(request.POST.get('pesoTraslado'))
             unidadesActualizadas = bodegaActual.unidadesStock - int(request.POST.get('unidadesTraslado'))
 
-            pesoDestinoActualizado = bodegaDestino.pesoProductoStock + int(request.POST.get('pesoPiezasTraslado'))
+            pesoDestinoActualizado = bodegaDestino.pesoProductoStock + int(request.POST.get('pesoTraslado'))
             unidadesDestinoActualizadas = bodegaActual.unidadesStock + int(request.POST.get('unidadesTraslado'))
 
             bodegaactual = ProductoBodega()
@@ -695,9 +806,33 @@ def GestionSacrificio(request,idrecepcion):
             sacrificio.rinones = request.POST.get('rinones')
             sacrificio.creadillas = request.POST.get('creadillas')
             sacrificio.recortes = request.POST.get('recortes')
+            sacrificio.ubre = request.POST.get('ubre')
             sacrificio.desecho= request.POST.get('desecho')
 
             sacrificio.save()
+
+            prodLimpieza = ['Cola','Riñones','Creadillas','Recortes x 800 grs','Ubre' ]
+            item = ['cola','rinones','creadillas','recortes','ubre' ]
+            cont = 0
+
+            for productos  in prodLimpieza:
+
+
+                producto = Producto.objects.get(nombreProducto = productos )
+                bodegaDestino = Bodega.objects.get(codigoBodega= 5)
+                existencia = ProductoBodega.objects.get(producto = producto.codigoProducto , bodega = 5)
+
+
+
+                bodega = ProductoBodega()
+                bodega.id = existencia.id
+                bodega.producto = producto
+                bodega.bodega = bodegaDestino
+                bodega.pesoProductoStock = existencia.pesoProductoStock + Decimal(request.POST.get(item[cont]))
+                bodega.unidadesStock = 0
+                bodega.save()
+                cont +=1
+
 
             return HttpResponseRedirect('/sacrificio/'+idrecepcion)
 
@@ -735,7 +870,7 @@ def GestionPlanillaRecepcion(request , idcompra):
             Recepcion.transporte = request.POST.get('transporte')
             Recepcion.save()
 
-            return HttpResponseRedirect('/recepcion'+ idcompra)
+            return HttpResponseRedirect('/recepcion/'+ idcompra)
     else:
         formulario = PlanillaRecepcionForm(initial={'compra':idcompra})
 
