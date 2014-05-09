@@ -44,6 +44,11 @@ class PlanillaDesposte(models.Model):
 
 class Canal (models.Model):
 
+    OpGenero = (
+        ('Macho','Macho'),
+        ('Hembra' , 'Hembra'),
+    )
+
     recepcion = models.ForeignKey(PlanillaRecepcion)
     codigoCanal = models.AutoField(primary_key=True)
     planilla = models.ForeignKey(PlanillaDesposte,null=True, blank=True)
@@ -52,7 +57,8 @@ class Canal (models.Model):
     difPesos = models.DecimalField(verbose_name='Dif. Frig/Pork',default=0,max_digits=9, decimal_places=3)
     vrKiloCanal = models.IntegerField(verbose_name='Vr. Kilo Canal',default=0)
     vrArrobaCanal = models.IntegerField(verbose_name='Vr. Arroba Canal',default=0)
-    estado = models.BooleanField(verbose_name='A desposte')
+    genero = models.CharField(verbose_name='Genero', choices=OpGenero,default='Macho', max_length=7)
+    estado = models.BooleanField(verbose_name='A desposte', default = False)
 
 
     def __unicode__(self):

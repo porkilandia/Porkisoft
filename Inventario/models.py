@@ -121,7 +121,9 @@ class Compra(models.Model):
 
     tipoCompra = (
         ('insumo','Insumo'),
-        ('ganado','Ganado'),
+        ('reses','reses'),
+        ('cerdos','Cerdos'),
+        ('cerdas','Cerdas'),
     )
 
     codigoCompra = models.AutoField(primary_key=True)
@@ -135,17 +137,13 @@ class Compra(models.Model):
         return self.codigoCompra
 
 class Ganado(models.Model):
-    OpGenero = (
-        ('M','Macho'),
-        ('H' , 'Hembra'),
-    )
+
     tipoPiel = (
         (25000,'Calentana'),
         (44000,'Firana'),
     )
 
     codigoGanado = models.AutoField(primary_key=True, verbose_name='Codigo Ganado')
-    genero = models.CharField(verbose_name='Genero', choices=OpGenero, max_length=7)
     piel = models.IntegerField(verbose_name='Piel', choices= tipoPiel)
     pesoEnPie = models.DecimalField(verbose_name = 'Peso en Pie (grs)',max_digits=9, decimal_places=3)
     precioKiloEnPie = models.IntegerField(verbose_name='Precio Kilo en Pie')
