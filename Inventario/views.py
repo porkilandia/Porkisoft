@@ -2,11 +2,17 @@
 from decimal import Decimal
 from math import ceil
 
-from django.shortcuts import render_to_response, HttpResponseRedirect
+from django.shortcuts import render_to_response, HttpResponseRedirect, render
 from django.template import RequestContext
+from django.views.generic import ListView ,DetailView, FormView,TemplateView
+from django.views.generic.edit import FormMixin
+from django.views.generic.base import TemplateResponseMixin,ContextMixin,View
+from django.core.urlresolvers import reverse_lazy
 
 from Inventario.Forms.forms import *
 from Inventario.models import *
+
+
 
 # Create your views here.
 
@@ -14,7 +20,6 @@ def home(request):
     return render_to_response('Home.html',{},context_instance = RequestContext(request))
 
 #***************************************PRODUCTOS******************************************
-
 def listaProductos(request):
     productos = Producto.objects.all().order_by('nombreProducto')
     #Creacion de producto en cada bodega con valor inicial
@@ -253,7 +258,6 @@ def GestionGanado(request,idcompra):
                               context_instance = RequestContext(request))
 
 #**********************************************COMPRA***********************************************************
-
 def GestionCompra(request):
 
     compras = Compra.objects.all()
@@ -320,6 +324,8 @@ def GestionDesposte(request):
     return render_to_response('Inventario/GestionDesposte.html',{'formulario':formulario,'despostes':despostes},
                               context_instance = RequestContext(request))
 
+
+#******************************************************CANAL***********************************************************
 def GestionCanal(request,idrecepcion):
 
     canales = Canal.objects.filter(recepcion = idrecepcion)#para renderizar las listas
@@ -338,9 +344,10 @@ def GestionCanal(request,idrecepcion):
             canalesPlanilla = Canal.objects.filter(planilla = planilla.codigoPlanilla)# Canales por planilla
             pesoCanales = 0
             pesoPie = 0
+            vrFactura = 0
 
-            for canales in canalesPlanilla:
-                    pesoCanales += canales.pesoPorkilandia
+            for canale in canalesPlanilla:
+                    pesoCanales += canale.pesoPorkilandia
 
             canal = Canal()
             canal.recepcion = recepcion
@@ -350,7 +357,7 @@ def GestionCanal(request,idrecepcion):
             canal.difPesos = request.POST.get('difPesos')
             canal.genero = request.POST.get('genero')
 
-            if recepcion.tipoGanado == 'Mayor':
+            if compra.tipo == 'reses':
 
                 vrKiloCanal = ((compra.vrCompra + sacrificio.vrDeguello + sacrificio.vrTransporte) -
                           (sacrificio.piel + sacrificio.vrMenudo))/ (pesoCanales + Decimal(request.POST.get('pesoPorkilandia')))
@@ -361,9 +368,8 @@ def GestionCanal(request,idrecepcion):
                 canal.vrArrobaCanal= vrArrobaCanal
 
 
-            else:
+            elif compra.tipo == 'cerdos':
 
-                vrFactPie = 0 # Pendiente calcular los valores de deguello, flete, menudos
                 menudo = 7000 * cantidad
                 flete = 500000
                 transporte = 3500 * cantidad
@@ -372,19 +378,71 @@ def GestionCanal(request,idrecepcion):
                 if pesoCanales == 0:#para cuando se ingresa la primera vez
                     pesoCanales = 1000
 
-                vrFactura = (pesoCanales + Decimal(request.POST.get('pesoPorkilandia'))) * 6950 #--> 6050 es el valor establecido por granjas el paraiso
+
+                pesoPorkilandia = Decimal(request.POST.get('pesoPorkilandia'))
+
+                vrFactura = (pesoCanales + pesoPorkilandia) * 6950 #--> 6050 es el valor establecido por granjas el paraiso
                 pesoPie = Decimal(ceil(pesoCanales + Decimal(request.POST.get('pesoPorkilandia')))) / (Decimal(0.82))
-                KiloPie = vrFactPie / pesoPie
+                #KiloPie = vrFactPie / pesoPie
                 vrFactPie = (vrFactura - deguello - flete) + menudo
-                costoCanales = (vrFactPie + deguello+ flete + transporte) - menudo
-                vrKiloCanal = costoCanales / (pesoCanales + Decimal(request.POST.get('pesoPorkilandia')))
-                vrArrobaCanal = vrKiloCanal * Decimal(12.5)
+                costoCanales = (vrFactPie + deguello + flete + transporte) - menudo
+                vrKiloCanal = ceil(costoCanales / (pesoCanales + pesoPorkilandia))
+                vrArrobaCanal = vrKiloCanal * 12.5
 
                 canal.vrKiloCanal = vrKiloCanal
                 canal.vrArrobaCanal= vrArrobaCanal
 
+                encargado = Empleado.objects.get(pk = compra.encargado.codigoEmpleado)
+                provedor = Proveedor.objects.get(pk = compra.proveedor.codigoProveedor)
 
-            canal.save()
+
+            else:
+                menudo = 12000 * cantidad
+                transporte = 7000* cantidad
+                deguello = 48200 * cantidad
+                pesoPorkilandia = Decimal(request.POST.get('pesoPorkilandia'))
+                cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gte = 150)# busca registros que el peso sea mayor o igual a 150
+                cantidadCanalCerdasChicas = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__lte = 150)# busca registros que el peso sea menor o igual a 150
+
+                incrementoCG = 35 * cantidadCanalCerdasGrandes.count()
+                incrementoCP = 32 * cantidadCanalCerdasChicas.count()
+
+                if pesoPorkilandia > 150:
+                    incrementoCG += 35
+                else:
+                    incrementoCP += 32
+
+
+                if pesoCanales == 0:#para cuando se ingresa la primera vez
+                    pesoCanales = 1000
+
+
+
+                pesoPie = pesoCanales + pesoPorkilandia + incrementoCG + incrementoCP
+                vrFactura = pesoPie * 4400 #--> 4400 es el valor establecido por granjas el paraiso
+                costoCanales = (vrFactura + deguello + transporte) - menudo
+                vrKiloCanal = ceil(costoCanales / (pesoCanales + pesoPorkilandia))
+                vrArrobaCanal = vrKiloCanal * 12.5
+
+                canal.vrKiloCanal = vrKiloCanal
+                canal.vrArrobaCanal= vrArrobaCanal
+
+            #se graba el valor de la factura
+            encargado = Empleado.objects.get(pk = compra.encargado.codigoEmpleado)
+            provedor = Proveedor.objects.get(pk = compra.proveedor.codigoProveedor)
+
+            compraUPD = Compra(
+                codigoCompra = compra.codigoCompra,
+                tipo = compra.tipo,
+                encargado = encargado,
+                proveedor = provedor,
+                fechaCompra = compra.fechaCompra,
+                vrCompra = vrFactura
+                )
+            compraUPD.save()
+            canal.save()# se guarda el canal
+
+            # Se guarda informacion adicional en el modelo recepcion
 
             PesoTotalCanales = 0
             TotalPesoPie = 0
@@ -445,6 +503,7 @@ def MarcarCanalDesposte(request, idcanal):
                               context_instance = RequestContext(request))
 
 
+#***********************************************PLANILLA DESPOSTE*******************************************************
 def GestionCanalDetalleDesposte(request, idplanilla):
 
     desposte = PlanillaDesposte.objects.get(pk = idplanilla)
@@ -491,7 +550,7 @@ def GestionCanalDetalleDesposte(request, idplanilla):
 
             producto = Producto.objects.get(pk = request.POST.get('producto'))
 
-            # si el producto es algunos de los productos en mencion se tomara el valor antes mensionados
+
             # se debe conservar el mismo IDProducto para que no se ocacionen errores
 
             if (producto.codigoProducto == 32):
@@ -516,7 +575,7 @@ def GestionCanalDetalleDesposte(request, idplanilla):
             else:
                  detalleDesposte.PesoProducto = request.POST.get('PesoProducto')
 
-            # si el producto es recorte se sumara al existente con el nuevo valor calculado
+            # si el producto es recorte, se sumara al existente con el nuevo valor calculado
 
             if producto.codigoProducto == 23:
                 detalleDesposte.PesoProducto = Decimal(request.POST.get('PesoProducto')) + recorte
@@ -591,6 +650,7 @@ def GestionCanalDetalleDesposte(request, idplanilla):
                               context_instance = RequestContext(request))
 
 
+#**************************************************COSTO DESPOSTE*******************************************************
 def CostoDesposte(request, idplanilla):
 
     desposte = PlanillaDesposte.objects.get(pk = idplanilla)
@@ -803,6 +863,7 @@ def GestionDetalleTraslado(request,idtraslado):
                                                         context_instance = RequestContext(request))
 
 
+#***************************************************SACRIFICIOS*********************************************************
 def GestionSacrificio(request,idrecepcion):
 
     recepcion = PlanillaRecepcion.objects.get(pk = idrecepcion)
@@ -877,8 +938,7 @@ def GestionSacrificio(request,idrecepcion):
                               context_instance = RequestContext(request))
 
 
-#*******************************************Recepcion de ganado*******************************************
-
+#*******************************************RECEPCION DE GANADO*********************************************************
 def GestionPlanillaRecepcion(request , idcompra):
 
     recepciones = PlanillaRecepcion.objects.filter(compra = idcompra)

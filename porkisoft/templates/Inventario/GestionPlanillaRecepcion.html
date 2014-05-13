@@ -31,9 +31,9 @@
             <td>{{ recepcion.transporte }}</td>
 
 
-            <td>
-                <a href="{% url 'Inventario.views.GestionCanal' recepcion.codigoRecepcion %}"><img src="{{ STATIC_URL }}img/adicionar.png"></a>
-                <a href="{% url 'Inventario.views.GestionSacrificio' recepcion.codigoRecepcion %}"><img src="{{ STATIC_URL }}img/vaca.png"></a>
+            <td style="font-weight: bold ; text-align: center">
+                <a href="{% url 'Inventario.views.GestionCanal' recepcion.codigoRecepcion %}">Canal</a>
+                <a href="{% url 'Inventario.views.GestionSacrificio' recepcion.codigoRecepcion %}">Sacrificio</a>
 
 
 

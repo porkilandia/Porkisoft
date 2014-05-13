@@ -19,8 +19,12 @@ $(document).on('ready', inicio);
 
      $('#tablaCompras').dataTable({
 
-         "sDom": '<"top"iflp<"clear">>',
-          "sPaginationType" : "full_numbers"
+         "bPaginate": true,
+         "bFilter": true,
+         "bSort": true,
+         "bInfo": true,
+         "bAutoWidth": true,
+         "bLengthChange": false
     });
      $('#tablaProductos').dataTable({
 

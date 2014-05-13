@@ -57,7 +57,8 @@ class CanalForm(ModelForm):
         super(CanalForm,self).__init__(*args, **kwargs)
 
         if (PlanillaDesposte.objects.all()):
-            self.fields['planilla'].queryset = PlanillaDesposte.objects.filter(fechaDesposte = datetime.today())
+            self.fields['planilla'].queryset = PlanillaDesposte.objects.all()
+            #self.fields['planilla'].queryset = PlanillaDesposte.objects.filter(fechaDesposte = datetime.today())
 
     class Meta:
         model=Canal

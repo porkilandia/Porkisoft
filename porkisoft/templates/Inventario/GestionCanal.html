@@ -50,7 +50,7 @@
             <th>Vr. Arroba Canal</th>
             <th>Genero</th>
             <th>Estado</th>
-            <th>-------</th>
+
 
 
         </tr>
@@ -60,7 +60,7 @@
               {% if cnl.estado == 1 %}<tr style="color: darkgreen; font-weight: bold">{% else %}<tr style="color: red">{% endif %}
             <td>{{ cnl.planilla }}</td>
             <td>{{ cnl.pesoFrigovito | floatformat }} Kg</td>
-            <td style="font-weight: bold">{{ cnl.pesoPorkilandia | floatformat }} Kg</td>
+            <td style="font-weight: bold"><a href="{% url 'Inventario.views.MarcarCanalDesposte' cnl.codigoCanal %}">{{ cnl.pesoPorkilandia | floatformat }} Kg</a></td>
             <td>{{ cnl.difPesos | floatformat }} Kg</td>
             <td>$ {{ cnl.vrKiloCanal }}</td>
             <td>$ {{ cnl.vrArrobaCanal }}</td>
@@ -70,9 +70,7 @@
             {% else %}
                 <td>Pendiente</td>
             {% endif %}
-            <td>
-                <a href="{% url 'Inventario.views.MarcarCanalDesposte' cnl.codigoCanal %}"><img src="{{ STATIC_URL }}img/carne.png"></a>
-            </td>
+            
 
         </tr>
 
