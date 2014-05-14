@@ -84,7 +84,7 @@ class Traslado(models.Model):
 
     codigoTraslado = models.AutoField(verbose_name='Codigo Traslado', primary_key=True)
     bodegaActual = models.ForeignKey(Bodega)
-    bodegaDestino = models.CharField(max_length=10,verbose_name='Bodega Destino')
+    bodegaDestino = models.CharField(max_length=20,verbose_name='Bodega Destino')
     empleado = models.ForeignKey(Empleado)
     fechaTraslado = models.DateField(verbose_name='Fecha',auto_now=True)
     estadoTraslado = models.CharField(verbose_name='Estado',max_length=9,choices=OpEstTraslado)
@@ -157,9 +157,9 @@ class DetalleCompra(models.Model):
     compra = models.ForeignKey(Compra)
     producto = models.ForeignKey(Producto, null=True, blank=True)
     ganado = models.ForeignKey(Ganado, null=True, blank=True)
-    pesoProducto = models.DecimalField(verbose_name = 'Peso Producto (grs)',max_digits=15   , decimal_places=3,null= True,default=0)
+    pesoProducto = models.DecimalField(verbose_name = 'Peso(grs)',max_digits=15   , decimal_places=3,null= True,default=0)
     unidades = models.IntegerField(verbose_name='Unidades', null= True,default=0)
-    vrCompraProducto = models.BigIntegerField(verbose_name = 'Valor de Compra')
+    vrCompraProducto = models.BigIntegerField(verbose_name = 'Valor sin IVA')
     subtotal = models.BigIntegerField(default=0)
     estado = models.BooleanField()
 

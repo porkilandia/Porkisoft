@@ -46,6 +46,7 @@ class CompraForm(ModelForm):
 class DetalleCompraForm(ModelForm):
     class Meta:
         model = DetalleCompra
+        exclude = ("ganado",)
 
 class DesposteForm(ModelForm):
     class Meta:
@@ -96,4 +97,7 @@ class PlanillaRecepcionForm(ModelForm):
         model = PlanillaRecepcion
         exclude = ("difPieCanal","cantCabezas",)
 
-
+class EnsalinadoForm(ModelForm):
+    class Meta:
+        model = Ensalinado
+        exclude = ("costoKilo" ,  "costoTotal",)

@@ -6,6 +6,10 @@ $(document).on('ready', inicio);
 
      $('#id_difPesos').on('focus',calculoCanal);
 
+     $('#id_subtotal').on('focus', calculoCompra);
+
+     $('#id_pesoProductoAntes').on('focus', calculoEnsalinado);
+
      $('#tablaTraslados').dataTable({
 
          "bPaginate": true,
@@ -72,14 +76,34 @@ function calculoGanado(){
 
 
 }
-     function calculoCanal(){
+function calculoCanal(){
 
          var pesoPorkilandia = $('#id_pesoPorkilandia').val();
          var pesoFrigovito = $('#id_pesoFrigovito').val();
          var totalCanal =  pesoFrigovito - pesoPorkilandia;
 
          $('#id_difPesos').val(totalCanal.toFixed(2));
-     }
+}
+
+function calculoCompra()
+{
+    var unidades = $('#id_unidades').val();
+    var vrUnitario = $('#id_vrCompraProducto').val();
+    var total = unidades * vrUnitario;
+
+    $('#id_subtotal').val(total);
+}
+
+function calculoEnsalinado()
+{
+    var pesoProducto = $('#id_pesoProducto').val();
+    var pesoSal = $('#id_pesoSal').val();
+    var pesoPapaina = $('#id_pesoPapaina').val();
+    var pesoAntes = parseFloat(pesoProducto) + parseFloat(pesoSal) + parseFloat(pesoPapaina);
+
+    $('#id_pesoProductoAntes').val(pesoAntes);
+
+}
 
 
 

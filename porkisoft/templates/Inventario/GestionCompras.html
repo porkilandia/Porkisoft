@@ -29,9 +29,11 @@
             <td style="font-weight: bold; text-align: center">
                 {% if compra.tipo == 'cerdos' or compra.tipo == 'cerdas' %}
                     <a href="{% url 'Inventario.views.GestionPlanillaRecepcion' compra.codigoCompra %}">Recepcion</a>
-                {% else %}
+                {% elif compra.tipo == 'ganado' %}
                     <a href="{% url 'Inventario.views.GestionDetalleCompra' compra.codigoCompra %}">Compras</a>
                     <a href="{% url 'Inventario.views.GestionPlanillaRecepcion' compra.codigoCompra %}">Recepcion</a>
+                {% else %}
+                    <a href="{% url 'Inventario.views.GestionDetalleCompra' compra.codigoCompra %}">Compras</a>
                 {% endif %}
 
             </td>

@@ -1,5 +1,18 @@
 from Inventario.models import *
 
+class Ensalinado(models.Model):
+    codigoEnsalinado = models.AutoField(primary_key=True)
+    fechaEnsalinado = models.DateField(verbose_name='Fecha',auto_now=True)
+    producto = models.ForeignKey(Producto)
+    pesoProducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3)
+    pesoSal = models.DecimalField(verbose_name='Peso Sal', max_digits=9, decimal_places=3)
+    pesoPapaina = models.DecimalField(verbose_name='Peso Papaina', max_digits=9, decimal_places=3)
+    pesoProductoAntes = models.DecimalField(verbose_name='Peso pre', max_digits=9, decimal_places=3, default=0)
+    pesoProductoDespues = models.DecimalField(verbose_name='Peso pos', max_digits=9, decimal_places=3, default=0)
+    costoKilo = models.IntegerField(verbose_name='Costo Kilo', default=0)
+    costoTotal = models.IntegerField(verbose_name='Costo Total', default=0)
+
+
 
 class Enlagunado(models.Model):
     codigoEnlagunado = models.AutoField(primary_key=True)

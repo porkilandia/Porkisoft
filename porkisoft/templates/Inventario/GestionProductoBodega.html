@@ -27,13 +27,8 @@
             <td >{{ productobodega.pesoProductoKilos}}</td>
             <td>{{ productobodega.pesoProductoStock }}</td>
             <td>{{ productobodega.unidadesStock }}</td>
-
             <td>
-                {% if productobodega.pesoProductoStock > 5000 %}
-                     <a href="/traslado/"><img src="{{ STATIC_URL }}img/traslado.png"></a>
-                {% else %}
-                    <a href="/compra/"><img src="{{ STATIC_URL }}img/pedido.png"></a>
-                {% endif %}
+                <a href="{% url 'Inventario.views.GestionEnsalinado' productobodega.producto.codigoProducto %}">Ensalinado</a>
             </td>
 
         </tr>
