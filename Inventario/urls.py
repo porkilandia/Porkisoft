@@ -27,6 +27,7 @@ urlpatterns = patterns('',
     url(r'^costoDesposte/(?P<idplanilla>\d+)',CostoDesposte),
 
     url(r'^ensalinados/(?P<idproducto>\d+)', GestionEnsalinado),
+    url(r'^verduras/(?P<idDetcompra>\d+)', GestionVerduras),
 
     url(r'^empleado/$',GestionEmpleados),
     url(r'^detcompra/(?P<idcompra>\d+)',GestionDetalleCompra),

@@ -4,10 +4,6 @@ from math import ceil
 
 from django.shortcuts import render_to_response, HttpResponseRedirect, render
 from django.template import RequestContext
-from django.views.generic import ListView ,DetailView, FormView,TemplateView
-from django.views.generic.edit import FormMixin
-from django.views.generic.base import TemplateResponseMixin,ContextMixin,View
-from django.core.urlresolvers import reverse_lazy
 
 from Inventario.Forms.forms import *
 from Inventario.models import *
@@ -211,21 +207,11 @@ def GestionGanado(request,idcompra):
     ganados = Ganado.objects.order_by('-codigoGanado')
     compra = Compra.objects.get(pk = idcompra)
     detallecompra = DetalleCompra()
-    ganado = Ganado()
-
-
 
     if request.method == 'POST':
         formulario = GanadoForm(request.POST)
         if formulario.is_valid():
-            formulario.save()
-
-            ganado.codigoGanado = ganados[0].codigoGanado
-            ganado.genero = request.POST.get('genero')
-            ganado.pesoEnPie = request.POST.get('pesoEnPie')
-            ganado.precioKiloEnPie = request.POST.get('precioKiloEnPie')
-            ganado.precioTotal = request.POST.get('precioTotal')
-            ganado.difPieCanal = request.POST.get('difPieCanal')
+            ganado = formulario.save()
 
             detallecompra.compra = compra
             detallecompra.ganado = ganado
@@ -235,8 +221,6 @@ def GestionGanado(request,idcompra):
             detallecompra.estado = False
             detallecompra.subtotal = ganado.precioTotal
             detallecompra.save()
-
-
 
             artCompra = DetalleCompra.objects.filter(compra = idcompra)
             totalCompra = 0
@@ -248,18 +232,8 @@ def GestionGanado(request,idcompra):
             for dcmp in artCompra:
                 totalCompra += dcmp.subtotal
 
-            compraTotal = Compra(
-                                codigoCompra = compra.codigoCompra,
-                                encargado = compra.encargado,
-                                proveedor = compra.proveedor,
-                                fechaCompra = compra.fechaCompra,
-                                vrCompra = totalCompra,
-                                tipo = compra.tipo
-                                )
-
-
-            compraTotal.save()
-
+            compra.vrCompra = totalCompra
+            compra.save()
 
             return HttpResponseRedirect('/ganado/'+idcompra)
     else:
@@ -314,14 +288,9 @@ def GestionDetalleCompra(request,idcompra):
             for dcmp in detcompras: # clacular los totales de la lista de detalles de subproducto
                 totalCompra += dcmp.subtotal
 
-            compraTotal = Compra(
-                                codigoCompra = compra.codigoCompra,
-                                encargado = compra.encargado,
-                                proveedor = compra.proveedor,
-                                fechaCompra = compra.fechaCompra,
-                                vrCompra = totalCompra )
+            compra.vrCompra = totalCompra
+            compra.save()
 
-            compraTotal.save()
 
             return HttpResponseRedirect('/detcompra/'+ idcompra)
     else:
@@ -451,19 +420,10 @@ def GestionCanal(request,idrecepcion):
                 canal.vrArrobaCanal= vrArrobaCanal
 
             #se graba el valor de la factura
-            encargado = Empleado.objects.get(pk = compra.encargado.codigoEmpleado)
-            provedor = Proveedor.objects.get(pk = compra.proveedor.codigoProveedor)
-
-            compraUPD = Compra(
-                codigoCompra = compra.codigoCompra,
-                tipo = compra.tipo,
-                encargado = encargado,
-                proveedor = provedor,
-                fechaCompra = compra.fechaCompra,
-                vrCompra = vrFactura
-                )
-            compraUPD.save()
-            canal.save()# se guarda el canal
+            compra.vrCompra = vrFactura
+            compra.save()
+            # se guarda el canal
+            canal.save()
 
             # Se guarda informacion adicional en el modelo recepcion
 
@@ -471,8 +431,7 @@ def GestionCanal(request,idrecepcion):
             TotalPesoPie = 0
             canal = Canal.objects.filter(recepcion = idrecepcion)
             detCompra = DetalleCompra.objects.filter(compra = compra.codigoCompra)
-            empleado = Empleado.objects.get(pk = recepcion.empleado.codigoEmpleado)
-            provedor= Proveedor.objects.get(pk = recepcion.provedor.codigoProveedor)
+
 
             if recepcion.tipoGanado == 'Mayor':
                 for det in detCompra:
@@ -485,19 +444,9 @@ def GestionCanal(request,idrecepcion):
             for cnl in canal:
                 PesoTotalCanales += cnl.pesoPorkilandia
 
-            recepcionUPD = PlanillaRecepcion(
-                                            codigoRecepcion = recepcion.codigoRecepcion,
-                                            compra = compra,
-                                            empleado = empleado,
-                                            tipoGanado = recepcion.tipoGanado,
-                                            fechaRecepcion = recepcion.fechaRecepcion,
-                                            cantCabezas = recepcion.cantCabezas,
-                                            provedor = provedor,
-                                            transporte = recepcion.transporte,
-                                            difPieCanal = ceil(((Decimal(TotalPesoPie) - PesoTotalCanales)*100)/Decimal(TotalPesoPie))
-            )
+            recepcion.difPieCanal = ceil(((Decimal(TotalPesoPie) - PesoTotalCanales)*100)/Decimal(TotalPesoPie))
+            recepcion.save()
 
-            recepcionUPD.save()
 
             return HttpResponseRedirect('/canal/'+ idrecepcion)
     else:
@@ -603,16 +552,9 @@ def GestionCanalDetalleDesposte(request, idplanilla):
             if producto.codigoProducto == 23:
                 detalleDesposte.PesoProducto = Decimal(request.POST.get('PesoProducto')) + recorte
 
-
             detalleDesposte.save()
 
-            bodega = Bodega.objects.get(pk = 5)
-            bodegaprodID = ProductoBodega.objects.get(bodega = 5,producto = producto.codigoProducto )
-
-            bodegaProducto = ProductoBodega()
-            bodegaProducto.id = bodegaprodID.id
-            bodegaProducto.producto = producto
-            bodegaProducto.bodega = bodega
+            bodegaProducto = ProductoBodega.objects.get(bodega = 5,producto = producto.codigoProducto )
 
             if producto.grupo.id == 4 :
                 bodegaProducto.pesoProductoStock = bodegaprodID.pesoProductoStock
@@ -627,12 +569,9 @@ def GestionCanalDetalleDesposte(request, idplanilla):
             canales = Canal.objects.filter(planilla = idplanilla).filter(estado = True)
             detalleDespostes = DetallePlanilla.objects.filter(planilla = idplanilla)
 
-
-
             totalDesposte = 0
             totalCanal = 0
             Desecho = 0
-
 
             for detplanilla in detalleDespostes:
                 producto = Producto.objects.get(pk = detplanilla.producto.codigoProducto)
@@ -647,20 +586,12 @@ def GestionCanalDetalleDesposte(request, idplanilla):
 
             totalCanal *= 1000
 
-
-
             difCanalDesposte = (totalCanal - totalDesposte)/totalReses
 
-            desposte = PlanillaDesposte(
-                codigoPlanilla = idplanilla,
-                fechaDesposte = desposte.fechaDesposte,
-                resesADespostar = totalReses,
-                totalDespostado = totalDesposte - Desecho,
-                totalCanal = totalCanal,
-                difCanalADespostado = difCanalDesposte,
-                costoProduccionTotal = 0
-            )
-
+            desposte.resesADespostar = totalReses
+            desposte.totalDespostado = totalDesposte - Desecho
+            desposte.totalCanal = totalCanal
+            desposte.difCanalADespostado = difCanalDesposte
             desposte.save()
 
             return HttpResponseRedirect('/detalleDesposte/'+ idplanilla)
@@ -750,21 +681,12 @@ def CostoDesposte(request, idplanilla):
         producto = Producto.objects.get(pk = detplanilla.producto.codigoProducto)
 
         costoKiloProducto = round(Decimal(arrobaAjustada) * producto.porcentajeCalidad)/ 100 # aplicamos el nuevo valor de la arroba para
-        grupo = Grupo.objects.get(pk = producto.grupo.id)                                    #recalcular el kilo de  ese producto
+                                                                                           #recalcular el kilo de  ese producto
 
-        productoUPD = Producto()
-        productoUPD.codigoProducto = producto.codigoProducto
-        productoUPD.grupo = grupo
-        productoUPD.nombreProducto = producto.nombreProducto
-        productoUPD.costoProducto = costoKiloProducto
-        productoUPD.vrVentaProducto = producto.vrVentaProducto
-        productoUPD.utilidadProducto = producto.utilidadProducto
-        productoUPD.rentabilidadProducto = producto.rentabilidadProducto
-        productoUPD.porcentajeCalidad = producto.porcentajeCalidad
-        productoUPD.gravado = producto.gravado
-        productoUPD.excento = producto.excento
-        productoUPD.excluido = producto.excluido
-        productoUPD.save()# se graba el costo del producto
+        # se graba el costo del producto
+        producto.costoProducto = costoKiloProducto
+        producto.save()
+
 
     canales = Canal.objects.filter(planilla = idplanilla).filter(estado = True)
 
@@ -845,8 +767,6 @@ def GestionDetalleTraslado(request,idtraslado):
                                                        producto = request.POST.get('producto'))
 
 
-            producto = Producto.objects.get(pk = request.POST.get('producto'))
-            #subproducto = SubProducto.objects.get(pk = request.POST.get('subproducto'))
 
             pesoActualizado = bodegaActual.pesoProductoStock - int(request.POST.get('pesoTraslado'))
             unidadesActualizadas = bodegaActual.unidadesStock - int(request.POST.get('unidadesTraslado'))
@@ -854,26 +774,17 @@ def GestionDetalleTraslado(request,idtraslado):
             pesoDestinoActualizado = bodegaDestino.pesoProductoStock + int(request.POST.get('pesoTraslado'))
             unidadesDestinoActualizadas = bodegaActual.unidadesStock + int(request.POST.get('unidadesTraslado'))
 
-            bodegaactual = ProductoBodega()
-            bodegaactual.bodega = Bodega.objects.get(pk = bodegaActual.bodega.codigoBodega)
-            bodegaactual.id = bodegaActual.id
-            bodegaactual.producto = producto
-            bodegaactual.pesoProductoStock = pesoActualizado
-            bodegaactual.pesoProductoKilos = pesoActualizado / 1000
-            bodegaactual.unidadesStock = unidadesActualizadas
+            #Se extrae de la bodega actual
+            bodegaActual.pesoProductoStock = pesoActualizado
+            bodegaActual.pesoProductoKilos = pesoActualizado / 1000
+            bodegaActual.unidadesStock = unidadesActualizadas
+            bodegaActual.save()
 
-            bodegaactual.save()
-
-            bodegadestino = ProductoBodega()
-            bodegadestino.id = bodegaDestino.id
-            bodegadestino.bodega = Bodega.objects.get(pk = bodegaDestino.bodega.codigoBodega)
-            bodegadestino.producto = producto
-            bodegadestino.pesoProductoKilos = pesoDestinoActualizado / 1000
-            bodegadestino.pesoProductoStock = pesoDestinoActualizado
-            bodegadestino.unidadesStock = unidadesDestinoActualizadas
-
-
-            bodegadestino.save()
+            #Se graba en la bodega destino
+            bodegaDestino.pesoProductoStock = pesoDestinoActualizado
+            bodegaDestino.pesoProductoKilos = pesoDestinoActualizado / 1000
+            bodegaDestino.unidadesStock= unidadesDestinoActualizadas
+            bodegaDestino.save()
 
             return HttpResponseRedirect('/dettraslado/'+ idtraslado)
     else:
@@ -933,20 +844,13 @@ def GestionSacrificio(request,idrecepcion):
 
             for productos  in prodLimpieza:
 
-
                 producto = Producto.objects.get(nombreProducto = productos )
-                bodegaDestino = Bodega.objects.get(codigoBodega= 5)
                 existencia = ProductoBodega.objects.get(producto = producto.codigoProducto , bodega = 5)
 
+                existencia.producto = producto
+                existencia.pesoProductoStock = existencia.pesoProductoStock + Decimal(request.POST.get(item[cont]))
+                existencia.save()
 
-
-                bodega = ProductoBodega()
-                bodega.id = existencia.id
-                bodega.producto = producto
-                bodega.bodega = bodegaDestino
-                bodega.pesoProductoStock = existencia.pesoProductoStock + Decimal(request.POST.get(item[cont]))
-                bodega.unidadesStock = 0
-                bodega.save()
                 cont +=1
 
 
@@ -971,17 +875,10 @@ def GestionPlanillaRecepcion(request , idcompra):
     if request.method == 'POST':
         formulario = PlanillaRecepcionForm(request.POST)
         if formulario.is_valid():
+            Recepcion = formulario.save()
 
-            compra = Compra.objects.get(pk = idcompra)
-            empleado = Empleado.objects.get(pk = request.POST.get('empleado'))
-            provedor = Proveedor.objects.get(pk = request.POST.get('provedor'))
-
-            Recepcion = PlanillaRecepcion()
-            Recepcion.compra =compra
-            Recepcion.empleado = empleado
             Recepcion.tipoGanado = request.POST.get('tipoGanado')
             Recepcion.cantCabezas = detCompra.count()
-            Recepcion.provedor= provedor
             Recepcion.transporte = request.POST.get('transporte')
             Recepcion.save()
 
@@ -1012,7 +909,10 @@ def GestionEnsalinado(request,idproducto):
             cif = 30 * (ensalinado.pesoProductoDespues / 1000)
             mod = 20 * (ensalinado.pesoProductoDespues / 1000)
             costoTotal = cif + mod + costoInsumos
-            costoKilo = ceil(costoTotal / (ensalinado.pesoProductoDespues /1000))
+            costoKilo = ceil(
+
+
+                costoTotal / (ensalinado.pesoProductoDespues /1000))
 
             ensalinado.pesoProductoDespues /= 1000
             ensalinado.pesoProductoAntes /= 1000
@@ -1022,35 +922,72 @@ def GestionEnsalinado(request,idproducto):
             ensalinado.save()
 
             #Se guarda la cantidad a restar para la sal
-            insumo = Producto.objects.get(pk = 94)
             salBodega = ProductoBodega.objects.get(bodega = 6 , producto = 94)
-            bodegaUPD = Bodega.objects.get(pk = 6)
-
-
-            bodega = ProductoBodega()
-            bodega.bodega = bodegaUPD
-            bodega.id = salBodega.id
-            bodega.producto = insumo
-            bodega.pesoProductoStock -= ensalinado.pesoSal
-            bodega.save()
+            salBodega.pesoProductoStock -= ensalinado.pesoSal
+            salBodega.save()
 
             #Se guarda la cantidad a restar para la Papaina
-            insumo = Producto.objects.get(pk = 95)
+
             salBodega = ProductoBodega.objects.get(bodega = 6 , producto = 95)
-
-
-            bodega = ProductoBodega()
-            bodega.bodega = bodegaUPD
-            bodega.id = salBodega.id
-            bodega.producto = insumo
-            bodega.pesoProductoStock -= ensalinado.pesoPapaina
-            bodega.save()
-
-
+            salBodega.pesoProductoStock -= ensalinado.pesoPapaina
+            salBodega.save()
 
             return HttpResponseRedirect('/ensalinados/'+ idproducto)
     else:
         formulario = EnsalinadoForm(initial={'producto':idproducto, 'pesoProducto':bodegaProducto.pesoProductoStock})
 
     return render_to_response('Inventario/GestionEnsalinados.html',{'formulario':formulario,'ensalinados':ensalinados },
+                              context_instance = RequestContext(request))
+
+def GestionVerduras(request,idDetcompra):
+    detalleCompra = DetalleCompra.objects.get(pk = idDetcompra)
+    verduras = LimpiezaVerduras.objects.filter(compra = detalleCompra.id )
+    compra = Compra.objects.get(pk = detalleCompra.compra.codigoCompra)
+    producto = Producto.objects.get(pk = detalleCompra.producto.codigoProducto)
+    detalles = DetalleCompra.objects.filter(compra = compra.codigoCompra)
+
+    pesoDetalle = 0
+
+    for detalle in detalles:
+        pesoDetalle += detalle.pesoProducto
+
+    if request.method == 'POST':
+
+        formulario = LimpiezaVerdurasForm(request.POST)
+        if formulario.is_valid():
+            verdura = formulario.save()
+
+            #Calculo del costo de la verdura limpia
+
+            vrCompra = detalleCompra.vrCompraProducto
+            porcentajeTransporte = (verdura.pesoProducto * 100) /pesoDetalle
+            transporte = compra.vrTransporte * porcentajeTransporte
+            costo = vrCompra + verdura.cif + verdura.mod + transporte
+            costoKilo = costo / verdura.pesoProducto
+
+            verdura.vrKilo = costoKilo
+            verdura.save()
+
+            #guardamos el producto en Bodega
+
+            bodegaProducto = ProductoBodega.objects.get(bodega = 6 , producto = producto.codigoProducto )
+            bodegaProducto.pesoProductoStock += verdura.pesoProducto * 1000
+            bodegaProducto.pesoProductoKilos = bodegaProducto.pesoProductoStock / 1000
+            bodegaProducto.save()
+
+            #guardamos el costo del producto
+
+            producto.costoProducto = costoKilo
+            producto.save()
+
+            # se cambia el estado a verdadero para producto Limpio!!!
+            detalleCompra.estado = True
+            detalleCompra.save()
+
+
+            return HttpResponseRedirect('/verduras/'+ idDetcompra)
+    else:
+        formulario = LimpiezaVerdurasForm(initial={'compra':idDetcompra,'producto': detalleCompra.producto.codigoProducto})
+
+    return render_to_response('Inventario/GestionVerduras.html',{'formulario':formulario,'verduras':verduras },
                               context_instance = RequestContext(request))

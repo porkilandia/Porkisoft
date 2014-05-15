@@ -45,7 +45,11 @@
         </thead>
         <tbody>
             {% for detcompra in detcompras %}
-        <tr>
+                {% if detcompra.estado == False %}
+                    <tr style="color: red">
+                {% else %}
+                    <tr style="color: green">
+                {% endif %}
 
             {% if detcompra.producto == null %}<td>N/A</td>{% else %}<td>{{ detcompra.producto }}</td>{% endif %}
             {% if detcompra.ganado == null %}<td>N/A</td>{% else %}<td>{{ detcompra.ganado }}</td>{% endif %}
@@ -53,7 +57,11 @@
             <td>{{ detcompra.unidades }}</td>
             <td>$ {{ detcompra.vrCompraProducto }}</td>
             <td>$ {{ detcompra.subtotal }}</td>
-            {% if detcompra.estado == False %}<td>Pendiete</td>{% else %}<td><a href="/desposte/">Para Desposte</a></td>{% endif %}
+            {% if detcompra.estado == False %}
+                <td><a href="{% url 'Inventario.views.GestionVerduras' detcompra.id %}">Pendiete</a></td>
+            {% else %}
+                <td><a href="{% url 'Inventario.views.GestionVerduras' detcompra.id %}">Ver Detalles</a></td>
+            {% endif %}
 
         </tr>
             {% empty %}

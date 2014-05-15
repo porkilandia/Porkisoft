@@ -101,3 +101,7 @@ class EnsalinadoForm(ModelForm):
     class Meta:
         model = Ensalinado
         exclude = ("costoKilo" ,  "costoTotal",)
+
+class LimpiezaVerdurasForm(ModelForm):
+    class Meta:
+        model = LimpiezaVerduras

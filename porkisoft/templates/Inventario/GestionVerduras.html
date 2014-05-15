@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Verduras{% endblock titulo %}
+{% block contenido %}
+
+    <h2>Limpieza de verduras</h2>
+    <table  class="table-striped" >
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso Producto</th>
+            <th>Vr. Kilo</th>
+            <th>Cif</th>
+            <th>Mod</th>
+
+        </tr>
+        </thead>
+        {% for verdura in verduras %}
+        <tr>
+            <td>{{ verdura.producto }}</td>
+            <td>{{ verdura.pesoProducto | floatformat }}Kg</td>
+            <td>$ {{ verdura.vrKilo}}</td>
+            <td>{{ verdura.cif }}</td>
+            <td>{{ verdura.mod }}</td>
+
+
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="12">
+                   Ningun Registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarProducto">
+             <legend>Nuevo Limpieza</legend>
+             {{ formulario }}
+             <br/><br/>
+             <legend>Acciones</legend>
+             <input class="btn btn-primary" value="Guardar" type="submit">
+         </fieldset>
+    </form>
+
+{% endblock contenido %}

@@ -12,7 +12,13 @@ class Ensalinado(models.Model):
     costoKilo = models.IntegerField(verbose_name='Costo Kilo', default=0)
     costoTotal = models.IntegerField(verbose_name='Costo Total', default=0)
 
-
+class LimpiezaVerduras(models.Model):
+    compra = models.ForeignKey(DetalleCompra)
+    producto = models.ForeignKey(Producto)
+    cif = models.DecimalField(verbose_name='CIF', max_digits=9, decimal_places=3, default=0)
+    mod = models.DecimalField(verbose_name='MOD', max_digits=9, decimal_places=3, default=0)
+    pesoProducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3, default=0)
+    vrKilo = models.IntegerField(verbose_name='Vr. Kilo',default=0)
 
 class Enlagunado(models.Model):
     codigoEnlagunado = models.AutoField(primary_key=True)

@@ -132,6 +132,7 @@ class Compra(models.Model):
     proveedor = models.ForeignKey(Proveedor)
     fechaCompra = models.DateField(verbose_name='Fecha', auto_now=True, blank=True,null=True)
     vrCompra = models.IntegerField(verbose_name='Valor Compra', default=0)
+    vrTransporte = models.IntegerField(verbose_name='Transporte',default= 0)
 
     def __unicode__(self):
         return self.codigoCompra
@@ -162,6 +163,9 @@ class DetalleCompra(models.Model):
     vrCompraProducto = models.BigIntegerField(verbose_name = 'Valor sin IVA')
     subtotal = models.BigIntegerField(default=0)
     estado = models.BooleanField()
+
+    def __unicode__(self):
+        return self.id
 
 
 class PlanillaRecepcion(models.Model):
