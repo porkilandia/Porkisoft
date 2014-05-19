@@ -30,16 +30,16 @@ $(document).on('ready', inicio);
          "bAutoWidth": true,
          "bLengthChange": false
     });
-     $('#tablaProductos').dataTable({
 
+     $('#tablaProductos').dataTable( {
         "bPaginate": true,
          "bFilter": true,
          "bSort": true,
          "bInfo": true,
          "bAutoWidth": true,
          "bLengthChange": false
+    } );
 
-    });
     $('#ListaSubp').dataTable({
 
          "sDom": '<"top"iflp<"clear">>',
@@ -47,8 +47,12 @@ $(document).on('ready', inicio);
     });
      $('#tablabodegas').dataTable({
 
-         "sDom": '<"top"iflp<"clear">>',
-          "sPaginationType" : "full_numbers"
+         "bPaginate": true,
+         "bFilter": true,
+         "bSort": true,
+         "bInfo": true,
+         "bAutoWidth": true,
+         "bLengthChange": false
     });
      $('#tablaproveedor').dataTable({
 
@@ -88,10 +92,20 @@ function calculoCanal(){
 function calculoCompra()
 {
     var unidades = $('#id_unidades').val();
+    var pesoProducto = $('#id_pesoProducto').val();
     var vrUnitario = $('#id_vrCompraProducto').val();
-    var total = unidades * vrUnitario;
 
-    $('#id_subtotal').val(total);
+    if (unidades !=0){
+
+        var totalUnidades = unidades * vrUnitario;
+        $('#id_subtotal').val(totalUnidades);
+    }
+    if (pesoProducto != 0){
+
+        var totalPeso = (pesoProducto/ 1000) * vrUnitario;
+        $('#id_subtotal').val(totalPeso);
+    }
+
 }
 
 function calculoEnsalinado()

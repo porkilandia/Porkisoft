@@ -26,7 +26,7 @@ def listaProductos(request):
         if formulario.is_valid():
             producto = formulario.save()
 
-            if producto.grupo.id == 5:
+            if producto.grupo.id == 5 or producto.grupo.id == 10 :# insumos o BasicosProcesados solo se grabaran en la bodega de Taller
 
                 bodegaInicial = ProductoBodega()
                 bodega = Bodega.objects.get(pk = 6)
@@ -36,6 +36,7 @@ def listaProductos(request):
                 bodegaInicial.pesoProductoStock = 0
                 bodegaInicial.unidadesStock = 0
                 bodegaInicial.save()
+
             else:
 
                 for bod in Bodega.objects.all():
@@ -268,20 +269,34 @@ def GestionDetalleCompra(request,idcompra):
                 totalCompra += dcmp.subtotal
 
     if request.method == 'POST':
-        formulario = DetalleCompraForm(request.POST)
+        formulario = DetalleCompraForm(idcompra,request.POST)
         if formulario.is_valid():
             detalleCompra = formulario.save()
 
-            producto = Producto.objects.get(pk = request.POST.get('producto'))
-            productoBodega = ProductoBodega.objects.get(bodega = 6,producto = producto.codigoProducto)
-            bodega = ProductoBodega()
+            productoBodega = ProductoBodega.objects.get(bodega = 6,producto = detalleCompra.producto.codigoProducto)
+            producto = Producto.objects.get(pk = detalleCompra.producto.codigoProducto)
 
-            bodega.producto = producto
-            bodega.id = productoBodega.id
-            bodega.bodega = productoBodega.bodega
-            bodega.pesoProductoStock = detalleCompra.pesoProducto
+            # Si el producto es un insumo
 
-            bodega.save()
+            if detalleCompra.producto.grupo.id == 5 :
+
+                productoBodega.pesoProductoStock += detalleCompra.pesoProducto
+                productoBodega.save()
+
+                producto.costoProducto = detalleCompra.vrCompraProducto
+                producto.save()
+
+            # Si el producto es una verdura
+            elif detalleCompra.producto.grupo.id == 6:
+
+                productoBodega.pesoProductoStock += 0
+                productoBodega.save()
+
+            elif detalleCompra.producto.grupo.id == 7:
+
+                productoBodegaCV = ProductoBodega.objects.get(bodega = 5,producto = detalleCompra.producto.codigoProducto)
+                productoBodegaCV.pesoProductoStock += detalleCompra.pesoProducto
+                productoBodegaCV.save()
 
             detcompras = DetalleCompra.objects.filter(compra = idcompra)
             totalCompra  = 0
@@ -294,7 +309,7 @@ def GestionDetalleCompra(request,idcompra):
 
             return HttpResponseRedirect('/detcompra/'+ idcompra)
     else:
-        formulario = DetalleCompraForm(initial={'compra':idcompra})
+        formulario = DetalleCompraForm(idcompra,initial={'compra':idcompra })
 
     return render_to_response('Inventario/GestionDetalleCompra.html',{'formulario':formulario,
                                                          'compra': compra,
@@ -557,7 +572,7 @@ def GestionCanalDetalleDesposte(request, idplanilla):
             bodegaProducto = ProductoBodega.objects.get(bodega = 5,producto = producto.codigoProducto )
 
             if producto.grupo.id == 4 :
-                bodegaProducto.pesoProductoStock = bodegaprodID.pesoProductoStock
+                bodegaProducto.pesoProductoStock = bodegaProducto.pesoProductoStock
             else:
                 bodegaProducto.pesoProductoStock += int(request.POST.get('PesoProducto'))
 
@@ -909,10 +924,7 @@ def GestionEnsalinado(request,idproducto):
             cif = 30 * (ensalinado.pesoProductoDespues / 1000)
             mod = 20 * (ensalinado.pesoProductoDespues / 1000)
             costoTotal = cif + mod + costoInsumos
-            costoKilo = ceil(
-
-
-                costoTotal / (ensalinado.pesoProductoDespues /1000))
+            costoKilo = ceil(costoTotal / (ensalinado.pesoProductoDespues /1000))
 
             ensalinado.pesoProductoDespues /= 1000
             ensalinado.pesoProductoAntes /= 1000
@@ -921,6 +933,17 @@ def GestionEnsalinado(request,idproducto):
             ensalinado.costoKilo = costoKilo
             ensalinado.save()
 
+            # se guarda en el Producto el Costo del Kilo
+            piernaEnsalinada = Producto.objects.get(nombreProducto = 'Pierna Ensalinada')
+            piernaEnsalinada.costoProducto = costoKilo
+            piernaEnsalinada.save()
+
+            #Se guarda la cantidad final en la bodega de taller
+            bodegaEnsalinado = ProductoBodega.objects.get(bodega = 6,producto = piernaEnsalinada.codigoProducto)
+            bodegaEnsalinado += ensalinado.pesoProductoDespues * 1000
+            bodegaEnsalinado.save()
+
+
             #Se guarda la cantidad a restar para la sal
             salBodega = ProductoBodega.objects.get(bodega = 6 , producto = 94)
             salBodega.pesoProductoStock -= ensalinado.pesoSal
@@ -928,9 +951,9 @@ def GestionEnsalinado(request,idproducto):
 
             #Se guarda la cantidad a restar para la Papaina
 
-            salBodega = ProductoBodega.objects.get(bodega = 6 , producto = 95)
-            salBodega.pesoProductoStock -= ensalinado.pesoPapaina
-            salBodega.save()
+            PapainaBodega = ProductoBodega.objects.get(bodega = 6 , producto = 95)
+            PapainaBodega.pesoProductoStock -= ensalinado.pesoPapaina
+            PapainaBodega.save()
 
             return HttpResponseRedirect('/ensalinados/'+ idproducto)
     else:
@@ -991,3 +1014,100 @@ def GestionVerduras(request,idDetcompra):
 
     return render_to_response('Inventario/GestionVerduras.html',{'formulario':formulario,'verduras':verduras },
                               context_instance = RequestContext(request))
+
+def GestionCondimento(request):
+    condimentos  = Condimento.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = CondimentoForm(request.POST)
+        if formulario.is_valid():
+            condimento = formulario.save()
+
+            #Guardamos el condimento producido en Bodega
+            bodega = ProductoBodega.objects.get(bodega = 6, producto__nombreProducto = 'Condimento Natural')
+            bodega.pesoProductoStock += condimento.pesoCondimento
+            bodega.save()
+
+            #guardamos el peso de producto en Kg ya que al ingresar este se especifica en gramos
+            condimento.pesoCondimento = (condimento.pesoCondimento / 1000)
+            condimento.save()
+
+            return HttpResponseRedirect('/condimento/')
+    else:
+        formulario = CondimentoForm()
+
+    return render_to_response('Inventario/GestionCondimento.html',{'formulario':formulario,'condimentos':condimentos },
+                              context_instance = RequestContext(request))
+
+def GestionDetalleCondimento(request,idcondimento):
+    condimento = Condimento.objects.get(pk = idcondimento)
+    detalleCondimentos = DetalleCondimento.objects.filter(condimento = idcondimento)
+
+    if request.method == 'POST':
+
+        formulario = DetalleCondimentoForm(request.POST)
+        if formulario.is_valid():
+            detalle = formulario.save()
+
+            producto = Producto.objects.get(pk = detalle.producto.codigoProducto)
+            costoProducto = producto.costoProducto
+            costoTotalVerduras =(condimento.cantFormulas * costoProducto )* (detalle.pesoProducto/1000)
+
+            # Se resta la cantidad de producrto utilizado en las formulas de condimento y se graba el registro
+            bodega = ProductoBodega.objects.get(bodega = 6, producto = detalle.producto.codigoProducto)
+            bodega.pesoProductoStock -= (detalle.pesoProducto * condimento.cantFormulas)
+            bodega.save()
+
+            detalle.costoProducto = costoProducto
+            detalle.costoTotalProducto = costoTotalVerduras
+            detalle.pesoProducto /= 1000
+
+            detalle.save()
+
+
+
+            return HttpResponseRedirect('/detallecondimento/'+ idcondimento)
+    else:
+        formulario = DetalleCondimentoForm(initial={'condimento':idcondimento})
+
+    return render_to_response('Inventario/GestionDetalleCondimento.html',{'formulario':formulario,
+                                                                   'condimento': condimento,'idcondimento':idcondimento,
+                                                                   'detalleCondimentos':detalleCondimentos },
+                              context_instance = RequestContext(request))
+
+def CostoCondimento(request,idcondimento):
+
+    condimento = Condimento.objects.get(pk = idcondimento)
+    detalleCondimentos = DetalleCondimento.objects.filter(condimento = idcondimento)
+    formulario = DetalleCondimentoForm(initial={'condimento':idcondimento})
+
+    pesoCondProcesado = condimento.pesoCondimento
+    costoVerduras = 0
+
+    for costo in detalleCondimentos:
+        costoVerduras += costo.costoTotalProducto
+
+    mod = 54 * pesoCondProcesado
+    cif = 60 * pesoCondProcesado
+    costoCondProsecesado = costoVerduras + cif + mod
+    costoLitroCond = ceil(costoCondProsecesado/ pesoCondProcesado)
+
+    #Se graban todos los calculos realizados
+
+    condimento.costoLitroCondimento = costoLitroCond
+    condimento.costoCondimento = ceil(costoCondProsecesado)
+
+    condimento.save()
+
+    producto = Producto.objects.get(nombreProducto = 'Condimento Natural')
+    producto.costoProducto = costoLitroCond
+    producto.save()
+
+
+
+    return render_to_response('Inventario/GestionDetalleCondimento.html',{'formulario':formulario,
+                                                                   'condimento': condimento,'idcondimento':idcondimento,
+                                                                   'detalleCondimentos':detalleCondimentos },
+                              context_instance = RequestContext(request))
+

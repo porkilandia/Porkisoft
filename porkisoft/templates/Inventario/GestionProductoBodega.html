@@ -4,7 +4,7 @@
 {% block contenido %}
 
     <h2>Productos Por bodega</h2>
-    <table id="tablabodegas" class="table" >
+    <table id="tablabodegas" class="table" style="width: 100%">
 
         <thead>
         <tr>
@@ -24,12 +24,19 @@
             {% endif %}
             <td>{{ productobodega.producto}}</td>
             <td>{{ productobodega.bodega }}</td>
-            <td >{{ productobodega.pesoProductoKilos}}</td>
-            <td>{{ productobodega.pesoProductoStock }}</td>
+            <td >{{ productobodega.pesoProductoKilos|floatformat}} Kg</td>
+            <td style="font-weight: bold">{{ productobodega.pesoProductoStock|floatformat}} grs</td>
             <td>{{ productobodega.unidadesStock }}</td>
+            {% if productobodega.producto.grupo.nombreGrupo == 'Cerdos' or  productobodega.producto.grupo.nombreGrupo == 'Cerdas'%}
             <td>
                 <a href="{% url 'Inventario.views.GestionEnsalinado' productobodega.producto.codigoProducto %}">Ensalinado</a>
             </td>
+            {% endif %}
+            {% if productobodega.producto.nombreProducto == 'Pierna Ensalinada' %}
+                <td>
+                <a href="#">Condimentado</a>
+                </td>
+            {% endif %}
 
         </tr>
 

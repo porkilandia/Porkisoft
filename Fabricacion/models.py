@@ -145,6 +145,20 @@ class Apanado(models.Model):
     def __int__(self):
         return self.codigoApanado
 
-class comodin(models.Model):
-    pass
+class Condimento(models.Model):
+    codigoCondimento = models.AutoField(primary_key= True)
+    fecha = models.DateField(verbose_name='Fecha', auto_now= True)
+    cantFormulas = models.IntegerField(verbose_name='Cantidad de formulas',default=0)
+    pesoCondimento = models.DecimalField(verbose_name='Peso grs.',default=0, max_digits=9, decimal_places=3)
+    costoCondimento = models.IntegerField(verbose_name='Costo Condimento',default=0)
+    costoLitroCondimento = models.IntegerField(verbose_name='Costo litro',default=0)
 
+    def __unicode__(self):
+        return  self.codigoCondimento
+
+class DetalleCondimento(models.Model):
+    condimento = models.ForeignKey(Condimento)
+    producto = models.ForeignKey(Producto)
+    pesoProducto = models.DecimalField(verbose_name='Peso grs.', max_digits=9, decimal_places=3)
+    costoProducto = models.IntegerField(verbose_name='Costo' , default=0)
+    costoTotalProducto = models.IntegerField(verbose_name='Costo Total',default= 0 )

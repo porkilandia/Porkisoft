@@ -119,15 +119,9 @@ class Proveedor (models.Model):
 
 class Compra(models.Model):
 
-    tipoCompra = (
-        ('insumo','Insumo'),
-        ('reses','reses'),
-        ('cerdos','Cerdos'),
-        ('cerdas','Cerdas'),
-    )
 
     codigoCompra = models.AutoField(primary_key=True)
-    tipo = models.CharField(max_length=10, verbose_name='Tipo de Compra',choices= tipoCompra)
+    tipo = models.ForeignKey(Grupo)
     encargado = models.ForeignKey(Empleado)
     proveedor = models.ForeignKey(Proveedor)
     fechaCompra = models.DateField(verbose_name='Fecha', auto_now=True, blank=True,null=True)
@@ -160,7 +154,7 @@ class DetalleCompra(models.Model):
     ganado = models.ForeignKey(Ganado, null=True, blank=True)
     pesoProducto = models.DecimalField(verbose_name = 'Peso(grs)',max_digits=15   , decimal_places=3,null= True,default=0)
     unidades = models.IntegerField(verbose_name='Unidades', null= True,default=0)
-    vrCompraProducto = models.BigIntegerField(verbose_name = 'Valor sin IVA')
+    vrCompraProducto = models.BigIntegerField(verbose_name = 'Costo Kilo/Unidad',default= 0)
     subtotal = models.BigIntegerField(default=0)
     estado = models.BooleanField()
 

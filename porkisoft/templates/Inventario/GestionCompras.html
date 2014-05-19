@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Bodegas{% endblock titulo %}
+{% block titulo %}Compras{% endblock titulo %}
+{% block mensajes %}Listado de Compras{% endblock mensajes %}
 {% block contenido %}
 
-    <h2>Listado Compras</h2>
+
     <table id="tablaCompras" class="table-striped" >
 
         <thead>
@@ -27,9 +28,9 @@
             <td>${{ compra.vrCompra }}</td>
 
             <td style="font-weight: bold; text-align: center">
-                {% if compra.tipo == 'cerdos' or compra.tipo == 'cerdas' %}
+                {% if compra.tipo.nombreGrupo == 'Cerdos' or compra.tipo.nombreGrupo == 'Cerdas' %}
                     <a href="{% url 'Inventario.views.GestionPlanillaRecepcion' compra.codigoCompra %}">Recepcion</a>
-                {% elif compra.tipo == 'ganado' %}
+                {% elif compra.tipo.nombreGrupo == 'Reses' %}
                     <a href="{% url 'Inventario.views.GestionDetalleCompra' compra.codigoCompra %}">Compras</a>
                     <a href="{% url 'Inventario.views.GestionPlanillaRecepcion' compra.codigoCompra %}">Recepcion</a>
                 {% else %}

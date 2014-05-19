@@ -39,11 +39,26 @@ class GanadoForm(ModelForm):
         model = Ganado
 
 class CompraForm(ModelForm):
+    tipo = forms.ModelChoiceField(queryset = Grupo.objects.all())
     class Meta:
         model = Compra
         exclude = ("vrCompra",)
 
 class DetalleCompraForm(ModelForm):
+
+    def __init__(self,idcompra,*args,**kwargs):
+        super(DetalleCompraForm,self).__init__(*args,**kwargs)
+        compra = Compra.objects.get(pk = idcompra)
+
+        if compra.tipo.nombreGrupo == 'Insumos':
+            self.fields['producto'].queryset = Producto.objects.filter(grupo = 5)
+        elif compra.tipo.nombreGrupo == 'Verduras':
+            self.fields['producto'].queryset = Producto.objects.filter(grupo = 6)
+        elif compra.tipo.nombreGrupo == 'Compra / Venta':
+            self.fields['producto'].queryset = Producto.objects.filter(grupo = 7)
+
+
+
     class Meta:
         model = DetalleCompra
         exclude = ("ganado",)
@@ -105,3 +120,18 @@ class EnsalinadoForm(ModelForm):
 class LimpiezaVerdurasForm(ModelForm):
     class Meta:
         model = LimpiezaVerduras
+
+class CondimentoForm(ModelForm):
+    class Meta:
+        model = Condimento
+        exclude = ('costoCondimento','costoLitroCondimento',)
+
+class DetalleCondimentoForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(DetalleCondimentoForm,self).__init__(*args, **kwargs)
+        self.fields['producto'].queryset = Producto.objects.filter(grupo__range = (5,6))
+
+    class Meta:
+        model = DetalleCondimento
+        exclude = ('costoProducto','costoTotalProducto',)

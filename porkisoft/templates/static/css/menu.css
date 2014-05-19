@@ -1,5 +1,5 @@
 #nav {
-    top: 5.3em;
+    top: 0;
     left: 0;
     padding: 0;
     position: fixed;
@@ -10,10 +10,8 @@
 #nav ul {
 
     background: linear-gradient(#d3070b, #86070b);
-    border-radius: 0 0 0.5em 0.5em;
-    box-shadow: 0.5em 0.5em 1.5em #6c686f;
     font-size: 0.9em;
-    height:60px;
+    height:50px;
     list-style:none outside none;
     margin:0;
     padding:1em;
@@ -25,7 +23,7 @@
     left:0;
     padding:1em;
     position:absolute;
-    top:49px;
+    top:37px;
     width:220px;
 
     background-image:-webkit-gradient(left center , #F8FAFF 0%, #B8D1F8 15%, #FFFFFF 15%, #FFFFFF 100%);
@@ -42,31 +40,29 @@
     float:left;
     margin:0;
     position:relative;
+
 }
 #nav ul li a {
 
     color: #ececec;
     cursor:default;
     display:block;
-    padding:1.2em 1.2em 1.2em;
+    padding:0.3em 0.3em 0.3em;
     text-decoration:none;
 }
 #nav ul li span {
     color: #ececec;
     cursor:default;
     display:block;
-    padding:1em 3em 1em 1em;
+    padding:0.3em 1em 0.3em;
     position:relative;
-}
-
-#nav ul ul li span {
-    background:url("../img/menu-img/s.gif") no-repeat scroll 97% center transparent;
+    vertical-align: middle;
 }
 #nav ul ul li {
     float:none;
     margin-right:0;
     padding:1px;
-    text-indent:10px;
+    text-indent:2px;
 }
 #nav ul ul li a,#nav ul ul li span {
     padding:3px 3px 5px 2px;
@@ -78,8 +74,7 @@
     vertical-align:middle;
 }
 #nav ul li:hover > a,#nav ul li:hover > span {
-    background: linear-gradient(#d3070b, #86070b);
-    font-weight: bold;
+
     color: #deff7c;
     text-shadow: 0 0 1.5em #ececec;
 }

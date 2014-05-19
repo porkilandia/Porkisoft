@@ -40,8 +40,9 @@
             <th>Vr. Compra</th>
             <th>Subtotal</th>
             <th>Estado</th>
-            <br/>
+
         </tr>
+        <br/>
         </thead>
         <tbody>
             {% for detcompra in detcompras %}
@@ -57,10 +58,12 @@
             <td>{{ detcompra.unidades }}</td>
             <td>$ {{ detcompra.vrCompraProducto }}</td>
             <td>$ {{ detcompra.subtotal }}</td>
-            {% if detcompra.estado == False %}
-                <td><a href="{% url 'Inventario.views.GestionVerduras' detcompra.id %}">Pendiete</a></td>
-            {% else %}
-                <td><a href="{% url 'Inventario.views.GestionVerduras' detcompra.id %}">Ver Detalles</a></td>
+            {% if compra.tipo.nombreGrupo == 'Verduras' %}
+                {% if detcompra.estado == False %}
+                    <td><a href="{% url 'Inventario.views.GestionVerduras' detcompra.id %}">Pendiete</a></td>
+                {% else %}
+                    <td><a href="{% url 'Inventario.views.GestionVerduras' detcompra.id %}">Ver Detalles</a></td>
+                {% endif %}
             {% endif %}
 
         </tr>
@@ -83,7 +86,7 @@
 
     <form method="post">{% csrf_token %}
          <fieldset id="agregarDetalle">
-             <legend>Detalle Sub Producto</legend>
+             <legend>Detalle compra</legend>
 
                   {{ formulario }}
 
@@ -91,7 +94,8 @@
              <br/>
                 <legend>Acciones</legend>
                  <input type="submit" value="Guardar" class="btn btn-primary">
-                 <a href="{% url 'Inventario.views.GestionGanado' compra.codigoCompra %}"><input type="button" value="Ganado" class="btn btn-default"></a>
+                 <a href="{% url 'Inventario.views.GestionGanado' compra.codigoCompra %}"><input type="button" value="Ganado" class="btn btn-success"></a>
+                 <a href="{% url 'Inventario.views.GestionCompra'%}"><input type="button" value="Volver" class="btn btn-default "></a>
 
           </fieldset>
      </form>

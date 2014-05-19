@@ -11,23 +11,12 @@
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css"/>
 
 
-
-
-
-
-
 </head>
 <body>
-
-<header>
-     <img src="{{ STATIC_URL }}img/logo.png">
-
-</header>
-
-
 <section>
+
         <div id="nav">
-                <ul>
+            <ul>
                     <li><span id="inventario" tabindex="1">Inventario</span>
                         <ul>
                             <li><a href="/listaProd"><img src="{{ STATIC_URL }}img/item.png" alt="" />Gestionar Producto</a></li>
@@ -36,7 +25,7 @@
                             <li><a href="/bodega"><img src="{{ STATIC_URL }}img/item.png" alt="" />Bodega</a></li>
                             <li><a href="/desposte"><img src="{{ STATIC_URL }}img/item.png" alt="" />Desposte</a></li>
                             <li><a href="/traslado"><img src="{{ STATIC_URL }}img/item.png" alt="" />Traslado</a></li>
-
+                            <li><a href="/condimento"><img src="{{ STATIC_URL }}img/item.png" alt="" />Condimento</a></li>
 
 
                         </ul>
@@ -59,13 +48,20 @@
                 </ul>
 
             </div>
+        <div id="mensaje">
+            {% block mensajes %}
+            {% endblock mensajes %}
+        </div>
         <div class="container-fluid">
+
         <section id="panel-central"  >
+
 
             {% block contenido %}{% endblock contenido %}
 
         </section>
         </div>
+
 
 </section>
 
