@@ -135,3 +135,17 @@ class DetalleCondimentoForm(ModelForm):
     class Meta:
         model = DetalleCondimento
         exclude = ('costoProducto','costoTotalProducto',)
+
+class CondTajadoForm(ModelForm):
+    class Meta:
+        model = CondimentadoTajado
+
+class MigaForm(ModelForm):
+    class Meta:
+        model = Miga
+class DetalleMigaForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(DetalleMigaForm,self).__init__(*args, **kwargs)
+        self.fields['producto'].queryset = Producto.objects.filter(grupo = 5)
+    class Meta:
+        model = DetalleMiga

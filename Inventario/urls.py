@@ -31,6 +31,10 @@ urlpatterns = patterns('',
     url(r'^condimento/$', GestionCondimento),
     url(r'^detallecondimento/(?P<idcondimento>\d+)', GestionDetalleCondimento),
     url(r'^costoCond/(?P<idcondimento>\d+)',CostoCondimento),
+    url(r'^condtaj/(?P<idprodbod>\d+)',GestionCondTajado),
+    url(r'^miga/$', GestionMiga),
+    url(r'^detallemiga/(?P<idmiga>\d+)', GestionDetalleMiga),
+    url(r'^costoMiga/(?P<idmiga>\d+)',CostoMiga),
 
 
     url(r'^empleado/$',GestionEmpleados),

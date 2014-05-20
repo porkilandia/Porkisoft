@@ -182,8 +182,9 @@ def borrarBodega(request,idbodega ):
 
 def GestionProductoBodega(request,idproducto):
     productoBodegas = ProductoBodega.objects.filter(producto = idproducto)
+    producto = Producto.objects.get(pk = idproducto)
 
-    return render_to_response('Inventario/GestionProductoBodega.html',{'productoBodegas':productoBodegas },
+    return render_to_response('Inventario/GestionProductoBodega.html',{'productoBodegas':productoBodegas,'producto':producto },
                               context_instance = RequestContext(request))
 
 #*****************************************PROVEEDOR**************************************************
@@ -408,13 +409,13 @@ def GestionCanal(request,idrecepcion):
                 transporte = 7000* cantidad
                 deguello = 48200 * cantidad
                 pesoPorkilandia = Decimal(request.POST.get('pesoPorkilandia'))
-                cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gte = 150)# busca registros que el peso sea mayor o igual a 150
-                cantidadCanalCerdasChicas = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__lte = 150)# busca registros que el peso sea menor o igual a 150
+                cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gte = 170)# busca registros que el peso sea mayor o igual a 150
+                cantidadCanalCerdasChicas = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__lte = 169)# busca registros que el peso sea menor o igual a 150
 
                 incrementoCG = 35 * cantidadCanalCerdasGrandes.count()
                 incrementoCP = 32 * cantidadCanalCerdasChicas.count()
 
-                if pesoPorkilandia > 150:
+                if pesoPorkilandia >= 170:
                     incrementoCG += 35
                 else:
                     incrementoCP += 32
@@ -940,8 +941,13 @@ def GestionEnsalinado(request,idproducto):
 
             #Se guarda la cantidad final en la bodega de taller
             bodegaEnsalinado = ProductoBodega.objects.get(bodega = 6,producto = piernaEnsalinada.codigoProducto)
-            bodegaEnsalinado += ensalinado.pesoProductoDespues * 1000
+            bodegaEnsalinado.pesoProductoStock += ensalinado.pesoProductoDespues * 1000
             bodegaEnsalinado.save()
+
+            #se resta la cantidad de Carne que se utilizo para el ensalinado
+            bodegaProductoAntes = ProductoBodega.objects.get(bodega = 6, producto = producto.codigoProducto)
+            bodegaProductoAntes.pesoProductoStock -= ensalinado.pesoProductoAntes * 1000
+            bodegaProductoAntes.save()
 
 
             #Se guarda la cantidad a restar para la sal
@@ -1111,3 +1117,143 @@ def CostoCondimento(request,idcondimento):
                                                                    'detalleCondimentos':detalleCondimentos },
                               context_instance = RequestContext(request))
 
+
+def GestionCondTajado(request, idprodbod):
+    condTajados  = CondimentadoTajado.objects.all()
+    prodBod = ProductoBodega.objects.get(pk = idprodbod )
+    producto = Producto.objects.get(pk = prodBod.producto.codigoProducto)
+    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
+
+    if request.method == 'POST':
+
+        formulario = CondTajadoForm(request.POST)
+        if formulario.is_valid():
+            proceso = formulario.save()
+
+            mod = Decimal(0.139) * prodBod.pesoProductoStock
+            cif = Decimal(0.143) * prodBod.pesoProductoStock
+            costoTotalACondimentar = producto.costoProducto + mod + cif
+
+            costoFilete = costoTotalACondimentar * Decimal(0.973)
+            costoRecortes = costoTotalACondimentar * Decimal(0.007)
+            costoProcesos = costoTotalACondimentar * Decimal(0.02)
+
+            costoKiloFilete = costoFilete / proceso.filete
+            costoTotalFilete = proceso.filete * costoKiloFilete
+            costoTotalCondimento = proceso.condimento * condimento.costoProducto
+            costoFileteCondimentado = costoTotalFilete +  costoTotalCondimento
+            pesoFileteCondimentado = proceso.filete + proceso.condimento
+            costoKiloFileteCondimentado = costoFileteCondimentado / pesoFileteCondimentado
+
+            #Guardamos el costo del filete
+            filete = Producto.objects.get(nombreProducto = 'Filete Condimentado')
+            filete.costoProducto = costoKiloFileteCondimentado
+            filete.save()
+
+            # Guardamos el la cantidad de producto condimentado en la bodega de la planta de procesos
+            bodegaFilete = ProductoBodega.objects.get(bodega = 6 , producto = filete.codigoProducto)
+            bodegaFilete.pesoProductoStock += pesoFileteCondimentado
+            bodegaFilete.save()
+
+            #Restamos la cantidad utilizada a la cantidad ensalinada
+            prodBod.pesoProductoStock -= proceso.pesoProductoEnsalinado
+            prodBod.save()
+
+
+            return HttpResponseRedirect('/condtaj/'+ idprodbod)
+    else:
+        formulario = CondTajadoForm(initial={'producto':producto.codigoProducto,'pesoProductoEnsalinado':prodBod.pesoProductoStock})
+
+    return render_to_response('Inventario/GestionCondTajado.html',{'formulario':formulario,'condTajados':condTajados },
+                              context_instance = RequestContext(request))
+
+#*********************************************************** MIGA*******************************************************
+
+def GestionMiga(request):
+    migas  = Miga.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = MigaForm(request.POST)
+        if formulario.is_valid():
+            miga = formulario.save()
+
+            #Guardamos la cantidad de producto procesado en la bodega de planta de procesos
+            bodegaMiga = ProductoBodega.objects.get(bodega = 6, producto__nombreProducto = 'Miga' )
+            bodegaMiga.pesoProductoStock += miga.PesoFormulaMiga
+            bodegaMiga.save()
+
+            miga.PesoFormulaMiga /= 1000
+            miga.save()
+
+            return HttpResponseRedirect('/miga/')
+    else:
+        formulario = MigaForm()
+
+    return render_to_response('Inventario/GestionMiga.html',{'formulario':formulario,'migas':migas },
+                              context_instance = RequestContext(request))
+
+def GestionDetalleMiga(request,idmiga):
+    miga = Miga.objects.get(pk = idmiga)
+    detalleMigas = DetalleMiga.objects.filter(miga = idmiga)
+
+    if request.method == 'POST':
+
+        formulario = DetalleMigaForm(request.POST)
+        if formulario.is_valid():
+            detalle =  formulario.save()
+
+            producto = Producto.objects.get(pk = detalle.producto.codigoProducto)
+            costoProducto = producto.costoProducto
+            costoTotalmiga = (miga.cantidadFormulas * costoProducto )* (detalle.PesoProducto/1000)
+
+            # Se resta la cantidad de producrto utilizado en las formulas de condimento y se graba el registro
+            bodega = ProductoBodega.objects.get(bodega = 6, producto = detalle.producto.codigoProducto)
+            bodega.pesoProductoStock -= (detalle.PesoProducto * miga.cantidadFormulas)
+            bodega.save()
+
+            detalle.costoProducto = costoProducto
+            detalle.costoTotalProducto = costoTotalmiga
+            detalle.PesoProducto /= 1000
+            detalle.save()
+
+
+            return HttpResponseRedirect('/detallemiga/'+ idmiga)
+    else:
+        formulario = DetalleMigaForm(initial={'miga':idmiga})
+
+    return render_to_response('Inventario/GestionDetalleMiga.html',{'formulario':formulario,'miga':miga,
+                                                                           'detalleMigas':detalleMigas,'idmiga':idmiga },
+                              context_instance = RequestContext(request))
+
+def CostoMiga(request,idmiga):
+
+    miga = Miga.objects.get(pk = idmiga)
+    detallesMiga = DetalleMiga.objects.filter(miga = idmiga)
+    formulario = DetalleMigaForm(initial={'miga':idmiga})
+
+    pesoMigaProcesada = miga.PesoFormulaMiga
+    costoInsumos = 0
+
+    for costo in detallesMiga:
+        costoInsumos += costo.costoTotalProducto
+
+    mod = 38 * pesoMigaProcesada
+    cif = 57 * pesoMigaProcesada
+    costomigaProsecesada = costoInsumos + cif + mod
+    costoKiloMiga = ceil(costomigaProsecesada/ pesoMigaProcesada)
+
+    #Se graban todos los calculos realizados
+
+    miga.costoKiloMigaProcesada = costoKiloMiga
+    miga.costoFormulaMiga = ceil(costomigaProsecesada)
+    miga.save()
+
+    producto = Producto.objects.get(nombreProducto = 'Miga')
+    producto.costoProducto = costoKiloMiga
+    producto.save()
+
+    return render_to_response('Inventario/GestionDetalleMiga.html',{'formulario':formulario,
+                                                                   'miga': miga,'idmiga':idmiga,
+                                                                   'detallesMiga':detallesMiga },
+                              context_instance = RequestContext(request))

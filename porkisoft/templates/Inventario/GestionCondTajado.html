@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Tajado y Condimentado{% endblock titulo %}
+{% block contenido %}
+
+
+    <table  class="table-striped">
+
+        <thead>
+        <tr>
+
+            <th>Codigo</th>
+            <th>Producto</th>
+            <th>Peso Ensalinado</th>
+            <th>Condimento</th>
+            <th>Filete</th>
+            <th>Recortes</th>
+            <th>Procesos</th>
+
+        </tr>
+        </thead>
+        {% for condtajado in condTajados %}
+            <tr>
+                <td>{{ condtajado.codigoTajado }}</td>
+                <td>{{ condtajado.producto }}</td>
+                <td>{{ condtajado.pesoProductoEnsalinado|floatformat }} grs</td>
+                <td>{{ condtajado.condimento|floatformat }} grs</td>
+                <td>{{ condtajado.filete|floatformat }} grs</td>
+                <td>{{ condtajado.recortes|floatformat }} grs</td>
+                <td>{{ condtajado.procesos|floatformat }} grs</td>
+
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun registro para mostrar
+                </td>
+            </tr>
+
+
+        {% endfor %}
+
+    </table>
+     <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarProducto">
+             <legend>Nuevo Proceso</legend>
+             {{ formulario }}
+             <br/><br/>
+             <legend>Acciones</legend>
+             <input class="btn btn-primary" value="Guardar" type="submit">
+         </fieldset>
+    </form>
+
+{% endblock contenido %}

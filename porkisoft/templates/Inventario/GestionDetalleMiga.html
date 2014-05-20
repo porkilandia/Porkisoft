@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block titulo %}Condimento{% endblock titulo %}
+{% block contenido %}
+
+     <table class="table-striped">
+        <thead>
+            <tr>
+            <th>Formulas</th>
+            <th>Fecha</th>
+            <th>Peso Formula Miga</th>
+            <th>Costo Kilo Miga Proc.</th>
+            <th>Costo Formula Miga</th>
+            <th>Acciones</th>
+
+        </tr>
+        </thead>
+         <tbody>
+            <tr>
+                 <td>{{ miga.fechaFabricacion }}</td>
+                <td>{{ miga.cantidadFormulas|floatformat }}</td>
+                <td>{{ miga.PesoFormulaMiga|floatformat }} Kg</td>
+                <td>${{ miga.costoKiloMigaProcesada }}</td>
+                <td>${{ miga.costoFormulaMiga }}</td>
+
+                <td>
+                    <a href="#">Detalle</a>
+                </td>
+            </tr>
+         </tbody>
+
+     </table>
+
+     <table class="table-striped">
+        <thead>
+        <tr>
+
+            <th>Producto</th>
+            <th>Peso Producto</th>
+            <th>Costo Producto</th>
+            <th>Costo Total</th>
+
+        </tr>
+        </thead>
+        <tbody>
+            {% for detalleMiga  in detallesMiga %}
+                <tr>
+                    <td>{{ detalleMiga.producto }}</td>
+                    <td>{{ detalleMiga.PesoProducto|floatformat }} Kg</td>
+                    <td>${{ detalleMiga.costoProducto }}</td>
+                    <td>${{ detalleMiga.costoTotalProducto }}</td>
+
+                </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" >
+                   Ningun registro para mostrar
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+      </table>
+
+    <form method="post">{% csrf_token %}
+         <fieldset id="agregarDetalle">
+             <legend>Detalle Sub Producto</legend>
+                  {{ formulario }}
+              <br/>
+             <br/>
+                <legend>Acciones</legend>
+                <input type="submit" value="Guardar" class="btn btn-primary">
+                <a href="{% url 'Inventario.views.CostoMiga' idmiga %}"><input type="button" value="Costear" class="btn btn-success"/></a>
+
+          </fieldset>
+     </form>
+
+{% endblock contenido %}

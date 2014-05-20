@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Condimento{% endblock titulo %}
+{% block mensajes %}Listado de Condimento{% endblock mensajes %}
+{% block contenido %}
+
+
+    <table  class="table-striped" >
+
+        <thead>
+        <tr>
+            <th>Formulas</th>
+            <th>Fecha</th>
+            <th>Peso Formula Miga</th>
+            <th>Costo Formula Miga</th>
+            <th>Costo Kilo Miga Proc.</th>
+            <th>Acciones</th>
+
+        </tr>
+        </thead>
+        {% for miga in migas %}
+        <tr>
+            <td>{{ miga.fechaFabricacion }}</td>
+            <td>{{ miga.cantidadFormulas|floatformat }}</td>
+            <td>{{ miga.PesoFormulaMiga|floatformat }}</td>
+            <td>{{ miga.costoKiloMigaProcesada }}</td>
+            <td>{{ miga.costoFormulaMiga }}</td>
+
+
+
+            <td>
+                <a href="{% url 'Inventario.views.GestionDetalleMiga' miga.codigoMiga %}">Detalle</a>
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="12">
+                   Ningun Registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarProducto">
+             <legend>Nuevo Formula Miga</legend>
+             {{ formulario }}
+             <br/><br/>
+             <legend>Acciones</legend>
+             <input class="btn btn-primary" value="Guardar" type="submit">
+         </fieldset>
+    </form>
+
+{% endblock contenido %}

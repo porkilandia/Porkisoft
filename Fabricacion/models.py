@@ -36,14 +36,14 @@ class DetalleEnlagunado(models.Model):
     pesoPorducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3)
     costoProducto = models.IntegerField()
 
-class LimpezaTajado(models.Model):
+class CondimentadoTajado(models.Model):
     codigoTajado = models.AutoField(primary_key=True)
     producto  = models.ForeignKey(Producto)
-    pesoProductoAntes = models.DecimalField(verbose_name='Peso Antes del Tajado', max_digits=9, decimal_places=3)
-    pesoProductoDespues = models.DecimalField(verbose_name='Peso Despues del Tajado', max_digits=9, decimal_places=3)
-    recortes = models.IntegerField()
-    pesoGrasa = models.DecimalField(verbose_name='Peso Grasa', max_digits=9, decimal_places=3)
-    pesoProcesos = models.DecimalField(verbose_name='Peso Procesos', max_digits=9, decimal_places=3)
+    pesoProductoEnsalinado =models.DecimalField(verbose_name='Peso', max_digits=9, decimal_places=3)
+    condimento = models.DecimalField(verbose_name='Condimento', max_digits=9, decimal_places=3)
+    filete = models.DecimalField(verbose_name='Filete', max_digits=9, decimal_places=3)
+    recortes = models.DecimalField(verbose_name='Recortes', max_digits=9, decimal_places=3)
+    procesos = models.DecimalField(verbose_name='Procesos', max_digits=9, decimal_places=3)
 
     def __int__(self):
         return self.codigoTajado
@@ -119,18 +119,23 @@ class Condimentado (models.Model):
 
 class Miga(models.Model):
     codigoMiga = models.AutoField(primary_key=True)
+    cantidadFormulas = models.DecimalField(verbose_name='Formulas', max_digits=9, decimal_places=3,default=0)
     fechaFabricacion = models.DateTimeField(verbose_name='Fecha De Fabricacion',auto_now=True)
-    PesoFormulaMiga = models.DecimalField(verbose_name='Peso Miga Compuesta', max_digits=9, decimal_places=3)
-    cantidadFormulas = models.IntegerField(verbose_name='Cantidad de fromulas')
-    costoFormulaMiga = models.IntegerField(verbose_name='Costo Formula')
+    PesoFormulaMiga = models.DecimalField(verbose_name='Peso Miga', max_digits=9, decimal_places=3)
+    costoFormulaMiga = models.IntegerField(verbose_name='Costo Formula',default=0)
+    costoKiloMigaProcesada = models.IntegerField(verbose_name='Costo Kilo',default=0)
 
-    def __int__(self):
+    def __unicode__(self):
         return self.codigoMiga
 
 class DetalleMiga(models.Model):
+
+    miga= models.ForeignKey(Miga)
     producto = models.ForeignKey(Producto)
-    miga = models.ForeignKey(Miga)
     PesoProducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3)
+    costoProducto = models.IntegerField(verbose_name='Costo' , default=0)
+    costoTotalProducto = models.IntegerField(verbose_name='Costo Total',default= 0 )
+
 
 class Apanado(models.Model):
     codigoApanado = models.AutoField(primary_key=True)

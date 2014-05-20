@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block titulo %}Bodegas{% endblock titulo %}
+{% block mensajes %}Inventario de {{ producto.nombreProducto }}{% endblock mensajes %}
 {% block contenido %}
 
-    <h2>Productos Por bodega</h2>
-    <table id="tablabodegas" class="table" style="width: 100%">
+    <table  class="table" style="width: 100%">
 
         <thead>
         <tr>
-            <th>Producto</th>
+
             <th>Bodega</th>
             <th>Peso en producto (Kg)</th>
             <th>Peso en Stock (grs)</th>
@@ -22,20 +22,22 @@
             {% else %}
             <tr>
             {% endif %}
-            <td>{{ productobodega.producto}}</td>
+
             <td>{{ productobodega.bodega }}</td>
             <td >{{ productobodega.pesoProductoKilos|floatformat}} Kg</td>
             <td style="font-weight: bold">{{ productobodega.pesoProductoStock|floatformat}} grs</td>
             <td>{{ productobodega.unidadesStock }}</td>
-            {% if productobodega.producto.grupo.nombreGrupo == 'Cerdos' or  productobodega.producto.grupo.nombreGrupo == 'Cerdas'%}
-            <td>
-                <a href="{% url 'Inventario.views.GestionEnsalinado' productobodega.producto.codigoProducto %}">Ensalinado</a>
-            </td>
-            {% endif %}
-            {% if productobodega.producto.nombreProducto == 'Pierna Ensalinada' %}
+             {% if productobodega.bodega.nombreBodega == 'Planta Procesos' %}
+                {% if productobodega.producto.grupo.nombreGrupo == 'Cerdos' or  productobodega.producto.grupo.nombreGrupo == 'Cerdas'%}
                 <td>
-                <a href="#">Condimentado</a>
+                    <a href="{% url 'Inventario.views.GestionEnsalinado' productobodega.producto.codigoProducto %}">Ensalinado</a>
                 </td>
+                {% endif %}
+                {% if productobodega.producto.nombreProducto == 'Pierna Ensalinada' %}
+                    <td>
+                    <a href="{% url 'Inventario.views.GestionCondTajado' productobodega.id %}">Condimentado</a>
+                    </td>
+                {% endif %}
             {% endif %}
 
         </tr>
