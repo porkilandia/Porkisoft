@@ -10,34 +10,48 @@
         <tr>
 
             <th>Bodega</th>
-            <th>Peso en producto (Kg)</th>
             <th>Peso en Stock (grs)</th>
             <th>Unidades en stock</th>
 
         </tr>
         </thead>
         {% for productobodega in productoBodegas %}
-            {% if productobodega.pesoProductoStock < 5000 %}
-            <tr style="background: indianred">
+
+            {% if productobodega.pesoProductoStock == 0 %}
+                {% if productobodega.unidadesStock < 10 %}
+                    <tr style="background: indianred">
+                {% else %}
+                    <tr style="background:limegreen">
+                {% endif %}
             {% else %}
-            <tr>
+                {% if productobodega.pesoProductoStock < 5000 %}
+                    <tr style="background: indianred">
+                {% else %}
+                    <tr style="background:limegreen">
+                {% endif %}
             {% endif %}
 
+
             <td>{{ productobodega.bodega }}</td>
-            <td >{{ productobodega.pesoProductoKilos|floatformat}} Kg</td>
             <td style="font-weight: bold">{{ productobodega.pesoProductoStock|floatformat}} grs</td>
             <td>{{ productobodega.unidadesStock }}</td>
              {% if productobodega.bodega.nombreBodega == 'Planta Procesos' %}
                 {% if productobodega.producto.grupo.nombreGrupo == 'Cerdos' or  productobodega.producto.grupo.nombreGrupo == 'Cerdas'%}
-                <td>
+                <td style="text-align: center; font-weight: bold;">
                     <a href="{% url 'Inventario.views.GestionEnsalinado' productobodega.producto.codigoProducto %}">Ensalinado</a>
                 </td>
                 {% endif %}
                 {% if productobodega.producto.nombreProducto == 'Pierna Ensalinada' %}
-                    <td>
+                    <td style="text-align: center; font-weight: bold;">
                     <a href="{% url 'Inventario.views.GestionCondTajado' productobodega.id %}">Condimentado</a>
                     </td>
                 {% endif %}
+                {% if productobodega.producto.nombreProducto == 'Filete Condimentado' %}
+                   <td style="text-align: center; font-weight: bold;">
+                        <a href="{% url 'Inventario.views.GestionApanado' productobodega.id %}">Apanado</a>
+                   </td>
+                {% endif %}
+
             {% endif %}
 
         </tr>

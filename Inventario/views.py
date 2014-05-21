@@ -13,7 +13,11 @@ from Inventario.models import *
 # Create your views here.
 
 def home(request):
-    return render_to_response('Home.html',{},context_instance = RequestContext(request))
+    productosBajoStock = ProductoBodega.objects.all().filter(pesoProductoStock = 0,unidadesStock = 0).order_by('bodega')
+    costosProductos = Producto.objects.all().order_by('nombreProducto')
+
+    return render_to_response('Home.html',{'productosBajoStock':productosBajoStock,
+                                           'costosProductos':costosProductos},context_instance = RequestContext(request))
 
 #***************************************PRODUCTOS******************************************
 def listaProductos(request):
@@ -1135,8 +1139,8 @@ def GestionCondTajado(request, idprodbod):
             costoTotalACondimentar = producto.costoProducto + mod + cif
 
             costoFilete = costoTotalACondimentar * Decimal(0.973)
-            costoRecortes = costoTotalACondimentar * Decimal(0.007)
-            costoProcesos = costoTotalACondimentar * Decimal(0.02)
+            costoRecortes = costoTotalACondimentar * Decimal(0.007)#Pendiente guardar en inventario
+            costoProcesos = costoTotalACondimentar * Decimal(0.02)#Pendiente guardar en inventario
 
             costoKiloFilete = costoFilete / proceso.filete
             costoTotalFilete = proceso.filete * costoKiloFilete
@@ -1145,9 +1149,15 @@ def GestionCondTajado(request, idprodbod):
             pesoFileteCondimentado = proceso.filete + proceso.condimento
             costoKiloFileteCondimentado = costoFileteCondimentado / pesoFileteCondimentado
 
-            #Guardamos el costo del filete
+
+            #Promediamos el costo del filete y lo guardamos
             filete = Producto.objects.get(nombreProducto = 'Filete Condimentado')
-            filete.costoProducto = costoKiloFileteCondimentado
+            if filete.costoProducto == 0:
+                filete.costoProducto = costoKiloFileteCondimentado
+            else:
+                costoKiloFiletePromedio = (costoKiloFileteCondimentado + filete.costoProducto)/2
+                filete.costoProducto = costoKiloFiletePromedio
+
             filete.save()
 
             # Guardamos el la cantidad de producto condimentado en la bodega de la planta de procesos
@@ -1195,7 +1205,7 @@ def GestionMiga(request):
 
 def GestionDetalleMiga(request,idmiga):
     miga = Miga.objects.get(pk = idmiga)
-    detalleMigas = DetalleMiga.objects.filter(miga = idmiga)
+    detallesMiga = DetalleMiga.objects.filter(miga = idmiga)
 
     if request.method == 'POST':
 
@@ -1223,7 +1233,7 @@ def GestionDetalleMiga(request,idmiga):
         formulario = DetalleMigaForm(initial={'miga':idmiga})
 
     return render_to_response('Inventario/GestionDetalleMiga.html',{'formulario':formulario,'miga':miga,
-                                                                           'detalleMigas':detalleMigas,'idmiga':idmiga },
+                                                                           'detallesMiga':detallesMiga,'idmiga':idmiga },
                               context_instance = RequestContext(request))
 
 def CostoMiga(request,idmiga):
@@ -1257,3 +1267,70 @@ def CostoMiga(request,idmiga):
                                                                    'miga': miga,'idmiga':idmiga,
                                                                    'detallesMiga':detallesMiga },
                               context_instance = RequestContext(request))
+
+def GestionApanado(request,idprodbod):
+
+    bodegaFilete = ProductoBodega.objects.get(pk = idprodbod)
+    apanados = Apanado.objects.filter(producto = bodegaFilete.producto.codigoProducto )
+    miga = Producto.objects.get(nombreProducto = 'Miga')
+    Huevos = Producto.objects.get(nombreProducto = 'Huevos')
+    filete = Producto.objects.get(nombreProducto = 'Filete Condimentado')
+    fileteApanado =  Producto.objects.get(nombreProducto = 'Filete Apanado')
+    bodegaHuevos = ProductoBodega.objects.get(bodega = 6, producto = Huevos.codigoProducto)
+    bodegaMiga = ProductoBodega.objects.get(bodega = 6 , producto = miga.codigoProducto)
+    bodegaFileteApanado = ProductoBodega.objects.get(bodega = 5 , producto = fileteApanado.codigoProducto)
+
+    if request.method == 'POST':
+        formulario = ApanadoForm(request.POST)
+        if formulario.is_valid():
+            apanado = formulario.save()
+
+            CostoTotalMiga = miga.costoProducto * apanado.miga
+            CostoTotalHuevos = Huevos.costoProducto * apanado.huevos
+            CostoTotalFilete = filete.costoProducto * apanado.pesoFilete
+
+            CostoFiletePorApanar = CostoTotalMiga + CostoTotalFilete + CostoTotalHuevos
+
+            mod = Decimal(0.096) * apanado.totalApanado
+            cif= Decimal(0.134) * apanado.totalApanado
+
+            costoFileteApanado = CostoFiletePorApanar + mod + cif
+            costoKiloApanado = costoFileteApanado / apanado.totalApanado
+
+            #Guardamoslos calculos realizados
+            apanado.costoKiloApanado = costoKiloApanado
+            apanado.save()
+
+            #Restamos la cantidad de productos usados en el proseso
+
+            bodegaFilete.pesoProductoStock -= apanado.pesoFilete
+            bodegaFilete.save()
+
+            bodegaHuevos.unidadesStock -= apanado.huevos
+            bodegaHuevos.save()
+
+            bodegaMiga.pesoProductoStock -= apanado.miga
+            bodegaMiga.save()
+
+            #Guardamos el costo del Kilo del Filete Apanado
+            fileteApanado.costoProducto = costoKiloApanado
+            fileteApanado.save()
+
+            #Guardamos la cantidad de filete apanado
+            bodegaFileteApanado.pesoProductoStock = apanado.totalApanado
+            bodegaFileteApanado.save()
+
+            return HttpResponseRedirect('/apanado/'+idprodbod)
+    else:
+        #Se Setea el valor inicial del formulario con las cantidades existentes
+        formulario = ApanadoForm(initial={'producto':bodegaFilete.producto.codigoProducto,
+                                          'pesoFilete':bodegaFilete.pesoProductoStock,
+                                          'huevos':bodegaHuevos.unidadesStock,
+                                          'miga':bodegaMiga.pesoProductoStock})
+
+    return render_to_response('Inventario/GestionApanado.html',{'formulario':formulario, 'apanados': apanados},
+                              context_instance = RequestContext(request))
+
+
+
+

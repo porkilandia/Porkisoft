@@ -139,15 +139,14 @@ class DetalleMiga(models.Model):
 
 class Apanado(models.Model):
     codigoApanado = models.AutoField(primary_key=True)
-    miga = models.ForeignKey(Miga)
     producto = models.ForeignKey(Producto)
-    PesoProducto = models.DecimalField(verbose_name='Peso Producto',help_text='Peso del producto a apanar', max_digits=9, decimal_places=3)
-    PesoMiga = models.DecimalField(verbose_name='Peso Miga', max_digits=9, decimal_places=3)
-    undProducto =models.IntegerField(verbose_name='Unidades')
-    PesoPosApanado = models.DecimalField(verbose_name='Peso producto Pos-Apanado', max_digits=9, decimal_places=3)
-    costoPosApanado = models.IntegerField(verbose_name='Costo Pos-Apanado')
+    huevos = models.IntegerField(verbose_name='Huevos',default=0)
+    miga = models.DecimalField(verbose_name='Peso Miga', max_digits=9, decimal_places=3,default=0)
+    pesoFilete = models.DecimalField(verbose_name='Peso Filete', max_digits=9, decimal_places=3,default=0)
+    totalApanado= models.DecimalField(verbose_name='Total Apanado', max_digits=9, decimal_places=3,default=0)
+    costoKiloApanado = models.IntegerField(verbose_name='Costo Kilo',default=0)
 
-    def __int__(self):
+    def __unicode__(self):
         return self.codigoApanado
 
 class Condimento(models.Model):

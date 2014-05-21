@@ -149,3 +149,7 @@ class DetalleMigaForm(ModelForm):
         self.fields['producto'].queryset = Producto.objects.filter(grupo = 5)
     class Meta:
         model = DetalleMiga
+
+class ApanadoForm(ModelForm):
+    class Meta:
+        model = Apanado

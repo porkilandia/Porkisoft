@@ -10,6 +10,27 @@ $(document).on('ready', inicio);
 
      $('#id_pesoProductoAntes').on('focus', calculoEnsalinado);
 
+     $('#tablacostos').dataTable({
+
+         "bPaginate": true,
+         "bLengthChange": true,
+         "bFilter": true,
+         "bSort": true,
+         "bInfo": true,
+         "bAutoWidth": false
+
+    });
+     $('#tablastock').dataTable({
+
+         "bPaginate": true,
+         "bLengthChange": true,
+         "bFilter": true,
+         "bSort": true,
+         "bInfo": true,
+         "bAutoWidth": false
+
+    });
+
      $('#tablaTraslados').dataTable({
 
          "bPaginate": true,

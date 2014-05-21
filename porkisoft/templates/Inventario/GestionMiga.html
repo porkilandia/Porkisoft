@@ -9,11 +9,11 @@
 
         <thead>
         <tr>
-            <th>Formulas</th>
             <th>Fecha</th>
+            <th>Formulas</th>
             <th>Peso Formula Miga</th>
-            <th>Costo Formula Miga</th>
             <th>Costo Kilo Miga Proc.</th>
+            <th>Costo Formula Miga</th>
             <th>Acciones</th>
 
         </tr>
@@ -22,9 +22,9 @@
         <tr>
             <td>{{ miga.fechaFabricacion }}</td>
             <td>{{ miga.cantidadFormulas|floatformat }}</td>
-            <td>{{ miga.PesoFormulaMiga|floatformat }}</td>
-            <td>{{ miga.costoKiloMigaProcesada }}</td>
-            <td>{{ miga.costoFormulaMiga }}</td>
+            <td>{{ miga.PesoFormulaMiga|floatformat }} Kg</td>
+            <td>${{ miga.costoKiloMigaProcesada }}</td>
+            <td>${{ miga.costoFormulaMiga }}</td>
 
 
 

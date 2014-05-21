@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Bodegas{% endblock titulo %}
+{% block mensajes %}Listado de Apanados{% endblock mensajes %}
+{% block contenido %}
+
+    <h2>Listado de Bodegas</h2>
+    <table id="tablabodegas" class="table-striped" >
+
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Producto</th>
+            <th>Peso Filete</th>
+            <th>huevos</th>
+            <th>Miga</th>
+            <th>Total Apanado</th>
+            <th>Costo Kilo Apanado</th>
+        </tr>
+        </thead>
+        {% for apanado in apanados %}
+        <tr>
+            <td>{{ apanado.codigoApanado }}</td>
+            <td>{{ apanado.producto }}</td>
+            <td>{{ apanado.pesoFilete|floatformat }}grs</td>
+            <td>{{ apanado.huevos }}</td>
+            <td>{{ apanado.miga |floatformat }}grs</td>
+            <td>{{ apanado.totalApanado |floatformat }}grs</td>
+            <td>${{ apanado.costoKiloApanado }}</td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Apanado</legend>
+
+                  {{ formulario }}
+
+              <br/>
+          <input class="btn btn-primary" value="Guardar" type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}
