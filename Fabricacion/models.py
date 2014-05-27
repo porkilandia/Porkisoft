@@ -48,6 +48,7 @@ class CondimentadoTajado(models.Model):
     def __int__(self):
         return self.codigoTajado
 
+
 class PlanillaDesposte(models.Model):
     codigoPlanilla = models.AutoField(primary_key=True)
     fechaDesposte = models.DateField(verbose_name='Fecha de Desposte', auto_now=True)
@@ -89,33 +90,6 @@ class DetallePlanilla (models.Model):
     producto = models.ForeignKey(Producto)
     PesoProducto = models.DecimalField(max_digits=9,decimal_places=3, verbose_name='Peso Producto')
 
-class Formula(models.Model):
-    codigoFormula = models.AutoField(primary_key=True)
-    responsable = models.ForeignKey(Empleado)
-    pesoFormula = models.DecimalField(verbose_name='Peso Formula', max_digits=9, decimal_places=3)
-    cantidadFormulas = models.IntegerField(verbose_name='Cantidad Formulas')
-    costoFormulas = models.IntegerField(verbose_name='Costo Formulas')
-    fechaElaboracion = models.DateTimeField(verbose_name='Fecha de Elaboracion', auto_now=True)
-    fechaCaducidad = models.DateTimeField(verbose_name='Fecha de Caducidad')
-
-    def __int__(self):
-        return self.codigoFormula
-
-class DetalleFormula(models.Model):
-    formula = models.ForeignKey(Formula)
-    producto = models.ForeignKey(Producto)
-    pesoUnitProducto = models.DecimalField(verbose_name='Peso Unitario Producto', max_digits=9, decimal_places=3)
-
-class Condimentado (models.Model):
-    codigoCondimentado = models.AutoField(primary_key=True)
-    producto = models.ForeignKey(Producto)
-    formula = models.ForeignKey(Formula)
-    pesoProductoACondimentar = models.DecimalField(verbose_name='Peso Producto A Condimentar', max_digits=9, decimal_places=3)
-    pesoFormulaUsada = models.DecimalField(verbose_name='Peso Formula',max_digits=9, decimal_places=3)
-    pesoProductoCondimentado = models.DecimalField(verbose_name='Peso Producto Condimentado', max_digits=9, decimal_places=3)
-
-    def __int__(self):
-        return self.codigoCondimentado
 
 class Miga(models.Model):
     codigoMiga = models.AutoField(primary_key=True)
@@ -166,3 +140,17 @@ class DetalleCondimento(models.Model):
     pesoProducto = models.DecimalField(verbose_name='Peso grs.', max_digits=9, decimal_places=3)
     costoProducto = models.IntegerField(verbose_name='Costo' , default=0)
     costoTotalProducto = models.IntegerField(verbose_name='Costo Total',default= 0 )
+
+class CondimentadoTajadoPechuga(models.Model):
+    codigo = models.AutoField(primary_key= True)
+    producto = models.ForeignKey(Producto)
+    compra = models.IntegerField(verbose_name='Compra',default= 0 )
+    fecha = models.DateField(verbose_name='Fecha', auto_now=True)
+    PesoDescongelado = models.DecimalField(verbose_name='Peso Descongelado', max_digits=9, decimal_places=3,default=0)
+    fileteACond = models.DecimalField(verbose_name='Filete a Cond.', max_digits=9, decimal_places=3,default=0)
+    condimento = models.DecimalField(verbose_name='Condimento', max_digits=9, decimal_places=3,default=0)
+    fileteAApanar = models.DecimalField(verbose_name='Filete a Apanar', max_digits=9, decimal_places=3,default=0)
+    condimentoAP = models.DecimalField(verbose_name='Condimento', max_digits=9, decimal_places=3,default=0)
+    huesos = models.DecimalField(verbose_name='Huesos', max_digits=9, decimal_places=3,default=0)
+    piel = models.DecimalField(verbose_name='Piel', max_digits=9, decimal_places=3,default=0)
+    procesos = models.DecimalField(verbose_name='Procesos', max_digits=9, decimal_places=3,default=0)

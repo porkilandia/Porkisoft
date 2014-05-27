@@ -51,6 +51,11 @@
                         <a href="{% url 'Inventario.views.GestionApanado' productobodega.id %}">Apanado</a>
                    </td>
                 {% endif %}
+                 {% if productobodega.producto.nombreProducto == 'Pechuga' %}
+                   <td style="text-align: center; font-weight: bold;">
+                        <a href="{% url 'Inventario.views.GestionarTajadoCondPechugas' productobodega.id %}">Apanado</a>
+                   </td>
+                {% endif %}
 
             {% endif %}
 

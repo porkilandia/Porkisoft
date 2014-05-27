@@ -10,6 +10,9 @@ $(document).on('ready', inicio);
 
      $('#id_pesoProductoAntes').on('focus', calculoEnsalinado);
 
+
+     $('#exito').bPopup();
+
      $('#tablacostos').dataTable({
 
          "bPaginate": true,

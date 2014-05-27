@@ -19,7 +19,7 @@
         {% for verdura in verduras %}
         <tr>
             <td>{{ verdura.producto }}</td>
-            <td>{{ verdura.pesoProducto | floatformat }}Kg</td>
+            <td>{{ verdura.pesoProducto | floatformat }}grs</td>
             <td>$ {{ verdura.vrKilo}}</td>
             <td>{{ verdura.cif }}</td>
             <td>{{ verdura.mod }}</td>
@@ -44,6 +44,7 @@
              <br/><br/>
              <legend>Acciones</legend>
              <input class="btn btn-primary" value="Guardar" type="submit">
+             <a href="/detcompra/{{ compra }}"><input type="button" class="btn btn-success" value="Volver"></a>
          </fieldset>
     </form>
 

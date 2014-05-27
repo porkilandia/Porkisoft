@@ -2,6 +2,7 @@ from datetime import *
 
 from django import forms
 from django.forms import ModelForm
+from django.db.models import F
 
 from Fabricacion.models import *
 from Inventario.models import *
@@ -56,6 +57,8 @@ class DetalleCompraForm(ModelForm):
             self.fields['producto'].queryset = Producto.objects.filter(grupo = 6)
         elif compra.tipo.nombreGrupo == 'Compra / Venta':
             self.fields['producto'].queryset = Producto.objects.filter(grupo = 7)
+        elif compra.tipo.nombreGrupo == 'Basico Procesado':
+            self.fields['producto'].queryset = Producto.objects.filter(grupo = 10)
 
 
 
@@ -153,3 +156,10 @@ class DetalleMigaForm(ModelForm):
 class ApanadoForm(ModelForm):
     class Meta:
         model = Apanado
+
+class CondTajPechugasForm(ModelForm):
+    fechainicio = date.today() - timedelta(days=3)
+    fechafin = date.today()
+    compra = forms.ModelChoiceField(queryset=Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin)).filter(tipo = 10)) # muestra los registros de compras de 3 dias de antiguedad
+    class Meta:
+        model = CondimentadoTajadoPechuga

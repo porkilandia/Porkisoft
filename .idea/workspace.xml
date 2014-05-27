@@ -2,16 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionApanado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionMiga.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionMiga.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionTajaddoCondPechugas.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/bPopup.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionVerduras.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionVerduras.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Home.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/admin.py" afterPath="$PROJECT_DIR$/Fabricacion/admin.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/base.html" afterPath="$PROJECT_DIR$/porkisoft/templates/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/Forms/forms.py" afterPath="$PROJECT_DIR$/Inventario/Forms/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/css/jquery.dataTables.css" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/jquery.dataTables.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/models.py" afterPath="$PROJECT_DIR$/Fabricacion/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/models.py" afterPath="$PROJECT_DIR$/Inventario/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/urls.py" afterPath="$PROJECT_DIR$/Inventario/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/views.py" afterPath="$PROJECT_DIR$/Inventario/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -37,60 +40,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Inventario/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="69" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="26700">
+            <state line="151" column="0" selection-start="6199" selection-end="6199" vertical-scroll-proportion="0.33333334" vertical-offset="2695" max-vertical-offset="28780">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Home.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Home.html">
+      <file leaf-file-name="GestionVerduras.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionVerduras.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="34" selection-start="117" selection-end="117" vertical-scroll-proportion="0.11214953" vertical-offset="0" max-vertical-offset="1580">
-              <folding>
-                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#1;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="acciones.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="28" selection-start="682" selection-end="682" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="3020">
+            <state line="21" column="59" selection-start="529" selection-end="529" vertical-scroll-proportion="-6.1538463" vertical-offset="260" max-vertical-offset="1140">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css">
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Inventario/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="336" column="10" selection-start="4971" selection-end="4971" vertical-scroll-proportion="-9.37037" vertical-offset="6467" max-vertical-offset="118400">
+            <state line="42" column="20" selection-start="1686" selection-end="1695" vertical-scroll-proportion="0.0" vertical-offset="840" max-vertical-offset="1220">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/base.html">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="40" selection-start="655" selection-end="655" vertical-scroll-proportion="-3.0769231" vertical-offset="300" max-vertical-offset="1660">
+            <state line="148" column="20" selection-start="7825" selection-end="7841" vertical-scroll-proportion="0.0" vertical-offset="2652" max-vertical-offset="3220">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jquery.dataTables.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/jquery.dataTables.css">
+      <file leaf-file-name="GestionTajaddoCondPechugas.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionTajaddoCondPechugas.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="235" column="2" selection-start="9070" selection-end="9070" vertical-scroll-proportion="-10.111111" vertical-offset="4427" max-vertical-offset="8120">
+            <state line="17" column="12" selection-start="428" selection-end="428" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="1260">
               <folding />
             </state>
           </provider>
@@ -99,7 +88,16 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Inventario/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="18" selection-start="1064" selection-end="1078" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="4340">
+            <state line="131" column="25" selection-start="6324" selection-end="6324" vertical-scroll-proportion="0.0" vertical-offset="2280" max-vertical-offset="4360">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="162" column="127" selection-start="4673" selection-end="4673" vertical-scroll-proportion="0.0" vertical-offset="2685" max-vertical-offset="3240">
               <folding />
             </state>
           </provider>
@@ -126,7 +124,6 @@
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleTraslado.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionPlanillaRecepcion.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionVerduras.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCondimento.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/static/css/menu.css" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionBodega.html" />
@@ -137,32 +134,37 @@
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionEnsalinados.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/Cargo.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionSacrificio.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html" />
-        <option value="$PROJECT_DIR$/Inventario/models.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCondimento.html" />
-        <option value="$PROJECT_DIR$/Fabricacion/admin.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCondTajado.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleMiga.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionMiga.html" />
-        <option value="$PROJECT_DIR$/Inventario/Forms/forms.py" />
-        <option value="$PROJECT_DIR$/Fabricacion/models.py" />
-        <option value="$PROJECT_DIR$/Inventario/urls.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionApanado.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" />
-        <option value="$PROJECT_DIR$/Inventario/views.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
         <option value="$PROJECT_DIR$/porkisoft/templates/static/css/jquery.dataTables.css" />
         <option value="$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/static/js/bPopup.js" />
         <option value="$PROJECT_DIR$/porkisoft/templates/base.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html" />
+        <option value="$PROJECT_DIR$/Fabricacion/admin.py" />
+        <option value="$PROJECT_DIR$/Inventario/urls.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionTajaddoCondPechugas.html" />
+        <option value="$PROJECT_DIR$/Fabricacion/models.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionVerduras.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Home.html" />
+        <option value="$PROJECT_DIR$/Inventario/views.py" />
+        <option value="$PROJECT_DIR$/Inventario/models.py" />
+        <option value="$PROJECT_DIR$/Inventario/Forms/forms.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1366" />
-    <option name="height" value="730" />
+    <option name="x" value="-2" />
+    <option name="y" value="-3" />
+    <option name="width" value="1370" />
+    <option name="height" value="737" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -190,6 +192,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -384,7 +387,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -392,8 +394,9 @@
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="SearchEverywhereHistory" value="GestionCanal&#10;GestionCompra&#10;GestionCompras&#10;GestionCondimento&#10;GestionDeta&#10;panel&#10;GestionDetalleCo&#10;GestionDetalleComp&#10;GestionCana&#10;GestionPlanillaRe&#10;Ganado&#10;Canal&#10;GestionCa&#10;GestionDetall&#10;GestionGanado&#10;GestionComp&#10;GestionG&#10;GestionGana" />
+    <property name="SearchEverywhereHistory" value="GestionDetallCond&#10;GestionDetalleCompra&#10;verduras&#10;GestionCompra&#10;limpiez&#10;Limpieza&#10;GestionDEtalleComp&#10;GestionCanal&#10;GestionCompras&#10;GestionCondimento&#10;GestionDeta&#10;panel&#10;GestionDetalleCo&#10;GestionDetalleComp&#10;GestionCana&#10;GestionPlanillaRe&#10;Ganado&#10;Canal&#10;GestionCa&#10;GestionDetall&#10;GestionGanado&#10;GestionComp&#10;GestionG&#10;GestionGana" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -579,6 +582,12 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
+      <method />
+    </configuration>
     <configuration default="false" name="Porkisoft" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -683,7 +692,11 @@
       <created>1400625580992</created>
       <updated>1400625580992</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Costo de cada insumo comprado OK&#10;Limpieza de verduras ok&#10;Condimentado ok&#10;produccion de miga OK&#10;Actualizacion de inventarios OK&#10;Apanado Ok&#10;Pendiente: &#10;*Empacado&#10;*Ingresar un ejemplo Completo desde compra hasta empaque de producto&#10;&#10;">
+      <created>1400716358570</created>
+      <updated>1400716358570</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -707,19 +720,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="730" extended-state="4" />
+    <frame x="-2" y="-3" width="1370" height="737" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288364" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8452381" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.84317034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32605043" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854986" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25681818" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31873113" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3764706" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32993197" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288364" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277311" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288364" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -753,56 +766,15 @@
     <MESSAGE value="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Pendiente: &#10;*costo de cada insumo comprado pendiente&#10;*limpieza de verduras ok" />
     <MESSAGE value="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Costo de cada insumo comprado OK&#10;Limpieza de verduras ok&#10;Pendiente: &#10;*Condimentado&#10;&#10;" />
     <MESSAGE value="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Costo de cada insumo comprado OK&#10;Limpieza de verduras ok&#10;Condimentado ok&#10;produccion de miga OK&#10;Actualizacion de inventarios OK&#10;Pendiente: &#10;* Apanado&#10;&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Costo de cada insumo comprado OK&#10;Limpieza de verduras ok&#10;Condimentado ok&#10;produccion de miga OK&#10;Actualizacion de inventarios OK&#10;Pendiente: &#10;* Apanado&#10;&#10;" />
+    <MESSAGE value="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Costo de cada insumo comprado OK&#10;Limpieza de verduras ok&#10;Condimentado ok&#10;produccion de miga OK&#10;Actualizacion de inventarios OK&#10;Apanado Ok&#10;Pendiente: &#10;*Empacado&#10;*Ingresar un ejemplo Completo desde compra hasta empaque de producto&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Costo de cada insumo comprado OK&#10;Limpieza de verduras ok&#10;Condimentado ok&#10;produccion de miga OK&#10;Actualizacion de inventarios OK&#10;Apanado Ok&#10;Pendiente: &#10;*Empacado&#10;*Ingresar un ejemplo Completo desde compra hasta empaque de producto&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="71" />
+      <option name="time" value="78" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Inventario/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="169" column="95" selection-start="8014" selection-end="8014" vertical-scroll-proportion="0.0" vertical-offset="3032" max-vertical-offset="3840" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12700">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/.directory">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="568" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleSacrificio.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="33" selection-start="766" selection-end="987" vertical-scroll-proportion="0.52208835" vertical-offset="540" max-vertical-offset="1880" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/utils/datastructures.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="341" column="0" selection-start="10023" selection-end="10023" vertical-scroll-proportion="0.0" vertical-offset="6676" max-vertical-offset="10560" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/core/handlers/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="205" column="0" selection-start="7209" selection-end="7209" vertical-scroll-proportion="0.0" vertical-offset="3716" max-vertical-offset="4140" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/contrib/staticfiles/handlers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="2298" selection-end="2298" vertical-scroll-proportion="0.0" vertical-offset="1026" max-vertical-offset="1340" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python2.7/wsgiref/handlers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="0" selection-start="2886" selection-end="2886" vertical-scroll-proportion="0.3312102" vertical-offset="1496" max-vertical-offset="9040" />
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python2.7/dist-packages/django/core/servers/basehttp.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="125" column="0" selection-start="4483" selection-end="4483" vertical-scroll-proportion="0.0" vertical-offset="2123" max-vertical-offset="3220" />
@@ -848,13 +820,6 @@
         <state line="9" column="11" selection-start="211" selection-end="211" vertical-scroll-proportion="-0.0" vertical-offset="180" max-vertical-offset="1420" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionVerduras.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="11" selection-start="0" selection-end="1249" vertical-scroll-proportion="0.23076923" vertical-offset="0" max-vertical-offset="1120">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCanalDetalleDesposte.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="0" selection-start="159" selection-end="159" vertical-scroll-proportion="0.18903592" vertical-offset="0" max-vertical-offset="2760">
@@ -878,9 +843,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/jquery.dataTables_themeroller.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="28" selection-start="104" selection-end="104" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6720">
-          <folding />
-        </state>
+        <state line="6" column="28" selection-start="104" selection-end="104" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6720" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionEnsalinados.html">
@@ -906,43 +869,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/menu.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="4" selection-start="36" selection-end="36" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1960">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="51" selection-start="215" selection-end="215" vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="1440">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="0" selection-start="4537" selection-end="4537" vertical-scroll-proportion="0.3323263" vertical-offset="1850" max-vertical-offset="5620" />
+        <state line="3" column="4" selection-start="36" selection-end="36" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1960" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="97" column="127" selection-start="3059" selection-end="3059" vertical-scroll-proportion="0.584121" vertical-offset="1631" max-vertical-offset="2180">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="546" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fabricacion/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="272" selection-end="272" vertical-scroll-proportion="0.4029304" vertical-offset="0" max-vertical-offset="546" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCondTajado.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="32" selection-start="144" selection-end="144" vertical-scroll-proportion="6.1538463" vertical-offset="280" max-vertical-offset="1220">
           <folding />
         </state>
       </provider>
@@ -975,23 +907,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="23" selection-start="4253" selection-end="4253" vertical-scroll-proportion="0.0" vertical-offset="2419" max-vertical-offset="3060">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionBodega.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="0" selection-start="0" selection-end="1559" vertical-scroll-proportion="0.04" vertical-offset="40" max-vertical-offset="1160">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="53" selection-start="1558" selection-end="1558" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1160">
           <folding />
         </state>
       </provider>
@@ -1010,13 +928,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="144" column="14" selection-start="7657" selection-end="7667" vertical-scroll-proportion="0.6060606" vertical-offset="2540" max-vertical-offset="3460">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="18" selection-start="0" selection-end="1800" vertical-scroll-proportion="0.97196263" vertical-offset="0" max-vertical-offset="1380">
@@ -1024,64 +935,339 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/jquery.dataTables.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="235" column="2" selection-start="9070" selection-end="9070" vertical-scroll-proportion="0.0" vertical-offset="4427" max-vertical-offset="8120" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="336" column="10" selection-start="4971" selection-end="4971" vertical-scroll-proportion="0.0" vertical-offset="6467" max-vertical-offset="118400" />
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/bbb88937/04bd6456-ecdd-403d-80b5-a0d5cdcb5c98/porkisoftdb..Inventario_bodega">
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240" />
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/bbb88937/04bd6456-ecdd-403d-80b5-a0d5cdcb5c98/porkisoftdb..Inventario_producto">
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420" />
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="uml://DATABASE/04bd6456-ecdd-403d-80b5-a0d5cdcb5c98">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>04bd6456-ecdd-403d-80b5-a0d5cdcb5c98</OriginalElement>
+          <nodes>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_compra</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Nomina_cargo</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_planillarecepcion</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_BUFFER_PAGE</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_detallecondimento</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.auth_group_permissions</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_ganado</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_traslado</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_detallemiga</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.file_instances</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_proveedor</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_planilladesposte</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_detallesubproducto</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.TABLE_PRIVILEGES</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_detalletraslado</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_BUFFER_POOL_STATS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_detalleenlagunado</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.time_zone_transition</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.django_content_type</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.mutex_instances</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.PROFILING</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.time_zone</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.PLUGINS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.events_waits_history_long</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_condimento</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.help_keyword</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.host</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_canal</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_LOCK_WAITS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.proxies_priv</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.func</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.PARAMETERS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.django_site</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.south_migrationhistory</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.STATISTICS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.VIEWS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_detallecompra</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.plugin</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.slow_log</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_ensalinado</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_CMP_RESET</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.time_zone_transition_type</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.events_waits_history</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.ndb_binlog_index</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.events_waits_current</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_detalleplanilla</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_condimentadotajado</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.event</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.ENGINES</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.events_waits_summary_by_instance</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Ventas_venta</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.TRIGGERS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_productobodega</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.COLLATION_CHARACTER_SET_APPLICABILITY</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.threads</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.KEY_COLUMN_USAGE</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_apanado</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.procs_priv</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_subproducto</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.REFERENTIAL_CONSTRAINTS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.events_waits_summary_global_by_event_name</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.TABLESPACES</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.USER_PRIVILEGES</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.django_session</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.columns_priv</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.SCHEMA_PRIVILEGES</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.ROUTINES</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.TABLES</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.SESSION_STATUS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_LOCKS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.auth_user_user_permissions</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Ventas_detalleventa</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.PARTITIONS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.COLUMNS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.auth_user</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.servers</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.EVENTS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_detalleformula</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_producto</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.setup_consumers</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.file_summary_by_event_name</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.help_topic</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.PROCESSLIST</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_CMPMEM_RESET</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_CMPMEM</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.setup_instruments</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.performance_timers</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.setup_timers</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_BUFFER_PAGE_LRU</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.GLOBAL_VARIABLES</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.GLOBAL_STATUS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.cond_instances</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.help_relation</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.user</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_miga</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.auth_permission</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.general_log</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.time_zone_leap_second</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_grupo</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.file_summary_by_instance</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.events_waits_summary_by_thread_by_event_name</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_subproductobodega</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.FILES</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.proc</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.SCHEMATA</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_sacrificio</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.db</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.rwlock_instances</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_enlagunado</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_formula</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.CHARACTER_SETS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_CMP</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.TABLE_CONSTRAINTS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.help_category</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.auth_group</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.COLLATIONS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.django_admin_log</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Nomina_empleado</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.SESSION_VARIABLES</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.time_zone_name</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_limpiezaverduras</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_condimentado</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.tables_priv</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.COLUMN_PRIVILEGES</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.auth_user_groups</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_TRX</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_bodega</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="3698.0" y="559.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Columns</Category>
+            <Category>Key columns</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://DATABASE/04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_grupo">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_grupo</OriginalElement>
+          <nodes>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_grupo</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="73.0" y="57.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Columns</Category>
+            <Category>Key columns</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://DATABASE/04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_producto">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_producto</OriginalElement>
+          <nodes>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_bodega</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_grupo</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_producto</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_productobodega</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.8209876543209876" x="582.0" y="314.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Columns</Category>
+            <Category>Key columns</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/bPopup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="4845" selection-start="5179" selection-end="5179" vertical-scroll-proportion="0.21978022" vertical-offset="0" max-vertical-offset="546" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="0" selection-start="3695" selection-end="3695" vertical-scroll-proportion="-13.846154" vertical-offset="1140" max-vertical-offset="1700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="0" selection-start="1617" selection-end="1617" vertical-scroll-proportion="-8.461538" vertical-offset="860" max-vertical-offset="1440">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/bbb88937/04bd6456-ecdd-403d-80b5-a0d5cdcb5c98/porkisoftdb..Inventario_grupo">
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240" />
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="537" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fabricacion/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCondTajado.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="32" selection-start="0" selection-end="1538" vertical-scroll-proportion="-0.3088803" vertical-offset="280" max-vertical-offset="1220">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionTajaddoCondPechugas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="12" selection-start="428" selection-end="428" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="1260">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="2330" selection-end="2330" vertical-scroll-proportion="1.9813085" vertical-offset="0" max-vertical-offset="1540">
+        <state line="55" column="85" selection-start="2564" selection-end="2564" vertical-scroll-proportion="0.0" vertical-offset="282" max-vertical-offset="1640">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/models.py">
+    <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="18" selection-start="1064" selection-end="1078" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="4340">
+        <state line="148" column="20" selection-start="7825" selection-end="7841" vertical-scroll-proportion="0.0" vertical-offset="2652" max-vertical-offset="3220">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/views.py">
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="69" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="26700">
+        <state line="113" column="0" selection-start="4537" selection-end="4537" vertical-scroll-proportion="0.3323263" vertical-offset="1850" max-vertical-offset="5620">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="20" selection-start="1686" selection-end="1695" vertical-scroll-proportion="0.0" vertical-offset="519" max-vertical-offset="1180">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionVerduras.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="59" selection-start="529" selection-end="529" vertical-scroll-proportion="-6.1538463" vertical-offset="260" max-vertical-offset="1140">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="28" selection-start="682" selection-end="682" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="3020">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/jquery.dataTables.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="235" column="2" selection-start="9070" selection-end="9070" vertical-scroll-proportion="-10.111111" vertical-offset="4427" max-vertical-offset="8120">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="336" column="10" selection-start="4971" selection-end="4971" vertical-scroll-proportion="-9.37037" vertical-offset="6467" max-vertical-offset="118400">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="40" selection-start="655" selection-end="655" vertical-scroll-proportion="-3.0769231" vertical-offset="300" max-vertical-offset="1660">
+        <state line="0" column="9" selection-start="9" selection-end="9" vertical-scroll-proportion="-3.956044" vertical-offset="2160" max-vertical-offset="3080">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="34" selection-start="117" selection-end="117" vertical-scroll-proportion="0.11214953" vertical-offset="0" max-vertical-offset="1580">
-          <folding>
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#1;n#!!top" expanded="true" />
-          </folding>
+        <state line="60" column="16" selection-start="1706" selection-end="1706" vertical-scroll-proportion="-11.538462" vertical-offset="900" max-vertical-offset="1620">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="131" column="25" selection-start="6324" selection-end="6324" vertical-scroll-proportion="0.0" vertical-offset="2280" max-vertical-offset="4360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="162" column="127" selection-start="4673" selection-end="4673" vertical-scroll-proportion="0.0" vertical-offset="2685" max-vertical-offset="3240">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="151" column="0" selection-start="6199" selection-end="6199" vertical-scroll-proportion="0.33333334" vertical-offset="2695" max-vertical-offset="28780">
+          <folding />
         </state>
       </provider>
     </entry>

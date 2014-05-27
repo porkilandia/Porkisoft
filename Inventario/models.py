@@ -129,7 +129,8 @@ class Compra(models.Model):
     vrTransporte = models.IntegerField(verbose_name='Transporte',default= 0)
 
     def __unicode__(self):
-        return self.codigoCompra
+        cadena = "%s -- $%d"%(str(self.fechaCompra),self.vrCompra)
+        return cadena
 
 class Ganado(models.Model):
 

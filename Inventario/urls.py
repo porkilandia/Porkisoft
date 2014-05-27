@@ -37,6 +37,7 @@ urlpatterns = patterns('',
     url(r'^costoMiga/(?P<idmiga>\d+)',CostoMiga),
     url(r'^apanado/(?P<idprodbod>\d+)',GestionApanado),
 
+    url(r'^pechugas/(?P<idprodbod>\d+)',GestionarTajadoCondPechugas),
 
     url(r'^empleado/$',GestionEmpleados),
     url(r'^detcompra/(?P<idcompra>\d+)',GestionDetalleCompra),
