@@ -1,5 +1,7 @@
 from django.db import models
 
+from Inventario.models import *
+
 # Create your models here.
 class Cliente (models.Model):
     codigoCliente  = models.AutoField(primary_key=True, verbose_name='Codigo Cliente')
@@ -9,3 +11,10 @@ class Cliente (models.Model):
 
     def __unicode__(self):
         return self.nombreCliente
+
+class Pedido(models.Model):
+    producto = models.ForeignKey(Producto)
+    cliente = models.ForeignKey(Cliente)
+    fecha = models.DateField(auto_now=True,verbose_name='Fecha')
+
+    pass
