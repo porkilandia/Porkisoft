@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="porkisoft.iws" />
@@ -52,8 +51,8 @@
       <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/porkisoft/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.62283736" vertical-offset="1998" max-vertical-offset="3024">
-              <caret line="131" column="14" selection-start-line="131" selection-start-column="14" selection-end-line="131" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.36548224" vertical-offset="1998" max-vertical-offset="3024">
+              <caret line="123" column="60" selection-start-line="123" selection-start-column="60" selection-end-line="123" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -62,7 +61,7 @@
       <file leaf-file-name="wsgi.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/porkisoft/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
+            <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="612">
               <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="23" selection-end-column="36" />
               <folding />
             </state>
@@ -145,9 +144,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="51" />
-    <option name="y" value="24" />
+    <option name="y" value="-4" />
     <option name="width" value="1315" />
-    <option name="height" value="744" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -175,7 +174,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -210,6 +208,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -321,27 +320,7 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="/usr/bin/python2.7" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="porkisoft" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="localhost" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -367,7 +346,27 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python2.7" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="porkisoft" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -546,7 +545,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="24" width="1315" height="744" extended-state="6" />
+    <frame x="51" y="-4" width="1315" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288364" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -554,7 +553,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32605043" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25171104" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31205675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3175729" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3761302" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32667875" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -562,12 +561,12 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3542673" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -614,7 +613,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="28920">
           <caret line="1440" column="74" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -802,14 +800,14 @@
           <OriginalElement>04bd6456-ecdd-403d-80b5-a0d5cdcb5c98</OriginalElement>
           <nodes>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_compra</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Nomina_cargo</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_planillarecepcion</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Nomina_cargo</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_BUFFER_PAGE</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_detallecondimento</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.auth_group_permissions</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_ganado</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_traslado</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.auth_group_permissions</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_detallemiga</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_traslado</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.file_instances</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_proveedor</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_planilladesposte</node>
@@ -826,28 +824,28 @@
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.PLUGINS</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.events_waits_history_long</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_condimento</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.help_keyword</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.host</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.help_keyword</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_canal</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_LOCK_WAITS</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.proxies_priv</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.func</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_LOCK_WAITS</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.PARAMETERS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.func</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.django_site</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.south_migrationhistory</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.STATISTICS</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.VIEWS</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_detallecompra</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.VIEWS</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.plugin</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.slow_log</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_ensalinado</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_CMP_RESET</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_ensalinado</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.time_zone_transition_type</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.events_waits_history</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.ndb_binlog_index</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.events_waits_current</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_detalleplanilla</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_condimentadotajado</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_detalleplanilla</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.event</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.ENGINES</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.events_waits_summary_by_instance</node>
@@ -897,33 +895,33 @@
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.user</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_miga</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.auth_permission</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.general_log</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.time_zone_leap_second</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.general_log</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_grupo</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.file_summary_by_instance</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.events_waits_summary_by_thread_by_event_name</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_subproductobodega</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.FILES</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_subproductobodega</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.proc</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.SCHEMATA</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Inventario_sacrificio</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.SCHEMATA</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.db</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:performance_schema.rwlock_instances</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_enlagunado</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_formula</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.CHARACTER_SETS</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_CMP</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.TABLE_CONSTRAINTS</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_CMP</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.help_category</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.auth_group</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.COLLATIONS</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.django_admin_log</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.auth_group</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Nomina_empleado</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.django_admin_log</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.SESSION_VARIABLES</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.time_zone_name</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_limpiezaverduras</node>
-            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_condimentado</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:mysql.tables_priv</node>
+            <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.Fabricacion_condimentado</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.COLUMN_PRIVILEGES</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:porkisoftdb.auth_user_groups</node>
             <node x="" y="">04bd6456-ecdd-403d-80b5-a0d5cdcb5c98.table:information_schema.INNODB_TRX</node>
@@ -1109,7 +1107,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.6539792" vertical-offset="24550" max-vertical-offset="25902">
           <caret line="1424" column="39" selection-start-line="1424" selection-start-column="39" selection-end-line="1424" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1133,14 +1130,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="591">
           <caret line="0" column="8" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62283736" vertical-offset="1998" max-vertical-offset="3024">
-          <caret line="131" column="14" selection-start-line="131" selection-start-column="14" selection-end-line="131" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.36548224" vertical-offset="1998" max-vertical-offset="3024">
+          <caret line="123" column="60" selection-start-line="123" selection-start-column="60" selection-end-line="123" selection-end-column="60" />
           <folding />
         </state>
       </provider>
