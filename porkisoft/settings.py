@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'Telemercadeo',
     'Ventas',
     'south',
+    'gunicorn',
 )
 
 # A sample logging configuration. The only tangible logging
