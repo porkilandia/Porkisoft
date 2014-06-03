@@ -29,10 +29,10 @@ def listaProductos(request):
         if formulario.is_valid():
             producto = formulario.save()
 
-            if producto.grupo.id == 5 or producto.grupo.id == 10:# insumos o BasicosProcesados solo se grabaran en la bodega de Taller
+            if producto.grupo.nombreGrupo == "Insumos" or producto.grupo.nombreGrupo == "Basicos Procesados":# insumos o BasicosProcesados solo se grabaran en la bodega de Taller
 
                 bodegaInicial = ProductoBodega()
-                bodega = Bodega.objects.get(pk = 6)
+                bodega = Bodega.objects.get(nombreBodega = 'Taller')
 
                 bodegaInicial.producto = producto
                 bodegaInicial.bodega = bodega
