@@ -168,7 +168,7 @@ def GestionGrupo(request):
         formulario = GrupoForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/iventario/grupo')
+            return HttpResponseRedirect('/inventario/grupo')
     else:
         formulario = GrupoForm()
 
