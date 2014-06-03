@@ -53,7 +53,7 @@ def listaProductos(request):
                     bodegaInicial.unidadesStock = 0
                     bodegaInicial.save()
 
-            return HttpResponseRedirect('/listaProd')
+            return HttpResponseRedirect('/inventario/listaProd')
     else:
         formulario =ProductoForm()
 
@@ -72,7 +72,7 @@ def editar_producto(request, id_producto):
         formulario = ProductoForm(request.POST, instance=producto)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/listaProd')
+            return HttpResponseRedirect('/inventario/listaProd')
     else:
         formulario = ProductoForm(instance=producto)
     return  render_to_response('Inventario/GestionProducto.html',{'formulario':formulario,'productos':productos },
@@ -88,7 +88,7 @@ def listaSubProductos(request):
         formulario = SubProductoForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/verSubProductos/')
+            return HttpResponseRedirect('/inventario/verSubProductos/')
     else:
         formulario =SubProductoForm()
 
@@ -100,7 +100,7 @@ def borrarSubproducto(request, idSubproducto):
     subproducto = SubProducto.objects.get(pk=idSubproducto)
     subproducto.delete()
 
-    return  HttpResponseRedirect('/verSubProductos')
+    return  HttpResponseRedirect('/inventario/verSubProductos')
 
 def editarSubproducto(request, idSproducto):
     subproductos = SubProducto.objects.all().order_by('nombreSubProducto')
@@ -109,7 +109,7 @@ def editarSubproducto(request, idSproducto):
         formulario = SubProductoForm(request.POST, instance=sproducto)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/verSubProductos')
+            return HttpResponseRedirect('/inventario/verSubProductos')
     else:
         formulario = SubProductoForm(instance=sproducto)
 
@@ -133,7 +133,7 @@ def AgregarDetSubProducto(request,id_subproducto):
         formulario = DetSubProductoForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/addDSprod/'+ id_subproducto)
+            return HttpResponseRedirect('/inventario/addDSprod/'+ id_subproducto)
     else:
         formulario = DetSubProductoForm(initial={'subproducto':id_subproducto})
 
@@ -145,7 +145,7 @@ def AgregarDetSubProducto(request,id_subproducto):
 def borrarDetalleSp(request, idDetalle):
     detsubproducto = DetalleSubProducto.objects.get(pk=idDetalle)
     detsubproducto.delete()
-    return  HttpResponseRedirect('/verSubProductos')
+    return  HttpResponseRedirect('/inventario/verSubProductos')
 
 #**************************************BODEGA****************************************************
 
@@ -155,7 +155,7 @@ def GestionBodega(request):
         formulario = BodegaForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/bodega')
+            return HttpResponseRedirect('/inventario/bodega')
     else:
         formulario = BodegaForm()
 
@@ -168,7 +168,7 @@ def GestionGrupo(request):
         formulario = GrupoForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('inventario/grupo')
+            return HttpResponseRedirect('/iventario/grupo')
     else:
         formulario = GrupoForm()
 
@@ -184,7 +184,7 @@ def editarBodega(request, idBodega):
         formulario = BodegaForm(request.POST, instance=bodega)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/bodega')
+            return HttpResponseRedirect('/inventario/bodega')
     else:
         formulario = BodegaForm(instance=bodega)
 
@@ -194,7 +194,7 @@ def editarBodega(request, idBodega):
 def borrarBodega(request,idbodega ):
     bodega = Bodega.objects.get(pk=idbodega)
     bodega.delete()
-    return  HttpResponseRedirect('/bodega')
+    return  HttpResponseRedirect('/inventario/bodega')
 
 def GestionProductoBodega(request,idproducto):
     productoBodegas = ProductoBodega.objects.filter(producto = idproducto)
@@ -211,7 +211,7 @@ def GestionProvedor(request):
         formulario = ProvedorForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/provedor')
+            return HttpResponseRedirect('/inventario/provedor')
     else:
         formulario = ProvedorForm()
 
@@ -253,7 +253,7 @@ def GestionGanado(request,idcompra):
             compra.vrCompra = totalCompra
             compra.save()
 
-            return HttpResponseRedirect('/ganado/'+idcompra)
+            return HttpResponseRedirect('/inventario/ganado/'+idcompra)
     else:
         formulario = GanadoForm()
 
@@ -270,7 +270,7 @@ def GestionCompra(request):
         if formulario.is_valid():
             formulario.save()
 
-            return HttpResponseRedirect('/compra')
+            return HttpResponseRedirect('/inventario/compra')
     else:
         formulario =CompraForm()
 
@@ -335,7 +335,7 @@ def GestionDetalleCompra(request,idcompra):
             compra.save()
 
 
-            return HttpResponseRedirect('/detcompra/'+ idcompra)
+            return HttpResponseRedirect('/inventario/detcompra/'+ idcompra)
     else:
         formulario = DetalleCompraForm(idcompra,initial={'compra':idcompra })
 
@@ -352,7 +352,7 @@ def GestionDesposte(request):
         formulario = DesposteForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/desposte/')
+            return HttpResponseRedirect('/inventario/desposte')
     else:
         formulario =DesposteForm()
 
@@ -491,7 +491,7 @@ def GestionCanal(request,idrecepcion):
             recepcion.save()
 
 
-            return HttpResponseRedirect('/canal/'+ idrecepcion)
+            return HttpResponseRedirect('/inventario/canal/'+ idrecepcion)
     else:
         formulario = CanalForm(initial={'recepcion':idrecepcion})
 
@@ -510,7 +510,7 @@ def MarcarCanalDesposte(request, idcanal):
         if formulario.is_valid():
 
             formulario.save()
-            return HttpResponseRedirect('/canal/'+ str(recepcion.codigoRecepcion))
+            return HttpResponseRedirect('/inventario/canal/'+ str(recepcion.codigoRecepcion))
     else:
         formulario = CanalForm(initial={'estado':True},instance=canal)
 
@@ -637,7 +637,7 @@ def GestionCanalDetalleDesposte(request, idplanilla):
             desposte.difCanalADespostado = difCanalDesposte
             desposte.save()
 
-            return HttpResponseRedirect('/detalleDesposte/'+ idplanilla)
+            return HttpResponseRedirect('/inventario/detalleDesposte/'+ idplanilla)
     else:
         formulario = DetalleDesposteForm(initial={'planilla':idplanilla})
 
@@ -752,7 +752,7 @@ def GestionEmpleados(request):
 
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/empleado/')
+            return HttpResponseRedirect('/inventario/empleado')
     else:
         formulario =EmpleadoForm()
 
@@ -769,7 +769,7 @@ def GestionCargos(request):
 
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/cargo/')
+            return HttpResponseRedirect('/inventario/cargo')
     else:
         formulario = CargoForm()
 
@@ -784,7 +784,7 @@ def GestionTraslados(request):
         formulario = TrasladoForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/traslado/')
+            return HttpResponseRedirect('/inventario/traslado')
     else:
         formulario =TrasladoForm()
 
@@ -829,7 +829,7 @@ def GestionDetalleTraslado(request,idtraslado):
             bodegaDestino.unidadesStock= unidadesDestinoActualizadas
             bodegaDestino.save()
 
-            return HttpResponseRedirect('/dettraslado/'+ idtraslado)
+            return HttpResponseRedirect('/inventario/dettraslado/'+ idtraslado)
     else:
         formulario = DetalleTrasladoForm(initial={'traslado':idtraslado})
 
@@ -897,7 +897,7 @@ def GestionSacrificio(request,idrecepcion):
                 cont +=1
 
 
-            return HttpResponseRedirect('/sacrificio/'+idrecepcion)
+            return HttpResponseRedirect('/inventario/sacrificio/'+idrecepcion)
 
     else:
         formSacrificio = SacrificioForm(initial={'recepcion':idrecepcion})
@@ -925,7 +925,7 @@ def GestionPlanillaRecepcion(request , idcompra):
             Recepcion.transporte = request.POST.get('transporte')
             Recepcion.save()
 
-            return HttpResponseRedirect('/recepcion/'+ idcompra)
+            return HttpResponseRedirect('/inventario/recepcion/'+ idcompra)
     else:
         formulario = PlanillaRecepcionForm(initial={'compra':idcompra})
 
@@ -988,7 +988,7 @@ def GestionEnsalinado(request,idproducto):
             PapainaBodega.pesoProductoStock -= ensalinado.pesoPapaina
             PapainaBodega.save()
 
-            return HttpResponseRedirect('/ensalinados/'+ idproducto)
+            return HttpResponseRedirect('/inventario/ensalinados/'+ idproducto)
     else:
         formulario = EnsalinadoForm(initial={'producto':idproducto, 'pesoProducto':bodegaProducto.pesoProductoStock})
 
@@ -1044,7 +1044,7 @@ def GestionVerduras(request,idDetcompra):
             detalleCompra.save()
 
 
-            return HttpResponseRedirect('/verduras/'+ idDetcompra)
+            return HttpResponseRedirect('/inventario/verduras/'+ idDetcompra)
     else:
         formulario = LimpiezaVerdurasForm(initial={'compra':idDetcompra,'producto': detalleCompra.producto.codigoProducto})
 
@@ -1070,7 +1070,7 @@ def GestionCondimento(request):
             condimento.pesoCondimento = (condimento.pesoCondimento / 1000)
             condimento.save()
 
-            return HttpResponseRedirect('/condimento/')
+            return HttpResponseRedirect('/inventario/condimento/')
     else:
         formulario = CondimentoForm()
 
@@ -1104,7 +1104,7 @@ def GestionDetalleCondimento(request,idcondimento):
 
 
 
-            return HttpResponseRedirect('/detallecondimento/'+ idcondimento)
+            return HttpResponseRedirect('/inventario/detallecondimento/'+ idcondimento)
     else:
         formulario = DetalleCondimentoForm(initial={'condimento':idcondimento})
 
@@ -1197,7 +1197,7 @@ def GestionCondTajado(request, idprodbod):
             prodBod.save()
 
 
-            return HttpResponseRedirect('/condtaj/'+ idprodbod)
+            return HttpResponseRedirect('/inventario/condtaj/'+ idprodbod)
     else:
         formulario = CondTajadoForm(initial={'producto':producto.codigoProducto,'pesoProductoEnsalinado':prodBod.pesoProductoStock})
 
@@ -1223,7 +1223,7 @@ def GestionMiga(request):
             miga.PesoFormulaMiga /= 1000
             miga.save()
 
-            return HttpResponseRedirect('/miga/')
+            return HttpResponseRedirect('/inventario/miga')
     else:
         formulario = MigaForm()
 
@@ -1255,7 +1255,7 @@ def GestionDetalleMiga(request,idmiga):
             detalle.save()
 
 
-            return HttpResponseRedirect('/detallemiga/'+ idmiga)
+            return HttpResponseRedirect('/inventario/detallemiga/'+ idmiga)
     else:
         formulario = DetalleMigaForm(initial={'miga':idmiga})
 
@@ -1347,7 +1347,7 @@ def GestionApanado(request,idprodbod):
             bodegaFileteApanado.pesoProductoStock = apanado.totalApanado
             bodegaFileteApanado.save()
 
-            return HttpResponseRedirect('/apanado/'+idprodbod)
+            return HttpResponseRedirect('/inventario/apanado/'+idprodbod)
     else:
         #Se Setea el valor inicial del formulario con las cantidades existentes
         formulario = ApanadoForm(initial={'producto':bodegaFilete.producto.codigoProducto,
@@ -1447,7 +1447,7 @@ def GestionarTajadoCondPechugas(request,idprodbod):
 
             #pendiente  la vista para el apanado delFilete Condimentado
 
-            return HttpResponseRedirect('/pechugas/'+idprodbod)
+            return HttpResponseRedirect('/inventario/pechugas/'+idprodbod)
     else:
         formulario = CondTajPechugasForm(initial={'producto':bodegaPechuga.producto.codigoProducto})
 
