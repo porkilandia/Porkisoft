@@ -160,9 +160,12 @@ LOGGING = {
         },
     }
 }
-
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+
+dbconfig = dj_database_url.config()
+if dbconfig:
+    DATABASES['default'] =  dbconfig
+
 
 SECURE_PROXY_SSL_HEADER =('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']

@@ -5,7 +5,7 @@ from Inventario.views import *
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^home/$',home),
+    #url(r'^home/$',home),
     url(r'^listaProd/$', listaProductos),
     url(r'^verSubProductos/$',listaSubProductos),
     url(r'^bodega/$',GestionBodega),
