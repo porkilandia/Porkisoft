@@ -162,6 +162,20 @@ def GestionBodega(request):
     return render_to_response('Inventario/GestionBodega.html',{'formulario':formulario,'bodegas':bodegas },
                               context_instance = RequestContext(request))
 
+def GestionGrupo(request):
+    grupos = Grupo.objects.all()
+    if request.method == 'POST':
+        formulario = GrupoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('inventario/grupo')
+    else:
+        formulario = GrupoForm()
+
+    return render_to_response('Inventario/GestionGrupo.html',{'formulario':formulario,'grupos':grupos },
+                              context_instance = RequestContext(request))
+
+
 
 def editarBodega(request, idBodega):
     bodegas = Bodega.objects.all()

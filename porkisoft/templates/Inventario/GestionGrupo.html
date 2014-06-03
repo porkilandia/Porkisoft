@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Bodegas{% endblock titulo %}
+{% block mensajes %}Listado de Grupos{% endblock mensajes %}
+{% block contenido %}
+
+   <table id="tablabodegas" class="table-striped" >
+
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Refrigerado</th>
+            <th>Congelado</th>
+
+        </tr>
+        </thead>
+        {% for grupo in grupos %}
+        <tr>
+            <td>{{ grupo.id }}</td>
+            <td>{{ grupo.nombreGrupo }}</td>
+            {% if grupo.refrigerado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+            {% if grupo.congelado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun Registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Grupo</legend>
+
+                  {{ formulario }}
+
+              <br/>
+          <input class="btn btn-primary" value="Guardar" type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}

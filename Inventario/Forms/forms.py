@@ -163,3 +163,7 @@ class CondTajPechugasForm(ModelForm):
     compra = forms.ModelChoiceField(queryset=Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin)).filter(tipo = 10)) # muestra los registros de compras de 3 dias de antiguedad
     class Meta:
         model = CondimentadoTajadoPechuga
+
+class GrupoForm(ModelForm):
+    class Meta:
+        model = Grupo
