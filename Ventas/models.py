@@ -28,6 +28,7 @@ class DetalleVenta (models.Model):
 
 class Pedido(models.Model):
     numeroPedido = models.AutoField(primary_key=True, verbose_name='Numero Pedido')
+    numeroFactura = models.BigIntegerField(verbose_name='Factura No.',default=0)
     fechaPedido = models.DateTimeField(verbose_name='Fecha', auto_now=True)
     cliente = models.ForeignKey(Cliente)
     empleado = models.ForeignKey(Empleado)
