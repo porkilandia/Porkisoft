@@ -8,7 +8,7 @@
 
         <thead >
         <tr>
-            <th>Codigo</th>
+            <th>Factura</th>
             <th>Fecha y hora</th>
             <th>Empleado</th>
             <th>Cliente</th>
@@ -19,7 +19,7 @@
         </thead>
         {% for pedido in pedidos %}
         <tr>
-            <td>{{ pedido.numeroPedido }}</td>
+            <td>{{ pedido.numeroFactura }}</td>
             <td>{{ pedido.fechaPedido }}</td>
             <td>{{ pedido.empleado }}</td>
             <td>{{ pedido.cliente }}</td>
