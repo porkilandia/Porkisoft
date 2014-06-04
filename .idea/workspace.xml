@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Ventas/migrations/0002_auto__add_field_detallepedido_estado.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Telemercadeo/migrations/0002_initial.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Telemercadeo/migrations/0003_auto__add_field_cliente_nit.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Ventas/migrations/0003_auto__add_field_pedido_numeroFactura.py" />
+    <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="Creacion del modulo de pedidos&#10;adicion de los campos nit y num factura">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Telemercadeo/migrations/0004_auto__chg_field_cliente_nit.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionPedido.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionPedido.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Telemercadeo/models.py" afterPath="$PROJECT_DIR$/Telemercadeo/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="porkisoft.iws" />
@@ -34,72 +31,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Telemercadeo/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="399">
-              <caret line="7" column="58" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GestionDetallePedido.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.8" vertical-offset="0" max-vertical-offset="2541">
-              <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.4787234" vertical-offset="1872" max-vertical-offset="2562">
+              <caret line="102" column="9" selection-start-line="102" selection-start-column="9" selection-end-line="102" selection-end-column="9" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Ventas/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="1134">
-              <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GestionVentas.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/GestionVentas.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="315">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Forms.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Ventas/Forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="378">
-              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GestionCliente.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Telemercadeo/GestionCliente.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.407408" vertical-offset="490" max-vertical-offset="1176">
-              <caret line="38" column="12" selection-start-line="6" selection-start-column="4" selection-end-line="38" selection-end-column="12" />
-              <folding>
-                <marker date="1401896561948" expanded="true" signature="210:1017" placeholder="..." />
-                <marker date="1401896561948" expanded="true" signature="228:418" placeholder="..." />
-                <marker date="1401896561948" expanded="true" signature="241:401" placeholder="..." />
-                <marker date="1401896561948" expanded="true" signature="469:820" placeholder="..." />
-                <marker date="1401896561948" expanded="true" signature="688:805" placeholder="..." />
-                <marker date="1401896561948" expanded="true" signature="861:982" placeholder="..." />
-                <marker date="1401896561948" expanded="true" signature="894:964" placeholder="..." />
-                <marker date="1401896561948" expanded="true" signature="1066:1321" placeholder="..." />
-                <marker date="1401896561948" expanded="true" signature="1121:1308" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -164,9 +101,9 @@
         <option value="$PROJECT_DIR$/Inventario/urls.py" />
         <option value="$PROJECT_DIR$/Ventas/Forms.py" />
         <option value="$PROJECT_DIR$/Ventas/views.py" />
-        <option value="$PROJECT_DIR$/Telemercadeo/models.py" />
         <option value="$PROJECT_DIR$/Ventas/models.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionPedido.html" />
+        <option value="$PROJECT_DIR$/Telemercadeo/models.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html" />
       </list>
     </option>
@@ -691,7 +628,11 @@
       <created>1401912752318</created>
       <updated>1401912752318</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Creacion del modulo de pedidos&#10;adicion de los campos nit y num factura">
+      <created>1401913247422</created>
+      <updated>1401913247422</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -720,11 +661,11 @@
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288364" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5136876" sideWeight="0.49960598" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5136876" sideWeight="0.49960598" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32605043" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25171104" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32179385" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32179385" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3761302" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5136876" sideWeight="0.500394" order="9" side_tool="true" content_ui="tabs" />
@@ -1286,36 +1227,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Telemercadeo/GestionCliente.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.407408" vertical-offset="490" max-vertical-offset="1176">
-          <caret line="38" column="12" selection-start-line="6" selection-start-column="4" selection-end-line="38" selection-end-column="12" />
-          <folding>
-            <marker date="1401896561948" expanded="true" signature="210:1017" placeholder="..." />
-            <marker date="1401896561948" expanded="true" signature="228:418" placeholder="..." />
-            <marker date="1401896561948" expanded="true" signature="241:401" placeholder="..." />
-            <marker date="1401896561948" expanded="true" signature="469:820" placeholder="..." />
-            <marker date="1401896561948" expanded="true" signature="688:805" placeholder="..." />
-            <marker date="1401896561948" expanded="true" signature="861:982" placeholder="..." />
-            <marker date="1401896561948" expanded="true" signature="894:964" placeholder="..." />
-            <marker date="1401896561948" expanded="true" signature="1066:1321" placeholder="..." />
-            <marker date="1401896561948" expanded="true" signature="1121:1308" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Ventas/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="1134">
           <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/GestionVentas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="591">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1340,16 +1255,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Telemercadeo/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="399">
-          <caret line="7" column="58" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.46192893" vertical-offset="0" max-vertical-offset="591">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/GestionVentas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="591">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Telemercadeo/GestionCliente.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5460993" vertical-offset="490" max-vertical-offset="1176">
+          <caret line="38" column="12" selection-start-line="6" selection-start-column="4" selection-end-line="38" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8" vertical-offset="0" max-vertical-offset="2541">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.4787234" vertical-offset="1872" max-vertical-offset="2562">
+          <caret line="102" column="9" selection-start-line="102" selection-start-column="9" selection-end-line="102" selection-end-column="9" />
           <folding />
         </state>
       </provider>

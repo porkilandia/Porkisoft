@@ -85,14 +85,7 @@
 
 
         </tr>
-        <tr>
-                <th colspan="4">
-                   Total:
-                </th>
-                <th>
-                   ${{ vrPedido }}
-                </th>
-        </tr>
+
             {% empty %}
             <tr>
                 <td colspan="9">
@@ -101,6 +94,14 @@
             </tr>
 
         {% endfor %}
+    <tr>
+         <th colspan="4">
+             Total:
+         </th>
+         <th>
+            ${{ vrPedido }}
+         </th>
+        </tr>
     </table>
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarBodega">
