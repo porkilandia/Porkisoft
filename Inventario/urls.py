@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, url
 
 from Inventario.views import *
+from Telemercadeo.views import *
+from Ventas.views import *
 
 
 urlpatterns = patterns('',
@@ -13,6 +15,12 @@ urlpatterns = patterns('',
     url(r'^ganado/(?P<idcompra>\d+)',GestionGanado),
     url(r'^compra/$',GestionCompra),
     url(r'^grupo/$',GestionGrupo),
+
+    url(r'^cliente/$',GestionCliente),
+    url(r'^pedido/(?P<idcliente>\d+)',GestionPedidos),
+    url(r'^detallePedido/(?P<idpedido>\d+)',GestionDetallePedido),
+
+
 
     url(r'^recepcion/(?P<idcompra>\d+)',GestionPlanillaRecepcion),
     url(r'^canal/(?P<idrecepcion>\d+)',GestionCanal),

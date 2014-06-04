@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Bodegas{% endblock titulo %}
+{% block mensajes %}Detalles del pedido{% endblock mensajes %}
+{% block contenido %}
+
+    <table class="table-striped" >
+
+        <thead >
+        <tr>
+            <th>Codigo</th>
+            <th>Fecha y hora</th>
+            <th>Empleado</th>
+            <th>Cliente</th>
+            <th>Bodega</th>
+            <th>Vr.Pedido</th>
+
+
+        </tr>
+        </thead>
+            <tr>
+                <td>{{ pedido.numeroPedido }}</td>
+                <td>{{ pedido.fechaPedido }}</td>
+                <td>{{ pedido.empleado }}</td>
+                <td>{{ pedido.cliente }}</td>
+                <td>{{ pedido.bodega}}</td>
+                <td>{{ pedido.TotalVenta }}</td>
+            </tr>
+
+    </table>
+    <br/>
+    <table class="table-striped" >
+
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Telefono</th>
+            <th>Direccion</th>
+
+
+        </tr>
+        </thead>
+
+            <tr>
+                <td>{{ pedido.cliente.codigoCliente }}</td>
+                <td>{{ pedido.cliente.nombreCliente }}</td>
+                <td>{{ pedido.cliente.telefonoCliente }}</td>
+                <td>{{ pedido.cliente.direccionCliente }}</td>
+
+            </tr>
+
+    </table>
+    <br/>
+
+    <table class="table-striped" >
+
+        <thead >
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+            <th>Unidades</th>
+            <th>Vr.Unitario</th>
+            <th>Vr. Total</th>
+            <th>Accion</th>
+
+        </tr>
+        </thead>
+        {% for det  in detPedido %}
+        <tr>
+            <td>{{ det.producto }}</td>
+            <td>{{ det.peso }}grs</td>
+            <td>{{ det.unidades }}</td>
+            <td>{{ det.vrUnitario }}</td>
+            <td>{{ det.vrTotal }}</td>
+            {% if det.estado == False %}
+                <td>
+                <a href="#">pendiente</a>
+            </td>
+            {% else %}
+                <td>
+                <a href="#">Entregado</a>
+            </td>
+            {% endif %}
+
+
+        </tr>
+        <tr>
+                <th colspan="4">
+                   Total:
+                </th>
+                <th>
+                   ${{ vrPedido }}
+                </th>
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Pedido</legend>
+
+                  {{ formulario }}
+
+              <br/>
+          <input class="btn btn-default" value="Guardar" type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}

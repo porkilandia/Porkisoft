@@ -12,9 +12,3 @@ class Cliente (models.Model):
     def __unicode__(self):
         return self.nombreCliente
 
-class Pedido(models.Model):
-    producto = models.ForeignKey(Producto)
-    cliente = models.ForeignKey(Cliente)
-    fecha = models.DateField(auto_now=True,verbose_name='Fecha')
-
-    pass

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Bodegas{% endblock titulo %}
+{% block mensajes %}Listado de Clientes{% endblock mensajes %}
+{% block contenido %}
+
+    <table id="tablabodegas" class="table-striped" >
+
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Telefono</th>
+            <th>Direccion</th>
+            <th>Accion</th>
+
+        </tr>
+        </thead>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente.codigoCliente }}</td>
+            <td>{{ cliente.nombreCliente }}</td>
+            <td>{{ cliente.telefonoCliente }}</td>
+            <td>{{ cliente.direccionCliente }}</td>
+
+            <td>
+                <a href="{% url 'Ventas.views.GestionPedidos' cliente.codigoCliente %}">Pedido</a>
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Pedido</legend>
+
+                  {{ formulario }}
+
+              <br/>
+          <input class="btn btn-default" value="Guardar" type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}

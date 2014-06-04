@@ -2,7 +2,7 @@
 from decimal import Decimal
 from math import ceil
 
-from django.shortcuts import render_to_response, HttpResponseRedirect, render
+from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
 
 from Inventario.Forms.forms import *
