@@ -84,6 +84,27 @@ class Canal (models.Model):
     def __unicode__(self):
         return self.numeroCanal
 
+class Sacrificio(models.Model):
+
+
+    recepcion = models.ForeignKey(PlanillaRecepcion)
+    cantReses = models.IntegerField(verbose_name='Cantidad reses',default=0)
+    piel = models.IntegerField(verbose_name='Piel',default=0)
+    vrMenudo = models.IntegerField(verbose_name='Vr. Menudo', default=0)
+    vrDeguello = models.IntegerField(verbose_name='Vr. Deguello', default=0)
+    vrTransporte = models.IntegerField(verbose_name='Vr.Transporte', default=0)
+    cola = models.DecimalField(verbose_name = 'Peso Cola',max_digits=9, decimal_places=3,null= True,default=0)
+    rinones = models.DecimalField(verbose_name = 'Peso Rinyones',max_digits=9, decimal_places=3,null= True,default=0)
+    creadillas = models.DecimalField(verbose_name = 'Peso Creadillas',max_digits=9, decimal_places=3,null= True,default=0)
+    recortes = models.DecimalField(verbose_name = 'Peso Recortes',max_digits=9, decimal_places=3,null= True,default=0)
+    ubre = models.DecimalField(verbose_name = 'Ubre',max_digits=9, decimal_places=3,null= True,default=0)
+    desecho = models.DecimalField(verbose_name = 'Peso Desecho',max_digits=9, decimal_places=3,null= True,default=0)
+    fechaSacrificio = models.DateField(verbose_name='Fecha Sacrificio',auto_now=True)
+
+
+    def __unicode__(self):
+        return self.id
+
 
 class DetallePlanilla (models.Model):
     planilla = models.ForeignKey(PlanillaDesposte)

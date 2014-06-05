@@ -1,13 +1,9 @@
 from django.conf.urls import patterns, url
 
 from Inventario.views import *
-from Telemercadeo.views import *
-from Ventas.views import *
-
 
 urlpatterns = patterns('',
-    # Examples:
-    #url(r'^home/$',home),
+
     url(r'^listaProd/$', listaProductos),
     url(r'^verSubProductos/$',listaSubProductos),
     url(r'^bodega/$',GestionBodega),
@@ -16,39 +12,11 @@ urlpatterns = patterns('',
     url(r'^compra/$',GestionCompra),
     url(r'^grupo/$',GestionGrupo),
 
-    url(r'^cliente/$',GestionCliente),
-    url(r'^pedido/(?P<idcliente>\d+)',GestionPedidos),
-    url(r'^detallePedido/(?P<idpedido>\d+)',GestionDetallePedido),
-
-
-
     url(r'^recepcion/(?P<idcompra>\d+)',GestionPlanillaRecepcion),
-    url(r'^canal/(?P<idrecepcion>\d+)',GestionCanal),
-    url(r'^marcarcanal/(?P<idcanal>\d+)',MarcarCanalDesposte),
 
-    url(r'^sacrificio/(?P<idrecepcion>\d+)',GestionSacrificio),
-
-    url(r'^desposte/$',GestionDesposte),
     url(r'^traslado/$',GestionTraslados),
     url(r'^dettraslado/(?P<idtraslado>\d+)',GestionDetalleTraslado),
-    url(r'^cargo/$',GestionCargos),
-    url(r'^detalleDesposte/(?P<idplanilla>\d+)',GestionCanalDetalleDesposte),
-    url(r'^costoDesposte/(?P<idplanilla>\d+)',CostoDesposte),
 
-    url(r'^ensalinados/(?P<idproducto>\d+)', GestionEnsalinado),
-    url(r'^verduras/(?P<idDetcompra>\d+)', GestionVerduras),
-    url(r'^condimento/$', GestionCondimento),
-    url(r'^detallecondimento/(?P<idcondimento>\d+)', GestionDetalleCondimento),
-    url(r'^costoCond/(?P<idcondimento>\d+)',CostoCondimento),
-    url(r'^condtaj/(?P<idprodbod>\d+)',GestionCondTajado),
-    url(r'^miga/$', GestionMiga),
-    url(r'^detallemiga/(?P<idmiga>\d+)', GestionDetalleMiga),
-    url(r'^costoMiga/(?P<idmiga>\d+)',CostoMiga),
-    url(r'^apanado/(?P<idprodbod>\d+)',GestionApanado),
-
-    url(r'^pechugas/(?P<idprodbod>\d+)',GestionarTajadoCondPechugas),
-
-    url(r'^empleado/$',GestionEmpleados),
     url(r'^detcompra/(?P<idcompra>\d+)',GestionDetalleCompra),
     url(r'^productoBodega/(?P<idproducto>\d+)',GestionProductoBodega),
     url(r'^addDSprod/(?P<id_subproducto>\d+)',AgregarDetSubProducto, name='gestionSp'),

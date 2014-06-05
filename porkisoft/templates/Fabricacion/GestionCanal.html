@@ -23,7 +23,7 @@
 
             <tr>
             <td>{{ recepcion.codigoRecepcion}}</td>
-                <td>{{ recepcion.compra}}</td>
+                <td>{{ recepcion.compra.codigoCompra}}</td>
                 <td>{{ recepcion.empleado}}</td>
                 <td>{{ recepcion.tipoGanado}}</td>
                 <td>{{ recepcion.fechaRecepcion}}</td>
@@ -102,7 +102,7 @@
               <br/><br/>
              <legend>Acciones</legend>
              <input type="submit" class="btn btn-primary" value="Guardar">
-             <a href="/desposte/"><input type="button" class="btn btn-default" value="Crear Planilla Desposte"/></a>
+             <a href="/inventario/desposte/"><input type="button" class="btn btn-default" value="Crear Planilla Desposte"/></a>
          </fieldset>
      </form>
 

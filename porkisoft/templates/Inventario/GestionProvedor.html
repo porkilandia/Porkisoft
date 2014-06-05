@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block titulo %}Bodegas{% endblock titulo %}
+{%  block mensajes %}<img width="35" src="{{ STATIC_URL }}img/provedor.png"> Listado de Provedores{% endblock mensajes %}
 {% block contenido %}
 
-   <h2><img width="35" src="{{ STATIC_URL }}img/provedor.png"> Listado de Provedores</h2>
     <table id="tablaproveedor" class="table-striped" >
 
         <thead>

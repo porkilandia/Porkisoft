@@ -15,7 +15,7 @@ def GestionPedidos(request,idcliente):
         formulario = PedidoForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/inventario/pedido/'+idcliente)
+            return HttpResponseRedirect('/ventas/pedido/'+idcliente)
     else:
         formulario = PedidoForm(initial={'cliente':cliente})
 
@@ -38,7 +38,7 @@ def GestionDetallePedido(request,idpedido):
             pedido.TotalVenta = vrPedido + detalle.vrTotal
             pedido.save()
 
-            return HttpResponseRedirect('/inventario/detallePedido/'+idpedido)
+            return HttpResponseRedirect('/ventas/detallePedido/'+idpedido)
     else:
         formulario = DetallePedidoForm(initial={'pedido':idpedido})
 
