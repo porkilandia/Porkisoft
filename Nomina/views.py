@@ -18,7 +18,7 @@ def GestionEmpleados(request):
     else:
         formulario =EmpleadoForm()
 
-    return render_to_response('Inventario/../porkisoft/templates/Nomina/GestionEmpleados.html',{'formulario':formulario,'empleados':empleados },
+    return render_to_response('Nomina/GestionEmpleados.html',{'formulario':formulario,'empleados':empleados },
                               context_instance = RequestContext(request))
 
 def GestionCargos(request):
@@ -35,5 +35,5 @@ def GestionCargos(request):
     else:
         formulario = CargoForm()
 
-    return render_to_response('Inventario/../porkisoft/templates/Nomina/Cargo.html',{'formulario':formulario,'cargos':cargos },
+    return render_to_response('Nomina/Cargo.html',{'formulario':formulario,'cargos':cargos },
                               context_instance = RequestContext(request))
