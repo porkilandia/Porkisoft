@@ -1,12 +1,34 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response,HttpResponseRedirect
 from django.template import RequestContext
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 
-from Ventas.models import *
+import ho.pisa as pisa
+import cStringIO as StringIO
+import cgi
+
 from Ventas.Forms import *
 
 def GestionVentas(request):
     return render_to_response('Ventas/GestionVentas.html',{},context_instance = RequestContext(request))
 
+def generar_pdf(html):
+    # Función para generar el archivo PDF y devolverlo mediante HttpResponse
+    result = StringIO.StringIO()
+    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), mimetype='application/pdf')
+    return HttpResponse('Error al generar el PDF: %s' % cgi.escape(html))
+
+def ReportePedido(request,idpedido):
+    # vista de ejemplo con un hipotético modelo Libro
+    detallePedido = DetallePedido.objects.filter(pedido = idpedido)
+    pedido = Pedido.objects.get(pk = idpedido)
+
+    html = render_to_string('Ventas/Pedido_pdf.html', {'pagesize':'A4', 'detallePedido':detallePedido,'pedido':pedido},
+                            context_instance=RequestContext(request))
+    return generar_pdf(html)
 
 def GestionPedidos(request,idcliente):
     pedidos = Pedido.objects.filter(cliente = idcliente)

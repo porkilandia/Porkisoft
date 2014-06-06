@@ -100,7 +100,12 @@
          <th>
             ${{ vrPedido }}
          </th>
-        </tr>
+    </tr>
+    <tr>
+        <th colspan="5" style="text-align: center">
+            <a href="{% url 'Ventas.views.ReportePedido' pedido.numeroPedido %}"><input class="btn btn-success" value="PDF" type="submit"></a>
+        </th>
+    </tr>
     </table>
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarBodega">
@@ -109,7 +114,8 @@
                   {{ formulario }}
 
               <br/>
-          <input class="btn btn-default" value="Guardar" type="submit">
+          <input class="btn btn-primary" value="Guardar" type="submit">
+
          </fieldset>
      </form>
 {% endblock contenido %}

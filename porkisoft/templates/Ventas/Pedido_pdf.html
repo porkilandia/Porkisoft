@@ -1,0 +1,91 @@
+   <style>
+       table
+       {
+           border-color: #000000;
+           border-style: solid;
+           border: 1px;
+           text-align: center;
+       }
+       table tr
+       {
+           padding: 0.5em 0 0.5em 0.5em;
+       }
+       #titulo th
+       {
+           font-size: 2em;
+           font-weight: bold;
+       }
+       #titulo td
+       {
+           font-size: 1em;
+           text-align: left;
+       }
+   </style>
+   <table id="titulo">
+     <tr>
+         <th>PORKILANDIA S.A.S</th>
+         <th>PEDIDO DE PRODUCTOS</th>
+         <th>FACTURA : {{ pedido.numeroFactura }} </th>
+     </tr>
+     <tr>
+         <td>Cliente : {{ pedido.cliente.nombreCliente }}</td>
+         <td>Telefono : {{ pedido.cliente.telefonoCliente }}</td>
+         <td>Direccion : {{ pedido.cliente.direccionCliente }}</td>
+     </tr>
+    </table>
+   <br/>
+    <table id="tablaPdf" class="table-bordered" >
+
+        <thead >
+        <tr>
+
+            <th>Fecha y hora</th>
+            <th>Empleado</th>
+            <th>Bodega</th>
+            <th>Vr.Pedido</th>
+
+
+        </tr>
+        </thead>
+            <tr>
+
+                <td>{{ pedido.fechaPedido }}</td>
+                <td>{{ pedido.empleado }}</td>
+                <td>{{ pedido.bodega}}</td>
+                <td>{{ pedido.TotalVenta }}</td>
+            </tr>
+
+    </table>
+    <br/>
+    <table class="table-bordered" >
+
+        <thead >
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+            <th>Unidades</th>
+            <th>Vr.Unitario</th>
+            <th>Vr. Total</th>
+
+        </tr>
+        </thead>
+        {% for det  in detallePedido %}
+        <tr>
+            <td>{{ det.producto }}</td>
+            <td>{{ det.peso }}grs</td>
+            <td>{{ det.unidades }}</td>
+            <td>{{ det.vrUnitario }}</td>
+            <td>{{ det.vrTotal }}</td>
+
+        </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
