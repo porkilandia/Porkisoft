@@ -194,7 +194,7 @@ def GestionPlanillaRecepcion(request,idcompra):
             Recepcion.transporte = request.POST.get('transporte')
             Recepcion.save()
 
-            return HttpResponseRedirect('/fabricacion/recepcion/'+ idcompra)
+            return HttpResponseRedirect('/inventario/recepcion/'+ idcompra)
     else:
         formulario = PlanillaRecepcionForm(initial={'compra':idcompra})
 
@@ -280,7 +280,7 @@ def GestionGanado(request,idcompra):
 
             return HttpResponseRedirect('/inventario/ganado/'+idcompra)
     else:
-        formulario = GanadoForm()
+        formulario = GanadoForm(initial={'precioKiloEnPie':3100})
 
     return render_to_response('Inventario/GestionGanado.html',{'formulario':formulario,'ganados':ganados,'compra':idcompra },
                               context_instance = RequestContext(request))

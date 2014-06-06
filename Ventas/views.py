@@ -1,13 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response,HttpResponseRedirect
 from django.template import RequestContext
-from django.http import HttpResponse
-from django.template.loader import render_to_string
-
-import ho.pisa as pisa
-import cStringIO as StringIO
-import cgi
-
 from Ventas.Forms import *
 
 def GestionVentas(request):

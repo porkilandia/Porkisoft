@@ -73,6 +73,7 @@ class TrasladoForm(ModelForm):
 class DetalleTrasladoForm(ModelForm):
     class Meta:
         model = DetalleTraslado
+        exclude = ("SubProducto","pesoLlegada",)
 
 
 class PlanillaRecepcionForm(ModelForm):

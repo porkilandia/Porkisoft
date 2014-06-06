@@ -35,7 +35,7 @@ class Producto(models.Model):
     excluido = models.BooleanField(verbose_name='Excluido',default=False)
 
     def __unicode__(self):
-        cadena = self.nombreProducto +'('+ self.grupo.nombreGrupo+')'
+        cadena = '%d %s (%s)'%(self.codigoProducto,self.nombreProducto,self.grupo.nombreGrupo)
         return cadena
 
 
@@ -136,7 +136,7 @@ class Ganado(models.Model):
 
     tipoPiel = (
         (25000,'Calentana'),
-        (44000,'Firana'),
+        (44000,'Friana'),
     )
 
     codigoGanado = models.AutoField(primary_key=True, verbose_name='Codigo Ganado')
