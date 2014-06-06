@@ -12,7 +12,7 @@ pisa==3.0.33
 psycopg2==2.5.3
 pyPdf==1.13
 pystache==0.5.4
-reportlab==2.1
+reportlab==2.3
 six==1.6.1
 static==1.0.2
 wsgiref==0.1.2
