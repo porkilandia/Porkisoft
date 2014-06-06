@@ -94,11 +94,7 @@
 
         {% endfor %}
 
-    <tr>
-        <th colspan="6" style="text-align: center">
-            <a href="{% url 'Ventas.views.ReportePedido' pedido.numeroPedido %}">Generar Pdf</a>
-        </th>
-    </tr>
+
     </table>
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarBodega">
