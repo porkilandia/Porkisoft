@@ -87,23 +87,16 @@
 
             {% empty %}
             <tr>
-                <td colspan="9">
+                <td colspan="9" >
                    Ningun registro para mostrar
                 </td>
             </tr>
 
         {% endfor %}
+
     <tr>
-         <th colspan="4">
-             Total:
-         </th>
-         <th>
-            ${{ vrPedido }}
-         </th>
-    </tr>
-    <tr>
-        <th colspan="5" style="text-align: center">
-            <a href="{% url 'Ventas.views.ReportePedido' pedido.numeroPedido %}"><input class="btn btn-success" value="PDF" type="submit"></a>
+        <th colspan="6" style="text-align: center">
+            <a href="{% url 'Ventas.views.ReportePedido' pedido.numeroPedido %}">Generar Pdf</a>
         </th>
     </tr>
     </table>
