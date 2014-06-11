@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 
 {% block titulo %}Bodegas{% endblock titulo %}
-{%  block mensajes %}<img width="35" src="{{ STATIC_URL }}img/provedor.png"> Listado de Provedores{% endblock mensajes %}
+{%  block mensajes %}
+    Listado de Provedores
+{% endblock mensajes %}
 {% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
 
-    <table id="tablaproveedor" class="table-striped" >
+<table id="tablaproveedor" class="table-striped" >
 
         <thead>
         <tr>
-            <th>Nit</th>
+            <th >Nit</th>
             <th>Nombre</th>
             <th>Direccion</th>
             <th>Telefono</th>
@@ -32,9 +35,7 @@
             <td>{{ provedor.departamento }}</td>
 
             <td>
-                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
-                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
-
+                <a id="editaFila" href="#">Modificar</a>
             </td>
 
         </tr>
@@ -46,10 +47,11 @@
             </tr>
 
         {% endfor %}
+
     </table>
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarBodega">
-             <legend>Proveedor</legend>
+             <legend>Proveedor <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
 
                   {{ formulario }}
 
@@ -58,4 +60,5 @@
           <input class="btn btn-primary" value="Guardar" type="submit">
          </fieldset>
      </form>
+
 {% endblock contenido %}

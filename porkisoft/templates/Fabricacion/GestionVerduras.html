@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block titulo %}Verduras{% endblock titulo %}
+{% block mensajes %}
+    Limpieza de verduras
+{% endblock %}
 {% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
 
-    <h2>Limpieza de verduras</h2>
     <table  class="table-striped" >
 
         <thead>
@@ -39,7 +42,7 @@
 
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarProducto">
-             <legend>Nuevo Limpieza</legend>
+             <legend>Nuevo Limpieza<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
              {{ formulario }}
              <br/><br/>
              <legend>Acciones</legend>

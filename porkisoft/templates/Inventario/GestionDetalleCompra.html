@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block titulo %}{{ titulo }}{% endblock titulo %}
-{% block contenido %}
+{% block mensajes %}
+    Detalle de la compra {{ compra.codigoCompra }} del {{ compra.fechaCompra }}
 
+{% endblock mensajes %}
+{% block contenido %}
+    <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+    <br/><br/><br/>
      <table class="table-striped">
         <thead>
         <tr>
@@ -77,6 +82,7 @@
         <tr>
             <th colspan="5">Total Factura</th>
             <th>$ {{ totalCompra  }}</th>
+            <th colspan="7"></th>
         </tr>
 
         </tbody>
@@ -86,7 +92,7 @@
 
     <form method="post">{% csrf_token %}
          <fieldset id="agregarDetalle">
-             <legend>Detalle compra</legend>
+             <legend>Detalle compra <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
 
                   {{ formulario }}
 

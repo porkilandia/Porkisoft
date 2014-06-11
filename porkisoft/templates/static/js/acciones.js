@@ -2,96 +2,25 @@ $(document).on('ready', inicio);
  function inicio()
  {
 
+
      $('#id_precioTotal').on('focus',calculoGanado);
-
      $('#id_difPesos').on('focus',calculoCanal);
-
      $('#id_subtotal').on('focus', calculoCompra);
-
      $('#id_pesoProductoAntes').on('focus', calculoEnsalinado);
+     $('#nuevo').on('click',nuevoRegistro);
+     $('#cerrar').on('click',cerrarVentana);
+     $('#editaFila').on('click',editaFilas);
 
 
-     $('#exito').bPopup();
-
-     $('#tablacostos').dataTable({
-
-         "bPaginate": true,
-         "bLengthChange": true,
-         "bFilter": true,
-         "bSort": true,
-         "bInfo": true,
-         "bAutoWidth": false
-
-    });
-     $('#tablastock').dataTable({
-
-         "bPaginate": true,
-         "bLengthChange": true,
-         "bFilter": true,
-         "bSort": true,
-         "bInfo": true,
-         "bAutoWidth": false
-
-    });
-
-     $('#tablaTraslados').dataTable({
-
-         "bPaginate": true,
-         "bLengthChange": true,
-         "bFilter": true,
-         "bSort": true,
-         "bInfo": true,
-         "bAutoWidth": true,
-         "aaSorting": [[ 4, "desc" ]]
-    });
-
-     $('#tablaCompras').dataTable({
-
-         "bPaginate": true,
-         "bFilter": true,
-         "bSort": true,
-         "bInfo": true,
-         "bAutoWidth": true,
-         "bLengthChange": false
-    });
-
-     $('#tablaProductos').dataTable( {
-        "bPaginate": true,
-         "bFilter": true,
-         "bSort": true,
-         "bInfo": true,
-         "bAutoWidth": true,
-         "bLengthChange": false
-    } );
-
-    $('#ListaSubp').dataTable({
-
-         "sDom": '<"top"iflp<"clear">>',
-          "sPaginationType" : "full_numbers"
-    });
-     $('#tablabodegas').dataTable({
-
-         "bPaginate": true,
-         "bFilter": true,
-         "bSort": true,
-         "bInfo": true,
-         "bAutoWidth": true,
-         "bLengthChange": false
-    });
-     $('#tablaproveedor').dataTable({
-
-         "sDom": '<"top"iflp<"clear">>',
-          "sPaginationType" : "full_numbers"
-    });
-     $('#despostes').dataTable({
-
-         "bPaginate": true,
-         "bFilter": true,
-         "bSort": true,
-         "bInfo": true,
-         "bAutoWidth": true,
-         "bLengthChange": false
-       });
+     $('#tablacostos').dataTable();
+     $('#tablastock').dataTable();
+     $('#tablaTraslados').dataTable();
+     $('#tablaCompras').dataTable();
+     $('#tablaProductos').dataTable();
+     $('#ListaSubp').dataTable();
+     $('#tablabodegas').dataTable();
+     $('#tablaproveedor').dataTable();
+     $('#despostes').dataTable();
  }
 function calculoGanado(){
 
@@ -143,6 +72,34 @@ function calculoEnsalinado()
 
 }
 
+function nuevoRegistro()
+     {
+         $('fieldset').fadeIn();
+         return false
+     }
 
+function cerrarVentana()
+{
+    $('fieldset').fadeOut();
+}
 
+function editaFilas()
+{
+    $('#tablaproveedor td').attr('contenteditable','true');
+
+}
+function eliminarFilas()
+{
+    /**
+         * Funcion para eliminar la ultima columna de la tabla.
+         * Si unicamente queda una columna, esta no sera eliminada
+         */
+    // Obtenemos el total de columnas (tr) del id "tabla"
+            var trs=$('tr', $("#tablaproveedor")).length;
+            if(trs>1)
+            {
+                // Eliminamos la ultima columna
+                $("#tablaproveedor td:last").remove();
+            }
+}
 

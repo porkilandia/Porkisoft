@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block titulo %}Bodegas{% endblock titulo %}
-{% block contenido %}
+{% block mensajes %}
+    Adquisicion de ganado
 
-    <h2>Listado de Ganado</h2>
+{% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
     <table id="tablabodegas" class="table-striped" >
 
         <thead>
@@ -48,7 +51,7 @@
     </table>
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarBodega">
-             <legend>Ganado Mayor</legend>
+             <legend>Ganado <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
 
                   {{ formulario }}
 

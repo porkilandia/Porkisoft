@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block titulo %}Sub Productos{% endblock titulo %}
-{% block mensajes %}Listado Despostes{% endblock mensajes %}
+{% block mensajes %}
+    Listado Despostes
+    <a id="nuevo" href="#">Nuevo</a>
+{% endblock mensajes %}
 {% block contenido %}
 
     <table id="despostes" class="table-striped">
@@ -27,7 +30,7 @@
             <td>{{ desposte.difCanalADespostado }}</td>
 
             <td>
-                <a href="{% url 'Fabricacion.views.GestionCanalDetalleDesposte' desposte.codigoPlanilla %}"><img src="{{ STATIC_URL }}img/adicionar.png"></a>
+                <a href="{% url 'Fabricacion.views.GestionCanalDetalleDesposte' desposte.codigoPlanilla %}">Detalle</a>
             </td>
 
         </tr>
@@ -43,7 +46,7 @@
     </table>
     <form class="form-horizontal" method="post">{% csrf_token %}
          <fieldset id="desposte">
-             <legend>Planilla Desposte</legend>
+             <legend>Planilla Desposte <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
                   {{ formulario }}
              <input type="submit" value="Crear Planilla de Desposte" class="btn btn-primary">
              <a href="/inventario/compra/"><input type="button" value="Volver" class="btn btn-default"></a>

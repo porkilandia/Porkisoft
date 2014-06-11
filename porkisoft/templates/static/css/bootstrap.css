@@ -222,7 +222,7 @@ optgroup {
   font-weight: bold;
 }
 table {
-   width: 73%;
+   width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
 }
@@ -818,13 +818,15 @@ pre code {
 {
     background: linear-gradient(#f6e414, #978612);
     border-radius: 0 0 0.5em 0.5em;
-    position: fixed;
-    text-align: center;
     font-size: 1.2em;
     font-weight: bold;
-    top: 3em;
-    right: 0;
     left: 0;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 3em;
+
+
 }
 #tablastock_wrapper
 {
@@ -1749,14 +1751,36 @@ table th[class*="col-"] {
     border-bottom: 0;
   }
 }
+#nuevo
+{
+    position: fixed;
+    right: 3em;
+}
+#costear
+{
+    position: fixed;
+    right: 8em;
+}
+#cerrar
+{
+    position: fixed;
+    right: 20em;
+}
+table a:link
+{
+    padding: 5px;
+    text-decoration: none;
+}
 fieldset {
 
   margin: .6em 0 .4em .4em ;
   background: #fcfcfd;
   box-shadow: 0.3em 0.3em 1em #7c8086;
   border-radius: 0.5em;
-  float: left;
-  width: 27%;
+  display: none;
+  right: 30em;
+  width: 35%;
+
 }
 
 legend {

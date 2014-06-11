@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block titulo %}Sacrificios{% endblock titulo %}
+{% block mensajes %}
+    Sacrificios
+{% endblock %}
 {% block contenido %}
-
-    <h2>Sacrificios</h2>
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+    <br/><br/><br/>
     <table id="tablaSacrificio" class="table-striped" >
 
         <thead>
@@ -55,7 +58,7 @@
 
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarProducto">
-             <legend>Sacrificio</legend>
+             <legend>Sacrificio<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
              {{ formSacrificio }}
              <br/><br/>
              <legend>Acciones</legend>

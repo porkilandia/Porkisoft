@@ -2,7 +2,7 @@
 {% block titulo %}{{ titulo }}{% endblock titulo %}
 {% block mensajes %}Listado de Canales{% endblock mensajes %}
 {% block contenido %}
-
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
      <table class="table-striped">
         <thead>
         <tr>
@@ -100,7 +100,7 @@
                   {{ formulario }}
 
               <br/><br/>
-             <legend>Acciones</legend>
+             <legend>Acciones <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
              <input type="submit" class="btn btn-primary" value="Guardar">
              <a href="/fabricacion/desposte/"><input type="button" class="btn btn-default" value="Crear Planilla Desposte"/></a>
          </fieldset>

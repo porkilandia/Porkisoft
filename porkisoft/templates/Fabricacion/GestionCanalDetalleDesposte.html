@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 
 {% block titulo %}Desposte{% endblock titulo %}
-{% block mensajes %}Desposte Detallado{% endblock mensajes %}
-{% block contenido %}
+{% block mensajes %}
+    Desposte Detallado
 
+{% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+<a id="costear" href="/fabricacion/costoDesposte/{{ idplanilla }}"><input type="button" value="Costear" class="btn btn-default"></a>
+    <br/>
+    <br/>
+    <br/>
 <table class="table-striped">
     <thead>
         <tr>
@@ -72,7 +79,8 @@
         {% endfor %}
         <tr>
         <th colspan="2">Total Canal</th>
-        <th>{{ totalCanal|floatformat }}grs</th>
+        <th>{{ totalCanal|floatformat }} grs</th>
+        <th colspan="5"></th>
     </tr>
 
         </tbody>
@@ -80,11 +88,12 @@
 
       </table>
     <br/>
-<table class="table-striped">
+<table id="productosDesposte" class="table-striped">
     <thead>
         <tr>
-            <th>Planilla</th>
+            <th>cod Producto</th>
             <th>Producto</th>
+            <th>Grupo</th>
             <th>Peso Producto</th>
 
 
@@ -93,8 +102,9 @@
     <tbody>
         {% for detalleDesposte in detalleDespostes %}
         <tr>
-            <td>{{ detalleDesposte.planilla }}</td>
-            <td>{{ detalleDesposte.producto }}</td>
+            <td>{{ detalleDesposte.producto.codigoProducto }}</td>
+            <td>{{ detalleDesposte.producto.nombreProducto }}</td>
+            <td>{{ detalleDesposte.producto.grupo }}</td>
             <td>{{ detalleDesposte.PesoProducto | floatformat }} grs</td>
 
 
@@ -111,6 +121,7 @@
     <tr>
         <th colspan="2">Total Desposte</th>
         <th>{{ totalDesposte|floatformat }}grs</th>
+        <th colspan="4"></th>
     </tr>
     </tbody>
 </table>
@@ -118,14 +129,13 @@
 
     <form method="post">{% csrf_token %}
          <fieldset id="desposte">
-             <legend>Detalle</legend>
+             <legend>Detalle <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
               <div>
                   {{ formulario }}
               </div>
               <br/><br/>
               <legend>Acciones</legend>
              <input type="submit" value="Guardar" class="btn btn-primary">
-             <a href="/fabricacion/costoDesposte/{{ idplanilla }}"><input type="button" value="Costear" class="btn btn-default"></a>
 
          </fieldset>
      </form>

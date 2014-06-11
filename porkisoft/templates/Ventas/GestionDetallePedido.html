@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Bodegas{% endblock titulo %}
+{% block titulo %}{{ pedido.cliente.nombreCliente }}{% endblock titulo %}
 {% block mensajes %}Detalles del pedido{% endblock mensajes %}
 {% block contenido %}
-
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+    <br/><br/><br/>
     <table class="table-striped" >
 
         <thead >
@@ -98,7 +99,7 @@
     </table>
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarBodega">
-             <legend>Pedido</legend>
+             <legend>Pedido<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
 
                   {{ formulario }}
 

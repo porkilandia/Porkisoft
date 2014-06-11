@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block titulo %}Productos{% endblock titulo %}
+{% block mensajes %}
+    Lista de empleados Porkilandia
+{% endblock %}
 {% block contenido %}
-
-    <h2>Listado de Empleados</h2>
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+    <br/><br/><br/>
     <table id="tablaempleado" class="table-striped" >
 
         <thead>
@@ -14,6 +17,7 @@
             <th>Direccion</th>
             <th>Telefono</th>
             <th>Cargo</th>
+            <th>Acciones</th>
 
         </tr>
         </thead>
@@ -30,9 +34,7 @@
 
 
             <td>
-                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
-                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
-
+                <a href="#">Modificar</a>
             </td>
 
         </tr>
@@ -47,7 +49,7 @@
     </table>
     <form method="post" class="form-actions">{% csrf_token %}
          <fieldset id="agregarProducto">
-             <legend>Empleado</legend>
+             <legend>Empleado<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
               <div>
                   {{ formulario }}
               </div>

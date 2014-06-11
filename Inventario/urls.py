@@ -4,6 +4,8 @@ from Inventario.views import *
 
 urlpatterns = patterns('',
 
+    url(r'^provedorAjax/$', listaProvedoresAjax),
+
     url(r'^listaProd/$', listaProductos),
     url(r'^verSubProductos/$',listaSubProductos),
     url(r'^bodega/$',GestionBodega),

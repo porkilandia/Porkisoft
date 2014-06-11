@@ -3,8 +3,8 @@
 {% block titulo %}Cargo{% endblock titulo %}
 {% block mensajes %}Listado Cargos{% endblock mensajes %}
 {% block contenido %}
-
-    <h2>Listado de Cargos</h2>
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+    <br/><br/><br/>
     <table id="tablaCargos" class="table-striped" >
 
         <thead>
@@ -38,7 +38,7 @@
     </table>
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarProducto">
-             <legend>Cargo</legend>
+             <legend>Cargo<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
                  {{ formulario }}
              <br/>
           <input class="btn btn-default" type="submit">

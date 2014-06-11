@@ -4,6 +4,8 @@ from math import ceil
 
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
+from django.core import serializers
+from django.http import HttpResponse
 
 from Inventario.Forms.forms import *
 from Inventario.models import *
@@ -14,8 +16,16 @@ from Fabricacion.Forms import *
 
 # Create your views here.
 
+def listaProvedoresAjax(request):
+    provedores = Proveedor.objects.all()
+    data = serializers.serialize('json',provedores,fields = ('nit','nombreProv','direccionProv','telefonoProv',
+                                                             'email','ciudad'))
+
+    return HttpResponse(data, mimetype='application/json')
+
+
 def home(request):
-    productosBajoStock = ProductoBodega.objects.all().filter(pesoProductoStock = 0,unidadesStock = 0).order_by('bodega')
+    productosBajoStock = ProductoBodega.objects.all().filter(pesoProductoStock__gt = 5000).order_by('bodega')
     costosProductos = Producto.objects.all().order_by('nombreProducto')
 
     return render_to_response('Home.html',{'productosBajoStock':productosBajoStock,

@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block titulo %}Bodegas{% endblock titulo %}
+{% block mensajes %}
+    Recepcion de Ganado
+{% endblock mensajes %}
 {% block contenido %}
-
-    <h2>Recepcion de Ganado</h2>
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
     <table id="tablaCompras" class="table-striped" >
 
         <thead>
@@ -51,7 +53,7 @@
     </table>
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="compras">
-             <legend>Recepciones</legend>
+             <legend>Recepciones<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
                  {{ formulario }}
               <br/><br/>
 

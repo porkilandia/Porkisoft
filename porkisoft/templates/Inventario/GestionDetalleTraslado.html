@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block titulo %}{{ titulo }}{% endblock titulo %}
-{% block contenido %}
+{% block mensajes %}
+    Detalles de traslado{{ traslado.codigoTraslado }}, Encargado :  {{ traslado.empleado }}
 
+{% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+    <br/><br/><br/>
      <table  class="table-striped">
         <thead>
         <tr>
@@ -34,7 +39,7 @@
         <thead>
         <tr>
             <th>Producto</th>
-            <th>Sub Producto</th>
+            <th>grupo</th>
             <th>Peso</th>
             <th>Unidades</th>
             <th>Peso envio</th>
@@ -45,17 +50,12 @@
         <tbody>
             {% for detraslado in detraslados %}
         <tr>
-            <td>{{ detraslado.producto }}</td>
-            <td>{{ detraslado.SubProducto }}</td>
+            <td>{{ detraslado.producto.nombreProducto }}</td>
+            <td>{{ detraslado.producto.grupo }}</td>
             <td>{{ detraslado.pesoTraslado }}</td>
             <td>{{ detraslado.unidadesTraslado }}</td>
             <td>{{ detraslado.pesoEnvio }}</td>
             <td>{{ detraslado.pesoLlegada }}</td>
-
-            <td>
-                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
-            </td>
-
 
         </tr>
             {% empty %}
@@ -77,7 +77,7 @@
 
     <form method="post">{% csrf_token %}
          <fieldset id="agregarDetalle">
-             <legend>Detalle Traslado</legend>
+             <legend>Detalle Traslado  <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
               <div>
                   {{ formulario }}
               </div>

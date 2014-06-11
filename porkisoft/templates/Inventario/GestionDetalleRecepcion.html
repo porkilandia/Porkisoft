@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block titulo %}{{ titulo }}{% endblock titulo %}
+{% block mensajes %}
+    Recepcion de canales
+    <a id="nuevo" href="#">Nuevo</a>
+{% endblock mensajes %}
 {% block contenido %}
 
      <table class="table-striped" >
@@ -75,7 +79,7 @@
 
     <form method="post">{% csrf_token %}
          <fieldset id="agregarDetalle">
-             <legend>Detalle Sub Producto</legend>
+             <legend>Recepcion Canales  <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
 
                   {{ formulario }}
 
