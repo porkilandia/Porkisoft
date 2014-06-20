@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block titulo %}Bodegas{% endblock titulo %}
-{% block mensajes %}Inventario de {{ producto.nombreProducto }}{% endblock mensajes %}
+{% block mensajes %}Inventario de {{ producto.nombreProducto }} {% now "j F Y " %}{% endblock mensajes %}
 {% block contenido %}
 
     <table  class="table" style="width: 100%">

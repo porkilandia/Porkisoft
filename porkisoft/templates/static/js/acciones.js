@@ -2,7 +2,6 @@ $(document).on('ready', inicio);
  function inicio()
  {
 
-
      $('#id_precioTotal').on('focus',calculoGanado);
      $('#id_difPesos').on('focus',calculoCanal);
      $('#id_subtotal').on('focus', calculoCompra);
@@ -10,6 +9,8 @@ $(document).on('ready', inicio);
      $('#nuevo').on('click',nuevoRegistro);
      $('#cerrar').on('click',cerrarVentana);
      $('#editaFila').on('click',editaFilas);
+     $('#modificar').on('click',modificaRegistro);
+     $('#cargar').on('click',GuardarRegisro);
 
 
      $('#tablacostos').dataTable();
@@ -21,7 +22,52 @@ $(document).on('ready', inicio);
      $('#tablabodegas').dataTable();
      $('#tablaproveedor').dataTable();
      $('#despostes').dataTable();
+     $('#lista').dataTable();
+
+
+     /*************** Prueba Json ******************/
+
+     $.ajax({
+         url : '/fabricacion/json/',
+         dataType: "json",
+         type: "get",
+         success : function(respuesta){
+             cargaDatos(respuesta);
+         }
+     });
+
+
  }
+function GuardarRegisro()
+{
+    $.ajax({
+
+         url : '/fabricacion/save/',
+         dataType: "json",
+         type: "get",
+         success : function(respuesta){
+             cargaDatos(respuesta);
+         }
+
+     });
+
+}
+function cargaDatos(datos)
+     {
+         var $tabla  = $('#lista');
+            $tabla.find("tr:gt(0)").remove();
+             for (var indice in datos)
+             {
+                 desposte = datos[indice];
+                 $tabla.append(
+                    "<tr><td >" + desposte.codigo +
+                    "</td><td >" + desposte.fecha +
+                    "</td><td >" + desposte.numReses +
+                    "</td></tr>");
+             }
+     }
+
+
 function calculoGanado(){
 
 
@@ -103,3 +149,8 @@ function eliminarFilas()
             }
 }
 
+function modificaRegistro()
+{
+    $('fieldset').fadeIn();
+    return false
+}

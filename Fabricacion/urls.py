@@ -4,6 +4,10 @@ from Fabricacion.views import *
 urlpatterns = patterns('',
     # Examples:
 
+    url(r'^desposteJson',GestionDesposteAjax),
+    url(r'^json/',GestionDesposteJson.as_view()),
+    url(r'^save/',GuardaPlanillaDesposte),
+
     url(r'^canal/(?P<idrecepcion>\d+)',GestionCanal),
     url(r'^marcarcanal/(?P<idcanal>\d+)',MarcarCanalDesposte),
 

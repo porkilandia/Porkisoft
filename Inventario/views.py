@@ -34,14 +34,18 @@ def home(request):
 #***************************************PRODUCTOS******************************************
 def listaProductos(request):
     productos = Producto.objects.all().order_by('nombreProducto')
-    #Creacion de producto en cada bodega con valor inicial
+
+    #se actualiza el precio sugerido del producto
+    for producto in productos:
+        producto.precioSugerido = ceil(producto.costoProducto / 0.78)
+        producto.save()
 
     if request.method == 'POST':
         formulario = ProductoForm(request.POST)
         if formulario.is_valid():
             producto = formulario.save()
-
-            if producto.grupo.nombreGrupo == "Insumos" or producto.grupo.nombreGrupo == "Basicos Procesados":# insumos o BasicosProcesados solo se grabaran en la bodega de Taller
+            # insumos o BasicosProcesados solo se grabaran en la bodega de Taller
+            if producto.grupo.nombreGrupo == "Insumos" or producto.grupo.nombreGrupo == "Basicos Procesados" or producto.grupo.nombreGrupo == "Verduras":
 
                 bodegaInicial = ProductoBodega()
                 bodega = Bodega.objects.get(nombreBodega = 'Taller')
@@ -330,7 +334,7 @@ def GestionDetalleCompra(request,idcompra):
 
             # Si el producto es un insumo
 
-            if detalleCompra.producto.grupo.id == 5 :
+            if detalleCompra.producto.grupo.id == 6 :
 
                 productoBodega.pesoProductoStock += detalleCompra.pesoProducto
                 productoBodega.save()
@@ -339,21 +343,21 @@ def GestionDetalleCompra(request,idcompra):
                 producto.save()
 
             # Si el producto es una verdura
-            elif detalleCompra.producto.grupo.id == 6:
+            elif detalleCompra.producto.grupo.id == 7:
 
                 productoBodega.pesoProductoStock += 0
                 productoBodega.save()
 
             #Si el producto es para compra venta
 
-            elif detalleCompra.producto.grupo.id == 8:
+            elif detalleCompra.producto.grupo.id == 9:
 
                 productoBodegaCV = ProductoBodega.objects.get(bodega = 5,producto = detalleCompra.producto.codigoProducto)
                 productoBodegaCV.pesoProductoStock += detalleCompra.pesoProducto
                 productoBodegaCV.save()
 
             #Si el producto es Basico Procesado
-            elif detalleCompra.producto.grupo.id == 7:
+            elif detalleCompra.producto.grupo.id == 8:
 
                 producto.costoProducto = detalleCompra.vrCompraProducto
                 producto.save()

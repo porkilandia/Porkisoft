@@ -3,10 +3,9 @@
 {% block titulo %}Sub Productos{% endblock titulo %}
 {% block mensajes %}
     Listado Despostes
-    <a id="nuevo" href="#">Nuevo</a>
 {% endblock mensajes %}
 {% block contenido %}
-
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
     <table id="despostes" class="table-striped">
 
         <thead>
@@ -46,7 +45,7 @@
     </table>
     <form class="form-horizontal" method="post">{% csrf_token %}
          <fieldset id="desposte">
-             <legend>Planilla Desposte <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+             <legend>Planilla Desposte <a id="cerrar" href="#"><img src=    "{{ STATIC_URL }}img/cerrar.png"/></a></legend>
                   {{ formulario }}
              <input type="submit" value="Crear Planilla de Desposte" class="btn btn-primary">
              <a href="/inventario/compra/"><input type="button" value="Volver" class="btn btn-default"></a>

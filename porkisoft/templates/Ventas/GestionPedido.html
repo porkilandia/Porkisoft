@@ -4,6 +4,13 @@
 {% block mensajes %}Listado de Pedidos de {{ cliente }}{% endblock mensajes %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+
+        <label for="pedidos">Filtro de pedidos</label><select name="" id="pedidos">
+            {% for pedido in pedidos %}
+                <option value="{{ pedido.numeroPedido }}">{{ pedido.fechaPedido }}</option>
+            {% endfor %}
+        </select>
+
     <br/><br/><br/>
     <table id="tablabodegas" class="table-striped" >
 
@@ -14,6 +21,7 @@
             <th>Empleado</th>
             <th>Cliente</th>
             <th>Bodega</th>
+            <th>Vr. Pedido</th>
             <th>Accion</th>
 
         </tr>
@@ -24,7 +32,8 @@
             <td>{{ pedido.fechaPedido }}</td>
             <td>{{ pedido.empleado }}</td>
             <td>{{ pedido.cliente }}</td>
-            <td>{{ pedido.bodega}}
+            <td>{{ pedido.bodega}}</td>
+            <td> {{ pedido.TotalVenta }} </td>
             <td>
                 <a href="{% url 'Ventas.views.GestionDetallePedido' pedido.numeroPedido %}">Detalles</a>
             </td>

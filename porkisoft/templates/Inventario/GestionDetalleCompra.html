@@ -65,9 +65,9 @@
             <td>$ {{ detcompra.subtotal }}</td>
             {% if compra.tipo.nombreGrupo == 'Verduras' %}
                 {% if detcompra.estado == False %}
-                    <td><a href="{% url 'Inventario.views.GestionVerduras' detcompra.id %}">Pendiete</a></td>
+                    <td><a href="{% url 'Fabricacion.views.GestionVerduras' detcompra.id %}">Pendiete</a></td>
                 {% else %}
-                    <td><a href="{% url 'Inventario.views.GestionVerduras' detcompra.id %}">Ver Detalles</a></td>
+                    <td><a href="{% url 'Fabricacion.views.GestionVerduras' detcompra.id %}">Ver Detalles</a></td>
                 {% endif %}
             {% endif %}
 

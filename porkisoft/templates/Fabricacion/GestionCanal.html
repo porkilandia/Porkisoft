@@ -3,6 +3,7 @@
 {% block mensajes %}Listado de Canales{% endblock mensajes %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+    <br/><br/><br/>
      <table class="table-striped">
         <thead>
         <tr>
@@ -95,12 +96,12 @@
 
     <form class="form-horizontal" method="post">{% csrf_token %}
          <fieldset id="agregarDetalle">
-             <legend>Canal</legend>
+             <legend>Canal <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
 
                   {{ formulario }}
 
               <br/><br/>
-             <legend>Acciones <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+             <legend>Acciones </legend>
              <input type="submit" class="btn btn-primary" value="Guardar">
              <a href="/fabricacion/desposte/"><input type="button" class="btn btn-default" value="Crear Planilla Desposte"/></a>
          </fieldset>

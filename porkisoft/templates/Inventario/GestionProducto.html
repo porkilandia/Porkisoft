@@ -17,8 +17,8 @@
             <th>Costo Kg</th>
             <th>Vr. Venta</th>
             <th>calidad</th>
-            <th>Utilidad</th>
-            <th>Rent.</th>
+            <th>Precio Sugerido</th>
+
 
            <th>Grupo</th>
            <th>Acciones</th>
@@ -29,18 +29,22 @@
         <tr>
             <td>{{ producto.codigoProducto }}</td>
             <td>{{ producto.nombreProducto }}</td>
-            <td>$ {{ producto.costoProducto }}</td>
+            {% if producto.costoProducto >= producto.precioSugerido %}
+                <td style="color: red">$ {{ producto.costoProducto }}</td>
+            {% else %}
+                <td>$ {{ producto.costoProducto }}</td>
+            {% endif %}
             <td>$ {{ producto.vrVentaProducto }}</td>
             <td>{{ producto.porcentajeCalidad }}%</td>
-            <td>{{ producto.utilidadProducto }}</td>
-            <td>{{ producto.rentabilidadProducto }}</td>
+            <td>$ {{ producto.precioSugerido | floatformat }}</td>
+
 
 
            <td>{{ producto.grupo }}</td>
 
             <td style="text-align: center">
-                <a href="{% url 'Inventario.views.editar_producto' producto.codigoProducto %}"><img src="{{ STATIC_URL }}img/modificar.png"></a>
-                <a href="{% url 'Inventario.views.GestionProductoBodega' producto.codigoProducto %}" id="borrador"><img src="{{ STATIC_URL }}img/ver.png"></a>
+                <a id="modificar" href="{% url 'Inventario.views.editar_producto' producto.codigoProducto %}"><img src="{{ STATIC_URL }}img/modificar.png"></a>
+                <a href="{% url 'Inventario.views.GestionProductoBodega' producto.codigoProducto %}"><img src="{{ STATIC_URL }}img/ver.png"></a>
 
             </td>
 

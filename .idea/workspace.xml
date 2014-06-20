@@ -2,683 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/images/animated-overlay.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/images/ui-bg_diagonals-thick_75_f3d8d8_40x40.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/images/ui-bg_dots-small_65_a6a6a6_2x2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/images/ui-bg_flat_0_333333_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/images/ui-bg_flat_65_ffffff_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/images/ui-bg_glass_55_fbf8ee_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/images/ui-bg_highlight-hard_100_eeeeee_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/images/ui-bg_highlight-hard_100_f6f6f6_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/images/ui-bg_highlight-soft_15_cc0000_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/images/ui-icons_004276_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/images/ui-icons_cc0000_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/images/ui-icons_ffffff_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/jquery-ui-1.10.4.custom.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/css/blitzer/jquery-ui-1.10.4.custom.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/AUTHORS.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/Gruntfile.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/MIT-LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/accordion/collapsible.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/accordion/custom-icons.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/accordion/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/accordion/fillspace.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/accordion/hoverintent.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/accordion/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/accordion/no-auto-height.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/accordion/sortable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/addClass/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/addClass/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/animate/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/animate/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/categories.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/combobox.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/custom-data.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/folding.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/images/jquery_32x32.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/images/jqueryui_32x32.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/images/sizzlejs_32x32.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/images/transparent_1x1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/images/ui-anim_basic_16x16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/london.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/maxheight.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/multiple-remote.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/multiple.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/remote-jsonp.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/remote-with-cache.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/remote.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/search.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/autocomplete/xml.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/button/checkbox.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/button/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/button/icons.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/button/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/button/radio.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/button/splitbutton.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/button/toolbar.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/alt-field.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/animation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/buttonbar.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/date-formats.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/date-range.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/dropdown-month-year.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/icon-trigger.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/images/calendar.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/inline.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/jquery.ui.datepicker-ar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/jquery.ui.datepicker-fr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/jquery.ui.datepicker-he.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/jquery.ui.datepicker-zh-TW.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/localization.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/min-max.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/multiple-calendars.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/other-months.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/datepicker/show-week.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/demos.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/dialog/animated.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/dialog/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/dialog/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/dialog/modal-confirmation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/dialog/modal-form.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/dialog/modal-message.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/dialog/modal.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/draggable/constrain-movement.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/draggable/cursor-style.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/draggable/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/draggable/delay-start.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/draggable/events.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/draggable/handle.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/draggable/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/draggable/revert.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/draggable/scroll.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/draggable/snap-to.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/draggable/sortable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/draggable/visual-feedback.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/accepted-elements.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/images/high_tatras.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/images/high_tatras2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/images/high_tatras2_min.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/images/high_tatras3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/images/high_tatras3_min.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/images/high_tatras4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/images/high_tatras4_min.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/images/high_tatras_min.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/photo-manager.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/propagation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/revert.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/shopping-cart.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/droppable/visual-feedback.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/effect/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/effect/easing.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/effect/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/hide/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/hide/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/images/calendar.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/images/demo-config-on-tile.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/images/demo-config-on.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/images/demo-spindown-closed.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/images/demo-spindown-open.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/images/icon-docs-info.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/images/pbar-ani.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/menu/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/menu/icons.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/menu/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/position/cycler.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/position/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/position/images/earth.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/position/images/flight.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/position/images/rocket.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/position/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/progressbar/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/progressbar/images/pbar-ani.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/progressbar/indeterminate.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/progressbar/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/progressbar/label.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/removeClass/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/removeClass/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/resizable/animate.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/resizable/aspect-ratio.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/resizable/constrain-area.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/resizable/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/resizable/delay-start.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/resizable/helper.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/resizable/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/resizable/max-min.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/resizable/snap-to-grid.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/resizable/synchronous-resize.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/resizable/textarea.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/resizable/visual-feedback.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/selectable/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/selectable/display-grid.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/selectable/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/selectable/serialize.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/show/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/show/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/slider/colorpicker.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/slider/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/slider/hotelrooms.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/slider/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/slider/multiple-vertical.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/slider/range-vertical.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/slider/range.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/slider/rangemax.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/slider/rangemin.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/slider/side-scroll.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/slider/slider-vertical.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/slider/steps.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/sortable/connect-lists-through-tabs.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/sortable/connect-lists.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/sortable/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/sortable/delay-start.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/sortable/display-grid.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/sortable/empty-lists.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/sortable/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/sortable/items.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/sortable/placeholder.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/sortable/portlets.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/spinner/currency.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/spinner/decimal.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/spinner/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/spinner/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/spinner/latlong.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/spinner/overflow.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/spinner/time.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/switchClass/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/switchClass/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tabs/ajax.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tabs/ajax/content1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tabs/ajax/content2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tabs/ajax/content3-slow.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tabs/ajax/content4-broken.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tabs/bottom.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tabs/collapsible.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tabs/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tabs/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tabs/manipulation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tabs/mouseover.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tabs/sortable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tabs/vertical.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/toggle/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/toggle/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/toggleClass/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/toggleClass/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tooltip/ajax/content1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tooltip/ajax/content2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tooltip/custom-animation.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tooltip/custom-content.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tooltip/custom-style.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tooltip/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tooltip/forms.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tooltip/images/st-stephens.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tooltip/images/tower-bridge.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tooltip/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tooltip/tracking.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/tooltip/video-player.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/widget/default.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/demos/widget/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/accordion.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/autocomplete.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/blind-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/bounce-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/button.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/clip-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/datepicker.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/dialog.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/draggable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/drop-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/droppable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/explode-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/fade-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/fold-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/highlight-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/jQuery.widget.bridge.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/jQuery.widget.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/menu.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/mouse.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/position.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/progressbar.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/puff-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/pulsate-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/resizable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/scale-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/selectable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/shake-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/size-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/slide-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/slider.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/sortable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/spinner.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/tabs.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/tooltip.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/docs/transfer-effect.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/external/globalize.culture.de-DE.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/external/globalize.culture.ja-JP.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/external/globalize.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/external/jquery.mousewheel.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/external/jshint.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/external/qunit.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/external/qunit.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/jquery-1.10.2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/animated-overlay.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/ui-bg_glass_65_ffffff_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/ui-bg_glass_75_dadada_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/ui-icons_222222_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/ui-icons_2e83ff_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/ui-icons_454545_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/ui-icons_888888_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/images/ui-icons_cd0a0a_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery-ui.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.accordion.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.all.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.autocomplete.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.base.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.button.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.core.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.datepicker.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.dialog.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.progressbar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.resizable.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.selectable.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.slider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.spinner.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.tooltip.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/animated-overlay.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/ui-bg_glass_55_fbf9ee_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/ui-bg_glass_65_ffffff_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/ui-bg_glass_75_dadada_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/ui-bg_glass_75_e6e6e6_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/ui-bg_glass_95_fef1ec_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/ui-bg_highlight-soft_75_cccccc_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/ui-icons_222222_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/ui-icons_2e83ff_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/ui-icons_454545_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/ui-icons_888888_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/images/ui-icons_cd0a0a_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery-ui.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.accordion.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.autocomplete.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.button.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.core.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.datepicker.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.dialog.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.menu.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.progressbar.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.resizable.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.selectable.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.slider.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.spinner.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.tabs.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/base/minified/jquery.ui.tooltip.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/images/animated-overlay.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/images/ui-bg_diagonals-thick_75_f3d8d8_40x40.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/images/ui-bg_dots-small_65_a6a6a6_2x2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/images/ui-bg_flat_0_333333_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/images/ui-bg_flat_65_ffffff_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/images/ui-bg_glass_55_fbf8ee_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/images/ui-bg_highlight-hard_100_eeeeee_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/images/ui-bg_highlight-hard_100_f6f6f6_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/images/ui-bg_highlight-soft_15_cc0000_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/images/ui-icons_004276_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/images/ui-icons_cc0000_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/images/ui-icons_ffffff_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery-ui.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.accordion.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.all.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.autocomplete.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.base.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.button.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.core.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.datepicker.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.dialog.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.progressbar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.resizable.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.selectable.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.slider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.spinner.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/jquery.ui.tooltip.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/images/animated-overlay.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/images/ui-bg_diagonals-thick_75_f3d8d8_40x40.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/images/ui-bg_dots-small_65_a6a6a6_2x2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/images/ui-bg_flat_0_333333_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/images/ui-bg_flat_65_ffffff_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/images/ui-bg_glass_55_fbf8ee_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/images/ui-bg_highlight-hard_100_eeeeee_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/images/ui-bg_highlight-hard_100_f6f6f6_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/images/ui-bg_highlight-soft_15_cc0000_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/images/ui-icons_004276_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/images/ui-icons_cc0000_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/images/ui-icons_ffffff_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery-ui.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.accordion.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.autocomplete.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.button.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.core.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.datepicker.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.dialog.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.menu.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.progressbar.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.resizable.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.selectable.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.slider.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.spinner.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.tabs.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/themes/blitzer/minified/jquery.ui.tooltip.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.accordion.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.autocomplete.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.button.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.core.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.datepicker.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.dialog.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.draggable.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.droppable.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect-blind.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect-bounce.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect-clip.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect-drop.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect-explode.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect-fade.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect-fold.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect-highlight.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect-pulsate.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect-scale.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect-shake.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect-slide.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect-transfer.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.effect.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.menu.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.mouse.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.position.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.progressbar.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.resizable.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.selectable.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.slider.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.sortable.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.spinner.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.tabs.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.tooltip.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui.widget.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery-ui-i18n.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-af.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-ar-DZ.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-ar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-az.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-be.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-bg.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-bs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-ca.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-cs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-cy-GB.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-da.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-de.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-el.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-en-AU.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-en-GB.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-en-NZ.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-eo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-es.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-et.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-eu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-fa.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-fi.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-fo.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-fr-CA.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-fr-CH.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-fr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-gl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-he.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-hi.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-hr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-hu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-hy.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-id.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-is.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-it.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-ja.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-ka.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-kk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-km.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-ko.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-ky.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-lb.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-lt.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-lv.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-mk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-ml.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-ms.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-nb.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-nl-BE.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-nl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-nn.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-no.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-pl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-pt-BR.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-pt.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-rm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-ro.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-ru.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-sk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-sl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-sq.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-sr-SR.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-sr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-sv.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-ta.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-th.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-tj.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-tr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-uk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-vi.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-zh-CN.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-zh-HK.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/i18n/jquery.ui.datepicker-zh-TW.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery-ui.custom.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.accordion.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.autocomplete.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.button.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.core.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.datepicker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.draggable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.droppable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect-blind.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect-bounce.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect-clip.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect-drop.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect-explode.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect-fade.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect-fold.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect-highlight.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect-pulsate.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect-scale.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect-shake.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect-slide.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect-transfer.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.effect.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.menu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.mouse.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.position.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.progressbar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.resizable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.selectable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.slider.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.sortable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.spinner.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.tabs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.tooltip.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/jquery.ui.widget.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery-ui-i18n.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-af.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ar-DZ.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ar.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-az.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-be.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-bg.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-bs.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ca.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-cs.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-cy-GB.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-da.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-de.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-el.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-en-AU.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-en-GB.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-en-NZ.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-eo.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-es.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-et.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-eu.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fa.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fi.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fo.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fr-CA.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fr-CH.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fr.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-gl.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-he.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-hi.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-hr.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-hu.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-hy.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-id.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-is.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-it.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ja.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ka.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-kk.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-km.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ko.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ky.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-lb.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-lt.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-lv.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-mk.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ml.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ms.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-nb.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-nl-BE.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-nl.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-nn.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-no.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-pl.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-pt-BR.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-pt.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-rm.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ro.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ru.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sk.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sl.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sq.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sr-SR.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sr.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sv.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ta.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-th.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-tj.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-tr.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-uk.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-vi.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-zh-CN.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-zh-HK.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/i18n/jquery.ui.datepicker-zh-TW.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery-ui.custom.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.accordion.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.autocomplete.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.button.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.core.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.datepicker.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.dialog.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.draggable.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.droppable.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect-blind.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect-bounce.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect-clip.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect-drop.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect-explode.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect-fade.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect-fold.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect-highlight.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect-pulsate.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect-scale.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect-shake.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect-slide.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect-transfer.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.effect.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.menu.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.mouse.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.position.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.progressbar.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.resizable.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.selectable.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.slider.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.sortable.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.spinner.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.tabs.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.tooltip.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/development-bundle/ui/minified/jquery.ui.widget.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Nomina/Cargo.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Nomina/Cargo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionApanado.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionApanado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionBodega.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionBodega.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/DesposteJson.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/Forms.py" afterPath="$PROJECT_DIR$/Fabricacion/Forms.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanal.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanal.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanalDetalleDesposte.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanalDetalleDesposte.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Telemercadeo/GestionCliente.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Telemercadeo/GestionCliente.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCondTajado.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCondTajado.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCondimento.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCondimento.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDesposte.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDesposte.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleCondimento.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleCondimento.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleMiga.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleMiga.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleRecepcion.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleRecepcion.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleTraslado.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleTraslado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Nomina/GestionEmpleados.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Nomina/GestionEmpleados.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionEnsalinados.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionEnsalinados.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGrupo.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGrupo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionMiga.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionMiga.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionPedido.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionPedido.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionPlanillaRecepcion.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionPlanillaRecepcion.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProvedor.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProvedor.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionSacrificio.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionSacrificio.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionTajaddoCondPechugas.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionTajaddoCondPechugas.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionTraslado.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionTraslado.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionVerduras.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionVerduras.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Home.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/base.html" afterPath="$PROJECT_DIR$/porkisoft/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/urls.py" afterPath="$PROJECT_DIR$/Inventario/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/Forms/forms.py" afterPath="$PROJECT_DIR$/Inventario/Forms/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/models.py" afterPath="$PROJECT_DIR$/Inventario/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/urls.py" afterPath="$PROJECT_DIR$/Fabricacion/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/views.py" afterPath="$PROJECT_DIR$/Fabricacion/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/views.py" afterPath="$PROJECT_DIR$/Inventario/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -706,41 +49,53 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Ventas/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="1491">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="acciones.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="acciones.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2331">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.9593909" vertical-offset="1071" max-vertical-offset="3402">
+              <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GestionProducto.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html">
+      <file leaf-file-name="DesposteJson.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/DesposteJson.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.2867513" vertical-offset="0" max-vertical-offset="1575">
-              <caret line="60" column="107" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="107" />
+            <state vertical-scroll-proportion="-7.7777777" vertical-offset="0" max-vertical-offset="546">
+              <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Fabricacion/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.166667" vertical-offset="36841" max-vertical-offset="124824">
-              <caret line="1766" column="13" selection-start-line="1766" selection-start-column="13" selection-end-line="1766" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="21472" max-vertical-offset="22092">
+              <caret line="1046" column="0" selection-start-line="1046" selection-start-column="0" selection-end-line="1046" selection-end-column="0" />
+              <folding>
+                <element signature="e#25#52#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Fabricacion/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="798">
+              <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1008" max-vertical-offset="3822">
+              <caret line="52" column="18" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -759,47 +114,25 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Nomina/urls.py" />
-        <option value="$PROJECT_DIR$/Telemercadeo/urls.py" />
-        <option value="$PROJECT_DIR$/porkisoft/urls.py" />
         <option value="$PROJECT_DIR$/Telemercadeo/views.py" />
         <option value="$PROJECT_DIR$/Fabricacion/models.py" />
-        <option value="$PROJECT_DIR$/Fabricacion/Forms.py" />
-        <option value="$PROJECT_DIR$/Fabricacion/views.py" />
-        <option value="$PROJECT_DIR$/Fabricacion/urls.py" />
         <option value="$PROJECT_DIR$/Nomina/views.py" />
         <option value="$PROJECT_DIR$/Ventas/urls.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/Pedido_pdf.html" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/porkisoft/UsoDeGraficos.py" />
         <option value="$PROJECT_DIR$/porkisoft/UsoTkInter.py" />
-        <option value="$PROJECT_DIR$/Inventario/models.py" />
-        <option value="$PROJECT_DIR$/Inventario/Forms/forms.py" />
-        <option value="$PROJECT_DIR$/Ventas/views.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleRecepcion.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/base.html" />
         <option value="$PROJECT_DIR$/Inventario/urls.py" />
-        <option value="$PROJECT_DIR$/Inventario/views.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDesposte.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanalDetalleDesposte.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionApanado.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanal.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCondimento.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCondTajado.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleCondimento.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleMiga.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionEnsalinados.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionMiga.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionPlanillaRecepcion.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionSacrificio.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionTajaddoCondPechugas.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionVerduras.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionBodega.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleTraslado.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGrupo.html" />
@@ -808,8 +141,30 @@
         <option value="$PROJECT_DIR$/porkisoft/templates/Nomina/Cargo.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Nomina/GestionEmpleados.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Telemercadeo/GestionCliente.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionPedido.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanalDetalleDesposte.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDesposte.html" />
+        <option value="$PROJECT_DIR$/Ventas/views.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionPedido.html" />
+        <option value="$PROJECT_DIR$/Inventario/models.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/base.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Home.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/Inventario/views.py" />
+        <option value="$PROJECT_DIR$/Inventario/Forms/forms.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionVerduras.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCondimento.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleCondimento.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionPlanillaRecepcion.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanal.html" />
+        <option value="$PROJECT_DIR$/Fabricacion/Forms.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/DesposteJson.html" />
+        <option value="$PROJECT_DIR$/Fabricacion/urls.py" />
+        <option value="$PROJECT_DIR$/Fabricacion/views.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
       </list>
     </option>
   </component>
@@ -845,7 +200,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -864,8 +218,139 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fabricacion" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Inventario" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fabricacion" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -876,12 +361,12 @@
     <property name="SearchEverywhereHistory" value="GestionDetallCond&#10;GestionDetalleCompra&#10;verduras&#10;GestionCompra&#10;limpiez&#10;Limpieza&#10;GestionDEtalleComp&#10;GestionCanal&#10;GestionCompras&#10;GestionCondimento&#10;GestionDeta&#10;panel&#10;GestionDetalleCo&#10;GestionDetalleComp&#10;GestionCana&#10;GestionPlanillaRe&#10;Ganado&#10;Canal&#10;GestionCa&#10;GestionDetall&#10;GestionGanado&#10;GestionComp&#10;GestionG&#10;GestionGana" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="dynamic.classpath" value="false" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../bin/python2.7" />
-    <property name="SearchEverywhereHistoryKey" value="Costo&#9;null&#9;null&#10;GestionSacr&#9;null&#9;null&#10;GestionPlanilla&#9;null&#9;null&#10;GestionRece&#9;null&#9;null&#10;GestionGana&#9;null&#9;null&#10;recepcion&#9;null&#9;null&#10;Sacrificio&#9;null&#9;null&#10;GestionDetalleSa&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionDetalleSacrificio.html&#10;sacrificio&#9;null&#9;null&#10;GestionCompra&#9;null&#9;null&#10;GestionCana&#9;null&#9;null&#10;GestionGrup&#9;null&#9;null&#10;Grupo&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="GestionCanal&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionCanal.html&#10;GestionSacrifi&#9;null&#9;null&#10;GestionRecepcio&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionPlanillaRecepcion.html&#10;GestionDetalleCon&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionDetalleCondimento.html&#10;GestionCondimen&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionCondimento.html&#10;Miga&#9;null&#9;null&#10;Costo&#9;null&#9;null&#10;GestionSacr&#9;null&#9;null&#10;GestionPlanilla&#9;null&#9;null&#10;GestionRece&#9;null&#9;null&#10;GestionGana&#9;null&#9;null&#10;recepcion&#9;null&#9;null&#10;Sacrificio&#9;null&#9;null&#10;GestionDetalleSa&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionDetalleSacrificio.html&#10;sacrificio&#9;null&#9;null&#10;GestionCompra&#9;null&#9;null&#10;GestionCana&#9;null&#9;null&#10;GestionGrup&#9;null&#9;null&#10;Grupo&#9;null&#9;null" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -983,7 +468,27 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python2.7" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="porkisoft" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -1009,27 +514,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="/usr/bin/python2.7" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="porkisoft" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="localhost" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -1092,10 +577,10 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="porkisoft" />
       <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8002" />
+      <option name="port" value="8003" />
       <option name="host" value="0.0.0.0" />
       <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="http://0.0.0.0:8002" />
+      <option name="browserUrl" value="http://0.0.0.0:8003" />
       <option name="runTestServer" value="false" />
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
@@ -1264,7 +749,11 @@
       <created>1402096212162</created>
       <updated>1402096212162</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Actualizaciones de las vistas implementacion del formulario flotante y comprobacion de el modulo desposte">
+      <created>1402499737956</created>
+      <updated>1402499737956</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1294,22 +783,22 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288364" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5652174" sideWeight="0.49960598" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32605043" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25171104" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24940991" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33595595" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3761302" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25098348" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36978757" sideWeight="0.49919486" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3461841" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37520128" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36978757" sideWeight="0.50080514" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5136876" sideWeight="0.500394" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.63929147" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3542673" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1351,77 +840,18 @@
     <MESSAGE value="Organizacion de archivos en la carpeta de cada aplicacion" />
     <MESSAGE value="creacion de pdf para clientes" />
     <MESSAGE value="pendiante implementacion en servidor de produccion" />
-    <option name="LAST_COMMIT_MESSAGE" value="pendiante implementacion en servidor de produccion" />
+    <MESSAGE value="Actualizaciones de las vistas implementacion del formulario flotante y comprobacion de el modulo desposte" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualizaciones de las vistas implementacion del formulario flotante y comprobacion de el modulo desposte" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="86" />
+      <option name="time" value="89" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Ventas/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24873096" vertical-offset="0" max-vertical-offset="591">
-          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/Pedido_pdf.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7393617" vertical-offset="1452" max-vertical-offset="2016">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ventas/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11167513" vertical-offset="480" max-vertical-offset="1134">
-          <caret line="29" column="16" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/UsoTkInter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35532996" vertical-offset="0" max-vertical-offset="591">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fabricacion/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21319798" vertical-offset="63" max-vertical-offset="714">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49746192" vertical-offset="0" max-vertical-offset="591">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2079" max-vertical-offset="4053">
-          <caret line="113" column="16" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="294" max-vertical-offset="1953">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Inventario/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="798">
@@ -1430,35 +860,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="462">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0609138" vertical-offset="189" max-vertical-offset="1785">
-          <caret line="75" column="47" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fabricacion/Forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.2162629" vertical-offset="808" max-vertical-offset="1701">
-          <caret line="11" column="86" selection-start-line="11" selection-start-column="86" selection-end-line="11" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Nomina/Forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="591">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1466,7 +871,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11130742" vertical-offset="0" max-vertical-offset="566">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1474,41 +878,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37102473" vertical-offset="0" max-vertical-offset="566">
           <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32698962" vertical-offset="378" max-vertical-offset="9429">
-          <caret line="27" column="89" selection-start-line="27" selection-start-column="89" selection-end-line="27" selection-end-column="89" />
-          <folding>
-            <element signature="e#25#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDesposte.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.185185" vertical-offset="478" max-vertical-offset="1281">
-          <caret line="32" column="115" selection-start-line="32" selection-start-column="115" selection-end-line="32" selection-end-column="115" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2331">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanalDetalleDesposte.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30490017" vertical-offset="0" max-vertical-offset="3108">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1516,23 +885,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44148937" vertical-offset="675" max-vertical-offset="1239">
           <caret line="44" column="100" selection-start-line="44" selection-start-column="100" selection-end-line="44" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15245008" vertical-offset="0" max-vertical-offset="2415">
-          <caret line="4" column="86" selection-start-line="4" selection-start-column="86" selection-end-line="4" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCondimento.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40957448" vertical-offset="0" max-vertical-offset="1344">
-          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1540,15 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47338402" vertical-offset="717" max-vertical-offset="1281">
           <caret line="46" column="106" selection-start-line="46" selection-start-column="106" selection-end-line="46" selection-end-column="106" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleCondimento.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11433757" vertical-offset="0" max-vertical-offset="1848">
-          <caret line="3" column="86" selection-start-line="3" selection-start-column="86" selection-end-line="3" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1556,7 +899,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3139746" vertical-offset="1213" max-vertical-offset="1764">
           <caret line="66" column="41" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1564,7 +906,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29787233" vertical-offset="0" max-vertical-offset="1407">
           <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1572,15 +913,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40957448" vertical-offset="0" max-vertical-offset="1407">
           <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionPlanillaRecepcion.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32978722" vertical-offset="969" max-vertical-offset="1533">
-          <caret line="55" column="103" selection-start-line="55" selection-start-column="103" selection-end-line="55" selection-end-column="103" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1588,7 +920,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29787233" vertical-offset="0" max-vertical-offset="1596">
           <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1596,23 +927,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.222222" vertical-offset="759" max-vertical-offset="1323">
           <caret line="48" column="105" selection-start-line="48" selection-start-column="105" selection-end-line="48" selection-end-column="105" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fabricacion/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="11043" max-vertical-offset="20811">
-          <caret line="587" column="30" selection-start-line="587" selection-start-column="30" selection-end-line="587" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionVerduras.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29787233" vertical-offset="0" max-vertical-offset="1260">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1620,7 +934,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.30490017" vertical-offset="0" max-vertical-offset="1260">
           <caret line="8" column="86" selection-start-line="8" selection-start-column="86" selection-end-line="8" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1628,15 +941,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2925532" vertical-offset="1032" max-vertical-offset="1596">
           <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45735028" vertical-offset="1512" max-vertical-offset="2415">
-          <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1644,7 +948,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9714829" vertical-offset="1190" max-vertical-offset="2079">
           <caret line="81" column="38" selection-start-line="81" selection-start-column="38" selection-end-line="81" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1652,7 +955,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2247">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1660,7 +962,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.59574467" vertical-offset="756" max-vertical-offset="2037">
           <caret line="52" column="53" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1668,7 +969,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39019963" vertical-offset="898" max-vertical-offset="1512">
           <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1676,15 +976,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2606383" vertical-offset="0" max-vertical-offset="1281">
           <caret line="7" column="86" selection-start-line="7" selection-start-column="86" selection-end-line="7" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0961888" vertical-offset="0" max-vertical-offset="1722">
-          <caret line="55" column="85" selection-start-line="55" selection-start-column="85" selection-end-line="55" selection-end-column="85" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1692,7 +983,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2606383" vertical-offset="0" max-vertical-offset="1470">
           <caret line="7" column="86" selection-start-line="7" selection-start-column="86" selection-end-line="7" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1700,7 +990,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.8888888" vertical-offset="0" max-vertical-offset="1470">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1708,15 +997,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5531915" vertical-offset="528" max-vertical-offset="1092">
           <caret line="40" column="97" selection-start-line="40" selection-start-column="97" selection-end-line="40" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.166667" vertical-offset="36841" max-vertical-offset="124824">
-          <caret line="1766" column="13" selection-start-line="1766" selection-start-column="13" selection-end-line="1766" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1724,7 +1004,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14893617" vertical-offset="0" max-vertical-offset="1386">
           <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1732,38 +1011,223 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44148937" vertical-offset="612" max-vertical-offset="1176">
           <caret line="41" column="98" selection-start-line="41" selection-start-column="98" selection-end-line="41" selection-end-column="98" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Ventas/views.py">
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDesposte.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="1491">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="987" max-vertical-offset="1260">
+          <caret line="47" column="76" selection-start-line="47" selection-start-column="76" selection-end-line="47" selection-end-column="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/GestionPedido.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07622504" vertical-offset="0" max-vertical-offset="1218">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="1407">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ventas/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7038917" vertical-offset="739" max-vertical-offset="1449">
+          <caret line="57" column="65" selection-start-line="57" selection-start-column="65" selection-end-line="57" selection-end-column="65" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32698962" vertical-offset="0" max-vertical-offset="4032">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.0740743" vertical-offset="457" max-vertical-offset="2079">
+          <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="1743">
+          <caret line="3" column="38" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.89416057" vertical-offset="16751" max-vertical-offset="124824">
+          <caret line="821" column="0" selection-start-line="821" selection-start-column="0" selection-end-line="821" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07446808" vertical-offset="0" max-vertical-offset="2457">
-          <caret line="2" column="49" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
-          <folding />
+        <state vertical-scroll-proportion="0.39923954" vertical-offset="1407" max-vertical-offset="2457">
+          <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="1722">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.2867513" vertical-offset="0" max-vertical-offset="1575">
-          <caret line="60" column="107" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="107" />
+        <state vertical-scroll-proportion="0.26678765" vertical-offset="504" max-vertical-offset="1659">
+          <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.0" vertical-offset="1071" max-vertical-offset="2415">
+          <caret line="69" column="52" selection-start-line="69" selection-start-column="52" selection-end-line="69" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionVerduras.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.2222223" vertical-offset="0" max-vertical-offset="1260">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6751269" vertical-offset="693" max-vertical-offset="1785">
+          <caret line="60" column="80" selection-start-line="60" selection-start-column="80" selection-end-line="60" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleCondimento.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15245008" vertical-offset="0" max-vertical-offset="1890">
+          <caret line="4" column="141" selection-start-line="4" selection-start-column="141" selection-end-line="4" selection-end-column="141" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCondimento.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33510637" vertical-offset="504" max-vertical-offset="1344">
+          <caret line="33" column="44" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fabricacion/Forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="1722">
+          <caret line="74" column="12" selection-start-line="74" selection-start-column="12" selection-end-line="74" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionPlanillaRecepcion.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="168" max-vertical-offset="1554">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2436">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1778" max-vertical-offset="3717">
+          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanalDetalleDesposte.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24144487" vertical-offset="2582" max-vertical-offset="3108">
+          <caret line="129" column="40" selection-start-line="129" selection-start-column="24" selection-end-line="129" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="6.721453" vertical-offset="3150" max-vertical-offset="9282">
+          <caret line="346" column="0" selection-start-line="346" selection-start-column="0" selection-end-line="346" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="462">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../local/lib/python2.7/site-packages/django/views/generic/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33215547" vertical-offset="169" max-vertical-offset="4515">
+          <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1008" max-vertical-offset="3822">
+          <caret line="52" column="18" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/DesposteJson.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.7777777" vertical-offset="0" max-vertical-offset="546">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fabricacion/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="798">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fabricacion/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="21472" max-vertical-offset="22092">
+          <caret line="1046" column="0" selection-start-line="1046" selection-start-column="0" selection-end-line="1046" selection-end-column="0" />
+          <folding>
+            <element signature="e#25#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.9593909" vertical-offset="1071" max-vertical-offset="3402">
+          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
           <folding />
         </state>
       </provider>

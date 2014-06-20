@@ -4,6 +4,10 @@ from math import ceil
 
 from django.shortcuts import render_to_response,HttpResponseRedirect
 from django.template import RequestContext
+from django.core import serializers
+from django.http import HttpResponse
+from django.views.generic import View,TemplateView
+
 
 from Inventario.Forms.forms import *
 from Fabricacion.Forms import *
@@ -338,12 +342,24 @@ def CostoDesposte(request, idplanilla):
         kiloCanal = cnl.vrKiloCanal
 
     costoProduccionTotal = 0
+    tipo = 0
+    for grupo in detalleDespostes:
+        tipo = grupo.producto.grupo.nombreGrupo
 
 
     #realizo los calculos generales de costo
     costoCanal = ceil(totalCanal * kiloCanal) #Hace referencia al costo del canal de reces despostadas
-    totalMOD = totalReses * 12839 # MOD en desposte
-    totalCIF = totalReses * 30173 # CIF en desposte
+
+    if tipo == 'Reses':
+        totalMOD = totalReses * 12839 # MOD en desposte
+        totalCIF = totalReses * 30173 # CIF en desposte
+    elif tipo == 'Cerdos':
+        totalMOD = totalReses * 3000 # MOD en desposte
+        totalCIF = totalReses * 7815 # CIF en desposte
+    else:
+        totalMOD = totalReses * 6360 # MOD en desposte
+        totalCIF = totalReses * 11692 # CIF en desposte
+
     costoTotalDesposte = ceil(costoCanal + 100  + totalMOD + totalCIF)
     costoKiloDespostado = ceil((Decimal(costoTotalDesposte) / planilla.totalDespostado)*1000)
     kilosPorArroba = 12.5
@@ -379,7 +395,7 @@ def CostoDesposte(request, idplanilla):
             costoProduccionProducto = ceil(Decimal(costoKiloProducto) * (detplan.PesoProducto/ 1000))
             costoProduccionTotal += costoProduccionProducto
 
-        if (((costoProduccionTotal - costoTotalDesposte) >= -600) and ((costoProduccionTotal - costoTotalDesposte) <= 600)):
+        if (((costoProduccionTotal - costoTotalDesposte) >= -1000) and ((costoProduccionTotal - costoTotalDesposte) <= 1000)):
             break #Si la diferencia entre los valores llega a un valor por encima o pro debajo de 600 pesos el ciclo se detiene
         #*******************************************************************************************************
 
@@ -406,7 +422,7 @@ def CostoDesposte(request, idplanilla):
 def GestionSacrificio(request,idrecepcion):
 
     recepcion = PlanillaRecepcion.objects.get(pk = idrecepcion)
-    sacrificios = Sacrificio.objects.all()
+    sacrificios = Sacrificio.objects.filter(recepcion = idrecepcion)
     detCompra = DetalleCompra.objects.filter(compra = recepcion.compra.codigoCompra)
 
     totalPieles = 0
@@ -865,7 +881,7 @@ def GestionApanado(request,idprodbod):
             apanado.costoKiloApanado = costoKiloApanado
             apanado.save()
 
-            #Restamos la cantidad de productos usados en el proseso
+            #Restamos la cantidad de productos usados en el proceso
 
             bodegaFilete.pesoProductoStock -= apanado.pesoFilete
             bodegaFilete.save()
@@ -942,7 +958,6 @@ def GestionarTajadoCondPechugas(request,idprodbod):
             costoKiloFileteCondApanar = costoFileteCondimentadoApanar / tajado.tajado.fileteAApanar
 
 
-
             #Guardamos los costo del filete condimentado para venta
             fileteCondimentado.costoProducto = costoKiloFileteCondimentado
             fileteCondimentado.save()
@@ -990,3 +1005,42 @@ def GestionarTajadoCondPechugas(request,idprodbod):
 
     return render_to_response('Fabricacion/GestionTajaddoCondPechugas.html',{'formulario':formulario,'registros':registros}
                               ,context_instance = RequestContext(request))
+
+
+def GestionDesposteAjax(request):
+
+    return render_to_response('Fabricacion/DesposteJson.html',
+                              context_instance = RequestContext(request))
+
+import json
+class GestionDesposteJson(View):
+
+    def get(self, request):
+        arreglo = []
+        despostes = PlanillaDesposte.objects.all()
+        for desposte in despostes:
+            desposte_dict = {}
+            fecha = str(desposte.fechaDesposte)
+            desposte_dict['codigo'] = desposte.codigoPlanilla
+            desposte_dict['fecha'] = fecha
+            desposte_dict['numReses'] = desposte.resesADespostar
+            arreglo.append(desposte_dict)
+
+        respuesta = json.dumps(arreglo)
+        return HttpResponse(respuesta, mimetype='application/json')
+
+def GuardaPlanillaDesposte(request):
+    desposte = PlanillaDesposte()
+    desposte.save()
+    arreglo = []
+    despostes = PlanillaDesposte.objects.all()
+    for desposte in despostes:
+        desposte_dict = {}
+        fecha = str(desposte.fechaDesposte)
+        desposte_dict['codigo'] = desposte.codigoPlanilla
+        desposte_dict['fecha'] = fecha
+        desposte_dict['numReses'] = desposte.resesADespostar
+        arreglo.append(desposte_dict)
+
+    respuesta = json.dumps(arreglo)
+    return HttpResponse(respuesta, mimetype='application/json')

@@ -19,6 +19,7 @@ class EnsalinadoForm(ModelForm):
 class LimpiezaVerdurasForm(ModelForm):
     class Meta:
         model = LimpiezaVerduras
+        exclude = ('vrKilo',)
 
 class CondimentoForm(ModelForm):
     class Meta:
@@ -29,7 +30,7 @@ class DetalleCondimentoForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(DetalleCondimentoForm,self).__init__(*args, **kwargs)
-        self.fields['producto'].queryset = Producto.objects.filter(grupo__range = (5,6))
+        self.fields['producto'].queryset = Producto.objects.filter(grupo__range = (6,7))
 
     class Meta:
         model = DetalleCondimento
@@ -70,8 +71,8 @@ class CanalForm(ModelForm):
         super(CanalForm,self).__init__(*args, **kwargs)
 
         if (PlanillaDesposte.objects.all()):
-            self.fields['planilla'].queryset = PlanillaDesposte.objects.all()
-            #self.fields['planilla'].queryset = PlanillaDesposte.objects.filter(fechaDesposte = datetime.today())
+            #self.fields['planilla'].queryset = PlanillaDesposte.objects.all()
+            self.fields['planilla'].queryset = PlanillaDesposte.objects.filter(fechaDesposte = datetime.today())
 
     class Meta:
         model=Canal
