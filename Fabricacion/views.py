@@ -1025,7 +1025,7 @@ class GestionDesposteJson(View):
             desposte_dict['fecha'] = fecha
             desposte_dict['numReses'] = desposte.resesADespostar
             arreglo.append(desposte_dict)
-
+        #diccionario = {"draw": 1,"recordsTotal": 57,"recordsFiltered": 57,'data':arreglo}
         respuesta = json.dumps(arreglo)
         return HttpResponse(respuesta, mimetype='application/json')
 

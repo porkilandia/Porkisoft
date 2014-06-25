@@ -22,10 +22,17 @@ $(document).on('ready', inicio);
      $('#tablabodegas').dataTable();
      $('#tablaproveedor').dataTable();
      $('#despostes').dataTable();
-     $('#lista').dataTable();
+
+    /* $('#lista').dataTable( {
+        "ajax": {
+         "url": "data.json",
+         "type": "get"
+  }
+    });
+*/
 
 
-     /*************** Prueba Json ******************/
+     /*************** Prueba Json *****************/
 
      $.ajax({
          url : '/fabricacion/json/',
