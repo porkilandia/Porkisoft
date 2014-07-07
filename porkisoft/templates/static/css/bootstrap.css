@@ -1753,12 +1753,17 @@ table th[class*="col-"] {
 }
 #nuevo
 {
-    position: fixed;
+    position: absolute;
     right: 3em;
 }
 #costear
 {
-    position: fixed;
+    position: absolute;
+    right: 19.2em;
+}
+#guardar
+{
+    position: absolute;
     right: 8em;
 }
 #cerrar

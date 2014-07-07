@@ -64,7 +64,7 @@ class CondTajPechugasForm(ModelForm):
 class DesposteForm(ModelForm):
     class Meta:
         model = PlanillaDesposte
-        exclude = ("resesADespostar","totalDespostado","difCanalADespostado","totalCanal",)
+        exclude = ("resesADespostar","totalDespostado","difCanalADespostado","totalCanal")
 
 class CanalForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -81,3 +81,4 @@ class CanalForm(ModelForm):
 class DetalleDesposteForm(ModelForm):
     class Meta:
         model = DetallePlanilla
+        exclude = ("vrKiloCarnes","vrKiloHuesos","vrKiloSubProd","vrKiloDesecho","pesoCarne","pesoHueso","pesoSubProd","pesoDesecho")

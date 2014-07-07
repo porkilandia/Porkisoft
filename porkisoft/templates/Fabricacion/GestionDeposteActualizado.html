@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Desposte{% endblock titulo %}
+{% block mensajes %}
+    Desposte Detallado
+
+{% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+<a id="guardar" href="#"><input type="button" value="Guardar Cantidades" class="btn btn-danger"></a>
+<a id="costear" href="#"><input type="button" value="Costear" class="btn btn-success"></a>
+    <br/>
+    <br/>
+    <br/>
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Fecha</th>
+            <th>Reses a Depostar</th>
+            <th>Total Despostado(grs)</th>
+            <th>Total Canal(grs)</th>
+            <th>Dif Canal/desp</th>
+            <th>Total Produccion(grs)</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td id="codigoPlanilla">{{ desposte.codigoPlanilla }}</td>
+            <td>{{ desposte.fechaDesposte }}</td>
+            <td>{{ desposte.resesADespostar }}</td>
+            <td>{{ desposte.totalDespostado|floatformat }} grs</td>
+            <td id="pesoCanales">{{ desposte.totalCanal|floatformat }}</td>
+            <td>{{ desposte.difCanalADespostado |floatformat }} grs</td>
+            <td>{{ desposte.costoProduccionTotal|floatformat }}</td>
+
+
+        </tr>
+
+    </tbody>
+</table>
+    <br/>
+<table  class="table-striped">
+        <thead>
+
+        <tr>
+
+            <th>Planilla</th>
+            <th>Peso Frigovito</th>
+            <th>Peso Porkilandia</th>
+            <th>Dif. de pesos</th>
+            <th>Vr. Kilo Canal</th>
+            <th>Vr. Arroba Canal</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+          {% for cnl in canales %}
+        <tr>
+
+            <td>{{ cnl.planilla }}</td>
+            <td>{{ cnl.pesoFrigovito | floatformat }} Kg</td>
+            <td>{{ cnl.pesoPorkilandia | floatformat }} Kg</td>
+            <td>{{ cnl.difPesos | floatformat }} Kg</td>
+            <td>$ {{ cnl.vrKiloCanal }}</td>
+            <td>$ {{ cnl.vrArrobaCanal }}</td>
+
+
+        </tr>
+
+        {% empty %}
+            <tr>
+                <td colspan="7">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+        <tr>
+        <th colspan="2">Total Canal</th>
+        <th>{{ totalCanal|floatformat }} grs</th>
+        <th colspan="5"></th>
+    </tr>
+
+        </tbody>
+
+
+      </table>
+    <br/>
+<!-- TABLA CARNES -->
+
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th style="text-align: center" colspan="4">CARNES</th>
+        </tr>
+        <tr>
+            <th>cod Producto</th>
+            <th>Producto</th>
+            <th>Grupo</th>
+            <th>Peso Producto</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for carne in carnes %}
+            <tr>
+                <td>{{ carne.producto.codigoProducto }}</td>
+                <td>{{ carne.producto }}</td>
+                <td>{{ carne.producto.grupo.nombreGrupo }}</td>
+                <td>{{ carne.PesoProducto }}</td>
+            </tr>
+        {% empty %}
+        {% endfor %}
+
+        <tr>
+            <th>Costo Grupo</th>
+            <th>{{ vrCarnes }}</th>
+            <th>Costo Kilo Base</th>
+            <th id="kiloCarnes">{{ vrKiloCarnes | floatformat }}</th>
+        </tr>
+
+    </tbody>
+</table>
+    <br/>
+
+<!-- TABLA HUESOS -->
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th style="text-align: center" colspan="4">HUESOS</th>
+        </tr>
+        <tr>
+            <th>cod Producto</th>
+            <th>Producto</th>
+            <th>Grupo</th>
+            <th>Peso Producto</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for hueso in huesos %}
+            <tr>
+                <td>{{ hueso.producto.codigoProducto }}</td>
+                <td>{{ hueso.producto }}</td>
+                <td>{{ hueso.producto.grupo.nombreGrupo }}</td>
+                <td>{{ hueso.PesoProducto }}</td>
+            </tr>
+        {% empty %}
+        {% endfor %}
+
+        <tr>
+            <th>Costo Grupo</th>
+            <th>{{ vrHuesos }}</th>
+            <th>Costo Kilo Base</th>
+            <th id="kiloHueso">{{ vrKiloHuesos| floatformat }}</th>
+        </tr>
+
+    </tbody>
+</table>
+    <br/>
+
+    <!-- TABLA SUBPRODUCTOS -->
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th style="text-align: center"  colspan="4">SUB PRODUCTOS</th>
+        </tr>
+        <tr>
+            <th>cod Producto</th>
+            <th>Producto</th>
+            <th>Grupo</th>
+            <th>Peso Producto</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for subp in subProductos %}
+            <tr>
+                <td>{{ subp.producto.codigoProducto }}</td>
+                <td>{{ subp.producto }}</td>
+                <td>{{ subp.producto.grupo.nombreGrupo }}</td>
+                <td>{{ subp.PesoProducto }}</td>
+            </tr>
+        {% empty %}
+        {% endfor %}
+        <tr>
+            <th>Costo Grupo</th>
+            <th>{{ vrsubProd }}</th>
+            <th>Costo Kilo Base</th>
+            <th id="kiloSubProd">{{ vrKiloSubProd | floatformat}}</th>
+        </tr>
+
+    </tbody>
+</table>
+    <br/>
+    <!-- TABLA DESECHOS -->
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th style="text-align: center" colspan="4">DESECHOS</th>
+        </tr>
+        <tr>
+            <th>cod Producto</th>
+            <th>Producto</th>
+            <th>Grupo</th>
+            <th>Peso Producto</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for desecho in desechos %}
+            <tr>
+                <td>{{ desecho.producto.codigoProducto }}</td>
+                <td>{{ desecho.producto }}</td>
+                <td>{{ desecho.producto.grupo.nombreGrupo }}</td>
+                <td>{{ desecho.PesoProductoth}}</td>
+            </tr>
+        {% empty %}
+        {% endfor %}
+        <tr>
+            <th>Costo Grupo</th>
+            <th>{{ vrDesecho }}</th>
+            <th>Costo Kilo Base</th>
+            <th id="kiloDesecho">{{ vrKiloDesecho | floatformat }}</th>
+
+        </tr>
+
+    </tbody>
+</table>
+
+
+
+    <form method="post">{% csrf_token %}
+         <fieldset id="desposte">
+             <legend>Detalle <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+              <div>
+                  {{ formulario }}
+              </div>
+              <br/><br/>
+              <legend>Acciones</legend>
+             <input type="submit" value="Guardar" class="btn btn-primary">
+
+         </fieldset>
+     </form>
+
+{% endblock contenido %}

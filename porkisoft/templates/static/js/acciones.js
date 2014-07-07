@@ -10,7 +10,7 @@ $(document).on('ready', inicio);
      $('#cerrar').on('click',cerrarVentana);
      $('#editaFila').on('click',editaFilas);
      $('#modificar').on('click',modificaRegistro);
-     $('#cargar').on('click',GuardarRegisro);
+     $('#costear').on('click',CostearDesposte);
 
 
      $('#tablacostos').dataTable();
@@ -23,42 +23,33 @@ $(document).on('ready', inicio);
      $('#tablaproveedor').dataTable();
      $('#despostes').dataTable();
 
-    /* $('#lista').dataTable( {
-        "ajax": {
-         "url": "data.json",
-         "type": "get"
-  }
-    });
-*/
 
+}
 
-     /*************** Prueba Json *****************/
-
-     $.ajax({
-         url : '/fabricacion/json/',
-         dataType: "json",
-         type: "get",
-         success : function(respuesta){
-             cargaDatos(respuesta);
-         }
-     });
-
-
- }
-function GuardarRegisro()
+function CostearDesposte()
 {
+    var idDesposte = parseInt($('#codigoPlanilla').text());
+    var pesoCanales = parseInt($('#pesoCanales').text());
+    var kiloCarnes = parseInt($('#kiloCarnes').text());
+    var kiloHueso = parseInt($('#kiloHueso').text());
+    var kiloSubProd = parseInt($('#kiloSubProd').text());
+    var kiloDesecho = parseInt($('#kiloDesecho').text());
+
     $.ajax({
 
-         url : '/fabricacion/save/',
+         url : '/fabricacion/costeoDesposte/',
          dataType: "json",
          type: "get",
+         data : {'idDesposte':idDesposte,'pesoCanales':pesoCanales,'kiloCarnes':kiloCarnes,
+             'kiloHueso':kiloHueso,'kiloSubProd':kiloSubProd,'kiloDesecho':kiloDesecho},
          success : function(respuesta){
-             cargaDatos(respuesta);
+             alert(respuesta)
          }
 
      });
 
 }
+
 function cargaDatos(datos)
      {
          var $tabla  = $('#lista');

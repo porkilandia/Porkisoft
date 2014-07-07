@@ -4,9 +4,8 @@ from Fabricacion.views import *
 urlpatterns = patterns('',
     # Examples:
 
-    url(r'^desposteJson',GestionDesposteAjax),
-    url(r'^json/',GestionDesposteJson.as_view()),
-    url(r'^save/',GuardaPlanillaDesposte),
+    url(r'^costeoDesposte/$',costeoDesposte),
+
 
     url(r'^canal/(?P<idrecepcion>\d+)',GestionCanal),
     url(r'^marcarcanal/(?P<idcanal>\d+)',MarcarCanalDesposte),
@@ -14,7 +13,8 @@ urlpatterns = patterns('',
     url(r'^desposte/$',GestionDesposte),
     url(r'^sacrificio/(?P<idrecepcion>\d+)',GestionSacrificio),
 
-    url(r'^detalleDesposte/(?P<idplanilla>\d+)',GestionCanalDetalleDesposte),
+    url(r'^detalleDesposte/(?P<idplanilla>\d+)',GestionDesposteActualizado),
+    #url(r'^detalleDesposte/(?P<idplanilla>\d+)',GestionCanalDetalleDesposte),
     url(r'^costoDesposte/(?P<idplanilla>\d+)',CostoDesposte),
 
     url(r'^ensalinados/(?P<idproducto>\d+)', GestionEnsalinado),

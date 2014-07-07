@@ -53,7 +53,7 @@ class PlanillaDesposte(models.Model):
     codigoPlanilla = models.AutoField(primary_key=True)
     fechaDesposte = models.DateField(verbose_name='Fecha de Desposte', auto_now=True)
     resesADespostar = models.IntegerField(verbose_name='Reses A Despostar', default=0)
-    totalDespostado = models.DecimalField(verbose_name='Total Despostado',max_digits=9, decimal_places=3, default=0)
+    totalDespostado = models.DecimalField(verbose_name='Total Despostado',max_digits=13, decimal_places=3, default=0)
     totalCanal = models.DecimalField(verbose_name='Total Canal',max_digits=11, decimal_places=3, default=0)
     difCanalADespostado = models.DecimalField(verbose_name='Diferencia de Canal/Desposte',max_digits=11,
                                               decimal_places=3, default=0)
@@ -107,9 +107,25 @@ class Sacrificio(models.Model):
 
 
 class DetallePlanilla (models.Model):
+    OpGrupo = (
+        ('Grupo Carnes','Grupo Carnes'),
+        ('Grupo Huesos' , 'Grupo Huesos'),
+        ('Grupo SubProductos' , 'Grupo SubProductos'),
+        ('Grupo Desechos' , 'Grupo Desechos')
+    )
+
     planilla = models.ForeignKey(PlanillaDesposte)
     producto = models.ForeignKey(Producto)
     PesoProducto = models.DecimalField(max_digits=9,decimal_places=3, verbose_name='Peso Producto')
+    grupo = models.CharField(verbose_name='Grupo', choices=OpGrupo,default='Macho', max_length=20)
+    vrKiloCarnes = models.IntegerField(verbose_name='Vr.Carnes', default=0)
+    vrKiloHuesos = models.IntegerField(verbose_name='Vr.Hueso', default=0)
+    vrKiloSubProd = models.IntegerField(verbose_name='Vr.Sub Prod', default=0)
+    vrKiloDesecho = models.IntegerField(verbose_name='Vr.Desecho', default=0)
+    pesoCarne = models.DecimalField(verbose_name = 'Peso Carne',max_digits=15, decimal_places=3,default=0)
+    pesoHueso = models.DecimalField(verbose_name = 'Peso Hueso',max_digits=15, decimal_places=3,default=0)
+    pesoSubProd = models.DecimalField(verbose_name = 'Peso Sub Porducto',max_digits=15, decimal_places=3,default=0)
+    pesoDesecho = models.DecimalField(verbose_name = 'Peso Desecho',max_digits=15, decimal_places=3,default=0)
 
 
 class Miga(models.Model):
