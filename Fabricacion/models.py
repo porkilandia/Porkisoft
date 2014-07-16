@@ -51,7 +51,7 @@ class CondimentadoTajado(models.Model):
 
 class PlanillaDesposte(models.Model):
     codigoPlanilla = models.AutoField(primary_key=True)
-    fechaDesposte = models.DateField(verbose_name='Fecha de Desposte', auto_now=True)
+    fechaDesposte = models.DateField(verbose_name='Fecha de Desposte')
     resesADespostar = models.IntegerField(verbose_name='Reses A Despostar', default=0)
     totalDespostado = models.DecimalField(verbose_name='Total Despostado',max_digits=13, decimal_places=3, default=0)
     totalCanal = models.DecimalField(verbose_name='Total Canal',max_digits=11, decimal_places=3, default=0)
@@ -109,6 +109,7 @@ class Sacrificio(models.Model):
 class DetallePlanilla (models.Model):
     OpGrupo = (
         ('Grupo Carnes','Grupo Carnes'),
+        ('Grupo Costillas','Grupo Costillas'),
         ('Grupo Huesos' , 'Grupo Huesos'),
         ('Grupo SubProductos' , 'Grupo SubProductos'),
         ('Grupo Desechos' , 'Grupo Desechos')
@@ -119,10 +120,12 @@ class DetallePlanilla (models.Model):
     PesoProducto = models.DecimalField(max_digits=9,decimal_places=3, verbose_name='Peso Producto')
     grupo = models.CharField(verbose_name='Grupo', choices=OpGrupo,default='Macho', max_length=20)
     vrKiloCarnes = models.IntegerField(verbose_name='Vr.Carnes', default=0)
+    vrKiloCostilla = models.IntegerField(verbose_name='Vr.Costilla', default=0)
     vrKiloHuesos = models.IntegerField(verbose_name='Vr.Hueso', default=0)
     vrKiloSubProd = models.IntegerField(verbose_name='Vr.Sub Prod', default=0)
     vrKiloDesecho = models.IntegerField(verbose_name='Vr.Desecho', default=0)
     pesoCarne = models.DecimalField(verbose_name = 'Peso Carne',max_digits=15, decimal_places=3,default=0)
+    pesoCostilla = models.DecimalField(verbose_name = 'Peso Costillas',max_digits=15, decimal_places=3,default=0)
     pesoHueso = models.DecimalField(verbose_name = 'Peso Hueso',max_digits=15, decimal_places=3,default=0)
     pesoSubProd = models.DecimalField(verbose_name = 'Peso Sub Porducto',max_digits=15, decimal_places=3,default=0)
     pesoDesecho = models.DecimalField(verbose_name = 'Peso Desecho',max_digits=15, decimal_places=3,default=0)
@@ -191,3 +194,13 @@ class CondimentadoTajadoPechuga(models.Model):
     huesos = models.DecimalField(verbose_name='Huesos', max_digits=9, decimal_places=3,default=0)
     piel = models.DecimalField(verbose_name='Piel', max_digits=9, decimal_places=3,default=0)
     procesos = models.DecimalField(verbose_name='Procesos', max_digits=9, decimal_places=3,default=0)
+
+class ValoresCostos(models.Model):
+    codigoCosto = models.AutoField(primary_key= True)
+    nombreCosto = models.CharField(max_length=20,verbose_name='Nombre')
+    valorCif = models.IntegerField(verbose_name='Valor Cif',default=0)
+    valorMod = models.IntegerField(verbose_name='Valor Mod',default=0)
+    fecha = models.DateField(verbose_name='Fecha Actualizacion', auto_now=True)
+
+    def __unicode__(self):
+        return self.codigoCosto

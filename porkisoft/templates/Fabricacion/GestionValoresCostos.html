@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Costos{% endblock titulo %}
+{% block mensajes %}
+    Listado de valores de costos
+
+{% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+
+       <table id="costos" class="table-striped" >
+
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>CIF</th>
+            <th>MOD</th>
+            <th>Fecha Actualizacion</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        {% for costo in costos %}
+        <tr>
+            <td>{{ costo.codigoCosto }}</td>
+            <td>{{ costo.nombreCosto }}</td>
+            <td>{{ costo.valorCif }}</td>
+            <td>{{ costo.valorMod }}</td>
+            <td>{{ costo.fecha }}</td>
+
+            <td>
+                <a href="{% url 'Fabricacion.views.EditaCostos' costo.codigoCosto %}"><img src="{{ STATIC_URL }}img/modificar.png"></a>
+                <a href="#"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Bodega   <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+
+                  {{ formulario }}
+
+              <br/>
+          <input class="btn btn-default" value="Guardar" type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}

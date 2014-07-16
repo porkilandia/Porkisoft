@@ -4,8 +4,8 @@ from Fabricacion.views import *
 urlpatterns = patterns('',
     # Examples:
 
-    url(r'^costeoDesposte/$',costeoDesposte),
-
+    url(r'^costos/$',GestionValorCostos),
+    url(r'^editacosto/(?P<idcosto>\d+)',EditaCostos),
 
     url(r'^canal/(?P<idrecepcion>\d+)',GestionCanal),
     url(r'^marcarcanal/(?P<idcanal>\d+)',MarcarCanalDesposte),
@@ -14,8 +14,10 @@ urlpatterns = patterns('',
     url(r'^sacrificio/(?P<idrecepcion>\d+)',GestionSacrificio),
 
     url(r'^detalleDesposte/(?P<idplanilla>\d+)',GestionDesposteActualizado),
+    url(r'^costeoDesposte/$',costeoDesposte),
+    url(r'^guardarDesposte/$',GuardarDesposte),
     #url(r'^detalleDesposte/(?P<idplanilla>\d+)',GestionCanalDetalleDesposte),
-    url(r'^costoDesposte/(?P<idplanilla>\d+)',CostoDesposte),
+    #url(r'^costoDesposte/(?P<idplanilla>\d+)',CostoDesposte),
 
     url(r'^ensalinados/(?P<idproducto>\d+)', GestionEnsalinado),
     url(r'^verduras/(?P<idDetcompra>\d+)', GestionVerduras),

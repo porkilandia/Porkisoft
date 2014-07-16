@@ -111,7 +111,7 @@
                 <td>{{ carne.producto.codigoProducto }}</td>
                 <td>{{ carne.producto }}</td>
                 <td>{{ carne.producto.grupo.nombreGrupo }}</td>
-                <td>{{ carne.PesoProducto }}</td>
+                <td>{{ carne.PesoProducto| floatformat }}</td>
             </tr>
         {% empty %}
         {% endfor %}
@@ -127,11 +127,12 @@
 </table>
     <br/>
 
-<!-- TABLA HUESOS -->
+<!-- TABLA Costillas -->
+
 <table class="table-striped">
     <thead>
         <tr>
-            <th style="text-align: center" colspan="4">HUESOS</th>
+            <th style="text-align: center" colspan="4">COSTILLAS</th>
         </tr>
         <tr>
             <th>cod Producto</th>
@@ -143,21 +144,21 @@
         </tr>
     </thead>
     <tbody>
-        {% for hueso in huesos %}
+        {% for costilla in costillas %}
             <tr>
-                <td>{{ hueso.producto.codigoProducto }}</td>
-                <td>{{ hueso.producto }}</td>
-                <td>{{ hueso.producto.grupo.nombreGrupo }}</td>
-                <td>{{ hueso.PesoProducto }}</td>
+                <td>{{ costilla.producto.codigoProducto }}</td>
+                <td>{{ costilla.producto }}</td>
+                <td>{{ costilla.producto.grupo.nombreGrupo }}</td>
+                <td>{{ costilla.PesoProducto| floatformat }}</td>
             </tr>
         {% empty %}
         {% endfor %}
 
         <tr>
             <th>Costo Grupo</th>
-            <th>{{ vrHuesos }}</th>
+            <th>{{ vrCostillas }}</th>
             <th>Costo Kilo Base</th>
-            <th id="kiloHueso">{{ vrKiloHuesos| floatformat }}</th>
+            <th id="kiloCostilla">{{ vrKiloCostillas | floatformat }}</th>
         </tr>
 
     </tbody>
@@ -185,7 +186,7 @@
                 <td>{{ subp.producto.codigoProducto }}</td>
                 <td>{{ subp.producto }}</td>
                 <td>{{ subp.producto.grupo.nombreGrupo }}</td>
-                <td>{{ subp.PesoProducto }}</td>
+                <td>{{ subp.PesoProducto| floatformat }}</td>
             </tr>
         {% empty %}
         {% endfor %}
@@ -194,6 +195,43 @@
             <th>{{ vrsubProd }}</th>
             <th>Costo Kilo Base</th>
             <th id="kiloSubProd">{{ vrKiloSubProd | floatformat}}</th>
+        </tr>
+
+    </tbody>
+</table>
+    <br/>
+
+<!-- TABLA HUESOS -->
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th style="text-align: center" colspan="4">HUESOS</th>
+        </tr>
+        <tr>
+            <th>cod Producto</th>
+            <th>Producto</th>
+            <th>Grupo</th>
+            <th>Peso Producto</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for hueso in huesos %}
+            <tr>
+                <td>{{ hueso.producto.codigoProducto }}</td>
+                <td>{{ hueso.producto }}</td>
+                <td>{{ hueso.producto.grupo.nombreGrupo }}</td>
+                <td>{{ hueso.PesoProducto| floatformat }}</td>
+            </tr>
+        {% empty %}
+        {% endfor %}
+
+        <tr>
+            <th>Costo Grupo</th>
+            <th>{{ vrHuesos }}</th>
+            <th>Costo Kilo Base</th>
+            <th id="kiloHueso">{{ vrKiloHuesos| floatformat }}</th>
         </tr>
 
     </tbody>
@@ -220,7 +258,7 @@
                 <td>{{ desecho.producto.codigoProducto }}</td>
                 <td>{{ desecho.producto }}</td>
                 <td>{{ desecho.producto.grupo.nombreGrupo }}</td>
-                <td>{{ desecho.PesoProductoth}}</td>
+                <td>{{ desecho.PesoProducto| floatformat }}</td>
             </tr>
         {% empty %}
         {% endfor %}

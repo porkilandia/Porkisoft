@@ -187,238 +187,6 @@ def MarcarCanalDesposte(request, idcanal):
                               context_instance = RequestContext(request))
 
 
-#***********************************************PLANILLA DESPOSTE*******************************************************
-def GestionCanalDetalleDesposte(request, idplanilla):
-
-    desposte = PlanillaDesposte.objects.get(pk = idplanilla)
-    canales = Canal.objects.filter(planilla = idplanilla).filter(estado = True)
-    detalleDespostes = DetallePlanilla.objects.filter(planilla = idplanilla)
-    canalesMachos = Canal.objects.filter(planilla = idplanilla).filter(estado = True).filter(genero = 'Macho')
-
-    for cnl in canales:
-        recepcion = PlanillaRecepcion.objects.get(pk = cnl.recepcion.codigoRecepcion)
-
-
-    totalCanales = Canal.objects.filter(planilla = idplanilla)
-
-    totalResesMachos = canalesMachos.count()
-    totalReses = canales.count()
-    totalDesposte = 0
-    totalCanal = 0
-    sacrificio = Sacrificio()
-
-    #proceso para guardar todos los productos despostados en la tabla producto.
-
-
-    for detplanilla in detalleDespostes:
-        totalDesposte += detplanilla.PesoProducto
-
-    for canal in canales :
-        totalCanal += canal.pesoPorkilandia
-        sacrificio = Sacrificio.objects.get( recepcion = canal.recepcion.codigoRecepcion)
-    totalCanal *= 1000
-
-    cola = (sacrificio.cola / totalCanales.count()) * totalReses
-    rinon = (sacrificio.rinones / totalCanales.count()) * totalReses
-    creadilla = (sacrificio.creadillas / totalCanales.count())* totalResesMachos
-    recorte = (sacrificio.recortes /totalCanales.count()) * totalReses
-    ubre = (sacrificio.ubre / totalCanales.count()) * totalReses
-
-
-    if request.method == 'POST':
-        formulario = DetalleDesposteForm(request.POST)
-
-        if formulario.is_valid():
-
-            PesoProducto = 0
-
-            producto = Producto.objects.get(pk = request.POST.get('producto'))
-
-
-            # se debe conservar el mismo IDProducto para que no se ocacionen errores
-
-            if (producto.codigoProducto == 26):
-                PesoProducto = cola
-
-            if (producto.codigoProducto == 29):
-                PesoProducto = rinon
-
-            if (producto.codigoProducto == 30):
-                PesoProducto = creadilla
-
-            if (producto.codigoProducto == 31):
-                PesoProducto = ubre
-
-
-            detalleDesposte = DetallePlanilla()
-            detalleDesposte.planilla = desposte
-            detalleDesposte.producto = producto
-
-            if producto.grupo.id == 9 :
-                detalleDesposte.PesoProducto = PesoProducto
-            else:
-                 detalleDesposte.PesoProducto = request.POST.get('PesoProducto')
-
-            # si el producto es recorte, se sumara al existente con el nuevo valor calculado
-
-            if producto.codigoProducto == 28:
-                detalleDesposte.PesoProducto = Decimal(request.POST.get('PesoProducto')) + recorte
-
-            detalleDesposte.save()
-
-            bodegaProducto = ProductoBodega.objects.get(bodega = 5,producto = producto.codigoProducto )
-
-            if producto.grupo.id == 9 :# si el producto es de sacrificio
-                bodegaProducto.pesoProductoStock = bodegaProducto.pesoProductoStock
-            else:
-                bodegaProducto.pesoProductoStock += int(request.POST.get('PesoProducto'))
-
-            bodegaProducto.unidadesStock = 0
-
-            bodegaProducto.save()
-
-            desposte = PlanillaDesposte.objects.get(pk = idplanilla)
-            canales = Canal.objects.filter(planilla = idplanilla).filter(estado = True)
-            detalleDespostes = DetallePlanilla.objects.filter(planilla = idplanilla)
-
-            totalDesposte = 0
-            totalCanal = 0
-            Desecho = 0
-
-            for detplanilla in detalleDespostes:
-                producto = Producto.objects.get(pk = detplanilla.producto.codigoProducto)
-
-                if producto.grupo.id == 3:# si el producto es desecho
-                    Desecho += detplanilla.PesoProducto
-
-                totalDesposte += detplanilla.PesoProducto
-
-            for canal in canales :
-                totalCanal += canal.pesoPorkilandia
-
-            totalCanal *= 1000
-
-            difCanalDesposte = (totalCanal - totalDesposte)/totalReses
-
-            desposte.resesADespostar = totalReses
-            desposte.totalDespostado = totalDesposte - Desecho
-            desposte.totalCanal = totalCanal
-            desposte.difCanalADespostado = difCanalDesposte
-            desposte.save()
-
-            return HttpResponseRedirect('/fabricacion/detalleDesposte/'+ idplanilla)
-    else:
-        formulario = DetalleDesposteForm(initial={'planilla':idplanilla})
-
-    return render_to_response('Fabricacion/GestionCanalDetalleDesposte.html',{'idplanilla':idplanilla,'formulario':formulario,'desposte':desposte
-                                                                            ,'canales':canales,'detalleDespostes':detalleDespostes,
-                                                                             'totalCanal':totalCanal,'totalDesposte':totalDesposte},
-                              context_instance = RequestContext(request))
-
-
-#**************************************************COSTO DESPOSTE*******************************************************
-def CostoDesposte(request, idplanilla):
-
-    desposte = PlanillaDesposte.objects.get(pk = idplanilla)
-    canales = Canal.objects.filter(planilla = idplanilla).filter(estado = True)
-    planilla = PlanillaDesposte.objects.get(pk= idplanilla)
-
-    formulario = DetalleDesposteForm(initial={'planilla':idplanilla})
-
-    totalReses = canales.count()
-
-
-    detalleDespostes = DetallePlanilla.objects.filter(planilla = idplanilla)
-    totalDesposte = 0
-    totalCanal = 0
-    kiloCanal = 0
-
-
-    for canal in canales :
-        totalCanal += canal.pesoPorkilandia
-
-    canales = Canal.objects.filter(planilla = idplanilla) #para conocer el verdadero valor del kilo en canal
-    for cnl in canales:
-        kiloCanal = cnl.vrKiloCanal
-
-    costoProduccionTotal = 0
-    tipo = 0
-    for grupo in detalleDespostes:
-        tipo = grupo.producto.grupo.nombreGrupo
-
-
-    #realizo los calculos generales de costo
-    costoCanal = ceil(totalCanal * kiloCanal) #Hace referencia al costo del canal de reces despostadas
-
-    if tipo == 'Reses':
-        totalMOD = totalReses * 12839 # MOD en desposte
-        totalCIF = totalReses * 30173 # CIF en desposte
-    elif tipo == 'Cerdos':
-        totalMOD = totalReses * 3000 # MOD en desposte
-        totalCIF = totalReses * 7815 # CIF en desposte
-    else:
-        totalMOD = totalReses * 6360 # MOD en desposte
-        totalCIF = totalReses * 11692 # CIF en desposte
-
-    costoTotalDesposte = ceil(costoCanal + 100  + totalMOD + totalCIF)
-    costoKiloDespostado = ceil((Decimal(costoTotalDesposte) / planilla.totalDespostado)*1000)
-    kilosPorArroba = 12.5
-    costoArrobaDespostada = ceil(costoKiloDespostado * kilosPorArroba)
-
-
-    for detalleplanilla in detalleDespostes:
-        prodActual= Producto.objects.get(pk = detalleplanilla.producto.codigoProducto)
-        costoKiloProducto = round(Decimal(costoArrobaDespostada) * prodActual.porcentajeCalidad)/ 100
-        costoProduccionProducto = ceil(Decimal(costoKiloProducto) * (detalleplanilla.PesoProducto/ 1000))
-        costoProduccionTotal += costoProduccionProducto
-
-    #*******************************Prueba de WHILE para crear un bucle de ajuste a la formula*****************
-
-    aumentoInicial = ceil((costoTotalDesposte * 100)/costoProduccionTotal)
-    arrobaAjustada = costoArrobaDespostada + aumentoInicial
-
-    while(costoProduccionTotal != costoTotalDesposte): # Mientras que los valores sean diferentes
-                                                       # el ciclo seguira iterando hasta igualar los valores
-        if costoProduccionTotal > costoTotalDesposte :
-            ajuste = ceil((costoTotalDesposte * 100)/costoProduccionTotal)
-            arrobaAjustada -= ceil(ajuste)
-            costoProduccionTotal = 0
-        else:
-            ajuste = ceil((costoTotalDesposte * 100)/costoProduccionTotal)
-            arrobaAjustada += ceil(ajuste)
-            costoProduccionTotal = 0
-
-
-        for detplan in detalleDespostes:
-            prodActual= Producto.objects.get(pk = detplan.producto.codigoProducto)
-            costoKiloProducto = round(Decimal(arrobaAjustada) * prodActual.porcentajeCalidad)/ 100
-            costoProduccionProducto = ceil(Decimal(costoKiloProducto) * (detplan.PesoProducto/ 1000))
-            costoProduccionTotal += costoProduccionProducto
-
-        if (((costoProduccionTotal - costoTotalDesposte) >= -1000) and ((costoProduccionTotal - costoTotalDesposte) <= 1000)):
-            break #Si la diferencia entre los valores llega a un valor por encima o pro debajo de 600 pesos el ciclo se detiene
-        #*******************************************************************************************************
-
-    for detplanilla in detalleDespostes:
-
-        #tomo el producto el cual voy a costear
-        producto = Producto.objects.get(pk = detplanilla.producto.codigoProducto)
-
-        costoKiloProducto = round(Decimal(arrobaAjustada) * producto.porcentajeCalidad)/ 100 # aplicamos el nuevo valor de la arroba para
-                                                                                           #recalcular el kilo de  ese producto
-
-        # se graba el costo del producto
-        producto.costoProducto = costoKiloProducto
-        producto.save()
-
-
-    canales = Canal.objects.filter(planilla = idplanilla).filter(estado = True)
-
-    return render_to_response('Fabricacion/GestionCanalDetalleDesposte.html',{'idplanilla':idplanilla,'formulario':formulario,'desposte':desposte
-                                                                            ,'canales':canales,'detalleDespostes':detalleDespostes,
-                                                                             'totalCanal':totalCanal,'totalDesposte':totalDesposte},
-                                                                            context_instance = RequestContext(request))
-
 def GestionSacrificio(request,idrecepcion):
 
     recepcion = PlanillaRecepcion.objects.get(pk = idrecepcion)
@@ -1007,6 +775,8 @@ def GestionarTajadoCondPechugas(request,idprodbod):
                               ,context_instance = RequestContext(request))
 
 
+#***********************************************PLANILLA DESPOSTE*******************************************************
+
 def GestionDesposteActualizado(request, idplanilla):
 
     desposte = PlanillaDesposte.objects.get(pk = idplanilla)
@@ -1015,25 +785,35 @@ def GestionDesposteActualizado(request, idplanilla):
 
     #Filtramos los despostes en grupos para su posterior costeo
     carnes = detalleDespostes.filter(grupo = 'Grupo Carnes')
+    costillas = detalleDespostes.filter(grupo = 'Grupo Costillas')
     huesos = detalleDespostes.filter(grupo = 'Grupo Huesos')
     subProductos = detalleDespostes.filter(grupo = 'Grupo SubProductos')
     desechos = detalleDespostes.filter(grupo = 'Grupo Desechos')
 
     #calculamos el peso del grupo
     pesoCarnes = 0
+    pesoCostillas = 0
     pesoHuesos = 0
     pesoSubProd = 0
     pesoDesecho = 0
+    perdidaPeso= 0
 
 
     for peso in carnes:
         pesoCarnes += peso.PesoProducto
+    for peso in costillas:
+        pesoCostillas += peso.PesoProducto
     for peso in huesos:
         pesoHuesos += peso.PesoProducto
     for peso in subProductos:
         pesoSubProd += peso.PesoProducto
     for peso in desechos:
-        pesoDesecho += peso.PesoProducto
+        if peso.producto.nombreProducto == 'Desecho':
+            pesoDesecho += peso.PesoProducto
+        if peso.producto.nombreProducto == 'Perdida peso':
+            perdidaPeso = peso.PesoProducto
+
+
 
     # Extraemos el peso total de los canales a despostar ademas del valor del kilo del canal
     pesoCanales = 0
@@ -1045,26 +825,31 @@ def GestionDesposteActualizado(request, idplanilla):
 
     #Calculamos el peso total de desposte
 
-    pesoTotalDesposte = pesoCarnes + pesoHuesos + pesoSubProd + pesoDesecho
-    difCanalDesposte = (pesoCanales * 1000) - pesoTotalDesposte
-    pesoTotalDesposte -= difCanalDesposte #restamos la perdida ya que esta solo es util en el grupo mas no en el peso total
+    pesoTotalDesposte = pesoCarnes + pesoCostillas + pesoHuesos + pesoSubProd + pesoDesecho
 
     #el valor total de los canales a despostar se calcula con el peso de canales y el valor del kilo en canal
     vrTotalCanales = pesoCanales * vrKiloCanal
 
     # calculamos el valor de cada grupo multiplicando el %Grupo por el vrTotalCanales
 
-    vrCarnes = ceil((vrTotalCanales * 67)/100)
-    vrHuesos = ceil((vrTotalCanales * 24)/100)
-    vrsubProd = ceil((vrTotalCanales * 8)/100)
-    vrDesecho = ceil((vrTotalCanales * 1)/100)
-    vrCarnes += vrDesecho
+    vrCarnes = ceil((vrTotalCanales * 75)/100)
+    vrCostillas = ceil((vrTotalCanales * 10)/100)
+    vrHuesos = ceil((vrTotalCanales * 6)/100)
+    vrsubProd = ceil((vrTotalCanales * 7)/100)
+    vrDesecho = ceil((vrTotalCanales * 2)/100)
+    pesoAsumido =Decimal(vrDesecho) + perdidaPeso
+    vrCarnes =Decimal(vrCarnes) + pesoAsumido
 
     #calculamos el valor del kilo base en cada grupo
     if pesoCarnes == 0:
         vrKiloCarnes = 0
     else:
          vrKiloCarnes = Decimal(vrCarnes) / (pesoCarnes / 1000)
+
+    if pesoCostillas == 0:
+        vrKiloCostillas = 0
+    else:
+         vrKiloCostillas = Decimal(vrCostillas) / (pesoCostillas / 1000)
 
     if pesoHuesos == 0:
         vrKiloHuesos = 0
@@ -1079,7 +864,7 @@ def GestionDesposteActualizado(request, idplanilla):
     if pesoDesecho == 0:
         vrKiloDesecho = 0
     else:
-         vrKiloDesecho = Decimal(vrDesecho) / (pesoDesecho/ 1000)
+         vrKiloDesecho = Decimal(vrDesecho) / ((pesoDesecho + perdidaPeso)/ 1000)
 
 
     #canalesMachos = Canal.objects.filter(planilla = idplanilla).filter(estado = True).filter(genero = 'Macho')
@@ -1090,18 +875,46 @@ def GestionDesposteActualizado(request, idplanilla):
 
         if formulario.is_valid():
            detalles = formulario.save()
-            #guardamos todos los datos en el detalle del desposte
+
+           #validamos las partes de las reses de limpieza de sacrificio
+           idRecepcion = 0
+           canalDesposte = Canal.objects.filter(planilla = idplanilla)
+           for candesp in canalDesposte :
+               idRecepcion = candesp.recepcion.codigoRecepcion
+           recepcion = PlanillaRecepcion.objects.get(pk = idRecepcion)
+           cantReses = recepcion.cantCabezas
+           sacrificio = Sacrificio.objects.get(recepcion = recepcion.codigoRecepcion)
+           productoEntrante = int(request.POST.get('producto'))
+           prodEnt = str(Producto.objects.get(pk = productoEntrante).nombreProducto)
+           pesoProducto = Decimal(request.POST.get('PesoProducto'))
+
+           if prodEnt == 'Cola':
+               detalles.PesoProducto = (sacrificio.cola / cantReses) * canales.count()
+           elif prodEnt == 'Rinones':
+               detalles.PesoProducto =(sacrificio.rinones / cantReses) * canales.count()
+           elif prodEnt == 'Creadillas':
+               detalles.PesoProducto =(sacrificio.creadillas / cantReses) * canales.count()
+           elif prodEnt == 'Recortes Sacrificio':
+               detalles.PesoProducto =(sacrificio.recortes / cantReses) * canales.count()
+           elif prodEnt == 'Ubre':
+               detalles.PesoProducto =(sacrificio.ubre / cantReses) * canales.count()
+           else:
+               detalles.PesoProducto =pesoProducto
+
+           #guardamos todos los datos en el detalle del desposte
            detalles.vrKiloCarnes = vrKiloCarnes
+           detalles.vrKiloCostilla = vrKiloCostillas
            detalles.vrKiloHuesos = vrKiloHuesos
            detalles.vrKiloSubProd = vrKiloSubProd
            detalles.vrKiloDesecho = vrKiloDesecho
            detalles.pesoCarne = pesoCarnes
+           detalles.pesoCostilla = pesoCostillas
            detalles.pesoHueso = pesoHuesos
            detalles.pesoSubProd = pesoSubProd
            detalles.pesoDesecho = pesoDesecho
 
            detalles.save()
-
+           difCanalDesposte = (pesoCanales * 1000) - pesoTotalDesposte
            desposte.totalDespostado = pesoTotalDesposte
            desposte.difCanalADespostado = difCanalDesposte
            desposte.totalCanal = pesoCanales
@@ -1111,11 +924,11 @@ def GestionDesposteActualizado(request, idplanilla):
     else:
         formulario = DetalleDesposteForm(initial={'planilla':idplanilla})
 
-    contexto = {'vrKiloCarnes':vrKiloCarnes,'vrKiloHuesos':vrKiloHuesos,'vrKiloSubProd':vrKiloSubProd,
-                'vrKiloDesecho':vrKiloDesecho,'carnes':carnes,'huesos':huesos,'subProductos':subProductos,
-                'desechos':desechos,'formulario':formulario,'desposte':desposte,'canales':canales,
-                'detalleDespostes':detalleDespostes,'vrCarnes':vrCarnes,'vrHuesos':vrHuesos,
-                'vrsubProd':vrsubProd,'vrDesecho':vrDesecho}
+    contexto = {'vrKiloCarnes':vrKiloCarnes,'vrKiloCostillas':vrKiloCostillas,'vrKiloHuesos':vrKiloHuesos,
+                'vrKiloSubProd':vrKiloSubProd,'vrKiloDesecho':vrKiloDesecho,'carnes':carnes,'costillas':costillas,
+                'huesos':huesos,'subProductos':subProductos,'desechos':desechos,'formulario':formulario,'desposte':desposte,
+                'canales':canales,'detalleDespostes':detalleDespostes,'vrCarnes':vrCarnes,'vrCostillas':vrCostillas,
+                'vrHuesos':vrHuesos,'vrsubProd':vrsubProd,'vrDesecho':vrDesecho}
 
     return render_to_response('Fabricacion/GestionDeposteActualizado.html',
                               contexto,context_instance = RequestContext(request))
@@ -1123,20 +936,45 @@ import json
 def costeoDesposte(request):
     idDesposte = request.GET.get('idDesposte')
     idDesposte = int(idDesposte)
-    print(idDesposte)
     desposte = PlanillaDesposte.objects.get(pk = idDesposte)
     detalleDesposte = DetallePlanilla.objects.filter(planilla = desposte.codigoPlanilla)
+    productosCosteados = detalleDesposte.count()
+    #Evaluamos de que tipo de compra vienen los canales despostados para aplicar valores de CIF y MOD
+
+    Idrecepcion = 0
+    canales = Canal.objects.filter(planilla = desposte.codigoPlanilla)
+    for cnl in canales:
+        Idrecepcion = cnl.recepcion.codigoRecepcion
+    recepcion = PlanillaRecepcion.objects.get(pk = Idrecepcion)
+    compra = Compra.objects.get(pk = recepcion.compra.codigoCompra)
+    tipoCompra = compra.tipo.nombreGrupo
+
+    Mod = 0
+    Cif = 0
+
+
+    if tipoCompra == 'Reses':
+        Cif = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Reses').valorCif
+        Mod = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Reses').valorMod
+    if tipoCompra == 'Cerdos':
+        Cif = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Cerdo').valorCif
+        Mod = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Cerdo').valorMod
+    if tipoCompra == 'Cerdas':
+        Cif = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Cerda').valorCif
+        Mod = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Cerda').valorMod
+
+
 
     #traemos via JSON todas las variables de la plantilla
     pesoCanales = request.GET.get('pesoCanales')
     pesoCanales = int(pesoCanales)*1000
-    mod = 63600
     cantProductos = detalleDesposte.count()
-    cif = 116920 / cantProductos
+    cif = Cif / cantProductos
     costoKilo = 0
 
 
     kiloCarnes = request.GET.get('kiloCarnes')
+    kiloCostilla = request.GET.get('kiloCostilla')
     kiloHueso = request.GET.get('kiloHueso')
     kiloSubProd = request.GET.get('kiloSubProd')
     kiloDesecho = request.GET.get('kiloDesecho')
@@ -1146,10 +984,12 @@ def costeoDesposte(request):
         producto = Producto.objects.get(pk = detalle.producto.codigoProducto)
         #Calculamos el % de trabajo
         porcentajeTrabajo = (detalle.PesoProducto * 100)/pesoCanales
-        modProducto = (porcentajeTrabajo /100)*mod
+        modProducto = (porcentajeTrabajo /100)*Mod
 
         if detalle.grupo == 'Grupo Carnes':
             costoKilo = int(kiloCarnes) + ((cif + modProducto)/(detalle.PesoProducto/1000))
+        if detalle.grupo == 'Grupo Costillas':
+            costoKilo = int(kiloCostilla) + ((cif + modProducto)/(detalle.PesoProducto/1000))
         if detalle.grupo == 'Grupo Huesos':
             costoKilo = int(kiloHueso) + ((cif + modProducto)/(detalle.PesoProducto/1000))
         if detalle.grupo == 'Grupo SubProductos':
@@ -1161,38 +1001,71 @@ def costeoDesposte(request):
         producto.save()
 
 
-    exito = 'todo ha ido bien'
+    exito = '%s productos Fueron Costeados exitosamente ¡¡'%productosCosteados
     respuesta = json.dumps(exito)
     return HttpResponse(respuesta,mimetype='application/json')
 
+def GuardarDesposte(request):
+    idDesposte = request.GET.get('idDesposte')
+    idDesposte = int(idDesposte)
+    desposte = PlanillaDesposte.objects.get(pk = idDesposte)
+    detalleDesposte = DetallePlanilla.objects.filter(planilla = desposte.codigoPlanilla)
+    productosGuardados = detalleDesposte.count()
 
-class GestionDesposteJson(View):
+    for detalle in detalleDesposte:
+        #tomo el producto que voy a guardar en bodega
+        producto = Producto.objects.get(pk = detalle.producto.codigoProducto)
+        #tomo la bodega a la cual quiero asignar ese producto
+        bodega = ProductoBodega.objects.get(bodega = 5,producto = producto.codigoProducto)
+        # si el producto que esta en la lista para ser guardado estan los productos de sacrificio
+        # entonces se deja e inventario tal cual estaba
+        if producto.nombreProducto == 'Cola':
+            bodega.pesoProductoStock = bodega.pesoProductoStock
+        elif producto.nombreProducto == 'Rinones':
+            bodega.pesoProductoStock = bodega.pesoProductoStock
+        elif producto.nombreProducto == 'Creadillas':
+            bodega.pesoProductoStock = bodega.pesoProductoStock
+        elif producto.nombreProducto == 'Ubre':
+            bodega.pesoProductoStock = bodega.pesoProductoStock
+        elif producto.nombreProducto == 'Recortes Sacrificio':
+            bodega.pesoProductoStock = bodega.pesoProductoStock
+        else:
+            bodega.pesoProductoStock += detalle.PesoProducto
+        bodega.save()
 
-    def get(self, request):
-        arreglo = []
-        despostes = PlanillaDesposte.objects.all()
-        for desposte in despostes:
-            desposte_dict = {}
-            fecha = str(desposte.fechaDesposte)
-            desposte_dict['codigo'] = desposte.codigoPlanilla
-            desposte_dict['fecha'] = fecha
-            desposte_dict['numReses'] = desposte.resesADespostar
-            arreglo.append(desposte_dict)
-        respuesta = json.dumps(arreglo)
-        return HttpResponse(respuesta, mimetype='application/json')
+    exito = '%s productos se guardaron exitosamente'%productosGuardados
+    respuesta = json.dumps(exito)
+    return HttpResponse(respuesta,mimetype='application/json')
 
-def GuardaPlanillaDesposte(request):
-    desposte = PlanillaDesposte()
-    desposte.save()
-    arreglo = []
-    despostes = PlanillaDesposte.objects.all()
-    for desposte in despostes:
-        desposte_dict = {}
-        fecha = str(desposte.fechaDesposte)
-        desposte_dict['codigo'] = desposte.codigoPlanilla
-        desposte_dict['fecha'] = fecha
-        desposte_dict['numReses'] = desposte.resesADespostar
-        arreglo.append(desposte_dict)
+def GestionValorCostos(request):
 
-    respuesta = json.dumps(arreglo)
-    return HttpResponse(respuesta, mimetype='application/json')
+    costos = ValoresCostos.objects.all()
+
+    if request.method == 'POST':
+        formulario = costoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/costos/')
+    else:
+        formulario = costoForm()
+
+    return render_to_response('Fabricacion/GestionValoresCostos.html',{'costos':costos, 'formulario':formulario},
+                              context_instance = RequestContext(request))
+
+def EditaCostos(request,idcosto):
+
+    costos = ValoresCostos.objects.all()
+    costo  = ValoresCostos.objects.get(pk = idcosto)
+
+    if request.method == 'POST':
+        formulario = costoForm(request.POST,instance=costo)
+        if formulario.is_valid():
+            costo = formulario.save()
+            costo.fecha = date.today()
+            costo.save()
+            return HttpResponseRedirect('/fabricacion/costos/')
+    else:
+        formulario = costoForm(instance=costo)
+
+    return render_to_response('Fabricacion/GestionValoresCostos.html',{'costos':costos, 'formulario':formulario},
+                              context_instance = RequestContext(request))

@@ -12,6 +12,7 @@
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery.dataTable_themeroller.css"/>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/menu.css"/>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery.alerts.css"/>
 
 
 
@@ -21,7 +22,13 @@
 
         <div id="nav">
             <ul>
-                    <li><a href="/">Informacion General</a></li>
+                    <li><span id="general" tabindex="1">General</span>
+                        <ul>
+                            <li><a href="/"><img src="{{ STATIC_URL }}img/item.png" alt="" />Informacion General</a></li>
+                            <li><a href="/fabricacion/costos"><img src="{{ STATIC_URL }}img/item.png" alt="" />Tabla de Costos</a></li>
+
+                        </ul>
+                    </li>
                     <li><span id="inventario" tabindex="1">Inventario</span>
                         <ul>
                             <li><a href="/inventario/listaProd"><img src="{{ STATIC_URL }}img/item.png" alt="" />Gestionar Producto</a></li>
@@ -87,6 +94,7 @@
         <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/bPopup.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.alerts.js"></script>
 
 
 

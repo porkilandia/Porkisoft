@@ -11,6 +11,7 @@ $(document).on('ready', inicio);
      $('#editaFila').on('click',editaFilas);
      $('#modificar').on('click',modificaRegistro);
      $('#costear').on('click',CostearDesposte);
+     $('#guardar').on('click',GuardarDesposte);
 
 
      $('#tablacostos').dataTable();
@@ -22,6 +23,7 @@ $(document).on('ready', inicio);
      $('#tablabodegas').dataTable();
      $('#tablaproveedor').dataTable();
      $('#despostes').dataTable();
+     $('#costos').dataTable();
 
 
 }
@@ -31,25 +33,48 @@ function CostearDesposte()
     var idDesposte = parseInt($('#codigoPlanilla').text());
     var pesoCanales = parseInt($('#pesoCanales').text());
     var kiloCarnes = parseInt($('#kiloCarnes').text());
+    var kiloCostilla = parseInt($('#kiloCostilla').text());
     var kiloHueso = parseInt($('#kiloHueso').text());
     var kiloSubProd = parseInt($('#kiloSubProd').text());
     var kiloDesecho = parseInt($('#kiloDesecho').text());
 
-    $.ajax({
+    var costeo = confirm('Desea Costear La planilla?');
+
+    if (costeo == true)
+    {
+        $.ajax({
 
          url : '/fabricacion/costeoDesposte/',
          dataType: "json",
          type: "get",
-         data : {'idDesposte':idDesposte,'pesoCanales':pesoCanales,'kiloCarnes':kiloCarnes,
+         data : {'kiloCostilla':kiloCostilla,'idDesposte':idDesposte,'pesoCanales':pesoCanales,'kiloCarnes':kiloCarnes,
              'kiloHueso':kiloHueso,'kiloSubProd':kiloSubProd,'kiloDesecho':kiloDesecho},
          success : function(respuesta){
              alert(respuesta)
          }
 
      });
+    }
+}
+function GuardarDesposte()
+{
+    var idDesposte = parseInt($('#codigoPlanilla').text());
+    var guardado = confirm('desea Guardad los productos en bodega ');
+    if (guardado == true)
+    {
+        $.ajax({
+
+        url : '/fabricacion/guardarDesposte/',
+         dataType: "json",
+         type: "get",
+         data : {'idDesposte':idDesposte},
+         success : function(respuesta){
+             alert(respuesta)
+         }
+    });
+    }
 
 }
-
 function cargaDatos(datos)
      {
          var $tabla  = $('#lista');
