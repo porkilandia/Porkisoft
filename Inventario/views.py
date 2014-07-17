@@ -261,7 +261,7 @@ def GestionProvedor(request):
 
 def GestionGanado(request,idcompra):
 
-    ganados = Ganado.objects.order_by('-codigoGanado')
+    ganados = Ganado.objects.filter(compra = idcompra).order_by('-codigoGanado')
     compra = Compra.objects.get(pk = idcompra)
     detallecompra = DetalleCompra()
 
@@ -294,7 +294,7 @@ def GestionGanado(request,idcompra):
 
             return HttpResponseRedirect('/inventario/ganado/'+idcompra)
     else:
-        formulario = GanadoForm(initial={'precioKiloEnPie':3100})
+        formulario = GanadoForm(initial={'precioKiloEnPie':3150,'compra':idcompra,'piel':'Friana'})
 
     return render_to_response('Inventario/GestionGanado.html',{'formulario':formulario,'ganados':ganados,'compra':idcompra },
                               context_instance = RequestContext(request))

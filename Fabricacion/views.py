@@ -38,30 +38,31 @@ def GestionCanal(request,idrecepcion):
     sacrificio = Sacrificio.objects.get(recepcion = idrecepcion)
     cantidad = canales.count() +1
 
+
     if request.method == 'POST':
         formulario = CanalForm(request.POST)
 
 
         if formulario.is_valid():
 
-            planilla = PlanillaDesposte.objects.get(pk = request.POST.get('planilla'))
-            canalesPlanilla = Canal.objects.filter(planilla = planilla.codigoPlanilla)# Canales por planilla
+            #planilla = PlanillaDesposte.objects.get(pk = request.POST.get('planilla'))
+            #canalesPlanilla = Canal.objects.filter(planilla = planilla.codigoPlanilla)# Canales por planilla
             pesoCanales = 0
             pesoPie = 0
             vrFactura = 0
 
-            for canale in canalesPlanilla:
+            for canale in canales:
                     pesoCanales += canale.pesoPorkilandia
 
             canal = Canal()
             canal.recepcion = recepcion
-            canal.planilla = planilla
+            #canal.planilla = planilla
             canal.pesoFrigovito = request.POST.get('pesoFrigovito')
             canal.pesoPorkilandia = request.POST.get('pesoPorkilandia')
             canal.difPesos = request.POST.get('difPesos')
             canal.genero = request.POST.get('genero')
 
-            if compra.tipo == 'reses':
+            if compra.tipo.nombreGrupo == 'Reses':
 
                 vrKiloCanal = ((compra.vrCompra + sacrificio.vrDeguello + sacrificio.vrTransporte) -
                           (sacrificio.piel + sacrificio.vrMenudo))/ (pesoCanales + Decimal(request.POST.get('pesoPorkilandia')))
@@ -70,9 +71,10 @@ def GestionCanal(request,idrecepcion):
 
                 canal.vrKiloCanal = vrKiloCanal
                 canal.vrArrobaCanal= vrArrobaCanal
+                vrFactura = compra.vrCompra
 
 
-            elif compra.tipo == 'cerdos':
+            elif compra.tipo.nombreGrupo == 'Cerdos':
 
                 menudo = 7000 * cantidad
                 flete = 500000
@@ -123,7 +125,8 @@ def GestionCanal(request,idrecepcion):
 
 
                 pesoPie = pesoCanales + pesoPorkilandia + incrementoCG + incrementoCP
-                vrFactura = pesoPie * 4400 #--> 4400 es el valor establecido por granjas el paraiso
+                vrFactura = pesoPie * ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas').valorKiloPie
+                 #--> 4400 es el valor establecido por granjas el paraiso
                 costoCanales = (vrFactura + deguello + transporte) - menudo
                 vrKiloCanal = ceil(costoCanales / (pesoCanales + pesoPorkilandia))
                 vrArrobaCanal = vrKiloCanal * 12.5
@@ -157,6 +160,8 @@ def GestionCanal(request,idrecepcion):
                 PesoTotalCanales += cnl.pesoPorkilandia
 
             recepcion.difPieCanal = ceil(((Decimal(TotalPesoPie) - PesoTotalCanales)*100)/Decimal(TotalPesoPie))
+            recepcion.pesoCanales = PesoTotalCanales
+            recepcion.cantCabezas = cantidad
             recepcion.save()
 
 
@@ -204,6 +209,7 @@ def GestionSacrificio(request,idrecepcion):
         formSacrificio = SacrificioForm(request.POST)
 
         if formSacrificio.is_valid():
+            sacrificio = formSacrificio.save()
 
             cantCabezas = recepcion.cantCabezas
 
@@ -211,23 +217,14 @@ def GestionSacrificio(request,idrecepcion):
             deguello = cantCabezas * 82800
             transporte = cantCabezas * 8000
 
-            sacrificio = Sacrificio()
-
             sacrificio.recepcion = recepcion
             sacrificio.piel = totalPieles
             sacrificio.vrMenudo = menudo
             sacrificio.vrDeguello = deguello
             sacrificio.vrTransporte = transporte
-            sacrificio.cola = request.POST.get('cola')
-            sacrificio.rinones = request.POST.get('rinones')
-            sacrificio.creadillas = request.POST.get('creadillas')
-            sacrificio.recortes = request.POST.get('recortes')
-            sacrificio.ubre = request.POST.get('ubre')
-            sacrificio.desecho= request.POST.get('desecho')
-
             sacrificio.save()
 
-            prodLimpieza = ['Cola','Riñones','Creadillas','Recortes x 800 grs','Ubre' ]
+            prodLimpieza = ['Cola','Rinones','Creadillas','Recortes Sacrificio','Ubre' ]
             item = ['cola','rinones','creadillas','recortes','ubre' ]
             cont = 0
 
@@ -237,7 +234,7 @@ def GestionSacrificio(request,idrecepcion):
                 existencia = ProductoBodega.objects.get(producto = producto.codigoProducto , bodega = 5)
 
                 existencia.producto = producto
-                existencia.pesoProductoStock = existencia.pesoProductoStock + Decimal(request.POST.get(item[cont]))
+                existencia.pesoProductoStock += existencia.pesoProductoStock + Decimal(request.POST.get(item[cont]))
                 existencia.save()
 
                 cont +=1
@@ -789,6 +786,12 @@ def GestionDesposteActualizado(request, idplanilla):
     huesos = detalleDespostes.filter(grupo = 'Grupo Huesos')
     subProductos = detalleDespostes.filter(grupo = 'Grupo SubProductos')
     desechos = detalleDespostes.filter(grupo = 'Grupo Desechos')
+    #extraemos el tipo de desposte que se esta haciendo
+    tipoDesposte = ''
+    for tipo in detalleDespostes:
+        if tipo.grupo == 'Grupo Carnes':
+            tipoDesposte = tipo.producto.grupo.nombreGrupo
+
 
     #calculamos el peso del grupo
     pesoCarnes = 0
@@ -869,6 +872,15 @@ def GestionDesposteActualizado(request, idplanilla):
 
     #canalesMachos = Canal.objects.filter(planilla = idplanilla).filter(estado = True).filter(genero = 'Macho')
 
+    #Actualizamos los valores de la planilla de desposte
+
+    difCanalDesposte = (pesoCanales * 1000) - pesoTotalDesposte
+    desposte.totalDespostado = pesoTotalDesposte
+    desposte.difCanalADespostado = difCanalDesposte
+    desposte.totalCanal = pesoCanales
+    desposte.tipoDesposte = tipoDesposte
+    desposte.resesADespostar = canales.count()
+    desposte.save()
 
     if request.method == 'POST':
         formulario = DetalleDesposteForm(request.POST)
@@ -912,13 +924,8 @@ def GestionDesposteActualizado(request, idplanilla):
            detalles.pesoHueso = pesoHuesos
            detalles.pesoSubProd = pesoSubProd
            detalles.pesoDesecho = pesoDesecho
-
            detalles.save()
-           difCanalDesposte = (pesoCanales * 1000) - pesoTotalDesposte
-           desposte.totalDespostado = pesoTotalDesposte
-           desposte.difCanalADespostado = difCanalDesposte
-           desposte.totalCanal = pesoCanales
-           desposte.save()
+
 
            return HttpResponseRedirect('/fabricacion/detalleDesposte/'+ idplanilla)
     else:
@@ -1052,6 +1059,36 @@ def GestionValorCostos(request):
     return render_to_response('Fabricacion/GestionValoresCostos.html',{'costos':costos, 'formulario':formulario},
                               context_instance = RequestContext(request))
 
+def EditaDetPlanilla(request,idDetalle):
+
+    detalle  = DetallePlanilla.objects.get(pk = idDetalle)
+    idplanilla = PlanillaDesposte.objects.get(pk = detalle.planilla.codigoPlanilla).codigoPlanilla
+    desposte = PlanillaDesposte.objects.get(pk = idplanilla)
+    canales = Canal.objects.filter(planilla = idplanilla).filter(estado = True)
+    detalleDespostes = DetallePlanilla.objects.filter(planilla = idplanilla)
+
+    #Filtramos los despostes en grupos para su posterior costeo
+    carnes = detalleDespostes.filter(grupo = 'Grupo Carnes')
+    costillas = detalleDespostes.filter(grupo = 'Grupo Costillas')
+    huesos = detalleDespostes.filter(grupo = 'Grupo Huesos')
+    subProductos = detalleDespostes.filter(grupo = 'Grupo SubProductos')
+    desechos = detalleDespostes.filter(grupo = 'Grupo Desechos')
+
+    if request.method == 'POST':
+        formulario = DetalleDesposteForm(request.POST,instance=detalle)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/detalleDesposte/'+ str(idplanilla))
+    else:
+        formulario = DetalleDesposteForm(instance=detalle)
+
+    contexto = {'carnes':carnes,'costillas':costillas,'huesos':huesos,'subProductos':subProductos,
+                'desechos':desechos,'formulario':formulario,'desposte':desposte,'canales':canales,
+                'detalleDespostes':detalleDespostes}
+
+    return render_to_response('Fabricacion/GestionDeposteActualizado.html',contexto,
+                              context_instance = RequestContext(request))
+
 def EditaCostos(request,idcosto):
 
     costos = ValoresCostos.objects.all()
@@ -1066,6 +1103,7 @@ def EditaCostos(request,idcosto):
             return HttpResponseRedirect('/fabricacion/costos/')
     else:
         formulario = costoForm(instance=costo)
+
 
     return render_to_response('Fabricacion/GestionValoresCostos.html',{'costos':costos, 'formulario':formulario},
                               context_instance = RequestContext(request))

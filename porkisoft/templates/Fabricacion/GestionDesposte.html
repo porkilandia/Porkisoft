@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Sub Productos{% endblock titulo %}
+{% block titulo %}Planilla Desposte{% endblock titulo %}
 {% block mensajes %}
     Listado Despostes
 {% endblock mensajes %}
@@ -13,7 +13,8 @@
         <tr>
             <th>Codigo</th>
             <th>Fecha</th>
-            <th>Reses a Despostar</th>
+            <th>Tipo Desposte</th>
+            <th>Canales a Despostar</th>
             <th>Total Desposte</th>
             <th>Dif Canal/Desposte</th>
             <th>Acciones</th>
@@ -24,6 +25,7 @@
         <tr>
             <td>{{ desposte.codigoPlanilla }}</td>
             <td>{{ desposte.fechaDesposte }}</td>
+            <td>{{ desposte.tipoDesposte }}</td>
             <td>{{ desposte.resesADespostar }}</td>
             <td>{{ desposte.totalDespostado }}</td>
             <td>{{ desposte.difCanalADespostado }}</td>

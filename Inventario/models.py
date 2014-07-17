@@ -123,7 +123,7 @@ class Compra(models.Model):
     tipo = models.ForeignKey(Grupo)
     encargado = models.ForeignKey(Empleado)
     proveedor = models.ForeignKey(Proveedor)
-    fechaCompra = models.DateField(verbose_name='Fecha', auto_now=True, blank=True,null=True)
+    fechaCompra = models.DateField(verbose_name='Fecha',blank=True,null=True)
     vrCompra = models.IntegerField(verbose_name='Valor Compra', default=0)
     vrTransporte = models.IntegerField(verbose_name='Transporte',default= 0)
 
@@ -139,6 +139,7 @@ class Ganado(models.Model):
     )
 
     codigoGanado = models.AutoField(primary_key=True, verbose_name='Codigo Ganado')
+    compra = models.ForeignKey(Compra,blank=True,null=True)
     piel = models.IntegerField(verbose_name='Piel', choices= tipoPiel)
     pesoEnPie = models.DecimalField(verbose_name = 'Peso en Pie (grs)',max_digits=9, decimal_places=3)
     precioKiloEnPie = models.IntegerField(verbose_name='Precio Kilo en Pie')
@@ -177,11 +178,12 @@ class PlanillaRecepcion(models.Model):
     compra = models.ForeignKey(Compra)
     empleado = models.ForeignKey(Empleado)
     tipoGanado = models.CharField(verbose_name='Tipo Ganado', choices=TipoGanado, max_length=11)
-    fechaRecepcion = models.DateField(verbose_name='fechaRecepcion',auto_now=True)
+    fechaRecepcion = models.DateField(verbose_name='fechaRecepcion')
     cantCabezas = models.IntegerField(verbose_name='# Cabezas', default=0)
     provedor = models.ForeignKey(Proveedor)
     transporte = models.CharField(verbose_name='Transporte', choices=trans, max_length=11)
     difPieCanal = models.DecimalField(verbose_name='Diferencia de pie A canal',default=0,max_digits=9, decimal_places=3)
+    pesoCanales = models.DecimalField(verbose_name='Peso Canales',default=0,max_digits=9, decimal_places=3)
 
 
     def __unicode__(self):

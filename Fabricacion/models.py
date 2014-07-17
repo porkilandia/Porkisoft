@@ -57,10 +57,11 @@ class PlanillaDesposte(models.Model):
     totalCanal = models.DecimalField(verbose_name='Total Canal',max_digits=11, decimal_places=3, default=0)
     difCanalADespostado = models.DecimalField(verbose_name='Diferencia de Canal/Desposte',max_digits=11,
                                               decimal_places=3, default=0)
+    tipoDesposte = models.CharField(verbose_name='Tipos Desposte',blank=True,null=True,max_length=15)
     costoProduccionTotal = models.IntegerField(verbose_name='Costo Produccion Total',default=0)
 
     def __unicode__(self):
-        return self.codigoPlanilla
+        return self.fechaDesposte
 
 class Canal (models.Model):
 
@@ -71,7 +72,7 @@ class Canal (models.Model):
 
     recepcion = models.ForeignKey(PlanillaRecepcion)
     codigoCanal = models.AutoField(primary_key=True)
-    planilla = models.ForeignKey(PlanillaDesposte,null=True, blank=True)
+    planilla = models.ForeignKey(PlanillaDesposte, null=True, blank=True)
     pesoFrigovito = models.DecimalField(verbose_name = 'Peso Frigovito',max_digits=9, decimal_places=3,null= True,default=0)
     pesoPorkilandia = models.DecimalField(verbose_name = 'Peso Porkilandia',max_digits=9, decimal_places=3,null= True,default=0)
     difPesos = models.DecimalField(verbose_name='Dif. Frig/Pork',default=0,max_digits=9, decimal_places=3)
@@ -99,7 +100,7 @@ class Sacrificio(models.Model):
     recortes = models.DecimalField(verbose_name = 'Peso Recortes',max_digits=9, decimal_places=3,null= True,default=0)
     ubre = models.DecimalField(verbose_name = 'Ubre',max_digits=9, decimal_places=3,null= True,default=0)
     desecho = models.DecimalField(verbose_name = 'Peso Desecho',max_digits=9, decimal_places=3,null= True,default=0)
-    fechaSacrificio = models.DateField(verbose_name='Fecha Sacrificio',auto_now=True)
+    fechaSacrificio = models.DateField(verbose_name='Fecha Sacrificio',blank=True,null=True)
 
 
     def __unicode__(self):
@@ -200,6 +201,7 @@ class ValoresCostos(models.Model):
     nombreCosto = models.CharField(max_length=20,verbose_name='Nombre')
     valorCif = models.IntegerField(verbose_name='Valor Cif',default=0)
     valorMod = models.IntegerField(verbose_name='Valor Mod',default=0)
+    valorKiloPie = models.IntegerField(verbose_name='Valor Kilo en Pie',default=0)
     fecha = models.DateField(verbose_name='Fecha Actualizacion', auto_now=True)
 
     def __unicode__(self):

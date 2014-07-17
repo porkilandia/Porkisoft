@@ -78,11 +78,6 @@
             </tr>
 
         {% endfor %}
-        <tr>
-        <th colspan="2">Total Canal</th>
-        <th>{{ totalCanal|floatformat }} grs</th>
-        <th colspan="5"></th>
-    </tr>
 
         </tbody>
 
@@ -94,15 +89,14 @@
 <table class="table-striped">
     <thead>
         <tr>
-            <th style="text-align: center" colspan="4">CARNES</th>
+            <th style="text-align: center" colspan="5">CARNES</th>
         </tr>
         <tr>
             <th>cod Producto</th>
             <th>Producto</th>
             <th>Grupo</th>
             <th>Peso Producto</th>
-
-
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -112,7 +106,12 @@
                 <td>{{ carne.producto }}</td>
                 <td>{{ carne.producto.grupo.nombreGrupo }}</td>
                 <td>{{ carne.PesoProducto| floatformat }}</td>
+                <td>
+                    <a href="{% url 'Fabricacion.views.EditaDetPlanilla' carne.id %}">Modificar</a>
+                </td>
+
             </tr>
+
         {% empty %}
         {% endfor %}
 
@@ -121,6 +120,7 @@
             <th>{{ vrCarnes }}</th>
             <th>Costo Kilo Base</th>
             <th id="kiloCarnes">{{ vrKiloCarnes | floatformat }}</th>
+            <th></th>
         </tr>
 
     </tbody>
@@ -132,13 +132,14 @@
 <table class="table-striped">
     <thead>
         <tr>
-            <th style="text-align: center" colspan="4">COSTILLAS</th>
+            <th style="text-align: center" colspan="5">COSTILLAS</th>
         </tr>
         <tr>
             <th>cod Producto</th>
             <th>Producto</th>
             <th>Grupo</th>
             <th>Peso Producto</th>
+            <th>Acciones</th>
 
 
         </tr>
@@ -150,6 +151,9 @@
                 <td>{{ costilla.producto }}</td>
                 <td>{{ costilla.producto.grupo.nombreGrupo }}</td>
                 <td>{{ costilla.PesoProducto| floatformat }}</td>
+                <td>
+                    <a href="#">Modificar</a>
+                </td>
             </tr>
         {% empty %}
         {% endfor %}
@@ -159,6 +163,7 @@
             <th>{{ vrCostillas }}</th>
             <th>Costo Kilo Base</th>
             <th id="kiloCostilla">{{ vrKiloCostillas | floatformat }}</th>
+            <th></th>
         </tr>
 
     </tbody>
@@ -169,15 +174,14 @@
 <table class="table-striped">
     <thead>
         <tr>
-            <th style="text-align: center"  colspan="4">SUB PRODUCTOS</th>
+            <th style="text-align: center"  colspan="5">SUB PRODUCTOS</th>
         </tr>
         <tr>
             <th>cod Producto</th>
             <th>Producto</th>
             <th>Grupo</th>
             <th>Peso Producto</th>
-
-
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -187,6 +191,9 @@
                 <td>{{ subp.producto }}</td>
                 <td>{{ subp.producto.grupo.nombreGrupo }}</td>
                 <td>{{ subp.PesoProducto| floatformat }}</td>
+                <td>
+                    <a href="#">Modificar</a>
+                </td>
             </tr>
         {% empty %}
         {% endfor %}
@@ -195,6 +202,8 @@
             <th>{{ vrsubProd }}</th>
             <th>Costo Kilo Base</th>
             <th id="kiloSubProd">{{ vrKiloSubProd | floatformat}}</th>
+            <th></th>
+            <th></th>
         </tr>
 
     </tbody>
@@ -205,13 +214,14 @@
 <table class="table-striped">
     <thead>
         <tr>
-            <th style="text-align: center" colspan="4">HUESOS</th>
+            <th style="text-align: center" colspan="5">HUESOS</th>
         </tr>
         <tr>
             <th>cod Producto</th>
             <th>Producto</th>
             <th>Grupo</th>
             <th>Peso Producto</th>
+            <th>Acciones</th>
 
 
         </tr>
@@ -223,6 +233,9 @@
                 <td>{{ hueso.producto }}</td>
                 <td>{{ hueso.producto.grupo.nombreGrupo }}</td>
                 <td>{{ hueso.PesoProducto| floatformat }}</td>
+                <td>
+                    <a href="#">Modificar</a>
+                </td>
             </tr>
         {% empty %}
         {% endfor %}
@@ -232,6 +245,7 @@
             <th>{{ vrHuesos }}</th>
             <th>Costo Kilo Base</th>
             <th id="kiloHueso">{{ vrKiloHuesos| floatformat }}</th>
+            <TH></TH>
         </tr>
 
     </tbody>
@@ -241,13 +255,14 @@
 <table class="table-striped">
     <thead>
         <tr>
-            <th style="text-align: center" colspan="4">DESECHOS</th>
+            <th style="text-align: center" colspan="5">DESECHOS</th>
         </tr>
         <tr>
             <th>cod Producto</th>
             <th>Producto</th>
             <th>Grupo</th>
             <th>Peso Producto</th>
+            <th>Acciones</th>
 
 
         </tr>
@@ -259,6 +274,9 @@
                 <td>{{ desecho.producto }}</td>
                 <td>{{ desecho.producto.grupo.nombreGrupo }}</td>
                 <td>{{ desecho.PesoProducto| floatformat }}</td>
+                <td>
+                    <a href="#">Modificar</a>
+                </td>
             </tr>
         {% empty %}
         {% endfor %}
@@ -267,6 +285,7 @@
             <th>{{ vrDesecho }}</th>
             <th>Costo Kilo Base</th>
             <th id="kiloDesecho">{{ vrKiloDesecho | floatformat }}</th>
+            <th></th>
 
         </tr>
 
