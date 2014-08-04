@@ -11,9 +11,10 @@ $(document).on('ready', inicio);
      $('#editaFila').on('click',editaFilas);
      $('#modificar').on('click',modificaRegistro);
      $('#costear').on('click',CostearDesposte);
+     $('#costearTajado').on('click',CostearTajado);
      $('#guardar').on('click',GuardarDesposte);
 
-
+     $('#canalPendiente').dataTable();
      $('#tablacostos').dataTable();
      $('#tablastock').dataTable();
      $('#tablaTraslados').dataTable();
@@ -176,4 +177,9 @@ function modificaRegistro()
 {
     $('fieldset').fadeIn();
     return false
+}
+
+function CostearTajado()
+{
+
 }

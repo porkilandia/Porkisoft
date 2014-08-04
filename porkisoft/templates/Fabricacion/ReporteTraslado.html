@@ -1,0 +1,69 @@
+<style>
+       table
+       {
+           border-color: #000000;
+           border-style: solid;
+           border: 1px;
+           text-align: center;
+       }
+       table tr
+       {
+           padding: 0.5em 0 0.5em 0.5em;
+       }
+       #titulo th
+       {
+           font-size: 2em;
+           font-weight: bold;
+       }
+       #titulo td
+       {
+           font-size: 1em;
+           text-align: left;
+       }
+   </style>
+   <table id="titulo">
+     <tr>
+         <th>PORKILANDIA S.A.S</th>
+         <th colspan="2">TRASLADO DE PRODUCTOS</th>
+         <th>TRASLADO : {{ traslado.codigoTraslado }} </th>
+     </tr>
+     <tr>
+         <td>Desde : {{ traslado.bodegaActual }}</td>
+         <td>Hasta : {{ traslado.bodegaDestino }}</td>
+         <td>Fecha : {{ traslado.fechaTraslado }}</td>
+         <td>Encargado : {{ traslado.empleado }}</td>
+     </tr>
+    </table>
+   <br/>
+
+    <table class="table-bordered" >
+
+        <thead >
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+            <th>Unidades</th>
+            <th>Grupo</th>
+
+
+        </tr>
+        </thead>
+        {% for det  in detalleTraslado %}
+        <tr>
+            <td>{{ det.producto }}</td>
+            <td>{{ det.pesoTraslado }}grs</td>
+            <td>{{ det.unidadesTraslado }}</td>
+            <td>{{ det.producto.grupo.nombreGrupo }}</td>
+
+        </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+
+    </table>

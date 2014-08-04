@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block titulo %}Detalle Tajado{% endblock titulo %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+<a id="costearTajado" href="#"><input type="button" value="Costear" class="btn btn-success"/></a>
+    <br/><br/><br/>
+     <table class="table-striped" >
+
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Responsable</th>
+            <th>Fecha</th>
+            <th>Producto</th>
+            <th>Peso Producto</th>
+            <th>Total Tajado</th>
+            <th>Costo Kilo</th>
+
+
+        </tr>
+        </thead>
+        <tr>
+            <td>{{ tajado.codigoTajado }}</td>
+            <td>{{ tajado.responsable }}</td>
+            <td>{{ tajado.fechaTajado }}</td>
+            <td>{{ tajado.producto }}</td>
+            <td>{{ tajado.pesoProducto }}</td>
+            <td>{{ tajado.totalTajado }}</td>
+            <td>{{ tajado.costoKiloFilete }}</td>
+        </tr>
+
+    </table>
+    <br/>
+     <table class="table-striped">
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso Producto</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for detalle in detalles %}
+                <tr>
+                    <td>{{ detalle.producto }}</td>
+                    <td>{{ detalle.pesoProducto| floatformat }}Kg</td>
+                </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="4" >
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+
+      </table>
+
+    <form method="post">{% csrf_token %}
+         <fieldset id="agregarDetalle">
+             <legend>Detalle Sub Producto <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+
+                  {{ formulario }}
+
+              <br/>
+             <br/>
+                <legend>Acciones</legend>
+                <input type="submit" value="Guardar" class="btn btn-primary">
+
+
+          </fieldset>
+     </form>
+
+{% endblock contenido %}

@@ -4,6 +4,7 @@
 {% block mensajes %}Detalles del pedido{% endblock mensajes %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+<a id="generarPdf" href="{% url 'Ventas.views.ReportePedido' idPedido %}"><input type="button" value="Pdf" class="btn btn-success"></a>
     <br/><br/><br/>
     <table class="table-striped" >
 

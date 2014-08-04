@@ -7,6 +7,12 @@ from django.template import RequestContext
 from django.core import serializers
 from django.http import HttpResponse
 
+#Imports necesarios para el uso de Pisa PDF
+import ho.pisa as pisa
+import cStringIO as StringIO
+import cgi
+from django.template.loader import render_to_string
+
 from Inventario.Forms.forms import *
 from Inventario.models import *
 
@@ -33,7 +39,7 @@ def home(request):
 
 #***************************************PRODUCTOS******************************************
 def listaProductos(request):
-    productos = Producto.objects.all().order_by('nombreProducto')
+    productos = Producto.objects.all().order_by('codigoProducto')
 
     #se actualiza el precio sugerido del producto
     for producto in productos:
@@ -384,7 +390,7 @@ def GestionDetalleCompra(request,idcompra):
                                                         context_instance = RequestContext(request))
 #********************************************TRASLADOS******************************************************
 def GestionTraslados(request):
-    traslados = Traslado.objects.all()
+    traslados = Traslado.objects.all().order_by('fechaTraslado')
     if request.method == 'POST':
 
         formulario = TrasladoForm(request.POST)
@@ -403,11 +409,11 @@ def GestionDetalleTraslado(request,idtraslado):
     traslado = Traslado.objects.get(pk = idtraslado)
     detraslados = DetalleTraslado.objects.filter(traslado = idtraslado)
 
+    exito = False
 
     if request.method == 'POST':
         formulario = DetalleTrasladoForm(request.POST)
         if formulario.is_valid():
-            formulario.save()
 
             bodegaActual = ProductoBodega.objects.get(bodega = traslado.bodegaActual.codigoBodega,
                                                       producto = request.POST.get('producto'))
@@ -415,33 +421,60 @@ def GestionDetalleTraslado(request,idtraslado):
             bodegaDestino = ProductoBodega.objects.get(bodega = destino.codigoBodega,
                                                        producto = request.POST.get('producto'))
 
+            #Verificamos si la cantidad de producto que se traslada no excede las existencias
+            if int(request.POST.get('pesoTraslado')) <= bodegaActual.pesoProductoStock :
+                formulario.save()
+                pesoActualizado = bodegaActual.pesoProductoStock - int(request.POST.get('pesoTraslado'))
+                unidadesActualizadas = bodegaActual.unidadesStock - int(request.POST.get('unidadesTraslado'))
 
+                pesoDestinoActualizado = bodegaDestino.pesoProductoStock + int(request.POST.get('pesoTraslado'))
+                unidadesDestinoActualizadas = bodegaActual.unidadesStock + int(request.POST.get('unidadesTraslado'))
 
-            pesoActualizado = bodegaActual.pesoProductoStock - int(request.POST.get('pesoTraslado'))
-            unidadesActualizadas = bodegaActual.unidadesStock - int(request.POST.get('unidadesTraslado'))
+                #Se extrae de la bodega actual
+                bodegaActual.pesoProductoStock = pesoActualizado
+                bodegaActual.pesoProductoKilos = pesoActualizado / 1000
+                bodegaActual.unidadesStock = unidadesActualizadas
+                bodegaActual.save()
 
-            pesoDestinoActualizado = bodegaDestino.pesoProductoStock + int(request.POST.get('pesoTraslado'))
-            unidadesDestinoActualizadas = bodegaActual.unidadesStock + int(request.POST.get('unidadesTraslado'))
+                #Se graba en la bodega destino
+                bodegaDestino.pesoProductoStock = pesoDestinoActualizado
+                bodegaDestino.pesoProductoKilos = pesoDestinoActualizado / 1000
+                bodegaDestino.unidadesStock= unidadesDestinoActualizadas
+                bodegaDestino.save()
 
-            #Se extrae de la bodega actual
-            bodegaActual.pesoProductoStock = pesoActualizado
-            bodegaActual.pesoProductoKilos = pesoActualizado / 1000
-            bodegaActual.unidadesStock = unidadesActualizadas
-            bodegaActual.save()
+            else:
+                exito = True
 
-            #Se graba en la bodega destino
-            bodegaDestino.pesoProductoStock = pesoDestinoActualizado
-            bodegaDestino.pesoProductoKilos = pesoDestinoActualizado / 1000
-            bodegaDestino.unidadesStock= unidadesDestinoActualizadas
-            bodegaDestino.save()
+            return render_to_response('Inventario/GestionDetalleTraslado.html',{'idtraslado':idtraslado,'cantidadActual':bodegaActual,
+                                                                                'exito':exito,'formulario':formulario,
 
-            return HttpResponseRedirect('/inventario/dettraslado/'+ idtraslado)
+                                                                                'traslado': traslado,'detraslados': detraslados},
+                                                        context_instance = RequestContext(request))
     else:
         formulario = DetalleTrasladoForm(initial={'traslado':idtraslado})
 
 
-    return render_to_response('Inventario/GestionDetalleTraslado.html',{'formulario':formulario,
-                                                         'traslado': traslado,
-                                                         'detraslados': detraslados},
+    return render_to_response('Inventario/GestionDetalleTraslado.html',{'idtraslado':idtraslado,'exito':exito,'formulario':formulario,
+                                                         'traslado': traslado,'detraslados': detraslados},
                                                         context_instance = RequestContext(request))
 
+
+
+def generar_pdf(html):
+    # Función para generar el archivo PDF y devolverlo mediante HttpResponse
+    result = StringIO.StringIO()
+    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), mimetype='application/pdf')
+    return HttpResponse('Error al generar el PDF: %s' % cgi.escape(html))
+
+
+def ReporteTraslado(request,idTraslado):
+   # Reporte pdf de traslados
+
+    detalleTraslado = DetalleTraslado.objects.filter(traslado = idTraslado)
+    traslado = Traslado.objects.get(pk = idTraslado)
+
+    html = render_to_string('Fabricacion/ReporteTraslado.html', {'pagesize':'A4', 'detalleTraslado':detalleTraslado,'traslado':traslado},
+                            context_instance=RequestContext(request))
+    return generar_pdf(html)

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ titulo }}{% endblock titulo %}
+{% block mensajes %}...{% endblock mensajes %}
+
+{% block contenido %}
+
+    <br/><br/><br/>
+    <table id="canalPendiente" class="table-striped">
+        <thead>
+        <tr>
+            <th>Estado</th>
+            <th>Peso Porkilandia</th>
+            <th>Tipo</th>
+            <th>Compra</th>
+            <th>Genero</th>
+
+        </tr>
+        </thead>
+        <tbody>
+            {% for canalPendiente in canalesPendientes %}
+        <tr>
+
+            <td>Pendiente desposte</td>
+            <td>{{ canalPendiente.pesoPorkilandia }}</td>
+            <td>{{ canalPendiente.recepcion.compra.tipo.nombreGrupo }}</td>
+            <td>{{ canalPendiente.recepcion.compra.fechaCompra }}</td>
+            <td>{{ canalPendiente.genero }}</td>
+
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+        <tr>
+
+            <th colspan="8"></th>
+
+        </tr>
+
+      </table>
+
+
+{% endblock contenido %}

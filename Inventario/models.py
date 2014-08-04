@@ -36,6 +36,9 @@ class Producto(models.Model):
     def __unicode__(self):
         cadena = '%d %s (%s)'%(self.codigoProducto,self.nombreProducto,self.grupo.nombreGrupo)
         return cadena
+    class Meta:
+        ordering = ['codigoProducto']
+
 
 
 class SubProducto(models.Model):
@@ -85,12 +88,15 @@ class Traslado(models.Model):
     bodegaActual = models.ForeignKey(Bodega)
     bodegaDestino = models.CharField(max_length=20,verbose_name='Bodega Destino')
     empleado = models.ForeignKey(Empleado)
-    fechaTraslado = models.DateField(verbose_name='Fecha',auto_now=True)
+    fechaTraslado = models.DateField(verbose_name='Fecha')
     estadoTraslado = models.CharField(verbose_name='Estado',max_length=9,choices=OpEstTraslado)
     descripcionTraslado = models.TextField(verbose_name='Descriopcion', max_length=200)
 
     def __unicode__(self):
         return self.codigoTraslado
+
+    class Meta:
+        ordering = ['-fechaTraslado']
 
 class DetalleTraslado (models.Model):
     traslado = models.ForeignKey(Traslado)

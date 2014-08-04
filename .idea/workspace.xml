@@ -2,17 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/DetalleTajado.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionTajado.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/InformeCanalesPendientes.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/ReporteTraslado.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/Forms.py" afterPath="$PROJECT_DIR$/Fabricacion/Forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanal.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanal.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDeposteActualizado.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDeposteActualizado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDesposte.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDesposte.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionValoresCostos.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionValoresCostos.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Home.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleTraslado.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleTraslado.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionEnsalinados.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionEnsalinados.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/base.html" afterPath="$PROJECT_DIR$/porkisoft/templates/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/Forms/forms.py" afterPath="$PROJECT_DIR$/Inventario/Forms/forms.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/models.py" afterPath="$PROJECT_DIR$/Fabricacion/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/models.py" afterPath="$PROJECT_DIR$/Inventario/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/urls.py" afterPath="$PROJECT_DIR$/Fabricacion/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/urls.py" afterPath="$PROJECT_DIR$/Inventario/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/views.py" afterPath="$PROJECT_DIR$/Fabricacion/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/views.py" afterPath="$PROJECT_DIR$/Inventario/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ventas/views.py" afterPath="$PROJECT_DIR$/Ventas/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="porkisoft.iws" />
@@ -38,101 +48,7 @@
     <favorites_list name="porkisoft" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Fabricacion/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="17982" max-vertical-offset="23184">
-              <caret line="881" column="46" selection-start-line="881" selection-start-column="46" selection-end-line="881" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GestionCanal.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanal.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.4444447" vertical-offset="1701" max-vertical-offset="2478">
-              <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#tr#1;n#tbody#0;n#table#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#2;n#tr#1;n#tbody#0;n#table#1;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="967" max-vertical-offset="4473">
-              <caret line="111" column="22" selection-start-line="111" selection-start-column="10" selection-end-line="111" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Inventario/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="504" max-vertical-offset="9282">
-              <caret line="289" column="39" selection-start-line="289" selection-start-column="39" selection-end-line="289" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Inventario/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3500" max-vertical-offset="4074">
-              <caret line="185" column="64" selection-start-line="185" selection-start-column="64" selection-end-line="185" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="acciones.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1177" max-vertical-offset="3885">
-              <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Fabricacion/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="295" max-vertical-offset="882">
-              <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GestionDesposte.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDesposte.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.444445" vertical-offset="0" max-vertical-offset="1302">
-              <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Home.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9220779" vertical-offset="1099" max-vertical-offset="1785">
-              <caret line="76" column="3" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -145,23 +61,15 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Ventas/urls.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/Pedido_pdf.html" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/porkisoft/UsoDeGraficos.py" />
-        <option value="$PROJECT_DIR$/porkisoft/UsoTkInter.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleRecepcion.html" />
-        <option value="$PROJECT_DIR$/Inventario/urls.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionApanado.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCondTajado.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleMiga.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionEnsalinados.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionMiga.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionSacrificio.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionTajaddoCondPechugas.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionBodega.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleTraslado.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGanado.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionGrupo.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProvedor.html" />
@@ -169,13 +77,10 @@
         <option value="$PROJECT_DIR$/porkisoft/templates/Nomina/Cargo.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Nomina/GestionEmpleados.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Telemercadeo/GestionCliente.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanalDetalleDesposte.html" />
-        <option value="$PROJECT_DIR$/Ventas/views.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionPedido.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html" />
-        <option value="$PROJECT_DIR$/Inventario/Forms/forms.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionVerduras.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCondimento.html" />
@@ -183,19 +88,30 @@
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionPlanillaRecepcion.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/DesposteJson.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/base.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
-        <option value="$PROJECT_DIR$/Fabricacion/urls.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDeposteActualizado.html" />
-        <option value="$PROJECT_DIR$/Inventario/views.py" />
-        <option value="$PROJECT_DIR$/Fabricacion/Forms.py" />
-        <option value="$PROJECT_DIR$/Inventario/models.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanal.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionValoresCostos.html" />
-        <option value="$PROJECT_DIR$/Fabricacion/models.py" />
-        <option value="$PROJECT_DIR$/Fabricacion/views.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDesposte.html" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Home.html" />
+        <option value="$PROJECT_DIR$/Inventario/Forms/forms.py" />
+        <option value="$PROJECT_DIR$/Inventario/models.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/InformeCanalesPendientes.html" />
+        <option value="$PROJECT_DIR$/Ventas/views.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html" />
+        <option value="$PROJECT_DIR$/Inventario/urls.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleTraslado.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/ReporteTraslado.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDeposteActualizado.html" />
+        <option value="$PROJECT_DIR$/Inventario/views.py" />
+        <option value="dbtable:/de5ecb64/58fa7e13-3b05-4be1-a531-c5c29184579a/porkisoftdb.public.Fabricacion_canal" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionEnsalinados.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/base.html" />
+        <option value="$PROJECT_DIR$/Fabricacion/models.py" />
+        <option value="$PROJECT_DIR$/Fabricacion/Forms.py" />
+        <option value="$PROJECT_DIR$/Fabricacion/urls.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionTajado.html" />
+        <option value="$PROJECT_DIR$/Fabricacion/views.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/DetalleTajado.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
       </list>
     </option>
   </component>
@@ -282,6 +198,90 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fabricacion" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fabricacion" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -294,12 +294,12 @@
     <property name="SearchEverywhereHistory" value="GestionDetallCond&#10;GestionDetalleCompra&#10;verduras&#10;GestionCompra&#10;limpiez&#10;Limpieza&#10;GestionDEtalleComp&#10;GestionCanal&#10;GestionCompras&#10;GestionCondimento&#10;GestionDeta&#10;panel&#10;GestionDetalleCo&#10;GestionDetalleComp&#10;GestionCana&#10;GestionPlanillaRe&#10;Ganado&#10;Canal&#10;GestionCa&#10;GestionDetall&#10;GestionGanado&#10;GestionComp&#10;GestionG&#10;GestionGana" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="dynamic.classpath" value="false" />
-    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../bin/python2.7" />
-    <property name="SearchEverywhereHistoryKey" value="Gestiondesp&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionDesposte.html&#10;GestionDespos&#9;null&#9;null&#10;PlanillaRece&#9;null&#9;null&#10;GestionCanal&#9;null&#9;null&#10;GestionGana&#9;null&#9;null&#10;Sacrificio&#9;null&#9;null&#10;Gana&#9;null&#9;null&#10;detalleCompra&#9;null&#9;null&#10;GestionGanado&#9;null&#9;null&#10;GestionComp&#9;null&#9;null&#10;compra&#9;null&#9;null&#10;recepcion&#9;null&#9;null&#10;GestionSacrific&#9;null&#9;null&#10;Sacrifi&#9;null&#9;null&#10;gestionDespos&#9;null&#9;null&#10;GestionSacrifi&#9;null&#9;null&#10;GestionRecepcio&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionPlanillaRecepcion.html&#10;GestionDetalleCon&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionDetalleCondimento.html&#10;GestionCondimen&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionCondimento.html&#10;Miga&#9;null&#9;null&#10;Costo&#9;null&#9;null&#10;GestionSacr&#9;null&#9;null&#10;GestionPlanilla&#9;null&#9;null&#10;GestionRece&#9;null&#9;null&#10;GestionDetalleSa&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionDetalleSacrificio.html&#10;sacrificio&#9;null&#9;null&#10;GestionCompra&#9;null&#9;null&#10;GestionCana&#9;null&#9;null&#10;GestionGrup&#9;null&#9;null&#10;Grupo&#9;null&#9;null" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documentos" />
+    <property name="SearchEverywhereHistoryKey" value="Producto&#9;null&#9;null&#10;Ensalinado&#9;null&#9;null&#10;Gestionensalinado&#9;null&#9;null&#10;desposte&#9;null&#9;null&#10;GestionTrasla&#9;null&#9;null&#10;pdf&#9;null&#9;null&#10;GestionTraslado&#9;null&#9;null&#10;Produc&#9;null&#9;null&#10;Gestin&#9;null&#9;null&#10;Traslado&#9;null&#9;null&#10;Gestiondesp&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionDesposte.html&#10;GestionDespos&#9;null&#9;null&#10;PlanillaRece&#9;null&#9;null&#10;GestionCanal&#9;null&#9;null&#10;GestionGana&#9;null&#9;null&#10;Sacrificio&#9;null&#9;null&#10;Gana&#9;null&#9;null&#10;detalleCompra&#9;null&#9;null&#10;GestionGanado&#9;null&#9;null&#10;GestionComp&#9;null&#9;null&#10;compra&#9;null&#9;null&#10;recepcion&#9;null&#9;null&#10;GestionSacrific&#9;null&#9;null&#10;Sacrifi&#9;null&#9;null&#10;gestionDespos&#9;null&#9;null&#10;GestionSacrifi&#9;null&#9;null&#10;GestionRecepcio&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionPlanillaRecepcion.html&#10;GestionDetalleCon&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionDetalleCondimento.html&#10;GestionCondimen&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionCondimento.html&#10;Miga&#9;null&#9;null&#10;Costo&#9;null&#9;null&#10;GestionSacr&#9;null&#9;null&#10;GestionPlanilla&#9;null&#9;null&#10;GestionRece&#9;null&#9;null&#10;GestionDetalleSa&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionDetalleSacrificio.html&#10;sacrificio&#9;null&#9;null&#10;GestionCompra&#9;null&#9;null&#10;GestionCana&#9;null&#9;null&#10;GestionGrup&#9;null&#9;null&#10;Grupo&#9;null&#9;null" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -702,7 +702,11 @@
       <created>1405518169267</created>
       <updated>1405518169267</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Cambiando de fechas automaticas a fechas manuales">
+      <created>1405628515486</created>
+      <updated>1405628515486</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -727,23 +731,23 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1317" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5652174" sideWeight="0.49960598" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32605043" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25098348" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33280882" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36978757" sideWeight="0.49919486" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36191976" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36191976" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37520128" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36978757" sideWeight="0.50080514" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5136876" sideWeight="0.500394" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.63929147" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.63929147" sideWeight="0.5003934" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.63929147" sideWeight="0.4996066" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3542673" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -797,80 +801,10 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="102" />
+      <option name="time" value="103" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Telemercadeo/Forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11130742" vertical-offset="0" max-vertical-offset="566">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ventas/Forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37102473" vertical-offset="0" max-vertical-offset="566">
-          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionApanado.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44148937" vertical-offset="675" max-vertical-offset="1239">
-          <caret line="44" column="100" selection-start-line="44" selection-start-column="100" selection-end-line="44" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCondTajado.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47338402" vertical-offset="717" max-vertical-offset="1281">
-          <caret line="46" column="106" selection-start-line="46" selection-start-column="106" selection-end-line="46" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleMiga.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3139746" vertical-offset="1213" max-vertical-offset="1764">
-          <caret line="66" column="41" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionEnsalinados.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29787233" vertical-offset="0" max-vertical-offset="1407">
-          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionMiga.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40957448" vertical-offset="0" max-vertical-offset="1407">
-          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionSacrificio.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29787233" vertical-offset="0" max-vertical-offset="1596">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionTajaddoCondPechugas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.222222" vertical-offset="759" max-vertical-offset="1323">
-          <caret line="48" column="105" selection-start-line="48" selection-start-column="105" selection-end-line="48" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2925532" vertical-offset="1032" max-vertical-offset="1596">
-          <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleRecepcion.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9714829" vertical-offset="1190" max-vertical-offset="2079">
@@ -882,13 +816,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2247">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleTraslado.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59574467" vertical-offset="756" max-vertical-offset="2037">
-          <caret line="52" column="53" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -948,20 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Ventas/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7038917" vertical-offset="739" max-vertical-offset="1449">
-          <caret line="57" column="65" selection-start-line="57" selection-start-column="65" selection-end-line="57" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39923954" vertical-offset="1407" max-vertical-offset="2457">
-          <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProductoBodega.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="1722">
@@ -987,20 +900,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.2222223" vertical-offset="0" max-vertical-offset="1260">
           <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6751269" vertical-offset="693" max-vertical-offset="1785">
-          <caret line="60" column="80" selection-start-line="60" selection-start-column="80" selection-end-line="60" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleCondimento.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15245008" vertical-offset="0" max-vertical-offset="1890">
-          <caret line="4" column="141" selection-start-line="4" selection-start-column="141" selection-end-line="4" selection-end-column="141" />
         </state>
       </provider>
     </entry>
@@ -1067,110 +966,670 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/base.html">
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60076046" vertical-offset="1700" max-vertical-offset="2247">
-          <caret line="96" column="79" selection-start-line="96" selection-start-column="79" selection-end-line="96" selection-end-column="79" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1701" max-vertical-offset="2478">
+          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDesposte.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="336" max-vertical-offset="1302">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1099" max-vertical-offset="1785">
+          <caret line="60" column="56" selection-start-line="60" selection-start-column="56" selection-end-line="60" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../local/lib/python2.7/site-packages/django/contrib/contenttypes/generic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5918728" vertical-offset="9829" max-vertical-offset="10395">
+          <caret line="503" column="6" selection-start-line="503" selection-start-column="6" selection-end-line="503" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/Forms/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29681978" vertical-offset="0" max-vertical-offset="1806">
+          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/GestionDetallePedido.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.6666665" vertical-offset="0" max-vertical-offset="2478">
+          <caret line="6" column="69" selection-start-line="6" selection-start-column="69" selection-end-line="6" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ventas/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="295" max-vertical-offset="1617">
+          <caret line="30" column="28" selection-start-line="4" selection-start-column="0" selection-end-line="30" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="42" max-vertical-offset="861">
+          <caret line="20" column="58" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/Pedido_pdf.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76623374" vertical-offset="1477" max-vertical-offset="2016">
+          <caret line="90" column="12" selection-start-line="0" selection-start-column="1" selection-end-line="90" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/InformeCanalesPendientes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1155">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleTraslado.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.8888888" vertical-offset="378" max-vertical-offset="2184">
+          <caret line="13" column="70" selection-start-line="13" selection-start-column="70" selection-end-line="13" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/ReporteTraslado.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.555555" vertical-offset="126" max-vertical-offset="1554">
+          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionValoresCostos.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22867514" vertical-offset="252" max-vertical-offset="1344">
+          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="8368" max-vertical-offset="10206">
+          <caret line="416" column="0" selection-start-line="416" selection-start-column="0" selection-end-line="416" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/de5ecb64/58fa7e13-3b05-4be1-a531-c5c29184579a/porkisoftdb.public.Fabricacion_canal">
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://DATABASE/58fa7e13-3b05-4be1-a531-c5c29184579a.schema:porkisoftdb.public">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>58fa7e13-3b05-4be1-a531-c5c29184579a.schema:porkisoftdb.public</OriginalElement>
+          <nodes>
+            <node x="1247.75" y="1895.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.south_migrationhistory</node>
+            <node x="4167.22883254717" y="1614.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_detalletraslado</node>
+            <node x="5474.518533805031" y="1184.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_pedido</node>
+            <node x="228.03240740740742" y="2157.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_permission</node>
+            <node x="145.75" y="1172.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_detallecompra</node>
+            <node x="2462.5" y="1650.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_detallesubproducto</node>
+            <node x="5137.805306603774" y="1662.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_subproductobodega</node>
+            <node x="728.8205974842767" y="1626.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_limpiezaverduras</node>
+            <node x="414.75" y="1112.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_sacrificio</node>
+            <node x="936.75" y="1895.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_valorescostos</node>
+            <node x="661.0" y="2419.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.django_admin_log</node>
+            <node x="2536.75" y="1160.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_ensalinado</node>
+            <node x="4568.765605345912" y="1148.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_subproducto</node>
+            <node x="226.00000000000003" y="2479.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_user_groups</node>
+            <node x="3536.3674724842767" y="756.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_condimento</node>
+            <node x="4245.765605345912" y="1196.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_traslado</node>
+            <node x="60.57059748427673" y="130.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_proveedor</node>
+            <node x="3992.7656053459123" y="1208.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_productobodega</node>
+            <node x="1844.7500000000002" y="1196.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_apanado</node>
+            <node x="525.75" y="1895.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.django_content_type</node>
+            <node x="3767.7656053459123" y="1208.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_detallemiga</node>
+            <node x="3424.2656053459123" y="1208.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_detallecondimento</node>
+            <node x="407.0" y="2479.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_user_user_permissions</node>
+            <node x="810.375" y="190.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_grupo</node>
+            <node x="4885.72883254717" y="780.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_bodega</node>
+            <node x="1798.75" y="1895.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.django_site</node>
+            <node x="1146.7500000000002" y="1100.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_detalleplanilla</node>
+            <node x="0.0" y="2479.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_group_permissions</node>
+            <node x="783.75" y="1160.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_canal</node>
+            <node x="4542.117472484277" y="1614.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_detalleventa</node>
+            <node x="2441.0" y="708.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto</node>
+            <node x="4791.117472484277" y="1602.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_detallepedido</node>
+            <node x="1490.75" y="1895.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.django_session</node>
+            <node x="982.5000000000002" y="732.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_planilladesposte</node>
+            <node x="5160.518533805031" y="1196.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_venta</node>
+            <node x="3867.3674724842767" y="756.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_miga</node>
+            <node x="2171.75" y="1136.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_condimentadotajadopechuga</node>
+            <node x="5442.518533805031" y="768.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Telemercadeo_cliente</node>
+            <node x="245.82059748427673" y="448.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_compra</node>
+            <node x="429.0416666666667" y="2073.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_user</node>
+            <node x="1629.7500000000002" y="1650.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_detalleenlagunado</node>
+            <node x="4313.666666666667" y="0.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Nomina_cargo</node>
+            <node x="4249.166666666667" y="166.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Nomina_empleado</node>
+            <node x="0.0" y="744.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_ganado</node>
+            <node x="46.36574074074076" y="2181.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_group</node>
+            <node x="2936.75" y="1196.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_condimentadotajado</node>
+            <node x="1536.7500000000002" y="1220.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_enlagunado</node>
+            <node x="539.875" y="708.0">58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_planillarecepcion</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.django_admin_log" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.django_content_type">
+              <point x="57.25" y="-112.0" />
+              <point x="832.75" y="2048.0" />
+              <point x="665.25" y="2048.0" />
+              <point x="46.5" y="64.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_detalletraslado" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_traslado">
+              <point x="0.0" y="-112.0" />
+              <point x="4281.72883254717" y="1532.0" />
+              <point x="4397.265605345912" y="1532.0" />
+              <point x="0.0" y="100.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_user_user_permissions" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_permission">
+              <point x="-58.5" y="-52.0" />
+              <point x="465.5" y="2389.0" />
+              <point x="339.7824074074074" y="2389.0" />
+              <point x="37.25" y="64.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_ganado" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_compra">
+              <point x="0.0" y="-100.0" />
+              <point x="149.0" y="688.0" />
+              <point x="295.48726415094325" y="688.0" />
+              <point x="-99.33333333333331" y="100.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_detalleenlagunado" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_enlagunado">
+              <point x="-63.75" y="-76.0" />
+              <point x="1693.5000000000002" y="1582.0" />
+              <point x="1680.2500000000002" y="1582.0" />
+              <point x="0.0" y="76.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_user_groups" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_group">
+              <point x="-40.25" y="-52.0" />
+              <point x="266.25" y="2389.0" />
+              <point x="132.61574074074076" y="2389.0" />
+              <point x="28.75" y="40.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_user_groups" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_user">
+              <point x="40.25" y="-52.0" />
+              <point x="346.75" y="2399.0" />
+              <point x="477.20833333333337" y="2399.0" />
+              <point x="-96.33333333333331" y="148.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.django_admin_log" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_user">
+              <point x="-57.25" y="-112.0" />
+              <point x="718.25" y="2399.0" />
+              <point x="669.875" y="2399.0" />
+              <point x="96.33333333333326" y="148.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_venta" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Telemercadeo_cliente">
+              <point x="98.0" y="-100.0" />
+              <point x="5405.518533805031" y="1080.0" />
+              <point x="5506.518533805031" y="1080.0" />
+              <point x="-64.0" y="76.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_detallesubproducto" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_subproducto">
+              <point x="63.75" y="-76.0" />
+              <point x="2653.75" y="1542.0" />
+              <point x="4610.565605345912" y="1542.0" />
+              <point x="-167.19999999999982" y="148.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_detallecondimento" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_condimento">
+              <point x="64.25" y="-88.0" />
+              <point x="3617.0156053459123" y="1080.0" />
+              <point x="3691.8674724842767" y="1080.0" />
+              <point x="0.0" y="88.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_condimentadotajadopechuga" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="0.0" y="-160.0" />
+              <point x="2343.75" y="1070.0" />
+              <point x="2591.71875" y="1070.0" />
+              <point x="-34.78125" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_detallecompra" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_compra">
+              <point x="0.0" y="-124.0" />
+              <point x="270.25" y="1080.0" />
+              <point x="308.5" y="1080.0" />
+              <point x="308.5" y="688.0" />
+              <point x="394.82059748427673" y="688.0" />
+              <point x="0.0" y="100.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_pedido" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Nomina_empleado">
+              <point x="106.66666666666697" y="-112.0" />
+              <point x="5741.185200471698" y="1080.0" />
+              <point x="5709.018533805031" y="1080.0" />
+              <point x="5709.018533805031" y="418.0" />
+              <point x="4532.666666666667" y="418.0" />
+              <point x="126.0" y="88.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_grupo">
+              <point x="0.0" y="-136.0" />
+              <point x="2626.5" y="678.0" />
+              <point x="2116.169889937107" y="678.0" />
+              <point x="2116.169889937107" y="398.0" />
+              <point x="927.375" y="398.0" />
+              <point x="39.0" y="64.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_permission" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.django_content_type">
+              <point x="0.0" y="-64.0" />
+              <point x="302.5324074074074" y="2048.0" />
+              <point x="572.25" y="2048.0" />
+              <point x="-46.5" y="64.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_sacrificio" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_planillarecepcion">
+              <point x="0.0" y="-184.0" />
+              <point x="589.25" y="1000.0" />
+              <point x="634.625" y="1000.0" />
+              <point x="-94.75" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_planillarecepcion" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_compra">
+              <point x="0.0" y="-136.0" />
+              <point x="729.375" y="668.0" />
+              <point x="494.1539308176102" y="668.0" />
+              <point x="99.33333333333331" y="100.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_canal" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_planillarecepcion">
+              <point x="-85.75" y="-136.0" />
+              <point x="869.5" y="1000.0" />
+              <point x="824.125" y="1000.0" />
+              <point x="94.75" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_planillarecepcion" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_proveedor">
+              <point x="-126.33333333333303" y="-136.0" />
+              <point x="603.041666666667" y="678.0" />
+              <point x="205.26529088050347" y="678.0" />
+              <point x="205.26529088050347" y="428.0" />
+              <point x="150.57059748427673" y="428.0" />
+              <point x="-90.0" y="124.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_detalleplanilla" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="92.25" y="-196.0" />
+              <point x="1423.5000000000002" y="1020.0" />
+              <point x="2475.78125" y="1020.0" />
+              <point x="-150.71875" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_detalleenlagunado" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="63.75" y="-76.0" />
+              <point x="1821.0000000000002" y="1582.0" />
+              <point x="1834.2500000000002" y="1582.0" />
+              <point x="1834.2500000000002" y="1050.0" />
+              <point x="2545.34375" y="1050.0" />
+              <point x="-81.15625" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_detallecompra" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_ganado">
+              <point x="-83.0" y="-124.0" />
+              <point x="187.25" y="1080.0" />
+              <point x="149.0" y="1080.0" />
+              <point x="0.0" y="100.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_subproductobodega" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_subproducto">
+              <point x="-64.5" y="-64.0" />
+              <point x="5202.305306603774" y="1562.0" />
+              <point x="4944.965605345912" y="1562.0" />
+              <point x="167.19999999999982" y="148.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_ensalinado" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="0.0" y="-136.0" />
+              <point x="2726.75" y="1080.0" />
+              <point x="2638.09375" y="1080.0" />
+              <point x="11.59375" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_traslado" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Nomina_empleado">
+              <point x="-75.75" y="-100.0" />
+              <point x="4321.515605345912" y="1060.0" />
+              <point x="4205.97883254717" y="1060.0" />
+              <point x="4205.97883254717" y="428.0" />
+              <point x="4406.666666666667" y="428.0" />
+              <point x="0.0" y="88.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_pedido" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Telemercadeo_cliente">
+              <point x="0.0" y="-112.0" />
+              <point x="64.0" y="76.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_detalletraslado" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="-76.33333333333303" y="-112.0" />
+              <point x="4205.395499213837" y="1532.0" />
+              <point x="3237.25" y="1532.0" />
+              <point x="3237.25" y="1060.0" />
+              <point x="2684.46875" y="1060.0" />
+              <point x="57.96875" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_user_user_permissions" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_user">
+              <point x="58.5" y="-52.0" />
+              <point x="582.5" y="2399.0" />
+              <point x="573.5416666666667" y="2399.0" />
+              <point x="0.0" y="148.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_canal" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_planilladesposte">
+              <point x="85.75" y="-136.0" />
+              <point x="1041.0" y="1000.0" />
+              <point x="1061.2500000000002" y="1000.0" />
+              <point x="-78.75" y="112.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_limpiezaverduras" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="60.75" y="-100.0" />
+              <point x="911.0705974842767" y="1582.0" />
+              <point x="1526.2500000000002" y="1582.0" />
+              <point x="1526.2500000000002" y="1030.0" />
+              <point x="2498.96875" y="1030.0" />
+              <point x="-127.53125" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_group_permissions" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_permission">
+              <point x="51.5" y="-52.0" />
+              <point x="154.5" y="2399.0" />
+              <point x="265.2824074074074" y="2399.0" />
+              <point x="-37.25" y="64.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_pedido" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_bodega">
+              <point x="-106.66666666666697" y="-112.0" />
+              <point x="5527.8518671383645" y="1060.0" />
+              <point x="5099.92883254717" y="1060.0" />
+              <point x="95.19999999999982" y="64.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_detallecompra" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="83.0" y="-124.0" />
+              <point x="353.25" y="1010.0" />
+              <point x="2452.59375" y="1010.0" />
+              <point x="-173.90625" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_detallecondimento" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="-64.25" y="-88.0" />
+              <point x="3488.5156053459123" y="1030.0" />
+              <point x="2754.03125" y="1030.0" />
+              <point x="127.53125" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_compra" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Nomina_empleado">
+              <point x="99.33333333333331" y="-100.0" />
+              <point x="494.1539308176102" y="408.0" />
+              <point x="4280.666666666667" y="408.0" />
+              <point x="-126.0" y="88.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_detalleventa" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="-76.33333333333303" y="-112.0" />
+              <point x="4580.284139150944" y="1522.0" />
+              <point x="3367.25" y="1522.0" />
+              <point x="3367.25" y="1050.0" />
+              <point x="2707.65625" y="1050.0" />
+              <point x="81.15625" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_productobodega" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="-58.25" y="-88.0" />
+              <point x="4051.0156053459123" y="1010.0" />
+              <point x="2800.40625" y="1010.0" />
+              <point x="173.90625" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_traslado" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_bodega">
+              <point x="75.75" y="-100.0" />
+              <point x="4473.015605345912" y="1080.0" />
+              <point x="4957.12883254717" y="1080.0" />
+              <point x="-47.600000000000364" y="64.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_enlagunado" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="0.0" y="-76.0" />
+              <point x="1680.2500000000002" y="1040.0" />
+              <point x="2522.15625" y="1040.0" />
+              <point x="-104.34375" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_venta" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_bodega">
+              <point x="-98.0" y="-100.0" />
+              <point x="5209.518533805031" y="1070.0" />
+              <point x="5052.32883254717" y="1070.0" />
+              <point x="47.600000000000364" y="64.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_detallemiga" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_miga">
+              <point x="51.25" y="-88.0" />
+              <point x="3921.5156053459123" y="1080.0" />
+              <point x="3996.3674724842767" y="1080.0" />
+              <point x="0.0" y="88.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_productobodega" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_bodega">
+              <point x="58.25" y="-88.0" />
+              <point x="4167.515605345912" y="1070.0" />
+              <point x="4909.52883254717" y="1070.0" />
+              <point x="-95.19999999999982" y="64.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_venta" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Nomina_empleado">
+              <point x="0.0" y="-100.0" />
+              <point x="5307.518533805031" y="428.0" />
+              <point x="4469.666666666667" y="428.0" />
+              <point x="63.0" y="88.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_detalleplanilla" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_planilladesposte">
+              <point x="-92.25" y="-196.0" />
+              <point x="1239.0000000000002" y="1000.0" />
+              <point x="1218.7500000000002" y="1000.0" />
+              <point x="78.75" y="112.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_detallepedido" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_pedido">
+              <point x="83.0" y="-124.0" />
+              <point x="4998.617472484277" y="1582.0" />
+              <point x="5634.518533805031" y="1582.0" />
+              <point x="0.0" y="112.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_condimentadotajado" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="0.0" y="-100.0" />
+              <point x="3081.75" y="1070.0" />
+              <point x="2661.28125" y="1070.0" />
+              <point x="34.78125" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_group_permissions" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.auth_group">
+              <point x="-51.5" y="-52.0" />
+              <point x="51.5" y="2399.0" />
+              <point x="75.11574074074076" y="2399.0" />
+              <point x="-28.75" y="40.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_detallepedido" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="-83.0" y="-124.0" />
+              <point x="4832.617472484277" y="1512.0" />
+              <point x="3413.7656053459123" y="1512.0" />
+              <point x="3413.7656053459123" y="1040.0" />
+              <point x="2730.84375" y="1040.0" />
+              <point x="104.34375" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_compra" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_proveedor">
+              <point x="-99.33333333333331" y="-100.0" />
+              <point x="295.48726415094325" y="428.0" />
+              <point x="330.57059748427673" y="428.0" />
+              <point x="90.0" y="124.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Nomina_empleado" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Nomina_cargo">
+              <point x="0.0" y="-88.0" />
+              <point x="0.0" y="40.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_detalleventa" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_subproducto">
+              <point x="0.0" y="-112.0" />
+              <point x="4656.617472484277" y="1562.0" />
+              <point x="4777.765605345912" y="1562.0" />
+              <point x="0.0" y="148.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_limpiezaverduras" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_detallecompra">
+              <point x="-60.75" y="-100.0" />
+              <point x="789.5705974842767" y="1582.0" />
+              <point x="270.25" y="1582.0" />
+              <point x="0.0" y="124.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_detallesubproducto" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="-63.75" y="-76.0" />
+              <point x="2526.25" y="1080.0" />
+              <point x="2614.90625" y="1080.0" />
+              <point x="-11.59375" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_subproductobodega" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_bodega">
+              <point x="64.5" y="-64.0" />
+              <point x="5331.305306603774" y="1552.0" />
+              <point x="5150.018533805031" y="1552.0" />
+              <point x="5150.018533805031" y="1080.0" />
+              <point x="5004.72883254717" y="1080.0" />
+              <point x="0.0" y="64.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_detalleventa" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_venta">
+              <point x="76.33333333333303" y="-112.0" />
+              <point x="4732.95080581761" y="1572.0" />
+              <point x="5307.518533805031" y="1572.0" />
+              <point x="0.0" y="100.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_detalletraslado" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_subproducto">
+              <point x="76.33333333333303" y="-112.0" />
+              <point x="4358.062165880503" y="1552.0" />
+              <point x="4694.165605345912" y="1552.0" />
+              <point x="-83.60000000000036" y="148.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Ventas_detallepedido" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_subproducto">
+              <point x="0.0" y="-124.0" />
+              <point x="4915.617472484277" y="1562.0" />
+              <point x="4861.365605345913" y="1562.0" />
+              <point x="83.60000000000036" y="148.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_apanado" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="-2.2737367544323206E-13" y="-100.0" />
+              <point x="1998.25" y="1060.0" />
+              <point x="2568.53125" y="1060.0" />
+              <point x="-57.96875" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_planillarecepcion" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Nomina_empleado">
+              <point x="126.33333333333348" y="-136.0" />
+              <point x="855.7083333333335" y="688.0" />
+              <point x="2127.169889937107" y="688.0" />
+              <point x="2127.169889937107" y="418.0" />
+              <point x="4343.666666666667" y="418.0" />
+              <point x="-63.0" y="88.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Fabricacion_detallemiga" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto">
+              <point x="-51.25" y="-88.0" />
+              <point x="3819.0156053459123" y="1020.0" />
+              <point x="2777.21875" y="1020.0" />
+              <point x="150.71875" y="136.0" />
+            </edge>
+            <edge source="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_compra" target="58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_grupo">
+              <point x="0.0" y="-100.0" />
+              <point x="394.82059748427673" y="398.0" />
+              <point x="849.375" y="398.0" />
+              <point x="-39.0" y="64.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.2000000000000002" x="245.0" y="1095.0" />
+          <SelectedNodes>
+            <node>58fa7e13-3b05-4be1-a531-c5c29184579a.table:porkisoftdb.public.Inventario_producto</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>Columns</Category>
+            <Category>Key columns</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="249" max-vertical-offset="4200">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionEnsalinados.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1177" max-vertical-offset="3885">
-          <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="567" max-vertical-offset="1512">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDeposteActualizado.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48404256" vertical-offset="5544" max-vertical-offset="6615">
+          <caret line="277" column="80" selection-start-line="277" selection-start-column="80" selection-end-line="277" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="749" max-vertical-offset="2310">
+          <caret line="49" column="117" selection-start-line="49" selection-start-column="117" selection-end-line="49" selection-end-column="117" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleCondimento.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16167665" vertical-offset="3" max-vertical-offset="1890">
+          <caret line="4" column="141" selection-start-line="0" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="711" max-vertical-offset="4578">
+          <caret line="45" column="19" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="19" />
+          <folding>
+            <marker date="1406730921533" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fabricacion/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="945">
+          <caret line="27" column="65" selection-start-line="27" selection-start-column="65" selection-end-line="27" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionTajado.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="504" max-vertical-offset="1491">
+          <caret line="40" column="104" selection-start-line="40" selection-start-column="104" selection-end-line="40" selection-end-column="104" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Fabricacion/Forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1274" max-vertical-offset="1827">
-          <caret line="86" column="15" selection-start-line="86" selection-start-column="15" selection-end-line="86" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="577" max-vertical-offset="1995">
+          <caret line="48" column="29" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/views.py">
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="504" max-vertical-offset="9282">
-          <caret line="289" column="39" selection-start-line="289" selection-start-column="39" selection-end-line="289" selection-end-column="39" />
+        <state vertical-scroll-proportion="-3.4771574" vertical-offset="3420" max-vertical-offset="4011">
+          <caret line="65" column="3" selection-start-line="65" selection-start-column="3" selection-end-line="65" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanal.html">
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/DetalleTajado.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.4444447" vertical-offset="1701" max-vertical-offset="2478">
-          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#tr#1;n#tbody#0;n#table#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#1;n#tbody#0;n#table#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionValoresCostos.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6666665" vertical-offset="252" max-vertical-offset="1344">
-          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fabricacion/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="882">
-          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fabricacion/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2290" max-vertical-offset="4473">
-          <caret line="111" column="22" selection-start-line="111" selection-start-column="10" selection-end-line="111" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="1701">
+          <caret line="4" column="20" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Fabricacion/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="17982" max-vertical-offset="23184">
-          <caret line="881" column="46" selection-start-line="881" selection-start-column="46" selection-end-line="881" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDeposteActualizado.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0185529" vertical-offset="1740" max-vertical-offset="6615">
-          <caret line="109" column="62" selection-start-line="109" selection-start-column="62" selection-end-line="109" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3500" max-vertical-offset="4074">
-          <caret line="185" column="64" selection-start-line="185" selection-start-column="64" selection-end-line="185" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDesposte.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.444445" vertical-offset="0" max-vertical-offset="1302">
-          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9220779" vertical-offset="1099" max-vertical-offset="1785">
-          <caret line="76" column="3" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="3" />
-          <folding />
+        <state vertical-scroll-proportion="4.371972" vertical-offset="14630" max-vertical-offset="24885">
+          <caret line="817" column="61" selection-start-line="817" selection-start-column="61" selection-end-line="817" selection-end-column="61" />
+          <folding>
+            <element signature="e#25#52#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

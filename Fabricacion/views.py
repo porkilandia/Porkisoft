@@ -8,25 +8,11 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.views.generic import View,TemplateView
 
-
+import json
 from Inventario.Forms.forms import *
 from Fabricacion.Forms import *
 
 
-def GestionDesposte(request):
-    despostes = PlanillaDesposte.objects.all()
-
-    if request.method == 'POST':
-
-        formulario = DesposteForm(request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            return HttpResponseRedirect('/fabricacion/desposte')
-    else:
-        formulario =DesposteForm()
-
-    return render_to_response('Fabricacion/GestionDesposte.html',{'formulario':formulario,'despostes':despostes},
-                              context_instance = RequestContext(request))
 
 
 #******************************************************CANAL***********************************************************
@@ -250,67 +236,90 @@ def GestionSacrificio(request,idrecepcion):
                                                                    'sacrificios':sacrificios},
                               context_instance = RequestContext(request))
 
-def GestionEnsalinado(request,idproducto):
+def GestionEnsalinado(request):
     ensalinados = Ensalinado.objects.all()
-    bodegaProducto = ProductoBodega.objects.get(bodega = 6 , producto = idproducto)
-    producto = Producto.objects.get(pk =  idproducto)
-    sal = Producto.objects.get(pk = 94)
-    papaina = Producto.objects.get(pk = 95)
+    sal = Producto.objects.get(nombreProducto = 'Sal')
+    papaina = Producto.objects.get(nombreProducto = 'Papaina')
+
+    salBodega = ProductoBodega.objects.get(bodega = 6 , producto__nombreProducto = 'Sal')
+    PapainaBodega = ProductoBodega.objects.get(bodega = 6 , producto__nombreProducto = 'Papaina')
+
+    exito = True
 
     if request.method == 'POST':
         formulario = EnsalinadoForm(request.POST)
 
         if formulario.is_valid():
-            ensalinado = formulario.save()
 
-            costoSal = (ensalinado.pesoSal/ 1000) * sal.costoProducto
-            costoPapaina = (ensalinado.pesoPapaina / 1000) * papaina.costoProducto
-            costoProductoEnsalinado = (ensalinado.pesoProducto / 1000) * producto.costoProducto
-            costoInsumos = costoSal + costoPapaina + costoProductoEnsalinado
-            cif = 30 * (ensalinado.pesoProductoDespues / 1000)
-            mod = 20 * (ensalinado.pesoProductoDespues / 1000)
-            costoTotal = cif + mod + costoInsumos
-            costoKilo = ceil(costoTotal / (ensalinado.pesoProductoDespues /1000))
-
-            ensalinado.pesoProductoDespues /= 1000
-            ensalinado.pesoProductoAntes /= 1000
-            ensalinado.pesoProducto /= 1000
-            ensalinado.costoTotal = costoTotal
-            ensalinado.costoKilo = costoKilo
-            ensalinado.save()
-
-            # se guarda en el Producto el Costo del Kilo
-            piernaEnsalinada = Producto.objects.get(nombreProducto = 'Pierna Ensalinada')
-            piernaEnsalinada.costoProducto = costoKilo
-            piernaEnsalinada.save()
-
-            #Se guarda la cantidad final en la bodega de taller
-            bodegaEnsalinado = ProductoBodega.objects.get(bodega = 6,producto = piernaEnsalinada.codigoProducto)
-            bodegaEnsalinado.pesoProductoStock += ensalinado.pesoProductoDespues * 1000
-            bodegaEnsalinado.save()
-
-            #se resta la cantidad de Carne que se utilizo para el ensalinado
-            bodegaProductoAntes = ProductoBodega.objects.get(bodega = 6, producto = producto.codigoProducto)
-            bodegaProductoAntes.pesoProductoStock -= ensalinado.pesoProductoAntes * 1000
-            bodegaProductoAntes.save()
+            # almacenamos los valores correspondientes a insumos que se utilizan en el proceso
+            salActual = Decimal(request.POST.get('pesoSal'))
+            PapainaActual = Decimal(request.POST.get('pesoPapaina'))
+            productoActual = Decimal(request.POST.get('pesoProducto'))
 
 
-            #Se guarda la cantidad a restar para la sal
-            salBodega = ProductoBodega.objects.get(bodega = 6 , producto = 94)
-            salBodega.pesoProductoStock -= ensalinado.pesoSal
-            salBodega.save()
+            # Se valida que la cantidad a procesar no sea mayor a la cantidad existente en el inventario.
+            bodegaProducto = ProductoBodega.objects.get(producto = request.POST.get('producto'),bodega = 5)
 
-            #Se guarda la cantidad a restar para la Papaina
+            if bodegaProducto.pesoProductoStock >= productoActual and salBodega.pesoProductoStock >= salActual and PapainaBodega >= PapainaActual  :
 
-            PapainaBodega = ProductoBodega.objects.get(bodega = 6 , producto = 95)
-            PapainaBodega.pesoProductoStock -= ensalinado.pesoPapaina
-            PapainaBodega.save()
+                ensalinado = formulario.save()
 
-            return HttpResponseRedirect('/fabricacion/ensalinados/'+ idproducto)
+                producto = Producto.objects.get(nombreProducto = ensalinado.producto.nombreProducto)
+
+                costoSal = (ensalinado.pesoSal/ 1000) * sal.costoProducto
+                costoPapaina = (ensalinado.pesoPapaina / 1000) * papaina.costoProducto
+                costoProductoEnsalinado = (ensalinado.pesoProducto / 1000) * producto.costoProducto
+                costoInsumos = costoSal + costoPapaina + costoProductoEnsalinado
+                cif = 30 * (ensalinado.pesoProductoDespues / 1000)
+                mod = 20 * (ensalinado.pesoProductoDespues / 1000)
+                costoTotal = cif + mod + costoInsumos
+                costoKilo = ceil(costoTotal / (ensalinado.pesoProductoDespues /1000))
+
+                ensalinado.pesoProductoDespues /= 1000
+                ensalinado.pesoProductoAntes /= 1000
+                ensalinado.pesoProducto /= 1000
+                ensalinado.costoTotal = costoTotal
+                ensalinado.costoKilo = costoKilo
+                ensalinado.save()
+
+                # se guarda en el Producto el Costo del Kilo
+                piernaEnsalinada = Producto.objects.get(nombreProducto = 'Pierna Ensalinada')
+                piernaEnsalinada.costoProducto = costoKilo
+                piernaEnsalinada.save()
+
+                #Se guarda la cantidad final en la bodega de taller
+                bodegaEnsalinado = ProductoBodega.objects.get(bodega = 6,producto = piernaEnsalinada.codigoProducto)
+                bodegaEnsalinado.pesoProductoStock += ensalinado.pesoProductoDespues * 1000
+                bodegaEnsalinado.save()
+
+                #se resta la cantidad de Carne que se utilizo para el ensalinado
+                bodegaProductoAntes = ProductoBodega.objects.get(bodega = 6, producto = producto.codigoProducto)
+                bodegaProductoAntes.pesoProductoStock -= ensalinado.pesoProductoAntes * 1000
+                bodegaProductoAntes.save()
+
+
+                #Se guarda la cantidad a restar para la sal
+
+                salBodega.pesoProductoStock -= ensalinado.pesoSal
+                salBodega.save()
+
+                #Se guarda la cantidad a restar para la Papaina
+
+
+                PapainaBodega.pesoProductoStock -= ensalinado.pesoPapaina
+                PapainaBodega.save()
+
+                exito = True
+            else:
+                exito = False
+
+            return render_to_response('Fabricacion/GestionEnsalinados.html',{'exito':exito,'formulario':formulario,
+                                                                             'ensalinados':ensalinados },
+                              context_instance = RequestContext(request))
     else:
-        formulario = EnsalinadoForm(initial={'producto':idproducto, 'pesoProducto':bodegaProducto.pesoProductoStock})
+        formulario = EnsalinadoForm()
 
-    return render_to_response('Fabricacion/GestionEnsalinados.html',{'formulario':formulario,'ensalinados':ensalinados },
+    return render_to_response('Fabricacion/GestionEnsalinados.html',{'exito':exito,'formulario':formulario,'ensalinados':ensalinados },
                               context_instance = RequestContext(request))
 
 def GestionVerduras(request,idDetcompra):
@@ -467,60 +476,6 @@ def CostoCondimento(request,idcondimento):
                               context_instance = RequestContext(request))
 
 
-def GestionCondTajado(request, idprodbod):
-    condTajados  = CondimentadoTajado.objects.all()
-    prodBod = ProductoBodega.objects.get(pk = idprodbod )
-    producto = Producto.objects.get(pk = prodBod.producto.codigoProducto)
-    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
-
-    if request.method == 'POST':
-
-        formulario = CondTajadoForm(request.POST)
-        if formulario.is_valid():
-            proceso = formulario.save()
-
-            mod = Decimal(0.139) * prodBod.pesoProductoStock
-            cif = Decimal(0.143) * prodBod.pesoProductoStock
-            costoTotalACondimentar = producto.costoProducto + mod + cif
-
-            costoFilete = costoTotalACondimentar * Decimal(0.973)
-            costoRecortes = costoTotalACondimentar * Decimal(0.007)#Pendiente guardar en inventario
-            costoProcesos = costoTotalACondimentar * Decimal(0.02)#Pendiente guardar en inventario
-
-            costoKiloFilete = costoFilete / proceso.filete
-            costoTotalFilete = proceso.filete * costoKiloFilete
-            costoTotalCondimento = proceso.condimento * condimento.costoProducto
-            costoFileteCondimentado = costoTotalFilete +  costoTotalCondimento
-            pesoFileteCondimentado = proceso.filete + proceso.condimento
-            costoKiloFileteCondimentado = costoFileteCondimentado / pesoFileteCondimentado
-
-
-            #Promediamos el costo del filete y lo guardamos
-            filete = Producto.objects.get(nombreProducto = 'Filete Condimentado')
-            if filete.costoProducto == 0:
-                filete.costoProducto = costoKiloFileteCondimentado
-            else:
-                costoKiloFiletePromedio = (costoKiloFileteCondimentado + filete.costoProducto)/2
-                filete.costoProducto = costoKiloFiletePromedio
-
-            filete.save()
-
-            # Guardamos el la cantidad de producto condimentado en la bodega de la planta de procesos
-            bodegaFilete = ProductoBodega.objects.get(bodega = 6 , producto = filete.codigoProducto)
-            bodegaFilete.pesoProductoStock += pesoFileteCondimentado
-            bodegaFilete.save()
-
-            #Restamos la cantidad utilizada a la cantidad ensalinada
-            prodBod.pesoProductoStock -= proceso.pesoProductoEnsalinado
-            prodBod.save()
-
-
-            return HttpResponseRedirect('/fabricacion/condtaj/'+ idprodbod)
-    else:
-        formulario = CondTajadoForm(initial={'producto':producto.codigoProducto,'pesoProductoEnsalinado':prodBod.pesoProductoStock})
-
-    return render_to_response('Fabricacion/GestionCondTajado.html',{'formulario':formulario,'condTajados':condTajados },
-                              context_instance = RequestContext(request))
 
 #*********************************************************** MIGA*******************************************************
 
@@ -642,7 +597,7 @@ def GestionApanado(request,idprodbod):
             costoFileteApanado = CostoFiletePorApanar + mod + cif
             costoKiloApanado = costoFileteApanado / apanado.totalApanado
 
-            #Guardamoslos calculos realizados
+            #Guardamos  los calculos realizados
             apanado.costoKiloApanado = costoKiloApanado
             apanado.save()
 
@@ -770,9 +725,117 @@ def GestionarTajadoCondPechugas(request,idprodbod):
 
     return render_to_response('Fabricacion/GestionTajaddoCondPechugas.html',{'formulario':formulario,'registros':registros}
                               ,context_instance = RequestContext(request))
+#**********************************************PROCESO TAJADO **********************************************************
+
+'''
+def GestionCondTajado(request, idprodbod):
+    condTajados  = CondimentadoTajado.objects.all()
+    prodBod = ProductoBodega.objects.get(pk = idprodbod )
+    producto = Producto.objects.get(pk = prodBod.producto.codigoProducto)
+    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
+
+    if request.method == 'POST':
+
+        formulario = CondTajadoForm(request.POST)
+        if formulario.is_valid():
+            proceso = formulario.save()
+
+            mod = Decimal(0.139) * prodBod.pesoProductoStock
+            cif = Decimal(0.143) * prodBod.pesoProductoStock
+            costoTotalACondimentar = producto.costoProducto + mod + cif
+
+            costoFilete = costoTotalACondimentar * Decimal(0.973)
+            costoRecortes = costoTotalACondimentar * Decimal(0.007)#Pendiente guardar en inventario
+            costoProcesos = costoTotalACondimentar * Decimal(0.02)#Pendiente guardar en inventario
+
+            costoKiloFilete = costoFilete / proceso.filete
+            costoTotalFilete = proceso.filete * costoKiloFilete
+            costoTotalCondimento = proceso.condimento * condimento.costoProducto
+            costoFileteCondimentado = costoTotalFilete +  costoTotalCondimento
+            pesoFileteCondimentado = proceso.filete + proceso.condimento
+            costoKiloFileteCondimentado = costoFileteCondimentado / pesoFileteCondimentado
+
+
+            #Promediamos el costo del filete y lo guardamos
+            filete = Producto.objects.get(nombreProducto = 'Filete Condimentado')
+            if filete.costoProducto == 0:
+                filete.costoProducto = costoKiloFileteCondimentado
+            else:
+                costoKiloFiletePromedio = (costoKiloFileteCondimentado + filete.costoProducto)/2
+                filete.costoProducto = costoKiloFiletePromedio
+
+            filete.save()
+
+            # Guardamos el la cantidad de producto condimentado en la bodega de la planta de procesos
+            bodegaFilete = ProductoBodega.objects.get(bodega = 6 , producto = filete.codigoProducto)
+            bodegaFilete.pesoProductoStock += pesoFileteCondimentado
+            bodegaFilete.save()
+
+            #Restamos la cantidad utilizada a la cantidad ensalinada
+            prodBod.pesoProductoStock -= proceso.pesoProductoEnsalinado
+            prodBod.save()
+
+
+            return HttpResponseRedirect('/fabricacion/condtaj/'+ idprodbod)
+    else:
+        formulario = CondTajadoForm(initial={'producto':producto.codigoProducto,'pesoProductoEnsalinado':prodBod.pesoProductoStock})
+
+    return render_to_response('Fabricacion/GestionCondTajado.html',{'formulario':formulario,'condTajados':condTajados },
+                              context_instance = RequestContext(request))
+'''
+
+def GestionTajado(request):
+    exito = True
+    tajados = Tajado.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = TajadoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/tajado/')
+    else:
+        formulario = TajadoForm()
+
+    return render_to_response('Fabricacion/GestionTajado.html',{'exito':exito,'formulario':formulario,'tajados':tajados},
+                              context_instance = RequestContext(request))
+
+
+def GestionDetalleTajado(request,idTajado):
+    exito = True
+    tajado = Tajado.objects.get(pk = idTajado)
+    Detalletajados = DetalleTajado.objects.filter(tajado = idTajado)
+
+    if request.method == 'POST':
+
+        formulario = DetalleTajadoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/detalleTajado/'+idTajado)
+    else:
+        formulario = DetalleTajadoForm()
+
+    return render_to_response('Fabricacion/DetalleTajado.html',{'exito':exito,'formulario':formulario,
+                                                                'detalles':Detalletajados,'tajado':tajado},
+                              context_instance = RequestContext(request))
 
 
 #***********************************************PLANILLA DESPOSTE*******************************************************
+
+def GestionDesposte(request):
+    despostes = PlanillaDesposte.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = DesposteForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/desposte')
+    else:
+        formulario =DesposteForm()
+
+    return render_to_response('Fabricacion/GestionDesposte.html',{'formulario':formulario,'despostes':despostes},
+                              context_instance = RequestContext(request))
 
 def GestionDesposteActualizado(request, idplanilla):
 
@@ -939,7 +1002,7 @@ def GestionDesposteActualizado(request, idplanilla):
 
     return render_to_response('Fabricacion/GestionDeposteActualizado.html',
                               contexto,context_instance = RequestContext(request))
-import json
+
 def costeoDesposte(request):
     idDesposte = request.GET.get('idDesposte')
     idDesposte = int(idDesposte)
@@ -1107,3 +1170,10 @@ def EditaCostos(request,idcosto):
 
     return render_to_response('Fabricacion/GestionValoresCostos.html',{'costos':costos, 'formulario':formulario},
                               context_instance = RequestContext(request))
+
+def InformeCanalesPendientes(request):
+    canalPendiente = Canal.objects.filter(estado = False).order_by('codigoCanal')
+    return render_to_response('Fabricacion/InformeCanalesPendientes.html',{'canalesPendientes':canalPendiente},
+                              context_instance = RequestContext(request))
+
+

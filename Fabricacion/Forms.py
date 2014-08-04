@@ -12,6 +12,9 @@ class SacrificioForm(ModelForm):
         exclude = ("compra","cantReses","piel","vrMenudo","vrDeguello","vrTransporte")
 
 class EnsalinadoForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(EnsalinadoForm,self).__init__(*args, **kwargs)
+        self.fields['producto'].queryset = Producto.objects.filter(grupo = 3)
     class Meta:
         model = Ensalinado
         exclude = ("costoKilo" ,  "costoTotal",)
@@ -36,9 +39,14 @@ class DetalleCondimentoForm(ModelForm):
         model = DetalleCondimento
         exclude = ('costoProducto','costoTotalProducto',)
 
-class CondTajadoForm(ModelForm):
+class TajadoForm(ModelForm):
     class Meta:
-        model = CondimentadoTajado
+        model = Tajado
+        exclude = ("totalTajado","costoKiloFilete")
+
+class DetalleTajadoForm(ModelForm):
+    class Meta:
+        model = DetalleTajado
 
 class MigaForm(ModelForm):
     class Meta:

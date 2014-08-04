@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 {% block titulo %}{{ titulo }}{% endblock titulo %}
 {% block mensajes %}
-    Detalles de traslado{{ traslado.codigoTraslado }}, Encargado :  {{ traslado.empleado }}
-
+    {% if exito %}
+             El Producto : {{ cantidadActual.producto.nombreProducto }},
+        solo tiene {{ cantidadActual.pesoProductoStock|floatformat }} grs
+    {% else %}
+        Detalles de traslado{{ traslado.codigoTraslado }}, Encargado :  {{ traslado.empleado }}
+    {% endif %}
 {% endblock mensajes %}
+
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+<a id="pdf" href="{% url 'Inventario.views.ReporteTraslado' idtraslado %}"><input type="button" value="Pdf" class="btn btn-success"></a>
     <br/><br/><br/>
      <table  class="table-striped">
         <thead>
@@ -74,6 +80,7 @@
         </tr>
 
       </table>
+
 
     <form method="post">{% csrf_token %}
          <fieldset id="agregarDetalle">

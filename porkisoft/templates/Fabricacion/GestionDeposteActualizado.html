@@ -152,7 +152,7 @@
                 <td>{{ costilla.producto.grupo.nombreGrupo }}</td>
                 <td>{{ costilla.PesoProducto| floatformat }}</td>
                 <td>
-                    <a href="#">Modificar</a>
+                    <a href="{% url 'Fabricacion.views.EditaDetPlanilla' costilla.id %}">Modificar</a>
                 </td>
             </tr>
         {% empty %}
@@ -192,7 +192,7 @@
                 <td>{{ subp.producto.grupo.nombreGrupo }}</td>
                 <td>{{ subp.PesoProducto| floatformat }}</td>
                 <td>
-                    <a href="#">Modificar</a>
+                    <a href="{% url 'Fabricacion.views.EditaDetPlanilla' subp.id %}">Modificar</a>
                 </td>
             </tr>
         {% empty %}
@@ -234,7 +234,7 @@
                 <td>{{ hueso.producto.grupo.nombreGrupo }}</td>
                 <td>{{ hueso.PesoProducto| floatformat }}</td>
                 <td>
-                    <a href="#">Modificar</a>
+                    <a href="{% url 'Fabricacion.views.EditaDetPlanilla' hueso.id %}">Modificar</a>
                 </td>
             </tr>
         {% empty %}
@@ -275,7 +275,7 @@
                 <td>{{ desecho.producto.grupo.nombreGrupo }}</td>
                 <td>{{ desecho.PesoProducto| floatformat }}</td>
                 <td>
-                    <a href="#">Modificar</a>
+                    <a href="{% url 'Fabricacion.views.EditaDetPlanilla' desecho.id %}">Modificar</a>
                 </td>
             </tr>
         {% empty %}

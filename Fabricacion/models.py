@@ -36,17 +36,22 @@ class DetalleEnlagunado(models.Model):
     pesoPorducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3)
     costoProducto = models.IntegerField()
 
-class CondimentadoTajado(models.Model):
+class Tajado(models.Model):
     codigoTajado = models.AutoField(primary_key=True)
+    responsable = models.ForeignKey(Empleado)
     producto  = models.ForeignKey(Producto)
-    pesoProductoEnsalinado =models.DecimalField(verbose_name='Peso', max_digits=9, decimal_places=3)
-    condimento = models.DecimalField(verbose_name='Condimento', max_digits=9, decimal_places=3)
-    filete = models.DecimalField(verbose_name='Filete', max_digits=9, decimal_places=3)
-    recortes = models.DecimalField(verbose_name='Recortes', max_digits=9, decimal_places=3)
-    procesos = models.DecimalField(verbose_name='Procesos', max_digits=9, decimal_places=3)
+    fechaTajado = models.DateField(verbose_name='Fecha de Tajado')
+    pesoProducto =models.DecimalField(verbose_name='Peso', max_digits=9, decimal_places=3)
+    totalTajado = models.DecimalField(verbose_name='Total Tajado', max_digits=9, decimal_places=3,default=0)
+    costoKiloFilete = models.IntegerField(verbose_name='Costo Kilo filete',default=0)
 
     def __int__(self):
         return self.codigoTajado
+
+class DetalleTajado(models.Model):
+    tajado = models.ForeignKey(Tajado)
+    producto  = models.ForeignKey(Producto)
+    pesoProducto =models.DecimalField(verbose_name='Peso', max_digits=9, decimal_places=3)
 
 
 class PlanillaDesposte(models.Model):

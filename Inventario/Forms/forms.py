@@ -14,6 +14,7 @@ class ProvedorForm(ModelForm):
         model= Proveedor
 
 class ProductoForm(ModelForm):
+
     class Meta:
         model = Producto
         exclude = ("costoProducto","vrVentaProducto","utilidadProducto","rentabilidadProducto")
