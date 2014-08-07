@@ -13,6 +13,9 @@ $(document).on('ready', inicio);
      $('#costear').on('click',CostearDesposte);
      $('#costearTajado').on('click',CostearTajado);
      $('#guardar').on('click',GuardarDesposte);
+     $('#id_producto').on('change',consultaValorProducto);
+     $('#id_vrTotal').on('focus',calculoValorProducto);
+     $('#guardarVentas').on('click',GuardarVentas);
 
      $('#canalPendiente').dataTable();
      $('#tablacostos').dataTable();
@@ -27,6 +30,25 @@ $(document).on('ready', inicio);
      $('#costos').dataTable();
 
 
+}
+function GuardarVentas()
+{
+    var opcion = confirm('Desea guardar los cambios?');
+    var idVenta = $('#codigoVenta').text();
+    var peso = parseFloat($('#peso').text());
+    if (opcion == true)
+    {
+        $.ajax({
+
+        url : '/ventas/guardaVenta/',
+         dataType: "json",
+         type: "get",
+         data : {'idVenta':idVenta,'peso':peso},
+         success : function(respuesta){
+             alert(respuesta);
+                      }
+    });
+    }
 }
 
 function CostearDesposte()
@@ -57,6 +79,43 @@ function CostearDesposte()
      });
     }
 }
+function calculoValorProducto()
+{
+    var peso = $('#id_peso').val();
+    var vrKilo = $('#id_vrUnitario').val();
+    var total = Math.round((vrKilo * peso)/1000);
+
+    $('#id_vrTotal').val(total);
+}
+
+function consultaValorProducto()
+{
+    var combo = $('#id_producto').val();
+    var idVenta = $('#codigoVenta').text();
+    var peso = $('#id_peso').val();
+
+     $.ajax({
+
+        url : '/ventas/consultaPrecioProducto/',
+         dataType: "json",
+         type: "get",
+         data : {'idProducto':combo,'idVenta':idVenta,'peso':peso},
+         success : function(respuesta){
+
+             if(respuesta)
+             {
+                 $('#id_vrUnitario').val(respuesta)
+             }else
+             {
+                 alert('No hay existencias en almacen')
+             }
+
+                      }
+    });
+
+
+}
+
 function GuardarDesposte()
 {
     var idDesposte = parseInt($('#codigoPlanilla').text());

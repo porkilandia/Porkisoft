@@ -16,3 +16,11 @@ class DetallePedidoForm(ModelForm):
         model = DetallePedido
         exclude = ('subproducto',)
 
+class VentaForm(ModelForm):
+    class Meta:
+        model = Venta
+        exclude = ('TotalVenta',)
+
+class VentaDetalleForm(ModelForm):
+    class Meta:
+        model = DetalleVenta
