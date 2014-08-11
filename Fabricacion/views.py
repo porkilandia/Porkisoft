@@ -93,13 +93,13 @@ def GestionCanal(request,idrecepcion):
                 transporte = 7000* cantidad
                 deguello = 48200 * cantidad
                 pesoPorkilandia = Decimal(request.POST.get('pesoPorkilandia'))
-                cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gte = 170)# busca registros que el peso sea mayor o igual a 150
-                cantidadCanalCerdasChicas = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__lte = 169)# busca registros que el peso sea menor o igual a 150
+                cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gte = 200)# busca registros que el peso sea mayor o igual a 150
+                cantidadCanalCerdasChicas = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__lte = 199)# busca registros que el peso sea menor o igual a 150
 
                 incrementoCG = 35 * cantidadCanalCerdasGrandes.count()
                 incrementoCP = 32 * cantidadCanalCerdasChicas.count()
 
-                if pesoPorkilandia >= 170:
+                if pesoPorkilandia >= 200:
                     incrementoCG += 35
                 else:
                     incrementoCP += 32
@@ -1039,8 +1039,8 @@ def costeoDesposte(request):
         Cif = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Cerdo').valorCif
         Mod = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Cerdo').valorMod
     if tipoCompra == 'Cerdas':
-        Cif = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Cerda').valorCif
-        Mod = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Cerda').valorMod
+        Cif = ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas').valorCif
+        Mod = ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas').valorMod
 
 
 
@@ -1076,8 +1076,11 @@ def costeoDesposte(request):
         if detalle.grupo == 'Grupo Desechos':
             costoKilo = int(kiloDesecho) + ((cif + modProducto)/(detalle.PesoProducto/1000))
         # el costo del kilo del producto mas los gastos de administracion
-        producto.costoProducto = costoKilo * 1.23
+        producto.costoProducto = costoKilo * Decimal(1.23)
         producto.save()
+        # se guarda el costo actual para tener un historico del costo en ese desposte en especifico
+        detalle.costoProducto = costoKilo * Decimal(1.23)
+        detalle.save()
 
 
     exito = '%s productos Fueron Costeados exitosamente ¡¡'%productosCosteados
@@ -1091,9 +1094,21 @@ def GuardarDesposte(request):
     detalleDesposte = DetallePlanilla.objects.filter(planilla = desposte.codigoPlanilla)
     productosGuardados = detalleDesposte.count()
 
+    bola = 0
+    pechoEspaldilla = 0
+
     for detalle in detalleDesposte:
         #tomo el producto que voy a guardar en bodega
         producto = Producto.objects.get(pk = detalle.producto.codigoProducto)
+
+        #Se suman todas los productos seleccionados a bola
+        if producto.nombreProducto == 'Bolas Negras' or producto.nombreProducto == 'Bolas Blancas' or producto.nombreProducto == 'Caderas'or producto.nombreProducto == 'Tablas' or producto.nombreProducto == 'Tortugas':
+            bola += detalle.PesoProducto
+
+        #Se suman todas los productos seleccionados a PechoEspaldilla
+        if producto.nombreProducto == 'Pechos' or producto.nombreProducto == 'Espaldilla':
+            pechoEspaldilla += detalle.PesoProducto
+
         #tomo la bodega a la cual quiero asignar ese producto
         bodega = ProductoBodega.objects.get(bodega = 5,producto = producto.codigoProducto)
         # si el producto que esta en la lista para ser guardado estan los productos de sacrificio
@@ -1110,7 +1125,16 @@ def GuardarDesposte(request):
             bodega.pesoProductoStock = bodega.pesoProductoStock
         else:
             bodega.pesoProductoStock += detalle.PesoProducto
+
         bodega.save()
+
+        bodegaPE = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Pecho Espaldilla')
+        bodegaPE.pesoProductoStock += pechoEspaldilla
+        bodegaPE.save()
+
+        bodegaBola = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Bola')
+        bodegaBola.pesoProductoStock += bola
+        bodegaBola.save()
 
     exito = '%s productos se guardaron exitosamente'%productosGuardados
     respuesta = json.dumps(exito)

@@ -123,7 +123,9 @@ class DetallePlanilla (models.Model):
 
     planilla = models.ForeignKey(PlanillaDesposte)
     producto = models.ForeignKey(Producto)
+    unidades = models.IntegerField(verbose_name='Unidades',default=0)
     PesoProducto = models.DecimalField(max_digits=9,decimal_places=3, verbose_name='Peso Producto')
+    costoProducto = models.BigIntegerField(verbose_name = 'Costo Producto', default=0)
     grupo = models.CharField(verbose_name='Grupo', choices=OpGrupo,default='Macho', max_length=20)
     vrKiloCarnes = models.IntegerField(verbose_name='Vr.Carnes', default=0)
     vrKiloCostilla = models.IntegerField(verbose_name='Vr.Costilla', default=0)

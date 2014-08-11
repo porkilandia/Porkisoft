@@ -80,7 +80,7 @@ class DetalleTrasladoForm(ModelForm):
 class PlanillaRecepcionForm(ModelForm):
     class Meta:
         model = PlanillaRecepcion
-        exclude = ("difPieCanal","cantCabezas",)
+        exclude = ("difPieCanal",)
 
 
 

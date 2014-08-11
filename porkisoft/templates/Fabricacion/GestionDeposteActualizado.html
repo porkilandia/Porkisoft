@@ -89,13 +89,15 @@
 <table class="table-striped">
     <thead>
         <tr>
-            <th style="text-align: center" colspan="5">CARNES</th>
+            <th style="text-align: center" colspan="7">CARNES</th>
         </tr>
         <tr>
             <th>cod Producto</th>
             <th>Producto</th>
             <th>Grupo</th>
+            <th>Unidades</th>
             <th>Peso Producto</th>
+            <th>Costo</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -105,7 +107,9 @@
                 <td>{{ carne.producto.codigoProducto }}</td>
                 <td>{{ carne.producto }}</td>
                 <td>{{ carne.producto.grupo.nombreGrupo }}</td>
+                <td>{{ carne.unidades }}</td>
                 <td>{{ carne.PesoProducto| floatformat }}</td>
+                <td>{{ carne.costoProducto }}</td>
                 <td>
                     <a href="{% url 'Fabricacion.views.EditaDetPlanilla' carne.id %}">Modificar</a>
                 </td>
@@ -120,7 +124,7 @@
             <th>{{ vrCarnes }}</th>
             <th>Costo Kilo Base</th>
             <th id="kiloCarnes">{{ vrKiloCarnes | floatformat }}</th>
-            <th></th>
+            <th></th><th></th><th></th>
         </tr>
 
     </tbody>
@@ -132,13 +136,15 @@
 <table class="table-striped">
     <thead>
         <tr>
-            <th style="text-align: center" colspan="5">COSTILLAS</th>
+            <th style="text-align: center" colspan="7">COSTILLAS</th>
         </tr>
         <tr>
             <th>cod Producto</th>
             <th>Producto</th>
             <th>Grupo</th>
+            <th>Unidades</th>
             <th>Peso Producto</th>
+            <th>Costo</th>
             <th>Acciones</th>
 
 
@@ -150,7 +156,9 @@
                 <td>{{ costilla.producto.codigoProducto }}</td>
                 <td>{{ costilla.producto }}</td>
                 <td>{{ costilla.producto.grupo.nombreGrupo }}</td>
+                <td>{{ costilla.unidades }}</td>
                 <td>{{ costilla.PesoProducto| floatformat }}</td>
+                <td>{{ costilla.costoProducto }}</td>
                 <td>
                     <a href="{% url 'Fabricacion.views.EditaDetPlanilla' costilla.id %}">Modificar</a>
                 </td>
@@ -163,7 +171,7 @@
             <th>{{ vrCostillas }}</th>
             <th>Costo Kilo Base</th>
             <th id="kiloCostilla">{{ vrKiloCostillas | floatformat }}</th>
-            <th></th>
+            <th></th><th></th><th></th>
         </tr>
 
     </tbody>
@@ -174,13 +182,15 @@
 <table class="table-striped">
     <thead>
         <tr>
-            <th style="text-align: center"  colspan="5">SUB PRODUCTOS</th>
+            <th style="text-align: center"  colspan="7">SUB PRODUCTOS</th>
         </tr>
         <tr>
             <th>cod Producto</th>
             <th>Producto</th>
             <th>Grupo</th>
+            <th>Unidades</th>
             <th>Peso Producto</th>
+            <th>Costo</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -190,7 +200,9 @@
                 <td>{{ subp.producto.codigoProducto }}</td>
                 <td>{{ subp.producto }}</td>
                 <td>{{ subp.producto.grupo.nombreGrupo }}</td>
+                <td>{{ subp.unidades }}</td>
                 <td>{{ subp.PesoProducto| floatformat }}</td>
+                <td>{{ subp.costoProducto }}</td>
                 <td>
                     <a href="{% url 'Fabricacion.views.EditaDetPlanilla' subp.id %}">Modificar</a>
                 </td>
@@ -202,8 +214,7 @@
             <th>{{ vrsubProd }}</th>
             <th>Costo Kilo Base</th>
             <th id="kiloSubProd">{{ vrKiloSubProd | floatformat}}</th>
-            <th></th>
-            <th></th>
+            <th></th><th></th><th></th>
         </tr>
 
     </tbody>
@@ -214,13 +225,15 @@
 <table class="table-striped">
     <thead>
         <tr>
-            <th style="text-align: center" colspan="5">HUESOS</th>
+            <th style="text-align: center" colspan="7">HUESOS</th>
         </tr>
         <tr>
             <th>cod Producto</th>
             <th>Producto</th>
             <th>Grupo</th>
+            <th>Unidades</th>
             <th>Peso Producto</th>
+            <th>Costo</th>
             <th>Acciones</th>
 
 
@@ -232,7 +245,9 @@
                 <td>{{ hueso.producto.codigoProducto }}</td>
                 <td>{{ hueso.producto }}</td>
                 <td>{{ hueso.producto.grupo.nombreGrupo }}</td>
+                <td>{{ hueso.unidades }}</td>
                 <td>{{ hueso.PesoProducto| floatformat }}</td>
+                <td>{{ hueso.costoProducto }}</td>
                 <td>
                     <a href="{% url 'Fabricacion.views.EditaDetPlanilla' hueso.id %}">Modificar</a>
                 </td>
@@ -245,7 +260,7 @@
             <th>{{ vrHuesos }}</th>
             <th>Costo Kilo Base</th>
             <th id="kiloHueso">{{ vrKiloHuesos| floatformat }}</th>
-            <TH></TH>
+            <th></th><th></th><th></th>
         </tr>
 
     </tbody>
@@ -255,13 +270,15 @@
 <table class="table-striped">
     <thead>
         <tr>
-            <th style="text-align: center" colspan="5">DESECHOS</th>
+            <th style="text-align: center" colspan="7">DESECHOS</th>
         </tr>
         <tr>
             <th>cod Producto</th>
             <th>Producto</th>
             <th>Grupo</th>
+            <th>Unidades</th>
             <th>Peso Producto</th>
+            <th>Costo</th>
             <th>Acciones</th>
 
 
@@ -273,7 +290,9 @@
                 <td>{{ desecho.producto.codigoProducto }}</td>
                 <td>{{ desecho.producto }}</td>
                 <td>{{ desecho.producto.grupo.nombreGrupo }}</td>
+                <td>{{ desecho.unidades }}</td>
                 <td>{{ desecho.PesoProducto| floatformat }}</td>
+                <td>{{ desecho.costoProducto }}</td>
                 <td>
                     <a href="{% url 'Fabricacion.views.EditaDetPlanilla' desecho.id %}">Modificar</a>
                 </td>
@@ -285,7 +304,7 @@
             <th>{{ vrDesecho }}</th>
             <th>Costo Kilo Base</th>
             <th id="kiloDesecho">{{ vrKiloDesecho | floatformat }}</th>
-            <th></th>
+           <th></th><th></th><th></th>
 
         </tr>
 

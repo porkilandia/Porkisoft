@@ -50,7 +50,7 @@ def listaProductos(request):
             producto.precioSugerido = ceil(producto.costoProducto * 1.35)
         elif producto.subGrupo == 'Calidad 3':
             producto.precioSugerido = ceil(producto.costoProducto * 1.25)
-        #producto.save()
+        producto.save()
 
     if request.method == 'POST':
         formulario = ProductoForm(request.POST)
