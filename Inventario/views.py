@@ -43,8 +43,14 @@ def listaProductos(request):
 
     #se actualiza el precio sugerido del producto
     for producto in productos:
-        producto.precioSugerido = ceil(producto.costoProducto / 0.78)
-        producto.save()
+
+        if producto.subGrupo == 'Calidad 1':
+            producto.precioSugerido = ceil(producto.costoProducto * 1.30)
+        elif producto.subGrupo == 'Calidad 2':
+            producto.precioSugerido = ceil(producto.costoProducto * 1.35)
+        elif producto.subGrupo == 'Calidad 3':
+            producto.precioSugerido = ceil(producto.costoProducto * 1.25)
+        #producto.save()
 
     if request.method == 'POST':
         formulario = ProductoForm(request.POST)

@@ -22,12 +22,22 @@ class Bodega(models.Model):
         return self.nombreBodega
 
 class Producto(models.Model):
+    SubGrupo = (
+    ('Calidad 1', 'Calidad 1'),
+    ('Calidad 2', 'Calidad 2'),
+    ('Calidad 3', 'Calidad 3'),
+    )
     codigoProducto = models.AutoField(primary_key=True, verbose_name='Codigo Producto')
     grupo = models.ForeignKey(Grupo)
-    porcentajeCalidad = models.DecimalField(verbose_name = 'Calidad',max_digits=5, decimal_places=2, default=0 )
+    subGrupo = models.CharField(verbose_name='SubGrupo',max_length=20,choices=SubGrupo,default=0)
     nombreProducto = models.CharField(verbose_name = 'Nombre Producto',max_length=50)
     costoProducto = models.BigIntegerField(verbose_name = 'Costo Producto', default=0)
-    vrVentaProducto = models.IntegerField(verbose_name = 'Valor de Venta', default=0)
+    vrVentaLorenzo = models.IntegerField(verbose_name = 'Vr. Lorenzo', default=0)
+    vrVentaCentro = models.IntegerField(verbose_name = 'Vr. Centro', default=0)
+    vrVentaPotrerillo = models.IntegerField(verbose_name = 'Vr. Potrerillo', default=0)
+    vrVentaNorte = models.IntegerField(verbose_name = 'Vr.Norte', default=0)
+    vrVentaContado = models.IntegerField(verbose_name = 'Vr. Contado', default=0)
+    vrVentaCredito = models.IntegerField(verbose_name = 'Vr. Credito', default=0)
     precioSugerido = models.IntegerField(verbose_name='Precio Sugerido', default=0)
     gravado = models.BooleanField(verbose_name = 'Gravado', default=False)
     excento = models.BooleanField(verbose_name='Excento',default=False)

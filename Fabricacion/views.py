@@ -1075,8 +1075,8 @@ def costeoDesposte(request):
             costoKilo = int(kiloSubProd) + ((cif + modProducto)/(detalle.PesoProducto/1000))
         if detalle.grupo == 'Grupo Desechos':
             costoKilo = int(kiloDesecho) + ((cif + modProducto)/(detalle.PesoProducto/1000))
-
-        producto.costoProducto = costoKilo
+        # el costo del kilo del producto mas los gastos de administracion
+        producto.costoProducto = costoKilo * 1.23
         producto.save()
 
 
