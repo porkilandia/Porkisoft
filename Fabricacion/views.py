@@ -201,7 +201,10 @@ def GestionSacrificio(request,idrecepcion):
 
             menudo = cantCabezas * 90000
             deguello = cantCabezas * 82800
-            transporte = cantCabezas * 8000
+            if recepcion.transporte == 'Particular':
+                transporte = 0
+            else:
+                transporte = cantCabezas * 8000
 
             sacrificio.recepcion = recepcion
             sacrificio.piel = totalPieles
@@ -845,6 +848,7 @@ def GestionDesposteActualizado(request, idplanilla):
 
     #Filtramos los despostes en grupos para su posterior costeo
     carnes = detalleDespostes.filter(grupo = 'Grupo Carnes')
+    carnes2 = detalleDespostes.filter(grupo = 'Grupo Carnes 2')
     costillas = detalleDespostes.filter(grupo = 'Grupo Costillas')
     huesos = detalleDespostes.filter(grupo = 'Grupo Huesos')
     subProductos = detalleDespostes.filter(grupo = 'Grupo SubProductos')
@@ -858,6 +862,7 @@ def GestionDesposteActualizado(request, idplanilla):
 
     #calculamos el peso del grupo
     pesoCarnes = 0
+    pesoCarnes2 = 0
     pesoCostillas = 0
     pesoHuesos = 0
     pesoSubProd = 0
@@ -867,6 +872,8 @@ def GestionDesposteActualizado(request, idplanilla):
 
     for peso in carnes:
         pesoCarnes += peso.PesoProducto
+    for peso in carnes2:
+        pesoCarnes2 += peso.PesoProducto
     for peso in costillas:
         pesoCostillas += peso.PesoProducto
     for peso in huesos:
@@ -883,30 +890,47 @@ def GestionDesposteActualizado(request, idplanilla):
 
     # Extraemos el peso total de los canales a despostar ademas del valor del kilo del canal
     pesoCanales = 0
-    vrKiloCanal = 0
-
-    for canal in canales:
+    vrKiloCanal = 100000 # valor inicial antes de coenzar el ciclo
+    canalActual = 0
+    for canal in canales:# ciclo para saber el costo del kilo en canal
         pesoCanales += canal.pesoPorkilandia
-        vrKiloCanal = canal.vrKiloCanal
+        canalActual = canal.vrKiloCanal + 1
+        if canalActual <= vrKiloCanal:
+            vrKiloCanal = canal.vrKiloCanal
+
+
+
 
     #Calculamos el peso total de desposte
 
-    pesoTotalDesposte = pesoCarnes + pesoCostillas + pesoHuesos + pesoSubProd + pesoDesecho
+    pesoTotalDesposte = pesoCarnes +pesoCarnes2+ pesoCostillas + pesoHuesos + pesoSubProd + pesoDesecho
 
     #el valor total de los canales a despostar se calcula con el peso de canales y el valor del kilo en canal
     vrTotalCanales = pesoCanales * vrKiloCanal
 
     # calculamos el valor de cada grupo multiplicando el %Grupo por el vrTotalCanales
     if tipoDesposte == 'Cerdos':
-        vrCarnes = ceil((vrTotalCanales * 76)/100)
-        vrCostillas = ceil((vrTotalCanales * 12)/100)
+        vrCarnes = ceil((vrTotalCanales * 62)/100)
+        vrCarnes2 = ceil((vrTotalCanales * 15)/100)
+        vrCostillas = ceil((vrTotalCanales * 13)/100)
         vrHuesos = 0
-        vrsubProd = ceil((vrTotalCanales * 10)/100)
+        vrsubProd = ceil((vrTotalCanales * 9)/100)
+        vrDesecho = ceil((vrTotalCanales * 1)/100)
+        pesoAsumido =Decimal(vrDesecho) + perdidaPeso
+        vrCarnes =Decimal(vrCarnes) + pesoAsumido
+
+    elif tipoDesposte == 'Cerdas':
+        vrCarnes = ceil((vrTotalCanales * 49)/100)
+        vrCarnes2 = ceil((vrTotalCanales * 30)/100)
+        vrCostillas = ceil((vrTotalCanales * 10)/100)
+        vrHuesos = ceil((vrTotalCanales * 6)/100)
+        vrsubProd = ceil((vrTotalCanales * 7)/100)
         vrDesecho = ceil((vrTotalCanales * 2)/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
     else:
-        vrCarnes = ceil((vrTotalCanales * 75)/100)
+        vrCarnes = ceil((vrTotalCanales * 42)/100)
+        vrCarnes2 = ceil((vrTotalCanales * 33)/100)
         vrCostillas = ceil((vrTotalCanales * 10)/100)
         vrHuesos = ceil((vrTotalCanales * 6)/100)
         vrsubProd = ceil((vrTotalCanales * 7)/100)
@@ -915,11 +939,17 @@ def GestionDesposteActualizado(request, idplanilla):
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
 
 
+
     #calculamos el valor del kilo base en cada grupo
     if pesoCarnes == 0:
         vrKiloCarnes = 0
     else:
          vrKiloCarnes = Decimal(vrCarnes) / (pesoCarnes / 1000)
+
+    if pesoCarnes2 == 0:
+        vrKiloCarnes2 = 0
+    else:
+         vrKiloCarnes2 = Decimal(vrCarnes2) / (pesoCarnes2 / 1000)
 
     if pesoCostillas == 0:
         vrKiloCostillas = 0
@@ -987,6 +1017,7 @@ def GestionDesposteActualizado(request, idplanilla):
 
            #guardamos todos los datos en el detalle del desposte
            detalles.vrKiloCarnes = vrKiloCarnes
+           detalles.vrKiloCarnes2 = vrKiloCarnes2
            detalles.vrKiloCostilla = vrKiloCostillas
            detalles.vrKiloHuesos = vrKiloHuesos
            detalles.vrKiloSubProd = vrKiloSubProd
@@ -1003,10 +1034,10 @@ def GestionDesposteActualizado(request, idplanilla):
     else:
         formulario = DetalleDesposteForm(initial={'planilla':idplanilla})
 
-    contexto = {'vrKiloCarnes':vrKiloCarnes,'vrKiloCostillas':vrKiloCostillas,'vrKiloHuesos':vrKiloHuesos,
-                'vrKiloSubProd':vrKiloSubProd,'vrKiloDesecho':vrKiloDesecho,'carnes':carnes,'costillas':costillas,
+    contexto = {'vrKiloCarnes2':vrKiloCarnes2,'vrKiloCarnes':vrKiloCarnes,'vrKiloCostillas':vrKiloCostillas,'vrKiloHuesos':vrKiloHuesos,
+                'vrKiloSubProd':vrKiloSubProd,'vrKiloDesecho':vrKiloDesecho,'carnes2':carnes2,'carnes':carnes,'costillas':costillas,
                 'huesos':huesos,'subProductos':subProductos,'desechos':desechos,'formulario':formulario,'desposte':desposte,
-                'canales':canales,'detalleDespostes':detalleDespostes,'vrCarnes':vrCarnes,'vrCostillas':vrCostillas,
+                'canales':canales,'detalleDespostes':detalleDespostes,'vrCarnes':vrCarnes,'vrCarnes2':vrCarnes2,'vrCostillas':vrCostillas,
                 'vrHuesos':vrHuesos,'vrsubProd':vrsubProd,'vrDesecho':vrDesecho}
 
     return render_to_response('Fabricacion/GestionDeposteActualizado.html',
@@ -1053,6 +1084,7 @@ def costeoDesposte(request):
 
 
     kiloCarnes = request.GET.get('kiloCarnes')
+    kiloCarnes2 = request.GET.get('kiloCarnes2')
     kiloCostilla = request.GET.get('kiloCostilla')
     kiloHueso = request.GET.get('kiloHueso')
     kiloSubProd = request.GET.get('kiloSubProd')
@@ -1067,6 +1099,8 @@ def costeoDesposte(request):
 
         if detalle.grupo == 'Grupo Carnes':
             costoKilo = int(kiloCarnes) + ((cif + modProducto)/(detalle.PesoProducto/1000))
+        if detalle.grupo == 'Grupo Carnes 2':
+            costoKilo = int(kiloCarnes2) + ((cif + modProducto)/(detalle.PesoProducto/1000))
         if detalle.grupo == 'Grupo Costillas':
             costoKilo = int(kiloCostilla) + ((cif + modProducto)/(detalle.PesoProducto/1000))
         if detalle.grupo == 'Grupo Huesos':
@@ -1079,7 +1113,8 @@ def costeoDesposte(request):
         producto.costoProducto = costoKilo * Decimal(1.23)
         producto.save()
         # se guarda el costo actual para tener un historico del costo en ese desposte en especifico
-        detalle.costoProducto = costoKilo * Decimal(1.23)
+        detalle.costoProducto = costoKilo
+        detalle.costoAdtvo = costoKilo * Decimal(1.23)
         detalle.save()
 
 
@@ -1094,20 +1129,10 @@ def GuardarDesposte(request):
     detalleDesposte = DetallePlanilla.objects.filter(planilla = desposte.codigoPlanilla)
     productosGuardados = detalleDesposte.count()
 
-    bola = 0
-    pechoEspaldilla = 0
 
     for detalle in detalleDesposte:
         #tomo el producto que voy a guardar en bodega
         producto = Producto.objects.get(pk = detalle.producto.codigoProducto)
-
-        #Se suman todas los productos seleccionados a bola
-        if producto.nombreProducto == 'Bolas Negras' or producto.nombreProducto == 'Bolas Blancas' or producto.nombreProducto == 'Caderas'or producto.nombreProducto == 'Tablas' or producto.nombreProducto == 'Tortugas':
-            bola += detalle.PesoProducto
-
-        #Se suman todas los productos seleccionados a PechoEspaldilla
-        if producto.nombreProducto == 'Pechos' or producto.nombreProducto == 'Espaldilla':
-            pechoEspaldilla += detalle.PesoProducto
 
         #tomo la bodega a la cual quiero asignar ese producto
         bodega = ProductoBodega.objects.get(bodega = 5,producto = producto.codigoProducto)
@@ -1123,18 +1148,11 @@ def GuardarDesposte(request):
             bodega.pesoProductoStock = bodega.pesoProductoStock
         elif producto.nombreProducto == 'Recortes Sacrificio':
             bodega.pesoProductoStock = bodega.pesoProductoStock
-        else:
+        else:#Se guardan el peso y las unidades en inventario
             bodega.pesoProductoStock += detalle.PesoProducto
+            bodega.unidadesStock += detalle.unidades
 
         bodega.save()
-
-        bodegaPE = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Pecho Espaldilla')
-        bodegaPE.pesoProductoStock += pechoEspaldilla
-        bodegaPE.save()
-
-        bodegaBola = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Bola')
-        bodegaBola.pesoProductoStock += bola
-        bodegaBola.save()
 
     exito = '%s productos se guardaron exitosamente'%productosGuardados
     respuesta = json.dumps(exito)
@@ -1165,6 +1183,7 @@ def EditaDetPlanilla(request,idDetalle):
 
     #Filtramos los despostes en grupos para su posterior costeo
     carnes = detalleDespostes.filter(grupo = 'Grupo Carnes')
+    carnes2 = detalleDespostes.filter(grupo = 'Grupo Carnes 2')
     costillas = detalleDespostes.filter(grupo = 'Grupo Costillas')
     huesos = detalleDespostes.filter(grupo = 'Grupo Huesos')
     subProductos = detalleDespostes.filter(grupo = 'Grupo SubProductos')
@@ -1178,7 +1197,7 @@ def EditaDetPlanilla(request,idDetalle):
     else:
         formulario = DetalleDesposteForm(instance=detalle)
 
-    contexto = {'carnes':carnes,'costillas':costillas,'huesos':huesos,'subProductos':subProductos,
+    contexto = {'carnes2':carnes2,'carnes':carnes,'costillas':costillas,'huesos':huesos,'subProductos':subProductos,
                 'desechos':desechos,'formulario':formulario,'desposte':desposte,'canales':canales,
                 'detalleDespostes':detalleDespostes}
 

@@ -9,7 +9,7 @@ from Inventario.models import *
 class SacrificioForm(ModelForm):
     class Meta:
         model = Sacrificio
-        exclude = ("compra","cantReses","piel","vrMenudo","vrDeguello","vrTransporte")
+        exclude = ("compra","cantReses","piel","vrMenudo","vrDeguello",)
 
 class EnsalinadoForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -89,7 +89,7 @@ class CanalForm(ModelForm):
 class DetalleDesposteForm(ModelForm):
     class Meta:
         model = DetallePlanilla
-        exclude = ("vrKiloCostilla","costoProducto","vrKiloCarnes","vrKiloHuesos","vrKiloSubProd","pesoCostilla","vrKiloDesecho","pesoCarne","pesoHueso","pesoSubProd","pesoDesecho")
+        exclude = ("vrKiloCostilla","costoProducto","costoAdtvo","vrKiloCarnes","vrKiloHuesos","vrKiloSubProd","pesoCostilla","vrKiloDesecho","pesoCarne","pesoHueso","pesoSubProd","pesoDesecho")
 
 class costoForm(ModelForm):
     class Meta:

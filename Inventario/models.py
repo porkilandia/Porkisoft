@@ -204,3 +204,6 @@ class PlanillaRecepcion(models.Model):
 
     def __unicode__(self):
         return self.codigoRecepcion
+
+class ListadoPrecios(models.Model):
+    nombreLista = models.CharField(verbose_name='Nombre',max_length=50)

@@ -56,6 +56,7 @@ function CostearDesposte()
     var idDesposte = parseInt($('#codigoPlanilla').text());
     var pesoCanales = parseInt($('#pesoCanales').text());
     var kiloCarnes = parseInt($('#kiloCarnes').text());
+    var kiloCarnes2 = parseInt($('#kiloCarnes2').text());
     var kiloCostilla = parseInt($('#kiloCostilla').text());
     var kiloHueso = parseInt($('#kiloHueso').text());
     var kiloSubProd = parseInt($('#kiloSubProd').text());
@@ -71,7 +72,7 @@ function CostearDesposte()
          dataType: "json",
          type: "get",
          data : {'kiloCostilla':kiloCostilla,'idDesposte':idDesposte,'pesoCanales':pesoCanales,'kiloCarnes':kiloCarnes,
-             'kiloHueso':kiloHueso,'kiloSubProd':kiloSubProd,'kiloDesecho':kiloDesecho},
+             'kiloCarnes2':kiloCarnes2,'kiloHueso':kiloHueso,'kiloSubProd':kiloSubProd,'kiloDesecho':kiloDesecho},
          success : function(respuesta){
              alert(respuesta)
          }

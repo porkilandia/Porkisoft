@@ -45,11 +45,11 @@ def listaProductos(request):
     for producto in productos:
 
         if producto.subGrupo == 'Calidad 1':
-            producto.precioSugerido = ceil(producto.costoProducto * 1.30)
+            producto.precioSugerido = ceil(producto.costoProducto * 1.10)
         elif producto.subGrupo == 'Calidad 2':
-            producto.precioSugerido = ceil(producto.costoProducto * 1.35)
+            producto.precioSugerido = ceil(producto.costoProducto * 1.10)
         elif producto.subGrupo == 'Calidad 3':
-            producto.precioSugerido = ceil(producto.costoProducto * 1.25)
+            producto.precioSugerido = ceil(producto.costoProducto * 1.10)
         producto.save()
 
     if request.method == 'POST':

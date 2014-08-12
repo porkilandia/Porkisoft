@@ -115,6 +115,7 @@ class Sacrificio(models.Model):
 class DetallePlanilla (models.Model):
     OpGrupo = (
         ('Grupo Carnes','Grupo Carnes'),
+        ('Grupo Carnes 2','Grupo Carnes 2'),
         ('Grupo Costillas','Grupo Costillas'),
         ('Grupo Huesos' , 'Grupo Huesos'),
         ('Grupo SubProductos' , 'Grupo SubProductos'),
@@ -125,9 +126,11 @@ class DetallePlanilla (models.Model):
     producto = models.ForeignKey(Producto)
     unidades = models.IntegerField(verbose_name='Unidades',default=0)
     PesoProducto = models.DecimalField(max_digits=9,decimal_places=3, verbose_name='Peso Producto')
-    costoProducto = models.BigIntegerField(verbose_name = 'Costo Producto', default=0)
+    costoProducto = models.BigIntegerField(verbose_name = 'Costo Primario', default=0)
+    costoAdtvo = models.BigIntegerField(verbose_name = 'Costo Admin', default=0)
     grupo = models.CharField(verbose_name='Grupo', choices=OpGrupo,default='Macho', max_length=20)
-    vrKiloCarnes = models.IntegerField(verbose_name='Vr.Carnes', default=0)
+    vrKiloCarnes = models.IntegerField(verbose_name='Vr.Carnes 1', default=0)
+    vrKiloCarnes2 = models.IntegerField(verbose_name='Vr.Carnes 2', default=0)
     vrKiloCostilla = models.IntegerField(verbose_name='Vr.Costilla', default=0)
     vrKiloHuesos = models.IntegerField(verbose_name='Vr.Hueso', default=0)
     vrKiloSubProd = models.IntegerField(verbose_name='Vr.Sub Prod', default=0)
