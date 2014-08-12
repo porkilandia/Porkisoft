@@ -11,12 +11,13 @@
 
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+<a id="Guardatraslado" href="#"><input type="button" value="Aplicar Traslado" class="btn btn-danger"></a>
 <a id="pdf" href="{% url 'Inventario.views.ReporteTraslado' idtraslado %}"><input type="button" value="Pdf" class="btn btn-success"></a>
     <br/><br/><br/>
      <table  class="table-striped">
         <thead>
         <tr>
-            
+            <th>Codigo</th>
             <th>Desde</th>
             <th>Hasta</th>
             <th>Responsable</th>
@@ -30,8 +31,9 @@
         <tbody>
 
             <tr>
-            <td>{{ traslado.bodegaActual }}</td>
-            <td>{{ traslado.bodegaDestino }}</td>
+            <td id="codigoTraslado">{{ traslado.codigoTraslado }}</td>
+            <td >{{ traslado.bodegaActual }}</td>
+            <td >{{ traslado.bodegaDestino }}</td>
             <td>{{ traslado.empleado }}</td>
             <td>{{ traslado.fechaTraslado }}</td>
             <td>{{ traslado.estadoTraslado }}</td>
@@ -56,8 +58,8 @@
         <tbody>
             {% for detraslado in detraslados %}
         <tr>
-            <td>{{ detraslado.producto.nombreProducto }}</td>
-            <td>{{ detraslado.producto.grupo }}</td>
+            <td>{{ detraslado.productoTraslado.nombreProducto }}</td>
+            <td>{{ detraslado.productoTraslado.grupo }}</td>
             <td>{{ detraslado.pesoTraslado }}</td>
             <td>{{ detraslado.unidadesTraslado }}</td>
             <td>{{ detraslado.pesoEnvio }}</td>

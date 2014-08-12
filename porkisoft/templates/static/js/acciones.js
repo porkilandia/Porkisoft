@@ -16,6 +16,8 @@ $(document).on('ready', inicio);
      $('#id_producto').on('change',consultaValorProducto);
      $('#id_vrTotal').on('focus',calculoValorProducto);
      $('#guardarVentas').on('click',GuardarVentas);
+     $('#Guardatraslado').on('click',GuardarTraslado);
+     $('#id_productoTraslado').on('change',ConsultaStock);
 
      $('#canalPendiente').dataTable();
      $('#tablacostos').dataTable();
@@ -31,11 +33,56 @@ $(document).on('ready', inicio);
 
 
 }
+function ConsultaStock()
+{
+    var codigoTraslado = $('#codigoTraslado').text();
+    var pesoTraslado = $('#id_pesoTraslado').val();
+    var undTraslado = $('#id_unidadesTraslado').val();
+    var producto = $('#id_productoTraslado').val();
+    $.ajax({
+
+            url : '/inventario/consultaStock/',
+            dataType : "json",
+            type : "get",
+            data : {'producto':producto,'codigoTraslado':codigoTraslado,
+                'pesoTraslado':pesoTraslado,'undTraslado':undTraslado},
+            success : function(respuesta)
+            {
+                if (respuesta != '')
+                {
+                    alert(respuesta);
+                }
+
+            }
+
+        });
+}
+function GuardarTraslado()
+{
+    var codigoTraslado = $('#codigoTraslado').text();
+    var opcion = confirm('Desea guardar el traslado?');
+
+    if (opcion == true)
+    {
+        $.ajax({
+
+        url : '/inventario/guardaTraslado/',
+         dataType: "json",
+         type: "get",
+         data : {'codigoTraslado':codigoTraslado},
+         success : function(respuesta){
+             alert(respuesta);
+                      }
+    });
+    }
+
+}
 function GuardarVentas()
 {
     var opcion = confirm('Desea guardar los cambios?');
     var idVenta = $('#codigoVenta').text();
     var peso = parseFloat($('#peso').text());
+
     if (opcion == true)
     {
         $.ajax({

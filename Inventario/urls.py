@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     url(r'^provedorAjax/$', listaProvedoresAjax),
 
     url(r'^listaProd/$', listaProductos),
+    url(r'^consultaStock/$', consultaStock),
     url(r'^verSubProductos/$',listaSubProductos),
     url(r'^bodega/$',GestionBodega),
     url(r'^provedor/$',GestionProvedor),
@@ -17,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^recepcion/(?P<idcompra>\d+)',GestionPlanillaRecepcion),
 
     url(r'^traslado/$',GestionTraslados),
+    url(r'^guardaTraslado/$',GuardarTraslado),
     url(r'^dettraslado/(?P<idtraslado>\d+)',GestionDetalleTraslado),
     url(r'^reporteTraslado/(?P<idTraslado>\d+)',ReporteTraslado),
 

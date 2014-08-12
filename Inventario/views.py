@@ -12,7 +12,7 @@ import ho.pisa as pisa
 import cStringIO as StringIO
 import cgi
 from django.template.loader import render_to_string
-
+import json
 from Inventario.Forms.forms import *
 from Inventario.models import *
 
@@ -420,42 +420,9 @@ def GestionDetalleTraslado(request,idtraslado):
     if request.method == 'POST':
         formulario = DetalleTrasladoForm(request.POST)
         if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/inventario/dettraslado'+ idtraslado)
 
-            bodegaActual = ProductoBodega.objects.get(bodega = traslado.bodegaActual.codigoBodega,
-                                                      producto = request.POST.get('producto'))
-            destino = Bodega.objects.get(nombreBodega = traslado.bodegaDestino)
-            bodegaDestino = ProductoBodega.objects.get(bodega = destino.codigoBodega,
-                                                       producto = request.POST.get('producto'))
-
-            #Verificamos si la cantidad de producto que se traslada no excede las existencias
-            if int(request.POST.get('pesoTraslado')) <= bodegaActual.pesoProductoStock :
-                formulario.save()
-                pesoActualizado = bodegaActual.pesoProductoStock - int(request.POST.get('pesoTraslado'))
-                unidadesActualizadas = bodegaActual.unidadesStock - int(request.POST.get('unidadesTraslado'))
-
-                pesoDestinoActualizado = bodegaDestino.pesoProductoStock + int(request.POST.get('pesoTraslado'))
-                unidadesDestinoActualizadas = bodegaActual.unidadesStock + int(request.POST.get('unidadesTraslado'))
-
-                #Se extrae de la bodega actual
-                bodegaActual.pesoProductoStock = pesoActualizado
-                bodegaActual.pesoProductoKilos = pesoActualizado / 1000
-                bodegaActual.unidadesStock = unidadesActualizadas
-                bodegaActual.save()
-
-                #Se graba en la bodega destino
-                bodegaDestino.pesoProductoStock = pesoDestinoActualizado
-                bodegaDestino.pesoProductoKilos = pesoDestinoActualizado / 1000
-                bodegaDestino.unidadesStock= unidadesDestinoActualizadas
-                bodegaDestino.save()
-
-            else:
-                exito = True
-
-            return render_to_response('Inventario/GestionDetalleTraslado.html',{'idtraslado':idtraslado,'cantidadActual':bodegaActual,
-                                                                                'exito':exito,'formulario':formulario,
-
-                                                                                'traslado': traslado,'detraslados': detraslados},
-                                                        context_instance = RequestContext(request))
     else:
         formulario = DetalleTrasladoForm(initial={'traslado':idtraslado})
 
@@ -484,3 +451,56 @@ def ReporteTraslado(request,idTraslado):
     html = render_to_string('Fabricacion/ReporteTraslado.html', {'pagesize':'A4', 'detalleTraslado':detalleTraslado,'traslado':traslado},
                             context_instance=RequestContext(request))
     return generar_pdf(html)
+
+def GuardarTraslado(request):
+
+    codigoTraslado = request.GET.get('codigoTraslado')
+    detalleTraslado = DetalleTraslado.objects.filter(traslado = int(codigoTraslado))
+    traslado = Traslado.objects.get(pk = int(codigoTraslado))
+    cont = 0
+
+    for detalle in detalleTraslado:
+
+        bodegaOrigen = ProductoBodega.objects.get(bodega = traslado.bodegaActual.codigoBodega,producto = detalle.productoTraslado.codigoProducto)
+        bodegaDestino = ProductoBodega.objects.get(bodega__nombreBodega = traslado.bodegaDestino,producto = detalle.productoTraslado.codigoProducto)
+
+        bodegaOrigen.pesoProductoStock -= detalle.pesoTraslado
+        bodegaOrigen.unidadesStock -= detalle.unidadesTraslado
+
+        bodegaDestino.pesoProductoStock += detalle.pesoTraslado
+        bodegaDestino.unidadesStock += detalle.unidadesTraslado
+
+        bodegaOrigen.save()
+        bodegaDestino.save()
+
+        cont += 1
+
+    exito = 'se guardaron %d registros Exitosamente'%cont
+
+    respuesta = json.dumps(exito)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def consultaStock(request):
+    codigoProducto = request.GET.get('producto')
+    codigoTraslado = request.GET.get('codigoTraslado')
+    traslado = Traslado.objects.get(pk = int(codigoTraslado))
+
+    bodega = ProductoBodega.objects.get(bodega = traslado.bodegaActual,producto = int(codigoProducto))
+
+    pesoTraslado = request.GET.get('pesoTraslado')
+    undTraslado =request.GET.get('undTraslado')
+
+
+    if int(undTraslado) == 0 and int(pesoTraslado) <= bodega.pesoProductoStock:
+        msj =''
+    elif int(pesoTraslado) == 0 and int(undTraslado) <= bodega.unidadesStock:
+        msj =''
+    else:
+        msj = 'No hay esa cantidad en bodega, ahora hay : %d'%bodega.pesoProductoStock
+
+    respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+

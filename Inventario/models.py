@@ -110,9 +110,9 @@ class Traslado(models.Model):
 
 class DetalleTraslado (models.Model):
     traslado = models.ForeignKey(Traslado)
-    producto = models.ForeignKey(Producto,null=True,blank=True)
-    SubProducto = models.ForeignKey(SubProducto,null=True,blank=True)
     pesoTraslado = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso Traslado (grs)',default=0,null=True)
+    productoTraslado = models.ForeignKey(Producto,null=True,blank=True)
+    SubProducto = models.ForeignKey(SubProducto,null=True,blank=True)
     unidadesTraslado = models.IntegerField(verbose_name='Unidades', default=0,null=True)
     pesoEnvio = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso Envio (grs)')
     pesoLlegada = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso Llegada (grs)', null=True, default=0)
