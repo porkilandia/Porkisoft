@@ -63,7 +63,8 @@ class PlanillaDesposte(models.Model):
     difCanalADespostado = models.DecimalField(verbose_name='Diferencia de Canal/Desposte',max_digits=11,
                                               decimal_places=3, default=0)
     tipoDesposte = models.CharField(verbose_name='Tipos Desposte',blank=True,null=True,max_length=15)
-    costoProduccionTotal = models.IntegerField(verbose_name='Costo Produccion Total',default=0)
+    cif = models.IntegerField(verbose_name='CIf',default=0)
+    mod = models.IntegerField(verbose_name='MOD',default=0)
 
     def __unicode__(self):
         return self.fechaDesposte
@@ -208,7 +209,7 @@ class CondimentadoTajadoPechuga(models.Model):
 
 class ValoresCostos(models.Model):
     codigoCosto = models.AutoField(primary_key= True)
-    nombreCosto = models.CharField(max_length=20,verbose_name='Nombre')
+    nombreCosto = models.CharField(max_length=50,verbose_name='Nombre')
     valorCif = models.IntegerField(verbose_name='Valor Cif',default=0)
     valorMod = models.IntegerField(verbose_name='Valor Mod',default=0)
     valorKiloPie = models.IntegerField(verbose_name='Valor Kilo en Pie',default=0)
@@ -216,3 +217,25 @@ class ValoresCostos(models.Model):
 
     def __unicode__(self):
         return self.codigoCosto
+
+class DescarneCabeza(models.Model):
+
+    tipo = (
+        ('Cerdas','Cerdas'),
+        ('Cerdos','Cerdos')
+    )
+
+    fecha = models.DateField(verbose_name='Fecha')
+    tipo = models.CharField(max_length=10,choices=tipo,verbose_name='Tipo')
+    cantidad = models.IntegerField(verbose_name='Cantidad')
+    pesoCabezas = models.DecimalField(verbose_name='Peso Cab', max_digits=9, decimal_places=3,default=0)
+    recortes = models.DecimalField(verbose_name='Recortes', max_digits=9, decimal_places=3,default=0)
+    caretas = models.DecimalField(verbose_name='Caretas', max_digits=9, decimal_places=3,default=0)
+    lenguas = models.DecimalField(verbose_name='Lenguas', max_digits=9, decimal_places=3,default=0)
+    procesos = models.DecimalField(verbose_name='Procesos', max_digits=9, decimal_places=3,default=0)
+    mod = models.IntegerField(verbose_name='Mod',default=0)
+    cif = models.IntegerField(verbose_name='Cif',default=0)
+    vrKiloRecorte = models.IntegerField(default=0)
+    vrKiloLengua = models.IntegerField(default=0)
+    vrKiloCareta = models.IntegerField(default=0)
+    vrKiloProceso = models.IntegerField(default=0)

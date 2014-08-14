@@ -421,7 +421,7 @@ def GestionDetalleTraslado(request,idtraslado):
         formulario = DetalleTrasladoForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/inventario/dettraslado'+ idtraslado)
+            return HttpResponseRedirect('/inventario/dettraslado/'+ idtraslado)
 
     else:
         formulario = DetalleTrasladoForm(initial={'traslado':idtraslado})
@@ -474,7 +474,8 @@ def GuardarTraslado(request):
         bodegaDestino.save()
 
         cont += 1
-
+    traslado.guardado = True
+    traslado.save()
     exito = 'se guardaron %d registros Exitosamente'%cont
 
     respuesta = json.dumps(exito)

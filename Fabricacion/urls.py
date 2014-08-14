@@ -5,7 +5,7 @@ urlpatterns = patterns('',
     # Examples:
 
     url(r'^canalPendiente/$',InformeCanalesPendientes),
-
+    url(r'^descarne/$',GestionDescarneCabeza),
     url(r'^costos/$',GestionValorCostos),
     url(r'^editacosto/(?P<idcosto>\d+)',EditaCostos),
 

@@ -23,6 +23,7 @@
             <th>Responsable</th>
             <th>Fecha de Traslado</th>
             <th>Estado</th>
+            <th>Guardado</th>
 
 
 
@@ -37,6 +38,11 @@
             <td>{{ traslado.empleado }}</td>
             <td>{{ traslado.fechaTraslado }}</td>
             <td>{{ traslado.estadoTraslado }}</td>
+            {% if traslado.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
 
         </tr>
         </tbody>

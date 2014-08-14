@@ -921,10 +921,10 @@ def GestionDesposteActualizado(request, idplanilla):
 
     elif tipoDesposte == 'Cerdas':
         vrCarnes = ceil((vrTotalCanales * 49)/100)
-        vrCarnes2 = ceil((vrTotalCanales * 30)/100)
-        vrCostillas = ceil((vrTotalCanales * 10)/100)
+        vrCarnes2 = ceil((vrTotalCanales * 22)/100)
+        vrCostillas = ceil((vrTotalCanales * 11)/100)
         vrHuesos = ceil((vrTotalCanales * 6)/100)
-        vrsubProd = ceil((vrTotalCanales * 7)/100)
+        vrsubProd = ceil((vrTotalCanales * 8)/100)
         vrDesecho = ceil((vrTotalCanales * 2)/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
@@ -1049,6 +1049,8 @@ def costeoDesposte(request):
     desposte = PlanillaDesposte.objects.get(pk = idDesposte)
     detalleDesposte = DetallePlanilla.objects.filter(planilla = desposte.codigoPlanilla)
     productosCosteados = detalleDesposte.count()
+
+
     #Evaluamos de que tipo de compra vienen los canales despostados para aplicar valores de CIF y MOD
 
     Idrecepcion = 0
@@ -1066,6 +1068,7 @@ def costeoDesposte(request):
     if tipoCompra == 'Reses':
         Cif = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Reses').valorCif
         Mod = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Reses').valorMod
+
     if tipoCompra == 'Cerdos':
         Cif = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Cerdo').valorCif
         Mod = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Cerdo').valorMod
@@ -1110,12 +1113,19 @@ def costeoDesposte(request):
         if detalle.grupo == 'Grupo Desechos':
             costoKilo = int(kiloDesecho) + ((cif + modProducto)/(detalle.PesoProducto/1000))
         # el costo del kilo del producto mas los gastos de administracion
-        producto.costoProducto = costoKilo * Decimal(1.23)
+        producto.costoProducto = costoKilo
         producto.save()
         # se guarda el costo actual para tener un historico del costo en ese desposte en especifico
         detalle.costoProducto = costoKilo
         detalle.costoAdtvo = costoKilo * Decimal(1.23)
         detalle.save()
+
+         #Se guarda el cif y el mod actual
+        desposte.cif = Cif
+        desposte.mod = Mod
+        desposte.save()
+
+
 
 
     exito = '%s productos Fueron Costeados exitosamente ¡¡'%productosCosteados
@@ -1226,6 +1236,125 @@ def EditaCostos(request,idcosto):
 def InformeCanalesPendientes(request):
     canalPendiente = Canal.objects.filter(estado = False).order_by('codigoCanal')
     return render_to_response('Fabricacion/InformeCanalesPendientes.html',{'canalesPendientes':canalPendiente},
+                              context_instance = RequestContext(request))
+
+def GestionDescarneCabeza(request):
+
+    descarnes = DescarneCabeza.objects.all()
+    costoCabeza = Producto.objects.filter(nombreProducto = 'Cabeza')
+
+    # sacamos el costo de las cabezas de cerdo y cerda ppor separado
+    costoCabezaCerdo = 0
+    costoCabezaCerda = 0
+
+    for costo in costoCabeza:
+        if costo.grupo.nombreGrupo == 'Cerdos':
+            costoCabezaCerdo = costo.costoProducto
+        else:
+            costoCabezaCerda = costo.costoProducto
+
+
+
+    if request.method == 'POST':
+        formulario = DescarneForm(request.POST)
+        if formulario.is_valid():
+            descarne = formulario.save()
+
+            vrKiloRecorte = 0
+            vrKiloLenguas = 0
+            vrKiloCareta = 0
+            vrKiloProcesos = 0
+
+            #validamos el tipo de cabeza que se quiere procesar
+            if descarne.tipo == 'Cerdos':
+
+
+                #traemos los valores de costo y cantidad de cabezas
+                costoTotal =((descarne.pesoCabezas /descarne.cantidad)/1000) * costoCabezaCerda
+
+                cif = ValoresCostos.objects.get(nombreCosto = 'Costos Descarne Cerdo').valorCif
+                mod = ValoresCostos.objects.get(nombreCosto = 'Costos Descarne Cerdo').valorMod
+                #Sumamos el cif y el mod al costo total de cabezas
+                costoDescarne = (costoTotal * descarne.cantidad) + cif + mod
+
+                #Calculamos los costos de cada sub producto
+                costoRecorte = Decimal(0.30) * costoDescarne
+                vrKiloRecorte = ceil(Decimal(costoRecorte) / (descarne.recortes/1000))
+
+
+                costoCaretas = Decimal(0.26) * costoDescarne
+                vrKiloCareta = ceil(Decimal(costoCaretas) / (descarne.caretas/1000))
+
+                costoLenguas = Decimal(0.05) * costoDescarne
+                vrKiloLenguas = ceil(Decimal(costoLenguas) / (descarne.lenguas/1000))
+
+
+                costoProcesos = Decimal(0.69) * costoDescarne
+                vrKiloProcesos = ceil(Decimal(costoProcesos) / (descarne.procesos/1000))
+
+                 #Guardamos los costos en la tabla Producto
+                recorte = Producto.objects.get(nombreProducto = 'Recortes Cabeza Cerdo')
+                recorte.costoProducto = vrKiloRecorte
+                recorte.save()
+
+                proceso = Producto.objects.get(nombreProducto = 'Procesos de Cabeza Cerdo')
+                proceso.costoProducto =vrKiloProcesos
+                proceso.save()
+
+                careta = Producto.objects.get(nombreProducto = 'Careta Cerdo')
+                careta.costoProducto = vrKiloCareta
+                careta.save()
+
+                lengua = Producto.objects.get(nombreProducto = 'Lengua Cerdo')
+                lengua.costoProducto = vrKiloLenguas
+                lengua.save()
+
+                descarne.vrKiloRecorte = vrKiloRecorte
+                descarne.vrKiloProceso = vrKiloProcesos
+                descarne.vrKiloLengua = vrKiloLenguas
+                descarne.vrKiloCareta = vrKiloCareta
+
+            else:
+                #traemos los valores de costo y cantidad de cabezas
+
+                costoTotal =((descarne.pesoCabezas /descarne.cantidad)/1000) * costoCabezaCerda
+
+                cif = ValoresCostos.objects.get(nombreCosto = 'Costos Descarne Cerda').valorCif
+                mod = ValoresCostos.objects.get(nombreCosto = 'Costos Descarne Cerda').valorMod
+                #Sumamos el cif y el mod al costo total de cabezas
+                costoDescarne = (costoTotal * descarne.cantidad) + cif + mod
+
+                #Calculamos los costos de cada sub producto
+                costoRecorte = Decimal(0.30) * costoDescarne
+                vrKiloRecorte = ceil(Decimal(costoRecorte) / (descarne.recortes/1000))
+
+                costoProcesos = Decimal(0.70) * costoDescarne
+                vrKiloProcesos = ceil(Decimal(costoProcesos) / (descarne.procesos/1000))
+
+                #Guardamos los costos en la tabla Producto
+                recorte = Producto.objects.get(nombreProducto = 'Recortes Cabeza Cerda')
+                recorte.costoProducto = vrKiloRecorte
+                recorte.save()
+
+                proceso = Producto.objects.get(nombreProducto = 'Procesos de Cabeza Cerda')
+                proceso.costoProducto =vrKiloProcesos
+                proceso.save()
+
+                descarne.vrKiloRecorte = vrKiloRecorte
+                descarne.vrKiloProceso = vrKiloProcesos
+
+
+
+
+            descarne.cif = cif
+            descarne.mod = mod
+            descarne.save()
+
+            return HttpResponseRedirect('/fabricacion/descarne/')
+    else:
+        formulario = DescarneForm()
+
+    return render_to_response('Fabricacion/GestionDescarneCabezas.html',{'descarnes':descarnes, 'formulario':formulario},
                               context_instance = RequestContext(request))
 
 

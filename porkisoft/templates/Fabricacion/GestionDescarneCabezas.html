@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Descarne Cabezas{% endblock titulo %}
+{% block mensajes %}
+    Listado Descarnes
+{% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+    <table id="descarnes" class="table-striped">
+
+        <thead>
+
+        <tr>
+
+            <th>Fecha</th>
+            <th>Cant Cab</th>
+            <th>Recortes</th>
+            <th>Lengua</th>
+            <th>Careta</th>
+            <th>Proceso</th>
+            <th>Cif</th>
+            <th>Mod</th>
+            <th>Acciones</th>
+
+        </tr>
+        </thead>
+        {% for descarne in descarnes %}
+        <tr>
+            <td>{{ descarne.fecha }}</td>
+            <td>{{ descarne.cantidad }}</td>
+            <td>${{ descarne.vrKiloRecorte }}</td>
+            <td>${{ descarne.vrKiloLengua }}</td>
+            <td>${{ descarne.vrKiloCareta }}</td>
+            <td>${{ descarne.vrKiloProceso}}</td>
+            <td>${{ descarne.cif }}</td>
+            <td>${{ descarne.mod }}</td>
+
+
+            <td>
+                <a href="#">Detalle</a>
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="13">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+    <form class="form-horizontal" method="post">{% csrf_token %}
+         <fieldset id="desposte">
+             <legend>Planilla Desposte <a id="cerrar" href="#"><img src=    "{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+                  {{ formulario }}
+             <input type="submit" value="Guardar" class="btn btn-primary">
+
+         </fieldset>
+     </form>
+
+{% endblock contenido %}

@@ -21,7 +21,8 @@
             <th>Total Despostado(grs)</th>
             <th>Total Canal(grs)</th>
             <th>Dif Canal/desp</th>
-            <th>Total Produccion(grs)</th>
+            <th>Cif</th>
+            <th>Mod</th>
 
         </tr>
     </thead>
@@ -33,7 +34,8 @@
             <td>{{ desposte.totalDespostado|floatformat }} grs</td>
             <td id="pesoCanales">{{ desposte.totalCanal|floatformat }}</td>
             <td>{{ desposte.difCanalADespostado |floatformat }} grs</td>
-            <td>{{ desposte.costoProduccionTotal|floatformat }}</td>
+            <td>{{ desposte.cif }}</td>
+            <td>{{ desposte.mod }}</td>
 
 
         </tr>

@@ -101,6 +101,7 @@ class Traslado(models.Model):
     fechaTraslado = models.DateField(verbose_name='Fecha')
     estadoTraslado = models.CharField(verbose_name='Estado',max_length=9,choices=OpEstTraslado)
     descripcionTraslado = models.TextField(verbose_name='Descriopcion', max_length=200)
+    guardado = models.BooleanField(verbose_name='Guardado',default=False)
 
     def __unicode__(self):
         return self.codigoTraslado

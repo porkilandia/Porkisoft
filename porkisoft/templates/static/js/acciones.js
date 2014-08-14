@@ -30,6 +30,8 @@ $(document).on('ready', inicio);
      $('#tablaproveedor').dataTable();
      $('#despostes').dataTable();
      $('#costos').dataTable();
+     $('#descarnes').dataTable();
+
 
 
 }
