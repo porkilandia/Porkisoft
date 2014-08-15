@@ -910,11 +910,11 @@ def GestionDesposteActualizado(request, idplanilla):
 
     # calculamos el valor de cada grupo multiplicando el %Grupo por el vrTotalCanales
     if tipoDesposte == 'Cerdos':
-        vrCarnes = ceil((vrTotalCanales * 62)/100)
-        vrCarnes2 = ceil((vrTotalCanales * 15)/100)
-        vrCostillas = ceil((vrTotalCanales * 13)/100)
+        vrCarnes = ceil((vrTotalCanales * 57)/100)
+        vrCarnes2 = ceil((vrTotalCanales * 17)/100)
+        vrCostillas = ceil((vrTotalCanales * 15)/100)
         vrHuesos = 0
-        vrsubProd = ceil((vrTotalCanales * 9)/100)
+        vrsubProd = ceil((vrTotalCanales * 10)/100)
         vrDesecho = ceil((vrTotalCanales * 1)/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
@@ -1164,6 +1164,9 @@ def GuardarDesposte(request):
 
         bodega.save()
 
+        desposte.guardado = True
+        desposte.save()
+
     exito = '%s productos se guardaron exitosamente'%productosGuardados
     respuesta = json.dumps(exito)
     return HttpResponse(respuesta,mimetype='application/json')
@@ -1309,6 +1312,22 @@ def GestionDescarneCabeza(request):
                 lengua.costoProducto = vrKiloLenguas
                 lengua.save()
 
+                bodegaRecorte = ProductoBodega.objects.get(bodega = 5, producto = recorte.codigoProducto)
+                bodegaRecorte.pesoProductoStock += descarne.recortes
+                bodegaRecorte.save()
+
+                bodegaProcesos = ProductoBodega.objects.get(bodega = 5, producto = proceso.codigoProducto)
+                bodegaProcesos.pesoProductoStock += descarne.procesos
+                bodegaProcesos.save()
+
+                bodegaCareta = ProductoBodega.objects.get(bodega = 5, producto = careta.codigoProducto)
+                bodegaCareta.pesoProductoStock += descarne.caretas
+                bodegaCareta.save()
+
+                bodegaLenguas = ProductoBodega.objects.get(bodega = 5, producto = lengua.codigoProducto)
+                bodegaLenguas.pesoProductoStock += descarne.lenguas
+                bodegaLenguas.save()
+
                 descarne.vrKiloRecorte = vrKiloRecorte
                 descarne.vrKiloProceso = vrKiloProcesos
                 descarne.vrKiloLengua = vrKiloLenguas
@@ -1340,11 +1359,18 @@ def GestionDescarneCabeza(request):
                 proceso.costoProducto =vrKiloProcesos
                 proceso.save()
 
+                #Guardamos las cantidades en la bodega
+
+                bodegaRecorte = ProductoBodega.objects.get(bodega = 5, producto = recorte.codigoProducto)
+                bodegaRecorte.pesoProductoStock += descarne.recortes
+                bodegaRecorte.save()
+
+                bodegaProcesos = ProductoBodega.objects.get(bodega = 5, producto = proceso.codigoProducto)
+                bodegaProcesos.pesoProductoStock += descarne.procesos
+                bodegaProcesos.save()
+
                 descarne.vrKiloRecorte = vrKiloRecorte
                 descarne.vrKiloProceso = vrKiloProcesos
-
-
-
 
             descarne.cif = cif
             descarne.mod = mod

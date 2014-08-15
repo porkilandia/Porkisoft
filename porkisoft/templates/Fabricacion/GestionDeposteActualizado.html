@@ -23,6 +23,7 @@
             <th>Dif Canal/desp</th>
             <th>Cif</th>
             <th>Mod</th>
+            <th>Guardado</th>
 
         </tr>
     </thead>
@@ -36,6 +37,11 @@
             <td>{{ desposte.difCanalADespostado |floatformat }} grs</td>
             <td>{{ desposte.cif }}</td>
             <td>{{ desposte.mod }}</td>
+            {% if desposte.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                 <td>No</td>
+            {% endif %}
 
 
         </tr>

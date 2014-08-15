@@ -62,6 +62,7 @@ class PlanillaDesposte(models.Model):
     totalCanal = models.DecimalField(verbose_name='Total Canal',max_digits=11, decimal_places=3, default=0)
     difCanalADespostado = models.DecimalField(verbose_name='Diferencia de Canal/Desposte',max_digits=11,
                                               decimal_places=3, default=0)
+    guardado = models.BooleanField(default=False)
     tipoDesposte = models.CharField(verbose_name='Tipos Desposte',blank=True,null=True,max_length=15)
     cif = models.IntegerField(verbose_name='CIf',default=0)
     mod = models.IntegerField(verbose_name='MOD',default=0)
