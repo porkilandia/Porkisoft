@@ -56,8 +56,8 @@ def listaProductos(request):
         formulario = ProductoForm(request.POST)
         if formulario.is_valid():
             producto = formulario.save()
-            # insumos o BasicosProcesados solo se grabaran en la bodega de Taller
-            if producto.grupo.nombreGrupo == "Insumos" or producto.grupo.nombreGrupo == "Basicos Procesados" or producto.grupo.nombreGrupo == "Verduras":
+            # BasicosProcesados solo se grabaran en la bodega de Taller
+            if producto.grupo.nombreGrupo == "Basicos Procesados" or producto.grupo.nombreGrupo == "Verduras":
 
                 bodegaInicial = ProductoBodega()
                 bodega = Bodega.objects.get(nombreBodega = 'Taller')
@@ -367,6 +367,9 @@ def GestionDetalleCompra(request,idcompra):
                 productoBodegaCV = ProductoBodega.objects.get(bodega = 5,producto = detalleCompra.producto.codigoProducto)
                 productoBodegaCV.pesoProductoStock += detalleCompra.pesoProducto
                 productoBodegaCV.save()
+
+                producto.costoProducto = detalleCompra.vrCompraProducto
+                producto.save()
 
             #Si el producto es Basico Procesado
             elif detalleCompra.producto.grupo.id == 8:

@@ -147,7 +147,7 @@ class DetallePlanilla (models.Model):
 class Miga(models.Model):
     codigoMiga = models.AutoField(primary_key=True)
     cantidadFormulas = models.DecimalField(verbose_name='Formulas', max_digits=9, decimal_places=3,default=0)
-    fechaFabricacion = models.DateTimeField(verbose_name='Fecha De Fabricacion',auto_now=True)
+    fechaFabricacion = models.DateField(verbose_name='Fecha De Fabricacion')
     PesoFormulaMiga = models.DecimalField(verbose_name='Peso Miga', max_digits=9, decimal_places=3)
     costoFormulaMiga = models.IntegerField(verbose_name='Costo Formula',default=0)
     costoKiloMigaProcesada = models.IntegerField(verbose_name='Costo Kilo',default=0)
@@ -158,8 +158,8 @@ class Miga(models.Model):
 class DetalleMiga(models.Model):
 
     miga= models.ForeignKey(Miga)
-    producto = models.ForeignKey(Producto)
     PesoProducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3)
+    productoMiga = models.ForeignKey(Producto,verbose_name='Producto')
     costoProducto = models.IntegerField(verbose_name='Costo' , default=0)
     costoTotalProducto = models.IntegerField(verbose_name='Costo Total',default= 0 )
 
@@ -178,7 +178,7 @@ class Apanado(models.Model):
 
 class Condimento(models.Model):
     codigoCondimento = models.AutoField(primary_key= True)
-    fecha = models.DateField(verbose_name='Fecha', auto_now= True)
+    fecha = models.DateField(verbose_name='Fecha')
     cantFormulas = models.IntegerField(verbose_name='Cantidad de formulas',default=0)
     pesoCondimento = models.DecimalField(verbose_name='Peso grs.',default=0, max_digits=9, decimal_places=3)
     costoCondimento = models.IntegerField(verbose_name='Costo Condimento',default=0)
@@ -189,8 +189,8 @@ class Condimento(models.Model):
 
 class DetalleCondimento(models.Model):
     condimento = models.ForeignKey(Condimento)
-    producto = models.ForeignKey(Producto)
     pesoProducto = models.DecimalField(verbose_name='Peso grs.', max_digits=9, decimal_places=3)
+    productoCondimento = models.ForeignKey(Producto,verbose_name='Producto')
     costoProducto = models.IntegerField(verbose_name='Costo' , default=0)
     costoTotalProducto = models.IntegerField(verbose_name='Costo Total',default= 0 )
 

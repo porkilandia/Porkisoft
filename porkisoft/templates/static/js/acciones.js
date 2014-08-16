@@ -4,8 +4,8 @@ $(document).on('ready', inicio);
 
      $('#id_precioTotal').on('focus',calculoGanado);
      $('#id_difPesos').on('focus',calculoCanal);
-     $('#id_subtotal').on('focus', calculoCompra);
-     $('#id_pesoProductoAntes').on('focus', calculoEnsalinado);
+     $('#id_vrCompraProducto').on('focus', calculoCompra);
+     $('#id_pesoPapaina').on('blur', calculoEnsalinado);
      $('#nuevo').on('click',nuevoRegistro);
      $('#cerrar').on('click',cerrarVentana);
      $('#editaFila').on('click',editaFilas);
@@ -18,6 +18,9 @@ $(document).on('ready', inicio);
      $('#guardarVentas').on('click',GuardarVentas);
      $('#Guardatraslado').on('click',GuardarTraslado);
      $('#id_productoTraslado').on('change',ConsultaStock);
+     $('#id_productoCondimento').on('change',VerificarExistencias);
+     $('#id_productoMiga').on('change',VerificarExistenciasMiga);
+
 
      $('#canalPendiente').dataTable();
      $('#tablacostos').dataTable();
@@ -35,6 +38,42 @@ $(document).on('ready', inicio);
 
 
 }
+function VerificarExistenciasMiga()
+{
+    var id = $('#id_productoMiga').val();
+    var peso = $('#id_PesoProducto').val();
+    Existencias(id,6,peso);
+}
+function VerificarExistencias()
+{
+    var id = $('#id_productoCondimento').val();
+    var peso = $('#id_pesoProducto').val();
+
+    Existencias(id,6,peso);
+}
+
+function Existencias(idProducto,idBodega,pesoProducto)
+{
+    /*Metodo para verificar el stock del producto seleccionado*/
+
+    $.ajax({
+
+            url : '/fabricacion/existencias/',
+            dataType : "json",
+            type : "get",
+            data : {'producto':idProducto,'bodega':idBodega,'peso':pesoProducto},
+            success : function(respuesta)
+            {
+                if (respuesta != '')
+                {
+                    alert(respuesta);
+                }
+
+            }
+
+        });
+}
+
 function ConsultaStock()
 {
     var codigoTraslado = $('#codigoTraslado').text();
@@ -225,31 +264,40 @@ function calculoCompra()
 {
     var unidades = $('#id_unidades').val();
     var pesoProducto = $('#id_pesoProducto').val();
-    var vrUnitario = $('#id_vrCompraProducto').val();
+    var subtotal = $('#id_subtotal').val();
 
     if (unidades !=0){
 
-        var totalUnidades = unidades * vrUnitario;
-        $('#id_subtotal').val(totalUnidades);
+        var totalUnidades = subtotal / unidades;
+        $('#id_vrCompraProducto').val(totalUnidades);
+
     }
     if (pesoProducto != 0){
 
-        var totalPeso = (pesoProducto/ 1000) * vrUnitario;
-        $('#id_subtotal').val(totalPeso);
+        var totalPeso = Math.round(subtotal / (pesoProducto/ 1000));
+        $('#id_vrCompraProducto').val(totalPeso);
+
     }
 
 }
 
 function calculoEnsalinado()
 {
+    /* Metodo que verifica las existencias de sal y papaina */
+
     var pesoProducto = $('#id_pesoProducto').val();
     var pesoSal = $('#id_pesoSal').val();
     var pesoPapaina = $('#id_pesoPapaina').val();
     var pesoAntes = parseFloat(pesoProducto) + parseFloat(pesoSal) + parseFloat(pesoPapaina);
+    $('#id_pesoProductoDespues').val(pesoAntes);
+    /* se envia la sal y la papaina como parametros de busqueda
+    * Sal = 89
+    * Papaina = 95
+    * */
+    Existencias(89,6,pesoSal);
+    Existencias(95,6,pesoPapaina);
 
-    $('#id_pesoProductoAntes').val(pesoAntes);
-
-}
+ }
 
 function nuevoRegistro()
      {

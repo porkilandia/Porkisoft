@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
-{% block titulo %}Condimento{% endblock titulo %}
+{% block titulo %}Miga Preparada{% endblock titulo %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+<a href="{% url 'Fabricacion.views.CostoMiga' idmiga %}"><input type="button" value="Costear" class="btn btn-success"/></a>
+    <br/><br/><br/>
      <table class="table-striped">
         <thead>
             <tr>
-            <th>Formulas</th>
             <th>Fecha</th>
+            <th>Formulas</th>
             <th>Peso Formula Miga</th>
             <th>Costo Kilo Miga Proc.</th>
             <th>Costo Formula Miga</th>
@@ -70,9 +72,7 @@
              <br/>
                 <legend>Acciones</legend>
                 <input type="submit" value="Guardar" class="btn btn-primary">
-                <a href="{% url 'Inventario.views.CostoMiga' idmiga %}"><input type="button" value="Costear" class="btn btn-success"/></a>
-
-          </fieldset>
+         </fieldset>
      </form>
 
 {% endblock contenido %}

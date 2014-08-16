@@ -4,6 +4,8 @@ from Fabricacion.views import *
 urlpatterns = patterns('',
     # Examples:
 
+    url(r'^existencias/$',existencias),
+
     url(r'^canalPendiente/$',InformeCanalesPendientes),
     url(r'^descarne/$',GestionDescarneCabeza),
     url(r'^costos/$',GestionValorCostos),

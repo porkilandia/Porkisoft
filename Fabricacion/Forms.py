@@ -33,7 +33,7 @@ class DetalleCondimentoForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(DetalleCondimentoForm,self).__init__(*args, **kwargs)
-        self.fields['producto'].queryset = Producto.objects.filter(grupo__range = (6,7))
+        self.fields['productoCondimento'].queryset = Producto.objects.filter(grupo__range = (6,7))
 
     class Meta:
         model = DetalleCondimento
@@ -51,12 +51,15 @@ class DetalleTajadoForm(ModelForm):
 class MigaForm(ModelForm):
     class Meta:
         model = Miga
+        exclude = ("costoFormulaMiga","costoKiloMigaProcesada",)
+
 class DetalleMigaForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(DetalleMigaForm,self).__init__(*args, **kwargs)
-        self.fields['producto'].queryset = Producto.objects.filter(grupo = 5)
+        self.fields['productoMiga'].queryset = Producto.objects.filter(grupo = 6)
     class Meta:
         model = DetalleMiga
+        exclude = ("costoProducto","costoTotalProducto",)
 
 class ApanadoForm(ModelForm):
     class Meta:

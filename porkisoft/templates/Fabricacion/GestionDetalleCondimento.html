@@ -42,7 +42,7 @@
         <tbody>
             {% for detCondimento in detalleCondimentos %}
                 <tr>
-                    <td>{{ detCondimento.producto }}</td>
+                    <td>{{ detCondimento.productoCondimento }}</td>
                     <td>{{ detCondimento.pesoProducto| floatformat }}Kg</td>
                     <td>${{ detCondimento.costoProducto }}</td>
                     <td>${{ detCondimento.costoTotalProducto }}</td>

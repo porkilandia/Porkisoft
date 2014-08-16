@@ -172,8 +172,8 @@ class DetalleCompra(models.Model):
     ganado = models.ForeignKey(Ganado, null=True, blank=True)
     pesoProducto = models.DecimalField(verbose_name = 'Peso(grs)',max_digits=15   , decimal_places=3,null= True,default=0)
     unidades = models.IntegerField(verbose_name='Unidades', null= True,default=0)
-    vrCompraProducto = models.BigIntegerField(verbose_name = 'Costo Kilo/Unidad',default= 0)
     subtotal = models.BigIntegerField(default=0)
+    vrCompraProducto = models.BigIntegerField(verbose_name = 'Costo Kilo/Unidad',default= 0)
     estado = models.BooleanField()
 
     def __unicode__(self):
