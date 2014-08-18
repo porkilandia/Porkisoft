@@ -16,6 +16,7 @@
             <th>Proveedor</th>
             <th>Transporte/th>
             <th>Peso Canales</th>
+            <th>Kilo Canal</th>
             <th>Dif. Pie/Canal</th>
 
 
@@ -33,6 +34,7 @@
                 <td>{{ recepcion.provedor}}</td>
                 <td>{{ recepcion.transporte}}</td>
                 <td>{{ recepcion.pesoCanales | floatformat}}</td>
+                <td>{{ recepcion.vrKiloCanal | floatformat}}</td>
                 <td>{{ recepcion.difPieCanal | floatformat}}%</td>
 
 
@@ -47,6 +49,7 @@
         <tr>
 
             <th>Planilla</th>
+            <th>Numero</th>
             <th>Peso Frigovito</th>
             <th>Peso Porkilandia</th>
             <th>Dif. de pesos</th>
@@ -63,6 +66,7 @@
           {% for cnl in canales %}
               {% if cnl.estado == 1 %}<tr style="color: darkgreen; font-weight: bold">{% else %}<tr style="color: red">{% endif %}
             <td>{{ cnl.planilla }}</td>
+              <td>{{ cnl.nroCanal }}</td>
             <td>{{ cnl.pesoFrigovito | floatformat }} Kg</td>
             <td style="font-weight: bold"><a href="{% url 'Fabricacion.views.MarcarCanalDesposte' cnl.codigoCanal %}">{{ cnl.pesoPorkilandia | floatformat }} Kg</a></td>
             <td>{{ cnl.difPesos | floatformat }} Kg</td>

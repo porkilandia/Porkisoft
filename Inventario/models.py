@@ -201,6 +201,7 @@ class PlanillaRecepcion(models.Model):
     transporte = models.CharField(verbose_name='Transporte', choices=trans, max_length=11)
     difPieCanal = models.DecimalField(verbose_name='Diferencia de pie A canal',default=0,max_digits=9, decimal_places=3)
     pesoCanales = models.DecimalField(verbose_name='Peso Canales',default=0,max_digits=9, decimal_places=3)
+    vrKiloCanal = models.IntegerField(verbose_name='Vr. Kilo Canal',default=0)
 
 
     def __unicode__(self):

@@ -68,7 +68,8 @@ class PlanillaDesposte(models.Model):
     mod = models.IntegerField(verbose_name='MOD',default=0)
 
     def __unicode__(self):
-        return self.fechaDesposte
+        cadena = '%s %s'%(self.fechaDesposte,self.tipoDesposte)
+        return cadena
 
 class Canal (models.Model):
 
@@ -80,6 +81,7 @@ class Canal (models.Model):
     recepcion = models.ForeignKey(PlanillaRecepcion)
     codigoCanal = models.AutoField(primary_key=True)
     planilla = models.ForeignKey(PlanillaDesposte, null=True, blank=True)
+    nroCanal = models.IntegerField(verbose_name='Numero',default=0)
     pesoFrigovito = models.DecimalField(verbose_name = 'Peso Frigovito',max_digits=9, decimal_places=3,null= True,default=0)
     pesoPorkilandia = models.DecimalField(verbose_name = 'Peso Porkilandia',max_digits=9, decimal_places=3,null= True,default=0)
     difPesos = models.DecimalField(verbose_name='Dif. Frig/Pork',default=0,max_digits=9, decimal_places=3)

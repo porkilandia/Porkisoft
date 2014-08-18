@@ -11,6 +11,7 @@ from django.views.generic import View,TemplateView
 import json
 from Inventario.Forms.forms import *
 from Fabricacion.Forms import *
+from Inventario.models import *
 
 
 
@@ -18,11 +19,17 @@ from Fabricacion.Forms import *
 #******************************************************CANAL***********************************************************
 def GestionCanal(request,idrecepcion):
 
-    canales = Canal.objects.filter(recepcion = idrecepcion)#para renderizar las listas
+    canales = Canal.objects.filter(recepcion = idrecepcion).order_by('nroCanal')#para renderizar las listas
     recepcion = PlanillaRecepcion.objects.get(pk = idrecepcion)
     compra = Compra.objects.get(pk = recepcion.compra.codigoCompra)
     sacrificio = Sacrificio.objects.get(recepcion = idrecepcion)
     cantidad = canales.count() +1
+    kiloCanal = 0
+    for can in canales :
+        kiloCanal = can.vrKiloCanal
+
+    recepcion.vrKiloCanal = kiloCanal
+    recepcion.save()
 
 
     if request.method == 'POST':
@@ -47,6 +54,7 @@ def GestionCanal(request,idrecepcion):
             canal.pesoPorkilandia = request.POST.get('pesoPorkilandia')
             canal.difPesos = request.POST.get('difPesos')
             canal.genero = request.POST.get('genero')
+            canal.nroCanal = request.POST.get('nroCanal')
 
             if compra.tipo.nombreGrupo == 'Reses':
 
@@ -900,16 +908,15 @@ def GestionDesposteActualizado(request, idplanilla):
 
     # Extraemos el peso total de los canales a despostar ademas del valor del kilo del canal
     pesoCanales = 0
-    vrKiloCanal = 100000 # valor inicial antes de coenzar el ciclo
-    canalActual = 0
-    for canal in canales:# ciclo para saber el costo del kilo en canal
-        pesoCanales += canal.pesoPorkilandia
-        canalActual = canal.vrKiloCanal + 1
-        if canalActual <= vrKiloCanal:
-            vrKiloCanal = canal.vrKiloCanal
+    codrecep = 0
+
+    for cnl in canales :
+        pesoCanales += cnl.pesoPorkilandia
+        codrecep = cnl.recepcion.codigoRecepcion
 
 
-
+    recep = PlanillaRecepcion.objects.get(pk = codrecep)
+    vrKiloCanal = recep.vrKiloCanal
 
     #Calculamos el peso total de desposte
 
