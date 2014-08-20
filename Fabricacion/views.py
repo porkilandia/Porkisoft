@@ -67,6 +67,7 @@ def GestionCanal(request,idrecepcion):
                 canal.vrArrobaCanal= vrArrobaCanal
                 vrFactura = compra.vrCompra
 
+                transporte = sacrificio.vrTransporte
 
             elif compra.tipo.nombreGrupo == 'Cerdos':
 
@@ -127,6 +128,9 @@ def GestionCanal(request,idrecepcion):
 
                 canal.vrKiloCanal = vrKiloCanal
                 canal.vrArrobaCanal= vrArrobaCanal
+
+            #Se ggraba el vr del transporte
+            recepcion.vrTransporte = transporte
 
             #se graba el valor de la factura
             compra.vrCompra = vrFactura
@@ -262,15 +266,6 @@ def GestionEnsalinado(request):
 
         if formulario.is_valid():
 
-            # almacenamos los valores correspondientes a insumos que se utilizan en el proceso
-            salActual = Decimal(request.POST.get('pesoSal'))
-            PapainaActual = Decimal(request.POST.get('pesoPapaina'))
-            productoActual = Decimal(request.POST.get('pesoProducto'))
-
-
-            # Se valida que la cantidad a procesar no sea mayor a la cantidad existente en el inventario.
-            bodegaProducto = ProductoBodega.objects.get(producto = request.POST.get('producto'),bodega = 5)
-
             ensalinado = formulario.save()
 
             producto = Producto.objects.get(nombreProducto = ensalinado.producto.nombreProducto)
@@ -294,28 +289,28 @@ def GestionEnsalinado(request):
             # se guarda en el Producto el Costo del Kilo
             piernaEnsalinada = Producto.objects.get(nombreProducto = 'Pierna Ensalinada')
             piernaEnsalinada.costoProducto = costoKilo
-            #piernaEnsalinada.save()
+            piernaEnsalinada.save()
 
             #Se guarda la cantidad final en la bodega de taller
             bodegaEnsalinado = ProductoBodega.objects.get(bodega = 6,producto = piernaEnsalinada.codigoProducto)
             bodegaEnsalinado.pesoProductoStock += ensalinado.pesoProductoDespues * 1000
-             #bodegaEnsalinado.save()
+            bodegaEnsalinado.save()
 
             #se resta la cantidad de Carne que se utilizo para el ensalinado
             bodegaProductoAntes = ProductoBodega.objects.get(bodega = 6, producto = producto.codigoProducto)
             bodegaProductoAntes.pesoProductoStock -= ensalinado.pesoProductoAntes * 1000
-            #bodegaProductoAntes.save()
+            bodegaProductoAntes.save()
 
 
             #Se guarda la cantidad a restar para la sal
 
             salBodega.pesoProductoStock -= ensalinado.pesoSal
-            #salBodega.save()
+            salBodega.save()
 
             #Se guarda la cantidad a restar para la Papaina
 
             PapainaBodega.pesoProductoStock -= ensalinado.pesoPapaina
-            #PapainaBodega.save()
+            PapainaBodega.save()
 
 
             return HttpResponseRedirect('/fabricacion/ensalinados/')
@@ -1142,9 +1137,6 @@ def costeoDesposte(request):
         desposte.mod = Mod
         desposte.save()
 
-
-
-
     exito = '%s productos Fueron Costeados exitosamente ¡¡'%productosCosteados
     respuesta = json.dumps(exito)
     return HttpResponse(respuesta,mimetype='application/json')
@@ -1280,17 +1272,12 @@ def GestionDescarneCabeza(request):
         if formulario.is_valid():
             descarne = formulario.save()
 
-            vrKiloRecorte = 0
-            vrKiloLenguas = 0
-            vrKiloCareta = 0
-            vrKiloProcesos = 0
-
             #validamos el tipo de cabeza que se quiere procesar
+
             if descarne.tipo == 'Cerdos':
 
-
                 #traemos los valores de costo y cantidad de cabezas
-                costoTotal =((descarne.pesoCabezas /descarne.cantidad)/1000) * costoCabezaCerda
+                costoTotal =((descarne.pesoCabezas /descarne.cantidad)/1000) * costoCabezaCerdo
 
                 cif = ValoresCostos.objects.get(nombreCosto = 'Costos Descarne Cerdo').valorCif
                 mod = ValoresCostos.objects.get(nombreCosto = 'Costos Descarne Cerdo').valorMod
@@ -1298,10 +1285,6 @@ def GestionDescarneCabeza(request):
                 costoDescarne = (costoTotal * descarne.cantidad) + cif + mod
 
                 #Calculamos los costos de cada sub producto
-                costoRecorte = Decimal(0.30) * costoDescarne
-                vrKiloRecorte = ceil(Decimal(costoRecorte) / (descarne.recortes/1000))
-
-
                 costoCaretas = Decimal(0.26) * costoDescarne
                 vrKiloCareta = ceil(Decimal(costoCaretas) / (descarne.caretas/1000))
 
@@ -1313,12 +1296,9 @@ def GestionDescarneCabeza(request):
                 vrKiloProcesos = ceil(Decimal(costoProcesos) / (descarne.procesos/1000))
 
                  #Guardamos los costos en la tabla Producto
-                recorte = Producto.objects.get(nombreProducto = 'Recortes Cabeza Cerdo')
-                recorte.costoProducto = vrKiloRecorte
-                recorte.save()
 
                 proceso = Producto.objects.get(nombreProducto = 'Procesos de Cabeza Cerdo')
-                proceso.costoProducto =vrKiloProcesos
+                proceso.costoProducto = vrKiloProcesos
                 proceso.save()
 
                 careta = Producto.objects.get(nombreProducto = 'Careta Cerdo')
@@ -1329,27 +1309,9 @@ def GestionDescarneCabeza(request):
                 lengua.costoProducto = vrKiloLenguas
                 lengua.save()
 
-                bodegaRecorte = ProductoBodega.objects.get(bodega = 5, producto = recorte.codigoProducto)
-                bodegaRecorte.pesoProductoStock += descarne.recortes
-                bodegaRecorte.save()
-
-                bodegaProcesos = ProductoBodega.objects.get(bodega = 5, producto = proceso.codigoProducto)
-                bodegaProcesos.pesoProductoStock += descarne.procesos
-                bodegaProcesos.save()
-
-                bodegaCareta = ProductoBodega.objects.get(bodega = 5, producto = careta.codigoProducto)
-                bodegaCareta.pesoProductoStock += descarne.caretas
-                bodegaCareta.save()
-
-                bodegaLenguas = ProductoBodega.objects.get(bodega = 5, producto = lengua.codigoProducto)
-                bodegaLenguas.pesoProductoStock += descarne.lenguas
-                bodegaLenguas.save()
-
-                descarne.vrKiloRecorte = vrKiloRecorte
                 descarne.vrKiloProceso = vrKiloProcesos
                 descarne.vrKiloLengua = vrKiloLenguas
                 descarne.vrKiloCareta = vrKiloCareta
-
             else:
                 #traemos los valores de costo y cantidad de cabezas
 
@@ -1362,32 +1324,20 @@ def GestionDescarneCabeza(request):
 
                 #Calculamos los costos de cada sub producto
                 costoRecorte = Decimal(0.30) * costoDescarne
-                vrKiloRecorte = ceil(Decimal(costoRecorte) / (descarne.recortes/1000))
+                #vrKiloRecorte = ceil(Decimal(costoRecorte) / (descarne.recortes/1000))
+                costoUnidad = costoRecorte / descarne.cantRecosrtes
 
                 costoProcesos = Decimal(0.70) * costoDescarne
                 vrKiloProcesos = ceil(Decimal(costoProcesos) / (descarne.procesos/1000))
 
                 #Guardamos los costos en la tabla Producto
                 recorte = Producto.objects.get(nombreProducto = 'Recortes Cabeza Cerda')
-                recorte.costoProducto = vrKiloRecorte
+                recorte.costoProducto = costoUnidad
                 recorte.save()
 
                 proceso = Producto.objects.get(nombreProducto = 'Procesos de Cabeza Cerda')
                 proceso.costoProducto =vrKiloProcesos
                 proceso.save()
-
-                #Guardamos las cantidades en la bodega
-
-                bodegaRecorte = ProductoBodega.objects.get(bodega = 5, producto = recorte.codigoProducto)
-                bodegaRecorte.pesoProductoStock += descarne.recortes
-                bodegaRecorte.save()
-
-                bodegaProcesos = ProductoBodega.objects.get(bodega = 5, producto = proceso.codigoProducto)
-                bodegaProcesos.pesoProductoStock += descarne.procesos
-                bodegaProcesos.save()
-
-                descarne.vrKiloRecorte = vrKiloRecorte
-                descarne.vrKiloProceso = vrKiloProcesos
 
             descarne.cif = cif
             descarne.mod = mod
@@ -1400,4 +1350,47 @@ def GestionDescarneCabeza(request):
     return render_to_response('Fabricacion/GestionDescarneCabezas.html',{'descarnes':descarnes, 'formulario':formulario},
                               context_instance = RequestContext(request))
 
+def GuardaDescarne(request):
+    idDescarne = request.GET.get('descarne')
+    descarne = DescarneCabeza.objects.get(pk = int(idDescarne))
 
+    if descarne.tipo == 'Cerdos':
+
+        bodegaProcesos = ProductoBodega.objects.get(bodega = 5, producto__nombreProducto = 'Procesos de Cabeza Cerdo')
+        bodegaProcesos.pesoProductoStock += descarne.procesos
+        bodegaProcesos.save()
+
+        bodegaCareta = ProductoBodega.objects.get(bodega = 5, producto__nombreProducto = 'Careta Cerdo')
+        bodegaCareta.pesoProductoStock += descarne.caretas
+        bodegaCareta.save()
+
+        bodegaLenguas = ProductoBodega.objects.get(bodega = 5, producto__nombreProducto = 'Lengua Cerdo')
+        bodegaLenguas.pesoProductoStock += descarne.lenguas
+        bodegaLenguas.save()
+
+        msj = 'Guardado Exitoso'
+
+        #se saca del inventario toda la cabeza
+        cabeza = Producto.objects.get(nombreProducto = 'Cabeza',grupo__nombreGrupo = 'Cerdos')
+        bodegaCabeza = ProductoBodega.objects.get(bodega = 5, producto = cabeza.codigoProducto)
+        bodegaCabeza.pesoProductoStock -= descarne.pesoCabezas
+
+    else:
+        bodegaRecorte = ProductoBodega.objects.get(bodega = 5, producto__nombreProducto = 'Recortes Cabeza Cerda')
+        bodegaRecorte.unidadesStock += descarne.cantRecosrtes
+        bodegaRecorte.save()
+
+        bodegaProcesos = ProductoBodega.objects.get(bodega = 5, producto__nombreProducto ='Procesos de Cabeza Cerda')
+        bodegaProcesos.pesoProductoStock += descarne.procesos
+        bodegaProcesos.save()
+
+        #se saca del inventario toda la cabeza
+        cabeza = Producto.objects.get(nombreProducto = 'Cabeza',grupo__nombreGrupo = 'Cerdas')
+        bodegaCabeza = ProductoBodega.objects.get(bodega = 5, producto = cabeza.codigoProducto)
+        bodegaCabeza.pesoProductoStock -= descarne.pesoCabezas
+
+        msj = 'Guardado Exitoso'
+
+    respuesta  = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')

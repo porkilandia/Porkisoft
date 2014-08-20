@@ -19,7 +19,7 @@
          <tbody>
             <tr>
                  <td>{{ miga.fechaFabricacion }}</td>
-                <td>{{ miga.cantidadFormulas|floatformat }}</td>
+                <td id="cantFormulas">{{ miga.cantidadFormulas|floatformat }}</td>
                 <td>{{ miga.PesoFormulaMiga|floatformat }} Kg</td>
                 <td>${{ miga.costoKiloMigaProcesada }}</td>
                 <td>${{ miga.costoFormulaMiga }}</td>
@@ -46,7 +46,7 @@
         <tbody>
             {% for detalleMiga  in detallesMiga %}
                 <tr>
-                    <td>{{ detalleMiga.producto }}</td>
+                    <td>{{ detalleMiga.productoMiga }}</td>
                     <td>{{ detalleMiga.PesoProducto|floatformat }} Kg</td>
                     <td>${{ detalleMiga.costoProducto }}</td>
                     <td>${{ detalleMiga.costoTotalProducto }}</td>

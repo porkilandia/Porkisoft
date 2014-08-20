@@ -6,40 +6,38 @@
 {% endblock mensajes %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+<a id="guardarDescarne" href="#"><input type="button" value="Guardar" class="btn btn-danger"></a>
     <table id="descarnes" class="table-striped">
 
         <thead>
 
         <tr>
-
+            <th>Id</th>
             <th>Fecha</th>
             <th>Cant Cab</th>
+            <th>Cant Rctes</th>
             <th>Recortes</th>
             <th>Lengua</th>
             <th>Careta</th>
             <th>Proceso</th>
             <th>Cif</th>
             <th>Mod</th>
-            <th>Acciones</th>
+
 
         </tr>
         </thead>
         {% for descarne in descarnes %}
         <tr>
+            <td id="idDescarne">{{ descarne.id }}</td>
             <td>{{ descarne.fecha }}</td>
             <td>{{ descarne.cantidad }}</td>
+            <td>{{ descarne.cantRecosrtes }}</td>
             <td>${{ descarne.vrKiloRecorte }}</td>
             <td>${{ descarne.vrKiloLengua }}</td>
             <td>${{ descarne.vrKiloCareta }}</td>
             <td>${{ descarne.vrKiloProceso}}</td>
             <td>${{ descarne.cif }}</td>
             <td>${{ descarne.mod }}</td>
-
-
-            <td>
-                <a href="#">Detalle</a>
-            </td>
-
         </tr>
             {% empty %}
             <tr>

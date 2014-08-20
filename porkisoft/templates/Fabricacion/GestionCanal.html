@@ -14,7 +14,8 @@
             <th>Fecha Recepcion</th>
             <th># Cabezas</th>
             <th>Proveedor</th>
-            <th>Transporte/th>
+            <th>Transporte</th>
+            <th>Vr. Transporte</th>
             <th>Peso Canales</th>
             <th>Kilo Canal</th>
             <th>Dif. Pie/Canal</th>
@@ -33,6 +34,7 @@
                 <td>{{ recepcion.cantCabezas}}</td>
                 <td>{{ recepcion.provedor}}</td>
                 <td>{{ recepcion.transporte}}</td>
+                <td>{{ recepcion.vrTransporte}}</td>
                 <td>{{ recepcion.pesoCanales | floatformat}}</td>
                 <td>{{ recepcion.vrKiloCanal | floatformat}}</td>
                 <td>{{ recepcion.difPieCanal | floatformat}}%</td>

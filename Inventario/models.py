@@ -198,6 +198,7 @@ class PlanillaRecepcion(models.Model):
     fechaRecepcion = models.DateField(verbose_name='fechaRecepcion')
     cantCabezas = models.IntegerField(verbose_name='# Cabezas', default=0)
     provedor = models.ForeignKey(Proveedor)
+    vrTransporte = models.IntegerField(verbose_name='Vr.Transporte',default=0)
     transporte = models.CharField(verbose_name='Transporte', choices=trans, max_length=11)
     difPieCanal = models.DecimalField(verbose_name='Diferencia de pie A canal',default=0,max_digits=9, decimal_places=3)
     pesoCanales = models.DecimalField(verbose_name='Peso Canales',default=0,max_digits=9, decimal_places=3)

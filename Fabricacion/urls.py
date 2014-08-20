@@ -5,6 +5,7 @@ urlpatterns = patterns('',
     # Examples:
 
     url(r'^existencias/$',existencias),
+    url(r'^guardaDescarne/$',GuardaDescarne),
 
     url(r'^canalPendiente/$',InformeCanalesPendientes),
     url(r'^descarne/$',GestionDescarneCabeza),

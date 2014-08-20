@@ -20,6 +20,7 @@ $(document).on('ready', inicio);
      $('#id_productoTraslado').on('change',ConsultaStock);
      $('#id_productoCondimento').on('change',VerificarExistencias);
      $('#id_productoMiga').on('change',VerificarExistenciasMiga);
+     $('#guardarDescarne').on('click',GuardaDescarne)
 
 
      $('#canalPendiente').dataTable();
@@ -38,18 +39,50 @@ $(document).on('ready', inicio);
 
 
 }
+function GuardaDescarne()
+{
+    var idDescarne = $('#idDescarne').val();
+    var opcion = confirm('Desea guardar el descarne?')
+    if(opcion == true)
+    {
+        $.ajax({
+
+            url : '/fabricacion/guardaDescarne/',
+            dataType : "json",
+            type : "get",
+            data : {'descarne':idDescarne},
+            success : function(respuesta)
+            {
+                if (respuesta != '')
+                {
+                    alert(respuesta);
+                }
+
+            }
+
+        });
+    }
+
+
+}
 function VerificarExistenciasMiga()
 {
     var id = $('#id_productoMiga').val();
     var peso = $('#id_PesoProducto').val();
-    Existencias(id,6,peso);
+    var pesoTotal = parseInt($('#cantFormulas').text());
+    var pesoReal = peso * pesoTotal;
+
+    Existencias(id,6,pesoReal);
 }
 function VerificarExistencias()
 {
     var id = $('#id_productoCondimento').val();
     var peso = $('#id_pesoProducto').val();
+    var pesoTotal = parseInt($('#cantFormulasCond').text());
 
-    Existencias(id,6,peso);
+    var pesoReal = peso * pesoTotal;
+
+    Existencias(id,6,pesoReal);
 }
 
 function Existencias(idProducto,idBodega,pesoProducto)

@@ -232,6 +232,7 @@ class DescarneCabeza(models.Model):
     tipo = models.CharField(max_length=10,choices=tipo,verbose_name='Tipo')
     cantidad = models.IntegerField(verbose_name='Cantidad')
     pesoCabezas = models.DecimalField(verbose_name='Peso Cab', max_digits=9, decimal_places=3,default=0)
+    cantRecosrtes = models.IntegerField(verbose_name='Cant Rctes',default=0)
     recortes = models.DecimalField(verbose_name='Recortes', max_digits=9, decimal_places=3,default=0)
     caretas = models.DecimalField(verbose_name='Caretas', max_digits=9, decimal_places=3,default=0)
     lenguas = models.DecimalField(verbose_name='Lenguas', max_digits=9, decimal_places=3,default=0)
