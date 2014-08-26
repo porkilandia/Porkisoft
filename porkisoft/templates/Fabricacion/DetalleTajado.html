@@ -3,6 +3,7 @@
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
 <a id="costearTajado" href="#"><input type="button" value="Costear" class="btn btn-success"/></a>
+<a id="guardarTajado" href="#"><input type="button" value="Guardar" class="btn btn-danger"/></a>
     <br/><br/><br/>
      <table class="table-striped" >
 
@@ -11,22 +12,35 @@
             <th>Codigo</th>
             <th>Responsable</th>
             <th>Fecha</th>
+            <th>Tipo</th>
             <th>Producto</th>
             <th>Peso Producto</th>
             <th>Total Tajado</th>
             <th>Costo Kilo</th>
+            <th>Mod</th>
+            <th>Cif</th>
+            <th>Guardado</th>
 
 
         </tr>
         </thead>
         <tr>
-            <td>{{ tajado.codigoTajado }}</td>
+            <td id="idTajado">{{ tajado.codigoTajado }}</td>
             <td>{{ tajado.responsable }}</td>
             <td>{{ tajado.fechaTajado }}</td>
+            <td id="tipo">{{ tajado.producto.grupo.nombreGrupo }}</td>
             <td>{{ tajado.producto }}</td>
             <td>{{ tajado.pesoProducto }}</td>
             <td>{{ tajado.totalTajado }}</td>
             <td>{{ tajado.costoKiloFilete }}</td>
+            <td>{{ tajado.mod }}</td>
+            <td>{{ tajado.cif }}</td>
+            {% if tajado.guardado == true %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+
         </tr>
 
     </table>
@@ -35,14 +49,18 @@
         <thead>
         <tr>
             <th>Producto</th>
+            <th>Unidades</th>
             <th>Peso Producto</th>
+            <th>costo</th>
         </tr>
         </thead>
         <tbody>
             {% for detalle in detalles %}
                 <tr>
                     <td>{{ detalle.producto }}</td>
+                    <td>{{ detalle.unidades }}</td>
                     <td>{{ detalle.pesoProducto| floatformat }}Kg</td>
+                    <td>${{ detalle.costoKilo| floatformat }}</td>
                 </tr>
 
             {% empty %}

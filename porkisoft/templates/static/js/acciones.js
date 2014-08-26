@@ -1,6 +1,17 @@
 $(document).on('ready', inicio);
+
  function inicio()
  {
+     $(document).keypress(function(e)
+     {
+         if(e.which == 112)
+         {
+             showModalDialog('/inventario/listaProd/')
+         }
+
+
+     });
+
 
      $('#id_precioTotal').on('focus',calculoGanado);
      $('#id_difPesos').on('focus',calculoCanal);
@@ -20,7 +31,8 @@ $(document).on('ready', inicio);
      $('#id_productoTraslado').on('change',ConsultaStock);
      $('#id_productoCondimento').on('change',VerificarExistencias);
      $('#id_productoMiga').on('change',VerificarExistenciasMiga);
-     $('#guardarDescarne').on('click',GuardaDescarne)
+     $('#id_desposteHistorico').on('change',TraerCosto);
+     $('#guardarTajado').on('click',GuardarTajado);
 
 
      $('#canalPendiente').dataTable();
@@ -39,10 +51,36 @@ $(document).on('ready', inicio);
 
 
 }
-function GuardaDescarne()
+
+/************************************* METODOS ********************************/
+function TraerCosto()
 {
-    var idDescarne = $('#idDescarne').val();
-    var opcion = confirm('Desea guardar el descarne?')
+    var desposte = $('#id_desposteHistorico').val();
+    var producto = $('#id_producto').val();
+
+
+    $.ajax({
+
+            url : '/fabricacion/traercosto/',
+            dataType : "json",
+            type : "get",
+            data : {'desposte':desposte,'producto':producto},
+            success : function(respuesta)
+            {
+                if (respuesta != '')
+                {
+                    $('#id_costoKiloFilete').val(respuesta)
+                }
+
+            }
+
+        });
+
+}
+function GuardaDescarne(idDescarne)
+{
+
+   var opcion = confirm('Desea guardar el descarne No.'+ idDescarne + '?')
     if(opcion == true)
     {
         $.ajax({
@@ -65,6 +103,7 @@ function GuardaDescarne()
 
 
 }
+
 function VerificarExistenciasMiga()
 {
     var id = $('#id_productoMiga').val();
@@ -370,6 +409,40 @@ function modificaRegistro()
 }
 
 function CostearTajado()
+
 {
+    var tipo = $('#tipo').text();
+    var idTajado = $('#idTajado').text();
+    var peso = $('#id_pesoProducto').val();
+
+     $.ajax({
+
+        url : '/fabricacion/costearTajado/',
+         dataType: "json",
+         type: "get",
+         data : {'peso':peso,'tipo':tipo,'idTajado':idTajado},
+         success : function(respuesta){
+             alert(respuesta)
+         }
+    });
+}
+
+function GuardarTajado()
+{
+    var idTajado = $('#idTajado').text();
+    var opcion = confirm('Desea guardar el tajado?')
+    if (opcion == true)
+    {
+        $.ajax({
+
+        url : '/fabricacion/guardarTajado/',
+         dataType: "json",
+         type: "get",
+         data : {'idTajado':idTajado},
+         success : function(respuesta){
+             alert(respuesta)
+         }
+    });
+    }
 
 }

@@ -73,7 +73,7 @@ def GestionCanal(request,idrecepcion):
 
                 menudo = 7000 * cantidad
                 flete = 500000
-                transporte = 3500 * cantidad
+                transporte = sacrificio.vrTransporte * cantidad
                 deguello = 37000 * cantidad
 
                 if pesoCanales == 0:#para cuando se ingresa la primera vez
@@ -809,6 +809,9 @@ def GestionTajado(request):
         formulario = TajadoForm(request.POST)
         if formulario.is_valid():
             formulario.save()
+
+            #guardar cantidad de producto en bodega producto tajado
+            #restar la cantidad de producto utilizada
             return HttpResponseRedirect('/fabricacion/tajado/')
     else:
         formulario = TajadoForm()
@@ -827,14 +830,119 @@ def GestionDetalleTajado(request,idTajado):
         formulario = DetalleTajadoForm(request.POST)
         if formulario.is_valid():
             formulario.save()
+
             return HttpResponseRedirect('/fabricacion/detalleTajado/'+idTajado)
     else:
-        formulario = DetalleTajadoForm()
+        formulario = DetalleTajadoForm(initial={'tajado':idTajado})
 
     return render_to_response('Fabricacion/DetalleTajado.html',{'exito':exito,'formulario':formulario,
                                                                 'detalles':Detalletajados,'tajado':tajado},
                               context_instance = RequestContext(request))
 
+def TraerCosto(request):
+    idDesposte = request.GET.get('desposte')
+    idProducto= request.GET.get(('producto'))
+    desposte = DetallePlanilla.objects.get(planilla = int(idDesposte),producto = int(idProducto)).costoProducto
+
+    respuesta = json.dumps(desposte)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def costearTajado(request):
+    idTajado = request.GET.get('idTajado')
+    tipo = request.GET.get('tipo')
+    detTajado = DetalleTajado.objects.filter(tajado = int(idTajado))
+    tajado = Tajado.objects.get(pk = int(idTajado) )
+    mod = 0
+    cif = 0
+    costokilo = 0
+    if tipo == 'Cerdos':
+        mod = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Cerdo').valorMod
+        cif = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Cerdo').valorCif
+    elif tipo == 'Cerdas':
+        mod = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Cerda').valorMod
+        cif = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Cerda').valorCif
+    elif tipo == 'Pollo':
+        mod = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Pollo').valorMod
+        cif = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Pollo').valorCif
+
+    tajado.cif = cif
+    tajado.mod = mod
+    tajado.save()
+
+
+    costoTotal = ((tajado.pesoProducto)/1000) * tajado.costoKiloFilete + mod + cif
+
+    if tipo == 'Cerdos' or tipo == 'Cerdas':
+        #milanesa 98.5% ,  Recortes 0,5% ,  Procesos 1%
+        for tjdo in detTajado:
+            producto = Producto.objects.get(pk = tjdo.producto.codigoProducto)
+
+            if tjdo.producto.nombreProducto == 'Filete de Cerd@':
+                tjdo.costoKilo = (costoTotal * Decimal(0.985))/(tjdo.pesoProducto /1000)
+                costokilo = tjdo.costoKilo
+            elif tjdo.producto.nombreProducto == 'Recortes Cerdo' or tjdo.producto.nombreProducto == 'Recortes':
+                tjdo.costoKilo = costoTotal * Decimal(0.005)/(tjdo.pesoProducto/1000)
+                costokilo = tjdo.costoKilo
+            elif tjdo.producto.nombreProducto == 'Procesos Cerdo' or tjdo.producto.nombreProducto == 'Procesos Cerda':
+                tjdo.costoKilo = costoTotal * Decimal(0.01)/(tjdo.pesoProducto/1000)
+                costokilo = tjdo.costoKilo
+
+            producto.costoProducto =  costokilo
+            producto.save()
+            tjdo.save()
+
+        msj = 'Costeo Exitoso'
+
+    else:
+        for tjdo in detTajado:
+            producto = Producto.objects.get(pk = tjdo.producto.codigoProducto)
+            if tjdo.producto.nombreProducto == 'Filete de Pollo':
+                tjdo.costoKilo = costoTotal * Decimal(0.953)/(tjdo.pesoProducto/1000)
+                costokilo = tjdo.costoKilo
+            elif tjdo.producto.nombreProducto == 'Hueso de pollo':
+                tjdo.costoKilo = costoTotal * Decimal(0.016)/(tjdo.pesoProducto/1000)
+                costokilo = tjdo.costoKilo
+            elif tjdo.producto.nombreProducto == 'Piel':
+                tjdo.costoKilo = costoTotal * Decimal(0.019)/(tjdo.pesoProducto/1000)
+                costokilo = tjdo.costoKilo
+            elif tjdo.producto.nombreProducto == 'Procesos de pollo':
+                tjdo.costoKilo = costoTotal * Decimal(0.012)/(tjdo.pesoProducto/1000)
+                costokilo = tjdo.costoKilo
+            producto.costoProducto =  costokilo
+            producto.save()
+            tjdo.save()
+
+        msj = 'Costeo Exitoso'
+
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+
+def GuardarTajado(request):
+    idTajado = request.GET.get('idTajado')
+    detTajado = DetalleTajado.objects.filter(tajado = int(idTajado))
+    tajado = Tajado.objects.get(pk = int(idTajado))
+    bodegaTajado = ProductoBodega.objects.get(bodega = 5, producto = tajado.producto.codigoProducto)
+    bodegaTajado.pesoProductoStock -= tajado.pesoProducto
+    bodegaTajado.save()
+
+
+
+    for det in detTajado:
+
+        #Guardamos el producto resultante
+        bodega = ProductoBodega.objects.get(bodega = 6,producto =  det.producto.codigoProducto)
+        bodega.unidadesStock += det.unidades
+        bodega.pesoProductoStock += det.pesoProducto
+        bodega.save()
+
+    tajado.guardado = True
+
+    msj = 'Registro guardado exitosamente'
+
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
 
 #***********************************************PLANILLA DESPOSTE*******************************************************
 
@@ -1338,6 +1446,9 @@ def GestionDescarneCabeza(request):
                 proceso = Producto.objects.get(nombreProducto = 'Procesos de Cabeza Cerda')
                 proceso.costoProducto =vrKiloProcesos
                 proceso.save()
+
+                descarne.vrKiloProceso = vrKiloProcesos
+                descarne.vrKiloRecor = costoUnidad
 
             descarne.cif = cif
             descarne.mod = mod

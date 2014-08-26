@@ -42,11 +42,12 @@ class DetalleCondimentoForm(ModelForm):
 class TajadoForm(ModelForm):
     class Meta:
         model = Tajado
-        exclude = ("totalTajado","costoKiloFilete")
+        exclude = ("totalTajado","cif","mod",)
 
 class DetalleTajadoForm(ModelForm):
     class Meta:
         model = DetalleTajado
+        exclude = ("costoKilo",)
 
 class MigaForm(ModelForm):
     class Meta:

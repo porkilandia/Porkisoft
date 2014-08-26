@@ -36,24 +36,6 @@ class DetalleEnlagunado(models.Model):
     pesoPorducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3)
     costoProducto = models.IntegerField()
 
-class Tajado(models.Model):
-    codigoTajado = models.AutoField(primary_key=True)
-    responsable = models.ForeignKey(Empleado)
-    producto  = models.ForeignKey(Producto)
-    fechaTajado = models.DateField(verbose_name='Fecha de Tajado')
-    pesoProducto =models.DecimalField(verbose_name='Peso', max_digits=9, decimal_places=3)
-    totalTajado = models.DecimalField(verbose_name='Total Tajado', max_digits=9, decimal_places=3,default=0)
-    costoKiloFilete = models.IntegerField(verbose_name='Costo Kilo filete',default=0)
-
-    def __int__(self):
-        return self.codigoTajado
-
-class DetalleTajado(models.Model):
-    tajado = models.ForeignKey(Tajado)
-    producto  = models.ForeignKey(Producto)
-    pesoProducto =models.DecimalField(verbose_name='Peso', max_digits=9, decimal_places=3)
-
-
 class PlanillaDesposte(models.Model):
     codigoPlanilla = models.AutoField(primary_key=True)
     fechaDesposte = models.DateField(verbose_name='Fecha de Desposte')
@@ -70,6 +52,31 @@ class PlanillaDesposte(models.Model):
     def __unicode__(self):
         cadena = '%s %s'%(self.fechaDesposte,self.tipoDesposte)
         return cadena
+
+class Tajado(models.Model):
+    codigoTajado = models.AutoField(primary_key=True)
+    fechaTajado = models.DateField(verbose_name='Fecha de Tajado')
+    responsable = models.ForeignKey(Empleado)
+    producto  = models.ForeignKey(Producto)
+    desposteHistorico = models.ForeignKey(PlanillaDesposte,verbose_name='Desposte',blank= True, null=True)
+    pesoProducto =models.DecimalField(verbose_name='Peso', max_digits=9, decimal_places=3)
+    totalTajado = models.DecimalField(verbose_name='Total Tajado', max_digits=9, decimal_places=3,default=0)
+    costoKiloFilete = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    cif = models.IntegerField(verbose_name='CIf',default=0)
+    mod = models.IntegerField(verbose_name='MOD',default=0)
+    guardado = models.BooleanField(default=False)
+
+    def __int__(self):
+        return self.codigoTajado
+
+class DetalleTajado(models.Model):
+    tajado = models.ForeignKey(Tajado)
+    producto  = models.ForeignKey(Producto)
+    unidades = models.IntegerField(verbose_name='Unds',default=0)
+    costoKilo = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    pesoProducto =models.DecimalField(verbose_name='Peso', max_digits=9, decimal_places=3)
+
+
 
 class Canal (models.Model):
 

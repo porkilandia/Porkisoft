@@ -6,6 +6,9 @@ urlpatterns = patterns('',
 
     url(r'^existencias/$',existencias),
     url(r'^guardaDescarne/$',GuardaDescarne),
+    url(r'^traercosto/$',TraerCosto),
+    url(r'^costearTajado/$',costearTajado),
+    url(r'^guardarTajado/$',GuardarTajado),
 
     url(r'^canalPendiente/$',InformeCanalesPendientes),
     url(r'^descarne/$',GestionDescarneCabeza),
