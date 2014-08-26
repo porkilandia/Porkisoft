@@ -7,8 +7,12 @@ urlpatterns = patterns('',
     url(r'^existencias/$',existencias),
     url(r'^guardaDescarne/$',GuardaDescarne),
     url(r'^traercosto/$',TraerCosto),
+    url(r'^traercostopollo/$',TraerCostoPollo),
+    url(r'^traercostoFilete/$',TraerCostoFilete),
     url(r'^costearTajado/$',costearTajado),
     url(r'^guardarTajado/$',GuardarTajado),
+
+    url(r'^condimentado/$',GestionCondimentado),
 
     url(r'^canalPendiente/$',InformeCanalesPendientes),
     url(r'^descarne/$',GestionDescarneCabeza),
@@ -41,6 +45,6 @@ urlpatterns = patterns('',
     url(r'^costoMiga/(?P<idmiga>\d+)',CostoMiga),
     url(r'^apanado/(?P<idprodbod>\d+)',GestionApanado),
 
-    url(r'^pechugas/(?P<idprodbod>\d+)',GestionarTajadoCondPechugas),
+
 
 )

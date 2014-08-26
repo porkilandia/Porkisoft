@@ -59,6 +59,7 @@ class Tajado(models.Model):
     responsable = models.ForeignKey(Empleado)
     producto  = models.ForeignKey(Producto)
     desposteHistorico = models.ForeignKey(PlanillaDesposte,verbose_name='Desposte',blank= True, null=True)
+    polloHistorico = models.ForeignKey(Compra,verbose_name='Compras',blank= True, null=True)
     pesoProducto =models.DecimalField(verbose_name='Peso', max_digits=9, decimal_places=3)
     totalTajado = models.DecimalField(verbose_name='Total Tajado', max_digits=9, decimal_places=3,default=0)
     costoKiloFilete = models.IntegerField(verbose_name='Costo Kilo',default=0)
@@ -203,19 +204,17 @@ class DetalleCondimento(models.Model):
     costoProducto = models.IntegerField(verbose_name='Costo' , default=0)
     costoTotalProducto = models.IntegerField(verbose_name='Costo Total',default= 0 )
 
-class CondimentadoTajadoPechuga(models.Model):
+class Condimentado(models.Model):
     codigo = models.AutoField(primary_key= True)
+    fecha = models.DateField(verbose_name='Fecha')
     producto = models.ForeignKey(Producto)
-    compra = models.IntegerField(verbose_name='Compra',default= 0 )
-    fecha = models.DateField(verbose_name='Fecha', auto_now=True)
-    PesoDescongelado = models.DecimalField(verbose_name='Peso Descongelado', max_digits=9, decimal_places=3,default=0)
-    fileteACond = models.DecimalField(verbose_name='Filete a Cond.', max_digits=9, decimal_places=3,default=0)
+    pesoACondimentar = models.DecimalField(verbose_name='Filete a Cond.', max_digits=9, decimal_places=3,default=0)
     condimento = models.DecimalField(verbose_name='Condimento', max_digits=9, decimal_places=3,default=0)
-    fileteAApanar = models.DecimalField(verbose_name='Filete a Apanar', max_digits=9, decimal_places=3,default=0)
-    condimentoAP = models.DecimalField(verbose_name='Condimento', max_digits=9, decimal_places=3,default=0)
-    huesos = models.DecimalField(verbose_name='Huesos', max_digits=9, decimal_places=3,default=0)
-    piel = models.DecimalField(verbose_name='Piel', max_digits=9, decimal_places=3,default=0)
-    procesos = models.DecimalField(verbose_name='Procesos', max_digits=9, decimal_places=3,default=0)
+    costoFilete = models.IntegerField(verbose_name='Costo Filete',default=0)
+    costoCondimento = models.IntegerField(verbose_name='Costo Cond.',default=0)
+    pesoFileteCond = models.DecimalField(verbose_name='Peso Condimentado', max_digits=9, decimal_places=3,default=0)
+    costoFileteCond = models.IntegerField(verbose_name='Costo Condimentado',default=0)
+
 
 class ValoresCostos(models.Model):
     codigoCosto = models.AutoField(primary_key= True)

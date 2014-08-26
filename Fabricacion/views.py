@@ -11,6 +11,7 @@ from django.views.generic import View,TemplateView
 import json
 from Inventario.Forms.forms import *
 from Fabricacion.Forms import *
+from Fabricacion.models import *
 from Inventario.models import *
 
 
@@ -647,158 +648,32 @@ def GestionApanado(request,idprodbod):
     return render_to_response('Fabricacion/GestionApanado.html',{'formulario':formulario, 'apanados': apanados},
                               context_instance = RequestContext(request))
 
-def GestionarTajadoCondPechugas(request,idprodbod):
-    bodegaPechuga = ProductoBodega.objects.get(pk = idprodbod)
-    registros = CondimentadoTajadoPechuga.objects.filter(producto = bodegaPechuga.producto.codigoProducto)
-    fileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de Pollo Condimentado')
-    hueso = Producto.objects.get(nombreProducto = 'Hueso de pollo')
-    piel = Producto.objects.get(nombreProducto = 'Piel')
-    procesos = Producto.objects.get(nombreProducto = 'Procesos de pollo')
+
+#**********************************************PROCESO CONDIMENTADO*****************************************************
+
+def GestionCondimentado(request):
+    condimentados = Condimentado.objects.all()
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
 
     if request.method == 'POST':
-        formulario = CondTajPechugasForm(request.POST)
+        formulario = CondimentadoForm(request.POST)
         if formulario.is_valid():
-            tajado = formulario.save()
+            formulario.save()
 
-            compra = Compra.objects.get(pk = tajado.compra)
-            costoKiloDescongelado = (tajado.PesoDescongelado / 1000) / compra.vrCompra
-            costoPechugaAProcesar = costoKiloDescongelado * tajado.PesoDescongelado
-            mod = Decimal(0.161) * tajado.PesoDescongelado
-            cif = Decimal(0.131) * tajado.PesoDescongelado
-            costoTotalPechuga = costoPechugaAProcesar + mod + cif
-            totalFileteTajado = tajado.fileteACond + tajado.fileteAApanar
-
-            costoFilete = costoTotalPechuga * Decimal(0.95)
-            costoHueso = costoTotalPechuga * hueso.porcentajeCalidad
-            costoPiel = costoTotalPechuga * piel.porcentajeCalidad
-            costoProcesos = costoTotalPechuga * procesos.porcentajeCalidad
-            costoTotalCondimento = tajado.condimento * condimento.costoProducto
-            costoTotalCondimentoApanar = tajado.condimentoAP * condimento.costoProducto
-
-            #calculamos el costo por kilo de cada producto obtenido
-            costoKiloFilete = costoFilete / totalFileteTajado
-            costoKiloHueso = costoHueso / tajado.huesos
-            costoKiloPiel = costoPiel / tajado.piel
-            costoKiloProcesos = costoProcesos/ tajado.procesos
-
-            #Calculamos el filete que se va a condimentar
-            costoFileteACondimentar = costoKiloFilete * tajado.fileteACond
-            costoFileteCondimentado = costoFileteACondimentar + costoTotalCondimento
-            costoKiloFileteCondimentado = costoFileteCondimentado / tajado.fileteACond
-
-            #Calculamos el Filete que se va a Apanar
-
-            costoFileteAcondApanado = costoFilete * tajado.fileteAApanar
-            costoFileteCondimentadoApanar = costoFileteAcondApanado + costoTotalCondimentoApanar
-            costoKiloFileteCondApanar = costoFileteCondimentadoApanar / tajado.tajado.fileteAApanar
-
-
-            #Guardamos los costo del filete condimentado para venta
-            fileteCondimentado.costoProducto = costoKiloFileteCondimentado
-            fileteCondimentado.save()
-
-            #guardamos la cantidad de filete condimetado para la venta
-            bodegaFileteCondimentado = ProductoBodega.objects.get(bodega = 5, producto = fileteCondimentado.codigoProducto )
-            bodegaFileteCondimentado.pesoProductoStock = tajado.fileteACond + tajado.condimento
-            bodegaFileteCondimentado.save()
-
-            #obtenemos las bodegas de los subproductos
-            bodegaHueso = ProductoBodega.objects.get(bodega = 5,producto = hueso.codigoProducto)
-            bodegaPiel = ProductoBodega.objects.get(bodega = 5,producto = piel.codigoProducto)
-            bodegaProcesos = ProductoBodega.objects.get(bodega = 5,producto = procesos.codigoProducto)
-
-            #guardamos el costo y la cantidad de los  subproductos
-            hueso.costoProducto = costoKiloHueso
-            bodegaHueso.pesoProductoStock = tajado.huesos
-            bodegaHueso.save()
-            hueso.save()
-
-            piel.costoProducto = costoKiloPiel
-            bodegaPiel.pesoProductoStock = tajado.piel
-            bodegaPiel.save()
-            piel.save()
-
-            procesos.costoProducto = costoKiloProcesos
-            bodegaProcesos.pesoProductoStock = tajado.procesos
-            bodegaProcesos.save()
-            procesos.save()
-
-            #Restamos la cantidad de pechuga utilizada
-            bodegaPechuga.pesoProductoStock -= tajado.PesoDescongelado
-            bodegaPechuga.save()
-
-            #restamos la cantidad de condimento utilizada
-            bodegaCondimento = ProductoBodega.objects.get(bodega = 6 , producto = condimento.codigoProducto)
-            bodegaCondimento.pesoProductoStock -= tajado.condimento + tajado.condimentoAP
-            bodegaCondimento.save()
-
-            #pendiente  la vista para el apanado delFilete Condimentado
-
-            return HttpResponseRedirect('/fabricacion/pechugas/'+idprodbod)
+            return HttpResponseRedirect('/fabricacion/condimentado')
     else:
-        formulario = CondTajPechugasForm(initial={'producto':bodegaPechuga.producto.codigoProducto})
+        formulario = CondimentadoForm(initial={'costoCondimento':condimento.costoProducto})
 
-    return render_to_response('Fabricacion/GestionTajaddoCondPechugas.html',{'formulario':formulario,'registros':registros}
-                              ,context_instance = RequestContext(request))
-#**********************************************PROCESO TAJADO **********************************************************
-
-'''
-def GestionCondTajado(request, idprodbod):
-    condTajados  = CondimentadoTajado.objects.all()
-    prodBod = ProductoBodega.objects.get(pk = idprodbod )
-    producto = Producto.objects.get(pk = prodBod.producto.codigoProducto)
-    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
-
-    if request.method == 'POST':
-
-        formulario = CondTajadoForm(request.POST)
-        if formulario.is_valid():
-            proceso = formulario.save()
-
-            mod = Decimal(0.139) * prodBod.pesoProductoStock
-            cif = Decimal(0.143) * prodBod.pesoProductoStock
-            costoTotalACondimentar = producto.costoProducto + mod + cif
-
-            costoFilete = costoTotalACondimentar * Decimal(0.973)
-            costoRecortes = costoTotalACondimentar * Decimal(0.007)#Pendiente guardar en inventario
-            costoProcesos = costoTotalACondimentar * Decimal(0.02)#Pendiente guardar en inventario
-
-            costoKiloFilete = costoFilete / proceso.filete
-            costoTotalFilete = proceso.filete * costoKiloFilete
-            costoTotalCondimento = proceso.condimento * condimento.costoProducto
-            costoFileteCondimentado = costoTotalFilete +  costoTotalCondimento
-            pesoFileteCondimentado = proceso.filete + proceso.condimento
-            costoKiloFileteCondimentado = costoFileteCondimentado / pesoFileteCondimentado
-
-
-            #Promediamos el costo del filete y lo guardamos
-            filete = Producto.objects.get(nombreProducto = 'Filete Condimentado')
-            if filete.costoProducto == 0:
-                filete.costoProducto = costoKiloFileteCondimentado
-            else:
-                costoKiloFiletePromedio = (costoKiloFileteCondimentado + filete.costoProducto)/2
-                filete.costoProducto = costoKiloFiletePromedio
-
-            filete.save()
-
-            # Guardamos el la cantidad de producto condimentado en la bodega de la planta de procesos
-            bodegaFilete = ProductoBodega.objects.get(bodega = 6 , producto = filete.codigoProducto)
-            bodegaFilete.pesoProductoStock += pesoFileteCondimentado
-            bodegaFilete.save()
-
-            #Restamos la cantidad utilizada a la cantidad ensalinada
-            prodBod.pesoProductoStock -= proceso.pesoProductoEnsalinado
-            prodBod.save()
-
-
-            return HttpResponseRedirect('/fabricacion/condtaj/'+ idprodbod)
-    else:
-        formulario = CondTajadoForm(initial={'producto':producto.codigoProducto,'pesoProductoEnsalinado':prodBod.pesoProductoStock})
-
-    return render_to_response('Fabricacion/GestionCondTajado.html',{'formulario':formulario,'condTajados':condTajados },
+    return render_to_response('Fabricacion/GestionCondimentado.html',{'formulario':formulario,'condimentados':condimentados },
                               context_instance = RequestContext(request))
-'''
+
+def TraerCostoFilete(request):
+    idProducto = request.GET.get('producto')
+    producto = Producto.objects.get(pk = int(idProducto)).costoProducto
+    respuesta = json.dumps(producto)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+#**********************************************PROCESO TAJADO **********************************************************
 
 def GestionTajado(request):
     exito = True
@@ -809,9 +684,6 @@ def GestionTajado(request):
         formulario = TajadoForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-
-            #guardar cantidad de producto en bodega producto tajado
-            #restar la cantidad de producto utilizada
             return HttpResponseRedirect('/fabricacion/tajado/')
     else:
         formulario = TajadoForm()
@@ -845,6 +717,15 @@ def TraerCosto(request):
     desposte = DetallePlanilla.objects.get(planilla = int(idDesposte),producto = int(idProducto)).costoProducto
 
     respuesta = json.dumps(desposte)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def TraerCostoPollo(request):
+    idCompra = request.GET.get('compra')
+    idProducto= request.GET.get('producto')
+    compra = DetalleCompra.objects.get(compra = int(idCompra),producto = int(idProducto)).vrKiloDescongelado
+
+    respuesta = json.dumps(compra)
 
     return HttpResponse(respuesta,mimetype='application/json')
 

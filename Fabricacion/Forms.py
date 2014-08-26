@@ -40,6 +40,10 @@ class DetalleCondimentoForm(ModelForm):
         exclude = ('costoProducto','costoTotalProducto',)
 
 class TajadoForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(TajadoForm,self).__init__(*args, **kwargs)
+        self.fields['polloHistorico'].queryset = Compra.objects.filter(tipo__nombreGrupo = 'Pollos')
+
     class Meta:
         model = Tajado
         exclude = ("totalTajado","cif","mod",)
@@ -66,12 +70,9 @@ class ApanadoForm(ModelForm):
     class Meta:
         model = Apanado
 
-class CondTajPechugasForm(ModelForm):
-    fechainicio = date.today() - timedelta(days=3)
-    fechafin = date.today()
-    compra = forms.ModelChoiceField(queryset=Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin)).filter(tipo = 10)) # muestra los registros de compras de 3 dias de antiguedad
+class CondimentadoForm(ModelForm):
     class Meta:
-        model = CondimentadoTajadoPechuga
+        model = Condimentado
 
 class DesposteForm(ModelForm):
     class Meta:

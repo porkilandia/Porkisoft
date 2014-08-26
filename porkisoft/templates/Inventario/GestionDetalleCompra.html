@@ -7,7 +7,8 @@
 {% block contenido %}
     <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
     <br/><br/><br/>
-     <table class="table-striped">
+
+    <table class="table-striped">
         <thead>
         <tr>
             <th>Codigo</th>
@@ -34,21 +35,22 @@
 
      </table>
 
-     <table class="table-striped">
+    <table class="table-striped">
         <thead>
         <tr>
 
             <th>Producto</th>
             <th>Ganado</th>
             <th>Peso Producto</th>
+            <th>Peso Desc.</th>
             <th>Unidades</th>
-            <th>Vr. Compra</th>
-            <th>Subtotal</th>
+            <th>Vr.Kilo/und</th>
+            <th>Vr.Kilo/und Desc</th>
+            <th>Vr.Factura</th>
             <th>Estado</th>
 
         </tr>
-        <br/>
-        </thead>
+       </thead>
         <tbody>
             {% for detcompra in detcompras %}
                 {% if detcompra.estado == False %}
@@ -60,14 +62,23 @@
             {% if detcompra.producto == null %}<td>N/A</td>{% else %}<td>{{ detcompra.producto }}</td>{% endif %}
             {% if detcompra.ganado == null %}<td>N/A</td>{% else %}<td>{{ detcompra.ganado }}</td>{% endif %}
             <td>{{ detcompra.pesoProducto |floatformat }} grs</td>
+            <td>{{ detcompra.pesoDescongelado |floatformat }} grs</td>
             <td>{{ detcompra.unidades }}</td>
             <td>$ {{ detcompra.vrCompraProducto }}</td>
+            <td>$ {{ detcompra.vrKiloDescongelado }}</td>
             <td>$ {{ detcompra.subtotal }}</td>
             {% if compra.tipo.nombreGrupo == 'Verduras' %}
                 {% if detcompra.estado == False %}
                     <td><a href="{% url 'Fabricacion.views.GestionVerduras' detcompra.id %}">Pendiete</a></td>
                 {% else %}
                     <td><a href="{% url 'Fabricacion.views.GestionVerduras' detcompra.id %}">Ver Detalles</a></td>
+                {% endif %}
+            {% endif %}
+            {% if compra.tipo.nombreGrupo == 'Pollos' %}
+                {% if detcompra.estado == False %}
+                    <td><a href="{% url 'Inventario.views.EditaCompra' detcompra.id %}">Pendiete</a></td>
+                {% else %}
+                    <td>Actualizado</td>
                 {% endif %}
             {% endif %}
 
@@ -90,6 +101,8 @@
 
       </table>
 
+
+
     <form method="post">{% csrf_token %}
          <fieldset id="agregarDetalle">
              <legend>Detalle compra <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
@@ -105,5 +118,7 @@
 
           </fieldset>
      </form>
+
+
 
 {% endblock contenido %}

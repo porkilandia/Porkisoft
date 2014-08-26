@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^reporteTraslado/(?P<idTraslado>\d+)',ReporteTraslado),
 
     url(r'^detcompra/(?P<idcompra>\d+)',GestionDetalleCompra),
+    url(r'^editacompra/(?P<idDetCompra>\d+)',EditaCompra),
     url(r'^productoBodega/(?P<idproducto>\d+)',GestionProductoBodega),
     url(r'^addDSprod/(?P<id_subproducto>\d+)',AgregarDetSubProducto, name='gestionSp'),
     url(r'^borrar/(?P<id_producto>\d+)',borrar_producto),

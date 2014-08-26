@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Tajado y Condimentado{% endblock titulo %}
+{% block titulo %}Condimentado{% endblock titulo %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
 
@@ -10,24 +10,29 @@
         <tr>
 
             <th>Codigo</th>
+            <th>Fecha</th>
             <th>Producto</th>
-            <th>Peso Ensalinado</th>
+            <th>Peso a Condimentar</th>
             <th>Condimento</th>
-            <th>Filete</th>
-            <th>Recortes</th>
-            <th>Procesos</th>
+            <th>CostoFilete</th>
+            <th>COsto Cond.</th>
+            <th>Peso Condimetado</th>
+            <th>Costo Condimentado</th>
 
         </tr>
         </thead>
-        {% for condtajado in condTajados %}
+        {% for condimentado in condimentados %}
             <tr>
-                <td>{{ condtajado.codigoTajado }}</td>
-                <td>{{ condtajado.producto }}</td>
-                <td>{{ condtajado.pesoProductoEnsalinado|floatformat }} grs</td>
-                <td>{{ condtajado.condimento|floatformat }} grs</td>
-                <td>{{ condtajado.filete|floatformat }} grs</td>
-                <td>{{ condtajado.recortes|floatformat }} grs</td>
-                <td>{{ condtajado.procesos|floatformat }} grs</td>
+                <td>{{ condimentado.codigo }}</td>
+                <td>{{ condimentado.fecha }}</td>
+                <td>{{ condimentado.producto}}</td>
+                <td>{{ condimentado.pesoACondimentar }}</td>
+                <td>{{ condimentado.condimento }}</td>
+                <td>{{ condimentado.costoFilete }}</td>
+                <td>{{ condimentado.costoCondimento }}</td>
+                <td>{{ condimentado.pesoFileteCond }}</td>
+                <td>{{ condimentado.costoFileteCond }}</td>
+
 
             </tr>
 

@@ -1,16 +1,16 @@
 $(document).on('ready', inicio);
-
+$( document ).tooltip();
  function inicio()
  {
-     $(document).keypress(function(e)
+    /* $(document).keypress(function(e)
      {
          if(e.which == 112)
          {
-             showModalDialog('/inventario/listaProd/')
+                showModalDialog('/inventario/listaProd/')
          }
 
 
-     });
+     });*/
 
 
      $('#id_precioTotal').on('focus',calculoGanado);
@@ -32,8 +32,12 @@ $(document).on('ready', inicio);
      $('#id_productoCondimento').on('change',VerificarExistencias);
      $('#id_productoMiga').on('change',VerificarExistenciasMiga);
      $('#id_desposteHistorico').on('change',TraerCosto);
+     $('#id_polloHistorico').on('change',TraerCostoPollo);
      $('#guardarTajado').on('click',GuardarTajado);
-
+     $('#id_vrKiloDescongelado').on('focus',calculoKiloDescongelado);
+     $('#id_costoFilete').on('focus',traerCostoFilete);
+     $('#id_pesoFileteCond').on('focus',calculaPesoCondimentado);
+     $('#id_costoFileteCond').on('focus',calculaCostoCondimentado);
 
      $('#canalPendiente').dataTable();
      $('#tablacostos').dataTable();
@@ -48,11 +52,92 @@ $(document).on('ready', inicio);
      $('#costos').dataTable();
      $('#descarnes').dataTable();
 
+     $('#id_fecha').datepicker({ dateFormat: "dd-mm-yy" });
+     $('#id_fechaCompra').datepicker({ dateFormat: "dd-mm-yy" });
 
+     //$( "#id_fechaCompra" ).tooltip();
 
 }
 
 /************************************* METODOS ********************************/
+function calculaCostoCondimentado()
+{
+    var pesoFilete = parseInt($('#id_pesoACondimentar').val());
+    var condimento = parseInt($('#id_condimento').val());
+    var costoFilete = parseInt($('#id_costoFilete').val());
+    var costoCondimento = parseInt($('#id_costoCondimento').val());
+
+    var costoTotalFilete = (pesoFilete / 1000) * costoFilete;
+    var costoTotalCond = (condimento / 1000) * costoCondimento;
+    var totalCondimentado = pesoFilete + condimento;
+    var costoFileteCondimentado = Math.round((costoTotalFilete + costoTotalCond)/(totalCondimentado/1000));
+    $('#id_costoFileteCond').val(costoFileteCondimentado);
+
+}
+function calculaPesoCondimentado()
+{
+    var pesoFilete = parseInt($('#id_pesoACondimentar').val());
+    var condimento = parseInt($('#id_condimento').val());
+    var totalCondimentado = pesoFilete + condimento;
+    $('#id_pesoFileteCond').val(totalCondimentado);
+
+
+}
+function traerCostoFilete()
+{
+    var producto = $('#id_producto').val();
+
+    $.ajax({
+
+            url : '/fabricacion/traercostoFilete/',
+            dataType : "json",
+            type : "get",
+            data : {'producto':producto},
+            success : function(respuesta)
+            {
+                if (respuesta != '')
+                {
+                    $('#id_costoFilete').val(respuesta)
+                }
+
+            }
+
+        });
+
+
+}
+function calculoKiloDescongelado()
+{
+    var vrFactura = $('#id_subtotal').val();
+    var pesoDesc = $('#id_pesoDescongelado').val();
+    var total = Math.round(vrFactura / (pesoDesc/1000));
+    $('#id_vrKiloDescongelado').val(total);
+}
+function TraerCostoPollo()
+{
+    var compra = $('#id_polloHistorico').val();
+    var producto = $('#id_producto').val();
+
+
+    $.ajax({
+
+            url : '/fabricacion/traercostopollo/',
+            dataType : "json",
+            type : "get",
+            data : {'compra':compra,'producto':producto},
+            success : function(respuesta)
+            {
+                if (respuesta != '')
+                {
+                    $('#id_costoKiloFilete').val(respuesta)
+                }
+
+            }
+
+        });
+
+}
+
 function TraerCosto()
 {
     var desposte = $('#id_desposteHistorico').val();

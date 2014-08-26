@@ -314,8 +314,10 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA***********************************************************
 def GestionCompra(request):
 
-    compras = Compra.objects.all()
-
+    '''fechainicio = date.today() - timedelta(days=20)
+    fechafin = date.today()
+    compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))'''
+    compras= Compra.objects.all()
     if request.method == 'POST':
         formulario = CompraForm(request.POST)
         if formulario.is_valid():
@@ -396,6 +398,36 @@ def GestionDetalleCompra(request,idcompra):
     return render_to_response('Inventario/GestionDetalleCompra.html',{'formulario':formulario,
                                                          'compra': compra,
                                                          'detcompras': detcompras, 'totalCompra':totalCompra},
+                                                        context_instance = RequestContext(request))
+
+def EditaCompra(request,idDetCompra):
+
+    detcompra = DetalleCompra.objects.get(pk = idDetCompra)
+    compra = Compra.objects.get(pk = detcompra.compra.codigoCompra)
+    detcompras = DetalleCompra.objects.filter(compra = compra.codigoCompra)
+
+    if request.method == 'POST':
+        formulario = DetalleCompraForm(compra.codigoCompra,request.POST,instance=detcompra)
+        if formulario.is_valid():
+            datos = formulario.save()
+            for detcomp in detcompras:
+                #Guardamos las cantidades en la bodega ademas del costo del producto
+                producto = Producto.objects.get(pk = detcomp.producto.codigoProducto)
+                bodega = ProductoBodega.objects.get(bodega = 5,producto = producto.codigoProducto)
+
+                producto.costoProducto = datos.vrKiloDescongelado
+                producto.save()
+
+                bodega.pesoProductoStock += datos.pesoDescongelado
+                bodega.unidadesStock += datos.unidades
+                bodega.save()
+
+            return HttpResponseRedirect('/inventario/detcompra/'+ str(compra.codigoCompra))
+    else:
+        formulario = DetalleCompraForm(compra.codigoCompra,initial={'compra':compra.codigoCompra },instance=detcompra)
+
+    return render_to_response('Inventario/GestionDetalleCompra.html',{'formulario':formulario,'compra': compra,
+                                                         'detcompras': detcompras},
                                                         context_instance = RequestContext(request))
 #********************************************TRASLADOS******************************************************
 def GestionTraslados(request):
