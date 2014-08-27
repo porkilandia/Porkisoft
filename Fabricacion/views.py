@@ -658,7 +658,41 @@ def GestionCondimentado(request):
     if request.method == 'POST':
         formulario = CondimentadoForm(request.POST)
         if formulario.is_valid():
-            formulario.save()
+            datos = formulario.save()
+
+            #productos a restar
+            producto = Producto.objects.get(pk = datos.producto.codigoProducto)
+            bodegaFilete = ProductoBodega.objects.get(bodega = 6, producto = producto.codigoProducto)
+            bodegaFilete.pesoProductoStock -= datos.pesoACondimentar
+            bodegaFilete.save()
+
+            bodegaCondimento = ProductoBodega.objects.get(bodega = 6,producto = condimento.codigoProducto)
+            bodegaCondimento.pesoProductoStock -= datos.condimento
+            bodegaCondimento.save()
+
+            #guardamos las cantidades producidas
+            if datos.producto.grupo.nombreGrupo == 'Pollos':
+                FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de Pollo Condimentado')
+                FileteCondimentado.costoProducto = datos.costoFileteCond
+                bodegaFileteCond = ProductoBodega.objects.get(bodega = 5,producto = FileteCondimentado.codigoProducto)
+                bodegaFileteCond.pesoProductoStock += datos.pesoFileteCond
+                bodegaFileteCond.save()
+            elif datos.producto.grupo.nombreGrupo == 'Cerdos':
+                FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de cerdo Condimentado')
+                FileteCondimentado.costoProducto = datos.costoFileteCond
+                bodegaFileteCond = ProductoBodega.objects.get(bodega = 5,producto = FileteCondimentado.codigoProducto)
+                bodegaFileteCond.pesoProductoStock += datos.pesoFileteCond
+                bodegaFileteCond.save()
+            else:
+                FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de cerda Condimentado')
+                FileteCondimentado.costoProducto = datos.costoFileteCond
+                bodegaFileteCond = ProductoBodega.objects.get(bodega = 5,producto = FileteCondimentado.codigoProducto)
+                bodegaFileteCond.pesoProductoStock += datos.pesoFileteCond
+                bodegaFileteCond.save()
+
+            FileteCondimentado.save()
+
+
 
             return HttpResponseRedirect('/fabricacion/condimentado')
     else:
@@ -666,6 +700,9 @@ def GestionCondimentado(request):
 
     return render_to_response('Fabricacion/GestionCondimentado.html',{'formulario':formulario,'condimentados':condimentados },
                               context_instance = RequestContext(request))
+
+def GuardarCondimentado(request):
+    pass
 
 def TraerCostoFilete(request):
     idProducto = request.GET.get('producto')
@@ -678,6 +715,7 @@ def TraerCostoFilete(request):
 def GestionTajado(request):
     exito = True
     tajados = Tajado.objects.all()
+
 
     if request.method == 'POST':
 
@@ -696,6 +734,8 @@ def GestionDetalleTajado(request,idTajado):
     exito = True
     tajado = Tajado.objects.get(pk = idTajado)
     Detalletajados = DetalleTajado.objects.filter(tajado = idTajado)
+
+
 
     if request.method == 'POST':
 
@@ -733,7 +773,7 @@ def costearTajado(request):
     idTajado = request.GET.get('idTajado')
     tipo = request.GET.get('tipo')
     detTajado = DetalleTajado.objects.filter(tajado = int(idTajado))
-    tajado = Tajado.objects.get(pk = int(idTajado) )
+    tajado = Tajado.objects.get(pk = int(idTajado))
     mod = 0
     cif = 0
     costokilo = 0
@@ -743,7 +783,7 @@ def costearTajado(request):
     elif tipo == 'Cerdas':
         mod = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Cerda').valorMod
         cif = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Cerda').valorCif
-    elif tipo == 'Pollo':
+    elif tipo == 'Pollos':
         mod = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Pollo').valorMod
         cif = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Pollo').valorCif
 
@@ -759,9 +799,14 @@ def costearTajado(request):
         for tjdo in detTajado:
             producto = Producto.objects.get(pk = tjdo.producto.codigoProducto)
 
-            if tjdo.producto.nombreProducto == 'Filete de Cerd@':
+            if tjdo.producto.nombreProducto == 'Filete de Cerdo':
                 tjdo.costoKilo = (costoTotal * Decimal(0.985))/(tjdo.pesoProducto /1000)
                 costokilo = tjdo.costoKilo
+                tajado.totalTajado = tjdo.pesoProducto
+            elif tjdo.producto.nombreProducto == 'Filete de Cerda':
+                tjdo.costoKilo = (costoTotal * Decimal(0.985))/(tjdo.pesoProducto /1000)
+                costokilo = tjdo.costoKilo
+                tajado.totalTajado = tjdo.pesoProducto
             elif tjdo.producto.nombreProducto == 'Recortes Cerdo' or tjdo.producto.nombreProducto == 'Recortes':
                 tjdo.costoKilo = costoTotal * Decimal(0.005)/(tjdo.pesoProducto/1000)
                 costokilo = tjdo.costoKilo
@@ -781,6 +826,7 @@ def costearTajado(request):
             if tjdo.producto.nombreProducto == 'Filete de Pollo':
                 tjdo.costoKilo = costoTotal * Decimal(0.953)/(tjdo.pesoProducto/1000)
                 costokilo = tjdo.costoKilo
+                tajado.totalTajado = tjdo.pesoProducto
             elif tjdo.producto.nombreProducto == 'Hueso de pollo':
                 tjdo.costoKilo = costoTotal * Decimal(0.016)/(tjdo.pesoProducto/1000)
                 costokilo = tjdo.costoKilo
@@ -804,10 +850,10 @@ def GuardarTajado(request):
     idTajado = request.GET.get('idTajado')
     detTajado = DetalleTajado.objects.filter(tajado = int(idTajado))
     tajado = Tajado.objects.get(pk = int(idTajado))
+    #guardamos el producto utilizado
     bodegaTajado = ProductoBodega.objects.get(bodega = 5, producto = tajado.producto.codigoProducto)
     bodegaTajado.pesoProductoStock -= tajado.pesoProducto
     bodegaTajado.save()
-
 
 
     for det in detTajado:
@@ -819,6 +865,7 @@ def GuardarTajado(request):
         bodega.save()
 
     tajado.guardado = True
+    tajado.save()
 
     msj = 'Registro guardado exitosamente'
 
@@ -851,6 +898,8 @@ def GestionDesposteActualizado(request, idplanilla):
     #Filtramos los despostes en grupos para su posterior costeo
     carnes = detalleDespostes.filter(grupo = 'Grupo Carnes')
     carnes2 = detalleDespostes.filter(grupo = 'Grupo Carnes 2')
+    carnes3 = detalleDespostes.filter(grupo = 'Grupo Carnes 3')
+    carnes4 = detalleDespostes.filter(grupo = 'Grupo Carnes 4')
     costillas = detalleDespostes.filter(grupo = 'Grupo Costillas')
     huesos = detalleDespostes.filter(grupo = 'Grupo Huesos')
     subProductos = detalleDespostes.filter(grupo = 'Grupo SubProductos')
@@ -865,6 +914,8 @@ def GestionDesposteActualizado(request, idplanilla):
     #calculamos el peso del grupo
     pesoCarnes = 0
     pesoCarnes2 = 0
+    pesoCarnes3 = 0
+    pesoCarnes4 = 0
     pesoCostillas = 0
     pesoHuesos = 0
     pesoSubProd = 0
@@ -876,6 +927,10 @@ def GestionDesposteActualizado(request, idplanilla):
         pesoCarnes += peso.PesoProducto
     for peso in carnes2:
         pesoCarnes2 += peso.PesoProducto
+    for peso in carnes3:
+        pesoCarnes3 += peso.PesoProducto
+    for peso in carnes4:
+        pesoCarnes4 += peso.PesoProducto
     for peso in costillas:
         pesoCostillas += peso.PesoProducto
     for peso in huesos:
@@ -904,7 +959,7 @@ def GestionDesposteActualizado(request, idplanilla):
 
     #Calculamos el peso total de desposte
 
-    pesoTotalDesposte = pesoCarnes +pesoCarnes2+ pesoCostillas + pesoHuesos + pesoSubProd + pesoDesecho
+    pesoTotalDesposte = pesoCarnes +pesoCarnes2+pesoCarnes3+pesoCarnes4+ pesoCostillas + pesoHuesos + pesoSubProd + pesoDesecho
 
     #el valor total de los canales a despostar se calcula con el peso de canales y el valor del kilo en canal
     vrTotalCanales = pesoCanales * vrKiloCanal
@@ -913,6 +968,8 @@ def GestionDesposteActualizado(request, idplanilla):
     if tipoDesposte == 'Cerdos':
         vrCarnes = ceil((vrTotalCanales * 57)/100)
         vrCarnes2 = ceil((vrTotalCanales * 17)/100)
+        vrCarnes3 = ceil((vrTotalCanales * 17)/100)
+        vrCarnes4 = ceil((vrTotalCanales * 17)/100)
         vrCostillas = ceil((vrTotalCanales * 15)/100)
         vrHuesos = 0
         vrsubProd = ceil((vrTotalCanales * 10)/100)
@@ -923,6 +980,8 @@ def GestionDesposteActualizado(request, idplanilla):
     elif tipoDesposte == 'Cerdas':
         vrCarnes = ceil((vrTotalCanales * 49)/100)
         vrCarnes2 = ceil((vrTotalCanales * 22)/100)
+        vrCarnes3 = ceil((vrTotalCanales * 17)/100)
+        vrCarnes4 = ceil((vrTotalCanales * 17)/100)
         vrCostillas = ceil((vrTotalCanales * 11)/100)
         vrHuesos = ceil((vrTotalCanales * 6)/100)
         vrsubProd = ceil((vrTotalCanales * 8)/100)
@@ -930,11 +989,13 @@ def GestionDesposteActualizado(request, idplanilla):
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
     else:
-        vrCarnes = ceil((vrTotalCanales * 42)/100)
-        vrCarnes2 = ceil((vrTotalCanales * 33)/100)
-        vrCostillas = ceil((vrTotalCanales * 10)/100)
-        vrHuesos = ceil((vrTotalCanales * 6)/100)
-        vrsubProd = ceil((vrTotalCanales * 7)/100)
+        vrCarnes = ceil((vrTotalCanales * 6)/100)
+        vrCarnes2 = ceil((vrTotalCanales * Decimal(32.5))/100)
+        vrCarnes3 = ceil((vrTotalCanales * 30)/100)
+        vrCarnes4 = ceil((vrTotalCanales * Decimal(6.5))/100)
+        vrCostillas = ceil((vrTotalCanales * 9)/100)
+        vrHuesos = ceil((vrTotalCanales * 7)/100)
+        vrsubProd = ceil((vrTotalCanales * 6)/100)
         vrDesecho = ceil((vrTotalCanales * 2)/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
@@ -951,6 +1012,14 @@ def GestionDesposteActualizado(request, idplanilla):
         vrKiloCarnes2 = 0
     else:
          vrKiloCarnes2 = Decimal(vrCarnes2) / (pesoCarnes2 / 1000)
+    if pesoCarnes3 == 0:
+        vrKiloCarnes3 = 0
+    else:
+         vrKiloCarnes3 = Decimal(vrCarnes3) / (pesoCarnes3 / 1000)
+    if pesoCarnes4 == 0:
+        vrKiloCarnes4 = 0
+    else:
+         vrKiloCarnes4 = Decimal(vrCarnes4) / (pesoCarnes4 / 1000)
 
     if pesoCostillas == 0:
         vrKiloCostillas = 0
@@ -1019,6 +1088,8 @@ def GestionDesposteActualizado(request, idplanilla):
            #guardamos todos los datos en el detalle del desposte
            detalles.vrKiloCarnes = vrKiloCarnes
            detalles.vrKiloCarnes2 = vrKiloCarnes2
+           detalles.vrKiloCarnes3 = vrKiloCarnes3
+           detalles.vrKiloCarnes4 = vrKiloCarnes4
            detalles.vrKiloCostilla = vrKiloCostillas
            detalles.vrKiloHuesos = vrKiloHuesos
            detalles.vrKiloSubProd = vrKiloSubProd
@@ -1035,11 +1106,14 @@ def GestionDesposteActualizado(request, idplanilla):
     else:
         formulario = DetalleDesposteForm(initial={'planilla':idplanilla})
 
-    contexto = {'vrKiloCarnes2':vrKiloCarnes2,'vrKiloCarnes':vrKiloCarnes,'vrKiloCostillas':vrKiloCostillas,'vrKiloHuesos':vrKiloHuesos,
-                'vrKiloSubProd':vrKiloSubProd,'vrKiloDesecho':vrKiloDesecho,'carnes2':carnes2,'carnes':carnes,'costillas':costillas,
+    contexto = {'vrKiloCarnes2':vrKiloCarnes2,'vrKiloCarnes3':vrKiloCarnes3,'vrKiloCarnes4':vrKiloCarnes4,'vrKiloCarnes':vrKiloCarnes,
+                'vrKiloCostillas':vrKiloCostillas,'vrKiloHuesos':vrKiloHuesos,
+                'vrKiloSubProd':vrKiloSubProd,'vrKiloDesecho':vrKiloDesecho,'carnes4':carnes4,'carnes3':carnes3,'carnes2':carnes2,
+                'carnes':carnes,'costillas':costillas,
                 'huesos':huesos,'subProductos':subProductos,'desechos':desechos,'formulario':formulario,'desposte':desposte,
-                'canales':canales,'detalleDespostes':detalleDespostes,'vrCarnes':vrCarnes,'vrCarnes2':vrCarnes2,'vrCostillas':vrCostillas,
-                'vrHuesos':vrHuesos,'vrsubProd':vrsubProd,'vrDesecho':vrDesecho}
+                'canales':canales,'detalleDespostes':detalleDespostes,'vrCarnes':vrCarnes,'vrCarnes2':vrCarnes2,
+                'vrCarnes3':vrCarnes3,'vrCarnes4':vrCarnes4,'vrCostillas':vrCostillas,'vrHuesos':vrHuesos,'vrsubProd':vrsubProd,
+                'vrDesecho':vrDesecho}
 
     return render_to_response('Fabricacion/GestionDeposteActualizado.html',
                               contexto,context_instance = RequestContext(request))
@@ -1089,6 +1163,8 @@ def costeoDesposte(request):
 
     kiloCarnes = request.GET.get('kiloCarnes')
     kiloCarnes2 = request.GET.get('kiloCarnes2')
+    kiloCarnes3 = request.GET.get('kiloCarnes3')
+    kiloCarnes4 = request.GET.get('kiloCarnes4')
     kiloCostilla = request.GET.get('kiloCostilla')
     kiloHueso = request.GET.get('kiloHueso')
     kiloSubProd = request.GET.get('kiloSubProd')
@@ -1105,6 +1181,10 @@ def costeoDesposte(request):
             costoKilo = int(kiloCarnes) + ((cif + modProducto)/(detalle.PesoProducto/1000))
         if detalle.grupo == 'Grupo Carnes 2':
             costoKilo = int(kiloCarnes2) + ((cif + modProducto)/(detalle.PesoProducto/1000))
+        if detalle.grupo == 'Grupo Carnes 3':
+            costoKilo = int(kiloCarnes3) + ((cif + modProducto)/(detalle.PesoProducto/1000))
+        if detalle.grupo == 'Grupo Carnes 4':
+            costoKilo = int(kiloCarnes4) + ((cif + modProducto)/(detalle.PesoProducto/1000))
         if detalle.grupo == 'Grupo Costillas':
             costoKilo = int(kiloCostilla) + ((cif + modProducto)/(detalle.PesoProducto/1000))
         if detalle.grupo == 'Grupo Huesos':
@@ -1195,6 +1275,8 @@ def EditaDetPlanilla(request,idDetalle):
     #Filtramos los despostes en grupos para su posterior costeo
     carnes = detalleDespostes.filter(grupo = 'Grupo Carnes')
     carnes2 = detalleDespostes.filter(grupo = 'Grupo Carnes 2')
+    carnes3 = detalleDespostes.filter(grupo = 'Grupo Carnes 3')
+    carnes4 = detalleDespostes.filter(grupo = 'Grupo Carnes 4')
     costillas = detalleDespostes.filter(grupo = 'Grupo Costillas')
     huesos = detalleDespostes.filter(grupo = 'Grupo Huesos')
     subProductos = detalleDespostes.filter(grupo = 'Grupo SubProductos')
@@ -1208,7 +1290,7 @@ def EditaDetPlanilla(request,idDetalle):
     else:
         formulario = DetalleDesposteForm(instance=detalle)
 
-    contexto = {'carnes2':carnes2,'carnes':carnes,'costillas':costillas,'huesos':huesos,'subProductos':subProductos,
+    contexto = {'carnes4':carnes4,'carnes3':carnes3,'carnes2':carnes2,'carnes':carnes,'costillas':costillas,'huesos':huesos,'subProductos':subProductos,
                 'desechos':desechos,'formulario':formulario,'desposte':desposte,'canales':canales,
                 'detalleDespostes':detalleDespostes}
 

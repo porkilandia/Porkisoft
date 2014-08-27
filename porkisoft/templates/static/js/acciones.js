@@ -2,11 +2,12 @@ $(document).on('ready', inicio);
 $( document ).tooltip();
  function inicio()
  {
-    /* $(document).keypress(function(e)
+    /*$(document).keypress(function(e)
      {
-         if(e.which == 112)
+
+         if(e.which == 67)
          {
-                showModalDialog('/inventario/listaProd/')
+                showModalDialog('/fabricacion/costos/')
          }
 
 
@@ -40,6 +41,7 @@ $( document ).tooltip();
      $('#id_costoFileteCond').on('focus',calculaCostoCondimentado);
 
      $('#canalPendiente').dataTable();
+     $('#tablaenTajados').dataTable();
      $('#tablacostos').dataTable();
      $('#tablastock').dataTable();
      $('#tablaTraslados').dataTable();
@@ -51,15 +53,42 @@ $( document ).tooltip();
      $('#despostes').dataTable();
      $('#costos').dataTable();
      $('#descarnes').dataTable();
+     $('#TablaCondimentado').dataTable();
 
-     $('#id_fecha').datepicker({ dateFormat: "dd-mm-yy" });
-     $('#id_fechaCompra').datepicker({ dateFormat: "dd-mm-yy" });
+     $('#id_fecha').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaCompra').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaDesposte').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaTajado').datepicker({ dateFormat: "dd/mm/yy" });
 
      //$( "#id_fechaCompra" ).tooltip();
 
 }
 
 /************************************* METODOS ********************************/
+function GuardarCondimentado(idCondimentado)
+{
+    var opcion = confirm('Desea guardar este Registro?');
+    if (opcion == true)
+    {
+        $.ajax({
+
+            url : '/fabricacion/guardarCondimentado/',
+            dataType : "json",
+            type : "get",
+            data : {'idCondimentado':idCondimentado},
+            success : function(respuesta)
+            {
+                if (respuesta != '')
+                {
+                    $('#id_costoFilete').val(respuesta)
+                }
+
+            }
+
+        });
+    }
+
+}
 function calculaCostoCondimentado()
 {
     var pesoFilete = parseInt($('#id_pesoACondimentar').val());
@@ -302,6 +331,8 @@ function CostearDesposte()
     var pesoCanales = parseInt($('#pesoCanales').text());
     var kiloCarnes = parseInt($('#kiloCarnes').text());
     var kiloCarnes2 = parseInt($('#kiloCarnes2').text());
+    var kiloCarnes3 = parseInt($('#kiloCarnes3').text());
+    var kiloCarnes4 = parseInt($('#kiloCarnes4').text());
     var kiloCostilla = parseInt($('#kiloCostilla').text());
     var kiloHueso = parseInt($('#kiloHueso').text());
     var kiloSubProd = parseInt($('#kiloSubProd').text());
@@ -317,7 +348,8 @@ function CostearDesposte()
          dataType: "json",
          type: "get",
          data : {'kiloCostilla':kiloCostilla,'idDesposte':idDesposte,'pesoCanales':pesoCanales,'kiloCarnes':kiloCarnes,
-             'kiloCarnes2':kiloCarnes2,'kiloHueso':kiloHueso,'kiloSubProd':kiloSubProd,'kiloDesecho':kiloDesecho},
+             'kiloCarnes2':kiloCarnes2,'kiloCarnes3':kiloCarnes3,'kiloCarnes4':kiloCarnes4,
+             'kiloHueso':kiloHueso,'kiloSubProd':kiloSubProd,'kiloDesecho':kiloDesecho},
          success : function(respuesta){
              alert(respuesta)
          }

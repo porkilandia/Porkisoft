@@ -128,6 +128,8 @@ class DetallePlanilla (models.Model):
     OpGrupo = (
         ('Grupo Carnes','Grupo Carnes'),
         ('Grupo Carnes 2','Grupo Carnes 2'),
+        ('Grupo Carnes 3','Grupo Carnes 3'),
+        ('Grupo Carnes 4','Grupo Carnes 4'),
         ('Grupo Costillas','Grupo Costillas'),
         ('Grupo Huesos' , 'Grupo Huesos'),
         ('Grupo SubProductos' , 'Grupo SubProductos'),
@@ -143,6 +145,8 @@ class DetallePlanilla (models.Model):
     grupo = models.CharField(verbose_name='Grupo', choices=OpGrupo,default='Macho', max_length=20)
     vrKiloCarnes = models.IntegerField(verbose_name='Vr.Carnes 1', default=0)
     vrKiloCarnes2 = models.IntegerField(verbose_name='Vr.Carnes 2', default=0)
+    vrKiloCarnes3 = models.IntegerField(verbose_name='Vr.Carnes 3', default=0)
+    vrKiloCarnes4 = models.IntegerField(verbose_name='Vr.Carnes 4', default=0)
     vrKiloCostilla = models.IntegerField(verbose_name='Vr.Costilla', default=0)
     vrKiloHuesos = models.IntegerField(verbose_name='Vr.Hueso', default=0)
     vrKiloSubProd = models.IntegerField(verbose_name='Vr.Sub Prod', default=0)

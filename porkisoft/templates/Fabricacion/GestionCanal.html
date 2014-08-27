@@ -67,7 +67,12 @@
         <tbody>
           {% for cnl in canales %}
               {% if cnl.estado == 1 %}<tr style="color: darkgreen; font-weight: bold">{% else %}<tr style="color: red">{% endif %}
-            <td>{{ cnl.planilla }}</td>
+            {% if cnl.planilla %}
+                <td>{{ cnl.planilla }}</td>
+            {% else %}
+                <td>Sin planilla</td>
+            {% endif %}
+
               <td>{{ cnl.nroCanal }}</td>
             <td>{{ cnl.pesoFrigovito | floatformat }} Kg</td>
             <td style="font-weight: bold"><a href="{% url 'Fabricacion.views.MarcarCanalDesposte' cnl.codigoCanal %}">{{ cnl.pesoPorkilandia | floatformat }} Kg</a></td>

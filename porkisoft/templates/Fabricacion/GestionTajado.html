@@ -20,28 +20,40 @@
             <th>Responsable</th>
             <th>Fecha</th>
             <th>Producto</th>
+            <th>Grupo</th>
             <th>Peso Producto</th>
             <th>Total Tajado</th>
             <th>Costo Kilo</th>
+            <th>Estado</th>
             <th>Acciones</th>
 
 
         </tr>
         </thead>
         {% for tajado in tajados %}
-        <tr>
+        {% if tajado.guardado == False %}
+        <tr style="color: red">
+        {% endif %}
+
             <td>{{ tajado.codigoTajado }}</td>
             <td>{{ tajado.responsable }}</td>
             <td>{{ tajado.fechaTajado }}</td>
             <td>{{ tajado.producto }}</td>
+            <td>{{ tajado.producto.grupo.nombreGrupo }}</td>
             <td>{{ tajado.pesoProducto }}</td>
             <td>{{ tajado.totalTajado }}</td>
             <td>{{ tajado.costoKiloFilete }}</td>
+            {% if tajado.guardado == True %}
+                <td>Guardado</td>
+            {% else %}
+                <td>Sin guardar</td>
+            {% endif %}
             
             <td><a href="{% url 'Fabricacion.views.GestionDetalleTajado' tajado.codigoTajado %}">Detalle</a></td>
 
 
         </tr>
+
             {% empty %}
             <tr>
                 <td colspan="10">

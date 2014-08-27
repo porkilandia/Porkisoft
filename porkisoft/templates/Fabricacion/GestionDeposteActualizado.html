@@ -94,7 +94,7 @@
 
       </table>
     <br/>
-<!-- TABLA CARNES 1 -->
+<!----------------------------------------------------- TABLA CARNES 1 ------------------------------------------------>
 
 <table class="table-striped">
     <thead>
@@ -143,7 +143,7 @@
 </table>
     <br/>
 
-<!-- TABLA CARNES 2-->
+<!---------------------------------------------------- TABLA CARNES 2--------------------------------------------------->
 
 <table class="table-striped">
     <thead>
@@ -185,6 +185,102 @@
             <th>{{ vrCarnes2 }}</th>
             <th>Costo Kilo Base</th>
             <th id="kiloCarnes2">{{ vrKiloCarnes2 | floatformat }}</th>
+            <th></th><th></th><th></th><th></th>
+        </tr>
+
+    </tbody>
+</table>
+    <br/>
+<!------------------------------------------------ TABLA CARNES 3 ----------------------------------------------------->
+
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th style="text-align: center" colspan="8">CARNES 3</th>
+        </tr>
+        <tr>
+            <th>cod Producto</th>
+            <th>Producto</th>
+            <th>Grupo</th>
+            <th>Unidades</th>
+            <th>Peso Producto</th>
+            <th>Costo Prim</th>
+            <th>Costo Adtvo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for carne3 in carnes3 %}
+            <tr>
+                <td>{{ carne3.producto.codigoProducto }}</td>
+                <td>{{ carne3.producto }}</td>
+                <td>{{ carne3.producto.grupo.nombreGrupo }}</td>
+                <td>{{ carne3.unidades }}</td>
+                <td>{{ carne3.PesoProducto| floatformat }}</td>
+                <td>{{ carne3.costoProducto }}</td>
+                <td>{{ carne3.costoAdtvo }}</td>
+                <td>
+                    <a href="{% url 'Fabricacion.views.EditaDetPlanilla' carne3.id %}">Modificar</a>
+                </td>
+
+            </tr>
+
+        {% empty %}
+        {% endfor %}
+
+        <tr>
+            <th>Costo Grupo</th>
+            <th>{{ vrCarnes3 }}</th>
+            <th>Costo Kilo Base</th>
+            <th id="kiloCarnes3">{{ vrKiloCarnes3 | floatformat }}</th>
+            <th></th><th></th><th></th><th></th>
+        </tr>
+
+    </tbody>
+</table>
+    <br/>
+<!----------------------------------------------- TABLA CARNES 4 ------------------------------------------------------>
+
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th style="text-align: center" colspan="8">CARNES 4</th>
+        </tr>
+        <tr>
+            <th>cod Producto</th>
+            <th>Producto</th>
+            <th>Grupo</th>
+            <th>Unidades</th>
+            <th>Peso Producto</th>
+            <th>Costo Prim</th>
+            <th>Costo Adtvo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for carne4 in carnes4 %}
+            <tr>
+                <td>{{ carne4.producto.codigoProducto }}</td>
+                <td>{{ carne4.producto }}</td>
+                <td>{{ carne4.producto.grupo.nombreGrupo }}</td>
+                <td>{{ carne4.unidades }}</td>
+                <td>{{ carne4.PesoProducto| floatformat }}</td>
+                <td>{{ carne4.costoProducto }}</td>
+                <td>{{ carne4.costoAdtvo }}</td>
+                <td>
+                    <a href="{% url 'Fabricacion.views.EditaDetPlanilla' carne4.id %}">Modificar</a>
+                </td>
+
+            </tr>
+
+        {% empty %}
+        {% endfor %}
+
+        <tr>
+            <th>Costo Grupo</th>
+            <th>{{ vrCarnes4 }}</th>
+            <th>Costo Kilo Base</th>
+            <th id="kiloCarnes4">{{ vrKiloCarnes4 | floatformat }}</th>
             <th></th><th></th><th></th><th></th>
         </tr>
 

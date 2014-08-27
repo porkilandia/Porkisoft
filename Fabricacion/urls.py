@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^traercostoFilete/$',TraerCostoFilete),
     url(r'^costearTajado/$',costearTajado),
     url(r'^guardarTajado/$',GuardarTajado),
+    url(r'^guardarCondimentado/$',GuardarCondimentado),
 
     url(r'^condimentado/$',GestionCondimentado),
 

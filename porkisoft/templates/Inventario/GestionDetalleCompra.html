@@ -76,7 +76,7 @@
             {% endif %}
             {% if compra.tipo.nombreGrupo == 'Pollos' %}
                 {% if detcompra.estado == False %}
-                    <td><a href="{% url 'Inventario.views.EditaCompra' detcompra.id %}">Pendiete</a></td>
+                    <td><a href="{% url 'Inventario.views.EditaCompra' detcompra.id %}">Pendiente</a></td>
                 {% else %}
                     <td>Actualizado</td>
                 {% endif %}

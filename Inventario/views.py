@@ -382,6 +382,8 @@ def GestionDetalleCompra(request,idcompra):
                 productoBodegaBP.pesoProductoStock += detalleCompra.pesoProducto
                 productoBodegaBP.save()
 
+
+
             detcompras = DetalleCompra.objects.filter(compra = idcompra)
             totalCompra  = 0
             for dcmp in detcompras: # clacular los totales de la lista de detalles de subproducto
