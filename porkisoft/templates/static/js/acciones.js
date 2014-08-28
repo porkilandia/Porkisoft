@@ -62,6 +62,8 @@ $( document ).tooltip();
      $('#id_fechaDesposte').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaTajado').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaEnsalinado').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaApanado').datepicker({ dateFormat: "dd/mm/yy" });
+
 
 
      //$( "#id_fechaCompra" ).tooltip();
@@ -69,6 +71,7 @@ $( document ).tooltip();
 }
 
 /**************************************************** METODOS *********************************************************/
+
 function TraecostoEnsalinado()
 {
     var producto = $('#id_productoEnsalinado').val();

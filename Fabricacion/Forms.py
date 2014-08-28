@@ -68,7 +68,8 @@ class DetalleMigaForm(ModelForm):
 
 class ApanadoForm(ModelForm):
     class Meta:
-        model = Apanado
+        model = ProcesoApanado
+        exclude = ("guardado",)
 
 class CondimentadoForm(ModelForm):
     class Meta:

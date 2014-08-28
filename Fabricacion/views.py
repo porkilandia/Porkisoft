@@ -605,8 +605,20 @@ def existencias(request):
 
     return HttpResponse(respuesta,mimetype='application/json')
 
-
 def GestionApanado(request):
+    apanados = ProcesoApanado.objects.all()
+
+    if request.method == 'POST':
+        formulario = ApanadoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/apanados')
+    else:
+        formulario = ApanadoForm()
+
+    return render_to_response('Fabricacion/GestionApanado.html',{'formulario':formulario,'apanados':apanados },
+                              context_instance = RequestContext(request))
+'''def GestionApanado(request):
 
     bodegaFilete = ProductoBodega.objects.get(pk = idprodbod)
     apanados = Apanado.objects.filter(producto = bodegaFilete.producto.codigoProducto )
@@ -667,7 +679,7 @@ def GestionApanado(request):
                                           'miga':bodegaMiga.pesoProductoStock})
 
     return render_to_response('Fabricacion/GestionApanado.html',{'formulario':formulario, 'apanados': apanados},
-                              context_instance = RequestContext(request))
+                              context_instance = RequestContext(request))'''
 
 
 #**********************************************PROCESO CONDIMENTADO*****************************************************

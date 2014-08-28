@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Bodegas{% endblock titulo %}
+{% block titulo %}::Apanados::{% endblock titulo %}
 {% block mensajes %}
     Listado de Apanados
 {% endblock mensajes %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
-    <h2>Listado de Bodegas</h2>
+
     <table id="tablabodegas" class="table-striped" >
 
         <thead>
         <tr>
-            <th>Codigo</th>
+
             <th>Producto</th>
             <th>Peso Filete</th>
             <th>huevos</th>
@@ -22,7 +22,6 @@
         </thead>
         {% for apanado in apanados %}
         <tr>
-            <td>{{ apanado.codigoApanado }}</td>
             <td>{{ apanado.productoApanado }}</td>
             <td>{{ apanado.pesoFilete|floatformat }}grs</td>
             <td>{{ apanado.huevos }}</td>

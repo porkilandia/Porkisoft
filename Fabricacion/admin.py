@@ -11,4 +11,4 @@ admin.site.register(Enlagunado)
 admin.site.register(DetalleEnlagunado)
 admin.site.register(Miga)
 admin.site.register(DetalleMiga)
-admin.site.register(Apanado)
+

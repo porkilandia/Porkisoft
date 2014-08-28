@@ -259,13 +259,14 @@ class DescarneCabeza(models.Model):
     vrKiloProceso = models.IntegerField(default=0)
 
 class ProcesoApanado(models.Model):
-    fecha = models.DateField(verbose_name='Fecha')
-    producto = models.ForeignKey(Producto)
+    fechaApanado = models.DateField(verbose_name='Fecha')
+    productoApanado = models.ForeignKey(Producto)
     huevos = models.IntegerField(verbose_name='Huevos',default=0)
     miga = models.DecimalField(verbose_name='Peso Miga', max_digits=9, decimal_places=3,default=0)
     pesoFilete = models.DecimalField(verbose_name='Peso Filete', max_digits=9, decimal_places=3,default=0)
     totalApanado= models.DecimalField(verbose_name='Total Apanado', max_digits=9, decimal_places=3,default=0)
     costoKiloApanado = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    guardado = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.id
