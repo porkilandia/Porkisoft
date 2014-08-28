@@ -181,7 +181,7 @@ class DetalleMiga(models.Model):
     costoTotalProducto = models.IntegerField(verbose_name='Costo Total',default= 0 )
 
 
-class Apanado(models.Model):
+'''class Apanado(models.Model):
     codigoApanado = models.AutoField(primary_key=True)
     producto = models.ForeignKey(Producto)
     huevos = models.IntegerField(verbose_name='Huevos',default=0)
@@ -191,7 +191,7 @@ class Apanado(models.Model):
     costoKiloApanado = models.IntegerField(verbose_name='Costo Kilo',default=0)
 
     def __unicode__(self):
-        return self.codigoApanado
+        return self.codigoApanado'''
 
 class Condimento(models.Model):
     codigoCondimento = models.AutoField(primary_key= True)
@@ -257,3 +257,15 @@ class DescarneCabeza(models.Model):
     vrKiloLengua = models.IntegerField(default=0)
     vrKiloCareta = models.IntegerField(default=0)
     vrKiloProceso = models.IntegerField(default=0)
+
+class ProcesoApanado(models.Model):
+    fecha = models.DateField(verbose_name='Fecha')
+    producto = models.ForeignKey(Producto)
+    huevos = models.IntegerField(verbose_name='Huevos',default=0)
+    miga = models.DecimalField(verbose_name='Peso Miga', max_digits=9, decimal_places=3,default=0)
+    pesoFilete = models.DecimalField(verbose_name='Peso Filete', max_digits=9, decimal_places=3,default=0)
+    totalApanado= models.DecimalField(verbose_name='Total Apanado', max_digits=9, decimal_places=3,default=0)
+    costoKiloApanado = models.IntegerField(verbose_name='Costo Kilo',default=0)
+
+    def __unicode__(self):
+        return self.id

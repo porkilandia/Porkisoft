@@ -46,7 +46,7 @@ urlpatterns = patterns('',
     url(r'^miga/$', GestionMiga),
     url(r'^detallemiga/(?P<idmiga>\d+)', GestionDetalleMiga),
     url(r'^costoMiga/(?P<idmiga>\d+)',CostoMiga),
-    url(r'^apanado/(?P<idprodbod>\d+)',GestionApanado),
+    url(r'^apanados/$',GestionApanado),
 
 
 

@@ -606,7 +606,7 @@ def existencias(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 
-def GestionApanado(request,idprodbod):
+def GestionApanado(request):
 
     bodegaFilete = ProductoBodega.objects.get(pk = idprodbod)
     apanados = Apanado.objects.filter(producto = bodegaFilete.producto.codigoProducto )
