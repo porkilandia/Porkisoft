@@ -39,6 +39,8 @@ $( document ).tooltip();
      $('#id_costoFilete').on('focus',traerCostoFilete);
      $('#id_pesoFileteCond').on('focus',calculaPesoCondimentado);
      $('#id_costoFileteCond').on('focus',calculaCostoCondimentado);
+     $('#id_productoEnsalinado').on('change',TraecostoEnsalinado);
+
 
      $('#canalPendiente').dataTable();
      $('#tablaenTajados').dataTable();
@@ -59,12 +61,44 @@ $( document ).tooltip();
      $('#id_fechaCompra').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaDesposte').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaTajado').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaEnsalinado').datepicker({ dateFormat: "dd/mm/yy" });
+
 
      //$( "#id_fechaCompra" ).tooltip();
 
 }
 
-/************************************* METODOS ********************************/
+/**************************************************** METODOS *********************************************************/
+function TraecostoEnsalinado()
+{
+    var producto = $('#id_productoEnsalinado').val();
+    var peso = $('#id_pesoProducto').val();
+    Existencias(producto,6,peso);
+}
+function GuardarEnsalinado(idEnsalinado)
+{
+    var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario?');
+    if (opcion == true)
+    {
+        $.ajax({
+
+            url : '/fabricacion/guardarEnsalinado/',
+            dataType : "json",
+            type : "get",
+            data : {'idEnsalinado':idEnsalinado},
+            success : function(respuesta)
+            {
+                if (respuesta != '')
+                {
+                    $('#id_costoFilete').val(respuesta)
+                }
+
+            }
+
+        });
+    }
+
+}
 function GuardarCondimentado(idCondimentado)
 {
     var opcion = confirm('Desea guardar este Registro?');
@@ -478,7 +512,7 @@ function calculoEnsalinado()
     var pesoSal = $('#id_pesoSal').val();
     var pesoPapaina = $('#id_pesoPapaina').val();
     var pesoAntes = parseFloat(pesoProducto) + parseFloat(pesoSal) + parseFloat(pesoPapaina);
-    $('#id_pesoProductoDespues').val(pesoAntes);
+    $('#id_pesoProductoAntes').val(pesoAntes);
     /* se envia la sal y la papaina como parametros de busqueda
     * Sal = 89
     * Papaina = 95

@@ -34,9 +34,14 @@
                 <td>{{ condimentado.costoCondimento }}</td>
                 <td>{{ condimentado.pesoFileteCond }}</td>
                 <td>{{ condimentado.costoFileteCond }}</td>
-                <td>
-                    <a id="guardar" onclick="GuardarCondimentado({{ condimentado.id }})" href="#">Guardar</a>
-                </td>
+                {% if condimentado == True %}
+                    <td></td>
+                {% else %}
+                    <td>
+                    <a onclick="GuardarCondimentado({{ condimentado.id }})" href="#">Guardar</a>
+                    </td>
+                {% endif %}
+
 
 
             </tr>

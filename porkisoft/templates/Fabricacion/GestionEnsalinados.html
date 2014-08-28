@@ -2,12 +2,7 @@
 
 {% block titulo %}Ensalinado{% endblock titulo %}
 {% block mensajes %}
-    {% if exito %}
-        Ensalinados
-    {% else %}
-        No hay esa cantidad en existencia.
-    {% endif %}
-
+   Ensalinados
 {% endblock mensajes %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
@@ -16,8 +11,7 @@
 
         <thead>
         <tr>
-            <th>Codigo</th>
-            <th>Fecha</th>
+             <th>Fecha</th>
             <th>Producto</th>
             <th>Peso Producto</th>
             <th>Peso Sal</th>
@@ -25,22 +19,37 @@
             <th>Peso Pre Ensalinado</th>
             <th>Peso Pos Ensalinado</th>
             <th>Costo Kilo</th>
+            <th>Mod</th>
             <th>Costo Total</th>
+            <th>Acciones</th>
 
         </tr>
         </thead>
         {% for ensalinado in ensalinados %}
         <tr>
-            <td>{{ ensalinado.codigoEnsalinado }}</td>
+
             <td>{{ ensalinado.fechaEnsalinado }}</td>
-            <td>{{ ensalinado.producto }}</td>
+            <td>{{ ensalinado.productoEnsalinado }}</td>
             <td>{{ ensalinado.pesoProducto }}Kg</td>
             <td>{{ ensalinado.pesoSal| floatformat }}grs</td>
             <td>{{ ensalinado.pesoPapaina | floatformat }}grs</td>
             <td>{{ ensalinado.pesoProductoAntes|floatformat }}Kg</td>
             <td>{{ ensalinado.pesoProductoDespues|floatformat }}Kg</td>
             <td>$ {{ ensalinado.costoKilo }}</td>
+            <td>$ {{ ensalinado.mod }}</td>
             <td>$ {{ ensalinado.costoTotal }}</td>
+            {% if ensalinado.estado == True %}
+                    {% if ensalinado.guardado == True %}
+                        <td>Ok</td>
+                    {% else %}
+                        <td><a onclick="GuardarEnsalinado({{ ensalinado.codigoEnsalinado }})" href="#">Guardar</a></td>
+                    {% endif %}
+
+                {% else %}
+                    <td>
+                    <a href="{% url 'Fabricacion.views.EditaEnsalinado' ensalinado.codigoEnsalinado %}">Pendiente</a>
+                    </td>
+                {% endif %}
 
         </tr>
             {% empty %}

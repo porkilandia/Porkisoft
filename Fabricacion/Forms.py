@@ -14,10 +14,10 @@ class SacrificioForm(ModelForm):
 class EnsalinadoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(EnsalinadoForm,self).__init__(*args, **kwargs)
-        self.fields['producto'].queryset = Producto.objects.filter(grupo = 3)
+        self.fields['productoEnsalinado'].queryset = Producto.objects.filter(grupo = 3)
     class Meta:
         model = Ensalinado
-        exclude = ("costoKilo" ,  "costoTotal",)
+        exclude = ("costoKilo" , "costoTotal","guardado","estado","mod",)
 
 class LimpiezaVerdurasForm(ModelForm):
     class Meta:

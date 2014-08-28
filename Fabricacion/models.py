@@ -2,15 +2,18 @@ from Inventario.models import *
 
 class Ensalinado(models.Model):
     codigoEnsalinado = models.AutoField(primary_key=True)
-    fechaEnsalinado = models.DateField(verbose_name='Fecha',auto_now=True)
-    producto = models.ForeignKey(Producto)
+    fechaEnsalinado = models.DateField(verbose_name='Fecha')
     pesoProducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3)
+    productoEnsalinado = models.ForeignKey(Producto)
     pesoSal = models.DecimalField(verbose_name='Peso Sal', max_digits=9, decimal_places=3)
     pesoPapaina = models.DecimalField(verbose_name='Peso Papaina', max_digits=9, decimal_places=3)
     pesoProductoAntes = models.DecimalField(verbose_name='Peso pre', max_digits=9, decimal_places=3, default=0)
     pesoProductoDespues = models.DecimalField(verbose_name='Peso pos', max_digits=9, decimal_places=3, default=0)
     costoKilo = models.IntegerField(verbose_name='Costo Kilo', default=0)
     costoTotal = models.IntegerField(verbose_name='Costo Total', default=0)
+    guardado = models.BooleanField(default=False)
+    estado = models.BooleanField(default=False)
+    mod = models.IntegerField(verbose_name='MOD',default=0)
 
 class LimpiezaVerduras(models.Model):
     compra = models.ForeignKey(DetalleCompra)
@@ -218,6 +221,7 @@ class Condimentado(models.Model):
     costoCondimento = models.IntegerField(verbose_name='Costo Cond.',default=0)
     pesoFileteCond = models.DecimalField(verbose_name='Peso Condimentado', max_digits=9, decimal_places=3,default=0)
     costoFileteCond = models.IntegerField(verbose_name='Costo Condimentado',default=0)
+    guardado = models.BooleanField(default=False)
 
 
 class ValoresCostos(models.Model):

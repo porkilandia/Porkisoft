@@ -254,72 +254,93 @@ def GestionSacrificio(request,idrecepcion):
 
 def GestionEnsalinado(request):
     ensalinados = Ensalinado.objects.all()
-    sal = Producto.objects.get(nombreProducto = 'Sal')
-    papaina = Producto.objects.get(nombreProducto = 'Papaina')
-
-    salBodega = ProductoBodega.objects.get(bodega = 6 , producto__nombreProducto = 'Sal')
-    PapainaBodega = ProductoBodega.objects.get(bodega = 6 , producto__nombreProducto = 'Papaina')
-
-
-
     if request.method == 'POST':
         formulario = EnsalinadoForm(request.POST)
 
         if formulario.is_valid():
-
-            ensalinado = formulario.save()
-
-            producto = Producto.objects.get(nombreProducto = ensalinado.producto.nombreProducto)
-
-            costoSal = (ensalinado.pesoSal/ 1000) * sal.costoProducto
-            costoPapaina = (ensalinado.pesoPapaina / 1000) * papaina.costoProducto
-            costoProductoEnsalinado = (ensalinado.pesoProducto / 1000) * producto.costoProducto
-            costoInsumos = costoSal + costoPapaina + costoProductoEnsalinado
-            cif = 30 * (ensalinado.pesoProductoDespues / 1000)
-            mod = 20 * (ensalinado.pesoProductoDespues / 1000)
-            costoTotal = cif + mod + costoInsumos
-            costoKilo = ceil(costoTotal / (ensalinado.pesoProductoDespues /1000))
-
-            ensalinado.pesoProductoDespues /= 1000
-            ensalinado.pesoProductoAntes /= 1000
-            ensalinado.pesoProducto /= 1000
-            ensalinado.costoTotal = costoTotal
-            ensalinado.costoKilo = costoKilo
-            ensalinado.save()
-
-            # se guarda en el Producto el Costo del Kilo
-            piernaEnsalinada = Producto.objects.get(nombreProducto = 'Pierna Ensalinada')
-            piernaEnsalinada.costoProducto = costoKilo
-            piernaEnsalinada.save()
-
-            #Se guarda la cantidad final en la bodega de taller
-            bodegaEnsalinado = ProductoBodega.objects.get(bodega = 6,producto = piernaEnsalinada.codigoProducto)
-            bodegaEnsalinado.pesoProductoStock += ensalinado.pesoProductoDespues * 1000
-            bodegaEnsalinado.save()
-
-            #se resta la cantidad de Carne que se utilizo para el ensalinado
-            bodegaProductoAntes = ProductoBodega.objects.get(bodega = 6, producto = producto.codigoProducto)
-            bodegaProductoAntes.pesoProductoStock -= ensalinado.pesoProductoAntes * 1000
-            bodegaProductoAntes.save()
-
-
-            #Se guarda la cantidad a restar para la sal
-
-            salBodega.pesoProductoStock -= ensalinado.pesoSal
-            salBodega.save()
-
-            #Se guarda la cantidad a restar para la Papaina
-
-            PapainaBodega.pesoProductoStock -= ensalinado.pesoPapaina
-            PapainaBodega.save()
-
-
+            formulario.save()
             return HttpResponseRedirect('/fabricacion/ensalinados/')
     else:
         formulario = EnsalinadoForm()
 
     return render_to_response('Fabricacion/GestionEnsalinados.html',{'formulario':formulario,'ensalinados':ensalinados },
                               context_instance = RequestContext(request))
+
+def EditaEnsalinado(request,idEnsalinado):
+
+    ensalinados = Ensalinado.objects.all()
+    ensalinado = Ensalinado.objects.get(pk = idEnsalinado)
+
+
+    if request.method == 'POST':
+        formulario = EnsalinadoForm(request.POST,instance=ensalinado)
+
+        if formulario.is_valid():
+            formulario.save()
+            ensalinado.estado = True
+            ensalinado.save()
+            return HttpResponseRedirect('/fabricacion/ensalinados/')
+    else:
+        formulario = EnsalinadoForm(instance=ensalinado)
+
+    return render_to_response('Fabricacion/GestionEnsalinados.html',{'formulario':formulario,'ensalinados':ensalinados },
+                              context_instance = RequestContext(request))
+
+def GuardaEnsalinado(request):
+
+    idEnsalinado = request.GET.get('idEnsalinado')
+    ensalinado = Ensalinado.objects.get(pk = int(idEnsalinado))
+    sal = Producto.objects.get(nombreProducto = 'Sal')
+    papaina = Producto.objects.get(nombreProducto = 'Papaina')
+
+    salBodega = ProductoBodega.objects.get(bodega = 6 , producto__nombreProducto = 'Sal')
+    PapainaBodega = ProductoBodega.objects.get(bodega = 6 , producto__nombreProducto = 'Papaina')
+
+    producto = Producto.objects.get(nombreProducto = ensalinado.productoEnsalinado.nombreProducto)
+
+    costoSal = (ensalinado.pesoSal/ 1000) * sal.costoProducto
+    costoPapaina = (ensalinado.pesoPapaina / 1000) * papaina.costoProducto
+    costoProductoEnsalinado = (ensalinado.pesoProducto / 1000) * producto.costoProducto
+    costoInsumos = costoSal + costoPapaina + costoProductoEnsalinado
+    #cif = 30 * (ensalinado.pesoProductoDespues / 1000)
+    mod = ValoresCostos.objects.get(nombreCosto = 'Costo Ensalinado').valorMod
+    costoTotal = mod + costoInsumos
+    costoKilo = ceil(costoTotal / (ensalinado.pesoProductoDespues /1000))
+
+    ensalinado.costoTotal = costoTotal
+    ensalinado.costoKilo = costoKilo
+    ensalinado.guardado = True
+    ensalinado.mod = mod
+    ensalinado.save()
+
+    # se guarda en el Producto el Costo del Kilo
+    piernaEnsalinada = Producto.objects.get(nombreProducto = 'Pierna Ensalinada')
+    piernaEnsalinada.costoProducto = costoKilo
+    piernaEnsalinada.save()
+
+    #Se guarda la cantidad final en la bodega de taller
+    bodegaEnsalinado = ProductoBodega.objects.get(bodega = 6,producto = piernaEnsalinada.codigoProducto)
+    bodegaEnsalinado.pesoProductoStock += ensalinado.pesoProductoDespues
+    bodegaEnsalinado.save()
+
+    #se resta la cantidad de Carne que se utilizo para el ensalinado
+    bodegaProductoAntes = ProductoBodega.objects.get(bodega = 6, producto = producto.codigoProducto)
+    bodegaProductoAntes.pesoProductoStock -= ensalinado.pesoProductoAntes
+    bodegaProductoAntes.save()
+
+
+    #Se guarda la cantidad a restar para la sal
+
+    salBodega.pesoProductoStock -= ensalinado.pesoSal
+    salBodega.save()
+
+    #Se guarda la cantidad a restar para la Papaina
+
+    PapainaBodega.pesoProductoStock -= ensalinado.pesoPapaina
+    PapainaBodega.save()
+
+    respuesta = json.dumps('Guardado Exitoso!!')
+    return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionVerduras(request,idDetcompra):
     detalleCompra = DetalleCompra.objects.get(pk = idDetcompra)
@@ -658,42 +679,7 @@ def GestionCondimentado(request):
     if request.method == 'POST':
         formulario = CondimentadoForm(request.POST)
         if formulario.is_valid():
-            datos = formulario.save()
-
-            #productos a restar
-            producto = Producto.objects.get(pk = datos.producto.codigoProducto)
-            bodegaFilete = ProductoBodega.objects.get(bodega = 6, producto = producto.codigoProducto)
-            bodegaFilete.pesoProductoStock -= datos.pesoACondimentar
-            bodegaFilete.save()
-
-            bodegaCondimento = ProductoBodega.objects.get(bodega = 6,producto = condimento.codigoProducto)
-            bodegaCondimento.pesoProductoStock -= datos.condimento
-            bodegaCondimento.save()
-
-            #guardamos las cantidades producidas
-            if datos.producto.grupo.nombreGrupo == 'Pollos':
-                FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de Pollo Condimentado')
-                FileteCondimentado.costoProducto = datos.costoFileteCond
-                bodegaFileteCond = ProductoBodega.objects.get(bodega = 5,producto = FileteCondimentado.codigoProducto)
-                bodegaFileteCond.pesoProductoStock += datos.pesoFileteCond
-                bodegaFileteCond.save()
-            elif datos.producto.grupo.nombreGrupo == 'Cerdos':
-                FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de cerdo Condimentado')
-                FileteCondimentado.costoProducto = datos.costoFileteCond
-                bodegaFileteCond = ProductoBodega.objects.get(bodega = 5,producto = FileteCondimentado.codigoProducto)
-                bodegaFileteCond.pesoProductoStock += datos.pesoFileteCond
-                bodegaFileteCond.save()
-            else:
-                FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de cerda Condimentado')
-                FileteCondimentado.costoProducto = datos.costoFileteCond
-                bodegaFileteCond = ProductoBodega.objects.get(bodega = 5,producto = FileteCondimentado.codigoProducto)
-                bodegaFileteCond.pesoProductoStock += datos.pesoFileteCond
-                bodegaFileteCond.save()
-
-            FileteCondimentado.save()
-
-
-
+            formulario.save()
             return HttpResponseRedirect('/fabricacion/condimentado')
     else:
         formulario = CondimentadoForm(initial={'costoCondimento':condimento.costoProducto})
@@ -702,7 +688,52 @@ def GestionCondimentado(request):
                               context_instance = RequestContext(request))
 
 def GuardarCondimentado(request):
-    pass
+    idCondimentado = request.GET.get('idCondimentado')
+    condimentado = Condimentado.objects.get(pk = int(idCondimentado))
+    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
+
+    #productos a restar
+    producto = Producto.objects.get(pk = condimentado.producto.codigoProducto)
+    bodegaFilete = ProductoBodega.objects.get(bodega = 6, producto = producto.codigoProducto)
+    bodegaFilete.pesoProductoStock -= condimentado.pesoACondimentar
+    bodegaFilete.save()
+
+    bodegaCondimento = ProductoBodega.objects.get(bodega = 6,producto = condimento.codigoProducto)
+    bodegaCondimento.pesoProductoStock -= condimentado.condimento
+    bodegaCondimento.save()
+
+            #guardamos las cantidades producidas
+    if condimentado.producto.grupo.nombreGrupo == 'Pollos':
+        FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de Pollo Condimentado')
+        FileteCondimentado.costoProducto = condimentado.costoFileteCond
+        bodegaFileteCond = ProductoBodega.objects.get(bodega = 5,producto = FileteCondimentado.codigoProducto)
+        bodegaFileteCond.pesoProductoStock += condimentado.pesoFileteCond
+        bodegaFileteCond.save()
+        msj ='Guardado exitoso!!'
+
+    elif condimentado.producto.grupo.nombreGrupo == 'Cerdos':
+        FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de cerdo Condimentado')
+        FileteCondimentado.costoProducto = condimentado.costoFileteCond
+        bodegaFileteCond = ProductoBodega.objects.get(bodega = 5,producto = FileteCondimentado.codigoProducto)
+        bodegaFileteCond.pesoProductoStock += condimentado.pesoFileteCond
+        bodegaFileteCond.save()
+        msj ='Guardado exitoso!!'
+
+    else:
+        FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de cerda Condimentado')
+        FileteCondimentado.costoProducto = condimentado.costoFileteCond
+        bodegaFileteCond = ProductoBodega.objects.get(bodega = 5,producto = FileteCondimentado.codigoProducto)
+        bodegaFileteCond.pesoProductoStock += condimentado.pesoFileteCond
+        bodegaFileteCond.save()
+        msj ='Guardado exitoso!!'
+
+    condimentado.guardado = True
+    condimentado.save()
+    FileteCondimentado.save()
+
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
 
 def TraerCostoFilete(request):
     idProducto = request.GET.get('producto')
