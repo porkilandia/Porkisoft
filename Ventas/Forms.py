@@ -24,3 +24,11 @@ class VentaForm(ModelForm):
 class VentaDetalleForm(ModelForm):
     class Meta:
         model = DetalleVenta
+
+class ListaDePreciosForm(ModelForm):
+    class Meta:
+        model = ListaDePrecios
+
+class DetalleListaForm(ModelForm):
+    class Meta:
+        model = DetalleLista

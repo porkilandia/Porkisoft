@@ -6,7 +6,7 @@ from Ventas.Forms import *
 import ho.pisa as pisa
 import cStringIO as StringIO
 import cgi
-
+from datetime import *
 from decimal import Decimal
 
 import json
@@ -160,3 +160,57 @@ def GuardarVenta(request):
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 
+def GestionLista(request):
+    listas = ListaDePrecios.objects.all()
+
+    if request.method =='POST':
+        formulario = ListaDePreciosForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/ventas/listaPrecios/')
+    else:
+        formulario = ListaDePreciosForm()
+
+    return render_to_response('Ventas/GestionLista.html',{'formulario':formulario,'listas':listas},
+                              context_instance = RequestContext(request))
+
+def GestionDetalleLista(request,idLista):
+    lista = ListaDePrecios.objects.get(pk= idLista)
+    detalleListas = DetalleLista.objects.filter(lista = lista.codigoLista)
+
+    if request.method =='POST':
+        formulario = DetalleListaForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/ventas/detalleLista/'+idLista)
+    else:
+        formulario = DetalleListaForm(initial={'lista':idLista})
+
+    return render_to_response('Ventas/GestionDetalleListas.html',{'formulario':formulario,'lista':lista,'detalleListas':detalleListas},
+                              context_instance = RequestContext(request))
+
+def consultaCostoProducto(request):
+    idProducto = request.GET.get('producto')
+    producto = Producto.objects.get(pk = int(idProducto)).costoProducto
+    respuesta = json.dumps(producto)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+
+def EditaListas(request,idDetLista):
+
+    detalleLista = DetalleLista.objects.get(pk = idDetLista)
+    lista = ListaDePrecios.objects.get(pk= detalleLista.lista.codigoLista)
+    detalleListas = DetalleLista.objects.filter(lista = lista.codigoLista)
+
+    if request.method =='POST':
+        formulario = DetalleListaForm(request.POST,instance=detalleLista)
+        if formulario.is_valid():
+            formulario.save()
+            lista.fecha = datetime.today()
+            lista.save()
+            return HttpResponseRedirect('/ventas/detalleLista/'+str(lista.codigoLista))
+    else:
+        formulario = DetalleListaForm(initial={'lista':lista.codigoLista},instance=detalleLista)
+
+    return render_to_response('Ventas/GestionDetalleListas.html',{'formulario':formulario,'lista':lista,'detalleListas':detalleListas},
+                              context_instance = RequestContext(request))

@@ -51,3 +51,19 @@ class DetallePedido (models.Model):
     vrUnitario = models.IntegerField(verbose_name='Vr.Unitario', default=0)
     vrTotal = models.IntegerField(verbose_name='Vr.Total',default=0)
     estado = models.BooleanField(verbose_name='Estado',default=False)
+
+
+class ListaDePrecios(models.Model):
+    codigoLista = models.AutoField(primary_key=True)
+    fecha = models.DateField(verbose_name='Fecha')
+    nombreLista = models.CharField(max_length=50,verbose_name='Nombre')
+
+    def __unicode__(self):
+        return self.codigoLista
+
+class DetalleLista(models.Model):
+    lista = models.ForeignKey(ListaDePrecios,verbose_name='Lista')
+    productoLista = models.ForeignKey(Producto,verbose_name='Producto')
+    costoKilo = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Costo Kilo',null= True,default=0)
+    precioVenta = models.IntegerField(verbose_name='Precio Venta')
+

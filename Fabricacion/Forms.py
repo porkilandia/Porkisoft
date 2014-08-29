@@ -95,8 +95,8 @@ class CanalForm(ModelForm):
 class DetalleDesposteForm(ModelForm):
     class Meta:
         model = DetallePlanilla
-        exclude = ("vrKiloCostilla","costoProducto","costoAdtvo","vrKiloCarnes","vrKiloHuesos","vrKiloSubProd"
-                   ,"pesoCostilla","vrKiloDesecho","pesoCarne","pesoHueso","pesoSubProd","pesoDesecho","vrKiloCarnes2",)
+        exclude = ("vrKiloCostilla","costoProducto","costoAdtvo","vrKiloCarnes","vrKiloCarnes3","vrKiloCarnes4",
+                   "vrKiloHuesos","vrKiloSubProd","pesoCostilla","vrKiloDesecho","pesoCarne","pesoHueso","pesoSubProd","pesoDesecho","vrKiloCarnes2",)
 
 class costoForm(ModelForm):
     class Meta:

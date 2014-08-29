@@ -44,6 +44,7 @@ $( document ).tooltip();
      $('#id_productoApanado').on('change',existenciasFileteCondimentado);
      $('#id_totalApanado').on('focus',calculoTotalApanado);
      $('#id_productoMolido').on('change',existenciasCarneAMoler);
+     $('#id_productoLista').on('change',CostoProdListaPrecios);
 
 
 
@@ -68,6 +69,7 @@ $( document ).tooltip();
      $('#id_fechaTajado').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaEnsalinado').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaApanado').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaVenta').datepicker({ dateFormat: "dd/mm/yy" });
 
 
 
@@ -76,6 +78,28 @@ $( document ).tooltip();
 }
 
 /**************************************************** METODOS *********************************************************/
+function CostoProdListaPrecios()
+{
+    var producto = $('#id_productoLista').val();
+
+    $.ajax({
+
+            url : '/ventas/consultaCosto/',
+            dataType : "json",
+            type : "get",
+            data : {'producto':producto},
+            success : function(respuesta)
+            {
+                if (respuesta != '')
+                {
+                    $('#id_costoKilo').val(respuesta)
+                }
+
+            }
+
+        });
+}
+
 function GuardarMolido(idMolido)
 {
     var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
@@ -405,7 +429,8 @@ function Existencias(idProducto,idBodega,pesoProducto)
             {
                 if (respuesta != '')
                 {
-                    alert(respuesta);
+                    var n = noty({text: respuesta});
+                    //alert(respuesta);
                 }
 
             }

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Detalle Lista{% endblock titulo %}
+{% block mensajes %}Detalle de Lista de precios {% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+<br/><br/><br/>
+    <table class="table-striped" >
+
+        <thead >
+        <tr>
+            <th>Codigo</th>
+            <th>Fecha</th>
+            <th>Nombre</th>
+
+        </tr>
+        </thead>
+
+        <tr>
+            <td>{{ lista.codigoLista }}</td>
+            <td>{{ lista.fecha }}</td>
+            <td>{{ lista.nombreLista }}</td>
+
+        </tr>
+
+    </table>
+    <br/><br/>
+    <table class="table-striped" >
+
+        <thead >
+        <tr>
+            <th>Producto</th>
+            <th>Costo Kilo</th>
+            <th>Precio Venta</th>
+            <th>Acciones</th>
+
+        </tr>
+        </thead>
+        {% for detalle in detalleListas %}
+        <tr>
+
+            <td>{{ detalle.productoLista }}</td>
+            <td>{{ detalle.costoKilo }}</td>
+            <td>{{ detalle.precioVenta }}</td>
+
+            <td>
+                 <a href="{% url 'Ventas.views.EditaListas' detalle.id %}">Actualizar</a>
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Venta<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+
+                  {{ formulario }}
+
+              <br/>
+          <input class="btn btn-default" value="Guardar" type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}
