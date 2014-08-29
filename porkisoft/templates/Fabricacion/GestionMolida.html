@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Carne Molida::{% endblock titulo %}
+{% block mensajes %}
+    Carne Molida
+{% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+
+    <table id="tablabodegas" class="table-striped" >
+
+        <thead>
+        <tr>
+
+            <th>Fecha</th>
+            <th>Peso a Moler</th>
+            <th>Producto</th>
+            <th>Costo Kilo</th>
+            <th>Total Molido</th>
+            <th>Costo Kilo Molido</th>
+            <th>Mod</th>
+            <th>Cif</th>
+            <th>Guardado</th>
+        </tr>
+        </thead>
+        {% for molido in molidos %}
+        <tr>
+            <td>{{ molido.fechaMolido }}</td>
+            <td>{{ molido.pesoAmoler|floatformat }}grs</td>
+            <td>{{ molido.productoMolido }}</td>
+            <td>{{ molido.costoKilo |floatformat }}grs</td>
+            <td>{{ molido.totalMolido |floatformat }}grs</td>
+            <td>${{ molido.costoKiloMolido }}</td>
+            <td>{{ molido.mod }}</td>
+            <td>{{ molido.cif }}</td>
+            {% if molido.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+            <td>
+                <a onclick="CostearMolido({{ molido.id }})" href="#">Costear</a>
+                <a onclick="GuardarMolido({{ molido.id }})" href="#">Guardar</a>
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Apanado <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+
+                  {{ formulario }}
+
+              <br/>
+             <br/>
+          <input class="btn btn-primary" value="Guardar" type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}

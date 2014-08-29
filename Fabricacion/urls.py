@@ -13,6 +13,10 @@ urlpatterns = patterns('',
     url(r'^guardarTajado/$',GuardarTajado),
     url(r'^guardarCondimentado/$',GuardarCondimentado),
     url(r'^guardarEnsalinado/$',GuardaEnsalinado),
+    url(r'^costearApanado/$',costeoApanado),
+    url(r'^guardarApanado/$',GuardarApanado),
+    url(r'^costearMolido/$',costeoMolido),
+    url(r'^guardarMolido/$',GuardarMolido),
 
     url(r'^condimentado/$',GestionCondimentado),
 
@@ -21,6 +25,8 @@ urlpatterns = patterns('',
     url(r'^costos/$',GestionValorCostos),
     url(r'^editacosto/(?P<idcosto>\d+)',EditaCostos),
     url(r'^editaensalinado/(?P<idEnsalinado>\d+)',EditaEnsalinado),
+
+     url(r'^molida/$',GestionMolido),
 
     url(r'^canal/(?P<idrecepcion>\d+)',GestionCanal),
     url(r'^marcarcanal/(?P<idcanal>\d+)',MarcarCanalDesposte),

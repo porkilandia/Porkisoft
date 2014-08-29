@@ -28,6 +28,10 @@
             <td>{{ apanado.miga |floatformat }}grs</td>
             <td>{{ apanado.totalApanado |floatformat }}grs</td>
             <td>${{ apanado.costoKiloApanado }}</td>
+            <td>
+                <a onclick="CostearApanado({{ apanado.id }})" href="#">Costear</a>
+                <a onclick="GuardarApanado({{ apanado.id }})" href="#">Guardar</a>
+            </td>
 
         </tr>
             {% empty %}
@@ -46,6 +50,7 @@
                   {{ formulario }}
 
               <br/>
+          <br/>
           <input class="btn btn-primary" value="Guardar" type="submit">
          </fieldset>
      </form>

@@ -260,13 +260,26 @@ class DescarneCabeza(models.Model):
 
 class ProcesoApanado(models.Model):
     fechaApanado = models.DateField(verbose_name='Fecha')
-    productoApanado = models.ForeignKey(Producto)
+    pesoFilete = models.DecimalField(verbose_name='Peso Filete', max_digits=9, decimal_places=3,default=0)
+    productoApanado = models.ForeignKey(Producto,verbose_name='Producto')
     huevos = models.IntegerField(verbose_name='Huevos',default=0)
     miga = models.DecimalField(verbose_name='Peso Miga', max_digits=9, decimal_places=3,default=0)
-    pesoFilete = models.DecimalField(verbose_name='Peso Filete', max_digits=9, decimal_places=3,default=0)
     totalApanado= models.DecimalField(verbose_name='Total Apanado', max_digits=9, decimal_places=3,default=0)
     costoKiloApanado = models.IntegerField(verbose_name='Costo Kilo',default=0)
     guardado = models.BooleanField(default=False)
+    mod = models.IntegerField(verbose_name='Mod',default=0)
+    cif = models.IntegerField(verbose_name='Cif',default=0)
 
     def __unicode__(self):
         return self.id
+
+class Molida(models.Model):
+    fechaMolido = models.DateField(verbose_name='Fecha')
+    pesoAmoler= models.DecimalField(verbose_name='Peso a Moler', max_digits=9, decimal_places=3,default=0)
+    productoMolido = models.ForeignKey(Producto,verbose_name='Producto')
+    costoKilo = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    mod = models.IntegerField(verbose_name='Mod',default=0)
+    cif = models.IntegerField(verbose_name='Cif',default=0)
+    totalMolido = models.DecimalField(verbose_name='Total Molido', max_digits=9, decimal_places=3,default=0)
+    costoKiloMolido = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    guardado = models.BooleanField(default=False)

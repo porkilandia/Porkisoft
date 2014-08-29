@@ -618,69 +618,148 @@ def GestionApanado(request):
 
     return render_to_response('Fabricacion/GestionApanado.html',{'formulario':formulario,'apanados':apanados },
                               context_instance = RequestContext(request))
-'''def GestionApanado(request):
+def GuardarApanado(request):
 
-    bodegaFilete = ProductoBodega.objects.get(pk = idprodbod)
-    apanados = Apanado.objects.filter(producto = bodegaFilete.producto.codigoProducto )
-    miga = Producto.objects.get(nombreProducto = 'Miga')
+    idApanado = request.GET.get('idApanado')
+    apanado = ProcesoApanado.objects.get(pk = int(idApanado))
+    Filete = Producto.objects.get(pk = apanado.productoApanado.codigoProducto)
+
+    bodegaFilete = ProductoBodega.objects.get(bodega = 6,producto = Filete.codigoProducto)
+    bodegaMiga = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Miga Preparada')
+    bodegaHuevos = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Huevos')
+    bodegaFileteApanadoCerdo = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Filete Apanado Cerdo')
+    bodegaFileteApanadoPollo = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Filete Apanado Pollo')
+
+    #guardamos las cantidades utilizadas de cada producto
+    bodegaFilete.pesoProductoStock -= apanado.pesoFilete
+    bodegaMiga.pesoProductoStock -= apanado.miga
+    bodegaHuevos.pesoProductoStock -= apanado.huevos
+
+    #guardamos las cantidades de producto resultante
+    if apanado.productoApanado.grupo.nombreGrupo == 'Cerdos' or apanado.productoApanado.grupo.nombreGrupo == 'Cerdas':
+        bodegaFileteApanadoCerdo.pesoProductoStock += apanado.totalApanado
+        bodegaFileteApanadoCerdo.save()
+    else:
+         bodegaFileteApanadoPollo.pesoProductoStock += apanado.totalApanado
+         bodegaFileteApanadoPollo.save()
+
+    bodegaFilete.save()
+    bodegaMiga.save()
+    bodegaHuevos.save()
+
+    apanado.guardado =True
+    apanado.save()
+
+    msj = 'Guardado Exitoso!!'
+    respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+
+def costeoApanado(request):
+    idApanado = request.GET.get('idApanado')
+    apanado = ProcesoApanado.objects.get(pk = int(idApanado))
+
+    # traemos todos los datos necsarios para el costeo
+
+    Filete = Producto.objects.get(pk = apanado.productoApanado.codigoProducto)
+    FileteApanadoCerdo = Producto.objects.get(nombreProducto = 'Filete Apanado Cerdo')
+    FileteApanadoPollo = Producto.objects.get(nombreProducto = 'Filete Apanado Pollo')
+    miga = Producto.objects.get(nombreProducto = 'Miga Preparada')
     Huevos = Producto.objects.get(nombreProducto = 'Huevos')
-    filete = Producto.objects.get(nombreProducto = 'Filete Condimentado')
-    fileteApanado =  Producto.objects.get(nombreProducto = 'Filete Apanado')
-    bodegaHuevos = ProductoBodega.objects.get(bodega = 6, producto = Huevos.codigoProducto)
-    bodegaMiga = ProductoBodega.objects.get(bodega = 6 , producto = miga.codigoProducto)
-    bodegaFileteApanado = ProductoBodega.objects.get(bodega = 5 , producto = fileteApanado.codigoProducto)
+    pesoFilete = apanado.pesoFilete
+    pesoMiga = apanado.miga
+    cantHuevos = apanado.huevos
+    costoFilete = Filete.costoProducto
+    costoMiga = miga.costoProducto
+    costoHuevos = Huevos.codigoProducto
+    pesoApanado = apanado.totalApanado
+    # se totaliza el costo de los insumos
+    CostoTotalFilete = costoFilete * (pesoFilete / 1000)
+    CostoTotalMiga = costoMiga * (pesoMiga / 1000)
+    CostoTotalHuevos = costoHuevos * cantHuevos
+
+    # se guarda el costo del kilo en el producto terminado
+
+    if apanado.productoApanado.grupo.nombreGrupo == 'Cerdos' or apanado.productoApanado.grupo.nombreGrupo == 'Cerdas':
+        mod = ValoresCostos.objects.get(nombreCosto = 'Costo Apanado cerdos').valorMod
+        cif = ValoresCostos.objects.get(nombreCosto = 'Costo Apanado cerdos').valorCif
+        CostoKiloApanado = mod + cif + CostoTotalFilete + CostoTotalMiga + CostoTotalHuevos / (pesoApanado / 1000)
+        FileteApanadoCerdo.costoProducto = CostoKiloApanado
+        msj = '!Costeo Exitoso¡'
+
+
+    else:
+        mod = ValoresCostos.objects.get(nombreCosto = 'Costo Apanado pollo').valorMod
+        cif = ValoresCostos.objects.get(nombreCosto = 'Costo Apanado pollo').valorCif
+        CostoKiloApanado = mod + cif + CostoTotalFilete + CostoTotalMiga + CostoTotalHuevos / (pesoApanado / 1000)
+        FileteApanadoPollo.costoProducto = CostoKiloApanado
+        msj = '!Costeo Exitoso¡'
+
+    apanado.costoKiloApanado = CostoKiloApanado
+    apanado.cif = cif
+    apanado.mod = mod
+    apanado.save()
+
+    respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def GestionMolido(request):
+    molidos = Molida.objects.all()
 
     if request.method == 'POST':
-        formulario = ApanadoForm(request.POST)
+        formulario = MolidoForm(request.POST)
         if formulario.is_valid():
-            apanado = formulario.save()
-
-            CostoTotalMiga = miga.costoProducto * apanado.miga
-            CostoTotalHuevos = Huevos.costoProducto * apanado.huevos
-            CostoTotalFilete = filete.costoProducto * apanado.pesoFilete
-
-            CostoFiletePorApanar = CostoTotalMiga + CostoTotalFilete + CostoTotalHuevos
-
-            mod = Decimal(0.096) * apanado.totalApanado
-            cif= Decimal(0.134) * apanado.totalApanado
-
-            costoFileteApanado = CostoFiletePorApanar + mod + cif
-            costoKiloApanado = costoFileteApanado / apanado.totalApanado
-
-            #Guardamos  los calculos realizados
-            apanado.costoKiloApanado = costoKiloApanado
-            apanado.save()
-
-            #Restamos la cantidad de productos usados en el proceso
-
-            bodegaFilete.pesoProductoStock -= apanado.pesoFilete
-            bodegaFilete.save()
-
-            bodegaHuevos.unidadesStock -= apanado.huevos
-            bodegaHuevos.save()
-
-            bodegaMiga.pesoProductoStock -= apanado.miga
-            bodegaMiga.save()
-
-            #Guardamos el costo del Kilo del Filete Apanado
-            fileteApanado.costoProducto = costoKiloApanado
-            fileteApanado.save()
-
-            #Guardamos la cantidad de filete apanado
-            bodegaFileteApanado.pesoProductoStock = apanado.totalApanado
-            bodegaFileteApanado.save()
-
-            return HttpResponseRedirect('/fabricacion/apanado/'+idprodbod)
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/molida')
     else:
-        #Se Setea el valor inicial del formulario con las cantidades existentes
-        formulario = ApanadoForm(initial={'producto':bodegaFilete.producto.codigoProducto,
-                                          'pesoFilete':bodegaFilete.pesoProductoStock,
-                                          'huevos':bodegaHuevos.unidadesStock,
-                                          'miga':bodegaMiga.pesoProductoStock})
+        formulario = MolidoForm()
 
-    return render_to_response('Fabricacion/GestionApanado.html',{'formulario':formulario, 'apanados': apanados},
-                              context_instance = RequestContext(request))'''
+    return render_to_response('Fabricacion/GestionMolida.html',{'formulario':formulario,'molidos':molidos },
+                              context_instance = RequestContext(request))
+def GuardarMolido(request):
+    idMolido = request.GET.get('idMolido')
+    molido = Molida.objects.get(pk = int(idMolido))
+    bodegaProductoAMoler = ProductoBodega.objects.get(bodega = 6,producto = molido.productoMolido.codigoProducto)
+    bodegaProductoMolido = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Carne Molida')
 
+    bodegaProductoAMoler.pesoProductoStock -= molido.pesoAmoler
+    bodegaProductoMolido.pesoProductoStock += molido.totalMolido
+
+    bodegaProductoAMoler.save()
+    bodegaProductoMolido.save()
+
+    molido.guardado = True
+
+    msj = 'Guardado Exitoso'
+    respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+
+def costeoMolido(request):
+    idMolido = request.GET.get('idMolido')
+    molido = Molida.objects.get(pk = int(idMolido))
+    mod = ValoresCostos.objects.get(nombreCosto = 'Costo Carne Molida').valorMod
+    cif = ValoresCostos.objects.get(nombreCosto = 'Costo Carne Molida').valorCif
+    productoAMoler = Producto.objects.get(pk = molido.productoMolido.codigoProducto)
+    carneMolida = Producto.objects.get(nombreProducto = 'Carne Molida')
+
+    costoProducto = (molido.pesoAmoler / 1000) * productoAMoler.costoProducto
+    costoTotal = costoProducto + cif + mod
+    costoKiloMolida = costoTotal / (molido.totalMolido / 1000)
+
+    carneMolida.costoProducto = costoKiloMolida
+    carneMolida.save()
+
+    molido.cif = cif
+    molido.mod = mod
+    molido.save()
+    msj = 'Costeo Exitoso'
+    respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
 
 #**********************************************PROCESO CONDIMENTADO*****************************************************
 

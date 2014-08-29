@@ -69,7 +69,7 @@ class DetalleMigaForm(ModelForm):
 class ApanadoForm(ModelForm):
     class Meta:
         model = ProcesoApanado
-        exclude = ("guardado",)
+        exclude = ("guardado","costoKiloApanado","mod","cif",)
 
 class CondimentadoForm(ModelForm):
     class Meta:
@@ -106,3 +106,8 @@ class DescarneForm(ModelForm):
     class Meta:
         model = DescarneCabeza
         exclude = ("mod","cif","vrKiloRecorte","vrKiloLengua","vrKiloCareta","vrKiloProceso",)
+
+class MolidoForm(ModelForm):
+    class Meta:
+        model = Molida
+        exclude = ("mod","cif","costoKiloMolido","guardado","costoKilo",)

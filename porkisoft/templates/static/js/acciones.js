@@ -40,6 +40,11 @@ $( document ).tooltip();
      $('#id_pesoFileteCond').on('focus',calculaPesoCondimentado);
      $('#id_costoFileteCond').on('focus',calculaCostoCondimentado);
      $('#id_productoEnsalinado').on('change',TraecostoEnsalinado);
+     $('#id_miga').on('blur', ExistenciasApanado);
+     $('#id_productoApanado').on('change',existenciasFileteCondimentado);
+     $('#id_totalApanado').on('focus',calculoTotalApanado);
+     $('#id_productoMolido').on('change',existenciasCarneAMoler);
+
 
 
      $('#canalPendiente').dataTable();
@@ -71,7 +76,118 @@ $( document ).tooltip();
 }
 
 /**************************************************** METODOS *********************************************************/
+function GuardarMolido(idMolido)
+{
+    var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
+    if (opcion == true) {
+        $.ajax({
 
+            url: '/fabricacion/guardarMolido/',
+            dataType: "json",
+            type: "get",
+            data: {'idMolido': idMolido},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                    $('#id_costoFilete').val(respuesta)
+                }
+
+            }
+
+        });
+    }
+}
+function CostearMolido(idMolido)
+{
+    var opcion = confirm('Desea costear este Registro ?, recuerde Actualizar la tabla de costos.');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/fabricacion/costearMolido/',
+            dataType: "json",
+            type: "get",
+            data: {'idMolido': idMolido},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                    $('#id_costoFilete').val(respuesta)
+                }
+
+            }
+
+        });
+    }
+}
+function existenciasCarneAMoler()
+{
+    var producto = $('#id_productoMolido');
+    var peso = $('#id_pesoAmoler').val();
+    Existencias(producto,6,peso);
+
+}
+function calculoTotalApanado()
+{
+    var filete = parseInt($('#id_pesoFilete').val());
+    var miga = parseInt($('#id_miga').val());
+    var totalApanado = filete + miga;
+    $('#id_totalApanado').val(totalApanado);
+}
+function GuardarApanado(idApanado) {
+    //Funcion que costea el apanado actual
+    var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/fabricacion/guardarApanado/',
+            dataType: "json",
+            type: "get",
+            data: {'idApanado': idApanado},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                    $('#id_costoFilete').val(respuesta)
+                }
+
+            }
+
+        });
+    }
+}
+function CostearApanado(idApanado)
+{
+    //Funcion que costea el apanado actual
+    var opcion = confirm('Desea costear este Registro ?, recuerde Actualizar la tabla de costos.');
+    if (opcion == true)
+    {
+        $.ajax({
+
+            url : '/fabricacion/costearApanado/',
+            dataType : "json",
+            type : "get",
+            data : {'idApanado':idApanado},
+            success : function(respuesta)
+            {
+                if (respuesta != '')
+                {
+                    $('#id_costoFilete').val(respuesta)
+                }
+
+            }
+
+        });
+    }
+
+
+}
+function existenciasFileteCondimentado()
+{
+    var producto = $('#id_productoApanado').val();
+    var peso= $('#id_pesoFilete').val();
+    Existencias(producto,6,peso);
+}
+function ExistenciasApanado()
+{
+    var miga = $('#id_miga').val();
+    // Miga Preparada 109
+    Existencias(109,6,miga);
+}
 function TraecostoEnsalinado()
 {
     var producto = $('#id_productoEnsalinado').val();
@@ -80,7 +196,7 @@ function TraecostoEnsalinado()
 }
 function GuardarEnsalinado(idEnsalinado)
 {
-    var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario?');
+    var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario');
     if (opcion == true)
     {
         $.ajax({
