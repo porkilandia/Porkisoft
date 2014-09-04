@@ -22,22 +22,11 @@ class Bodega(models.Model):
         return self.nombreBodega
 
 class Producto(models.Model):
-    SubGrupo = (
-    ('Calidad 1', 'Calidad 1'),
-    ('Calidad 2', 'Calidad 2'),
-    ('Calidad 3', 'Calidad 3'),
-    )
+
     codigoProducto = models.AutoField(primary_key=True, verbose_name='Codigo Producto')
     grupo = models.ForeignKey(Grupo)
-    subGrupo = models.CharField(verbose_name='SubGrupo',max_length=20,choices=SubGrupo,default=0)
     nombreProducto = models.CharField(verbose_name = 'Nombre Producto',max_length=50)
     costoProducto = models.BigIntegerField(verbose_name = 'Costo Producto', default=0)
-    vrVentaLorenzo = models.IntegerField(verbose_name = 'Vr. Lorenzo', default=0)
-    vrVentaCentro = models.IntegerField(verbose_name = 'Vr. Centro', default=0)
-    vrVentaPotrerillo = models.IntegerField(verbose_name = 'Vr. Potrerillo', default=0)
-    vrVentaNorte = models.IntegerField(verbose_name = 'Vr.Norte', default=0)
-    vrVentaContado = models.IntegerField(verbose_name = 'Vr. Contado', default=0)
-    vrVentaCredito = models.IntegerField(verbose_name = 'Vr. Credito', default=0)
     precioSugerido = models.IntegerField(verbose_name='Precio Sugerido', default=0)
     gravado = models.BooleanField(verbose_name = 'Gravado', default=False)
     excento = models.BooleanField(verbose_name='Excento',default=False)
@@ -197,7 +186,7 @@ class PlanillaRecepcion(models.Model):
     compra = models.ForeignKey(Compra)
     empleado = models.ForeignKey(Empleado)
     tipoGanado = models.CharField(verbose_name='Tipo Ganado', choices=TipoGanado, max_length=11)
-    fechaRecepcion = models.DateField(verbose_name='fechaRecepcion')
+    fechaRecepcion = models.DateField(verbose_name='Fecha')
     cantCabezas = models.IntegerField(verbose_name='# Cabezas', default=0)
     provedor = models.ForeignKey(Proveedor)
     vrTransporte = models.IntegerField(verbose_name='Vr.Transporte',default=0)
@@ -210,5 +199,11 @@ class PlanillaRecepcion(models.Model):
     def __unicode__(self):
         return self.codigoRecepcion
 
-class ListadoPrecios(models.Model):
-    nombreLista = models.CharField(verbose_name='Nombre',max_length=50)
+'''class ListadoPrecios(models.Model):
+    nombreLista = models.CharField(verbose_name='Nombre',max_length=50)'''
+
+class Movimientos(models.Model):
+    tipo = models.CharField(verbose_name='Tipo',max_length=20)
+    fechaMov = models.DateField(verbose_name='Fecha')
+    entrada = models.BooleanField(verbose_name='Entrada',default=False)
+    salida = models.BooleanField(verbose_name='Salida',default=False)

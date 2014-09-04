@@ -42,7 +42,8 @@ class DetalleCondimentoForm(ModelForm):
 class TajadoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(TajadoForm,self).__init__(*args, **kwargs)
-        self.fields['polloHistorico'].queryset = Compra.objects.filter(tipo__nombreGrupo = 'Pollos')
+        self.fields['desposteHistorico'].queryset = PlanillaDesposte.objects.filter(tipoDesposte = 'Cerdas').order_by('fechaDesposte')
+        self.fields['polloHistorico'].queryset = Compra.objects.filter(tipo__nombreGrupo = 'Pollos').order_by('-fechaCompra')
 
     class Meta:
         model = Tajado
@@ -69,7 +70,7 @@ class DetalleMigaForm(ModelForm):
 class ApanadoForm(ModelForm):
     class Meta:
         model = ProcesoApanado
-        exclude = ("guardado","costoKiloApanado","mod","cif",)
+        exclude = ("guardado","costoKiloApanado",)
 
 class CondimentadoForm(ModelForm):
     class Meta:
@@ -78,15 +79,15 @@ class CondimentadoForm(ModelForm):
 class DesposteForm(ModelForm):
     class Meta:
         model = PlanillaDesposte
-        exclude = ("resesADespostar","totalDespostado","difCanalADespostado","totalCanal","cif","mod","tipoDesposte",)
+        exclude = ("resesADespostar","totalDespostado","difCanalADespostado","totalCanal","cif","mod","tipoDesposte","guardado",)
 
 class CanalForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(CanalForm,self).__init__(*args, **kwargs)
 
         if (PlanillaDesposte.objects.all()):
-            self.fields['planilla'].queryset = PlanillaDesposte.objects.all()
-            #self.fields['planilla'].queryset = PlanillaDesposte.objects.filter(fechaDesposte = datetime.today())
+            #self.fields['planilla'].queryset = PlanillaDesposte.objects.all()
+            self.fields['planilla'].queryset = PlanillaDesposte.objects.filter(tipoDesposte = None)
 
     class Meta:
         model=Canal

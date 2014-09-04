@@ -15,15 +15,8 @@
             <th>Codigo</th>
             <th>Nombre</th>
             <th>Costo Kg</th>
-            <th>Vr.Lorenzo</th>
-            <th>Vr.Centro</th>
-            <th>Vr.Potrerillo</th>
-            <th>Vr.Norte</th>
-            <th>Vr.Contado</th>
-            <th>Vr.Credito</th>
             <th>Precio Sugerido</th>
             <th>Grupo</th>
-            <th>Sub Grupo</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -37,20 +30,13 @@
             {% else %}
                 <td>$ {{ producto.costoProducto }}</td>
             {% endif %}
-            <td>$ {{ producto.vrVentaLorenzo }}</td>
-            <td>$ {{ producto.vrVentaCentro }}</td>
-            <td>$ {{ producto.vrVentaPotrerillo }}</td>
-            <td>$ {{ producto.vrVentaNorte }}</td>
-            <td>$ {{ producto.vrVentaContado }}</td>
-            <td>$ {{ producto.vrVentaCredito }}</td>
             <td>$ {{ producto.precioSugerido | floatformat }}</td>
+            <td>{{ producto.grupo }}</td>
 
-           <td>{{ producto.grupo }}</td>
-            <td>{{ producto.subGrupo }}</td>
 
             <td style="text-align: center">
-                <a id="modificar" href="{% url 'Inventario.views.editar_producto' producto.codigoProducto %}"><img src="{{ STATIC_URL }}img/modificar.png"></a>
-                <a href="{% url 'Inventario.views.GestionProductoBodega' producto.codigoProducto %}"><img src="{{ STATIC_URL }}img/ver.png"></a>
+                <a id="modificar" href="{% url 'Inventario.views.editar_producto' producto.codigoProducto %}">Modif.</a>
+                <a href="{% url 'Inventario.views.GestionProductoBodega' producto.codigoProducto %}">Bodega</a>
 
             </td>
 

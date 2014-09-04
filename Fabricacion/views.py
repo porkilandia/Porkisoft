@@ -26,8 +26,10 @@ def GestionCanal(request,idrecepcion):
     sacrificio = Sacrificio.objects.get(recepcion = idrecepcion)
     cantidad = canales.count() +1
     kiloCanal = 0
+    nroCanal = 0 #Representa el numero de canal actual
     for can in canales :
         kiloCanal = can.vrKiloCanal
+        nroCanal = can.nroCanal
 
     recepcion.vrKiloCanal = kiloCanal
     recepcion.save()
@@ -158,6 +160,7 @@ def GestionCanal(request,idrecepcion):
             for cnl in canal:
                 PesoTotalCanales += cnl.pesoPorkilandia
 
+
             recepcion.difPieCanal = ceil(((Decimal(TotalPesoPie) - PesoTotalCanales)*100)/Decimal(TotalPesoPie))
             recepcion.pesoCanales = PesoTotalCanales
             recepcion.cantCabezas = cantidad
@@ -166,7 +169,7 @@ def GestionCanal(request,idrecepcion):
 
             return HttpResponseRedirect('/fabricacion/canal/'+ idrecepcion)
     else:
-        formulario = CanalForm(initial={'recepcion':idrecepcion})
+        formulario = CanalForm(initial={'recepcion':idrecepcion,'nroCanal':nroCanal + 1})
 
     return render_to_response('Fabricacion/GestionCanal.html',{'formulario':formulario,'canales':canales,'recepcion':recepcion},
                               context_instance = RequestContext(request))
@@ -624,7 +627,7 @@ def GuardarApanado(request):
     apanado = ProcesoApanado.objects.get(pk = int(idApanado))
     Filete = Producto.objects.get(pk = apanado.productoApanado.codigoProducto)
 
-    bodegaFilete = ProductoBodega.objects.get(bodega = 6,producto = Filete.codigoProducto)
+    bodegaFilete = ProductoBodega.objects.get(bodega = 5,producto = Filete.codigoProducto)
     bodegaMiga = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Miga Preparada')
     bodegaHuevos = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Huevos')
     bodegaFileteApanadoCerdo = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Filete Apanado Cerdo')
@@ -659,7 +662,7 @@ def GuardarApanado(request):
 def costeoApanado(request):
     idApanado = request.GET.get('idApanado')
     apanado = ProcesoApanado.objects.get(pk = int(idApanado))
-
+    msj = ''
     # traemos todos los datos necsarios para el costeo
 
     Filete = Producto.objects.get(pk = apanado.productoApanado.codigoProducto)
@@ -673,7 +676,7 @@ def costeoApanado(request):
     costoFilete = Filete.costoProducto
     costoMiga = miga.costoProducto
     costoHuevos = Huevos.codigoProducto
-    pesoApanado = apanado.totalApanado
+    pesoApanado = apanado.totalApanado / 1000
     # se totaliza el costo de los insumos
     CostoTotalFilete = costoFilete * (pesoFilete / 1000)
     CostoTotalMiga = costoMiga * (pesoMiga / 1000)
@@ -682,23 +685,23 @@ def costeoApanado(request):
     # se guarda el costo del kilo en el producto terminado
 
     if apanado.productoApanado.grupo.nombreGrupo == 'Cerdos' or apanado.productoApanado.grupo.nombreGrupo == 'Cerdas':
-        mod = ValoresCostos.objects.get(nombreCosto = 'Costo Apanado cerdos').valorMod
-        cif = ValoresCostos.objects.get(nombreCosto = 'Costo Apanado cerdos').valorCif
-        CostoKiloApanado = mod + cif + CostoTotalFilete + CostoTotalMiga + CostoTotalHuevos / (pesoApanado / 1000)
+        mod = apanado.mod
+        cif = apanado.cif
+        CostoKiloApanado = (mod + cif + CostoTotalFilete + CostoTotalMiga + CostoTotalHuevos) / pesoApanado
         FileteApanadoCerdo.costoProducto = CostoKiloApanado
+        FileteApanadoCerdo.save()
         msj = '!Costeo Exitoso¡'
 
 
     else:
-        mod = ValoresCostos.objects.get(nombreCosto = 'Costo Apanado pollo').valorMod
-        cif = ValoresCostos.objects.get(nombreCosto = 'Costo Apanado pollo').valorCif
-        CostoKiloApanado = mod + cif + CostoTotalFilete + CostoTotalMiga + CostoTotalHuevos / (pesoApanado / 1000)
+        mod = apanado.mod
+        cif = apanado.cif
+        CostoKiloApanado = (mod + cif + CostoTotalFilete + CostoTotalMiga + CostoTotalHuevos) / pesoApanado
         FileteApanadoPollo.costoProducto = CostoKiloApanado
+        FileteApanadoPollo.save()
         msj = '!Costeo Exitoso¡'
 
     apanado.costoKiloApanado = CostoKiloApanado
-    apanado.cif = cif
-    apanado.mod = mod
     apanado.save()
 
     respuesta = json.dumps(msj)
@@ -868,6 +871,29 @@ def GestionDetalleTajado(request,idTajado):
             return HttpResponseRedirect('/fabricacion/detalleTajado/'+idTajado)
     else:
         formulario = DetalleTajadoForm(initial={'tajado':idTajado})
+
+    return render_to_response('Fabricacion/DetalleTajado.html',{'exito':exito,'formulario':formulario,
+                                                                'detalles':Detalletajados,'tajado':tajado},
+                              context_instance = RequestContext(request))
+
+def EditaDetalleTajado(request,idDetTajado):
+    exito = True
+    detalletajado = DetalleTajado.objects.get(pk = idDetTajado)
+    tajado = Tajado.objects.get(pk = detalletajado.tajado.codigoTajado)
+    Detalletajados = DetalleTajado.objects.filter(tajado = tajado.codigoTajado)
+
+
+
+
+    if request.method == 'POST':
+
+        formulario = DetalleTajadoForm(request.POST,instance=detalletajado)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/fabricacion/detalleTajado/'+str(tajado.codigoTajado))
+    else:
+        formulario = DetalleTajadoForm(initial={'tajado':tajado.codigoTajado},instance=detalletajado)
 
     return render_to_response('Fabricacion/DetalleTajado.html',{'exito':exito,'formulario':formulario,
                                                                 'detalles':Detalletajados,'tajado':tajado},
@@ -1088,25 +1114,25 @@ def GestionDesposteActualizado(request, idplanilla):
 
     # calculamos el valor de cada grupo multiplicando el %Grupo por el vrTotalCanales
     if tipoDesposte == 'Cerdos':
-        vrCarnes = ceil((vrTotalCanales * 57)/100)
-        vrCarnes2 = ceil((vrTotalCanales * 17)/100)
-        vrCarnes3 = ceil((vrTotalCanales * 17)/100)
-        vrCarnes4 = ceil((vrTotalCanales * 17)/100)
-        vrCostillas = ceil((vrTotalCanales * 15)/100)
-        vrHuesos = 0
-        vrsubProd = ceil((vrTotalCanales * 10)/100)
-        vrDesecho = ceil((vrTotalCanales * 1)/100)
+        vrCarnes = ceil((vrTotalCanales * 43)/100)
+        vrCarnes2 = ceil((vrTotalCanales * Decimal(28.5))/100)
+        vrCarnes3 = 0
+        vrCarnes4 = 0
+        vrCostillas = ceil((vrTotalCanales * 11)/100)
+        vrHuesos = ceil((vrTotalCanales * 4)/100)
+        vrsubProd = ceil((vrTotalCanales * 11)/100)
+        vrDesecho = ceil((vrTotalCanales * Decimal(2.5))/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
 
     elif tipoDesposte == 'Cerdas':
-        vrCarnes = ceil((vrTotalCanales * 49)/100)
-        vrCarnes2 = ceil((vrTotalCanales * 22)/100)
-        vrCarnes3 = ceil((vrTotalCanales * 17)/100)
-        vrCarnes4 = ceil((vrTotalCanales * 17)/100)
+        vrCarnes = ceil((vrTotalCanales * 37)/100)
+        vrCarnes2 = ceil((vrTotalCanales * 32)/100)
+        vrCarnes3 = 0
+        vrCarnes4 = 0
         vrCostillas = ceil((vrTotalCanales * 11)/100)
-        vrHuesos = ceil((vrTotalCanales * 6)/100)
-        vrsubProd = ceil((vrTotalCanales * 8)/100)
+        vrHuesos = ceil((vrTotalCanales * 3)/100)
+        vrsubProd = ceil((vrTotalCanales * 15)/100)
         vrDesecho = ceil((vrTotalCanales * 2)/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido

@@ -70,6 +70,12 @@ $( document ).tooltip();
      $('#id_fechaEnsalinado').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaApanado').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaVenta').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaRecepcion').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaSacrificio').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaFabricacion').datepicker({ dateFormat: "dd/mm/yy" });
+
+
+
 
 
 
@@ -190,7 +196,7 @@ function CostearApanado(idApanado)
             {
                 if (respuesta != '')
                 {
-                    $('#id_costoFilete').val(respuesta)
+                    $('#id_costoFilete').val(respuesta);
                 }
 
             }
@@ -204,7 +210,7 @@ function existenciasFileteCondimentado()
 {
     var producto = $('#id_productoApanado').val();
     var peso= $('#id_pesoFilete').val();
-    Existencias(producto,6,peso);
+    Existencias(producto,5,peso);
 }
 function ExistenciasApanado()
 {
@@ -233,7 +239,7 @@ function GuardarEnsalinado(idEnsalinado)
             {
                 if (respuesta != '')
                 {
-                    $('#id_costoFilete').val(respuesta)
+                    $('#id_costoFilete').val(respuesta);
                 }
 
             }
@@ -255,10 +261,7 @@ function GuardarCondimentado(idCondimentado)
             data : {'idCondimentado':idCondimentado},
             success : function(respuesta)
             {
-                if (respuesta != '')
-                {
-                    $('#id_costoFilete').val(respuesta)
-                }
+                    $('#id_costoFilete').val(respuesta);
 
             }
 

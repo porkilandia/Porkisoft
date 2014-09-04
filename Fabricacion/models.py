@@ -53,6 +53,7 @@ class PlanillaDesposte(models.Model):
     mod = models.IntegerField(verbose_name='MOD',default=0)
 
     def __unicode__(self):
+
         cadena = '%s %s'%(self.fechaDesposte,self.tipoDesposte)
         return cadena
 
@@ -70,7 +71,7 @@ class Tajado(models.Model):
     mod = models.IntegerField(verbose_name='MOD',default=0)
     guardado = models.BooleanField(default=False)
 
-    def __int__(self):
+    def __unicode__(self):
         return self.codigoTajado
 
 class DetalleTajado(models.Model):

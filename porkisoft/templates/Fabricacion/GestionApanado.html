@@ -12,22 +12,40 @@
         <thead>
         <tr>
 
+            <th>Fecha</th>
             <th>Producto</th>
             <th>Peso Filete</th>
             <th>huevos</th>
             <th>Miga</th>
             <th>Total Apanado</th>
             <th>Costo Kilo Apanado</th>
+            <th>Mod</th>
+            <th>Cif</th>
+            <th>Guardado</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         {% for apanado in apanados %}
-        <tr>
+        {% if apanado.guardado == True %}
+            <tr>
+        {% else %}
+            <tr style="color: red">
+        {% endif %}
+            <td>{{ apanado.fechaApanado }}</td>
             <td>{{ apanado.productoApanado }}</td>
             <td>{{ apanado.pesoFilete|floatformat }}grs</td>
             <td>{{ apanado.huevos }}</td>
             <td>{{ apanado.miga |floatformat }}grs</td>
             <td>{{ apanado.totalApanado |floatformat }}grs</td>
             <td>${{ apanado.costoKiloApanado }}</td>
+            <td>${{ apanado.mod }}</td>
+            <td>${{ apanado.cif }}</td>
+            {% if apanado.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+
             <td>
                 <a onclick="CostearApanado({{ apanado.id }})" href="#">Costear</a>
                 <a onclick="GuardarApanado({{ apanado.id }})" href="#">Guardar</a>

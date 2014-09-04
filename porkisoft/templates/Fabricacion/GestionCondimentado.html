@@ -12,13 +12,14 @@
 
             <th>Codigo</th>
             <th>Fecha</th>
+            <th>Grupo</th>
             <th>Producto</th>
             <th>Peso a Condimentar</th>
             <th>Condimento</th>
             <th>CostoFilete</th>
             <th>COsto Cond.</th>
             <th>Peso Condimetado</th>
-            <th>Costo Condimentado</th>
+            <th>Costo</th>
             <th>Acciones</th>
 
         </tr>
@@ -27,6 +28,7 @@
             <tr>
                 <td>{{ condimentado.codigo }}</td>
                 <td>{{ condimentado.fecha }}</td>
+                <td>{{ condimentado.producto.grupo.nombreGrupo }}</td>
                 <td>{{ condimentado.producto}}</td>
                 <td>{{ condimentado.pesoACondimentar }}</td>
                 <td>{{ condimentado.condimento }}</td>
@@ -34,11 +36,11 @@
                 <td>{{ condimentado.costoCondimento }}</td>
                 <td>{{ condimentado.pesoFileteCond }}</td>
                 <td>{{ condimentado.costoFileteCond }}</td>
-                {% if condimentado == True %}
+                {% if condimentado.guardado == True %}
                     <td></td>
                 {% else %}
                     <td>
-                    <a onclick="GuardarCondimentado({{ condimentado.id }})" href="#">Guardar</a>
+                    <a onclick="GuardarCondimentado({{ condimentado.codigo }})" href="#">Guardar</a>
                     </td>
                 {% endif %}
 

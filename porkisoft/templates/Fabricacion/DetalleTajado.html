@@ -35,7 +35,7 @@
             <td>{{ tajado.costoKiloFilete }}</td>
             <td>{{ tajado.mod }}</td>
             <td>{{ tajado.cif }}</td>
-            {% if tajado.guardado == true %}
+            {% if tajado.guardado == True %}
                 <td>Si</td>
             {% else %}
                 <td>No</td>
@@ -52,6 +52,7 @@
             <th>Unidades</th>
             <th>Peso Producto</th>
             <th>costo</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -61,6 +62,9 @@
                     <td>{{ detalle.unidades }}</td>
                     <td>{{ detalle.pesoProducto| floatformat }}Kg</td>
                     <td>${{ detalle.costoKilo| floatformat }}</td>
+                    <td>
+                        <a href="{% url 'Fabricacion.views.EditaDetalleTajado' detalle.id %}">Modificar</a>
+                    </td>
                 </tr>
 
             {% empty %}
