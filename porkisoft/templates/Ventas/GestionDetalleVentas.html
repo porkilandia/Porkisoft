@@ -12,20 +12,31 @@
         <tr>
             <th>Codigo</th>
             <th>Fecha</th>
+            <th>Lista</th>
             <th>Bodega</th>
             <th>Venta Total</th>
-            <th>Venta Contado</th>
-            <th>Venta Credito</th>
+            <th>Contado</th>
+            <th>Credito</th>
+            <th>Registradora</th>
+            <th>Efectivo</th>
+            <th>Descuadre</th>
+            <th>Residuo</th>
 
         </tr>
         </thead>
         <tr>
             <td id="codigoVenta">{{ venta.numeroVenta }}</td>
             <td>{{ venta.fechaVenta }}</td>
+            <td id="codigoLista">{{ venta.lista.codigoLista }}</td>
             <td>{{ venta.bodega }}</td>
             <td>{{ venta.TotalVenta }}</td>
             <td>{{ venta.TotalContado }}</td>
             <td>{{ venta.TotalCredito }}</td>
+            <td>{{ venta.TotalRegistradora }}</td>
+            <td>{{ venta.efectivo }}</td>
+            <td>{{ venta.descuadre }}</td>
+            <td>{{ venta.residuo }}</td>
+
         </tr>
 
     </table>
@@ -35,7 +46,7 @@
 
         <thead >
         <tr>
-            <th>Cliente</th>
+
             <th>Producto</th>
             <th>Peso</th>
             <th>Unidades</th>
@@ -48,9 +59,7 @@
         </thead>
         {% for detalle in detalles %}
         <tr>
-
-            <td>{{ detalle.cliente }}</td>
-            <td>{{ detalle.producto }}</td>
+            <td>{{ detalle.productoVenta }}</td>
             <td id="peso">{{ detalle.peso }}</td>
             <td>{{ detalle.unidades }}</td>
             <td>{{ detalle.vrUnitario }}</td>
@@ -65,7 +74,7 @@
 
 
             <td>
-                <a href="#">...</a>
+                <a href="{% url 'Ventas.views.EditaDetalleVentas' detalle.id %}">Modificar</a>
             </td>
 
         </tr>

@@ -66,7 +66,7 @@ class DetalleSubProducto(models.Model):
 class ProductoBodega(models.Model):
     producto = models.ForeignKey(Producto)
     bodega = models.ForeignKey(Bodega)
-    pesoProductoStock = models.DecimalField(max_digits=9,decimal_places=2,verbose_name='Peso en  Stock', default=0)
+    pesoProductoStock = models.DecimalField(max_digits=15,decimal_places=2,verbose_name='Peso en  Stock', default=0)
     pesoProductoKilos = models.IntegerField(verbose_name='Peso en  Stock(Kls)', default=0)
     unidadesStock = models.IntegerField(verbose_name='Unidades en Stock', default=0)
 

@@ -1,5 +1,5 @@
 $(document).on('ready', inicio);
-$( document ).tooltip();
+
  function inicio()
  {
     /*$(document).keypress(function(e)
@@ -12,6 +12,7 @@ $( document ).tooltip();
 
 
      });*/
+     $(document ).tooltip();
 
 
      $('#id_precioTotal').on('focus',calculoGanado);
@@ -25,7 +26,7 @@ $( document ).tooltip();
      $('#costear').on('click',CostearDesposte);
      $('#costearTajado').on('click',CostearTajado);
      $('#guardar').on('click',GuardarDesposte);
-     $('#id_producto').on('change',consultaValorProducto);
+     $('#id_productoVenta').on('change',consultaValorProducto);
      $('#id_vrTotal').on('focus',calculoValorProducto);
      $('#guardarVentas').on('click',GuardarVentas);
      $('#Guardatraslado').on('click',GuardarTraslado);
@@ -73,6 +74,8 @@ $( document ).tooltip();
      $('#id_fechaRecepcion').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaSacrificio').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaFabricacion').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaMolido').datepicker({ dateFormat: "dd/mm/yy" });
+
 
 
 
@@ -118,7 +121,7 @@ function GuardarMolido(idMolido)
             data: {'idMolido': idMolido},
             success: function (respuesta) {
                 if (respuesta != '') {
-                    $('#id_costoFilete').val(respuesta)
+                   alert(respuesta);
                 }
 
             }
@@ -138,7 +141,7 @@ function CostearMolido(idMolido)
             data: {'idMolido': idMolido},
             success: function (respuesta) {
                 if (respuesta != '') {
-                    $('#id_costoFilete').val(respuesta)
+                    alert(respuesta);
                 }
 
             }
@@ -487,7 +490,7 @@ function GuardarTraslado()
 }
 function GuardarVentas()
 {
-    var opcion = confirm('Desea guardar los cambios?');
+    var opcion = confirm('Desea guardar los cambios, Recuerde que esto afectara el Inventario?');
     var idVenta = $('#codigoVenta').text();
     var peso = parseFloat($('#peso').text());
 
@@ -549,24 +552,25 @@ function calculoValorProducto()
 
 function consultaValorProducto()
 {
-    var combo = $('#id_producto').val();
+    var combo = $('#id_productoVenta').val();
     var idVenta = $('#codigoVenta').text();
     var peso = $('#id_peso').val();
+    var lista = $('#codigoLista').text();
 
      $.ajax({
 
         url : '/ventas/consultaPrecioProducto/',
          dataType: "json",
          type: "get",
-         data : {'idProducto':combo,'idVenta':idVenta,'peso':peso},
+         data : {'lista':lista,'idProducto':combo,'idVenta':idVenta,'peso':peso},
          success : function(respuesta){
 
-             if(respuesta)
-             {
-                 $('#id_vrUnitario').val(respuesta)
-             }else
+             if(respuesta == "No hay existencias en almacen")
              {
                  alert('No hay existencias en almacen')
+             }else
+             {
+                 $('#id_vrUnitario').val(respuesta)
              }
 
                       }

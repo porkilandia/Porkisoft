@@ -258,6 +258,7 @@ class DescarneCabeza(models.Model):
     vrKiloLengua = models.IntegerField(default=0)
     vrKiloCareta = models.IntegerField(default=0)
     vrKiloProceso = models.IntegerField(default=0)
+    guardado = models.BooleanField(default=False)
 
 class ProcesoApanado(models.Model):
     fechaApanado = models.DateField(verbose_name='Fecha')

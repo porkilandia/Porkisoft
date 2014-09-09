@@ -11,8 +11,14 @@
         <tr>
             <th>Codigo</th>
             <th>Fecha</th>
+            <th>Lista</th>
             <th>Bodega</th>
             <th>Venta Total</th>
+            <th>Registradora</th>
+            <th>Efectivo</th>
+            <th>Descuadre</th>
+            <th>Residuo</th>
+
             <th>Accion</th>
 
         </tr>
@@ -21,8 +27,13 @@
         <tr>
             <td>{{ venta.numeroVenta }}</td>
             <td>{{ venta.fechaVenta }}</td>
+            <td>{{ venta.lista }}</td>
             <td>{{ venta.bodega }}</td>
             <td>{{ venta.TotalVenta }}</td>
+            <td>{{ venta.TotalRegistradora }}</td>
+            <td>{{ venta.efectivo }}</td>
+            <td>{{ venta.descuadre }}</td>
+            <td>{{ venta.residuo }}</td>
 
             <td>
                 <a href="{% url 'Ventas.views.GestionDetalleVentas' venta.numeroVenta %}">Detalles</a>

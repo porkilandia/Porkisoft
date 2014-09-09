@@ -79,7 +79,7 @@ class CondimentadoForm(ModelForm):
 class DesposteForm(ModelForm):
     class Meta:
         model = PlanillaDesposte
-        exclude = ("resesADespostar","totalDespostado","difCanalADespostado","totalCanal","cif","mod","tipoDesposte","guardado",)
+        exclude = ("resesADespostar","totalDespostado","difCanalADespostado","totalCanal","tipoDesposte","guardado",)
 
 class CanalForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -94,6 +94,16 @@ class CanalForm(ModelForm):
         exclude = ("vrKiloCanal","vrArrobaCanal")
 
 class DetalleDesposteForm(ModelForm):
+    def __init__(self,idplanilla, *args, **kwargs):
+        super(DetalleDesposteForm,self).__init__(*args, **kwargs)
+
+        if (PlanillaDesposte.objects.get(pk = int(idplanilla)).tipoDesposte != '' ):
+            q1 = Producto.objects.filter(grupo__nombreGrupo = PlanillaDesposte.objects.get(pk = int(idplanilla)).tipoDesposte)
+            q2 = Producto.objects.filter(grupo__nombreGrupo ='Desechos')
+            self.fields['producto'].queryset = q1|q2
+
+        else:
+            self.fields['producto'].queryset = Producto.objects.all()
     class Meta:
         model = DetallePlanilla
         exclude = ("vrKiloCostilla","costoProducto","costoAdtvo","vrKiloCarnes","vrKiloCarnes3","vrKiloCarnes4",
@@ -106,9 +116,9 @@ class costoForm(ModelForm):
 class DescarneForm(ModelForm):
     class Meta:
         model = DescarneCabeza
-        exclude = ("mod","cif","vrKiloRecorte","vrKiloLengua","vrKiloCareta","vrKiloProceso",)
+        exclude = ("guardado","vrKiloRecorte","vrKiloLengua","vrKiloCareta","vrKiloProceso",)
 
 class MolidoForm(ModelForm):
     class Meta:
         model = Molida
-        exclude = ("mod","cif","costoKiloMolido","guardado","costoKilo",)
+        exclude = ("costoKiloMolido","guardado","costoKilo",)

@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^consultaPrecioProducto/$',consultaValorProducto),
     url(r'^guardaVenta/$',GuardarVenta),
     url(r'^consultaCosto/$',consultaCostoProducto),
+    url(r'^editaDetVenta/(?P<idDetVenta>\d+)',EditaDetalleVentas),
 
     url(r'^pedido/(?P<idcliente>\d+)',GestionPedidos),
     url(r'^detallePedido/(?P<idpedido>\d+)',GestionDetallePedido),

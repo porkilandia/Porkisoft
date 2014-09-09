@@ -734,6 +734,7 @@ def GuardarMolido(request):
     bodegaProductoMolido.save()
 
     molido.guardado = True
+    molido.save()
 
     msj = 'Guardado Exitoso'
     respuesta = json.dumps(msj)
@@ -744,8 +745,8 @@ def GuardarMolido(request):
 def costeoMolido(request):
     idMolido = request.GET.get('idMolido')
     molido = Molida.objects.get(pk = int(idMolido))
-    mod = ValoresCostos.objects.get(nombreCosto = 'Costo Carne Molida').valorMod
-    cif = ValoresCostos.objects.get(nombreCosto = 'Costo Carne Molida').valorCif
+    mod = molido.mod
+    cif = molido.cif
     productoAMoler = Producto.objects.get(pk = molido.productoMolido.codigoProducto)
     carneMolida = Producto.objects.get(nombreProducto = 'Carne Molida')
 
@@ -755,9 +756,8 @@ def costeoMolido(request):
 
     carneMolida.costoProducto = costoKiloMolida
     carneMolida.save()
-
-    molido.cif = cif
-    molido.mod = mod
+    molido.costoKilo = productoAMoler.costoProducto
+    molido.costoKiloMolido = costoKiloMolida
     molido.save()
     msj = 'Costeo Exitoso'
     respuesta = json.dumps(msj)
@@ -1203,7 +1203,7 @@ def GestionDesposteActualizado(request, idplanilla):
     desposte.save()
 
     if request.method == 'POST':
-        formulario = DetalleDesposteForm(request.POST)
+        formulario = DetalleDesposteForm(int(idplanilla),request.POST)
 
         if formulario.is_valid():
            detalles = formulario.save()
@@ -1252,7 +1252,7 @@ def GestionDesposteActualizado(request, idplanilla):
 
            return HttpResponseRedirect('/fabricacion/detalleDesposte/'+ idplanilla)
     else:
-        formulario = DetalleDesposteForm(initial={'planilla':idplanilla})
+        formulario = DetalleDesposteForm(int(idplanilla),initial={'planilla':idplanilla})
 
     contexto = {'vrKiloCarnes2':vrKiloCarnes2,'vrKiloCarnes3':vrKiloCarnes3,'vrKiloCarnes4':vrKiloCarnes4,'vrKiloCarnes':vrKiloCarnes,
                 'vrKiloCostillas':vrKiloCostillas,'vrKiloHuesos':vrKiloHuesos,
@@ -1284,11 +1284,11 @@ def costeoDesposte(request):
     compra = Compra.objects.get(pk = recepcion.compra.codigoCompra)
     tipoCompra = compra.tipo.nombreGrupo
 
-    Mod = 0
-    Cif = 0
+    Mod = desposte.mod
+    Cif = desposte.cif
 
 
-    if tipoCompra == 'Reses':
+    '''if tipoCompra == 'Reses':
         Cif = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Reses').valorCif
         Mod = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Reses').valorMod
 
@@ -1297,7 +1297,7 @@ def costeoDesposte(request):
         Mod = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Cerdo').valorMod
     if tipoCompra == 'Cerdas':
         Cif = ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas').valorCif
-        Mod = ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas').valorMod
+        Mod = ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas').valorMod'''
 
 
 
@@ -1431,12 +1431,12 @@ def EditaDetPlanilla(request,idDetalle):
     desechos = detalleDespostes.filter(grupo = 'Grupo Desechos')
 
     if request.method == 'POST':
-        formulario = DetalleDesposteForm(request.POST,instance=detalle)
+        formulario = DetalleDesposteForm(idplanilla,request.POST,instance=detalle)
         if formulario.is_valid():
             formulario.save()
             return HttpResponseRedirect('/fabricacion/detalleDesposte/'+ str(idplanilla))
     else:
-        formulario = DetalleDesposteForm(instance=detalle)
+        formulario = DetalleDesposteForm(idplanilla,instance=detalle)
 
     contexto = {'carnes4':carnes4,'carnes3':carnes3,'carnes2':carnes2,'carnes':carnes,'costillas':costillas,'huesos':huesos,'subProductos':subProductos,
                 'desechos':desechos,'formulario':formulario,'desposte':desposte,'canales':canales,
@@ -1498,8 +1498,8 @@ def GestionDescarneCabeza(request):
                 #traemos los valores de costo y cantidad de cabezas
                 costoTotal =((descarne.pesoCabezas /descarne.cantidad)/1000) * costoCabezaCerdo
 
-                cif = ValoresCostos.objects.get(nombreCosto = 'Costos Descarne Cerdo').valorCif
-                mod = ValoresCostos.objects.get(nombreCosto = 'Costos Descarne Cerdo').valorMod
+                cif = descarne.mod
+                mod = descarne.cif
                 #Sumamos el cif y el mod al costo total de cabezas
                 costoDescarne = (costoTotal * descarne.cantidad) + cif + mod
 
@@ -1536,8 +1536,8 @@ def GestionDescarneCabeza(request):
 
                 costoTotal =((descarne.pesoCabezas /descarne.cantidad)/1000) * costoCabezaCerda
 
-                cif = ValoresCostos.objects.get(nombreCosto = 'Costos Descarne Cerda').valorCif
-                mod = ValoresCostos.objects.get(nombreCosto = 'Costos Descarne Cerda').valorMod
+                cif = descarne.mod
+                mod = descarne.cif
                 #Sumamos el cif y el mod al costo total de cabezas
                 costoDescarne = (costoTotal * descarne.cantidad) + cif + mod
 
@@ -1561,8 +1561,7 @@ def GestionDescarneCabeza(request):
                 descarne.vrKiloProceso = vrKiloProcesos
                 descarne.vrKiloRecor = costoUnidad
 
-            descarne.cif = cif
-            descarne.mod = mod
+
             descarne.save()
 
             return HttpResponseRedirect('/fabricacion/descarne/')
@@ -1612,6 +1611,9 @@ def GuardaDescarne(request):
         bodegaCabeza.pesoProductoStock -= descarne.pesoCabezas
 
         msj = 'Guardado Exitoso'
+
+    descarne.guardado = True
+    descarne.save()
 
     respuesta  = json.dumps(msj)
 

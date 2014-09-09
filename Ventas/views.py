@@ -108,6 +108,8 @@ def GestionDetalleVentas(request,idVenta):
                     vrTotalCredito += det.vrTotal
                 vrTotal += det.vrTotal
 
+            venta.residuo = venta.efectivo - venta.TotalRegistradora
+            venta.descuadre = venta.TotalRegistradora - vrTotal
             venta.TotalVenta = vrTotal
             venta.TotalCredito = vrTotalCredito
             venta.TotalContado = vrTotalContado
@@ -120,39 +122,83 @@ def GestionDetalleVentas(request,idVenta):
     return render_to_response('Ventas/GestionDetalleVentas.html',{'formulario':formulario,'venta':venta,'detalles':detalles},
                               context_instance = RequestContext(request))
 
-def consultaValorProducto(request):
-    idProducto = int(request.GET.get('idProducto'))
-    idVenta = int(request.GET.get('idVenta'))
-    peso = int(request.GET.get('peso'))
+def EditaDetalleVentas(request,idDetVenta):
+    detalle =  DetalleVenta.objects.get(pk = idDetVenta)
+    detalles = DetalleVenta.objects.filter(venta = detalle.venta.numeroVenta )
+    venta = Venta.objects.get(pk = detalle.venta.numeroVenta)
 
-    venta = Venta.objects.get(pk = idVenta)
-    producto = Producto.objects.get(pk = idProducto)
+
+    if request.method =='POST':
+        formulario = VentaDetalleForm(request.POST,instance=detalle)
+        if formulario.is_valid():
+            formulario.save()
+            #sumamos los valores de la venta
+            vrTotalContado = 0
+            vrTotalCredito = 0
+            vrTotal = 0
+
+            detalles = DetalleVenta.objects.filter(venta = detalle.venta.numeroVenta )
+            for det in detalles:
+                if det.contado == True:
+                    vrTotalContado += det.vrTotal
+                elif det.credito == True:
+                    vrTotalCredito += det.vrTotal
+                vrTotal += det.vrTotal
+
+            venta.residuo = venta.efectivo - venta.TotalRegistradora
+            venta.descuadre = venta.TotalRegistradora - vrTotal
+            venta.TotalVenta = vrTotal
+            venta.TotalCredito = vrTotalCredito
+            venta.TotalContado = vrTotalContado
+            venta.save()
+
+            return HttpResponseRedirect('/ventas/detalleVentas/'+ str(venta.numeroVenta))
+    else:
+        formulario = VentaDetalleForm(initial={'venta':venta.numeroVenta},instance=detalle)
+
+    return render_to_response('Ventas/GestionDetalleVentas.html',{'formulario':formulario,'venta':venta,'detalles':detalles},
+                              context_instance = RequestContext(request))
+
+
+def consultaValorProducto(request):
+    idProducto = request.GET.get('idProducto')
+    idVenta = request.GET.get('idVenta')
+    peso = request.GET.get('peso')
+    lista = request.GET.get('lista')
+    venta = Venta.objects.get(pk = int(idVenta))
+    producto = Producto.objects.get(pk = int(idProducto))
+    precio = 0
+    listaPrecios = DetalleLista.objects.filter(lista = int(lista))
+
+    for detalles in listaPrecios:
+        if producto.codigoProducto == detalles.productoLista.codigoProducto:
+            precio = detalles.precioVenta
+
 
     #verificamos si el producto cuenta con esa cantidad en bodega
     bodega = ProductoBodega.objects.get(bodega = venta.bodega.codigoBodega,producto =producto.codigoProducto )
 
-    if peso <= bodega.pesoProductoStock :
-        vrProducto = producto.precioSugerido
-        exito = vrProducto
+    if int(peso) <= bodega.pesoProductoStock :
+        exito = precio
     else:
-        exito = False
+        exito = 'No hay existencias en almacen'
 
     respuesta = json.dumps(exito)
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GuardarVenta(request):
 
-    #Tomo los datos necesarios del request como son el id de la venta para ubtener los registros que quiero guardar
-    idVenta = int(request.GET.get('idVenta'))
+    #Tomo los datos necesarios del request como son el id de la venta para obtener los registros que quiero guardar
+    idVenta = request.GET.get('idVenta')
     peso = request.GET.get('peso')
-    venta = Venta.objects.get(pk = idVenta)
-    ventas = DetalleVenta.objects.filter(venta = idVenta)
+    venta = Venta.objects.get(pk = int(idVenta))
+    ventas = DetalleVenta.objects.filter(venta = int(idVenta))
     registros = ventas.count()
 
     #voy por todos los productos de esa venta para guardar restar cantidades uno a uno
 
     for vnt in ventas :
-        bodega = ProductoBodega.objects.get(bodega = venta.bodega.codigoBodega,producto = vnt.producto.codigoProducto)
+        bodega = ProductoBodega.objects.get(bodega = venta.bodega.codigoBodega,producto = vnt.productoVenta.codigoProducto)
         bodega.pesoProductoStock -= Decimal(peso)
         bodega.save()
 
