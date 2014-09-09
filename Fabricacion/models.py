@@ -8,12 +8,13 @@ class Ensalinado(models.Model):
     pesoSal = models.DecimalField(verbose_name='Peso Sal', max_digits=9, decimal_places=3)
     pesoPapaina = models.DecimalField(verbose_name='Peso Papaina', max_digits=9, decimal_places=3)
     pesoProductoAntes = models.DecimalField(verbose_name='Peso pre', max_digits=9, decimal_places=3, default=0)
+    mod = models.IntegerField(verbose_name='MOD',default=0)
     pesoProductoDespues = models.DecimalField(verbose_name='Peso pos', max_digits=9, decimal_places=3, default=0)
     costoKilo = models.IntegerField(verbose_name='Costo Kilo', default=0)
     costoTotal = models.IntegerField(verbose_name='Costo Total', default=0)
     guardado = models.BooleanField(default=False)
     estado = models.BooleanField(default=False)
-    mod = models.IntegerField(verbose_name='MOD',default=0)
+
 
 class LimpiezaVerduras(models.Model):
     compra = models.ForeignKey(DetalleCompra)
@@ -67,8 +68,8 @@ class Tajado(models.Model):
     pesoProducto =models.DecimalField(verbose_name='Peso', max_digits=9, decimal_places=3)
     totalTajado = models.DecimalField(verbose_name='Total Tajado', max_digits=9, decimal_places=3,default=0)
     costoKiloFilete = models.IntegerField(verbose_name='Costo Kilo',default=0)
-    cif = models.IntegerField(verbose_name='CIf',default=0)
-    mod = models.IntegerField(verbose_name='MOD',default=0)
+    cif = models.IntegerField(verbose_name='Cif',default=0)
+    mod = models.IntegerField(verbose_name='Mod',default=0)
     guardado = models.BooleanField(default=False)
 
     def __unicode__(self):
@@ -169,6 +170,8 @@ class Miga(models.Model):
     PesoFormulaMiga = models.DecimalField(verbose_name='Peso Miga', max_digits=9, decimal_places=3)
     costoFormulaMiga = models.IntegerField(verbose_name='Costo Formula',default=0)
     costoKiloMigaProcesada = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    mod = models.IntegerField(verbose_name='Mod',default=0)
+    cif = models.IntegerField(verbose_name='Cif',default=0)
 
     def __unicode__(self):
         return self.codigoMiga

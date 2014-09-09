@@ -36,7 +36,7 @@ class Producto(models.Model):
         cadena = '%d %s (%s)'%(self.codigoProducto,self.nombreProducto,self.grupo.nombreGrupo)
         return cadena
     class Meta:
-        ordering = ['codigoProducto']
+        ordering = ['nombreProducto']
 
 
 

@@ -17,7 +17,7 @@ class EnsalinadoForm(ModelForm):
         self.fields['productoEnsalinado'].queryset = Producto.objects.filter(grupo = 3)
     class Meta:
         model = Ensalinado
-        exclude = ("costoKilo" , "costoTotal","guardado","estado","mod",)
+        exclude = ("costoKilo" , "costoTotal","guardado","estado",)
 
 class LimpiezaVerdurasForm(ModelForm):
     class Meta:
@@ -47,7 +47,7 @@ class TajadoForm(ModelForm):
 
     class Meta:
         model = Tajado
-        exclude = ("totalTajado","cif","mod",)
+        exclude = ("totalTajado",)
 
 class DetalleTajadoForm(ModelForm):
     class Meta:

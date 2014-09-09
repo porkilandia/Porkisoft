@@ -12,8 +12,6 @@ $(document).on('ready', inicio);
 
 
      });*/
-     $(document ).tooltip();
-
 
      $('#id_precioTotal').on('focus',calculoGanado);
      $('#id_difPesos').on('focus',calculoCanal);
@@ -63,6 +61,7 @@ $(document).on('ready', inicio);
      $('#costos').dataTable();
      $('#descarnes').dataTable();
      $('#TablaCondimentado').dataTable();
+     $('#tablaensalinados').dataTable();
 
      $('#id_fecha').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCompra').datepicker({ dateFormat: "dd/mm/yy" });
@@ -75,14 +74,6 @@ $(document).on('ready', inicio);
      $('#id_fechaSacrificio').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaFabricacion').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaMolido').datepicker({ dateFormat: "dd/mm/yy" });
-
-
-
-
-
-
-
-     //$( "#id_fechaCompra" ).tooltip();
 
 }
 
@@ -242,7 +233,7 @@ function GuardarEnsalinado(idEnsalinado)
             {
                 if (respuesta != '')
                 {
-                    $('#id_costoFilete').val(respuesta);
+                    alert(respuesta);
                 }
 
             }
@@ -264,7 +255,7 @@ function GuardarCondimentado(idCondimentado)
             data : {'idCondimentado':idCondimentado},
             success : function(respuesta)
             {
-                    $('#id_costoFilete').val(respuesta);
+                    alert(respuesta);
 
             }
 

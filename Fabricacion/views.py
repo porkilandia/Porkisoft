@@ -306,14 +306,13 @@ def GuardaEnsalinado(request):
     costoProductoEnsalinado = (ensalinado.pesoProducto / 1000) * producto.costoProducto
     costoInsumos = costoSal + costoPapaina + costoProductoEnsalinado
     #cif = 30 * (ensalinado.pesoProductoDespues / 1000)
-    mod = ValoresCostos.objects.get(nombreCosto = 'Costo Ensalinado').valorMod
+    mod = ensalinado.mod
     costoTotal = mod + costoInsumos
     costoKilo = ceil(costoTotal / (ensalinado.pesoProductoDespues /1000))
 
     ensalinado.costoTotal = costoTotal
     ensalinado.costoKilo = costoKilo
     ensalinado.guardado = True
-    ensalinado.mod = mod
     ensalinado.save()
 
     # se guarda en el Producto el Costo del Kilo
@@ -571,8 +570,8 @@ def CostoMiga(request,idmiga):
     for costo in detallesMiga:
         costoInsumos += costo.costoTotalProducto
 
-    mod = ValoresCostos.objects.get( nombreCosto= 'Costos Miga').valorMod
-    cif = ValoresCostos.objects.get( nombreCosto= 'Costos Miga').valorCif
+    mod = miga.mod
+    cif = miga.cif
     costomigaProsecesada = costoInsumos + cif + mod
     costoKiloMiga = ceil(costomigaProsecesada/ pesoMigaProcesada)
 
@@ -724,8 +723,8 @@ def GestionMolido(request):
 def GuardarMolido(request):
     idMolido = request.GET.get('idMolido')
     molido = Molida.objects.get(pk = int(idMolido))
-    bodegaProductoAMoler = ProductoBodega.objects.get(bodega = 6,producto = molido.productoMolido.codigoProducto)
-    bodegaProductoMolido = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Carne Molida')
+    bodegaProductoAMoler = ProductoBodega.objects.get(bodega = 5,producto = molido.productoMolido.codigoProducto)
+    bodegaProductoMolido = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Carne Molida')
 
     bodegaProductoAMoler.pesoProductoStock -= molido.pesoAmoler
     bodegaProductoMolido.pesoProductoStock += molido.totalMolido
@@ -922,23 +921,9 @@ def costearTajado(request):
     tipo = request.GET.get('tipo')
     detTajado = DetalleTajado.objects.filter(tajado = int(idTajado))
     tajado = Tajado.objects.get(pk = int(idTajado))
-    mod = 0
-    cif = 0
+    mod = tajado.mod
+    cif = tajado.cif
     costokilo = 0
-    if tipo == 'Cerdos':
-        mod = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Cerdo').valorMod
-        cif = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Cerdo').valorCif
-    elif tipo == 'Cerdas':
-        mod = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Cerda').valorMod
-        cif = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Cerda').valorCif
-    elif tipo == 'Pollos':
-        mod = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Pollo').valorMod
-        cif = ValoresCostos.objects.get(nombreCosto = 'Costo Tajado Pollo').valorCif
-
-    tajado.cif = cif
-    tajado.mod = mod
-    tajado.save()
-
 
     costoTotal = ((tajado.pesoProducto)/1000) * tajado.costoKiloFilete + mod + cif
 
@@ -961,6 +946,7 @@ def costearTajado(request):
             elif tjdo.producto.nombreProducto == 'Procesos Cerdo' or tjdo.producto.nombreProducto == 'Procesos Cerda':
                 tjdo.costoKilo = costoTotal * Decimal(0.01)/(tjdo.pesoProducto/1000)
                 costokilo = tjdo.costoKilo
+
 
             producto.costoProducto =  costokilo
             producto.save()
