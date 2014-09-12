@@ -64,6 +64,8 @@ urlpatterns = patterns('',
     url(r'^promPechCondPo/$',RepFiletePechugaCond),
     url(r'^TemplateInsumos/$',TemplateInsumos),
     url(r'^promInsumos/$',ReporteInsumos),
+    url(r'^TemplateDescarnes/$',TemplateDescrnes),
+    url(r'^promDescarnes/$',ReporteDescarnes),
 
 
 

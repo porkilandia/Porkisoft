@@ -1864,6 +1864,8 @@ def ReporteInsumos(request):
     ListaCantMiga['Miga Preparada'] = 0
     ListaCantCond = {}
     ListaCantCond['Condimento Preparado'] = 0
+    ListaCantMolida = {}
+    ListaCantMolida['Carne Molida'] = 0
 
     migas = Miga.objects.filter(fechaFabricacion__range = (finicio,ffin))
     promedioMiga = migas.aggregate(Avg('costoKiloMigaProcesada'))
@@ -1878,8 +1880,67 @@ def ReporteInsumos(request):
     for cond in condimentos:
         ListaCantCond['Condimento Preparado'] += ceil(cond.pesoCondimento * 1000)
 
+
+    molidas = Molida.objects.filter(fechaMolido__range = (finicio,ffin))
+    promedioMolidas = molidas.aggregate(Avg('costoKiloMolido'))
+
+    for molido in molidas:
+        ListaCantMolida['Carne Molida'] += ceil(molido.totalMolido)
+
     Listas = {'promedioMiga':promedioMiga,'ListaCantMiga':ListaCantMiga,'promedioCondimento':promedioCondimento,
-              'ListaCantCond':ListaCantCond}
+              'ListaCantCond':ListaCantCond,'promedioMolidas':promedioMolidas,'ListaCantMolida':ListaCantMolida}
+
+    respuesta = json.dumps(Listas)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def TemplateDescrnes(request):
+    gcda = Grupo.objects.filter(nombreGrupo = 'Cerdas')
+    gcdo = Grupo.objects.filter(nombreGrupo = 'Cerdos')
+    grupos = gcda | gcdo
+
+    return render_to_response('Fabricacion/TemplateDesccarnes.html',{'grupos':grupos},context_instance = RequestContext(request))
+def ReporteDescarnes(request):
+
+    grupo = request.GET.get('grupo')
+    grupos = Grupo.objects.get(pk = int(grupo))
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    ListaPesoCaretas = {}
+    ListaPesoRecortes = {}
+    ListaPesoLenguas = {}
+    ListaPesoProcesos = {}
+
+    ListaPesoCaretas['Caretas'] = 0
+    ListaPesoRecortes['Recortes'] = 0
+    ListaPesoLenguas['Lenguas'] = 0
+    ListaPesoProcesos['Procesos'] = 0
+
+
+    descarnes = DescarneCabeza.objects.filter(fecha__range = (finicio,ffin)).filter(tipo = grupos.nombreGrupo)
+    promedioCaretas = descarnes.aggregate(Avg('vrKiloCareta'))
+    promedioRecortes = descarnes.aggregate(Avg('vrKiloRecorte'))
+    promedioLenguas = descarnes.aggregate(Avg('vrKiloLengua'))
+    promedioProcesos = descarnes.aggregate(Avg('vrKiloProceso'))
+
+    for descarne in descarnes:
+        ListaPesoCaretas['Caretas'] += ceil(descarne.caretas)
+        ListaPesoRecortes['Recortes'] += descarne.cantRecosrtes
+        ListaPesoLenguas['Lenguas'] += ceil(descarne.lenguas)
+        ListaPesoProcesos['Procesos'] += ceil(descarne.procesos)
+
+
+    Listas = {'promedioCaretas':promedioCaretas,'promedioRecortes':promedioRecortes,'promedioLenguas':promedioLenguas,
+              'promedioProcesos':promedioProcesos,'ListaPesoCaretas':ListaPesoCaretas,'ListaPesoRecortes':ListaPesoRecortes,
+              'ListaPesoLenguas':ListaPesoLenguas,'ListaPesoProcesos':ListaPesoProcesos}
 
     respuesta = json.dumps(Listas)
     return HttpResponse(respuesta,mimetype='application/json')

@@ -124,6 +124,82 @@ $(document).on('ready', inicio);
     });
     alert(f);
 }*/
+function consultaDescarnes ()
+{   $( "#progressbar" ).show();
+    var inicio = $('#inicio').val();
+    var fin = $('#fin').val();
+    var grupo = $('#grupo').val();
+
+
+    $.ajax({
+
+            url : '/fabricacion/promDescarnes/',
+            dataType : "json",
+            type : "get",
+            data : {'inicio':inicio,'fin':fin,'grupo':grupo},
+            success : function(respuesta)
+            {
+                $("#recortes").find("tr:gt(0)").remove();
+                $("#procesos").find("tr:gt(0)").remove();
+                $("#caretas").find("tr:gt(0)").remove();
+                $("#lenguas").find("tr:gt(0)").remove();
+                $("#procesosCerdo").find("tr:gt(0)").remove();
+                $("#pesoRecortes").find("tr:gt(0)").remove();
+                $("#pesoProcesos").find("tr:gt(0)").remove();
+                $("#pesoLenguas").find("tr:gt(0)").remove();
+                $("#pesoCaretas").find("tr:gt(0)").remove();
+                $("#pesoProcesosCerdo").find("tr:gt(0)").remove();
+
+                $.each(respuesta.promedioRecortes,function(key,value){
+
+                    $("#recortes").append("<tr><td>" + 'Recortes' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.promedioProcesos,function(key,value){
+
+                    $("#procesos").append("<tr><td>" + 'Procesos' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.promedioCaretas,function(key,value){
+
+                    $("#caretas").append("<tr><td>" + 'Caretas' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.promedioLenguas,function(key,value){
+
+                    $("#lenguas").append("<tr><td>" + 'Lenguas' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.promedioProcesos,function(key,value){
+
+                    $("#procesosCerdo").append("<tr><td>" + 'Procesos Cerdo' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+
+                /********************************************PESOS*****************************************************/
+                $.each(respuesta.ListaPesoRecortes,function(key,value){
+
+                    $("#pesoRecortes").append("<tr><td>" + 'Recortes' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaPesoProcesos,function(key,value){
+
+                    $("#pesoProcesos").append("<tr><td>" + 'Procesos Cerda' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaPesoLenguas,function(key,value){
+
+                    $("#pesoLenguas").append("<tr><td>" + 'Lenguas' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaPesoCaretas,function(key,value){
+
+                    $("#pesoCaretas").append("<tr><td>" + 'Caretas' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaPesoProcesos,function(key,value){
+
+                    $("#pesoProcesosCerdo").append("<tr><td>" + 'Procesos Cerdo' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+
+
+
+            $( "#progressbar" ).hide();
+            }
+
+        });
+}
 function consultaInsumos ()
 {   $( "#progressbar" ).show();
     var inicio = $('#inicio').val();
@@ -139,12 +215,13 @@ function consultaInsumos ()
             data : {'inicio':inicio,'fin':fin,'grupo':grupo},
             success : function(respuesta)
             {
-                $("#tablaPesos").find("tr:gt(0)").remove();
-                $("#tablaPromedio").find("tr:gt(0)").remove();
+
                 $("#tablaPromedioCostoMiga").find("tr:gt(0)").remove();
                 $("#tablaPesoMiga").find("tr:gt(0)").remove();
                 $("#tablaPromedioCostoCond").find("tr:gt(0)").remove();
                 $("#tablaPesoCond").find("tr:gt(0)").remove();
+                $("#tablaPromedioCostoMolida").find("tr:gt(0)").remove();
+                $("#tablaPesoMolida").find("tr:gt(0)").remove();
 
                 $.each(respuesta.promedioMiga,function(key,value){
 
@@ -161,6 +238,15 @@ function consultaInsumos ()
                 $.each(respuesta.ListaCantCond,function(key,value){
 
                     $("#tablaPesoCond").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                });
+
+                $.each(respuesta.promedioMolidas,function(key,value){
+
+                    $("#tablaPromedioCostoMolida").append("<tr><td>" + 'Carne Molida' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaCantMolida,function(key,value){
+
+                    $("#tablaPesoMolida").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
                 });
                 $( "#progressbar" ).hide();
             }

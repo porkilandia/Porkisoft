@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Reporte Descarnes ::{% endblock titulo %}
+{% block mensajes %}
+Promedio de Descarnes
+
+{% endblock mensajes %}
+{% block contenido %}
+
+    <div id="rango">
+     <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
+     <label for="fin">Fecha Final</label><input id="fin" type="text">
+     <label for="grupo">Grupo</label><select id="grupo">
+        {% for grupo in grupos %}
+            <option value={{ grupo.id }}>{{ grupo.nombreGrupo }}</option>
+        {% endfor %}
+    </select>
+
+     <a  onclick="consultaDescarnes()" href="#"><input type="button" value="Consultar"></a>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+<div id="acordeon">
+<h3>Descarnes Cerda</h3>
+<div>
+   <table id="recortes" class="table-striped" style="width: 50% ">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+    <table id="pesoRecortes" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="procesos" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+    <table id="pesoProcesos" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+    <h3>Descarnes Cerdo</h3>
+<div>
+    <table id="lenguas" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+    <table id="pesoLenguas" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="caretas" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+    <table id="pesoCaretas" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+        </tr>
+        </thead>
+
+    </table>
+    <table id="procesosCerdo" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+    <table id="pesoProcesosCerdo" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+
+</div>
+<div id="progressbar"></div>
+{% endblock contenido %}
+<div id="progressbar"></div>
