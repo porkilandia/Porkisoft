@@ -122,3 +122,12 @@ class MolidoForm(ModelForm):
     class Meta:
         model = Molida
         exclude = ("costoKiloMolido","guardado","costoKilo",)
+
+class EmpacadoApanadoForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(EmpacadoApanadoForm,self).__init__(*args, **kwargs)
+        self.fields['produccion'].queryset = ProcesoApanado.objects.all().order_by('-fechaApanado')
+        self.fields['productoAEmpacar'].queryset = Producto.objects.filter(nombreProducto__contains = 'Filete Apanado')
+    class Meta:
+        model = EmpacadoApanados
+        exclude = ("costobandeja","pesoBandeja",)

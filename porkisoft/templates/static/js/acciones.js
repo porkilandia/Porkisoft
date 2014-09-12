@@ -44,8 +44,10 @@ $(document).on('ready', inicio);
      $('#id_totalApanado').on('focus',calculoTotalApanado);
      $('#id_productoMolido').on('change',existenciasCarneAMoler);
      $('#id_productoLista').on('change',CostoProdListaPrecios);
+     $('#id_produccion').on('change',CostoKiloChuleta);
 
-
+     //var tablaEmpacado = $('#tablaEmpacado tr');
+     //tablaEmpacado.on('click',maneja);
 
      $('#canalPendiente').dataTable();
      $('#tablaenTajados').dataTable();
@@ -62,6 +64,7 @@ $(document).on('ready', inicio);
      $('#descarnes').dataTable();
      $('#TablaCondimentado').dataTable();
      $('#tablaensalinados').dataTable();
+     $('#tablaEmpacado').dataTable();
 
      $('#id_fecha').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCompra').datepicker({ dateFormat: "dd/mm/yy" });
@@ -74,10 +77,108 @@ $(document).on('ready', inicio);
      $('#id_fechaSacrificio').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaFabricacion').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaMolido').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaEmpacado').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#inicio').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#fin').datepicker({ dateFormat: "dd/mm/yy" });
 
 }
 
 /**************************************************** METODOS *********************************************************/
+/*function maneja()
+{
+    //Funcion para recorrer una tabla de datos y guardar sus registros en variables
+    var a, b, c, d, f, g,h;
+    $(this).children("td").each(function(e) {
+
+        switch (e)
+        {
+            case 0:
+                a = $(this).text();
+                break;
+            case 1:
+                b = $(this).text();
+                break;
+            case 2:
+                c = $(this).text();
+                break;
+            case 3:
+                d = $(this).text();
+                break;
+            case 4:
+                f = $(this).text();
+                break;
+            case 5:
+                g = $(this).text();
+                break;
+            case 6:
+               h = $(this).text();
+                break;
+
+        }
+
+    });
+    alert(f);
+}*/
+function consultaPromedioPorFecha ()
+{
+    var inicio = $('#inicio').val();
+    var fin = $('#fin').val();
+    var grupo = $('#grupo').val();
+
+
+    $.ajax({
+
+            url : '/fabricacion/calcPromedio/',
+            dataType : "json",
+            type : "get",
+            data : {'inicio':inicio,'fin':fin,'grupo':grupo},
+            success : function(respuesta)
+            {
+                $("#tablaPesos").find("tr:gt(0)").remove();
+                pesos = respuesta['pesos'];
+                costos = respuesta['costos'];
+
+                for (var i=0; i< pesos.length; i++)
+                {
+                    $("#tablaPromedio").append("<tr><td>" + pesos + "</td><td>" + value + "</td></tr>");
+                }
+
+
+
+                $.each(respuesta.costos,function(key,value){
+
+                    $("#tablaPromedio").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                });
+                $.each(respuesta.pesos,function(key,value){
+
+                    $("#tablaPesos").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                });
+
+            }
+
+        });
+}
+function CostoKiloChuleta()
+{
+     var produccion = $('#id_produccion').val();
+
+    $.ajax({
+
+            url : '/fabricacion/consultaCostoChuleta/',
+            dataType : "json",
+            type : "get",
+            data : {'produccion':produccion},
+            success : function(respuesta)
+            {
+                if (respuesta != '')
+                {
+                    $('#id_costoKiloChuleta').val(respuesta)
+                }
+
+            }
+
+        });
+}
 function CostoProdListaPrecios()
 {
     var producto = $('#id_productoLista').val();
@@ -113,6 +214,46 @@ function GuardarMolido(idMolido)
             success: function (respuesta) {
                 if (respuesta != '') {
                    alert(respuesta);
+                }
+
+            }
+
+        });
+    }
+}
+function GuardarEmpaqueApanado(idEmpaque)
+{
+    var opcion = confirm('Desea costear este Registro ?');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/fabricacion/guardarEmpaque/',
+            dataType: "json",
+            type: "get",
+            data: {'idEmpaque': idEmpaque},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                    alert(respuesta);
+                }
+
+            }
+
+        });
+    }
+}
+function CostearEmpaqueApanado(idEmpaque)
+{
+    var opcion = confirm('Desea costear este Registro ?');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/fabricacion/costearEmpaque/',
+            dataType: "json",
+            type: "get",
+            data: {'idEmpaque': idEmpaque},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                    alert(respuesta);
                 }
 
             }

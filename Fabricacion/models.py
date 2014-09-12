@@ -130,6 +130,7 @@ class Sacrificio(models.Model):
 
 
 class DetallePlanilla (models.Model):
+    pesoPromedio = 0
     OpGrupo = (
         ('Grupo Carnes','Grupo Carnes'),
         ('Grupo Carnes 2','Grupo Carnes 2'),
@@ -204,6 +205,8 @@ class Condimento(models.Model):
     pesoCondimento = models.DecimalField(verbose_name='Peso grs.',default=0, max_digits=9, decimal_places=3)
     costoCondimento = models.IntegerField(verbose_name='Costo Condimento',default=0)
     costoLitroCondimento = models.IntegerField(verbose_name='Costo litro',default=0)
+    mod = models.IntegerField(verbose_name='Mod',default=0)
+    cif = models.IntegerField(verbose_name='Cif',default=0)
 
     def __unicode__(self):
         return  self.codigoCondimento
@@ -225,6 +228,8 @@ class Condimentado(models.Model):
     costoCondimento = models.IntegerField(verbose_name='Costo Cond.',default=0)
     pesoFileteCond = models.DecimalField(verbose_name='Peso Condimentado', max_digits=9, decimal_places=3,default=0)
     costoFileteCond = models.IntegerField(verbose_name='Costo Condimentado',default=0)
+    mod = models.IntegerField(verbose_name='Mod',default=0)
+    cif = models.IntegerField(verbose_name='Cif',default=0)
     guardado = models.BooleanField(default=False)
 
 
@@ -276,7 +281,8 @@ class ProcesoApanado(models.Model):
     cif = models.IntegerField(verbose_name='Cif',default=0)
 
     def __unicode__(self):
-        return self.id
+        cadena  = '%s | %s'%(self.fechaApanado,self.productoApanado.grupo.nombreGrupo)
+        return cadena
 
 class Molida(models.Model):
     fechaMolido = models.DateField(verbose_name='Fecha')
@@ -288,3 +294,21 @@ class Molida(models.Model):
     totalMolido = models.DecimalField(verbose_name='Total Molido', max_digits=9, decimal_places=3,default=0)
     costoKiloMolido = models.IntegerField(verbose_name='Costo Kilo',default=0)
     guardado = models.BooleanField(default=False)
+
+class EmpacadoApanados(models.Model):
+    fechaEmpacado = models.DateField(verbose_name='Fecha')
+    pesoChuelta = models.DecimalField(verbose_name='Peso a Empacar', max_digits=9, decimal_places=3,default=0)
+    productoAEmpacar = models.ForeignKey(Producto,verbose_name='Producto')
+    produccion = models.ForeignKey(ProcesoApanado,verbose_name='Produccion',blank= True, null=True)
+    costoKiloChuleta = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    cantBandejas = models.IntegerField(verbose_name='Bandejas')
+    stikers = models.IntegerField(verbose_name='Stikers')
+    costobandeja = models.IntegerField(verbose_name='Costo Bandeja',default=0)
+    pesoBandeja = models.DecimalField(verbose_name='Peso Bandeja', max_digits=9, decimal_places=3,default=0)
+    mod = models.IntegerField(verbose_name='Mod',default=0)
+    guardado = models.BooleanField(default=False)
+
+class auxiliarPromedios(models.Model):
+    nombreProducto = models.CharField(max_length=50)
+    costo = models.IntegerField()
+

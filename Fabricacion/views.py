@@ -474,8 +474,8 @@ def CostoCondimento(request,idcondimento):
     for costo in detalleCondimentos:
         costoVerduras += costo.costoTotalProducto
 
-    mod = ValoresCostos.objects.get(nombreCosto = 'Costo Condimento').valorMod
-    cif = ValoresCostos.objects.get(nombreCosto = 'Costo Condimento').valorCif
+    mod = condimento.mod
+    cif = condimento.cif
     costoCondProsecesado = costoVerduras + cif + mod
     costoLitroCond = ceil(costoCondProsecesado/ pesoCondProcesado)
 
@@ -564,7 +564,7 @@ def CostoMiga(request,idmiga):
     detallesMiga = DetalleMiga.objects.filter(miga = idmiga)
     formulario = DetalleMigaForm(initial={'miga':idmiga})
 
-    pesoMigaProcesada = miga.PesoFormulaMiga
+    pesoMigaProcesada = miga.PesoFormulaMiga / 1000
     costoInsumos = 0
 
     for costo in detallesMiga:
@@ -1604,3 +1604,165 @@ def GuardaDescarne(request):
     respuesta  = json.dumps(msj)
 
     return HttpResponse(respuesta,mimetype='application/json')
+
+def GestionEmpacadoApanados(request):
+    empaques  = EmpacadoApanados.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = EmpacadoApanadoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/fabricacion/empacadoApanado')
+    else:
+        formulario = EmpacadoApanadoForm(initial={'mod':1812})
+
+    return render_to_response('Fabricacion/GestionEmpaqueApanado.html',{'formulario':formulario,'empaques':empaques },
+                              context_instance = RequestContext(request))
+
+
+def CostearEmpacado(request):
+    idEmpaque = request.GET.get('idEmpaque')
+    empaque = EmpacadoApanados.objects.get(pk = int(idEmpaque))
+    pesoChuleta = empaque.pesoChuelta / 1000
+    chuletaEmpacadaPollo = Producto.objects.get(nombreProducto = 'Chuleta Empacada Pollo')
+    chuletaEmpacadaCerdo = Producto.objects.get(nombreProducto = 'Chuleta Empacada Cerdo')
+    stiker = Producto.objects.get(nombreProducto = 'Stiker').costoProducto
+    bandeja = Producto.objects.get(nombreProducto = 'Bandeja').costoProducto
+    costoTotalAEmpacar = pesoChuleta * empaque.costoKiloChuleta
+
+    costoTotal = (stiker * empaque.stikers)+(bandeja * empaque.cantBandejas)+ costoTotalAEmpacar + empaque.mod
+    costoBandeja = costoTotal / empaque.cantBandejas
+    pesoBandeja = pesoChuleta / empaque.cantBandejas
+
+    empaque.costobandeja = costoBandeja
+    empaque.pesoBandeja = pesoBandeja
+    empaque.save()
+    if empaque.productoAEmpacar.grupo.nombreGrupo == 'Pollos':
+        chuletaEmpacadaPollo.costoProducto = costoBandeja
+        chuletaEmpacadaPollo.save()
+    elif empaque.productoAEmpacar.grupo.nombreGrupo == 'Cerdos' or empaque.productoAEmpacar.grupo.nombreGrupo == 'Cerdas':
+        chuletaEmpacadaCerdo.costoProducto = costoBandeja
+        chuletaEmpacadaCerdo.save()
+
+    msj = 'Costeo Exitoso'
+    respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def GuardarEmpacado(request):
+    idEmpaque = request.GET.get('idEmpaque')
+    empaque = EmpacadoApanados.objects.get(pk = int(idEmpaque))
+
+    bodegaBandeja = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Bandeja')
+    bodegaStiker = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Stiker')
+    bodegaChuleta = ProductoBodega.objects.get(bodega = 6,producto = empaque.productoAEmpacar.codigoProducto)
+    bodegaChuletaEmpacadaPollo = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Chuleta Empacada Pollo')
+    bodegaChuletaEmpacadaCerdo = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Chuleta Empacada Cerdo')
+
+    bodegaBandeja.unidadesStock -= empaque.cantBandejas
+    bodegaBandeja.save()
+
+    bodegaStiker.unidadesStock -= empaque.stikers
+    bodegaStiker.save()
+
+    bodegaChuleta.pesoProductoStock -= empaque.pesoChuelta
+    bodegaChuleta.save()
+
+    if empaque.productoAEmpacar.grupo.nombreGrupo == 'Pollos':
+        bodegaChuletaEmpacadaPollo.pesoProductoStock += empaque.pesoChuelta
+        bodegaChuletaEmpacadaPollo.save()
+    elif empaque.productoAEmpacar.grupo.nombreGrupo == 'Cerdos' or empaque.productoAEmpacar.grupo.nombreGrupo == 'Cerdas':
+        bodegaChuletaEmpacadaCerdo.pesoProductoStock += empaque.pesoChuelta
+        bodegaChuletaEmpacadaCerdo.save()
+
+    empaque.guardado = True
+    empaque.save()
+
+    msj = 'Guardado Exitoso'
+
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def ConsultaCostoChuleta(request):
+    idProduccion = request.GET.get('produccion')
+    produccion = ProcesoApanado.objects.get(pk = int(idProduccion)).costoKiloApanado
+    respuesta = json.dumps(produccion)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def promedioCostoProducto(request):
+
+    grupos = Grupo.objects.all()
+    return render_to_response('Fabricacion/promedio.html',{'grupos':grupos},context_instance = RequestContext(request))
+
+from django.db.models import Avg
+
+def CalcularPromedio(request):
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    grupo = request.GET.get('grupo')
+
+    grupos = Grupo.objects.get(pk = int(grupo))
+
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+    despostes = PlanillaDesposte.objects.filter(fechaDesposte__range = (finicio,ffin)).filter(tipoDesposte = grupos.nombreGrupo)
+    ListaCosto = {}
+    ListaPeso = {}
+
+    cantDesp = 0
+    cont = 0
+
+    for desposte in despostes:
+        detalleDespostes = DetallePlanilla.objects.filter(planilla = desposte.codigoPlanilla)
+        for detalle in detalleDespostes:
+            promedio = DetallePlanilla.objects.filter(producto = detalle.producto.codigoProducto).aggregate(Avg('costoProducto'))
+            print(promedio)
+
+
+    '''
+
+    for desposte in despostes:
+        detalleDespostes = DetallePlanilla.objects.filter(planilla = desposte.codigoPlanilla)
+        cantDesp = despostes.count()
+        for detalle in detalleDespostes:
+            ListaCosto[detalle.producto.nombreProducto] = 0
+            ListaPeso[detalle.producto.nombreProducto] = 0
+
+
+    for desposte in despostes:
+        detalleDespostes = DetallePlanilla.objects.filter(planilla = desposte.codigoPlanilla)
+        for detalle in detalleDespostes:
+            ListaCosto[detalle.producto.nombreProducto] += detalle.costoProducto
+
+
+    for desposte in despostes:
+        detalleDespostes = DetallePlanilla.objects.filter(planilla = desposte.codigoPlanilla)
+        for detalle in detalleDespostes:
+            if detalle.producto.nombreProducto == 'Recortes Desposte':
+                ListaPeso[detalle.producto.nombreProducto] += detalle.unidades
+            else:
+                ListaPeso[detalle.producto.nombreProducto] += ceil(detalle.PesoProducto)
+
+
+
+    for llave,valor in ListaCosto.items():
+        ListaCosto[llave] = valor/cantDesp
+
+    listas = {'costos':ListaCosto,'pesos':ListaPeso}'''
+
+
+    respuesta = json.dumps('')
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+
+
+

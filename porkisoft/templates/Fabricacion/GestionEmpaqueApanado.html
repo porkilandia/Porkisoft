@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Empaque Apanados{% endblock titulo %}
+{% block mensajes %}
+    Empaques
+{% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+    <br/>
+
+    <table id="tablaEmpacado" class="table-striped" >
+
+        <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Producto</th>
+            <th>Cant.Bandejas</th>
+            <th>Stikers</th>
+            <th>Costo Bandeja</th>
+            <th>Peso Bandeja</th>
+            <th>Mod</th>
+            <th>Guardado</th>
+            <th>Acciones</th>
+
+        </tr>
+        </thead>
+        {% for empaque in empaques %}
+        <tr>
+            <td>{{ empaque.fechaEmpacado }}</td>
+            <td>{{ empaque.productoAEmpacar.nombreProducto }}</td>
+            <td>{{ empaque.cantBandejas }}</td>
+            <td>{{ empaque.stikers }}</td>
+            <td>${{ empaque.costobandeja }}</td>
+            <td>{{ empaque.pesoBandeja }}grs</td>
+            <td>${{ empaque.mod }}</td>
+            {% if empaque.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+
+
+
+            <td>
+                <a onclick="CostearEmpaqueApanado({{ empaque.id }})" href="#">Costear</a>
+                <a onclick="GuardarEmpaqueApanado({{ empaque.id }})" href="#">Guardar</a>
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="12">
+                   Ningun Registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarProducto">
+             <legend>Nuevo Empaquetado <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+             {{ formulario }}
+             <br/><br/>
+             <legend>Acciones</legend>
+             <input class="btn btn-primary" value="Guardar" type="submit">
+         </fieldset>
+    </form>
+
+{% endblock contenido %}

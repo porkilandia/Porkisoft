@@ -11,6 +11,8 @@
             <th>Cant. Formulas</th>
             <th>Peso Condimento</th>
             <th>Costo Litro</th>
+            <th>Cif</th>
+            <th>Mod</th>
             <th>Costo Total</th>
 
         </tr>
@@ -22,6 +24,8 @@
                 <td id="cantFormulasCond">{{ condimento.cantFormulas }}</td>
                 <td>{{ condimento.pesoCondimento|floatformat }}Kg</td>
                 <td>$ {{ condimento.costoLitroCondimento|floatformat }}</td>
+                <td>$ {{ condimento.cif }}</td>
+                <td>$ {{ condimento.mod }}</td>
                 <td>$ {{ condimento.costoCondimento|floatformat }}</td>
             </tr>
         </tbody>
