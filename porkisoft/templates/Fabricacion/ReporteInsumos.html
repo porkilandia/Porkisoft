@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Reporte Insumos ::{% endblock titulo %}
+{% block mensajes %}
+Promedio de Insumos
+
+{% endblock mensajes %}
+{% block contenido %}
+
+    <div id="rango">
+     <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
+     <label for="fin">Fecha Final</label><input id="fin" type="text">
+
+     <a  onclick="consultaInsumos()" href="#"><input type="button" value="Consultar"></a>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+<div id="acordeon">
+<h3>Miga Preparada</h3>
+<div>
+   <table id="tablaPromedioCostoMiga" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaPesoMiga" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+    <h3>Condimento</h3>
+<div>
+    <table id="tablaPromedioCostoCond" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaPesoCond" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+
+</div>
+<div id="progressbar"></div>
+{% endblock contenido %}
+<div id="progressbar"></div>

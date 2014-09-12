@@ -60,6 +60,10 @@ urlpatterns = patterns('',
     url(r'^apanados/$',GestionApanado),
     url(r'^promedio/$',promedioCostoProducto),
     url(r'^calcPromedio/$',CalcularPromedio),
+    url(r'^TemplateCondPo/$',TemplatePromedioPechugaCond),
+    url(r'^promPechCondPo/$',RepFiletePechugaCond),
+    url(r'^TemplateInsumos/$',TemplateInsumos),
+    url(r'^promInsumos/$',ReporteInsumos),
 
 
 

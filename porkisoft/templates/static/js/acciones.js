@@ -81,6 +81,11 @@ $(document).on('ready', inicio);
      $('#inicio').datepicker({ dateFormat: "dd/mm/yy" });
      $('#fin').datepicker({ dateFormat: "dd/mm/yy" });
 
+
+     $('#acordeon').accordion({ heightStyle: "content" });
+     $( "#progressbar" ).progressbar({value: false}).hide();
+
+
 }
 
 /**************************************************** METODOS *********************************************************/
@@ -119,8 +124,117 @@ $(document).on('ready', inicio);
     });
     alert(f);
 }*/
-function consultaPromedioPorFecha ()
+function consultaInsumos ()
+{   $( "#progressbar" ).show();
+    var inicio = $('#inicio').val();
+    var fin = $('#fin').val();
+    var grupo = $('#grupo').val();
+
+
+    $.ajax({
+
+            url : '/fabricacion/promInsumos/',
+            dataType : "json",
+            type : "get",
+            data : {'inicio':inicio,'fin':fin,'grupo':grupo},
+            success : function(respuesta)
+            {
+                $("#tablaPesos").find("tr:gt(0)").remove();
+                $("#tablaPromedio").find("tr:gt(0)").remove();
+                $("#tablaPromedioCostoMiga").find("tr:gt(0)").remove();
+                $("#tablaPesoMiga").find("tr:gt(0)").remove();
+                $("#tablaPromedioCostoCond").find("tr:gt(0)").remove();
+                $("#tablaPesoCond").find("tr:gt(0)").remove();
+
+                $.each(respuesta.promedioMiga,function(key,value){
+
+                    $("#tablaPromedioCostoMiga").append("<tr><td>" + 'Miga Preparada' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaCantMiga,function(key,value){
+
+                    $("#tablaPesoMiga").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                });
+                $.each(respuesta.promedioCondimento,function(key,value){
+
+                    $("#tablaPromedioCostoCond").append("<tr><td>" + 'Condimento Preparado' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaCantCond,function(key,value){
+
+                    $("#tablaPesoCond").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                });
+                $( "#progressbar" ).hide();
+            }
+
+        });
+}
+function consultaPechugaCond ()
 {
+    $( "#progressbar" ).show();
+    var inicio = $('#inicio').val();
+    var fin = $('#fin').val();
+    tablaPesoFilete = $("#tablaPesoPolloCond")
+
+    $.ajax({
+
+            url : '/fabricacion/promPechCondPo/',
+            dataType : "json",
+            type : "get",
+            data : {'inicio':inicio,'fin':fin},
+            success : function(respuesta)
+            {
+
+
+                $("#tablaPromedioCostoPollo").find("tr:gt(0)").remove();
+                $("#tablaPromedioCostoTajado").find("tr:gt(0)").remove();
+                $("#tablaPromedioPesoPollo").find("tr:gt(0)").remove();
+                $("#tablaPromedioCostoBandejas").find("tr:gt(0)").remove();
+                $("#tablaCantBandejas").find("tr:gt(0)").remove();
+                $("#tablaPromedioCostoBandejasCerdo").find("tr:gt(0)").remove();
+                $("#tablaCantBandejasCerdo").find("tr:gt(0)").remove();
+                tablaPesoFilete.find("tr:gt(0)").remove();
+                $.each(respuesta.promedioBandejasCerdo,function(key,value){
+
+                    $("#tablaPromedioCostoBandejasCerdo").append("<tr><td>" + 'Bandejas de Cerdo Apanado' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.cantBandejasCerdo,function(key,value){
+
+                    $("#tablaCantBandejasCerdo").append("<tr><td>" + 'Bandejas de Cerdo Apanado' + "</td><td>" + value + "</td></tr>");
+                });
+                $.each(respuesta.promedioBandejasPollo,function(key,value){
+
+                    $("#tablaPromedioCostoBandejas").append("<tr><td>" + 'Bandejas de Pollo Apanado' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.cantBandejas,function(key,value){
+
+                    $("#tablaCantBandejas").append("<tr><td>" + 'Bandejas de Pollo Apanado' + "</td><td>" + value + "</td></tr>");
+                });
+                $.each(respuesta.Promedio,function(key,value){
+
+                    $("#tablaPromedioCostoPollo").append("<tr><td>" + 'Filete Condimetado de pollo' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaPesoFilete,function(key,value){
+
+                    tablaPesoFilete.append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                });
+
+                $.each(respuesta.ListaCosto,function(key,value){
+
+                    $("#tablaPromedioCostoTajado").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+
+                $.each(respuesta.ListaPeso,function(key,value){
+
+                    $("#tablaPromedioPesoPollo").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+
+                });
+
+                $( "#progressbar" ).hide();
+            }
+
+        });
+}
+function consultaPromedioPorFecha ()
+{   $( "#progressbar" ).show();
     var inicio = $('#inicio').val();
     var fin = $('#fin').val();
     var grupo = $('#grupo').val();
@@ -135,15 +249,7 @@ function consultaPromedioPorFecha ()
             success : function(respuesta)
             {
                 $("#tablaPesos").find("tr:gt(0)").remove();
-                pesos = respuesta['pesos'];
-                costos = respuesta['costos'];
-
-                for (var i=0; i< pesos.length; i++)
-                {
-                    $("#tablaPromedio").append("<tr><td>" + pesos + "</td><td>" + value + "</td></tr>");
-                }
-
-
+                $("#tablaPromedio").find("tr:gt(0)").remove();
 
                 $.each(respuesta.costos,function(key,value){
 
@@ -153,7 +259,7 @@ function consultaPromedioPorFecha ()
 
                     $("#tablaPesos").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
                 });
-
+                $( "#progressbar" ).hide();
             }
 
         });

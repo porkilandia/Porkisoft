@@ -1,7 +1,7 @@
  # -*- coding: UTF-8 -*-
 from decimal import Decimal
 from math import ceil
-
+from django.db.models import Avg
 from django.shortcuts import render_to_response,HttpResponseRedirect
 from django.template import RequestContext
 from django.core import serializers
@@ -1692,18 +1692,19 @@ def ConsultaCostoChuleta(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def promedioCostoProducto(request):
-
-    grupos = Grupo.objects.all()
+    gr = Grupo.objects.filter(nombreGrupo = 'Reses')
+    gcda = Grupo.objects.filter(nombreGrupo = 'Cerdas')
+    gcdo = Grupo.objects.filter(nombreGrupo = 'Cerdos')
+    grupos = gr | gcda | gcdo
     return render_to_response('Fabricacion/promedio.html',{'grupos':grupos},context_instance = RequestContext(request))
 
-from django.db.models import Avg
+
 
 def CalcularPromedio(request):
 
     inicio = request.GET.get('inicio')
     fin = request.GET.get('fin')
     grupo = request.GET.get('grupo')
-
     grupos = Grupo.objects.get(pk = int(grupo))
 
     fechaInicio = str(inicio)
@@ -1720,14 +1721,11 @@ def CalcularPromedio(request):
     cantDesp = 0
     cont = 0
 
-    for desposte in despostes:
+    '''for desposte in despostes:
         detalleDespostes = DetallePlanilla.objects.filter(planilla = desposte.codigoPlanilla)
         for detalle in detalleDespostes:
             promedio = DetallePlanilla.objects.filter(producto = detalle.producto.codigoProducto).aggregate(Avg('costoProducto'))
-            print(promedio)
-
-
-    '''
+            print(promedio) '''
 
     for desposte in despostes:
         detalleDespostes = DetallePlanilla.objects.filter(planilla = desposte.codigoPlanilla)
@@ -1756,13 +1754,132 @@ def CalcularPromedio(request):
     for llave,valor in ListaCosto.items():
         ListaCosto[llave] = valor/cantDesp
 
-    listas = {'costos':ListaCosto,'pesos':ListaPeso}'''
+    listas = {'costos':ListaCosto,'pesos':ListaPeso}
 
 
-    respuesta = json.dumps('')
+    respuesta = json.dumps(listas)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def TemplatePromedioPechugaCond(request):
+    return render_to_response('Fabricacion/PromedioPechugaCondPollo.html',context_instance = RequestContext(request))
+
+
+def RepFiletePechugaCond(request):
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    ListaCosto = {}
+    ListaPeso = {}
+    ListaPesoFilete = {}
+    ListaPesoFilete['Filete de Pollo Condimentado'] = 0
+    cantBandejas = {}
+    cantBandejas['Bandejas Chuleta de Pollo'] = 0
+    cantBandejasCerdo = {}
+    cantBandejasCerdo['Bandejas Chuleta de Cerdo'] = 0
+    pesoTotal = 0
+
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    bandejasCerdo = EmpacadoApanados.objects.filter(fechaEmpacado__range = (finicio,ffin) ).filter(productoAEmpacar__grupo__nombreGrupo = 'Cerdos' )
+    promedioBandejasCerdo = bandejasCerdo.aggregate(Avg('costobandeja'))
+
+    for bandeja in bandejasCerdo:
+        cantBandejasCerdo['Bandejas Chuleta de Cerdo'] += bandeja.cantBandejas
+
+
+    bandejasPollo = EmpacadoApanados.objects.filter(fechaEmpacado__range = (finicio,ffin) ).filter(productoAEmpacar__grupo__nombreGrupo = 'Pollos' )
+    promedioBandejasPollo = bandejasPollo.aggregate(Avg('costobandeja'))
+
+    for bandeja in bandejasPollo:
+        cantBandejas['Bandejas Chuleta de Pollo'] += bandeja.cantBandejas
+
+
+
+    condimentado = Condimentado.objects.filter(fecha__range = (finicio,ffin) ).filter(producto__grupo__nombreGrupo = 'Pollos' )
+    Promedio = condimentado.aggregate(Avg('costoFileteCond'))
+
+    for cond in condimentado:
+        ListaPesoFilete['Filete de Pollo Condimentado'] += ceil(cond.pesoFileteCond)
+
+
+
+    tajados = Tajado.objects.filter(fechaTajado__range = (finicio,ffin)).filter(producto__grupo__nombreGrupo = 'Pollos' )
+    cantReg = tajados.count()
+    for tajado in tajados:
+        detalleTajado = DetalleTajado.objects.filter(tajado = tajado.codigoTajado)
+
+        for detalle in detalleTajado:
+            ListaCosto[detalle.producto.nombreProducto] = 0
+            ListaPeso[detalle.producto.nombreProducto] = 0
+
+
+    for tajado in tajados:
+        detalleTajado = DetalleTajado.objects.filter(tajado = tajado.codigoTajado)
+        for detalle in detalleTajado:
+            ListaCosto[detalle.producto.nombreProducto] += detalle.costoKilo
+
+    for llave,valor in ListaCosto.items():
+        ListaCosto[llave] = valor/cantReg
+
+
+    for tajado in tajados:
+        detalleTajado = DetalleTajado.objects.filter(tajado = tajado.codigoTajado)
+        for detalle in detalleTajado:
+            ListaPeso[detalle.producto.nombreProducto] += ceil(detalle.pesoProducto)
+
+
+    listas = {'ListaPesoFilete':ListaPesoFilete,'Promedio':Promedio,'promedioBandejasPollo':promedioBandejasPollo,
+              'cantBandejas':cantBandejas,'ListaCosto':ListaCosto,'ListaPeso':ListaPeso,
+              'promedioBandejasCerdo':promedioBandejasCerdo,'cantBandejasCerdo':cantBandejasCerdo}
+
+
+    respuesta = json.dumps(listas)
+    print(listas)
 
     return HttpResponse(respuesta,mimetype='application/json')
 
 
+def TemplateInsumos(request):
+    return render_to_response('Fabricacion/ReporteInsumos.html',context_instance = RequestContext(request))
+def ReporteInsumos(request):
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    ListaCantMiga = {}
+    ListaCantMiga['Miga Preparada'] = 0
+    ListaCantCond = {}
+    ListaCantCond['Condimento Preparado'] = 0
+
+    migas = Miga.objects.filter(fechaFabricacion__range = (finicio,ffin))
+    promedioMiga = migas.aggregate(Avg('costoKiloMigaProcesada'))
+
+    for miga in migas:
+        ListaCantMiga['Miga Preparada'] += ceil(miga.PesoFormulaMiga)
 
 
+    condimentos = Condimento.objects.filter(fecha__range = (finicio,ffin))
+    promedioCondimento = condimentos.aggregate(Avg('costoLitroCondimento'))
+
+    for cond in condimentos:
+        ListaCantCond['Condimento Preparado'] += ceil(cond.pesoCondimento * 1000)
+
+    Listas = {'promedioMiga':promedioMiga,'ListaCantMiga':ListaCantMiga,'promedioCondimento':promedioCondimento,
+              'ListaCantCond':ListaCantCond}
+
+    respuesta = json.dumps(Listas)
+    return HttpResponse(respuesta,mimetype='application/json')

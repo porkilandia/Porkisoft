@@ -16,27 +16,37 @@ Promedio de productos
         {% endfor %}
     </select>
      <a  onclick="consultaPromedioPorFecha()" href="#"><input type="button" value="Consultar"></a>
-    </div>
     <br/>
-<table id="tablaPromedio" class="table-striped" style="width: 50%">
+    <br/>
+    </div>
+<div id="acordeon">
+<h3>Total Ingreso de productos Desposte</h3>
+    <div>
+        <table id="tablaPesos" class="table-striped" style="width:40%">
 
-        <thead>
-        <tr>
-            <th>Producto</th>
-            <th>Costo Promedio</th>
-        </tr>
-        </thead>
+            <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Peso</th>
+            </tr>
+            </thead>
 
-    </table>
-<table id="tablaPesos" class="table-striped">
+        </table>
+    </div>
+<h3>Promedio Productos de Desposte</h3>
+    <div>
+        <table id="tablaPromedio" class="table-striped" style="width: 40%">
 
-        <thead>
-        <tr>
-            <th>Producto</th>
-            <th>Peso Total</th>
-        </tr>
-        </thead>
+            <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Costo Promedio</th>
+            </tr>
+            </thead>
 
-</table>
+        </table>
+    </div>
 
+</div>
+<div id="progressbar"></div>
 {% endblock contenido %}

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Pechugas Condimentadas::{% endblock titulo %}
+{% block mensajes %}
+Promedio de productos
+
+{% endblock mensajes %}
+{% block contenido %}
+
+    <div id="rango">
+     <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
+     <label for="fin">Fecha Final</label><input id="fin" type="text">
+
+     <a  onclick="consultaPechugaCond()" href="#"><input type="button" value="Consultar"></a>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+<div id="acordeon">
+<h3>Filete de Pollo Condimentado</h3>
+<div>
+   <table id="tablaPromedioCostoPollo" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaPesoPolloCond" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+    <h3>Sub Productos Tajado Pollo</h3>
+<div>
+    <table id="tablaPromedioCostoTajado" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaPromedioPesoPollo" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+    <h3>Bandejas de pollo Apanado</h3>
+<div>
+    <table id="tablaPromedioCostoBandejas" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaCantBandejas" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+<h3>Bandejas de Cerd@ Apanado</h3>
+<div>
+    <table id="tablaPromedioCostoBandejasCerdo" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaCantBandejasCerdo" class="table-striped" style="width: 50%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+
+</div>
+<div id="progressbar"></div>
+{% endblock contenido %}
+<div id="progressbar"></div>
