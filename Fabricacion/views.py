@@ -1273,20 +1273,6 @@ def costeoDesposte(request):
     Mod = desposte.mod
     Cif = desposte.cif
 
-
-    '''if tipoCompra == 'Reses':
-        Cif = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Reses').valorCif
-        Mod = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Reses').valorMod
-
-    if tipoCompra == 'Cerdos':
-        Cif = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Cerdo').valorCif
-        Mod = ValoresCostos.objects.get(nombreCosto = 'Costo Desposte Cerdo').valorMod
-    if tipoCompra == 'Cerdas':
-        Cif = ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas').valorCif
-        Mod = ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas').valorMod'''
-
-
-
     #traemos via JSON todas las variables de la plantilla
     pesoCanales = request.GET.get('pesoCanales')
     pesoCanales = int(pesoCanales)*1000
@@ -1355,6 +1341,7 @@ def GuardarDesposte(request):
     for detalle in detalleDesposte:
         #tomo el producto que voy a guardar en bodega
         producto = Producto.objects.get(pk = detalle.producto.codigoProducto)
+        movimiento = Movimientos()
 
         #tomo la bodega a la cual quiero asignar ese producto
         bodega = ProductoBodega.objects.get(bodega = 5,producto = producto.codigoProducto)
@@ -1373,6 +1360,15 @@ def GuardarDesposte(request):
         else:#Se guardan el peso y las unidades en inventario
             bodega.pesoProductoStock += detalle.PesoProducto
             bodega.unidadesStock += detalle.unidades
+
+            movimiento.tipo = 'DSP'
+            movimiento.fechaMov = desposte.fechaDesposte
+            movimiento.productoMov = detalle.producto.codigoProducto
+            movimiento.entrada = detalle.PesoProducto
+            movimiento.save()
+
+
+
 
         bodega.save()
 
@@ -1717,15 +1713,16 @@ def CalcularPromedio(request):
     despostes = PlanillaDesposte.objects.filter(fechaDesposte__range = (finicio,ffin)).filter(tipoDesposte = grupos.nombreGrupo)
     ListaCosto = {}
     ListaPeso = {}
+    promedioPerdida = despostes.aggregate(Avg('difCanalADespostado'))
+    totalDespostado = {}
+    totalDespostado['Total Despostado'] = 0
+
 
     cantDesp = 0
     cont = 0
 
-    '''for desposte in despostes:
-        detalleDespostes = DetallePlanilla.objects.filter(planilla = desposte.codigoPlanilla)
-        for detalle in detalleDespostes:
-            promedio = DetallePlanilla.objects.filter(producto = detalle.producto.codigoProducto).aggregate(Avg('costoProducto'))
-            print(promedio) '''
+    for pesos in despostes:
+        totalDespostado['Total Despostado'] += ceil(pesos.totalDespostado /1000)
 
     for desposte in despostes:
         detalleDespostes = DetallePlanilla.objects.filter(planilla = desposte.codigoPlanilla)
@@ -1733,6 +1730,7 @@ def CalcularPromedio(request):
         for detalle in detalleDespostes:
             ListaCosto[detalle.producto.nombreProducto] = 0
             ListaPeso[detalle.producto.nombreProducto] = 0
+
 
 
     for desposte in despostes:
@@ -1754,7 +1752,7 @@ def CalcularPromedio(request):
     for llave,valor in ListaCosto.items():
         ListaCosto[llave] = valor/cantDesp
 
-    listas = {'costos':ListaCosto,'pesos':ListaPeso}
+    listas = {'costos':ListaCosto,'pesos':ListaPeso,'promedioPerdida':promedioPerdida,'totalDespostado':totalDespostado}
 
 
     respuesta = json.dumps(listas)
@@ -1772,10 +1770,14 @@ def RepFiletePechugaCond(request):
     ListaCosto = {}
     ListaPeso = {}
     ListaPesoFilete = {}
-    ListaPesoFilete['Filete de Pollo Condimentado'] = 0
     cantBandejas = {}
-    cantBandejas['Bandejas Chuleta de Pollo'] = 0
     cantBandejasCerdo = {}
+    pesoChuletaCerdo = {}
+    pesoChuletaPollo = {}
+    pesoChuletaPollo['Chuleta Pollo'] = 0
+    pesoChuletaCerdo['Chuleta Cerdo'] = 0
+    ListaPesoFilete['Filete de Pollo Condimentado'] = 0
+    cantBandejas['Bandejas Chuleta de Pollo'] = 0
     cantBandejasCerdo['Bandejas Chuleta de Cerdo'] = 0
     pesoTotal = 0
 
@@ -1786,6 +1788,23 @@ def RepFiletePechugaCond(request):
     ff = datetime.strptime(fechaFin, formatter_string)
     finicio = fi.date()
     ffin = ff.date()
+
+    q1 = ProcesoApanado.objects.filter(fechaApanado__range = (finicio,ffin)).filter(productoApanado__grupo__nombreGrupo = 'Cerdos' )
+    q2 = ProcesoApanado.objects.filter(fechaApanado__range = (finicio,ffin)).filter(productoApanado__grupo__nombreGrupo = 'Cerdas' )
+    chuletaCerdo = q1 | q2
+    promedioChuletasCerdo = chuletaCerdo.aggregate(Avg('costoKiloApanado'))
+
+    for chuleta in chuletaCerdo:
+        pesoChuletaCerdo['Chuleta Cerdo'] += ceil(chuleta.totalApanado)
+
+
+    chuletaPollo = ProcesoApanado.objects.filter(fechaApanado__range = (finicio,ffin)).filter(productoApanado__grupo__nombreGrupo = 'Pollos' )
+    promedioChuletasPollo = chuletaPollo.aggregate(Avg('costoKiloApanado'))
+
+    for chPollo in chuletaPollo:
+        pesoChuletaPollo['Chuleta Pollo'] += ceil(chPollo.totalApanado)
+
+
 
     bandejasCerdo = EmpacadoApanados.objects.filter(fechaEmpacado__range = (finicio,ffin) ).filter(productoAEmpacar__grupo__nombreGrupo = 'Cerdos' )
     promedioBandejasCerdo = bandejasCerdo.aggregate(Avg('costobandeja'))
@@ -1837,7 +1856,9 @@ def RepFiletePechugaCond(request):
 
     listas = {'ListaPesoFilete':ListaPesoFilete,'Promedio':Promedio,'promedioBandejasPollo':promedioBandejasPollo,
               'cantBandejas':cantBandejas,'ListaCosto':ListaCosto,'ListaPeso':ListaPeso,
-              'promedioBandejasCerdo':promedioBandejasCerdo,'cantBandejasCerdo':cantBandejasCerdo}
+              'promedioBandejasCerdo':promedioBandejasCerdo,'cantBandejasCerdo':cantBandejasCerdo,
+              'promedioChuletasCerdo':promedioChuletasCerdo,'pesoChuletaCerdo':pesoChuletaCerdo,
+              'promedioChuletasPollo':promedioChuletasPollo,'pesoChuletaPollo':pesoChuletaPollo}
 
 
     respuesta = json.dumps(listas)
@@ -1899,6 +1920,7 @@ def TemplateDescrnes(request):
     grupos = gcda | gcdo
 
     return render_to_response('Fabricacion/TemplateDesccarnes.html',{'grupos':grupos},context_instance = RequestContext(request))
+
 def ReporteDescarnes(request):
 
     grupo = request.GET.get('grupo')

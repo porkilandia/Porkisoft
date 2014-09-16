@@ -51,8 +51,8 @@ $(document).on('ready', inicio);
 
      $('#canalPendiente').dataTable();
      $('#tablaenTajados').dataTable();
-     $('#tablacostos').dataTable();
-     $('#tablastock').dataTable();
+     $('#tablacostos').dataTable({ "pageLength": 13 });
+     $('#tablastock').dataTable({ "pageLength": 13 });
      $('#tablaTraslados').dataTable();
      $('#tablaCompras').dataTable();
      $('#tablaProductos').dataTable();
@@ -81,7 +81,7 @@ $(document).on('ready', inicio);
      $('#inicio').datepicker({ dateFormat: "dd/mm/yy" });
      $('#fin').datepicker({ dateFormat: "dd/mm/yy" });
 
-
+     $('#homeAccordeon').accordion({ heightStyle: "content" });
      $('#acordeon').accordion({ heightStyle: "content" });
      $( "#progressbar" ).progressbar({value: false}).hide();
 
@@ -258,7 +258,7 @@ function consultaPechugaCond ()
     $( "#progressbar" ).show();
     var inicio = $('#inicio').val();
     var fin = $('#fin').val();
-    tablaPesoFilete = $("#tablaPesoPolloCond")
+
 
     $.ajax({
 
@@ -277,42 +277,67 @@ function consultaPechugaCond ()
                 $("#tablaCantBandejas").find("tr:gt(0)").remove();
                 $("#tablaPromedioCostoBandejasCerdo").find("tr:gt(0)").remove();
                 $("#tablaCantBandejasCerdo").find("tr:gt(0)").remove();
-                tablaPesoFilete.find("tr:gt(0)").remove();
+                $("#tablaPesoPolloCond").find("tr:gt(0)").remove();
+                $("#tablaChuletaPollo").find("tr:gt(0)").remove();
+                $("#tablaPesoChuletaPollo").find("tr:gt(0)").remove();
+                $("#tablaChuletasCerdo").find("tr:gt(0)").remove();
+                $("#tablaPesoChuletaCerdo").find("tr:gt(0)").remove();
+
+
+
                 $.each(respuesta.promedioBandejasCerdo,function(key,value){
 
-                    $("#tablaPromedioCostoBandejasCerdo").append("<tr><td>" + 'Bandejas de Cerdo Apanado' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                    $("#tablaPromedioCostoBandejasCerdo").append("<tr><td>" + 'Bandejas de Cerdo Apanado' + "</td><td>"+ '$ ' + Math.ceil(value) + "</td></tr>");
                 });
                 $.each(respuesta.cantBandejasCerdo,function(key,value){
 
-                    $("#tablaCantBandejasCerdo").append("<tr><td>" + 'Bandejas de Cerdo Apanado' + "</td><td>" + value + "</td></tr>");
+                    $("#tablaCantBandejasCerdo").append("<tr><td>" + 'Bandejas de Cerdo Apanado' + "</td><td>" + value +' unds'+ "</td></tr>");
                 });
                 $.each(respuesta.promedioBandejasPollo,function(key,value){
 
-                    $("#tablaPromedioCostoBandejas").append("<tr><td>" + 'Bandejas de Pollo Apanado' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                    $("#tablaPromedioCostoBandejas").append("<tr><td>" + 'Bandejas de Pollo Apanado' + "</td><td>"+ '$ ' + Math.ceil(value) + "</td></tr>");
                 });
                 $.each(respuesta.cantBandejas,function(key,value){
 
-                    $("#tablaCantBandejas").append("<tr><td>" + 'Bandejas de Pollo Apanado' + "</td><td>" + value + "</td></tr>");
+                    $("#tablaCantBandejas").append("<tr><td>" + 'Bandejas de Pollo Apanado' + "</td><td>" + value +' unds'+ "</td></tr>");
                 });
                 $.each(respuesta.Promedio,function(key,value){
 
-                    $("#tablaPromedioCostoPollo").append("<tr><td>" + 'Filete Condimetado de pollo' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                    $("#tablaPromedioCostoPollo").append("<tr><td>" + 'Filete Condimetado de pollo' + "</td><td>" + '$ '+ Math.ceil(value) + "</td></tr>");
                 });
                 $.each(respuesta.ListaPesoFilete,function(key,value){
 
-                    tablaPesoFilete.append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                    $("#tablaPesoPolloCond").append("<tr><td>" + key + "</td><td>" + value +' grs'+ "</td></tr>");
                 });
 
                 $.each(respuesta.ListaCosto,function(key,value){
 
-                    $("#tablaPromedioCostoTajado").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                    $("#tablaPromedioCostoTajado").append("<tr><td>" + key + "</td><td>" + '$ '+ Math.ceil(value) + "</td></tr>");
                 });
 
                 $.each(respuesta.ListaPeso,function(key,value){
-
-                    $("#tablaPromedioPesoPollo").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
-
+                    $("#tablaPromedioPesoPollo").append("<tr><td>" + key + "</td><td>" + value +' grs'+ "</td></tr>");
                 });
+
+                $.each(respuesta.promedioChuletasPollo,function(key,value){
+
+                    $("#tablaChuletaPollo").append("<tr><td>" + 'Chuletas de Pollo' + "</td><td>"+ '$ ' + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.pesoChuletaPollo,function(key,value){
+
+                    $("#tablaPesoChuletaPollo").append("<tr><td>" + 'Chuletas de Pollo' + "</td><td>" + value +' grs'+ "</td></tr>");
+                });
+                $.each(respuesta.promedioChuletasCerdo,function(key,value){
+
+                    $("#tablaChuletasCerdo").append("<tr><td>" + 'Chuletas de Cerdo' + "</td><td>" + '$ '+ Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.pesoChuletaCerdo,function(key,value){
+
+
+                    $("#tablaPesoChuletaCerdo").append("<tr><td>" + 'Chuletas de Cerdo' + "</td><td>" + value +' grs'+ "</td></tr>");
+                });
+
+
 
                 $( "#progressbar" ).hide();
             }
@@ -336,14 +361,24 @@ function consultaPromedioPorFecha ()
             {
                 $("#tablaPesos").find("tr:gt(0)").remove();
                 $("#tablaPromedio").find("tr:gt(0)").remove();
+                $("#tablaPromedioPerdida").find("tr:gt(0)").remove();
+                 $("#tablaPesoDespostado").find("tr:gt(0)").remove();
 
                 $.each(respuesta.costos,function(key,value){
 
-                    $("#tablaPromedio").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                    $("#tablaPromedio").append("<tr><td>" + key + "</td><td>" +'$ '+ value + "</td></tr>");
                 });
                 $.each(respuesta.pesos,function(key,value){
 
-                    $("#tablaPesos").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                    $("#tablaPesos").append("<tr><td>" + key + "</td><td>" + value +' grs.'+ "</td></tr>");
+                });
+                $.each(respuesta.promedioPerdida,function(key,value){
+
+                    $("#tablaPromedioPerdida").append("<tr><td>" + Math.ceil(value) +' grs.'+ "</td></tr>");
+                });
+                $.each(respuesta.totalDespostado,function(key,value){
+
+                    $("#tablaPesoDespostado").append("<tr><td>" + Math.ceil(value) +' Kg.'+ "</td></tr>");
                 });
                 $( "#progressbar" ).hide();
             }

@@ -199,11 +199,10 @@ class PlanillaRecepcion(models.Model):
     def __unicode__(self):
         return self.codigoRecepcion
 
-'''class ListadoPrecios(models.Model):
-    nombreLista = models.CharField(verbose_name='Nombre',max_length=50)'''
 
 class Movimientos(models.Model):
     tipo = models.CharField(verbose_name='Tipo',max_length=20)
+    productoMov = models.ForeignKey(Producto)
     fechaMov = models.DateField(verbose_name='Fecha')
-    entrada = models.BooleanField(verbose_name='Entrada',default=False)
-    salida = models.BooleanField(verbose_name='Salida',default=False)
+    entrada = models.DecimalField(verbose_name='Entrada',default=0,max_digits=9, decimal_places=3)
+    salida = models.DecimalField(verbose_name='Salida',default=0,max_digits=9, decimal_places=3)
