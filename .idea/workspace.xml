@@ -2,15 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Home.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/PromedioPechugaCondPollo.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/PromedioPechugaCondPollo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/ReporteInsumos.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/ReporteInsumos.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/TemplateDesccarnes.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/TemplateDesccarnes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/models.py" afterPath="$PROJECT_DIR$/Inventario/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/promedio.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/promedio.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/views.py" afterPath="$PROJECT_DIR$/Fabricacion/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="porkisoft.iws" />
@@ -41,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/Fabricacion/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.5865052" vertical-offset="27990" max-vertical-offset="41181">
-              <caret line="1362" column="12" selection-start-line="1362" selection-start-column="12" selection-end-line="1362" selection-end-column="12" />
+              <caret line="1362" column="0" selection-start-line="1362" selection-start-column="0" selection-end-line="1362" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -760,7 +751,11 @@
       <created>1410564682211</created>
       <updated>1410564682211</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Copia de seguridad 16 septiembre 2014 pm">
+      <created>1410910901075</created>
+      <updated>1410910901075</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -787,6 +782,7 @@
     <frame x="49" y="24" width="1317" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5652174" sideWeight="0.49960598" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3252818" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -802,7 +798,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -823,7 +818,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="creacion de pdf para clientes" />
     <MESSAGE value="pendiante implementacion en servidor de produccion" />
     <MESSAGE value="Actualizaciones de las vistas implementacion del formulario flotante y comprobacion de el modulo desposte" />
     <MESSAGE value="uso de Ajax y json en la nueva planilla de desposte" />
@@ -848,7 +842,8 @@
     <MESSAGE value="Copia de seguridad 9 septiembre 2014 pm" />
     <MESSAGE value="Copia de seguridad 11 septiembre 2014 pm" />
     <MESSAGE value="Copia de seguridad 13 septiembre 2014 pm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Copia de seguridad 13 septiembre 2014 pm" />
+    <MESSAGE value="Copia de seguridad 16 septiembre 2014 pm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Copia de seguridad 16 septiembre 2014 pm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1248,7 +1243,7 @@
     <entry file="file://$PROJECT_DIR$/Fabricacion/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5865052" vertical-offset="27990" max-vertical-offset="41181">
-          <caret line="1362" column="12" selection-start-line="1362" selection-start-column="12" selection-end-line="1362" selection-end-column="12" />
+          <caret line="1362" column="0" selection-start-line="1362" selection-start-column="0" selection-end-line="1362" selection-end-column="0" />
           <folding />
         </state>
       </provider>
