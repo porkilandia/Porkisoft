@@ -66,6 +66,7 @@ urlpatterns = patterns('',
     url(r'^promInsumos/$',ReporteInsumos),
     url(r'^TemplateDescarnes/$',TemplateDescrnes),
     url(r'^promDescarnes/$',ReporteDescarnes),
+    url(r'^editaDes/(?P<idDesposte>\d+)',EditaDesposte),
 
 
 

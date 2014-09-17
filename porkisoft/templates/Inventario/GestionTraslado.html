@@ -17,6 +17,7 @@
             <th>Fecha Traslado</th>
             <th>Estado Traslado</th>
             <th>Descripcion</th>
+            <th>Guardado</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -29,6 +30,11 @@
             <td>{{ traslado.fechaTraslado }}</td>
             <td>{{ traslado.estadoTraslado }}</td>
             <td>{{ traslado.descripcionTraslado }}</td>
+            {% if traslado.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
 
             <td>
                 <a href="{% url 'Inventario.views.GestionDetalleTraslado' traslado.codigoTraslado %}">Detalle</a>

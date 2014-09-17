@@ -65,6 +65,7 @@ $(document).on('ready', inicio);
      $('#TablaCondimentado').dataTable();
      $('#tablaensalinados').dataTable();
      $('#tablaEmpacado').dataTable();
+     $('#tablaMovimientos').dataTable();
 
      $('#id_fecha').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCompra').datepicker({ dateFormat: "dd/mm/yy" });

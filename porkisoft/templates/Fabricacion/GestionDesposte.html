@@ -17,6 +17,8 @@
             <th>Canales a Despostar</th>
             <th>Total Desposte</th>
             <th>Dif Canal/Desposte</th>
+            <th>Cif</th>
+             <th>Mod</th>
             <th>Acciones</th>
 
         </tr>
@@ -29,8 +31,12 @@
             <td>{{ desposte.resesADespostar }}</td>
             <td>{{ desposte.totalDespostado }}</td>
             <td>{{ desposte.difCanalADespostado }}</td>
+            <td>{{ desposte.cif }}</td>
+            <td>{{ desposte.mod }}</td>
+
 
             <td>
+                <a href="{% url 'Fabricacion.views.EditaDesposte' desposte.codigoPlanilla %}">Modificar</a>
                 <a href="{% url 'Fabricacion.views.GestionDesposteActualizado' desposte.codigoPlanilla %}">Detalle</a>
             </td>
 

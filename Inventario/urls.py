@@ -33,6 +33,7 @@ urlpatterns = patterns('',
     url(r'^editar/(?P<id_producto>\d+)',editar_producto),
     url(r'^editarBodega/(?P<idBodega>\d+)',editarBodega),
     url(r'^editarSP/(?P<idSproducto>\d+)',editarSubproducto),
+    url(r'^movimiento/$',GestionMovimientos),
 
 
 )

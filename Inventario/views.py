@@ -246,7 +246,8 @@ def GestionProductoBodega(request,idproducto):
     productoBodegas = ProductoBodega.objects.filter(producto = idproducto)
     producto = Producto.objects.get(pk = idproducto)
 
-    return render_to_response('Inventario/GestionProductoBodega.html',{'productoBodegas':productoBodegas,'producto':producto },
+    return render_to_response('Inventario/GestionProductoBodega.html',{'productoBodegas':productoBodegas,
+                                                                       'producto':producto },
                               context_instance = RequestContext(request))
 
 #*****************************************PROVEEDOR**************************************************
@@ -309,10 +310,10 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA***********************************************************
 def GestionCompra(request):
 
-    '''fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
-    compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))'''
-    compras= Compra.objects.all()
+    compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
+    #compras= Compra.objects.all()
     if request.method == 'POST':
         formulario = CompraForm(request.POST)
         if formulario.is_valid():
@@ -324,6 +325,7 @@ def GestionCompra(request):
 
     return render_to_response('Inventario/GestionCompras.html',{'formulario':formulario,'compras':compras },
                               context_instance = RequestContext(request))
+
 
 def GestionDetalleCompra(request,idcompra):
 
@@ -341,19 +343,30 @@ def GestionDetalleCompra(request,idcompra):
             productoBodega = ProductoBodega.objects.get(bodega = 6,producto = detalleCompra.producto.codigoProducto)
             producto = Producto.objects.get(pk = detalleCompra.producto.codigoProducto)
 
+            movimiento = Movimientos()#Registro los datos en la tabla de movimientos
+            movimiento.tipo = 'CMP%d'%(compra.codigoCompra)
+            movimiento.fechaMov = compra.fechaCompra
+            movimiento.productoMov = detalleCompra.producto
+
             # Si el producto es un insumo
 
             if detalleCompra.producto.grupo.id == 6 :
 
                 productoBodega.pesoProductoStock += detalleCompra.pesoProducto
+                productoBodega.unidadesStock += detalleCompra.unidades
                 productoBodega.save()
+
+                if detalleCompra.pesoProducto == 0:
+                    movimiento.entrada = detalleCompra.pesoProducto
+                else:
+                    movimiento.entrada = detalleCompra.unidades
 
                 producto.costoProducto = detalleCompra.vrCompraProducto
                 producto.save()
 
             # Si el producto es una verdura
             elif detalleCompra.producto.grupo.id == 7:
-
+                movimiento.entrada = detalleCompra.pesoProducto
                 productoBodega.pesoProductoStock += 0
                 productoBodega.save()
 
@@ -363,7 +376,12 @@ def GestionDetalleCompra(request,idcompra):
 
                 productoBodegaCV = ProductoBodega.objects.get(bodega = 5,producto = detalleCompra.producto.codigoProducto)
                 productoBodegaCV.pesoProductoStock += detalleCompra.pesoProducto
+                productoBodegaCV.unidadesStock += detalleCompra.unidades
                 productoBodegaCV.save()
+                if detalleCompra.pesoProducto == 0:
+                    movimiento.entrada = detalleCompra.unidades
+                else:
+                    movimiento.entrada = detalleCompra.pesoProducto
 
                 producto.costoProducto = detalleCompra.vrCompraProducto
                 producto.save()
@@ -376,9 +394,10 @@ def GestionDetalleCompra(request,idcompra):
                 productoBodegaBP = ProductoBodega.objects.get(bodega = 6,producto = detalleCompra.producto.codigoProducto)
                 productoBodegaBP.pesoProductoStock += detalleCompra.pesoProducto
                 productoBodegaBP.save()
+                movimiento.entrada = detalleCompra.pesoProducto
 
 
-
+            movimiento.save()
             detcompras = DetalleCompra.objects.filter(compra = idcompra)
             totalCompra  = 0
             for dcmp in detcompras: # clacular los totales de la lista de detalles de subproducto
@@ -403,6 +422,9 @@ def EditaCompra(request,idDetCompra):
     compra = Compra.objects.get(pk = detcompra.compra.codigoCompra)
     detcompras = DetalleCompra.objects.filter(compra = compra.codigoCompra)
 
+
+
+
     if request.method == 'POST':
         formulario = DetalleCompraForm(compra.codigoCompra,request.POST,instance=detcompra)
         if formulario.is_valid():
@@ -418,6 +440,13 @@ def EditaCompra(request,idDetCompra):
                 bodega.pesoProductoStock += datos.pesoDescongelado
                 bodega.unidadesStock += datos.unidades
                 bodega.save()
+
+                movimiento = Movimientos()
+                movimiento.tipo = 'CMP%d'%(compra.codigoCompra)
+                movimiento.fechaMov = compra.fechaCompra
+                movimiento.productoMov = detcomp.producto
+                movimiento.entrada = datos.pesoDescongelado
+                movimiento.save()
 
             return HttpResponseRedirect('/inventario/detcompra/'+ str(compra.codigoCompra))
     else:
@@ -498,12 +527,32 @@ def GuardarTraslado(request):
 
         bodegaOrigen.pesoProductoStock -= detalle.pesoTraslado
         bodegaOrigen.unidadesStock -= detalle.unidadesTraslado
+        movimiento = Movimientos()
+        movimiento.tipo = 'TRS%d'%(traslado.codigoTraslado)
+        movimiento.productoMov = detalle.productoTraslado
+        movimiento.fechaMov = traslado.fechaTraslado
+        if detalle.pesoTraslado == 0:
+            movimiento.salida = detalle.unidadesTraslado
+        else:
+            movimiento.salida = detalle.pesoTraslado
+
+        movimiento.save()
 
         bodegaDestino.pesoProductoStock += detalle.pesoTraslado
         bodegaDestino.unidadesStock += detalle.unidadesTraslado
-
+        movimiento = Movimientos()
+        movimiento.tipo = 'TRS%d'%(traslado.codigoTraslado)
+        movimiento.productoMov = detalle.productoTraslado
+        movimiento.fechaMov = traslado.fechaTraslado
+        if detalle.pesoTraslado == 0:
+            movimiento.entrada = detalle.unidadesTraslado
+        else:
+            movimiento.entrada = detalle.pesoTraslado
+        movimiento.save()
         bodegaOrigen.save()
         bodegaDestino.save()
+
+
 
         cont += 1
     traslado.guardado = True
@@ -535,5 +584,14 @@ def consultaStock(request):
     respuesta = json.dumps(msj)
 
     return HttpResponse(respuesta,mimetype='application/json')
+
+def GestionMovimientos (request):
+    fechainicio = date.today() - timedelta(days=18)
+    fechafin = date.today()
+    movimientos = Movimientos.objects.all().filter(fechaMov__range = (fechainicio,fechafin))
+    return render_to_response('Inventario/GestionMovimientos.html',{'movimientos':movimientos},
+                                                        context_instance = RequestContext(request))
+
+
 
 

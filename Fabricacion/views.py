@@ -837,8 +837,10 @@ def TraerCostoFilete(request):
 #**********************************************PROCESO TAJADO **********************************************************
 
 def GestionTajado(request):
+    fechainicio = date.today() - timedelta(days=20)
+    fechafin = date.today()
     exito = True
-    tajados = Tajado.objects.all()
+    tajados = Tajado.objects.all().filter(fechaTajado__range = (fechainicio,fechafin))
 
 
     if request.method == 'POST':
@@ -876,6 +878,7 @@ def GestionDetalleTajado(request,idTajado):
                               context_instance = RequestContext(request))
 
 def EditaDetalleTajado(request,idDetTajado):
+
     exito = True
     detalletajado = DetalleTajado.objects.get(pk = idDetTajado)
     tajado = Tajado.objects.get(pk = detalletajado.tajado.codigoTajado)
@@ -989,6 +992,13 @@ def GuardarTajado(request):
     bodegaTajado.pesoProductoStock -= tajado.pesoProducto
     bodegaTajado.save()
 
+    movimiento = Movimientos()
+    movimiento.tipo = 'TJD%d'%(tajado.codigoTajado)
+    movimiento.productoMov = tajado.producto
+    movimiento.fechaMov = tajado.fechaTajado
+    movimiento.salida = tajado.pesoProducto
+    movimiento.save()
+
 
     for det in detTajado:
 
@@ -997,6 +1007,12 @@ def GuardarTajado(request):
         bodega.unidadesStock += det.unidades
         bodega.pesoProductoStock += det.pesoProducto
         bodega.save()
+        movimiento = Movimientos()
+        movimiento.tipo = 'TJD%d'%(tajado.codigoTajado)
+        movimiento.productoMov = det.producto
+        movimiento.fechaMov = tajado.fechaTajado
+        movimiento.entrada = det.pesoProducto
+        movimiento.save()
 
     tajado.guardado = True
     tajado.save()
@@ -1019,6 +1035,21 @@ def GestionDesposte(request):
             return HttpResponseRedirect('/fabricacion/desposte')
     else:
         formulario =DesposteForm()
+
+    return render_to_response('Fabricacion/GestionDesposte.html',{'formulario':formulario,'despostes':despostes},
+                              context_instance = RequestContext(request))
+def EditaDesposte(request,idDesposte):
+    desposte = PlanillaDesposte.objects.get(pk = idDesposte)
+    despostes = PlanillaDesposte.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = DesposteForm(request.POST,instance=desposte)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/desposte')
+    else:
+        formulario =DesposteForm(instance=desposte)
 
     return render_to_response('Fabricacion/GestionDesposte.html',{'formulario':formulario,'despostes':despostes},
                               context_instance = RequestContext(request))
@@ -1361,14 +1392,11 @@ def GuardarDesposte(request):
             bodega.pesoProductoStock += detalle.PesoProducto
             bodega.unidadesStock += detalle.unidades
 
-            movimiento.tipo = 'DSP'
+            movimiento.tipo = 'DSP%d'%(desposte.codigoPlanilla)
             movimiento.fechaMov = desposte.fechaDesposte
-            movimiento.productoMov = detalle.producto.codigoProducto
+            movimiento.productoMov = detalle.producto
             movimiento.entrada = detalle.PesoProducto
             movimiento.save()
-
-
-
 
         bodega.save()
 
