@@ -321,22 +321,48 @@ def GuardaEnsalinado(request):
     piernaEnsalinada.save()
 
     #Se guarda la cantidad final en la bodega de taller
+    movimientos = Movimientos()
+    movimientos.tipo = 'ENS%d'%(ensalinado.codigoEnsalinado)
+    movimientos.fechaMov = ensalinado.fechaEnsalinado
+    movimientos.productoMov = piernaEnsalinada
+    movimientos.entrada = ensalinado.pesoProductoDespues
+    movimientos.save()
+
     bodegaEnsalinado = ProductoBodega.objects.get(bodega = 6,producto = piernaEnsalinada.codigoProducto)
     bodegaEnsalinado.pesoProductoStock += ensalinado.pesoProductoDespues
     bodegaEnsalinado.save()
 
     #se resta la cantidad de Carne que se utilizo para el ensalinado
+    movimientos = Movimientos()
+    movimientos.tipo = 'ENS%d'%(ensalinado.codigoEnsalinado)
+    movimientos.fechaMov = ensalinado.fechaEnsalinado
+    movimientos.productoMov = producto
+    movimientos.salida = ensalinado.pesoProducto
+    movimientos.save()
+
     bodegaProductoAntes = ProductoBodega.objects.get(bodega = 6, producto = producto.codigoProducto)
     bodegaProductoAntes.pesoProductoStock -= ensalinado.pesoProductoAntes
     bodegaProductoAntes.save()
 
 
     #Se guarda la cantidad a restar para la sal
+    movimientos = Movimientos()
+    movimientos.tipo = 'ENS%d'%(ensalinado.codigoEnsalinado)
+    movimientos.fechaMov = ensalinado.fechaEnsalinado
+    movimientos.productoMov = sal
+    movimientos.salida = ensalinado.pesoSal
+    movimientos.save()
 
     salBodega.pesoProductoStock -= ensalinado.pesoSal
     salBodega.save()
 
     #Se guarda la cantidad a restar para la Papaina
+    movimientos = Movimientos()
+    movimientos.tipo = 'ENS%d'%(ensalinado.codigoEnsalinado)
+    movimientos.fechaMov = ensalinado.fechaEnsalinado
+    movimientos.productoMov = papaina
+    movimientos.salida = ensalinado.pesoPapaina
+    movimientos.save()
 
     PapainaBodega.pesoProductoStock -= ensalinado.pesoPapaina
     PapainaBodega.save()
@@ -629,21 +655,53 @@ def GuardarApanado(request):
     bodegaFilete = ProductoBodega.objects.get(bodega = 5,producto = Filete.codigoProducto)
     bodegaMiga = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Miga Preparada')
     bodegaHuevos = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Huevos')
-    bodegaFileteApanadoCerdo = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Filete Apanado Cerdo')
-    bodegaFileteApanadoPollo = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Filete Apanado Pollo')
+    bodegaFileteApanadoCerdo = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Filete Apanado Cerdo')
+    bodegaFileteApanadoPollo = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Filete Apanado Pollo')
 
     #guardamos las cantidades utilizadas de cada producto
+    movimiento = Movimientos()
+    movimiento.tipo = 'APA%d'%(apanado.id)
+    movimiento.fechaMov = apanado.fechaApanado
+    movimiento.productoMov = apanado.productoApanado
+    movimiento.salida = apanado.pesoFilete
+    movimiento.save()
     bodegaFilete.pesoProductoStock -= apanado.pesoFilete
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'APA%d'%(apanado.id)
+    movimiento.fechaMov = apanado.fechaApanado
+    movimiento.productoMov = bodegaMiga.producto
+    movimiento.salida = apanado.miga
+    movimiento.save()
     bodegaMiga.pesoProductoStock -= apanado.miga
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'APA%d'%(apanado.id)
+    movimiento.fechaMov = apanado.fechaApanado
+    movimiento.productoMov = bodegaHuevos.producto
+    movimiento.salida = apanado.huevos
+    movimiento.save()
     bodegaHuevos.pesoProductoStock -= apanado.huevos
 
     #guardamos las cantidades de producto resultante
     if apanado.productoApanado.grupo.nombreGrupo == 'Cerdos' or apanado.productoApanado.grupo.nombreGrupo == 'Cerdas':
         bodegaFileteApanadoCerdo.pesoProductoStock += apanado.totalApanado
         bodegaFileteApanadoCerdo.save()
+        movimiento = Movimientos()
+        movimiento.tipo = 'APA%d'%(apanado.id)
+        movimiento.fechaMov = apanado.fechaApanado
+        movimiento.productoMov = bodegaFileteApanadoCerdo.producto
+        movimiento.entrada= apanado.totalApanado
+        movimiento.save()
     else:
          bodegaFileteApanadoPollo.pesoProductoStock += apanado.totalApanado
          bodegaFileteApanadoPollo.save()
+         movimiento = Movimientos()
+         movimiento.tipo = 'APA%d'%(apanado.id)
+         movimiento.fechaMov = apanado.fechaApanado
+         movimiento.productoMov = bodegaFileteApanadoPollo.producto
+         movimiento.entrada= apanado.totalApanado
+         movimiento.save()
 
     bodegaFilete.save()
     bodegaMiga.save()
@@ -725,9 +783,24 @@ def GuardarMolido(request):
     molido = Molida.objects.get(pk = int(idMolido))
     bodegaProductoAMoler = ProductoBodega.objects.get(bodega = 5,producto = molido.productoMolido.codigoProducto)
     bodegaProductoMolido = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Carne Molida')
+    carneMolida = Producto.objects.get(nombreProducto = 'Carne Molida')
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'MOL%d'%(molido.id)
+    movimiento.fechaMov = molido.fechaMolido
+    movimiento.productoMov = molido.productoMolido
+    movimiento.salida = molido.pesoAmoler
+    movimiento.save()
 
     bodegaProductoAMoler.pesoProductoStock -= molido.pesoAmoler
+
     bodegaProductoMolido.pesoProductoStock += molido.totalMolido
+    movimiento = Movimientos()
+    movimiento.tipo = 'MOL%d'%(molido.id)
+    movimiento.fechaMov = molido.fechaMolido
+    movimiento.productoMov = carneMolida
+    movimiento.entrada = molido.totalMolido
+    movimiento.save()
 
     bodegaProductoAMoler.save()
     bodegaProductoMolido.save()
@@ -785,15 +858,35 @@ def GuardarCondimentado(request):
     condimentado = Condimentado.objects.get(pk = int(idCondimentado))
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
 
+    #******************************SALIDA PRODUCTO**********************************************
+
     #productos a restar
     producto = Producto.objects.get(pk = condimentado.producto.codigoProducto)
     bodegaFilete = ProductoBodega.objects.get(bodega = 6, producto = producto.codigoProducto)
     bodegaFilete.pesoProductoStock -= condimentado.pesoACondimentar
     bodegaFilete.save()
 
+    movimientos = Movimientos()
+    movimientos.tipo = 'CND%d'%(condimentado.codigo)
+    movimientos.fechaMov = condimentado.fecha
+    movimientos.productoMov = producto
+    movimientos.salida = condimentado.pesoACondimentar
+    movimientos.save()
+
+    #******************************SALIDA CONDIMENTO**********************************************
+
     bodegaCondimento = ProductoBodega.objects.get(bodega = 6,producto = condimento.codigoProducto)
     bodegaCondimento.pesoProductoStock -= condimentado.condimento
     bodegaCondimento.save()
+
+    movimientos = Movimientos()
+    movimientos.tipo = 'CND%d'%(condimentado.codigo)
+    movimientos.fechaMov = condimentado.fecha
+    movimientos.productoMov = condimento
+    movimientos.salida = condimentado.condimento
+    movimientos.save()
+
+
 
             #guardamos las cantidades producidas
     if condimentado.producto.grupo.nombreGrupo == 'Pollos':
@@ -819,6 +912,14 @@ def GuardarCondimentado(request):
         bodegaFileteCond.pesoProductoStock += condimentado.pesoFileteCond
         bodegaFileteCond.save()
         msj ='Guardado exitoso!!'
+
+    #******************************ENTRADA FILETE CONDIMENTADO**********************************************
+    movimientos = Movimientos()
+    movimientos.tipo = 'CND%d'%(condimentado.codigo)
+    movimientos.fechaMov = condimentado.fecha
+    movimientos.productoMov = FileteCondimentado
+    movimientos.entrada = condimentado.pesoFileteCond
+    movimientos.save()
 
     condimentado.guardado = True
     condimentado.save()
@@ -1003,7 +1104,7 @@ def GuardarTajado(request):
     for det in detTajado:
 
         #Guardamos el producto resultante
-        bodega = ProductoBodega.objects.get(bodega = 6,producto =  det.producto.codigoProducto)
+        bodega = ProductoBodega.objects.get(bodega = 5,producto =  det.producto.codigoProducto)
         bodega.unidadesStock += det.unidades
         bodega.pesoProductoStock += det.pesoProducto
         bodega.save()
@@ -1155,9 +1256,9 @@ def GestionDesposteActualizado(request, idplanilla):
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
     else:
         vrCarnes = ceil((vrTotalCanales * 6)/100)
-        vrCarnes2 = ceil((vrTotalCanales * Decimal(32.5))/100)
-        vrCarnes3 = ceil((vrTotalCanales * 30)/100)
-        vrCarnes4 = ceil((vrTotalCanales * Decimal(6.5))/100)
+        vrCarnes2 = ceil((vrTotalCanales * Decimal(30.5))/100)
+        vrCarnes3 = ceil((vrTotalCanales * 31)/100)
+        vrCarnes4 = ceil((vrTotalCanales * Decimal(7.5))/100)
         vrCostillas = ceil((vrTotalCanales * 9)/100)
         vrHuesos = ceil((vrTotalCanales * 7)/100)
         vrsubProd = ceil((vrTotalCanales * 6)/100)
@@ -1685,11 +1786,32 @@ def GuardarEmpacado(request):
     bodegaChuletaEmpacadaPollo = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Chuleta Empacada Pollo')
     bodegaChuletaEmpacadaCerdo = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Chuleta Empacada Cerdo')
 
+    movimiento = Movimientos()
+    movimiento.tipo = 'EMP%d'%(empaque.id)
+    movimiento.fechaMov = empaque.fechaEmpacado
+    movimiento.productoMov = bodegaBandeja.producto
+    movimiento.salida = empaque.cantBandejas
+    movimiento.save()
+
     bodegaBandeja.unidadesStock -= empaque.cantBandejas
     bodegaBandeja.save()
 
+    movimiento = Movimientos()
+    movimiento.tipo = 'EMP%d'%(empaque.id)
+    movimiento.fechaMov = empaque.fechaEmpacado
+    movimiento.productoMov = bodegaStiker.producto
+    movimiento.salida = empaque.stikers
+    movimiento.save()
+
     bodegaStiker.unidadesStock -= empaque.stikers
     bodegaStiker.save()
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'EMP%d'%(empaque.id)
+    movimiento.fechaMov = empaque.fechaEmpacado
+    movimiento.productoMov = bodegaChuleta.producto
+    movimiento.salida = empaque.pesoChuelta
+    movimiento.save()
 
     bodegaChuleta.pesoProductoStock -= empaque.pesoChuelta
     bodegaChuleta.save()
@@ -1697,9 +1819,21 @@ def GuardarEmpacado(request):
     if empaque.productoAEmpacar.grupo.nombreGrupo == 'Pollos':
         bodegaChuletaEmpacadaPollo.pesoProductoStock += empaque.pesoChuelta
         bodegaChuletaEmpacadaPollo.save()
+        movimiento = Movimientos()
+        movimiento.tipo = 'EMP%d'%(empaque.id)
+        movimiento.fechaMov = empaque.fechaEmpacado
+        movimiento.productoMov = bodegaChuletaEmpacadaPollo.producto
+        movimiento.entrada = empaque.pesoChuelta
+        movimiento.save()
     elif empaque.productoAEmpacar.grupo.nombreGrupo == 'Cerdos' or empaque.productoAEmpacar.grupo.nombreGrupo == 'Cerdas':
         bodegaChuletaEmpacadaCerdo.pesoProductoStock += empaque.pesoChuelta
         bodegaChuletaEmpacadaCerdo.save()
+        movimiento = Movimientos()
+        movimiento.tipo = 'EMP%d'%(empaque.id)
+        movimiento.fechaMov = empaque.fechaEmpacado
+        movimiento.productoMov = bodegaChuletaEmpacadaCerdo.producto
+        movimiento.entrada = empaque.pesoChuelta
+        movimiento.save()
 
     empaque.guardado = True
     empaque.save()

@@ -81,6 +81,7 @@ $(document).on('ready', inicio);
      $('#id_fechaEmpacado').datepicker({ dateFormat: "dd/mm/yy" });
      $('#inicio').datepicker({ dateFormat: "dd/mm/yy" });
      $('#fin').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaTraslado').datepicker({ dateFormat: "dd/mm/yy" });
 
      $('#homeAccordeon').accordion({ heightStyle: "content" });
      $('#acordeon').accordion({ heightStyle: "content" });

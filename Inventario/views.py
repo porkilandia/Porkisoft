@@ -42,10 +42,10 @@ def listaProductos(request):
     productos = Producto.objects.all().order_by('codigoProducto')
 
     #se actualiza el precio sugerido del producto
-    for producto in productos:
+    '''for producto in productos:
 
-        producto.precioSugerido = ceil(producto.costoProducto * 1.23)
-        producto.save()
+        producto.precioSugerido = ceil(producto.costoProducto * 1.33)
+        producto.save()'''
 
     if request.method == 'POST':
         formulario = ProductoForm(request.POST)
@@ -457,7 +457,9 @@ def EditaCompra(request,idDetCompra):
                                                         context_instance = RequestContext(request))
 #********************************************TRASLADOS******************************************************
 def GestionTraslados(request):
-    traslados = Traslado.objects.all().order_by('fechaTraslado')
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    traslados = Traslado.objects.all().order_by('fechaTraslado').filter(fechaTraslado__range = (fechainicio,fechafin))
     if request.method == 'POST':
 
         formulario = TrasladoForm(request.POST)

@@ -37,7 +37,11 @@
         </tr>
         </thead>
         {% for detalle in detalleListas %}
-        <tr>
+        {% if detalle.costoKilo > detalle.precioVenta %}
+            <tr style="color: red">
+        {% else %}
+            <tr style="color: green">
+        {% endif %}
 
             <td>{{ detalle.productoLista }}</td>
             <td>{{ detalle.costoKilo }}</td>
