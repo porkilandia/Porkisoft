@@ -21,6 +21,10 @@ class DetalleLista(models.Model):
 
 
 class Venta(models.Model):
+    jornadas = (
+    ('AM', 'AM'),
+    ('PM', 'PM'),
+    )
     numeroVenta = models.AutoField(primary_key=True, verbose_name='Numero Factura')
     fechaVenta = models.DateField(verbose_name='Fecha')
     lista = models.ForeignKey(ListaDePrecios,null=True,blank=True)
@@ -32,6 +36,7 @@ class Venta(models.Model):
     efectivo = models.IntegerField(verbose_name='Efectivo',default=0)
     descuadre = models.IntegerField(verbose_name='Descuadre',default=0)
     residuo = models.IntegerField(default=0)
+    jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)
 
     def __unicode__(self):
         return self.numeroVenta
@@ -39,8 +44,8 @@ class Venta(models.Model):
 class DetalleVenta (models.Model):
     venta = models.ForeignKey(Venta)
     peso = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso en Venta',null= True,default=0)
-    productoVenta = models.ForeignKey(Producto,null=True)
     unidades = models.IntegerField(verbose_name='Unidades en Venta',null= True,default=0)
+    productoVenta = models.ForeignKey(Producto,null=True)
     vrUnitario = models.IntegerField(verbose_name='Vr.Unitario', default=0)
     vrTotal = models.IntegerField(verbose_name='Vr.Total',default=0)
     credito = models.BooleanField(verbose_name='Credito',default=False)

@@ -31,8 +31,20 @@ def listaProvedoresAjax(request):
 
 
 def home(request):
-    productosBajoStock = ProductoBodega.objects.all().filter(pesoProductoStock__gt = 5000).order_by('bodega')
+    productosBajoStock = ProductoBodega.objects.all().filter(pesoProductoStock__gt = 500).order_by('bodega')
     costosProductos = Producto.objects.all().order_by('nombreProducto')
+    productos = Producto.objects.all()
+    bodegas = Bodega.objects.all()
+
+    '''for bodega in bodegas:
+        if bodega.codigoBodega != 6:
+            for producto in productos:
+                if producto.grupo.id == 1 or producto.grupo.id == 2 or producto.grupo.id == 9 or producto.grupo.id == 11:
+                    bodegaProducto = ProductoBodega.objects.get(bodega = bodega.codigoBodega,producto = producto.codigoProducto)
+                    if bodegaProducto.unidadesStock == 0:
+                        bodegaProducto.deshidratacion = bodegaProducto.pesoProductoStock - ((bodegaProducto.pesoProductoStock * Decimal(0.5)/100))
+                        bodegaProducto.save()'''
+
 
     return render_to_response('Home.html',{'productosBajoStock':productosBajoStock,
                                            'costosProductos':costosProductos},context_instance = RequestContext(request))

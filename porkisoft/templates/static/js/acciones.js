@@ -83,6 +83,7 @@ $(document).on('ready', inicio);
      $('#fin').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaTraslado').datepicker({ dateFormat: "dd/mm/yy" });
 
+
      $('#homeAccordeon').accordion({ heightStyle: "content" });
      $('#acordeon').accordion({ heightStyle: "content" });
      $( "#progressbar" ).progressbar({value: false}).hide();
@@ -906,9 +907,19 @@ function calculoValorProducto()
 {
     var peso = $('#id_peso').val();
     var vrKilo = $('#id_vrUnitario').val();
-    var total = Math.round((vrKilo * peso)/1000);
+    var unidades = $('#id_unidades').val();
+    var total = 0;
+    if (unidades == 0)
+    {
+        total = Math.round((vrKilo * peso)/1000);
+        $('#id_vrTotal').val(total);
+    }else
+    {
+        total = vrKilo * unidades;
+        $('#id_vrTotal').val(total);
+    }
 
-    $('#id_vrTotal').val(total);
+
 }
 
 function consultaValorProducto()
@@ -917,13 +928,14 @@ function consultaValorProducto()
     var idVenta = $('#codigoVenta').text();
     var peso = $('#id_peso').val();
     var lista = $('#codigoLista').text();
+    var unidades = $('#id_unidades').val();
 
      $.ajax({
 
         url : '/ventas/consultaPrecioProducto/',
          dataType: "json",
          type: "get",
-         data : {'lista':lista,'idProducto':combo,'idVenta':idVenta,'peso':peso},
+         data : {'unidades':unidades,'lista':lista,'idProducto':combo,'idVenta':idVenta,'peso':peso},
          success : function(respuesta){
 
              if(respuesta == "No hay existencias en almacen")

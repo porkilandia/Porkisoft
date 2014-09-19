@@ -32,6 +32,7 @@ class Producto(models.Model):
     excento = models.BooleanField(verbose_name='Excento',default=False)
     excluido = models.BooleanField(verbose_name='Excluido',default=False)
 
+
     def __unicode__(self):
         cadena = '%d %s (%s)'%(self.codigoProducto,self.nombreProducto,self.grupo.nombreGrupo)
         return cadena
@@ -69,6 +70,7 @@ class ProductoBodega(models.Model):
     pesoProductoStock = models.DecimalField(max_digits=15,decimal_places=2,verbose_name='Peso en  Stock', default=0)
     pesoProductoKilos = models.IntegerField(verbose_name='Peso en  Stock(Kls)', default=0)
     unidadesStock = models.IntegerField(verbose_name='Unidades en Stock', default=0)
+    deshidratacion = models.DecimalField(max_digits=15, decimal_places=3,verbose_name='% Deshidratacion')
 
 class SubProductoBodega(models.Model):
     subProducto = models.ForeignKey(SubProducto)

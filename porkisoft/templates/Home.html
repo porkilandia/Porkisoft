@@ -18,6 +18,7 @@
             <th>Bodega</th>
             <th>Producto</th>
             <th>Peso en Stock</th>
+            <th>Peso Deshidratado</th>
             <th>Unidades en stock</th>
 
         </tr>
@@ -28,6 +29,7 @@
             <td>{{ producto.bodega.nombreBodega }}</td>
             <td>{{ producto.producto.nombreProducto }}</td>
             <td>{{ producto.pesoProductoStock|floatformat }}grs</td>
+            <td>{{ producto.deshidratacion| floatformat }}grs</td>
             <td>{{ producto.unidadesStock }}</td>
 
         </tr>

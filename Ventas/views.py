@@ -165,6 +165,7 @@ def consultaValorProducto(request):
     idVenta = request.GET.get('idVenta')
     peso = request.GET.get('peso')
     lista = request.GET.get('lista')
+    unidades = request.GET.get('unidades')
     venta = Venta.objects.get(pk = int(idVenta))
     producto = Producto.objects.get(pk = int(idProducto))
     precio = 0
@@ -178,7 +179,9 @@ def consultaValorProducto(request):
     #verificamos si el producto cuenta con esa cantidad en bodega
     bodega = ProductoBodega.objects.get(bodega = venta.bodega.codigoBodega,producto =producto.codigoProducto )
 
-    if int(peso) <= bodega.pesoProductoStock :
+    if int(peso) <= bodega.pesoProductoStock and int(unidades) == 0 :
+        exito = precio
+    elif int(unidades) <= bodega.unidadesStock and int(peso) == 0 :
         exito = precio
     else:
         exito = 'No hay existencias en almacen'
@@ -199,8 +202,19 @@ def GuardarVenta(request):
 
     for vnt in ventas :
         bodega = ProductoBodega.objects.get(bodega = venta.bodega.codigoBodega,producto = vnt.productoVenta.codigoProducto)
-        bodega.pesoProductoStock -= Decimal(peso)
+        bodega.pesoProductoStock -= vnt.peso
+        bodega.unidadesStock -= vnt.unidades
         bodega.save()
+
+        movimiento = Movimientos()
+        movimiento.tipo = 'VNT%d'%(venta.numeroVenta)
+        movimiento.fechaMov = venta.fechaVenta
+        movimiento.productoMov = vnt.productoVenta
+        if vnt.peso == 0:
+            movimiento.salida = vnt.unidades
+        else:
+            movimiento.salida = vnt.peso
+        movimiento.save()
 
     msj = 'Se guardaron %d registros exitosamente'%registros
     respuesta = json.dumps(msj)
