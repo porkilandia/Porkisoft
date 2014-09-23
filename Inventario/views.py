@@ -322,10 +322,10 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA***********************************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=30)
+    '''fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
-    compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
-    #compras= Compra.objects.all()
+    compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))'''
+    compras= Compra.objects.all()
     if request.method == 'POST':
         formulario = CompraForm(request.POST)
         if formulario.is_valid():

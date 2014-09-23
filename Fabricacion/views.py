@@ -1670,7 +1670,7 @@ def GestionDescarneCabeza(request):
                 proceso.save()
 
                 descarne.vrKiloProceso = vrKiloProcesos
-                descarne.vrKiloRecor = costoUnidad
+                descarne.vrKiloRecorte = costoUnidad
 
 
             descarne.save()
@@ -2128,3 +2128,193 @@ def ReporteDescarnes(request):
 
     respuesta = json.dumps(Listas)
     return HttpResponse(respuesta,mimetype='application/json')
+
+
+def GestionMenudos(request):
+
+    menudos = Menudos.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = MenudoForm(request.POST)
+        if formulario.is_valid():
+            datos = formulario.save()
+
+            escaldado = datos.costoEscaldado * datos.cantMenudos
+            costoMenudos = datos.cantMenudos * datos.costoMenudo
+            costoTotal = costoMenudos + datos.cif + datos.mod + escaldado
+            costoKiloPicadillo = costoTotal /(datos.pesoPicadillo /1000)
+
+            datos.costoKiloPicadillo = costoKiloPicadillo
+            datos.save()
+
+            picadillo = Producto.objects.get(nombreProducto = 'Picadillo')
+            picadillo.costoProducto = costoKiloPicadillo
+            picadillo.save()
+
+
+
+            return HttpResponseRedirect('/fabricacion/menudos')
+    else:
+        formulario = MenudoForm(initial={'costoMenudo':12000,'costoEscaldado':3500})
+
+    return render_to_response('Fabricacion/GestionMenudos.html',{'formulario':formulario,'menudos':menudos },
+                              context_instance = RequestContext(request))
+
+def GuardarMenudos(request):
+    idMenudos = request.GET.get('idMenudo')
+    menudo = Menudos.objects.get(pk = int(idMenudos))
+    picadillo = Producto.objects.get(nombreProducto = 'Picadillo')
+
+    bodegaPicadillo = ProductoBodega.objects.get(bodega = 5,producto = picadillo.codigoProducto )
+    bodegaPicadillo.pesoProductoStock += menudo.pesoPicadillo
+    bodegaPicadillo.save()
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'MDO%d'%(menudo.id)
+    movimiento.fechaMov = menudo.fechaMenudo
+    movimiento.productoMov = picadillo
+    movimiento.entrada = menudo.pesoPicadillo
+    movimiento.save()
+
+    menudo.guardado = True
+    menudo.save()
+
+    msj = 'Guardado exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def GestionFrito(request):
+
+    fritos = TallerFrito.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = FritoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/fabricacion/fritos')
+    else:
+        formulario = FritoForm()
+
+    return render_to_response('Fabricacion/GestionFritos.html',{'formulario':formulario,'fritos':fritos },
+                              context_instance = RequestContext(request))
+
+def CostearFrito(request):
+    idFrito = request.GET.get('idFrito')
+    frito = TallerFrito.objects.get(pk = int(idFrito))
+
+    producto = Producto.objects.get(pk = frito.productoFrito.codigoProducto)
+    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
+    pesoProducto = frito.pesoProducto
+    pesoCondimento = frito.condimento
+    costoCondimento = condimento.costoProducto * (pesoCondimento /1000)
+    costoProducto = producto.costoProducto * (pesoProducto/1000)
+    costoTotal = (costoCondimento + costoProducto)/((pesoCondimento+pesoProducto)/1000)
+
+    frito.pesoTotalFrito = pesoCondimento + pesoProducto
+    frito.costoKiloFrito = costoTotal
+    frito.save()
+
+
+    if frito.productoFrito.grupo.nombreGrupo == 'Cerdos':
+        fritoProcesado = Producto.objects.get(nombreProducto = 'Frito de Cerdo Condimentado')
+        fritoProcesado.costoProducto = costoTotal
+        fritoProcesado.save()
+    else:
+        fritoProcesado = Producto.objects.get(nombreProducto = 'Frito de Cerda Condimentado')
+        fritoProcesado.costoProducto = costoTotal
+        fritoProcesado.save()
+
+    msj = 'Costeo exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+
+def GuardarFrito(request):
+    idFrito = request.GET.get('idFrito')
+    frito = TallerFrito.objects.get(pk = int(idFrito))
+
+    producto = Producto.objects.get(pk = frito.productoFrito.codigoProducto)
+    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'FRT%d'%(frito.id)
+    movimiento.fechaMov = frito.fechaFrito
+    movimiento.productoMov = condimento
+    movimiento.salida = frito.condimento
+    movimiento.save()
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'FRT%d'%(frito.id)
+    movimiento.fechaMov = frito.fechaFrito
+    movimiento.productoMov = producto
+    movimiento.salida = frito.pesoProducto
+    movimiento.save()
+
+
+
+    if frito.productoFrito.grupo.nombreGrupo == 'Cerdos':
+        fritoProcesado = Producto.objects.get(nombreProducto = 'Frito de Cerdo Condimentado')
+        bodegaFritoCerdo = ProductoBodega.objects.get(bodega = 5, producto = fritoProcesado.codigoProducto)
+        bodegaFritoCerdo.pesoProductoStock += frito.pesoTotalFrito
+        bodegaFritoCerdo.save()
+
+        movimiento = Movimientos()
+        movimiento.tipo = 'FRT%d'%(frito.id)
+        movimiento.fechaMov = frito.fechaFrito
+        movimiento.productoMov = fritoProcesado
+        movimiento.entrada = frito.pesoTotalFrito
+        movimiento.save()
+    else:
+        fritoProcesado = Producto.objects.get(nombreProducto = 'Frito de Cerda Condimentado')
+        bodegaFritoCerda = ProductoBodega.objects.get(bodega = 5, producto = fritoProcesado.codigoProducto)
+        bodegaFritoCerda.pesoProductoStock += frito.pesoTotalFrito
+        bodegaFritoCerda.save()
+
+        movimiento = Movimientos()
+        movimiento.tipo = 'FRT%d'%(frito.id)
+        movimiento.fechaMov = frito.fechaFrito
+        movimiento.productoMov = fritoProcesado
+        movimiento.entrada = frito.pesoTotalFrito
+        movimiento.save()
+
+    msj = 'Guardado exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def GestionCarneCond(request):
+
+    carnes = TallerCarneCondimentada.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = CarneCondForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/fabricacion/fritos')
+    else:
+        formulario = CarneCondForm()
+
+    return render_to_response('Fabricacion/GestionCarneCond.html',{'formulario':formulario,'carnes':carnes },
+                              context_instance = RequestContext(request))
+
+def CostearCarneCond(request):
+    idCarne = request.GET.get('idCarne')
+    carne = TallerCarneCondimentada.objects.get(pk = int(idCarne))
+    producto = Producto.objects.get(pk = carne.productoCond.codigoProducto)
+    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
+
+    pesoProducto = carne.pesoProducto
+    pesoCondimento = carne.condimento
+
+    costoProducto = producto.costoProducto * (pesoProducto / 1000)
+    costoCondimento = producto.costoProducto * (pesoCondimento / 1000)
+
+
+
+
+def GuardarCarneCond(request):
+    pass

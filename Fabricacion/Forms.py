@@ -100,6 +100,7 @@ class DetalleDesposteForm(ModelForm):
         if (PlanillaDesposte.objects.get(pk = int(idplanilla)).tipoDesposte != '' ):
             q1 = Producto.objects.filter(grupo__nombreGrupo = PlanillaDesposte.objects.get(pk = int(idplanilla)).tipoDesposte)
             q2 = Producto.objects.filter(grupo__nombreGrupo ='Desechos')
+            #q = Producto.objects.all()
             self.fields['producto'].queryset = q1|q2
 
         else:
@@ -131,3 +132,27 @@ class EmpacadoApanadoForm(ModelForm):
     class Meta:
         model = EmpacadoApanados
         exclude = ("costobandeja","pesoBandeja",)
+
+class MenudoForm(ModelForm):
+    class Meta:
+        model = Menudos
+        exclude = ("costoKiloPicadillo","guardado",)
+
+class FritoForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(FritoForm,self).__init__(*args, **kwargs)
+        q1 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos')
+        q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdas')
+        self.fields['productoFrito'].queryset = q1 | q2
+
+    class Meta:
+        model = TallerFrito
+        exclude = ("pesoTotalFrito","costoKiloFrito",)
+class CarneCondForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CarneCondForm,self).__init__(*args, **kwargs)
+        self.fields['productoCond'].queryset = Producto.objects.filter(grupo__nombreGrupo = 'Reses')
+
+    class Meta:
+        model = TallerCarneCondimentada
+        exclude = ("pesoTotalCond","costoKiloCond","guardado",)

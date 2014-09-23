@@ -45,6 +45,10 @@ $(document).on('ready', inicio);
      $('#id_productoMolido').on('change',existenciasCarneAMoler);
      $('#id_productoLista').on('change',CostoProdListaPrecios);
      $('#id_produccion').on('change',CostoKiloChuleta);
+     $('#id_punto').on('change',VerificarCond);
+     $('#id_productoFrito').on('change',VerificarProdFrito);
+     $('#id_puntoCond').on('change',VerificarCondCarne);
+     $('#id_productoCond').on('change',VerificarProdCarne);
 
      //var tablaEmpacado = $('#tablaEmpacado tr');
      //tablaEmpacado.on('click',maneja);
@@ -82,6 +86,8 @@ $(document).on('ready', inicio);
      $('#inicio').datepicker({ dateFormat: "dd/mm/yy" });
      $('#fin').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaTraslado').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaMenudo').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaFrito').datepicker({ dateFormat: "dd/mm/yy" });
 
 
      $('#homeAccordeon').accordion({ heightStyle: "content" });
@@ -127,6 +133,133 @@ $(document).on('ready', inicio);
     });
     alert(f);
 }*/
+function VerificarCondCarne () {
+   var idBodega = $('#id_puntoCond').val();
+   var pesoCond = $('#id_condimento').val();
+
+    Existencias(111,idBodega,pesoCond);
+}
+function VerificarProdCarne () {
+   var idBodega = $('#id_puntoCond').val();
+   var pesoCarne = $('#id_pesoProducto').val();
+   var producto = $('#id_productoCond').val();
+
+    Existencias(producto,idBodega,pesoCarne);
+}
+function VerificarCond () {
+   var idBodega = $('#id_punto').val();
+   var pesoCond = $('#id_condimento').val();
+
+    Existencias(111,idBodega,pesoCond);
+}
+function VerificarProdFrito () {
+   var idBodega = $('#id_punto').val();
+   var pesoCarne = $('#id_pesoProducto').val();
+   var producto = $('#id_productoFrito').val();
+
+    Existencias(producto,idBodega,pesoCarne);
+}
+function CostearCarneCond(idCarne)
+{
+    var opcion = confirm('Desea costear este Registro.');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/fabricacion/costearCarneCond/',
+            dataType: "json",
+            type: "get",
+            data: {'idCarne': idCarne},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                   alert(respuesta);
+                }
+
+            }
+
+        });
+    }
+}
+function GuardarCarneCond(idCarne)
+{
+    var opcion = confirm('Desea costear este Registro.');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/fabricacion/guardarCarneCond/',
+            dataType: "json",
+            type: "get",
+            data: {'idCarne': idCarne},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                   alert(respuesta);
+                }
+
+            }
+
+        });
+    }
+}
+function CostearFrito(idFrito)
+{
+    var opcion = confirm('Desea costear este Registro.');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/fabricacion/costearFritos/',
+            dataType: "json",
+            type: "get",
+            data: {'idFrito': idFrito},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                   alert(respuesta);
+                }
+
+            }
+
+        });
+    }
+}
+function GuardarFrito(idFrito)
+{
+    var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/fabricacion/guardarFritos/',
+            dataType: "json",
+            type: "get",
+            data: {'idFrito': idFrito},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                   alert(respuesta);
+                }
+
+            }
+
+        });
+    }
+}
+function GuardarPicadillo(idMenudo)
+{
+    var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/fabricacion/guardarMenudo/',
+            dataType: "json",
+            type: "get",
+            data: {'idMenudo': idMenudo},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                   alert(respuesta);
+                }
+
+            }
+
+        });
+    }
+}
+
 function consultaDescarnes ()
 {   $( "#progressbar" ).show();
     var inicio = $('#inicio').val();

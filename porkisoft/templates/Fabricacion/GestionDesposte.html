@@ -19,12 +19,15 @@
             <th>Dif Canal/Desposte</th>
             <th>Cif</th>
              <th>Mod</th>
+            <th>Guardado</th>
             <th>Acciones</th>
 
         </tr>
         </thead>
         {% for desposte in despostes %}
-        <tr>
+        {% if desposte.guardado == False %}
+        <tr style="color: red">
+        {% endif %}
             <td>{{ desposte.codigoPlanilla }}</td>
             <td>{{ desposte.fechaDesposte }}</td>
             <td>{{ desposte.tipoDesposte }}</td>
@@ -33,6 +36,11 @@
             <td>{{ desposte.difCanalADespostado }}</td>
             <td>{{ desposte.cif }}</td>
             <td>{{ desposte.mod }}</td>
+            {% if desposte.guardado == True %}
+                <td>Guardado</td>
+            {% else %}
+                <td>Sin guardar</td>
+            {% endif %}
 
 
             <td>

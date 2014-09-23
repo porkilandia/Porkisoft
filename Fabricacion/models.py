@@ -312,3 +312,37 @@ class auxiliarPromedios(models.Model):
     nombreProducto = models.CharField(max_length=50)
     costo = models.IntegerField()
 
+
+class Menudos(models.Model):
+    fechaMenudo = models.DateField(verbose_name='Fecha')
+    cantMenudos= models.DecimalField(verbose_name='Menudos', max_digits=9, decimal_places=3,default=0)
+    costoMenudo = models.IntegerField(verbose_name='Costo Menudo',default=0)
+    costoEscaldado = models.IntegerField(verbose_name='Costo Escaldado',default=0)
+    pesoPicadillo = models.DecimalField(verbose_name='Peso Picadillo', max_digits=9, decimal_places=3,default=0)
+    costoKiloPicadillo = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    mod = models.IntegerField(verbose_name='Mod',default=0)
+    cif = models.IntegerField(verbose_name='Cif',default=0)
+    guardado = models.BooleanField(default=False)
+
+
+class TallerFrito(models.Model):
+    fechaFrito = models.DateField(verbose_name='Fecha')
+    pesoProducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3,default=0)
+    condimento = models.DecimalField(verbose_name='Peso Condimento', max_digits=9, decimal_places=3,default=0)
+    punto = models.ForeignKey(Bodega)
+    productoFrito = models.ForeignKey(Producto)
+    pesoTotalFrito = models.DecimalField(verbose_name='Peso Total', max_digits=9, decimal_places=3,default=0)
+    costoKiloFrito = models.IntegerField(verbose_name='Costo Kilo Frito',default=0)
+    guardado = models.BooleanField(default=False)
+
+class TallerCarneCondimentada(models.Model):
+    fechaCarCond = models.DateField(verbose_name='Fecha')
+    pesoProducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3,default=0)
+    condimento = models.DecimalField(verbose_name='Peso Condimento', max_digits=9, decimal_places=3,default=0)
+    puntoCond = models.ForeignKey(Bodega)
+    productoCond = models.ForeignKey(Producto)
+    pesoTotalCond = models.DecimalField(verbose_name='Peso Total', max_digits=9, decimal_places=3,default=0)
+    costoKiloCond = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    guardado = models.BooleanField(default=False)
+
+

@@ -24,6 +24,17 @@ urlpatterns = patterns('',
     url(r'^condimentado/$',GestionCondimentado),
     url(r'^empacadoApanado/$',GestionEmpacadoApanados),
 
+    url(r'^menudos/$',GestionMenudos),
+    url(r'^guardarMenudo/$',GuardarMenudos),
+
+    url(r'^fritos/$',GestionFrito),
+    url(r'^costearFritos/$',CostearFrito),
+    url(r'^guardarFritos/$',GuardarFrito),
+
+    url(r'^carneCondimentada/$',GestionCarneCond),
+    url(r'^costearCarneCond/$',CostearCarneCond),
+    url(r'^guardarCarneCond/$',GuardarCarneCond),
+
     url(r'^canalPendiente/$',InformeCanalesPendientes),
     url(r'^descarne/$',GestionDescarneCabeza),
     url(r'^costos/$',GestionValorCostos),
