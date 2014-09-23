@@ -35,6 +35,8 @@ urlpatterns = patterns('',
     url(r'^costearCarneCond/$',CostearCarneCond),
     url(r'^guardarCarneCond/$',GuardarCarneCond),
 
+    url(r'^croquetas/$',GestionCroqueta),
+
     url(r'^canalPendiente/$',InformeCanalesPendientes),
     url(r'^descarne/$',GestionDescarneCabeza),
     url(r'^costos/$',GestionValorCostos),

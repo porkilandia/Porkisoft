@@ -345,4 +345,14 @@ class TallerCarneCondimentada(models.Model):
     costoKiloCond = models.IntegerField(verbose_name='Costo Kilo',default=0)
     guardado = models.BooleanField(default=False)
 
+class TallerCroquetas(models.Model):
+    fechaCroqueta = models.DateField(verbose_name='Fecha')
+    croqueta = models.DecimalField(verbose_name='Peso Croqueta', max_digits=9, decimal_places=3,default=0)
+    condimento = models.DecimalField(verbose_name='Peso Condimento', max_digits=9, decimal_places=3,default=0)
+    miga = models.DecimalField(verbose_name='Peso Miga', max_digits=9, decimal_places=3,default=0)
+    puntoCroq = models.ForeignKey(Bodega)
+    pesoTotalCroqueta = models.DecimalField(verbose_name='Peso Total', max_digits=9, decimal_places=3,default=0)
+    costoKiloCroqueta = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    guardado = models.BooleanField(default=False)
+
 

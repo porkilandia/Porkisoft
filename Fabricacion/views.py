@@ -938,7 +938,7 @@ def TraerCostoFilete(request):
 #**********************************************PROCESO TAJADO **********************************************************
 
 def GestionTajado(request):
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=40)
     fechafin = date.today()
     exito = True
     tajados = Tajado.objects.all().filter(fechaTajado__range = (fechainicio,fechafin))
@@ -2239,6 +2239,15 @@ def GuardarFrito(request):
     producto = Producto.objects.get(pk = frito.productoFrito.codigoProducto)
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
 
+    bodegaProducto = ProductoBodega.objects.get(bodega = frito.punto.codigoBodega,producto = producto.costoProducto)
+    bodegaProducto.pesoProductoStock -= frito.pesoProducto
+    bodegaProducto.save()
+
+    bodegaCondimento = ProductoBodega.objects.get(bodega = frito.punto.codigoBodega,producto = condimento.codigoProducto)
+    bodegaCondimento.pesoProductoStock -= frito.condimento
+    bodegaCondimento.save()
+
+
     movimiento = Movimientos()
     movimiento.tipo = 'FRT%d'%(frito.id)
     movimiento.fechaMov = frito.fechaFrito
@@ -2257,7 +2266,7 @@ def GuardarFrito(request):
 
     if frito.productoFrito.grupo.nombreGrupo == 'Cerdos':
         fritoProcesado = Producto.objects.get(nombreProducto = 'Frito de Cerdo Condimentado')
-        bodegaFritoCerdo = ProductoBodega.objects.get(bodega = 5, producto = fritoProcesado.codigoProducto)
+        bodegaFritoCerdo = ProductoBodega.objects.get(bodega = frito.punto.codigoBodega, producto = fritoProcesado.codigoProducto)
         bodegaFritoCerdo.pesoProductoStock += frito.pesoTotalFrito
         bodegaFritoCerdo.save()
 
@@ -2269,7 +2278,7 @@ def GuardarFrito(request):
         movimiento.save()
     else:
         fritoProcesado = Producto.objects.get(nombreProducto = 'Frito de Cerda Condimentado')
-        bodegaFritoCerda = ProductoBodega.objects.get(bodega = 5, producto = fritoProcesado.codigoProducto)
+        bodegaFritoCerda = ProductoBodega.objects.get(bodega = frito.punto.codigoBodega, producto = fritoProcesado.codigoProducto)
         bodegaFritoCerda.pesoProductoStock += frito.pesoTotalFrito
         bodegaFritoCerda.save()
 
@@ -2306,15 +2315,81 @@ def CostearCarneCond(request):
     carne = TallerCarneCondimentada.objects.get(pk = int(idCarne))
     producto = Producto.objects.get(pk = carne.productoCond.codigoProducto)
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
+    carneCondimentada = Producto.objects.get(nombreProducto = 'Carne Condimentada')
 
     pesoProducto = carne.pesoProducto
     pesoCondimento = carne.condimento
 
     costoProducto = producto.costoProducto * (pesoProducto / 1000)
-    costoCondimento = producto.costoProducto * (pesoCondimento / 1000)
+    costoCondimento = condimento.costoProducto * (pesoCondimento / 1000)
 
+    costoTotal = (costoProducto + costoCondimento)/((pesoProducto + pesoCondimento)/1000)
 
+    carneCondimentada.costoProducto = costoTotal
+    carneCondimentada.save()
 
+    msj = 'Costeo exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
 
 def GuardarCarneCond(request):
-    pass
+    idCarne = request.GET.get('idCarne')
+    carne = TallerCarneCondimentada.objects.get(pk = int(idCarne))
+    producto = Producto.objects.get(pk = carne.productoCond.codigoProducto)
+    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
+    carneCondimentada = Producto.objects.get(nombreProducto = 'Carne Condimentada')
+
+    bodegaProducto = ProductoBodega.objects.get(bodega = carne.puntoCond.codigoBodega,producto = producto.costoProducto)
+    bodegaProducto.pesoProductoStock -= carne.pesoProducto
+    bodegaProducto.save()
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'CCON%d'%(carne.id)
+    movimiento.fechaMov = carne.fechaCarCond
+    movimiento.productoMov = producto
+    movimiento.salida = carne.pesoProducto
+    movimiento.save()
+
+    bodegaCondimento = ProductoBodega.objects.get(bodega = carne.puntoCond.codigoBodega,producto = condimento.codigoProducto)
+    bodegaCondimento.pesoProductoStock -= carne.condimento
+    bodegaCondimento.save()
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'CCON%d'%(carne.id)
+    movimiento.fechaMov = carne.fechaCarCond
+    movimiento.productoMov = condimento
+    movimiento.salida = carne.condimento
+    movimiento.save()
+
+    bodegaCarneCond = ProductoBodega.objects.get(bodega =  carne.puntoCond.codigoBodega,producto = carneCondimentada.codigoProducto)
+    bodegaCarneCond.pesoProductoStock += carne.pesoTotalCond
+    bodegaCarneCond.save()
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'CCON%d'%(carne.id)
+    movimiento.fechaMov = carne.fechaCarCond
+    movimiento.productoMov = carneCondimentada
+    movimiento.entrada = carne.pesoTotalCond
+    movimiento.save()
+
+    msj = 'Guardado exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def GestionCroqueta(request):
+    croquetas = TallerCroquetas.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = CroquetaFrom(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/fabricacion/fritos')
+    else:
+        formulario = CroquetaFrom()
+
+    return render_to_response('Fabricacion/GestionCroquetas.html',{'formulario':formulario,'croquetas':croquetas },
+                              context_instance = RequestContext(request))
+
+

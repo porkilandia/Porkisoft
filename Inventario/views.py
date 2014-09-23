@@ -600,7 +600,7 @@ def consultaStock(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionMovimientos (request):
-    fechainicio = date.today() - timedelta(days=18)
+    fechainicio = date.today() - timedelta(days=40)
     fechafin = date.today()
     movimientos = Movimientos.objects.all().filter(fechaMov__range = (fechainicio,fechafin))
     return render_to_response('Inventario/GestionMovimientos.html',{'movimientos':movimientos},

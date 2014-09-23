@@ -156,3 +156,8 @@ class CarneCondForm(ModelForm):
     class Meta:
         model = TallerCarneCondimentada
         exclude = ("pesoTotalCond","costoKiloCond","guardado",)
+
+class CroquetaFrom(ModelForm):
+    class Meta:
+        model = TallerCroquetas
+        exclude = ("pesoTotalCond","costoKiloCond","guardado",)
