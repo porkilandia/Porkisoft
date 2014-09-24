@@ -49,6 +49,7 @@ $(document).on('ready', inicio);
      $('#id_productoFrito').on('change',VerificarProdFrito);
      $('#id_puntoCond').on('change',VerificarCondCarne);
      $('#id_productoCond').on('change',VerificarProdCarne);
+     $('#id_puntoCroq').on('change',VerificarInsCroquetas);
 
      //var tablaEmpacado = $('#tablaEmpacado tr');
      //tablaEmpacado.on('click',maneja);
@@ -132,7 +133,67 @@ $(document).on('ready', inicio);
 
     });
     alert(f);
+
+
+
+
 }*/
+function VerificarInsCroquetas () {
+    var idBodega = $('#id_puntoCroq').val();
+    var pesoCroqueta = $('#id_croqueta').val();
+    var pesoCond = $('#id_condimento').val();
+    var pesoMiga = $('#id_miga').val();
+    Existencias(109, idBodega, pesoMiga);
+    Existencias(111, idBodega, pesoCond);
+    Existencias(175, idBodega, pesoCroqueta);
+
+}
+
+function GuardarCroqueta(idCroqueta) {
+    //Funcion que costea el apanado actual
+    var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/fabricacion/guardarCroquetas/',
+            dataType: "json",
+            type: "get",
+            data: {'idCroqueta': idCroqueta},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                    alert(respuesta);
+                }
+
+            }
+
+        });
+    }
+}
+function CostearCroqueta(idCroqueta)
+{
+    //Funcion que costea el apanado actual
+    var opcion = confirm('Desea costear este Registro ?');
+    if (opcion == true)
+    {
+        $.ajax({
+
+            url : '/fabricacion/costearCroquetas/',
+            dataType : "json",
+            type : "get",
+            data : {'idCroqueta':idCroqueta},
+            success : function(respuesta)
+            {
+                if (respuesta != '')
+                {
+                    alert(respuesta);
+                }
+
+            }
+
+        });
+    }
+
+}
 function VerificarCondCarne () {
    var idBodega = $('#id_puntoCond').val();
    var pesoCond = $('#id_condimento').val();
@@ -720,7 +781,7 @@ function TraecostoEnsalinado()
 {
     var producto = $('#id_productoEnsalinado').val();
     var peso = $('#id_pesoProducto').val();
-    Existencias(producto,6,peso);
+    Existencias(producto,5,peso);
 }
 function GuardarEnsalinado(idEnsalinado)
 {

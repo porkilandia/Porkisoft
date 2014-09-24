@@ -61,8 +61,7 @@ def GestionCanal(request,idrecepcion):
 
             if compra.tipo.nombreGrupo == 'Reses':
 
-                vrKiloCanal = ((compra.vrCompra + sacrificio.vrDeguello + sacrificio.vrTransporte) -
-                          (sacrificio.piel + sacrificio.vrMenudo))/ (pesoCanales + Decimal(request.POST.get('pesoPorkilandia')))
+                vrKiloCanal = ((compra.vrCompra + sacrificio.vrDeguello + sacrificio.vrTransporte))/ (pesoCanales + Decimal(request.POST.get('pesoPorkilandia')))
 
                 vrArrobaCanal = vrKiloCanal * Decimal(12.5)
 
@@ -340,7 +339,7 @@ def GuardaEnsalinado(request):
     movimientos.salida = ensalinado.pesoProducto
     movimientos.save()
 
-    bodegaProductoAntes = ProductoBodega.objects.get(bodega = 6, producto = producto.codigoProducto)
+    bodegaProductoAntes = ProductoBodega.objects.get(bodega = 5, producto = producto.codigoProducto)
     bodegaProductoAntes.pesoProductoStock -= ensalinado.pesoProductoAntes
     bodegaProductoAntes.save()
 
@@ -2372,6 +2371,9 @@ def GuardarCarneCond(request):
     movimiento.entrada = carne.pesoTotalCond
     movimiento.save()
 
+    carne.guardado = True
+    carne.save()
+
     msj = 'Guardado exitoso'
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
@@ -2391,5 +2393,102 @@ def GestionCroqueta(request):
 
     return render_to_response('Fabricacion/GestionCroquetas.html',{'formulario':formulario,'croquetas':croquetas },
                               context_instance = RequestContext(request))
+
+def CostearCroqueta(request):
+    idCorqueta = request.GET.get('idCroqueta')
+    regCroqueta = TallerCroquetas.objects.get(pk = int(idCorqueta))
+    croquetaApanada = Producto.objects.get(nombreProducto = 'Croqueta Apanada')
+    croquetaCocida = Producto.objects.get(nombreProducto = 'Croqueta Cocinada')
+    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
+    miga = Producto.objects.get(nombreProducto = 'Miga Preparada')
+
+
+    pesoCroqueta = regCroqueta.croqueta
+    pesoCondimento = regCroqueta.condimento
+    pesoMiga = regCroqueta.miga
+
+    costoMiga = miga.costoProducto * (pesoMiga /1000)
+    costoCroqueta = croquetaCocida.costoProducto * (pesoCroqueta/1000)
+    costoCondimento = condimento.costoProducto * (pesoCondimento/1000)
+
+    pesoTotal = (pesoCondimento + pesoCroqueta + pesoMiga)/1000
+    costoTotal = costoMiga + costoCroqueta + costoCondimento
+
+    costoKilo = costoTotal / pesoTotal
+
+    croquetaApanada.costoProducto = costoKilo
+    croquetaApanada.save()
+
+    regCroqueta.costoKiloCroqueta = costoKilo
+    regCroqueta.pesoTotalCroqueta = pesoTotal * 1000
+    regCroqueta.save()
+
+    msj = 'Costeado exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+
+
+def GuardarCroqueta(request):
+    idCorqueta = request.GET.get('idCroqueta')
+    regCroqueta = TallerCroquetas.objects.get(pk = int(idCorqueta))
+    croquetaApanada = Producto.objects.get(nombreProducto = 'Croqueta Apanada')
+    croquetaCocida = Producto.objects.get(nombreProducto = 'Croqueta Cocinada')
+    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
+    miga = Producto.objects.get(nombreProducto = 'Miga Preparada')
+
+    bodegaMiga = ProductoBodega.objects.get(bodega = regCroqueta.puntoCroq.codigoBodega,producto = miga.codigoProducto)
+    bodegaCroquetaCocida = ProductoBodega.objects.get(bodega = regCroqueta.puntoCroq.codigoBodega,producto = croquetaCocida.codigoProducto)
+    bodegaCroquetaApanada = ProductoBodega.objects.get(bodega = regCroqueta.puntoCroq.codigoBodega,producto = croquetaApanada.codigoProducto)
+    bodegaCondimento = ProductoBodega.objects.get(bodega = regCroqueta.puntoCroq.codigoBodega,producto = condimento.codigoProducto)
+
+    #*********************************************SALIDAS***********************************************************
+
+    bodegaCroquetaCocida.pesoProductoStock -= regCroqueta.croqueta
+    bodegaCroquetaCocida.save()
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'CRQ%d'%(regCroqueta.id)
+    movimiento.fechaMov = regCroqueta.fechaCroqueta
+    movimiento.productoMov = croquetaCocida
+    movimiento.salida = regCroqueta.croqueta
+    movimiento.save()
+
+    bodegaCondimento.pesoProductoStock -= regCroqueta.condimento
+    bodegaCondimento.save()
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'CRQ%d'%(regCroqueta.id)
+    movimiento.fechaMov = regCroqueta.fechaCroqueta
+    movimiento.productoMov = condimento
+    movimiento.salida = regCroqueta.condimento
+    movimiento.save()
+
+    bodegaMiga.pesoProductoStock -= regCroqueta.miga
+    bodegaMiga.save()
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'CRQ%d'%(regCroqueta.id)
+    movimiento.fechaMov = regCroqueta.fechaCroqueta
+    movimiento.productoMov = miga
+    movimiento.salida = regCroqueta.miga
+    movimiento.save()
+
+    #*************************************************ENTRADAS**********************************************************
+    bodegaCroquetaApanada.pesoProductoStock += regCroqueta.pesoTotalCroqueta
+    bodegaCroquetaApanada.save()
+    movimiento = Movimientos()
+    movimiento.tipo = 'CRQ%d'%(regCroqueta.id)
+    movimiento.fechaMov = regCroqueta.fechaCroqueta
+    movimiento.productoMov = croquetaApanada
+    movimiento.entrada = regCroqueta.pesoTotalCroqueta
+    movimiento.save()
+
+    regCroqueta.guardado = True
+    regCroqueta.save()
+
+    msj = 'Costeado exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
 
 

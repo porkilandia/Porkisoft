@@ -6,6 +6,7 @@
 {% endblock mensajes %}
 {% block contenido %}
     <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+    <a href="{% url 'Inventario.views.GestionGanado' compra.codigoCompra %}"><input type="button" value="Ganado" class="btn btn-success"></a>
     <br/><br/><br/>
 
     <table class="table-striped">
@@ -113,7 +114,7 @@
              <br/>
                 <legend>Acciones</legend>
                  <input type="submit" value="Guardar" class="btn btn-primary">
-                 <a href="{% url 'Inventario.views.GestionGanado' compra.codigoCompra %}"><input type="button" value="Ganado" class="btn btn-success"></a>
+
                  <a href="{% url 'Inventario.views.GestionCompra'%}"><input type="button" value="Volver" class="btn btn-default "></a>
 
           </fieldset>

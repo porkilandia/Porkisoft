@@ -148,7 +148,7 @@ class Ganado(models.Model):
 
     codigoGanado = models.AutoField(primary_key=True, verbose_name='Codigo Ganado')
     compra = models.ForeignKey(Compra,blank=True,null=True)
-    piel = models.IntegerField(verbose_name='Piel', choices= tipoPiel)
+    #piel = models.IntegerField(verbose_name='Piel', choices= tipoPiel,blank=True,default=0)
     pesoEnPie = models.DecimalField(verbose_name = 'Peso en Pie (grs)',max_digits=9, decimal_places=3)
     precioKiloEnPie = models.IntegerField(verbose_name='Precio Kilo en Pie')
     precioTotal = models.IntegerField(verbose_name='Precio Total')
