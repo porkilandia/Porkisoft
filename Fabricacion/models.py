@@ -356,3 +356,22 @@ class TallerCroquetas(models.Model):
     guardado = models.BooleanField(default=False)
 
 
+class TallerReapanado(models.Model):
+    fechaReApanado = models.DateField(verbose_name='Fecha')
+    pesoChuleta = models.DecimalField(verbose_name='Peso Chuleta', max_digits=9, decimal_places=3,default=0)
+    miga = models.DecimalField(verbose_name='Peso Miga', max_digits=9, decimal_places=3,default=0)
+    chuelta = models.ForeignKey(Producto,verbose_name='Producto')
+    puntoReApanado = models.ForeignKey(Bodega)
+    pesoTotalReApanado = models.DecimalField(verbose_name='Peso Total', max_digits=9, decimal_places=3,default=0)
+    guardado = models.BooleanField(default=False)
+
+class Conversiones(models.Model):
+    fechaConversion = models.DateField(verbose_name='Fecha')
+    pesoConversion = models.DecimalField(verbose_name='Peso', max_digits=9, decimal_places=3,default=0)
+    productoUno = models.CharField(verbose_name='Producto 1', max_length=50)
+    productoDos = models.CharField(verbose_name='Producto 2', max_length=50)
+    puntoConversion =  models.ForeignKey(Bodega)
+    costoP1 = models.IntegerField(verbose_name='Costo Producto 1',default=0)
+    costoP2 = models.IntegerField(verbose_name='Costo Producto 2',default=0)
+    guardado = models.BooleanField(default=False)
+

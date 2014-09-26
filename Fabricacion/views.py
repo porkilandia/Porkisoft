@@ -199,11 +199,11 @@ def GestionSacrificio(request,idrecepcion):
     sacrificios = Sacrificio.objects.filter(recepcion = idrecepcion)
     detCompra = DetalleCompra.objects.filter(compra = recepcion.compra.codigoCompra)
 
-    totalPieles = 0
+    #totalPieles = 0
 
     for det in detCompra:
         ganado = Ganado.objects.get(pk = det.ganado.codigoGanado)
-        totalPieles += ganado.piel
+        #totalPieles += ganado.piel
 
 
     if request.method == 'POST':
@@ -222,7 +222,7 @@ def GestionSacrificio(request,idrecepcion):
                 transporte = cantCabezas * 8000
 
             sacrificio.recepcion = recepcion
-            sacrificio.piel = totalPieles
+            sacrificio.piel = 0
             sacrificio.vrMenudo = menudo
             sacrificio.vrDeguello = deguello
             sacrificio.vrTransporte = transporte
@@ -255,7 +255,10 @@ def GestionSacrificio(request,idrecepcion):
                               context_instance = RequestContext(request))
 
 def GestionEnsalinado(request):
-    ensalinados = Ensalinado.objects.all()
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    ensalinados = Ensalinado.objects.filter(fechaEnsalinado__range =(fechainicio,fechafin))
+    #ensalinados = Ensalinado.objects.all()
     if request.method == 'POST':
         formulario = EnsalinadoForm(request.POST)
 
@@ -270,7 +273,9 @@ def GestionEnsalinado(request):
 
 def EditaEnsalinado(request,idEnsalinado):
 
-    ensalinados = Ensalinado.objects.all()
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    ensalinados = Ensalinado.objects.filter(fechaEnsalinado__range =(fechainicio,fechafin))
     ensalinado = Ensalinado.objects.get(pk = idEnsalinado)
 
 
@@ -535,13 +540,8 @@ def GestionMiga(request):
         if formulario.is_valid():
             miga = formulario.save()
 
-            #Guardamos la cantidad de producto procesado en la bodega de planta de procesos
-            bodegaMiga = ProductoBodega.objects.get(bodega = 6, producto__nombreProducto = 'Miga Preparada' )
-            bodegaMiga.pesoProductoStock += miga.PesoFormulaMiga
-            bodegaMiga.save()
-
-            miga.PesoFormulaMiga /= 1000
-            miga.save()
+            #miga.PesoFormulaMiga /= 1000
+            #miga.save()
 
             return HttpResponseRedirect('/fabricacion/miga')
     else:
@@ -560,21 +560,6 @@ def GestionDetalleMiga(request,idmiga):
         if formulario.is_valid():
             detalle =  formulario.save()
 
-            producto = Producto.objects.get(pk = detalle.productoMiga.codigoProducto)
-            costoProducto = producto.costoProducto
-            costoTotalmiga = (miga.cantidadFormulas * costoProducto )* (detalle.PesoProducto/1000)
-
-            # Se resta la cantidad de producrto utilizado en las formulas de condimento y se graba el registro
-            bodega = ProductoBodega.objects.get(bodega = 6, producto = detalle.productoMiga.codigoProducto)
-            bodega.pesoProductoStock -= (detalle.PesoProducto * miga.cantidadFormulas)
-            bodega.save()
-
-            detalle.costoProducto = costoProducto
-            detalle.costoTotalProducto = costoTotalmiga
-            detalle.PesoProducto /= 1000
-            detalle.save()
-
-
             return HttpResponseRedirect('/fabricacion/detallemiga/'+ idmiga)
     else:
         formulario = DetalleMigaForm(initial={'miga':idmiga})
@@ -582,6 +567,41 @@ def GestionDetalleMiga(request,idmiga):
     return render_to_response('Fabricacion/GestionDetalleMiga.html',{'formulario':formulario,'miga':miga,
                                                                            'detallesMiga':detallesMiga,'idmiga':idmiga },
                               context_instance = RequestContext(request))
+
+def GuardarMiga(request):
+    idMiga = request.GET.get('IdMiga')
+    miga = Miga.objects.get(pk = int(idMiga))
+    detalleMiga = DetalleMiga.objects.filter(miga = int(idMiga))
+
+    #Guardamos la cantidad de producto procesado en la bodega de planta de procesos
+    bodegaMiga = ProductoBodega.objects.get(bodega = 6, producto__nombreProducto = 'Miga Preparada' )
+    bodegaMiga.pesoProductoStock += miga.PesoFormulaMiga
+    bodegaMiga.save()
+
+    movimientos = Movimientos()
+    movimientos.tipo = 'MGA%d'%(miga.codigoMiga)
+    movimientos.fechaMov = miga.fechaFabricacion
+    movimientos.productoMov = bodegaMiga.producto
+    movimientos.entrada = miga.PesoFormulaMiga
+    movimientos.save()
+
+    for detalle in detalleMiga:
+        # Se resta la cantidad de producrto utilizado en las formulas de condimento y se graba el registro
+        bodega = ProductoBodega.objects.get(bodega = 6, producto = detalle.productoMiga.codigoProducto)
+        bodega.pesoProductoStock -= (detalle.PesoProducto * miga.cantidadFormulas)
+        bodega.save()
+
+        movimientos = Movimientos()
+        movimientos.tipo = 'MGA%d'%(miga.codigoMiga)
+        movimientos.fechaMov = miga.fechaFabricacion
+        movimientos.productoMov = detalle.productoMiga
+        movimientos.salida = detalle.PesoProducto
+        movimientos.save()
+
+    msj = 'Guardado exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
 
 def CostoMiga(request,idmiga):
 
@@ -593,11 +613,14 @@ def CostoMiga(request,idmiga):
     costoInsumos = 0
 
     for costo in detallesMiga:
+        costo.costoProducto = costo.productoMiga.costoProducto
+        costo.costoTotalProducto = costo.productoMiga.costoProducto * (costo.PesoProducto/1000)
+        costo.save()
         costoInsumos += costo.costoTotalProducto
 
     mod = miga.mod
     cif = miga.cif
-    costomigaProsecesada = costoInsumos + cif + mod
+    costomigaProsecesada = (costoInsumos * miga.cantidadFormulas) + cif + mod
     costoKiloMiga = ceil(costomigaProsecesada/ pesoMigaProcesada)
 
     #Se graban todos los calculos realizados
@@ -633,7 +656,11 @@ def existencias(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionApanado(request):
-    apanados = ProcesoApanado.objects.all()
+
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    apanados = ProcesoApanado.objects.filter(fechaApanado__range =(fechainicio,fechafin))
+    #apanados = ProcesoApanado.objects.all()
 
     if request.method == 'POST':
         formulario = ApanadoForm(request.POST)
@@ -937,7 +964,7 @@ def TraerCostoFilete(request):
 #**********************************************PROCESO TAJADO **********************************************************
 
 def GestionTajado(request):
-    fechainicio = date.today() - timedelta(days=40)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
     exito = True
     tajados = Tajado.objects.all().filter(fechaTajado__range = (fechainicio,fechafin))
@@ -1231,32 +1258,32 @@ def GestionDesposteActualizado(request, idplanilla):
 
     # calculamos el valor de cada grupo multiplicando el %Grupo por el vrTotalCanales
     if tipoDesposte == 'Cerdos':
-        vrCarnes = ceil((vrTotalCanales * 43)/100)
-        vrCarnes2 = ceil((vrTotalCanales * Decimal(28.5))/100)
+        vrCarnes = ceil((vrTotalCanales * Decimal(40))/100)
+        vrCarnes2 = ceil((vrTotalCanales * Decimal(28))/100)
         vrCarnes3 = 0
         vrCarnes4 = 0
-        vrCostillas = ceil((vrTotalCanales * 11)/100)
+        vrCostillas = ceil((vrTotalCanales * 12)/100)
         vrHuesos = ceil((vrTotalCanales * 4)/100)
-        vrsubProd = ceil((vrTotalCanales * 11)/100)
-        vrDesecho = ceil((vrTotalCanales * Decimal(2.5))/100)
+        vrsubProd = ceil((vrTotalCanales * Decimal(9.5))/100)
+        vrDesecho = ceil((vrTotalCanales * Decimal(2))/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
 
     elif tipoDesposte == 'Cerdas':
-        vrCarnes = ceil((vrTotalCanales * 37)/100)
-        vrCarnes2 = ceil((vrTotalCanales * 32)/100)
+        vrCarnes = ceil((vrTotalCanales * 33)/100)
+        vrCarnes2 = ceil((vrTotalCanales * 29)/100)
         vrCarnes3 = 0
         vrCarnes4 = 0
-        vrCostillas = ceil((vrTotalCanales * 11)/100)
-        vrHuesos = ceil((vrTotalCanales * 3)/100)
+        vrCostillas = ceil((vrTotalCanales * 12)/100)
+        vrHuesos = ceil((vrTotalCanales * 4)/100)
         vrsubProd = ceil((vrTotalCanales * 15)/100)
         vrDesecho = ceil((vrTotalCanales * 2)/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
     else:
         vrCarnes = ceil((vrTotalCanales * 6)/100)
-        vrCarnes2 = ceil((vrTotalCanales * Decimal(30.5))/100)
-        vrCarnes3 = ceil((vrTotalCanales * 31)/100)
+        vrCarnes2 = ceil((vrTotalCanales * Decimal(29))/100)
+        vrCarnes3 = ceil((vrTotalCanales * 30)/100)
         vrCarnes4 = ceil((vrTotalCanales * Decimal(7.5))/100)
         vrCostillas = ceil((vrTotalCanales * 9)/100)
         vrHuesos = ceil((vrTotalCanales * 7)/100)
@@ -2491,4 +2518,137 @@ def GuardarCroqueta(request):
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 
+def GestionReApanado(request):
+    reApanado = TallerReapanado.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = ReapanadoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/fabricacion/tallerReApanado')
+    else:
+        formulario = ReapanadoForm()
+
+    return render_to_response('Fabricacion/GestionReApanado.html',{'formulario':formulario,'reApanado':reApanado },
+                              context_instance = RequestContext(request))
+
+def GuardarReApanado(request):
+    idReApanado = request.GET.get('idCroqueta')
+    reApanado = TallerReapanado.objects.get(pk = int(idReApanado))
+    miga = Producto.objects.get(nombreProducto = 'Miga Preparada')
+    chuletaCerdo = Producto.objects.get(nombreProducto = 'Filete Apanado Cerdo')
+    chuletaPollo = Producto.objects.get(nombreProducto = 'Filete Apanado Pollo')
+    pesoMiga = reApanado.miga
+    pesoChuleta = reApanado.pesoChuleta
+
+    bodegaMiga = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = miga.codigoProducto)
+    bodegaChuleta = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = reApanado.chuelta.codigoProducto)
+    bodegaChuletaCerdo = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = chuletaCerdo.codigoProducto)
+    bodegaChuletaPollo = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = chuletaPollo  .codigoProducto)
+
+    chuletaReApanada = pesoMiga + pesoChuleta
+
+    bodegaChuleta.pesoProductoStock -= reApanado.pesoChuleta
+    bodegaChuleta.save()
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'RAP%d'%(reApanado.id)
+    movimiento.fechaMov = reApanado.fechaReApanado
+    movimiento.productoMov = reApanado.chuelta
+    movimiento.salida = reApanado.pesoChuleta
+    movimiento.save()
+
+    bodegaMiga.pesoProductoStock -= reApanado.miga
+    bodegaMiga.save()
+    movimiento = Movimientos()
+    movimiento.tipo = 'RAP%d'%(reApanado.id)
+    movimiento.fechaMov = reApanado.fechaReApanado
+    movimiento.productoMov = miga
+    movimiento.salida = reApanado.miga
+    movimiento.save()
+
+    if reApanado.chuelta.grupo.nombreGrupo == 'Cerdos':
+        bodegaChuletaCerdo.pesoProductoStock += chuletaReApanada
+        bodegaChuletaCerdo.save()
+        movimiento = Movimientos()
+        movimiento.tipo = 'RAP%d'%(reApanado.id)
+        movimiento.fechaMov = reApanado.fechaReApanado
+        movimiento.productoMov = chuletaCerdo
+        movimiento.entrada = chuletaReApanada
+        movimiento.save()
+    else:
+        bodegaChuletaPollo.pesoProductoStock += chuletaReApanada
+        bodegaChuletaPollo.save()
+        movimiento = Movimientos()
+        movimiento.tipo = 'RAP%d'%(reApanado.id)
+        movimiento.fechaMov = reApanado.fechaReApanado
+        movimiento.productoMov = chuletaPollo
+        movimiento.entrada = chuletaReApanada
+        movimiento.save()
+
+
+    msj = 'Guardado exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def GestionConversiones(request):
+    conversiones = Conversiones.objects.all()
+
+    if request.method == 'POST':
+        formulario = ConversionesForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/apanados')
+    else:
+        formulario = ConversionesForm()
+
+    return render_to_response('Fabricacion/GestionReConversiones.html',{'formulario':formulario,'conversiones':conversiones },
+                              context_instance = RequestContext(request))
+def GuardarConversion(request):
+    idConversion = request.GET.get('idConversion')
+    idp1 = request.GET.get('producto1')
+    idp2 = request.GET.get('producto2')
+    conversion = Conversiones.objects.get(pk = int(idConversion))
+    producto1 = Producto.objects.get(pk = int(idp1))
+    producto2 = Producto.objects.get(pk = int(idp2))
+
+    bodegaP1 = ProductoBodega.objects.get(bodega = conversion.puntoConversion.codigoBodega,producto = producto1.codigoProducto)
+    bodegaP2 = ProductoBodega.objects.get(bodega = conversion.puntoConversion.codigoBodega,producto = producto2.codigoProducto)
+
+    costoP1 = producto1.costoProducto
+    costoP2 = producto2.costoProducto
+
+
+
+    #****************************************************SALIDA********************************************************
+
+    bodegaP1.pesoProductoStock -= conversion.pesoConversion
+    bodegaP1.save()
+    movimiento = Movimientos()
+    movimiento.tipo = 'CON%d'%(conversion.id)
+    movimiento.fechaMov = conversion.fechaConversion
+    movimiento.productoMov = producto1
+    movimiento.salida = conversion.pesoConversion
+    movimiento.save()
+
+    #****************************************************ENTRADA********************************************************
+
+    bodegaP2.pesoProductoStock += conversion.pesoConversion
+    bodegaP2.save()
+    movimiento = Movimientos()
+    movimiento.tipo = 'CON%d'%(conversion.id)
+    movimiento.fechaMov = conversion.fechaConversion
+    movimiento.productoMov = producto2
+    movimiento.entrada = conversion.pesoConversion
+    movimiento.save()
+
+    conversion.costoP1 = costoP1
+    conversion.costoP2 = costoP2
+    conversion.save()
+
+    msj = 'Guardado exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
 

@@ -161,3 +161,22 @@ class CroquetaFrom(ModelForm):
     class Meta:
         model = TallerCroquetas
         exclude = ("pesoTotalCond","costoKiloCond","guardado",)
+
+class ReapanadoForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ReapanadoForm,self).__init__(*args, **kwargs)
+        self.fields['chuelta'].queryset = Producto.objects.filter(nombreProducto__contains = 'Filete Apanado')
+    class Meta:
+        model = TallerReapanado
+        exclude = ("pesoTotalReApanado","guardado",)
+
+class ConversionesForm(ModelForm):
+    q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses')
+    q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos')
+    q3 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdas')
+    productoUno = forms.ModelChoiceField(queryset = q1 | q2 | q3, required=True)
+    productoDos = forms.ModelChoiceField(queryset = q1 | q2 | q3, required=True)
+
+    class Meta:
+        model = Conversiones
+        exclude = ("costoP1","costoP2","guardado",)

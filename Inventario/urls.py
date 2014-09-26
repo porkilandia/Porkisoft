@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^recepcion/(?P<idcompra>\d+)',GestionPlanillaRecepcion),
 
     url(r'^traslado/$',GestionTraslados),
+    url(r'^EditaDetTraslado/(?P<idDettraslado>\d+)',EditaDetalleTraslado),
     url(r'^guardaTraslado/$',GuardarTraslado),
     url(r'^dettraslado/(?P<idtraslado>\d+)',GestionDetalleTraslado),
     url(r'^reporteTraslado/(?P<idTraslado>\d+)',ReporteTraslado),

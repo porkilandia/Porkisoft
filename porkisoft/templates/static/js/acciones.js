@@ -50,6 +50,8 @@ $(document).on('ready', inicio);
      $('#id_puntoCond').on('change',VerificarCondCarne);
      $('#id_productoCond').on('change',VerificarProdCarne);
      $('#id_puntoCroq').on('change',VerificarInsCroquetas);
+     $('#id_puntoReApanado').on('change',VerificarReApanados);
+     $('#id_puntoConversion').on('change',VerificarConversiones);
 
      //var tablaEmpacado = $('#tablaEmpacado tr');
      //tablaEmpacado.on('click',maneja);
@@ -89,6 +91,8 @@ $(document).on('ready', inicio);
      $('#id_fechaTraslado').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaMenudo').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaFrito').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaReApanado').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaConversion').datepicker({ dateFormat: "dd/mm/yy" });
 
 
      $('#homeAccordeon').accordion({ heightStyle: "content" });
@@ -135,9 +139,90 @@ $(document).on('ready', inicio);
     alert(f);
 
 
-
-
 }*/
+function VerificarConversiones () {
+   var idBodega = $('#id_puntoConversion').val();
+   var peso = $('#id_pesoConversion').val();
+   var prod1 = $('#id_productoUno').val();
+
+   Existencias(prod1,idBodega,peso);
+
+}
+function GuardarConversion(idConversion) {
+    //Funcion que costea el apanado actual
+
+    var producto1 = $('#id_productoUno').val();
+    var producto2 = $('#id_productoDos').val();
+
+    var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/fabricacion/tallerReApanado/',
+            dataType: "json",
+            type: "get",
+            data: {'producto2':producto2,'producto1':producto1,'idConversion': idConversion},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
+                }
+
+            }
+
+        });
+    }
+}
+function GuardarMiga(IdMiga) {
+    //Funcion que costea el apanado actual
+
+    var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/fabricacion/guardarMiga/',
+            dataType: "json",
+            type: "get",
+            data: {'IdMiga': IdMiga},
+            success: function (respuesta) {
+                if (respuesta != '') {
+
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
+                }
+
+            }
+
+        });
+    }
+}
+function VerificarReApanados () {
+   var idBodega = $('#id_puntoReApanado').val();
+   var pesoMiga = $('#id_miga').val();
+   var pesoChuleta = $('#id_pesoChuleta').val();
+   var chuleta = $('#id_chuelta').val();
+
+    Existencias(109,idBodega,pesoMiga);
+    Existencias(chuleta,idBodega,pesoChuleta);
+}
+function GuardarreApanado(idReApanado) {
+    //Funcion que costea el apanado actual
+    var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/fabricacion/tallerReApanado/',
+            dataType: "json",
+            type: "get",
+            data: {'idReApanado': idReApanado},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
+                }
+
+            }
+
+        });
+    }
+}
 function VerificarInsCroquetas () {
     var idBodega = $('#id_puntoCroq').val();
     var pesoCroqueta = $('#id_croqueta').val();
@@ -161,7 +246,7 @@ function GuardarCroqueta(idCroqueta) {
             data: {'idCroqueta': idCroqueta},
             success: function (respuesta) {
                 if (respuesta != '') {
-                    alert(respuesta);
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -185,7 +270,7 @@ function CostearCroqueta(idCroqueta)
             {
                 if (respuesta != '')
                 {
-                    alert(respuesta);
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -232,7 +317,7 @@ function CostearCarneCond(idCarne)
             data: {'idCarne': idCarne},
             success: function (respuesta) {
                 if (respuesta != '') {
-                   alert(respuesta);
+                   var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -252,7 +337,7 @@ function GuardarCarneCond(idCarne)
             data: {'idCarne': idCarne},
             success: function (respuesta) {
                 if (respuesta != '') {
-                   alert(respuesta);
+                   var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -272,7 +357,7 @@ function CostearFrito(idFrito)
             data: {'idFrito': idFrito},
             success: function (respuesta) {
                 if (respuesta != '') {
-                   alert(respuesta);
+                   var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -292,7 +377,7 @@ function GuardarFrito(idFrito)
             data: {'idFrito': idFrito},
             success: function (respuesta) {
                 if (respuesta != '') {
-                   alert(respuesta);
+                   var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -312,7 +397,7 @@ function GuardarPicadillo(idMenudo)
             data: {'idMenudo': idMenudo},
             success: function (respuesta) {
                 if (respuesta != '') {
-                   alert(respuesta);
+                   var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -637,7 +722,7 @@ function GuardarMolido(idMolido)
             data: {'idMolido': idMolido},
             success: function (respuesta) {
                 if (respuesta != '') {
-                   alert(respuesta);
+                   var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -657,7 +742,7 @@ function GuardarEmpaqueApanado(idEmpaque)
             data: {'idEmpaque': idEmpaque},
             success: function (respuesta) {
                 if (respuesta != '') {
-                    alert(respuesta);
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -677,7 +762,7 @@ function CostearEmpaqueApanado(idEmpaque)
             data: {'idEmpaque': idEmpaque},
             success: function (respuesta) {
                 if (respuesta != '') {
-                    alert(respuesta);
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -697,7 +782,7 @@ function CostearMolido(idMolido)
             data: {'idMolido': idMolido},
             success: function (respuesta) {
                 if (respuesta != '') {
-                    alert(respuesta);
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -798,7 +883,7 @@ function GuardarEnsalinado(idEnsalinado)
             {
                 if (respuesta != '')
                 {
-                    alert(respuesta);
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -820,7 +905,7 @@ function GuardarCondimentado(idCondimentado)
             data : {'idCondimentado':idCondimentado},
             success : function(respuesta)
             {
-                    alert(respuesta);
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
 
             }
 
@@ -946,7 +1031,7 @@ function GuardaDescarne(idDescarne)
             {
                 if (respuesta != '')
                 {
-                    alert(respuesta);
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -991,7 +1076,7 @@ function Existencias(idProducto,idBodega,pesoProducto)
             {
                 if (respuesta != '')
                 {
-                    var n = noty({text: respuesta});
+                    var n = noty({text: respuesta, type:'error',layout: 'bottom'});
                     //alert(respuesta);
                 }
 
@@ -1017,7 +1102,7 @@ function ConsultaStock()
             {
                 if (respuesta != '')
                 {
-                    alert(respuesta);
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -1038,7 +1123,7 @@ function GuardarTraslado()
          type: "get",
          data : {'codigoTraslado':codigoTraslado},
          success : function(respuesta){
-             alert(respuesta);
+             var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                       }
     });
     }
@@ -1059,7 +1144,7 @@ function GuardarVentas()
          type: "get",
          data : {'idVenta':idVenta,'peso':peso},
          success : function(respuesta){
-             alert(respuesta);
+             var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                       }
     });
     }
@@ -1091,7 +1176,7 @@ function CostearDesposte()
              'kiloCarnes2':kiloCarnes2,'kiloCarnes3':kiloCarnes3,'kiloCarnes4':kiloCarnes4,
              'kiloHueso':kiloHueso,'kiloSubProd':kiloSubProd,'kiloDesecho':kiloDesecho},
          success : function(respuesta){
-             alert(respuesta)
+             var n = noty({text: respuesta, type:'success',layout: 'bottom'});
          }
 
      });
@@ -1134,7 +1219,8 @@ function consultaValorProducto()
 
              if(respuesta == "No hay existencias en almacen")
              {
-                 alert('No hay existencias en almacen')
+                 var n = noty({text: 'No hay existencias en almacen', type:'error',layout: 'bottom'});
+
              }else
              {
                  $('#id_vrUnitario').val(respuesta)
@@ -1159,7 +1245,7 @@ function GuardarDesposte()
          type: "get",
          data : {'idDesposte':idDesposte},
          success : function(respuesta){
-             alert(respuesta)
+             var n = noty({text: respuesta, type:'success',layout: 'bottom'});
          }
     });
     }
@@ -1291,7 +1377,7 @@ function CostearTajado()
          type: "get",
          data : {'peso':peso,'tipo':tipo,'idTajado':idTajado},
          success : function(respuesta){
-             alert(respuesta)
+             var n = noty({text: respuesta, type:'success',layout: 'bottom'});
          }
     });
 }
@@ -1309,7 +1395,7 @@ function GuardarTajado()
          type: "get",
          data : {'idTajado':idTajado},
          success : function(respuesta){
-             alert(respuesta)
+            var n = noty({text: respuesta, type:'success',layout: 'bottom'});
          }
     });
     }

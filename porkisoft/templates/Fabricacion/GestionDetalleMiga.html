@@ -3,10 +3,12 @@
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
 <a href="{% url 'Fabricacion.views.CostoMiga' idmiga %}"><input type="button" value="Costear" class="btn btn-success"/></a>
+<a onclick="GuardarMiga({{ miga.codigoMiga }})" href="#"><input type="button" value="Guardar" class="btn btn-danger"/></a>
     <br/><br/><br/>
      <table class="table-striped">
         <thead>
             <tr>
+            <th>Id</th>
             <th>Fecha</th>
             <th>Formulas</th>
             <th>Peso Formula Miga</th>
@@ -20,9 +22,10 @@
         </thead>
          <tbody>
             <tr>
-                 <td>{{ miga.fechaFabricacion }}</td>
+                <td>{{ miga.codigoMiga }}</td>
+                <td>{{ miga.fechaFabricacion }}</td>
                 <td id="cantFormulas">{{ miga.cantidadFormulas|floatformat }}</td>
-                <td>{{ miga.PesoFormulaMiga|floatformat }} Kg</td>
+                <td>{{ miga.PesoFormulaMiga|floatformat }} grs</td>
                 <td>${{ miga.costoKiloMigaProcesada }}</td>
                 <td>${{ miga.costoFormulaMiga }}</td>
                 <td>${{ miga.cif }}</td>
@@ -51,7 +54,7 @@
             {% for detalleMiga  in detallesMiga %}
                 <tr>
                     <td>{{ detalleMiga.productoMiga }}</td>
-                    <td>{{ detalleMiga.PesoProducto|floatformat }} Kg</td>
+                    <td>{{ detalleMiga.PesoProducto|floatformat }} grs</td>
                     <td>${{ detalleMiga.costoProducto }}</td>
                     <td>${{ detalleMiga.costoTotalProducto }}</td>
 

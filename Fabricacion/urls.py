@@ -43,6 +43,8 @@ urlpatterns = patterns('',
     url(r'^editacosto/(?P<idcosto>\d+)',EditaCostos),
     url(r'^editaensalinado/(?P<idEnsalinado>\d+)',EditaEnsalinado),
 
+
+
      url(r'^molida/$',GestionMolido),
 
     url(r'^canal/(?P<idrecepcion>\d+)',GestionCanal),
@@ -58,6 +60,13 @@ urlpatterns = patterns('',
 
     url(r'^costearCroquetas/$',CostearCroqueta),
     url(r'^guardarCroquetas/$',GuardarCroqueta),
+
+    url(r'^guardarMiga/$',GuardarMiga),
+
+    url(r'^tallerReApanado/$',GestionReApanado),
+
+    url(r'^conversiones/$',GestionConversiones),
+
 
     #url(r'^detalleDesposte/(?P<idplanilla>\d+)',GestionCanalDetalleDesposte),
     #url(r'^costoDesposte/(?P<idplanilla>\d+)',CostoDesposte),

@@ -58,6 +58,7 @@
             <th>Unidades</th>
             <th>Peso envio</th>
             <th>Peso Llegada</th>
+            <th>Acciones</th>
 
         </tr>
         </thead>
@@ -70,6 +71,9 @@
             <td>{{ detraslado.unidadesTraslado }}</td>
             <td>{{ detraslado.pesoEnvio }}</td>
             <td>{{ detraslado.pesoLlegada }}</td>
+            <td>
+                <a href="{% url 'Inventario.views.EditaDetalleTraslado' detraslado.id %}">Modificar</a>
+            </td>
 
         </tr>
             {% empty %}

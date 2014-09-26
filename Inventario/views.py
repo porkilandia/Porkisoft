@@ -314,7 +314,7 @@ def GestionGanado(request,idcompra):
 
             return HttpResponseRedirect('/inventario/ganado/'+idcompra)
     else:
-        formulario = GanadoForm(initial={'precioKiloEnPie':3150,'compra':idcompra,'piel':'Friana'})
+        formulario = GanadoForm(initial={'precioKiloEnPie':3200,'compra':idcompra,'piel':'Friana'})
 
     return render_to_response('Inventario/GestionGanado.html',{'formulario':formulario,'ganados':ganados,'compra':idcompra },
                               context_instance = RequestContext(request))
@@ -503,6 +503,25 @@ def GestionDetalleTraslado(request,idtraslado):
 
 
     return render_to_response('Inventario/GestionDetalleTraslado.html',{'idtraslado':idtraslado,'exito':exito,'formulario':formulario,
+                                                         'traslado': traslado,'detraslados': detraslados},
+                                                        context_instance = RequestContext(request))
+def EditaDetalleTraslado(request,idDettraslado):
+    det = DetalleTraslado.objects.get(pk = idDettraslado )
+    traslado = Traslado.objects.get(pk = det.traslado.codigoTraslado)
+    detraslados = DetalleTraslado.objects.filter(traslado = traslado.codigoTraslado)
+
+
+    if request.method == 'POST':
+        formulario = DetalleTrasladoForm(request.POST, instance=det)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/inventario/dettraslado/'+ str(traslado.codigoTraslado))
+
+    else:
+        formulario = DetalleTrasladoForm(initial={'traslado':traslado.codigoTraslado},instance=det)
+
+
+    return render_to_response('Inventario/GestionDetalleTraslado.html',{'idtraslado':traslado.codigoTraslado,'formulario':formulario,
                                                          'traslado': traslado,'detraslados': detraslados},
                                                         context_instance = RequestContext(request))
 
