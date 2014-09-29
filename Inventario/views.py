@@ -322,10 +322,10 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA***********************************************************
 def GestionCompra(request):
 
-    '''fechainicio = date.today() - timedelta(days=30)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
-    compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))'''
-    compras= Compra.objects.all()
+    compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
+    #compras= Compra.objects.all()
     if request.method == 'POST':
         formulario = CompraForm(request.POST)
         if formulario.is_valid():
@@ -352,7 +352,7 @@ def GestionDetalleCompra(request,idcompra):
         if formulario.is_valid():
             detalleCompra = formulario.save()
 
-            productoBodega = ProductoBodega.objects.get(bodega = 6,producto = detalleCompra.producto.codigoProducto)
+            productoBodega = ProductoBodega.objects.get(bodega = compra.bodegaCompra.codigoBodega,producto = detalleCompra.producto.codigoProducto)
             producto = Producto.objects.get(pk = detalleCompra.producto.codigoProducto)
 
             movimiento = Movimientos()#Registro los datos en la tabla de movimientos
@@ -386,7 +386,7 @@ def GestionDetalleCompra(request,idcompra):
 
             elif detalleCompra.producto.grupo.id == 9:
 
-                productoBodegaCV = ProductoBodega.objects.get(bodega = 5,producto = detalleCompra.producto.codigoProducto)
+                productoBodegaCV = ProductoBodega.objects.get(bodega = compra.bodegaCompra.codigoBodega,producto = detalleCompra.producto.codigoProducto)
                 productoBodegaCV.pesoProductoStock += detalleCompra.pesoProducto
                 productoBodegaCV.unidadesStock += detalleCompra.unidades
                 productoBodegaCV.save()
@@ -434,9 +434,6 @@ def EditaCompra(request,idDetCompra):
     compra = Compra.objects.get(pk = detcompra.compra.codigoCompra)
     detcompras = DetalleCompra.objects.filter(compra = compra.codigoCompra)
 
-
-
-
     if request.method == 'POST':
         formulario = DetalleCompraForm(compra.codigoCompra,request.POST,instance=detcompra)
         if formulario.is_valid():
@@ -460,6 +457,8 @@ def EditaCompra(request,idDetCompra):
                 movimiento.entrada = datos.pesoDescongelado
                 movimiento.save()
 
+                detcompra.estado =True
+                detcompra.save()
             return HttpResponseRedirect('/inventario/detcompra/'+ str(compra.codigoCompra))
     else:
         formulario = DetalleCompraForm(compra.codigoCompra,initial={'compra':compra.codigoCompra },instance=detcompra)
@@ -469,7 +468,7 @@ def EditaCompra(request,idDetCompra):
                                                         context_instance = RequestContext(request))
 #********************************************TRASLADOS******************************************************
 def GestionTraslados(request):
-    fechainicio = date.today() - timedelta(days=30)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     traslados = Traslado.objects.all().order_by('fechaTraslado').filter(fechaTraslado__range = (fechainicio,fechafin))
     if request.method == 'POST':

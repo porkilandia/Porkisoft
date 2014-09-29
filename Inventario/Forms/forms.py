@@ -56,10 +56,12 @@ class DetalleCompraForm(ModelForm):
             self.fields['producto'].queryset = Producto.objects.filter(grupo = 6)
         elif compra.tipo.nombreGrupo == 'Verduras':
             self.fields['producto'].queryset = Producto.objects.filter(grupo = 7)
-        elif compra.tipo.nombreGrupo == 'Compra / Venta':
+        elif compra.tipo.nombreGrupo == 'Compra/Venta':
             self.fields['producto'].queryset = Producto.objects.filter(grupo = 9)
-        elif compra.tipo.nombreGrupo == 'Basico Procesado':
+        elif compra.tipo.nombreGrupo == 'Basicos Procesados':
             self.fields['producto'].queryset = Producto.objects.filter(grupo = 8)
+        elif compra.tipo.nombreGrupo == 'Pollos':
+            self.fields['producto'].queryset = Producto.objects.filter(grupo = 11)
 
     class Meta:
         model = DetalleCompra

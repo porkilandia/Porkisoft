@@ -816,7 +816,7 @@ function GuardarApanado(idApanado) {
             data: {'idApanado': idApanado},
             success: function (respuesta) {
                 if (respuesta != '') {
-                    $('#id_costoFilete').val(respuesta)
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }
@@ -840,7 +840,7 @@ function CostearApanado(idApanado)
             {
                 if (respuesta != '')
                 {
-                    $('#id_costoFilete').val(respuesta);
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                 }
 
             }

@@ -14,7 +14,7 @@ class SacrificioForm(ModelForm):
 class EnsalinadoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(EnsalinadoForm,self).__init__(*args, **kwargs)
-        self.fields['productoEnsalinado'].queryset = Producto.objects.filter(grupo = 3)
+        self.fields['productoEnsalinado'].queryset = Producto.objects.filter(nombreProducto__contains = 'Filete de Cerda')
     class Meta:
         model = Ensalinado
         exclude = ("costoKilo" , "costoTotal","guardado","estado",)
@@ -42,6 +42,10 @@ class DetalleCondimentoForm(ModelForm):
 class TajadoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(TajadoForm,self).__init__(*args, **kwargs)
+        q1 = Producto.objects.filter(grupo__nombreGrupo ='Cerdos')
+        q2 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas')
+        q3 = Producto.objects.filter(grupo__nombreGrupo ='Pollos')
+        self.fields['producto'].queryset = q1 | q2 | q3
         self.fields['desposteHistorico'].queryset = PlanillaDesposte.objects.filter(tipoDesposte = 'Cerdas').order_by('fechaDesposte')
         self.fields['polloHistorico'].queryset = Compra.objects.filter(tipo__nombreGrupo = 'Pollos').order_by('-fechaCompra')
 
@@ -50,6 +54,12 @@ class TajadoForm(ModelForm):
         exclude = ("totalTajado",)
 
 class DetalleTajadoForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(DetalleTajadoForm,self).__init__(*args, **kwargs)
+        q1 = Producto.objects.filter(grupo__nombreGrupo ='Cerdos')
+        q2 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas')
+        q3 = Producto.objects.filter(grupo__nombreGrupo ='Pollos')
+        self.fields['producto'].queryset = q1 | q2 | q3
     class Meta:
         model = DetalleTajado
         exclude = ("costoKilo",)
@@ -68,11 +78,21 @@ class DetalleMigaForm(ModelForm):
         exclude = ("costoProducto","costoTotalProducto",)
 
 class ApanadoForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ApanadoForm,self).__init__(*args, **kwargs)
+        self.fields['productoApanado'].queryset = Producto.objects.filter(nombreProducto__contains = 'Condimentado').filter(nombreProducto__contains = 'Filete')
     class Meta:
         model = ProcesoApanado
         exclude = ("guardado","costoKiloApanado",)
 
 class CondimentadoForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CondimentadoForm,self).__init__(*args, **kwargs)
+        q1 = Producto.objects.filter(grupo__nombreGrupo ='Cerdos').filter(nombreProducto__contains = 'Filete de')
+        q2 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas').filter(nombreProducto__contains = 'Filete de')
+        q3 = Producto.objects.filter(grupo__nombreGrupo ='Pollos').filter(nombreProducto__contains = 'Filete de')
+        q4 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas').filter(nombreProducto__contains = 'Ensalinada')
+        self.fields['producto'].queryset = q1 | q2 | q3 | q4
     class Meta:
         model = Condimentado
 
@@ -120,6 +140,14 @@ class DescarneForm(ModelForm):
         exclude = ("guardado","vrKiloRecorte","vrKiloLengua","vrKiloCareta","vrKiloProceso",)
 
 class MolidoForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(MolidoForm,self).__init__(*args, **kwargs)
+        q1 = Producto.objects.filter(grupo__nombreGrupo ='Cerdos')
+        q2 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas')
+        q3 = Producto.objects.filter(grupo__nombreGrupo ='Pollos')
+        q4 = Producto.objects.filter(grupo__nombreGrupo ='Reses')
+
+        self.fields['productoMolido'].queryset = q1 | q2 | q3 | q4
     class Meta:
         model = Molida
         exclude = ("costoKiloMolido","guardado","costoKilo",)

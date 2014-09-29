@@ -38,13 +38,15 @@
             {% else %}
                 <td>No</td>
             {% endif %}
-
-
-
-            <td>
+            {% if empaque.guardado == True %}
+                <td></td>
+            {% else %}
+                <td>
                 <a onclick="CostearEmpaqueApanado({{ empaque.id }})" href="#">Costear</a>
                 <a onclick="GuardarEmpaqueApanado({{ empaque.id }})" href="#">Guardar</a>
             </td>
+            {% endif %}
+
 
         </tr>
             {% empty %}

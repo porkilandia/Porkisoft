@@ -657,7 +657,7 @@ def existencias(request):
 
 def GestionApanado(request):
 
-    fechainicio = date.today() - timedelta(days=30)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     apanados = ProcesoApanado.objects.filter(fechaApanado__range =(fechainicio,fechafin))
     #apanados = ProcesoApanado.objects.all()
@@ -792,7 +792,10 @@ def costeoApanado(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionMolido(request):
-    molidos = Molida.objects.all()
+    fechainicio = date.today() - timedelta(days=20)
+    fechafin = date.today()
+    molidos = Molida.objects.filter(fechaMolido__range =(fechainicio,fechafin))
+    #molidos = Molida.objects.all()
 
     if request.method == 'POST':
         formulario = MolidoForm(request.POST)
@@ -865,7 +868,10 @@ def costeoMolido(request):
 #**********************************************PROCESO CONDIMENTADO*****************************************************
 
 def GestionCondimentado(request):
-    condimentados = Condimentado.objects.all()
+    fechainicio = date.today() - timedelta(days=20)
+    fechafin = date.today()
+    condimentados = Condimentado.objects.filter(fecha__range =(fechainicio,fechafin))
+    #condimentados = Condimentado.objects.all()
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
 
     if request.method == 'POST':
@@ -964,7 +970,7 @@ def TraerCostoFilete(request):
 #**********************************************PROCESO TAJADO **********************************************************
 
 def GestionTajado(request):
-    fechainicio = date.today() - timedelta(days=30)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     exito = True
     tajados = Tajado.objects.all().filter(fechaTajado__range = (fechainicio,fechafin))
@@ -1757,7 +1763,10 @@ def GuardaDescarne(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionEmpacadoApanados(request):
-    empaques  = EmpacadoApanados.objects.all()
+    fechainicio = date.today() - timedelta(days=20)
+    fechafin = date.today()
+    empaques  = EmpacadoApanados.objects.filter(fechaEmpacado__range =(fechainicio,fechafin))
+    #empaques  = EmpacadoApanados.objects.all()
 
     if request.method == 'POST':
 
