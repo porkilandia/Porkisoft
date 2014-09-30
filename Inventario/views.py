@@ -86,6 +86,7 @@ def listaProductos(request):
                     bodegaInicial.bodega = bodega
                     bodegaInicial.pesoProductoStock = 0
                     bodegaInicial.unidadesStock = 0
+                    bodegaInicial.deshidratacion = 0
                     bodegaInicial.save()
 
             return HttpResponseRedirect('/inventario/listaProd')
@@ -322,7 +323,7 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA***********************************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=30)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()
@@ -618,7 +619,7 @@ def consultaStock(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionMovimientos (request):
-    fechainicio = date.today() - timedelta(days=40)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     movimientos = Movimientos.objects.all().filter(fechaMov__range = (fechainicio,fechafin))
     return render_to_response('Inventario/GestionMovimientos.html',{'movimientos':movimientos},

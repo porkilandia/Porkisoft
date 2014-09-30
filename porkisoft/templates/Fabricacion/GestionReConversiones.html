@@ -43,10 +43,15 @@
             {% else %}
                 <td>Sin guardar</td>
             {% endif %}
-            
-            <td>
+            {% if conversion.guardado == True %}
+                <td></td>
+            {% else %}
+                <td>
                 <a  onclick="GuardarConversion({{ conversion.id }})" href="#">Guardar</a>
             </td>
+            {% endif %}
+            
+
 
         </tr>
 

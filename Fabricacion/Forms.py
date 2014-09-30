@@ -199,11 +199,20 @@ class ReapanadoForm(ModelForm):
         exclude = ("pesoTotalReApanado","guardado",)
 
 class ConversionesForm(ModelForm):
-    q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses')
-    q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos')
-    q3 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdas')
-    productoUno = forms.ModelChoiceField(queryset = q1 | q2 | q3, required=True)
-    productoDos = forms.ModelChoiceField(queryset = q1 | q2 | q3, required=True)
+
+    productoUno = forms.ModelChoiceField(queryset = Producto.objects.none(),required=True)
+    productoDos = forms.ModelChoiceField(queryset = Producto.objects.none(),required=True)
+
+    def __init__(self, *args, **kwargs):
+        super(ConversionesForm,self).__init__(*args, **kwargs)
+
+        q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses')
+        q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos')
+        q3 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdas')
+
+        self.fields['productoUno'].queryset = q1 | q2 | q3
+        self.fields['productoDos'].queryset = q1 | q2 | q3
+
 
     class Meta:
         model = Conversiones

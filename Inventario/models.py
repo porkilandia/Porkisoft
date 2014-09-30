@@ -34,8 +34,9 @@ class Producto(models.Model):
 
 
     def __unicode__(self):
-        cadena = '%d %s (%s)'%(self.codigoProducto,self.nombreProducto,self.grupo.nombreGrupo)
+        cadena = '%s , (%s)'%(self.nombreProducto,self.grupo.nombreGrupo)
         return cadena
+
     class Meta:
         ordering = ['nombreProducto']
 

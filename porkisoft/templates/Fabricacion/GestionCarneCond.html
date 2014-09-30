@@ -29,8 +29,8 @@ Carne Condimentada
         <tr style="color: red">
         {% endif %}
 
-            <td>{{ carne.fechaFrito }}</td>
-            <td>{{ carne.punto }}</td>
+            <td>{{ carne.fechaCarCond }}</td>
+            <td>{{ carne.puntoCond }}</td>
             <td>{{ carne.productoCond }}</td>
             <td>{{ carne.pesoProducto }}</td>
             <td>{{ carne.condimento }}</td>
@@ -41,11 +41,16 @@ Carne Condimentada
             {% else %}
                 <td>Sin guardar</td>
             {% endif %}
-            
-            <td>
+            {% if carne.guardado == True %}
+                <td></td>
+            {% else %}
+                <td>
                 <a id="costearCond" onclick="CostearCarneCond({{ carne.id }})" href="#">Costear</a>
                 <a id="guardarCond" onclick="GuardarCarneCond({{ carne.id }})" href="#">Guardar</a>
             </td>
+            {% endif %}
+            
+
 
         </tr>
 

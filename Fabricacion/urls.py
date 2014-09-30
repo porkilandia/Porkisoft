@@ -64,8 +64,10 @@ urlpatterns = patterns('',
     url(r'^guardarMiga/$',GuardarMiga),
 
     url(r'^tallerReApanado/$',GestionReApanado),
+    url(r'^guardarReApanado/$',GuardarReApanado),
 
     url(r'^conversiones/$',GestionConversiones),
+    url(r'^Guardaconversiones/$',GuardarConversion),
 
 
     #url(r'^detalleDesposte/(?P<idplanilla>\d+)',GestionCanalDetalleDesposte),

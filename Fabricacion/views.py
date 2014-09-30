@@ -215,7 +215,7 @@ def GestionSacrificio(request,idrecepcion):
             cantCabezas = recepcion.cantCabezas
 
             menudo = cantCabezas * 90000
-            deguello = cantCabezas * 82800
+            deguello = cantCabezas * 90150
             if recepcion.transporte == 'Particular':
                 transporte = 0
             else:
@@ -1271,7 +1271,7 @@ def GestionDesposteActualizado(request, idplanilla):
         vrCostillas = ceil((vrTotalCanales * 12)/100)
         vrHuesos = ceil((vrTotalCanales * 4)/100)
         vrsubProd = ceil((vrTotalCanales * Decimal(9.5))/100)
-        vrDesecho = ceil((vrTotalCanales * Decimal(2))/100)
+        vrDesecho = ceil((vrTotalCanales * Decimal(1))/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
 
@@ -1283,7 +1283,7 @@ def GestionDesposteActualizado(request, idplanilla):
         vrCostillas = ceil((vrTotalCanales * 12)/100)
         vrHuesos = ceil((vrTotalCanales * 4)/100)
         vrsubProd = ceil((vrTotalCanales * 15)/100)
-        vrDesecho = ceil((vrTotalCanales * 2)/100)
+        vrDesecho = ceil((vrTotalCanales * 1)/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
     else:
@@ -1293,8 +1293,8 @@ def GestionDesposteActualizado(request, idplanilla):
         vrCarnes4 = ceil((vrTotalCanales * Decimal(7.5))/100)
         vrCostillas = ceil((vrTotalCanales * 9)/100)
         vrHuesos = ceil((vrTotalCanales * 7)/100)
-        vrsubProd = ceil((vrTotalCanales * 6)/100)
-        vrDesecho = ceil((vrTotalCanales * 2)/100)
+        vrsubProd = ceil((vrTotalCanales * 5)/100)
+        vrDesecho = ceil((vrTotalCanales * 1)/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
 
@@ -2274,7 +2274,7 @@ def GuardarFrito(request):
     producto = Producto.objects.get(pk = frito.productoFrito.codigoProducto)
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
 
-    bodegaProducto = ProductoBodega.objects.get(bodega = frito.punto.codigoBodega,producto = producto.costoProducto)
+    bodegaProducto = ProductoBodega.objects.get(bodega = frito.punto.codigoBodega,producto = producto.codigoProducto)
     bodegaProducto.pesoProductoStock -= frito.pesoProducto
     bodegaProducto.save()
 
@@ -2324,6 +2324,9 @@ def GuardarFrito(request):
         movimiento.entrada = frito.pesoTotalFrito
         movimiento.save()
 
+    frito.guardado =True
+    frito.save()
+
     msj = 'Guardado exitoso'
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
@@ -2338,7 +2341,7 @@ def GestionCarneCond(request):
         if formulario.is_valid():
             formulario.save()
 
-            return HttpResponseRedirect('/fabricacion/fritos')
+            return HttpResponseRedirect('/fabricacion/carneCondimentada')
     else:
         formulario = CarneCondForm()
 
@@ -2363,6 +2366,10 @@ def CostearCarneCond(request):
     carneCondimentada.costoProducto = costoTotal
     carneCondimentada.save()
 
+    carne.costoKiloCond = costoTotal
+    carne.pesoTotalCond = pesoProducto + pesoCondimento
+    carne.save()
+
     msj = 'Costeo exitoso'
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
@@ -2374,7 +2381,7 @@ def GuardarCarneCond(request):
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
     carneCondimentada = Producto.objects.get(nombreProducto = 'Carne Condimentada')
 
-    bodegaProducto = ProductoBodega.objects.get(bodega = carne.puntoCond.codigoBodega,producto = producto.costoProducto)
+    bodegaProducto = ProductoBodega.objects.get(bodega = carne.puntoCond.codigoBodega,producto = producto.codigoProducto)
     bodegaProducto.pesoProductoStock -= carne.pesoProducto
     bodegaProducto.save()
 
@@ -2423,7 +2430,7 @@ def GestionCroqueta(request):
         if formulario.is_valid():
             formulario.save()
 
-            return HttpResponseRedirect('/fabricacion/fritos')
+            return HttpResponseRedirect('/fabricacion/croquetas')
     else:
         formulario = CroquetaFrom()
 
@@ -2523,7 +2530,7 @@ def GuardarCroqueta(request):
     regCroqueta.guardado = True
     regCroqueta.save()
 
-    msj = 'Costeado exitoso'
+    msj = 'Guardado exitoso'
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 
@@ -2544,7 +2551,7 @@ def GestionReApanado(request):
                               context_instance = RequestContext(request))
 
 def GuardarReApanado(request):
-    idReApanado = request.GET.get('idCroqueta')
+    idReApanado = request.GET.get('idReApanado')
     reApanado = TallerReapanado.objects.get(pk = int(idReApanado))
     miga = Producto.objects.get(nombreProducto = 'Miga Preparada')
     chuletaCerdo = Producto.objects.get(nombreProducto = 'Filete Apanado Cerdo')
@@ -2597,6 +2604,8 @@ def GuardarReApanado(request):
         movimiento.entrada = chuletaReApanada
         movimiento.save()
 
+    reApanado.guardado = True
+    reApanado.save()
 
     msj = 'Guardado exitoso'
     respuesta = json.dumps(msj)
@@ -2609,7 +2618,7 @@ def GestionConversiones(request):
         formulario = ConversionesForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/fabricacion/apanados')
+            return HttpResponseRedirect('/fabricacion/conversiones')
     else:
         formulario = ConversionesForm()
 
@@ -2617,11 +2626,16 @@ def GestionConversiones(request):
                               context_instance = RequestContext(request))
 def GuardarConversion(request):
     idConversion = request.GET.get('idConversion')
-    idp1 = request.GET.get('producto1')
-    idp2 = request.GET.get('producto2')
     conversion = Conversiones.objects.get(pk = int(idConversion))
-    producto1 = Producto.objects.get(pk = int(idp1))
-    producto2 = Producto.objects.get(pk = int(idp2))
+    #Separamos la cadena donde esta el nombre del producto
+    pro1 = str(conversion.productoUno)
+    pro2 = str(conversion.productoDos)
+
+    nombre1 = pro1.split(' ,')
+    nombre2 = pro2.split(' ,')
+
+    producto1 = Producto.objects.get(nombreProducto = nombre1[0])
+    producto2 = Producto.objects.get(nombreProducto = nombre2[0])
 
     bodegaP1 = ProductoBodega.objects.get(bodega = conversion.puntoConversion.codigoBodega,producto = producto1.codigoProducto)
     bodegaP2 = ProductoBodega.objects.get(bodega = conversion.puntoConversion.codigoBodega,producto = producto2.codigoProducto)
@@ -2655,6 +2669,7 @@ def GuardarConversion(request):
 
     conversion.costoP1 = costoP1
     conversion.costoP2 = costoP2
+    conversion.guardado = True
     conversion.save()
 
     msj = 'Guardado exitoso'

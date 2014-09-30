@@ -43,11 +43,16 @@
             {% else %}
                 <td>Sin guardar</td>
             {% endif %}
-            
-            <td>
+            {% if frito.guardado == True %}
+                <td></td>
+            {% else %}
+                <td>
                 <a id="costearFrito" onclick="CostearFrito({{ frito.id }})" href="#">Costear</a>
                 <a id="guardarFrito" onclick="GuardarFrito({{ frito.id }})" href="#">Guardar</a>
             </td>
+            {% endif %}
+            
+
 
         </tr>
 

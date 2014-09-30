@@ -93,6 +93,9 @@ $(document).on('ready', inicio);
      $('#id_fechaFrito').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaReApanado').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaConversion').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaCroqueta').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaCarCond').datepicker({ dateFormat: "dd/mm/yy" });
+
 
 
      $('#homeAccordeon').accordion({ heightStyle: "content" });
@@ -151,17 +154,18 @@ function VerificarConversiones () {
 function GuardarConversion(idConversion) {
     //Funcion que costea el apanado actual
 
-    var producto1 = $('#id_productoUno').val();
-    var producto2 = $('#id_productoDos').val();
+    //var producto1 = $('#id_productoUno').val();
+    //var producto2 = $('#id_productoDos').val();
+
 
     var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
     if (opcion == true) {
         $.ajax({
 
-            url: '/fabricacion/tallerReApanado/',
+            url: '/fabricacion/Guardaconversiones/',
             dataType: "json",
             type: "get",
-            data: {'producto2':producto2,'producto1':producto1,'idConversion': idConversion},
+            data: {'idConversion': idConversion},
             success: function (respuesta) {
                 if (respuesta != '') {
                     var n = noty({text: respuesta, type:'success',layout: 'bottom'});
@@ -209,7 +213,7 @@ function GuardarreApanado(idReApanado) {
     if (opcion == true) {
         $.ajax({
 
-            url: '/fabricacion/tallerReApanado/',
+            url: '/fabricacion/guardarReApanado/',
             dataType: "json",
             type: "get",
             data: {'idReApanado': idReApanado},

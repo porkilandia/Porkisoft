@@ -36,18 +36,23 @@
             <td>{{ croqueta.croqueta }}</td>
             <td>{{ croqueta.condimento }}</td>
             <td>{{ croqueta.miga }}</td>
-            <td>{{ croqueta.pesoTotalFrito }}</td>
-            <td>{{ croqueta.costoKiloFrito }}</td>
+            <td>{{ croqueta.pesoTotalCroqueta }}</td>
+            <td>{{ croqueta.costoKiloCroqueta }}</td>
             {% if croqueta.guardado == True %}
                 <td>Guardado</td>
             {% else %}
                 <td>Sin guardar</td>
             {% endif %}
-            
-            <td>
+            {% if croqueta.guardado == True %}
+                <td></td>
+            {% else %}
+                <td>
                 <a id="costearCroquetas" onclick="CostearCroqueta({{ croqueta.id }})" href="#">Costear</a>
                 <a id="guardarCroquetas" onclick="GuardarCroqueta({{ croqueta.id }})" href="#">Guardar</a>
             </td>
+            {% endif %}
+            
+
 
         </tr>
 
