@@ -7,10 +7,8 @@ from django.template import RequestContext
 from django.core import serializers
 from django.http import HttpResponse
 
-#Imports necesarios para el uso de Pisa PDF
-import ho.pisa as pisa
-import cStringIO as StringIO
-import cgi
+
+
 from django.template.loader import render_to_string
 import json
 from Inventario.Forms.forms import *
@@ -527,7 +525,7 @@ def EditaDetalleTraslado(request,idDettraslado):
 
 
 
-def generar_pdf(html):
+'''def generar_pdf(html):
     # Función para generar el archivo PDF y devolverlo mediante HttpResponse
     result = StringIO.StringIO()
     pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
@@ -544,7 +542,7 @@ def ReporteTraslado(request,idTraslado):
 
     html = render_to_string('Fabricacion/ReporteTraslado.html', {'pagesize':'A4', 'detalleTraslado':detalleTraslado,'traslado':traslado},
                             context_instance=RequestContext(request))
-    return generar_pdf(html)
+    return generar_pdf(html)'''
 
 def GuardarTraslado(request):
 

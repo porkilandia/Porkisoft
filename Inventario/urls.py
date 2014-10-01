@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'^EditaDetTraslado/(?P<idDettraslado>\d+)',EditaDetalleTraslado),
     url(r'^guardaTraslado/$',GuardarTraslado),
     url(r'^dettraslado/(?P<idtraslado>\d+)',GestionDetalleTraslado),
-    url(r'^reporteTraslado/(?P<idTraslado>\d+)',ReporteTraslado),
+    #url(r'^reporteTraslado/(?P<idTraslado>\d+)',ReporteTraslado),
 
     url(r'^detcompra/(?P<idcompra>\d+)',GestionDetalleCompra),
     url(r'^editacompra/(?P<idDetCompra>\d+)',EditaCompra),

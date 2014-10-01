@@ -14,7 +14,7 @@ urlpatterns = patterns('',
 
     url(r'^pedido/(?P<idcliente>\d+)',GestionPedidos),
     url(r'^detallePedido/(?P<idpedido>\d+)',GestionDetallePedido),
-    url(r'^pedidoPdf/(?P<idpedido>\d+)',ReportePedido),
+    #url(r'^pedidoPdf/(?P<idpedido>\d+)',ReportePedido),
     url(r'^listaPrecios/$',GestionLista),
     url(r'^detalleLista/(?P<idLista>\d+)',GestionDetalleLista),
     url(r'^editaLista/(?P<idDetLista>\d+)',EditaListas),

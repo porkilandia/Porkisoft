@@ -2,10 +2,7 @@
 from django.shortcuts import render_to_response,HttpResponseRedirect
 from django.template import RequestContext
 from Ventas.Forms import *
-#Imports necesarios para el uso de Pisa PDF
-import ho.pisa as pisa
-import cStringIO as StringIO
-import cgi
+
 from datetime import *
 from decimal import Decimal
 
@@ -14,7 +11,7 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 
 
-def generar_pdf(html):
+'''def generar_pdf(html):
     # Función para generar el archivo PDF y devolverlo mediante HttpResponse
     result = StringIO.StringIO()
     pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
@@ -30,7 +27,7 @@ def ReportePedido(request,idpedido):
 
     html = render_to_string('Ventas/Pedido_pdf.html', {'pagesize':'A4', 'detallePedido':detallePedido,'pedido':pedido},
                             context_instance=RequestContext(request))
-    return generar_pdf(html)
+    return generar_pdf(html)'''
 
 
 def GestionPedidos(request,idcliente):
