@@ -13,8 +13,8 @@
     <data-source source="LOCAL" name="Django default" uuid="e6c5d31a-2a16-4f3d-a793-cda232fd9c2e">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://ec2-54-225-255-208.compute-1.amazonaws.com:5432/dal8i5k9vmfut7</jdbc-url>
-      <user-name>vnbwnvryysvhbs</user-name>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/porkisoftdb</jdbc-url>
+      <user-name>postgres</user-name>
       <user-password>dfcbdfc6dfc3dfd9dfc5dfc4df98df9adf9adf93</user-password>
       <libraries />
     </data-source>

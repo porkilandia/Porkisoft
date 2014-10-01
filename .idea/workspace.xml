@@ -1,7 +1,838 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="">
+    <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="Copia de seguridad 1 Octubre 2014">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/icons/Thumbs.db" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/animated-overlay.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/animated-overlay.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/animated-overlay.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/animated-overlay.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/animated-overlay.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/images/calendar.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/images/calendar.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/img/cerrar.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/icons/csv.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/images/demo-config-on-tile.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/images/demo-config-on.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/images/demo-spindown-closed.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/images/demo-spindown-open.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/position/images/earth.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/position/images/flight.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/images/help.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/images/high_tatras.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/images/high_tatras2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/images/high_tatras2_min.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/images/high_tatras3.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/images/high_tatras3_min.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/images/high_tatras4.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/images/high_tatras4_min.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/images/high_tatras_min.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/htmltable_export.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/images/icon-docs-info.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/images/important.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/images/info.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/images/jquery_32x32.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/images/jqueryui_32x32.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/icons/json.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/images/pbar-ani.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/progressbar/images/pbar-ani.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/icons/pdf.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/icons/png.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/icons/ppt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/position/images/rocket.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/images/sizzlejs_32x32.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/icons/sql.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tooltip/images/st-stephens.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/images/title.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tooltip/images/tower-bridge.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/images/transparent_1x1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/icons/txt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/images/ui-anim_basic_16x16.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-bg_diagonals-thick_18_b81900_40x40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-bg_diagonals-thick_18_b81900_40x40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-bg_diagonals-thick_18_b81900_40x40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-bg_diagonals-thick_18_b81900_40x40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-bg_diagonals-thick_20_666666_40x40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-bg_diagonals-thick_20_666666_40x40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-bg_diagonals-thick_20_666666_40x40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-bg_diagonals-thick_20_666666_40x40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/ui-bg_flat_0_aaaaaa_40x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-bg_flat_10_000000_40x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-bg_flat_10_000000_40x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-bg_flat_10_000000_40x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-bg_flat_10_000000_40x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/ui-bg_flat_75_ffffff_40x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/ui-bg_flat_75_ffffff_40x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-bg_glass_100_f6f6f6_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-bg_glass_100_f6f6f6_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-bg_glass_100_f6f6f6_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-bg_glass_100_f6f6f6_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-bg_glass_100_fdf5ce_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-bg_glass_100_fdf5ce_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-bg_glass_100_fdf5ce_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-bg_glass_100_fdf5ce_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/ui-bg_glass_55_fbf9ee_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-bg_glass_65_ffffff_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-bg_glass_65_ffffff_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/ui-bg_glass_65_ffffff_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/ui-bg_glass_65_ffffff_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-bg_glass_65_ffffff_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-bg_glass_65_ffffff_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/ui-bg_glass_75_dadada_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/ui-bg_glass_75_dadada_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/ui-bg_glass_75_e6e6e6_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/ui-bg_glass_95_fef1ec_1x400.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-bg_gloss-wave_35_f6a828_500x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-bg_gloss-wave_35_f6a828_500x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-bg_gloss-wave_35_f6a828_500x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-bg_gloss-wave_35_f6a828_500x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/ui-bg_highlight-soft_75_cccccc_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-icons_222222_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-icons_222222_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/ui-icons_222222_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/ui-icons_222222_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-icons_222222_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-icons_222222_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-icons_228ef1_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-icons_228ef1_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-icons_228ef1_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-icons_228ef1_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/ui-icons_2e83ff_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/ui-icons_2e83ff_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/ui-icons_454545_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/ui-icons_454545_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/ui-icons_888888_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/ui-icons_888888_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/images/ui-icons_cd0a0a_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/images/ui-icons_cd0a0a_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-icons_ef8c08_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-icons_ef8c08_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-icons_ef8c08_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-icons_ef8c08_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-icons_ffd27a_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-icons_ffd27a_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-icons_ffd27a_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-icons_ffd27a_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/images/ui-icons_ffffff_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/images/ui-icons_ffffff_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/images/ui-icons_ffffff_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/images/ui-icons_ffffff_256x240.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/icons/word.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/icons/xls.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/icons/xml.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0002_auto__add_sacrificio.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0002_auto__del_sacrificio.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0003_auto__add_field_detalleplanilla_grupo.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0003_auto__del_field_producto_utilidadProducto__del_field_producto_rentabil.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0004_auto__add_field_detalleplanilla_vrKiloCarnes__add_field_detalleplanill.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0004_auto__chg_field_compra_fechaCompra__chg_field_planillarecepcion_fechaR.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Ventas/migrations/0004_auto__del_field_detalleventa_subproducto__add_field_detalleventa_clien.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0005_auto__add_field_ganado_compra.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Ventas/migrations/0005_auto__add_field_venta_TotalCredito__add_field_venta_TotalContado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0005_auto__chg_field_planilladesposte_totalDespostado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0006_auto__add_field_planillarecepcion_pesoCanales.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Ventas/migrations/0006_auto__add_listadeprecios__add_detallelista.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0006_auto__add_valorescostos.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Ventas/migrations/0007_auto__chg_field_detalleventa_cliente__add_field_venta_lista.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0007_auto__chg_field_traslado_fechaTraslado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0007_auto__del_field_valorescostos_valor__add_field_valorescostos_valorCif_.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0008_auto__add_field_detalleplanilla_vrKiloCostilla__add_field_detalleplani.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0008_auto__add_field_producto_subGrupo.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Ventas/migrations/0008_auto__del_field_detalleventa_producto__del_field_detalleventa_cliente_.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Ventas/migrations/0009_auto__add_field_venta_TotalRegistradora.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0009_auto__chg_field_planilladesposte_fechaDesposte.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0009_auto__del_field_producto_vrVentaProducto__add_field_producto_vrVentaLo.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Ventas/migrations/0010_auto__add_field_venta_descuadre__add_field_venta_residuo.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0010_auto__chg_field_sacrificio_fechaSacrificio.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0010_auto__del_field_producto_porcentajeCalidad.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Ventas/migrations/0011_auto__add_field_venta_efectivo.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0011_auto__add_listadoprecios__del_field_detalletraslado_producto__add_fiel.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0011_auto__chg_field_sacrificio_fechaSacrificio.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0012_auto__add_field_traslado_guardado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0012_auto__add_field_valorescostos_valorKiloPie.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Ventas/migrations/0012_auto__add_field_venta_jornada.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0013_auto__add_field_planilladesposte_tipoDesposte.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0013_auto__add_field_planillarecepcion_vrKiloCanal.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0014_auto__add_field_planillarecepcion_vrTransporte.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0014_auto__del_condimentadotajado__add_detalletajado__add_tajado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0015_auto__add_field_detallecompra_pesoDescongelado__add_field_detallecompr.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0015_auto__add_field_detalleplanilla_unidades.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0016_auto__add_field_detalleplanilla_costoProducto.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0016_auto__del_field_producto_subGrupo__del_field_producto_vrVentaNorte__de.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0017_auto__add_field_detalleplanilla_costoAdtvo.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0017_auto__del_listadoprecios__add_movimientos.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0018_auto__add_field_detalleplanilla_vrKiloCarnes2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0018_auto__chg_field_productobodega_pesoProductoStock.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0019_auto__add_field_movimientos_productoMov.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0019_auto__del_field_planilladesposte_costoProduccionTotal__add_field_plani.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0020_auto__add_descarnecabeza.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0020_auto__del_field_movimientos_salida__del_field_movimientos_entrada.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0021_auto__add_field_descarnecabeza_tipo.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0021_auto__add_field_movimientos_entrada__add_field_movimientos_salida.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0022_auto__add_field_producto_deshidratacion.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0022_auto__chg_field_valorescostos_nombreCosto.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0023_auto__add_field_descarnecabeza_pesoCabezas.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0023_auto__del_field_producto_deshidratacion__add_field_productobodega_desh.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0024_auto__add_field_planilladesposte_guardado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0024_auto__chg_field_productobodega_deshidratacion.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0025_auto__chg_field_condimento_fecha.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0025_auto__del_field_ganado_piel.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0026_auto__add_field_compra_bodegaCompra.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0026_auto__chg_field_miga_fechaFabricacion.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0027_auto__chg_field_miga_fechaFabricacion.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0027_auto__del_field_productobodega_deshidratacion.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0028_auto__del_field_detallecondimento_producto__add_field_detallecondiment.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0029_auto__del_field_detallemiga_producto__add_field_detallemiga_productoMi.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0030_auto__add_field_canal_nroCanal.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0031_auto__add_field_descarnecabeza_cantRecosrtes.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0032_auto__add_field_detalletajado_unidades.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0033_auto__add_field_tajado_desposteHistorico.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0034_auto__add_field_detalletajado_costoKilo.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0035_auto__add_field_tajado_cif__add_field_tajado_mod.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0036_auto__add_field_tajado_guardado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0037_auto__add_field_tajado_polloHistorico.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0038_auto__del_condimentadotajadopechuga__add_condimentado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0039_auto__chg_field_condimentado_fecha.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0040_auto__add_field_detalleplanilla_vrKiloCarnes3__add_field_detalleplanil.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0041_auto__add_field_condimentado_guardado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0042_auto__add_field_ensalinado_guardado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0043_auto__del_field_ensalinado_producto__add_field_ensalinado_productoEnsa.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0044_auto__add_field_ensalinado_estado__chg_field_ensalinado_fechaEnsalinad.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0045_auto__add_field_ensalinado_mod.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0046_auto__add_procesoapanado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0047_auto__del_apanado__del_procesoapanado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0048_auto__add_procesoapanado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0049_auto__add_field_procesoapanado_guardado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0050_auto__del_field_procesoapanado_producto__del_field_procesoapanado_fech.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0051_auto__add_field_procesoapanado_mod__add_field_procesoapanado_cif.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0052_auto__add_molida.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0053_auto__add_field_molida_guardado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0054_auto__add_field_descarnecabeza_guardado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0055_auto__add_field_miga_mod__add_field_miga_cif.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0056_auto__add_field_condimentado_mod__add_field_condimentado_cif.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0057_auto__add_field_condimento_mod__add_field_condimento_cif.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0058_auto__add_empacadoapanados.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0059_auto__add_field_empacadoapanados_produccion__add_field_empacadoapanado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0060_auto__add_field_empacadoapanados_pesoChuelta.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0061_auto__del_field_empacadoapanados_cif.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0062_auto__add_field_empacadoapanados_guardado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0063_auto__add_auxiliarpromedios.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0064_auto__add_menudos.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0065_auto__add_tallerfrito.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0066_auto__add_field_tallerfrito_punto.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0067_auto__add_field_tallerfrito_guardado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0068_auto__add_tallercarnecondimentada.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0069_auto__del_field_tallercarnecondimentada_punto.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0070_auto__add_field_tallercarnecondimentada_puntoCond.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0071_auto__add_tallercroquetas.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0072_auto__chg_field_tallercroquetas_croqueta__del_index_tallercroquetas_cr.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0073_auto__del_field_tallercroquetas_pesoCroqueta.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0074_auto__add_tallerreapanado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0075_auto__add_conversiones.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0076_auto__add_field_conversiones_puntoConversion.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/AUTHORS.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/Gruntfile.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/MIT-LICENSE.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/accepted-elements.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/accordion.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tabs/ajax.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/alt-field.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/resizable/animate.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/dialog/animated.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/animation.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/resizable/aspect-ratio.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/autocomplete.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/jspdf/libs/base64.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/blind-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tabs/bottom.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/layouts/bottom.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/layouts/bottomCenter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/layouts/bottomLeft.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/layouts/bottomRight.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/bounce-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/button.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/buttonbar.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/categories.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/layouts/center.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/layouts/centerLeft.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/layouts/centerRight.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/button/checkbox.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/clip-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/accordion/collapsible.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tabs/collapsible.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/slider/colorpicker.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/combobox.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/sortable/connect-lists-through-tabs.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/sortable/connect-lists.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/resizable/constrain-area.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/draggable/constrain-movement.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tabs/ajax/content1.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tooltip/ajax/content1.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tabs/ajax/content2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tooltip/ajax/content2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tabs/ajax/content3-slow.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tabs/ajax/content4-broken.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/spinner/currency.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/draggable/cursor-style.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tooltip/custom-animation.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tooltip/custom-content.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/custom-data.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/accordion/custom-icons.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tooltip/custom-style.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/position/cycler.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/date-formats.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/date-range.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/datepicker.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/spinner/decimal.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/accordion/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/addClass/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/animate/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/button/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/dialog/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/draggable/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/effect/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/hide/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/menu/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/position/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/progressbar/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/removeClass/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/resizable/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/selectable/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/show/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/slider/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/sortable/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/spinner/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/switchClass/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tabs/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/toggle/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/toggleClass/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tooltip/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/widget/default.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/themes/default.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/draggable/delay-start.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/resizable/delay-start.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/sortable/delay-start.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/demo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/demos.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/dialog.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/selectable/display-grid.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/sortable/display-grid.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/draggable.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/drop-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/dropdown-month-year.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/droppable.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/effect/easing.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/sortable/empty-lists.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/draggable/events.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/explode-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/fade-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/accordion/fillspace.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/fold-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/folding.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tooltip/forms.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/external/globalize.culture.de-DE.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/external/globalize.culture.ja-JP.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/external/globalize.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/draggable/handle.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/resizable/helper.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/highlight-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/slider/hotelrooms.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/accordion/hoverintent.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/html2canvas.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/icon-trigger.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/button/icons.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/menu/icons.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/progressbar/indeterminate.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/accordion/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/addClass/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/animate/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/button/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/dialog/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/draggable/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/effect/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/hide/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/menu/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/position/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/progressbar/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/removeClass/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/resizable/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/selectable/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/show/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/slider/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/sortable/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/spinner/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/switchClass/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tabs/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/toggle/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/toggleClass/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tooltip/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/widget/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/inline.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/layouts/inline.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/sortable/items.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/jQuery.widget.bridge.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/jQuery.widget.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/jquery-1.10.2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/js/jquery-1.10.2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/jquery-ui-1.10.4.custom.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/js/jquery-ui-1.10.4.custom.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/css/ligereza-ui/jquery-ui-1.10.4.custom.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/js/jquery-ui-1.10.4.custom.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery-ui-i18n.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery-ui-i18n.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/jquery-ui.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery-ui.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery-ui.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery-ui.custom.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery-ui.custom.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/jquery-ui.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/jquery-ui.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery-ui.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery-ui.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/jquery-ui.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/jquery-ui.structure.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/jquery-ui.structure.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/jquery-ui.theme.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/jquery-ui.theme.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/jquery.alerts.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery.alerts.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/jquery.base64.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui-1.11.1/external/jquery/jquery.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/external/jquery.mousewheel.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/jquery.noty.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/packaged/jquery.noty.packaged.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/packaged/jquery.noty.packaged.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.accordion.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.accordion.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.accordion.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.accordion.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.accordion.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.accordion.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.all.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.all.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.autocomplete.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.autocomplete.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.autocomplete.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.autocomplete.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.autocomplete.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.autocomplete.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.base.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.base.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.button.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.button.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.button.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.button.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.button.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.button.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.core.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.core.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.core.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.core.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.core.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.core.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-af.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-af.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-ar-DZ.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ar-DZ.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/jquery.ui.datepicker-ar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-ar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ar.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-az.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-az.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-be.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-be.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-bg.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-bg.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-bs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-bs.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-ca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ca.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-cs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-cs.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-cy-GB.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-cy-GB.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-da.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-da.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-de.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-de.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-el.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-el.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-en-AU.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-en-AU.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-en-GB.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-en-GB.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-en-NZ.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-en-NZ.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-eo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-eo.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-es.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-es.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-et.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-et.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-eu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-eu.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-fa.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fa.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-fi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fi.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-fo.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fo.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-fr-CA.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fr-CA.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-fr-CH.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fr-CH.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/jquery.ui.datepicker-fr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-fr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-fr.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-gl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-gl.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/jquery.ui.datepicker-he.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-he.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-he.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-hi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-hi.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-hr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-hr.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-hu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-hu.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-hy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-hy.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-id.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-id.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-is.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-is.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-it.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-it.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-ja.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ja.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-ka.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ka.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-kk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-kk.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-km.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-km.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-ko.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ko.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-ky.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ky.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-lb.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-lb.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-lt.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-lt.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-lv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-lv.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-mk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-mk.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-ml.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ml.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-ms.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ms.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-nb.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-nb.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-nl-BE.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-nl-BE.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-nl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-nl.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-nn.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-nn.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-no.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-no.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-pl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-pl.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-pt-BR.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-pt-BR.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-pt.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-pt.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-rm.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-rm.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-ro.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ro.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-ru.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ru.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-sk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sk.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-sl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sl.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-sq.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sq.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-sr-SR.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sr-SR.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-sr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sr.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-sv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-sv.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-ta.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-ta.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-th.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-th.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-tj.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-tj.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-tr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-tr.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-uk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-uk.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-vi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-vi.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-zh-CN.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-zh-CN.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-zh-HK.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-zh-HK.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/jquery.ui.datepicker-zh-TW.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/i18n/jquery.ui.datepicker-zh-TW.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/i18n/jquery.ui.datepicker-zh-TW.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.datepicker.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.datepicker.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.datepicker.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.datepicker.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.datepicker.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.datepicker.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.dialog.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.dialog.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.dialog.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.dialog.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.dialog.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.dialog.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.draggable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.draggable.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.droppable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.droppable.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect-blind.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect-blind.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect-bounce.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect-bounce.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect-clip.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect-clip.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect-drop.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect-drop.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect-explode.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect-explode.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect-fade.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect-fade.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect-fold.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect-fold.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect-highlight.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect-highlight.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect-pulsate.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect-pulsate.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect-scale.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect-scale.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect-shake.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect-shake.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect-slide.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect-slide.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect-transfer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect-transfer.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.effect.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.effect.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.menu.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.menu.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.menu.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.menu.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.menu.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.menu.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.mouse.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.mouse.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.position.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.position.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.progressbar.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.progressbar.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.progressbar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.progressbar.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.progressbar.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.progressbar.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.resizable.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.resizable.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.resizable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.resizable.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.resizable.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.resizable.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.selectable.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.selectable.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.selectable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.selectable.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.selectable.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.selectable.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.slider.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.slider.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.slider.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.slider.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.slider.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.slider.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.sortable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.sortable.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.spinner.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.spinner.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.spinner.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.spinner.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.spinner.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.spinner.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.tabs.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.tabs.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.tabs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.tabs.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.tabs.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.tabs.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.theme.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.theme.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.theme.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.theme.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/jquery.ui.tooltip.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/jquery.ui.tooltip.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.tooltip.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/base/minified/jquery.ui.tooltip.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/themes/ligereza-ui/minified/jquery.ui.tooltip.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.tooltip.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/jquery.ui.widget.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui/minified/jquery.ui.widget.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/external/jshint.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/jspdf/jspdf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/progressbar/label.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/spinner/latlong.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/localization.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/london.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tabs/manipulation.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/resizable/max-min.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/maxheight.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/menu.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/min-max.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/dialog/modal-confirmation.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/dialog/modal-form.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/dialog/modal-message.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/dialog/modal.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/mouse.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tabs/mouseover.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/multiple-calendars.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/multiple-remote.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/slider/multiple-vertical.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/multiple.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/accordion/no-auto-height.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/other-months.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/spinner/overflow.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/photo-manager.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/sortable/placeholder.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/sortable/portlets.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/position.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/progressbar.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/promise.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/propagation.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/puff-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/pulsate-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/external/qunit.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/external/qunit.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/button/radio.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/slider/range-vertical.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/slider/range.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/slider/rangemax.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/slider/rangemin.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/remote-jsonp.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/remote-with-cache.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/remote.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/resizable.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/draggable/revert.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/revert.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/scale-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/draggable/scroll.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/search.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/selectable.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/selectable/serialize.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/shake-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/shopping-cart.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/datepicker/show-week.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/slider/side-scroll.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/simple_html_dom.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/size-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/slide-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/slider/slider-vertical.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/slider.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/resizable/snap-to-grid.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/draggable/snap-to.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/accordion/sortable.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/draggable/sortable.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tabs/sortable.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/sortable.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/spinner.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/button/splitbutton.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/jspdf/libs/sprintf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/slider/steps.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/resizable/synchronous-resize.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/tableExport.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/tableExtractor.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/tabs.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/resizable/textarea.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/spinner/time.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/button/toolbar.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/tooltip.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/layouts/top.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/layouts/topCenter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/layouts/topLeft.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/noty/layouts/topRight.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tooltip/tracking.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/docs/transfer-effect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.accordion.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.autocomplete.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.button.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.core.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.datepicker.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.dialog.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.draggable.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.droppable.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect-blind.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect-bounce.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect-clip.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect-drop.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect-explode.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect-fade.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect-fold.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect-highlight.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect-pulsate.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect-scale.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect-shake.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect-slide.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect-transfer.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.effect.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.menu.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.mouse.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.position.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.progressbar.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.resizable.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.selectable.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.slider.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.sortable.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.spinner.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.tabs.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.tooltip.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/ui.widget.jquery.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tabs/vertical.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/tooltip/video-player.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/draggable/visual-feedback.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/droppable/visual-feedback.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/resizable/visual-feedback.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/porkisoft/templates/static/jquery-ui/development-bundle/demos/autocomplete/xml.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/settings.py" afterPath="$PROJECT_DIR$/porkisoft/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -42,24 +873,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Inventario/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="13314">
+            <state vertical-scroll-proportion="0.43598616" vertical-offset="945" max-vertical-offset="13314">
               <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
               <folding>
                 <element signature="e#25#52#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/porkisoft/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5803723" vertical-offset="77" max-vertical-offset="3717">
-              <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -212,7 +1033,135 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Ventas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
               <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ventas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Telemercadeo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Telemercadeo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nomina" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nomina" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Inventario" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Inventario" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Porkisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fabricacion" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -818,10 +1767,14 @@
       <created>1412203382837</created>
       <updated>1412203382837</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Copia de seguridad 1 Octubre 2014 pm">
+      <created>1412203756918</created>
+      <updated>1412203756918</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
-  <component name="TodoView" selected-index="0">
+  <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
       <are-packages-shown value="false" />
       <are-modules-shown value="false" />
@@ -851,7 +1804,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3252818" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33280882" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36978757" sideWeight="0.49919486" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34461054" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34461054" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46376812" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36978757" sideWeight="0.50080514" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.63929147" sideWeight="0.5003934" order="8" side_tool="true" content_ui="tabs" />
@@ -881,7 +1834,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Copia de seguridad 12 pm agosto 2014" />
     <MESSAGE value="Copia de seguridad 13 pm agosto 2014" />
     <MESSAGE value="Copia de seguridad 15 pm agosto 2014" />
     <MESSAGE value="Copia de seguridad 19 pm agosto 2014" />
@@ -906,7 +1858,8 @@
     <MESSAGE value="Copia de seguridad 29 septiembre 2014 pm" />
     <MESSAGE value="Copia de seguridad 30 septiembre 2014 pm" />
     <MESSAGE value="Copia de seguridad 1 Octubre 2014 pm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Copia de seguridad 1 Octubre 2014 pm" />
+    <MESSAGE value="Copia de seguridad 1 Octubre 2014" />
+    <option name="LAST_COMMIT_MESSAGE" value="Copia de seguridad 1 Octubre 2014" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -917,13 +1870,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDetalleCondimento.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.222222" vertical-offset="318" max-vertical-offset="1974">
-          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionMiga.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.333334" vertical-offset="294" max-vertical-offset="1491">
@@ -1289,21 +2235,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Inventario/views.py">
+    <entry file="file://$PROJECT_DIR$/porkisoft/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="13314">
-          <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
-          <folding>
-            <element signature="e#25#52#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-0.29858658" vertical-offset="169" max-vertical-offset="735">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5803723" vertical-offset="77" max-vertical-offset="3717">
-          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.6751269" vertical-offset="0" max-vertical-offset="3717">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inventario/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43598616" vertical-offset="945" max-vertical-offset="13314">
+          <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
+          <folding>
+            <element signature="e#25#52#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
