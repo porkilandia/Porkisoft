@@ -52,6 +52,8 @@ $(document).on('ready', inicio);
      $('#id_puntoCroq').on('change',VerificarInsCroquetas);
      $('#id_puntoReApanado').on('change',VerificarReApanados);
      $('#id_puntoConversion').on('change',VerificarConversiones);
+     $('#Excel').on('click',Exportar);
+
 
      //var tablaEmpacado = $('#tablaEmpacado tr');
      //tablaEmpacado.on('click',maneja);
@@ -73,6 +75,7 @@ $(document).on('ready', inicio);
      $('#tablaensalinados').dataTable();
      $('#tablaEmpacado').dataTable();
      $('#tablaMovimientos').dataTable();
+     $('#tablaApanados').dataTable();
 
      $('#id_fecha').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCompra').datepicker({ dateFormat: "dd/mm/yy" });
@@ -106,6 +109,11 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+
+function Exportar()
+{
+    $('#tablaApanados').tableExport({type:'pdf',escape:'false',pdfFontSize:8,ignoreColumn: [3,9,10]});
+}
 /*function maneja()
 {
     //Funcion para recorrer una tabla de datos y guardar sus registros en variables

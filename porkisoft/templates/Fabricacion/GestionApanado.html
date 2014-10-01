@@ -6,8 +6,9 @@
 {% endblock mensajes %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
-
-    <table id="tablabodegas" class="table-striped" >
+<a id="Excel" href="#"><input type="button" value="Excel" class="btn btn-primary"></a>
+<div id="data">
+    <table id="tablaApanados" class="table-striped" >
 
         <thead>
         <tr>
@@ -65,6 +66,8 @@
 
         {% endfor %}
     </table>
+</div>
+
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarBodega">
              <legend>Apanado <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
