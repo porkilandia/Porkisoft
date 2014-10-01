@@ -32,8 +32,8 @@
       <file leaf-file-name="Home.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/porkisoft/templates/Home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14893617" vertical-offset="1071" max-vertical-offset="1869">
-              <caret line="55" column="43" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.5212766" vertical-offset="1071" max-vertical-offset="1848">
+              <caret line="65" column="12" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
               <folding>
                 <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -835,7 +835,11 @@
       <created>1412182065711</created>
       <updated>1412182065711</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Copia de seguridad 1 Octubre 2014 pm">
+      <created>1412202966874</created>
+      <updated>1412202966874</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1314,8 +1318,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14893617" vertical-offset="1071" max-vertical-offset="1869">
-          <caret line="55" column="43" selection-start-line="55" selection-start-column="43" selection-end-line="55" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.5212766" vertical-offset="1071" max-vertical-offset="1848">
+          <caret line="65" column="12" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
           <folding>
             <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
