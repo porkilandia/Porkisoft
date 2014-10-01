@@ -44,18 +44,18 @@ def home(request):
                         bodegaProducto.save()'''
 
 
-    return render_to_response('Home.html',{'productosBajoStock':productosBajoStock,
-                                           'costosProductos':costosProductos},context_instance = RequestContext(request))
+    return render_to_response('Home.html',{'productosBajoStock':productosBajoStock,'costosProductos':costosProductos},
+                              context_instance = RequestContext(request))
 
 #***************************************PRODUCTOS******************************************
 def listaProductos(request):
     productos = Producto.objects.all().order_by('codigoProducto')
 
     #se actualiza el precio sugerido del producto
-    '''for producto in productos:
+    for producto in productos:
 
         producto.precioSugerido = ceil(producto.costoProducto * 1.33)
-        producto.save()'''
+        producto.save()
 
     if request.method == 'POST':
         formulario = ProductoForm(request.POST)
