@@ -151,6 +151,54 @@ function Exportar()
 
 
 }*/
+function consultaTraslados() {
+
+    var bodega = $('#bodega option:selected');
+    var producto = $('#productoTraslado option:selected');
+
+    var fechaInicio = $('#inicio').val();
+    var fechaFin = $('#fin').val();
+    var CodigoBodega = bodega.val();
+    var CodigoProducto = producto.val();
+
+    var NombreBodega = bodega.text();
+    var NombreProducto = producto.text();
+
+    var TotalCompra = 0;
+    var TotalUnds = 0;
+
+    var tablaReporteTraslado = $("#tablaReporteTraslado");
+
+        $.ajax({
+
+            url: '/fabricacion/reporteTraslado/',
+            dataType: "json",
+            type: "get",
+            data: {'inicio': fechaInicio,'fin': fechaFin,'bodega': CodigoBodega,'producto': CodigoProducto},
+            success: function (respuesta) {
+                    tablaReporteTraslado.find("tr:gt(0)").remove();
+                    $('#total').remove();
+                    for (var i=0;i<respuesta.length;i++)
+                    {
+                        tablaReporteTraslado.append(
+                                "<tr><td>" + NombreBodega +
+                                "</td><td>" + NombreProducto +
+                                "</td><td>" + respuesta[i].fields.pesoTraslado +
+                                "</td><td>" + respuesta[i].fields.unidadesTraslado +
+                                "</td></tr>");
+                        TotalCompra += parseInt(respuesta[i].fields.pesoTraslado);
+                        TotalUnds += parseInt(respuesta[i].fields.unidadesTraslado);
+                    }
+
+                tablaReporteTraslado.append("<tr><th id = 'total' colspan='2' style='text-align: right'>" +
+                    'Totales:'  +"</th><th>"+  +TotalCompra +"</th><th>"+ TotalUnds +"</th></tr>");
+
+                //var n = noty({text: respuesta, type:'success',layout: 'bottom'});
+                    }
+
+        });
+
+}
 
 function consultaCompras() {
 

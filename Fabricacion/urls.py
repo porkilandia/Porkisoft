@@ -43,7 +43,8 @@ urlpatterns = patterns('',
     url(r'^editacosto/(?P<idcosto>\d+)',EditaCostos),
     url(r'^editaensalinado/(?P<idEnsalinado>\d+)',EditaEnsalinado),
 
-
+    url(r'^templateTraslado/$',TemplateTraslados),
+    url(r'^reporteTraslado/$',ReporteTraslados),
 
      url(r'^molida/$',GestionMolido),
 

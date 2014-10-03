@@ -2679,3 +2679,34 @@ def GuardarConversion(request):
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 
+
+def TemplateTraslados(request):
+    productos = Producto.objects.all()
+    bodegas = Bodega.objects.all()
+
+    return render_to_response('Fabricacion/TemplateFiltroTraslado.html',{'productos':productos,'bodegas':bodegas },
+                              context_instance = RequestContext(request))
+
+def ReporteTraslados(request):
+    idPorducto = request.GET.get('producto')
+    idBodega = request.GET.get('bodega')
+
+    bodega = Bodega.objects.get(pk = int(idBodega))
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    traslados = DetalleTraslado.objects.filter(traslado__fechaTraslado__range = (finicio,ffin))\
+        .filter(productoTraslado = int(idPorducto)).filter(traslado__bodegaDestino = bodega.nombreBodega)
+
+    respuesta = serializers.serialize('json',traslados)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
