@@ -558,27 +558,22 @@ def GuardarTraslado(request):
 
         bodegaOrigen.pesoProductoStock -= detalle.pesoTraslado
         bodegaOrigen.unidadesStock -= detalle.unidadesTraslado
-        movimiento = Movimientos()
-        movimiento.tipo = 'TRS%d'%(traslado.codigoTraslado)
-        movimiento.productoMov = detalle.productoTraslado
-        movimiento.fechaMov = traslado.fechaTraslado
-        if detalle.pesoTraslado == 0:
-            movimiento.salida = detalle.unidadesTraslado
-        else:
-            movimiento.salida = detalle.pesoTraslado
 
-        movimiento.save()
 
         bodegaDestino.pesoProductoStock += detalle.pesoTraslado
         bodegaDestino.unidadesStock += detalle.unidadesTraslado
+
         movimiento = Movimientos()
         movimiento.tipo = 'TRS%d'%(traslado.codigoTraslado)
         movimiento.productoMov = detalle.productoTraslado
         movimiento.fechaMov = traslado.fechaTraslado
         if detalle.pesoTraslado == 0:
             movimiento.entrada = detalle.unidadesTraslado
+            movimiento.salida = detalle.unidadesTraslado
         else:
             movimiento.entrada = detalle.pesoTraslado
+            movimiento.salida = detalle.pesoTraslado
+
         movimiento.save()
         bodegaOrigen.save()
         bodegaDestino.save()
@@ -622,6 +617,41 @@ def GestionMovimientos (request):
     movimientos = Movimientos.objects.all().filter(fechaMov__range = (fechainicio,fechafin))
     return render_to_response('Inventario/GestionMovimientos.html',{'movimientos':movimientos},
                                                         context_instance = RequestContext(request))
+
+def ComprasProveedor(request):
+    provedor = Proveedor.objects.all()
+    bodega = Bodega.objects.all()
+    return render_to_response('Inventario/CompraProvedor.html',{'provedor':provedor,'bodega':bodega},
+                              context_instance = RequestContext(request))
+
+def ReporteCompra(request):
+    idProvedor = request.GET.get('provedor')
+    idBodega = request.GET.get('bodega')
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    provedor = Proveedor.objects.get(pk = int(idProvedor))
+    bodega = Bodega.objects.get(pk = int(idBodega))
+
+    compras = Compra.objects.filter(fechaCompra__range = (finicio,ffin)).filter(proveedor = provedor.codigoProveedor).filter(bodegaCompra = bodega.codigoBodega)
+
+    respuesta = serializers.serialize('json',compras)
+
+    print(compras)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+
+
+
 
 
 

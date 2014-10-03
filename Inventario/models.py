@@ -127,7 +127,6 @@ class Proveedor (models.Model):
 
 class Compra(models.Model):
 
-
     codigoCompra = models.AutoField(primary_key=True)
     tipo = models.ForeignKey(Grupo)
     bodegaCompra = models.ForeignKey(Bodega,blank=True,default=5)

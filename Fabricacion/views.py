@@ -1288,7 +1288,7 @@ def GestionDesposteActualizado(request, idplanilla):
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
     else:
         vrCarnes = ceil((vrTotalCanales * 6)/100)
-        vrCarnes2 = ceil((vrTotalCanales * Decimal(29))/100)
+        vrCarnes2 = ceil((vrTotalCanales * Decimal(27))/100)
         vrCarnes3 = ceil((vrTotalCanales * 30)/100)
         vrCarnes4 = ceil((vrTotalCanales * Decimal(7.5))/100)
         vrCostillas = ceil((vrTotalCanales * 9)/100)
@@ -1651,7 +1651,10 @@ def GestionDescarneCabeza(request):
                 vrKiloCareta = ceil(Decimal(costoCaretas) / (descarne.caretas/1000))
 
                 costoLenguas = Decimal(0.05) * costoDescarne
-                vrKiloLenguas = ceil(Decimal(costoLenguas) / (descarne.lenguas/1000))
+                if descarne.lenguas == 0:
+                    vrKiloLenguas = 0
+                else:
+                    vrKiloLenguas = ceil(Decimal(costoLenguas) / (descarne.lenguas/1000))
 
 
                 costoProcesos = Decimal(0.69) * costoDescarne

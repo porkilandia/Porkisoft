@@ -151,6 +151,52 @@ function Exportar()
 
 
 }*/
+
+function consultaCompras() {
+
+    var bodega = $('#bodega option:selected');
+    var provedor = $('#provedor option:selected');
+
+    var fechaInicio = $('#inicio').val();
+    var fechaFin = $('#fin').val();
+    var CodigoBodega = bodega.val();
+    var CodigoProvedor = provedor.val();
+
+    var NombreBodega = bodega.text();
+    var NombreProvedor = provedor.text();
+
+    var TotalCompra = 0;
+
+    var tablaCompra = $("#tablaReporteCompra");
+
+        $.ajax({
+
+            url: '/inventario/jsonCompras/',
+            dataType: "json",
+            type: "get",
+            data: {'inicio': fechaInicio,'fin': fechaFin,'bodega': CodigoBodega,'provedor': CodigoProvedor},
+            success: function (respuesta) {
+                    tablaCompra.find("tr:gt(0)").remove();
+                    $('#total').remove();
+                    for (var i=0;i<respuesta.length;i++)
+                    {
+                        tablaCompra.append(
+                                "<tr><td>" + respuesta[i].fields.fechaCompra +
+                                "</td><td>" + NombreProvedor +
+                                "</td><td>" + NombreBodega +
+                                "</td><td>" + '$ ' + respuesta[i].fields.vrCompra +
+                                "</td></tr>");
+                        TotalCompra += respuesta[i].fields.vrCompra;
+                    }
+
+                tablaCompra.append("<tr><th id = 'total' colspan='3' style='text-align: right'>" + 'Total :'  +"</th><th>"+ '$ ' +TotalCompra +"</th></tr>");
+
+                //var n = noty({text: respuesta, type:'success',layout: 'bottom'});
+                    }
+
+        });
+
+}
 function VerificarConversiones () {
    var idBodega = $('#id_puntoConversion').val();
    var peso = $('#id_pesoConversion').val();

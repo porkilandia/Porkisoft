@@ -210,6 +210,11 @@ fieldset {
 {
     top: 35em;
 }
+#rangoCompras
+{
+    width: 35%;
+    display: inline-block;
+}
 #rango
 {
     width: 25%;
