@@ -52,10 +52,10 @@ def listaProductos(request):
     productos = Producto.objects.all().order_by('codigoProducto')
 
     #se actualiza el precio sugerido del producto
-    for producto in productos:
+    '''for producto in productos:
 
         producto.precioSugerido = ceil(producto.costoProducto * 1.33)
-        producto.save()
+        producto.save()'''
 
     if request.method == 'POST':
         formulario = ProductoForm(request.POST)
@@ -188,7 +188,25 @@ def GestionBodega(request):
     if request.method == 'POST':
         formulario = BodegaForm(request.POST)
         if formulario.is_valid():
-            formulario.save()
+            bodega = formulario.save()
+
+
+            producto = Producto.objects.all()
+
+            for prod in producto:
+
+                grupo = prod.grupo.nombreGrupo
+
+                if grupo == 'Reses' or grupo == 'Cerdos' or grupo == 'Cerdas' or grupo == 'Compra/Venta' or grupo == 'Pollos':
+                    productoBodega = ProductoBodega()
+                    productoBodega.producto = prod
+                    productoBodega.bodega = bodega
+                    productoBodega.pesoProductoStock = 0
+                    productoBodega.unidadesStock = 0
+                    productoBodega.save()
+
+
+
             return HttpResponseRedirect('/inventario/bodega')
     else:
         formulario = BodegaForm()
@@ -645,7 +663,6 @@ def ReporteCompra(request):
 
     respuesta = serializers.serialize('json',compras)
 
-    print(compras)
 
     return HttpResponse(respuesta,mimetype='application/json')
 

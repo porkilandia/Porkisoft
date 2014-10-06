@@ -181,7 +181,8 @@ function consultaTraslados() {
                     for (var i=0;i<respuesta.length;i++)
                     {
                         tablaReporteTraslado.append(
-                                "<tr><td>" + NombreBodega +
+                                "<tr><td>" + respuesta[i].fields.traslado +
+                                "</td><td>" + NombreBodega +
                                 "</td><td>" + NombreProducto +
                                 "</td><td>" + respuesta[i].fields.pesoTraslado +
                                 "</td><td>" + respuesta[i].fields.unidadesTraslado +
@@ -190,7 +191,7 @@ function consultaTraslados() {
                         TotalUnds += parseInt(respuesta[i].fields.unidadesTraslado);
                     }
 
-                tablaReporteTraslado.append("<tr><th id = 'total' colspan='2' style='text-align: right'>" +
+                tablaReporteTraslado.append("<tr><th id = 'total' colspan='3' style='text-align: right'>" +
                     'Totales:'  +"</th><th>"+  +TotalCompra +"</th><th>"+ TotalUnds +"</th></tr>");
 
                 //var n = noty({text: respuesta, type:'success',layout: 'bottom'});
