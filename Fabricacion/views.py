@@ -13,6 +13,7 @@ from Inventario.Forms.forms import *
 from Fabricacion.Forms import *
 from Fabricacion.models import *
 from Inventario.models import *
+from Ventas.models import *
 
 
 
@@ -1158,7 +1159,10 @@ def GuardarTajado(request):
 #***********************************************PLANILLA DESPOSTE*******************************************************
 
 def GestionDesposte(request):
-    despostes = PlanillaDesposte.objects.all()
+    fechainicio = date.today() - timedelta(days=20)
+    fechafin = date.today()
+    despostes = PlanillaDesposte.objects.filter(fechaDesposte__range =(fechainicio,fechafin))
+    #despostes = PlanillaDesposte.objects.all()
 
     if request.method == 'POST':
 
@@ -2709,4 +2713,57 @@ def ReporteTraslados(request):
     respuesta = serializers.serialize('json',traslados)
 
     return HttpResponse(respuesta,mimetype='application/json')
+
+def  TemplateUtilidadPorLote(request):
+    q1 = Compra.objects.filter(tipo__nombreGrupo = 'Reses')
+    q2 = Compra.objects.filter(tipo__nombreGrupo = 'Cerdas')
+    q3 = Compra.objects.filter(tipo__nombreGrupo = 'Cerdos')
+    listaPrecios = ListaDePrecios.objects.all()
+
+    return render_to_response('Fabricacion/TemplateUtilidadPorLote.html',{'listaPrecios':listaPrecios,'comprasReses':q1,'comprasCerdos':q3,'comprasCerdas':q2 },
+                              context_instance = RequestContext(request))
+
+def ReporteUtilidadPorLote(request):
+    idCompra = request.GET.get('idCompra')
+    compra = Compra.objects.get(pk = int(idCompra))
+    idLista = request.GET.get('lista')
+    listaPrecio = ListaDePrecios.objects.get(pk = int(idLista))
+    detalleListaPrecios = DetalleLista.objects.filter(lista = listaPrecio.codigoLista)
+    canales = Canal.objects.filter(recepcion__compra = int(idCompra))
+    precios = ListaDePrecios.objects.all()
+
+    detallesPrecios = DetalleLista.objects.all().filter(precioVenta__gt = 0 )
+    ListaPesos = {}
+    ListaPrecios = {}
+
+    #inicializamos la lista
+    for lista in detalleListaPrecios:
+        ListaPesos[lista.productoLista.nombreProducto] = 0
+        ListaPrecios[lista.productoLista.nombreProducto] = 0
+
+    for canal in canales:
+        detalleDespostes = DetallePlanilla.objects.filter(planilla__codigoPlanilla = canal.planilla.codigoPlanilla)
+        for detalle in detalleDespostes:
+            ListaPesos[detalle.producto.nombreProducto] += ceil(detalle.PesoProducto/1000) * detalle.costoProducto
+            ListaPrecios[detalle.producto.nombreProducto] += ceil(detalle.PesoProducto/1000)
+
+    print(ListaPesos)
+    for lista in detalleListaPrecios:
+        ListaPrecios[lista.productoLista.nombreProducto] *= lista.precioVenta
+
+
+
+    listas = {'venta':ListaPrecios,'costo':ListaPesos}
+
+    respuesta = json.dumps(listas)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+
+
+
+
+
+
+
 

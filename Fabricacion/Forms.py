@@ -188,7 +188,7 @@ class CarneCondForm(ModelForm):
 class CroquetaFrom(ModelForm):
     class Meta:
         model = TallerCroquetas
-        exclude = ("pesoTotalCond","costoKiloCond","guardado",)
+        exclude = ("pesoTotalCond","costoKiloCond","guardado","pesoTotalCroqueta","costoKiloCroqueta",)
 
 class ReapanadoForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -209,9 +209,12 @@ class ConversionesForm(ModelForm):
         q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses')
         q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos')
         q3 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdas')
+        q4 = Producto.objects.filter(grupo__nombreGrupo = 'Compra/Venta')
+        q5 = Producto.objects.filter(grupo__nombreGrupo = 'Desechos')
+        q6 = Producto.objects.filter(grupo__nombreGrupo = 'Pollos')
 
-        self.fields['productoUno'].queryset = q1 | q2 | q3
-        self.fields['productoDos'].queryset = q1 | q2 | q3
+        self.fields['productoUno'].queryset = q1 | q2 | q3 | q4 | q5 | q6
+        self.fields['productoDos'].queryset = q1 | q2 | q3 | q4 | q5 | q6
 
 
     class Meta:

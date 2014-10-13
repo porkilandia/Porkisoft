@@ -46,6 +46,9 @@ urlpatterns = patterns('',
     url(r'^templateTraslado/$',TemplateTraslados),
     url(r'^reporteTraslado/$',ReporteTraslados),
 
+    url(r'^templateUtilidad/$',TemplateUtilidadPorLote),
+    url(r'^utilidadReses/$',ReporteUtilidadPorLote),
+
      url(r'^molida/$',GestionMolido),
 
     url(r'^canal/(?P<idrecepcion>\d+)',GestionCanal),

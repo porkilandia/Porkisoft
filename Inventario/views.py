@@ -339,7 +339,7 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA***********************************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=35)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()
@@ -665,6 +665,31 @@ def ReporteCompra(request):
 
 
     return HttpResponse(respuesta,mimetype='application/json')
+
+
+def TemplateReporteFaltantes (request):
+    bodegas = Bodega.objects.all()
+    return render_to_response('Inventario/ReporteFaltantes.html',{'bodegas':bodegas},
+                                                        context_instance = RequestContext(request))
+
+def ReporteFaltantes (request):
+    idBodega = request.GET.get('bodega')
+    bodega = Bodega.objects.get(pk = int(idBodega))
+
+    productoBodega = ProductoBodega.objects.filter(bodega = bodega.codigoBodega)
+
+    respuesta = serializers.serialize('json',productoBodega)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def NombreProducto (request):
+    idBodega = request.GET.get('bodega')
+    productos = Producto.objects.all()
+
+    return HttpResponse(productos,mimetype='application/json')
+
+
+
 
 
 

@@ -7,6 +7,9 @@ urlpatterns = patterns('',
     url(r'^reporteCompras/$', ComprasProveedor),
     url(r'^jsonCompras/$', ReporteCompra),
 
+    url(r'^TemplatereporteFaltantes/$', TemplateReporteFaltantes),
+    url(r'^reporteFaltantes/$', ReporteFaltantes),
+    url(r'^nombreProducto/$', NombreProducto),
 
 
     url(r'^provedorAjax/$', listaProvedoresAjax),

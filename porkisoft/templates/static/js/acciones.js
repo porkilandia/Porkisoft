@@ -52,6 +52,7 @@ $(document).on('ready', inicio);
      $('#id_puntoCroq').on('change',VerificarInsCroquetas);
      $('#id_puntoReApanado').on('change',VerificarReApanados);
      $('#id_puntoConversion').on('change',VerificarConversiones);
+     $('#compraReses').on('change',ReporteUtilidadRes);
      $('#Excel').on('click',Exportar);
 
 
@@ -76,6 +77,10 @@ $(document).on('ready', inicio);
      $('#tablaEmpacado').dataTable();
      $('#tablaMovimientos').dataTable();
      $('#tablaApanados').dataTable();
+     $('#tablaReApanado').dataTable();
+     $('#tablaCCond').dataTable();
+     $('#tablaConversiones').dataTable();
+     $('#tablaReporteFaltante').dataTable();
 
      $('#id_fecha').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCompra').datepicker({ dateFormat: "dd/mm/yy" });
@@ -98,6 +103,7 @@ $(document).on('ready', inicio);
      $('#id_fechaConversion').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCroqueta').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCarCond').datepicker({ dateFormat: "dd/mm/yy" });
+
 
 
 
@@ -151,6 +157,122 @@ function Exportar()
 
 
 }*/
+$.ajax({
+
+            url: '/inventario/reporteFaltantes/',
+            dataType: "json",
+            type: "get",
+            data: {'bodega': CodigoBodega},
+            success: function (respuesta) {
+
+
+                    }
+
+        });
+
+function ReporteFaltantes() {
+
+    var bodega = $('#bodegaFaltantes option:selected');
+
+    var CodigoBodega = bodega.val();
+
+    var NombreBodega = bodega.text();
+
+    var productos = '';
+
+   var tablaFaltante = $("#tablaReporteFaltante");
+   $.ajax({
+
+                            url: '/inventario/nombreProducto/',
+                            dataType: "json",
+                            type: "get",
+                            data: {'bodega': CodigoBodega},
+                            success: function (respuesta) {
+                                productos = respuesta;
+                                    }
+                        });
+
+        $.ajax({
+
+            url: '/inventario/reporteFaltantes/',
+            dataType: "json",
+            type: "get",
+            data: {'bodega': CodigoBodega},
+            success: function (respuesta) {
+                    tablaFaltante.find("tr:gt(0)").remove();
+
+                    for (var i=0;i<respuesta.length;i++)
+                    {
+
+                        if((respuesta[i].fields.pesoProductoStock != 0)||(respuesta[i].fields.unidadesStock != 0)){
+                            tablaFaltante.append(
+                                "<tr><td>" + NombreProducto +
+                                "</td><td>" + NombreBodega +
+                                "</td><td>" + respuesta[i].fields.pesoProductoStock +
+                                "</td><td>" + respuesta[i].fields.unidadesStock +
+                                "</td></tr>");
+                        }
+
+
+                    }
+
+                    }
+
+        });
+
+}
+
+function ReporteUtilidadRes()
+{
+    var idCompra = $('#compraReses').val();
+    var lista = $('#ListaPrecios').val();
+    var totalCosto = 0;
+    var totalVenta = 0;
+    var utilidad = 0;
+    var rentabilidad = 0;
+
+
+    $.ajax({
+
+            url: '/fabricacion/utilidadReses/',
+            dataType: "json",
+            type: "get",
+            data: {'idCompra': idCompra,'lista':lista},
+            success: function (respuesta)
+            {
+                    $("#tablaReporteCosto").find("tr:gt(0)").remove();
+                    $("#tablaReporteVenta").find("tr:gt(0)").remove();
+
+                    $.each(respuesta.costo,function(key,value){
+                    if(value != 0)
+                    {
+                        $("#tablaReporteCosto").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                        totalCosto += Math.ceil(value)
+                    }
+
+                });
+
+                    $.each(respuesta.venta,function(key,value){
+                    if(value != 0) {
+                        $("#tablaReporteVenta").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                        totalVenta += Math.ceil(value)
+                    }
+
+                });
+
+                utilidad = totalVenta - totalCosto;
+                rentabilidad = (utilidad *100)/totalVenta;
+                var tablaReporteTotal = $("#tablaReporteTotal");
+
+                tablaReporteTotal.append("<tr><td>" + 'Total Costo' + "</td><td>" + totalCosto + "</td></tr>");
+                tablaReporteTotal.append("<tr><td>" + 'Total Venta' + "</td><td>" + totalVenta + "</td></tr>");
+                tablaReporteTotal.append("<tr><td>" + 'Total Utilidad' + "</td><td>" + utilidad + "</td></tr>");
+                tablaReporteTotal.append("<tr><td>" + 'Total Rentabilidad' + "</td><td>" + rentabilidad + "</td></tr>");
+            }
+
+        });
+
+}
 function consultaTraslados() {
 
     var bodega = $('#bodega option:selected');

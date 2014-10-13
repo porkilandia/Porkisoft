@@ -19,13 +19,13 @@
         {% for productobodega in productoBodegas %}
 
             {% if productobodega.pesoProductoStock == 0 %}
-                {% if productobodega.unidadesStock < 10 %}
+                {% if productobodega.unidadesStock < 5 %}
                     <tr style="background: indianred">
                 {% else %}
                     <tr style="background:limegreen">
                 {% endif %}
             {% else %}
-                {% if productobodega.pesoProductoStock < 5000 %}
+                {% if productobodega.pesoProductoStock < 500 %}
                     <tr style="background: indianred">
                 {% else %}
                     <tr style="background:limegreen">

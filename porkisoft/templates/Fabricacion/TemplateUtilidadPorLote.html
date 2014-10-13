@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Reporte Compras{% endblock titulo %}
+{% block mensajes %}
+    Reporte Compras
+{% endblock mensajes %}
+{% block contenido %}
+<div id="rangoCompras">
+     <label for="ListaPrecios">ListaPrecios</label><select id="ListaPrecios">
+        {% for lista in listaPrecios %}
+            <option value={{ lista.codigoLista }}>{{ lista.nombreLista }}</option>
+        {% endfor %}
+    </select>
+
+     <label for="compraReses">Compras Reses</label><select id="compraReses">
+        {% for compra in comprasReses %}
+            <option value={{ compra.codigoCompra }}>{{ compra.fechaCompra }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="compraCerdos">Compras Cerdos</label><select id="compraCerdos">
+        {% for compra in comprasCerdos %}
+            <option value={{ compra.codigoCompra }}>{{ compra.fechaCompra }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="compraCerdas">Compras Cerdas</label><select id="compraCerdas">
+        {% for compra in comprasCerdas %}
+            <option value={{ compra.codigoCompra }}>{{ compra.fechaCompra }}</option>
+        {% endfor %}
+    </select>
+
+     <a  onclick="consultaTraslados()" href="#"><input type="button" value="Consultar"></a>
+        <br/>
+        <br/>
+        <br/>
+   </div>
+
+
+    <div id="acordeon">
+        <h3>Costo Total</h3>
+        <div>
+            <table id="tablaReporteCosto" class="table-striped">
+        <thead>
+        <tr>
+            <th >dato 1</th>
+            <th >Dato 2</th>
+        </tr>
+        </thead>
+
+        </table>
+        </div>
+        <h3>Venta Total</h3>
+        <div>
+            <table id="tablaReporteVenta" class="table-striped">
+        <thead>
+        <tr>
+            <th >dato 1</th>
+            <th >Dato 2</th>
+        </tr>
+        </thead>
+
+    </table>
+        </div>
+    <h3>Total</h3>
+        <div>
+            <table id="tablaReporteTotal" class="table-striped">
+        <thead>
+        <tr>
+            <th >dato 1</th>
+            <th >Dato 2</th>
+        </tr>
+        </thead>
+
+    </table>
+        </div>
+
+
+    </div>
+
+
+
+
+{% endblock contenido %}

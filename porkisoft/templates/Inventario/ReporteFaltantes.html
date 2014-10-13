@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Reporte Compras{% endblock titulo %}
+{% block mensajes %}
+    Reporte Compras
+{% endblock mensajes %}
+{% block contenido %}
+<div id="rangoCompras">
+   <label for="bodegaFaltantes">Bodega</label><select id="bodegaFaltantes">
+        {% for bod in bodegas %}
+            <option value={{ bod.codigoBodega }}>{{ bod.nombreBodega }}</option>
+        {% endfor %}
+    </select>
+
+     <a  onclick="ReporteFaltantes()" href="#"><input type="button" value="Consultar"></a>
+        <br/>
+        <br/>
+        <br/>
+   </div>
+    <table id="tablaReporteFaltante" class="table-striped">
+        <thead>
+        <tr>
+            <th >Producto</th>
+            <th >Bodega</th>
+            <th>Peso</th>
+            <th>Unidades</th>
+
+        </tr>
+        </thead>
+
+    </table>
+
+
+{% endblock contenido %}
