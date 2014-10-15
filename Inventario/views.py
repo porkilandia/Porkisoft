@@ -185,6 +185,13 @@ def borrarDetalleSp(request, idDetalle):
 
 def GestionBodega(request):
     bodegas = Bodega.objects.all()
+    prodBods = ProductoBodega.objects.all()
+
+    '''for bodega in prodBods:
+        bodega.nombreProducto = bodega.producto.nombreProducto
+        bodega.save()'''
+
+
     if request.method == 'POST':
         formulario = BodegaForm(request.POST)
         if formulario.is_valid():
@@ -339,7 +346,7 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA***********************************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=35)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()
@@ -376,6 +383,7 @@ def GestionDetalleCompra(request,idcompra):
             movimiento.tipo = 'CMP%d'%(compra.codigoCompra)
             movimiento.fechaMov = compra.fechaCompra
             movimiento.productoMov = detalleCompra.producto
+            movimiento.Hasta = compra.bodegaCompra.nombreBodega
 
             # Si el producto es un insumo
 
@@ -472,6 +480,7 @@ def EditaCompra(request,idDetCompra):
                 movimiento.fechaMov = compra.fechaCompra
                 movimiento.productoMov = detcomp.producto
                 movimiento.entrada = datos.pesoDescongelado
+                movimiento.Hasta = bodega.bodega.nombreBodega
                 movimiento.save()
 
                 detcompra.estado =True
@@ -585,6 +594,8 @@ def GuardarTraslado(request):
         movimiento.tipo = 'TRS%d'%(traslado.codigoTraslado)
         movimiento.productoMov = detalle.productoTraslado
         movimiento.fechaMov = traslado.fechaTraslado
+        movimiento.desde = bodegaOrigen.bodega.nombreBodega
+        movimiento.Hasta = bodegaDestino.bodega.nombreBodega
         if detalle.pesoTraslado == 0:
             movimiento.entrada = detalle.unidadesTraslado
             movimiento.salida = detalle.unidadesTraslado
@@ -682,11 +693,46 @@ def ReporteFaltantes (request):
 
     return HttpResponse(respuesta,mimetype='application/json')
 
-def NombreProducto (request):
-    idBodega = request.GET.get('bodega')
-    productos = Producto.objects.all()
 
-    return HttpResponse(productos,mimetype='application/json')
+def TemplateMovimientos(request):
+    productos = Producto.objects.all()
+    return render_to_response('Inventario/ReporteMovimientos.html',{'productos':productos},context_instance = RequestContext(request))
+
+def ReporteMovimientos(request):
+    idProducto = request.GET.get('producto')
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    movimientos = Movimientos.objects.filter(fechaMov__range = (finicio,ffin)).filter(productoMov = int(idProducto))
+
+    respuesta = serializers.serialize('json',movimientos)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def GestionAjustes(request):
+    fechainicio = date.today() - timedelta(days=20)
+    fechafin = date.today()
+    ajustes = Ajustes.objects.all().order_by('fechaAjuste').filter(fechaAjuste__range = (fechainicio,fechafin))
+    if request.method == 'POST':
+
+        formulario = AjustesForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/inventario/ajustes')
+    else:
+        formulario =AjustesForm()
+
+    return render_to_response('Inventario/GestionAjustes.html',{'formulario':formulario,'ajustes':ajustes },
+                              context_instance = RequestContext(request))
+
 
 
 

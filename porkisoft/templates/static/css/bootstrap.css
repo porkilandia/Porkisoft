@@ -215,6 +215,11 @@ fieldset {
     width: 35%;
     display: inline-block;
 }
+#rangoFaltantes
+{
+    width: 20%;
+    display: inline-block;
+}
 #rango
 {
     width: 25%;

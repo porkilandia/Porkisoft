@@ -24,11 +24,13 @@ $(document).on('ready', inicio);
      $('#costear').on('click',CostearDesposte);
      $('#costearTajado').on('click',CostearTajado);
      $('#guardar').on('click',GuardarDesposte);
-     $('#id_productoVenta').on('change',consultaValorProducto);
+
+     $('#id_productoVenta').on('blur',consultaValorProducto);
+
      $('#id_vrTotal').on('focus',calculoValorProducto);
      $('#guardarVentas').on('click',GuardarVentas);
      $('#Guardatraslado').on('click',GuardarTraslado);
-     $('#id_productoTraslado').on('change',ConsultaStock);
+     $('#id_productoTraslado').on('blur',ConsultaStock);
      $('#id_productoCondimento').on('change',VerificarExistencias);
      $('#id_productoMiga').on('change',VerificarExistenciasMiga);
      $('#id_desposteHistorico').on('change',TraerCosto);
@@ -54,6 +56,9 @@ $(document).on('ready', inicio);
      $('#id_puntoConversion').on('change',VerificarConversiones);
      $('#compraReses').on('change',ReporteUtilidadRes);
      $('#Excel').on('click',Exportar);
+     $('#ExpExcelFaltantes').on('click',ExportarFaltantes);
+     $('#id_pesoEnvio').on('focus',PasaValorEnvio);
+
 
 
      //var tablaEmpacado = $('#tablaEmpacado tr');
@@ -80,7 +85,11 @@ $(document).on('ready', inicio);
      $('#tablaReApanado').dataTable();
      $('#tablaCCond').dataTable();
      $('#tablaConversiones').dataTable();
-     $('#tablaReporteFaltante').dataTable();
+     $('#tablaReporteMovimientos').dataTable();
+     $('#tablaFritos').dataTable();
+     $('#TablaCondimento').dataTable();
+     $('#tablaAjustes').dataTable();
+
 
      $('#id_fecha').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCompra').datepicker({ dateFormat: "dd/mm/yy" });
@@ -103,9 +112,9 @@ $(document).on('ready', inicio);
      $('#id_fechaConversion').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCroqueta').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCarCond').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaAjuste').datepicker({ dateFormat: "dd/mm/yy" });
 
-
-
+     $( "#bodegaFaltantes" ).selectmenu({ width: 200 });
 
      $('#homeAccordeon').accordion({ heightStyle: "content" });
      $('#acordeon').accordion({ heightStyle: "content" });
@@ -115,7 +124,51 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function consultaMovimientos()
+{
+    var fechaInicio = $('#inicio').val();
+    var fechaFin = $('#fin').val();
+    var producto = $('#productoMovimiento option:selected');
+    var TablaMovimientos = $('#tablaReporteMovimientos');
+    var NombreProducto = producto.text();
 
+    $.ajax({
+
+            url: '/inventario/reporteMovimientos/',
+            dataType: "json",
+            type: "get",
+            data: {'inicio': fechaInicio,'fin': fechaFin,'producto': producto.val()},
+            success: function (respuesta) {
+                    TablaMovimientos.find("tr:gt(0)").remove();
+
+                    for (var i=0;i<respuesta.length;i++)
+                    {
+                        TablaMovimientos.append(
+                                "<tr><td>" + respuesta[i].fields.tipo +
+                                "</td><td>" + respuesta[i].fields.fechaMov +
+                                "</td><td>" + NombreProducto +
+                                "</td><td>"  + respuesta[i].fields.desde +
+                                "</td><td>"  + respuesta[i].fields.Hasta +
+                                "</td><td>"  + respuesta[i].fields.entrada +
+                                "</td><td>"  + respuesta[i].fields.salida +
+                                "</td></tr>");
+
+                    }
+                    }
+
+        });
+}
+function PasaValorEnvio()
+{
+    var peso = $('#id_pesoTraslado').val();
+    $('#id_pesoEnvio').val(peso);
+
+}
+
+function ExportarFaltantes()
+{
+    $('#tablaReporteFaltante').tableExport({type:'pdf',escape:'false',pdfFontSize:8});
+}
 function Exportar()
 {
     $('#tablaApanados').tableExport({type:'pdf',escape:'false',pdfFontSize:8,ignoreColumn: [3,9,10]});
@@ -157,18 +210,6 @@ function Exportar()
 
 
 }*/
-$.ajax({
-
-            url: '/inventario/reporteFaltantes/',
-            dataType: "json",
-            type: "get",
-            data: {'bodega': CodigoBodega},
-            success: function (respuesta) {
-
-
-                    }
-
-        });
 
 function ReporteFaltantes() {
 
@@ -181,16 +222,6 @@ function ReporteFaltantes() {
     var productos = '';
 
    var tablaFaltante = $("#tablaReporteFaltante");
-   $.ajax({
-
-                            url: '/inventario/nombreProducto/',
-                            dataType: "json",
-                            type: "get",
-                            data: {'bodega': CodigoBodega},
-                            success: function (respuesta) {
-                                productos = respuesta;
-                                    }
-                        });
 
         $.ajax({
 
@@ -206,11 +237,14 @@ function ReporteFaltantes() {
 
                         if((respuesta[i].fields.pesoProductoStock != 0)||(respuesta[i].fields.unidadesStock != 0)){
                             tablaFaltante.append(
-                                "<tr><td>" + NombreProducto +
+                                "<tr><td>" + respuesta[i].fields.nombreProducto +
                                 "</td><td>" + NombreBodega +
                                 "</td><td>" + respuesta[i].fields.pesoProductoStock +
                                 "</td><td>" + respuesta[i].fields.unidadesStock +
+                                "</td><td>" + '' +
+                                "</td><td>" + '' +
                                 "</td></tr>");
+
                         }
 
 

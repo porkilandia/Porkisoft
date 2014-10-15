@@ -19,7 +19,7 @@ class DetallePedidoForm(ModelForm):
 class VentaForm(ModelForm):
     class Meta:
         model = Venta
-        exclude = ('TotalVenta',"TotalCredito","TotalContado","descuadre","residuo",)
+        exclude = ('TotalVenta',"TotalCredito","TotalContado","descuadre","residuo","guardado",)
 
 class VentaDetalleForm(ModelForm):
     class Meta:

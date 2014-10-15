@@ -575,7 +575,7 @@ def GuardarMiga(request):
     detalleMiga = DetalleMiga.objects.filter(miga = int(idMiga))
 
     #Guardamos la cantidad de producto procesado en la bodega de planta de procesos
-    bodegaMiga = ProductoBodega.objects.get(bodega = 6, producto__nombreProducto = 'Miga Preparada' )
+    bodegaMiga = ProductoBodega.objects.get(bodega = 5, producto__nombreProducto = 'Miga Preparada' )
     bodegaMiga.pesoProductoStock += miga.PesoFormulaMiga
     bodegaMiga.save()
 
@@ -819,6 +819,7 @@ def GuardarMolido(request):
     movimiento.tipo = 'MOL%d'%(molido.id)
     movimiento.fechaMov = molido.fechaMolido
     movimiento.productoMov = molido.productoMolido
+    movimiento.desde = bodegaProductoAMoler.bodega.nombreBodega
     movimiento.salida = molido.pesoAmoler
     movimiento.save()
 
@@ -829,6 +830,7 @@ def GuardarMolido(request):
     movimiento.tipo = 'MOL%d'%(molido.id)
     movimiento.fechaMov = molido.fechaMolido
     movimiento.productoMov = carneMolida
+    movimiento.Hasta = bodegaProductoMolido.bodega.nombreBodega
     movimiento.entrada = molido.totalMolido
     movimiento.save()
 
@@ -1294,11 +1296,11 @@ def GestionDesposteActualizado(request, idplanilla):
         vrCarnes = ceil((vrTotalCanales * 6)/100)
         vrCarnes2 = ceil((vrTotalCanales * Decimal(27))/100)
         vrCarnes3 = ceil((vrTotalCanales * 30)/100)
-        vrCarnes4 = ceil((vrTotalCanales * Decimal(7.5))/100)
+        vrCarnes4 = ceil((vrTotalCanales * Decimal(10))/100)
         vrCostillas = ceil((vrTotalCanales * 9)/100)
         vrHuesos = ceil((vrTotalCanales * 7)/100)
-        vrsubProd = ceil((vrTotalCanales * 5)/100)
-        vrDesecho = ceil((vrTotalCanales * 1)/100)
+        vrsubProd = ceil((vrTotalCanales * 3)/100)
+        vrDesecho = ceil((vrTotalCanales * 2)/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
 
@@ -1532,6 +1534,7 @@ def GuardarDesposte(request):
             movimiento.tipo = 'DSP%d'%(desposte.codigoPlanilla)
             movimiento.fechaMov = desposte.fechaDesposte
             movimiento.productoMov = detalle.producto
+            movimiento.Hasta = bodega.bodega.nombreBodega
             movimiento.entrada = detalle.PesoProducto
             movimiento.save()
 
@@ -2295,6 +2298,7 @@ def GuardarFrito(request):
     movimiento.fechaMov = frito.fechaFrito
     movimiento.productoMov = condimento
     movimiento.salida = frito.condimento
+    movimiento.desde = bodegaCondimento.bodega.nombreBodega
     movimiento.save()
 
     movimiento = Movimientos()
@@ -2302,6 +2306,7 @@ def GuardarFrito(request):
     movimiento.fechaMov = frito.fechaFrito
     movimiento.productoMov = producto
     movimiento.salida = frito.pesoProducto
+    movimiento.desde = bodegaProducto.bodega.nombreBodega
     movimiento.save()
 
 
@@ -2317,6 +2322,7 @@ def GuardarFrito(request):
         movimiento.fechaMov = frito.fechaFrito
         movimiento.productoMov = fritoProcesado
         movimiento.entrada = frito.pesoTotalFrito
+        movimiento.Hasta = bodegaFritoCerdo.bodega.nombreBodega
         movimiento.save()
     else:
         fritoProcesado = Producto.objects.get(nombreProducto = 'Frito de Cerda Condimentado')
@@ -2329,6 +2335,7 @@ def GuardarFrito(request):
         movimiento.fechaMov = frito.fechaFrito
         movimiento.productoMov = fritoProcesado
         movimiento.entrada = frito.pesoTotalFrito
+        movimiento.Hasta = bodegaFritoCerda.bodega.nombreBodega
         movimiento.save()
 
     frito.guardado =True
@@ -2502,6 +2509,7 @@ def GuardarCroqueta(request):
     movimiento.fechaMov = regCroqueta.fechaCroqueta
     movimiento.productoMov = croquetaCocida
     movimiento.salida = regCroqueta.croqueta
+    movimiento.desde = bodegaCroquetaCocida.bodega.nombreBodega
     movimiento.save()
 
     bodegaCondimento.pesoProductoStock -= regCroqueta.condimento
@@ -2512,6 +2520,7 @@ def GuardarCroqueta(request):
     movimiento.fechaMov = regCroqueta.fechaCroqueta
     movimiento.productoMov = condimento
     movimiento.salida = regCroqueta.condimento
+    movimiento.desde = bodegaCondimento.bodega.nombreBodega
     movimiento.save()
 
     bodegaMiga.pesoProductoStock -= regCroqueta.miga
@@ -2522,6 +2531,7 @@ def GuardarCroqueta(request):
     movimiento.fechaMov = regCroqueta.fechaCroqueta
     movimiento.productoMov = miga
     movimiento.salida = regCroqueta.miga
+    movimiento.desde = bodegaMiga.bodega.nombreBodega
     movimiento.save()
 
     #*************************************************ENTRADAS**********************************************************
@@ -2532,6 +2542,7 @@ def GuardarCroqueta(request):
     movimiento.fechaMov = regCroqueta.fechaCroqueta
     movimiento.productoMov = croquetaApanada
     movimiento.entrada = regCroqueta.pesoTotalCroqueta
+    movimiento.Hasta = bodegaCroquetaApanada.bodega.nombreBodega
     movimiento.save()
 
     regCroqueta.guardado = True
@@ -2581,6 +2592,7 @@ def GuardarReApanado(request):
     movimiento.fechaMov = reApanado.fechaReApanado
     movimiento.productoMov = reApanado.chuelta
     movimiento.salida = reApanado.pesoChuleta
+    movimiento.desde = bodegaChuleta.bodega.nombreBodega
     movimiento.save()
 
     bodegaMiga.pesoProductoStock -= reApanado.miga
@@ -2589,6 +2601,7 @@ def GuardarReApanado(request):
     movimiento.tipo = 'RAP%d'%(reApanado.id)
     movimiento.fechaMov = reApanado.fechaReApanado
     movimiento.productoMov = miga
+    movimiento.desde = bodegaMiga.bodega.nombreBodega
     movimiento.salida = reApanado.miga
     movimiento.save()
 
@@ -2600,6 +2613,7 @@ def GuardarReApanado(request):
         movimiento.fechaMov = reApanado.fechaReApanado
         movimiento.productoMov = chuletaCerdo
         movimiento.entrada = chuletaReApanada
+        movimiento.Hasta = bodegaChuletaCerdo.bodega.nombreBodega
         movimiento.save()
     else:
         bodegaChuletaPollo.pesoProductoStock += chuletaReApanada
@@ -2609,9 +2623,11 @@ def GuardarReApanado(request):
         movimiento.fechaMov = reApanado.fechaReApanado
         movimiento.productoMov = chuletaPollo
         movimiento.entrada = chuletaReApanada
+        movimiento.Hasta = bodegaChuletaPollo.bodega.nombreBodega
         movimiento.save()
 
     reApanado.guardado = True
+    reApanado.pesoTotalReApanado = chuletaReApanada
     reApanado.save()
 
     msj = 'Guardado exitoso'
@@ -2660,6 +2676,7 @@ def GuardarConversion(request):
     movimiento.tipo = 'CON%d'%(conversion.id)
     movimiento.fechaMov = conversion.fechaConversion
     movimiento.productoMov = producto1
+    movimiento.desde = conversion.puntoConversion.nombreBodega
     movimiento.salida = conversion.pesoConversion
     movimiento.save()
 
@@ -2671,6 +2688,7 @@ def GuardarConversion(request):
     movimiento.tipo = 'CON%d'%(conversion.id)
     movimiento.fechaMov = conversion.fechaConversion
     movimiento.productoMov = producto2
+    movimiento.Hasta = conversion.puntoConversion.nombreBodega
     movimiento.entrada = conversion.pesoConversion
     movimiento.save()
 

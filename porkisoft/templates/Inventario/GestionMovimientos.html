@@ -12,6 +12,8 @@
         <thead>
         <tr>
             <th>Tipo</th>
+            <th>Desde</th>
+            <th>Hasta</th>
             <th>Producto</th>
             <th>Fecha</th>
             <th>Entrada</th>
@@ -21,6 +23,8 @@
         {% for movimiento in movimientos %}
         <tr>
             <td>{{ movimiento.tipo }}</td>
+            <td>{{ movimiento.desde }}</td>
+            <td>{{ movimiento.Hasta }}</td>
             <td>{{ movimiento.productoMov }}</td>
             <td>{{ movimiento.fechaMov }}</td>
             <td>{{ movimiento.entrada|floatformat }}</td>

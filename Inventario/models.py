@@ -67,6 +67,7 @@ class DetalleSubProducto(models.Model):
 
 class ProductoBodega(models.Model):
     producto = models.ForeignKey(Producto)
+    nombreProducto = models.CharField(blank=True,max_length=100)
     bodega = models.ForeignKey(Bodega)
     pesoProductoStock = models.DecimalField(max_digits=15,decimal_places=2,verbose_name='Peso en  Stock', default=0)
     pesoProductoKilos = models.IntegerField(verbose_name='Peso en  Stock(Kls)', default=0)
@@ -207,5 +208,15 @@ class Movimientos(models.Model):
     tipo = models.CharField(verbose_name='Tipo',max_length=20)
     productoMov = models.ForeignKey(Producto)
     fechaMov = models.DateField(verbose_name='Fecha')
+    desde = models.CharField(max_length=30,blank=True)
+    Hasta = models.CharField(max_length=30,blank=True)
     entrada = models.DecimalField(verbose_name='Entrada',default=0,max_digits=9, decimal_places=3)
     salida = models.DecimalField(verbose_name='Salida',default=0,max_digits=9, decimal_places=3)
+
+class Ajustes(models.Model):
+    fechaAjuste = models.DateField(verbose_name='Fecha')
+    productoAjuste = models.ForeignKey(Producto,verbose_name='Producto')
+    bodegaAjuste = models.ForeignKey(Bodega,verbose_name='Bodega')
+    pesoAjuste = models.DecimalField(verbose_name='Ajuste',default=0,max_digits=9, decimal_places=3)
+    observacion = models.CharField(max_length=200,verbose_name='Observaciones')
+    guardado = models.BooleanField(default=False)

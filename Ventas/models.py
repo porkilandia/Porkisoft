@@ -37,6 +37,8 @@ class Venta(models.Model):
     descuadre = models.IntegerField(verbose_name='Descuadre',default=0)
     residuo = models.IntegerField(default=0)
     jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)
+    restaurante = models.BooleanField(default=False,verbose_name='Restaurantes')
+    guardado = models.BooleanField(default=False,verbose_name='Guardado')
 
     def __unicode__(self):
         return self.numeroVenta

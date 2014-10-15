@@ -207,11 +207,15 @@ def GuardarVenta(request):
         movimiento.tipo = 'VNT%d'%(venta.numeroVenta)
         movimiento.fechaMov = venta.fechaVenta
         movimiento.productoMov = vnt.productoVenta
+        movimiento.desde = venta.bodega.nombreBodega
         if vnt.peso == 0:
             movimiento.salida = vnt.unidades
         else:
             movimiento.salida = vnt.peso
         movimiento.save()
+
+    venta.guardado = True
+    venta.save()
 
     msj = 'Se guardaron %d registros exitosamente'%registros
     respuesta = json.dumps(msj)

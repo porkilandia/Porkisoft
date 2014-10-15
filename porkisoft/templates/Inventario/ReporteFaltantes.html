@@ -5,14 +5,15 @@
     Reporte Compras
 {% endblock mensajes %}
 {% block contenido %}
-<div id="rangoCompras">
+<div id="rangoFaltantes">
    <label for="bodegaFaltantes">Bodega</label><select id="bodegaFaltantes">
         {% for bod in bodegas %}
             <option value={{ bod.codigoBodega }}>{{ bod.nombreBodega }}</option>
         {% endfor %}
     </select>
 
-     <a  onclick="ReporteFaltantes()" href="#"><input type="button" value="Consultar"></a>
+     <a  onclick="ReporteFaltantes()" href="#"><input type="button" value="Consultar" class="btn btn-success"></a>
+    <a id="ExpExcelFaltantes" href="#"><input type="button" value="Excel" class="btn btn-primary"></a>
         <br/>
         <br/>
         <br/>
@@ -20,13 +21,27 @@
     <table id="tablaReporteFaltante" class="table-striped">
         <thead>
         <tr>
-            <th >Producto</th>
+            <th>Producto</th>
             <th >Bodega</th>
             <th>Peso</th>
             <th>Unidades</th>
+            <th>Fisico</th>
+            <th>Faltante</th>
 
         </tr>
         </thead>
+        <tr>
+            <th>Responsable </th>
+            <th >Reviso</th>
+            <th>Aprobo</th>
+
+        </tr>
+        <tr>
+            <td> </td>
+            <td ></td>
+            <td></td>
+
+        </tr>
 
     </table>
 

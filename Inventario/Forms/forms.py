@@ -89,3 +89,8 @@ class PlanillaRecepcionForm(ModelForm):
 class GrupoForm(ModelForm):
     class Meta:
         model = Grupo
+
+class AjustesForm(ModelForm):
+    class Meta:
+        model = Ajustes
+        exclude = ("guardado",)

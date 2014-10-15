@@ -24,7 +24,11 @@
         </tr>
         </thead>
         {% for venta in ventas %}
-        <tr>
+        {% if venta.guardado == False %}
+        <tr style="color: red">
+        {% else%}
+            <tr style="color: green">
+        {% endif %}
             <td>{{ venta.numeroVenta }}</td>
             <td>{{ venta.fechaVenta }}</td>
             <td>{{ venta.lista }}</td>

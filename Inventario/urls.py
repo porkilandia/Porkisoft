@@ -9,7 +9,11 @@ urlpatterns = patterns('',
 
     url(r'^TemplatereporteFaltantes/$', TemplateReporteFaltantes),
     url(r'^reporteFaltantes/$', ReporteFaltantes),
-    url(r'^nombreProducto/$', NombreProducto),
+
+    url(r'^TemplateMovimientos/$', TemplateMovimientos),
+    url(r'^reporteMovimientos/$', ReporteMovimientos),
+
+    url(r'^ajustes/$',GestionAjustes),
 
 
     url(r'^provedorAjax/$', listaProvedoresAjax),
