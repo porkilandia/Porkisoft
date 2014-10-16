@@ -14,6 +14,8 @@ urlpatterns = patterns('',
     url(r'^reporteMovimientos/$', ReporteMovimientos),
 
     url(r'^ajustes/$',GestionAjustes),
+    url(r'^guardarAjustes/$',GuardarAjuste),
+    url(r'^EditaAjustes/(?P<idAjuste>\d+)',EditarAjustes),
 
 
     url(r'^provedorAjax/$', listaProvedoresAjax),

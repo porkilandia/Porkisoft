@@ -93,7 +93,7 @@ class Traslado(models.Model):
     empleado = models.ForeignKey(Empleado)
     fechaTraslado = models.DateField(verbose_name='Fecha')
     estadoTraslado = models.CharField(verbose_name='Estado',max_length=9,choices=OpEstTraslado)
-    descripcionTraslado = models.TextField(verbose_name='Descriopcion', max_length=200)
+    descripcionTraslado = models.TextField(verbose_name='Descripcion', max_length=200)
     guardado = models.BooleanField(verbose_name='Guardado',default=False)
 
     def __unicode__(self):
@@ -133,6 +133,7 @@ class Compra(models.Model):
     bodegaCompra = models.ForeignKey(Bodega,blank=True,default=5)
     encargado = models.ForeignKey(Empleado)
     proveedor = models.ForeignKey(Proveedor)
+    cantCabezas = models.IntegerField(verbose_name='# Cabezas', default=0)
     fechaCompra = models.DateField(verbose_name='Fecha',blank=True,null=True)
     vrCompra = models.IntegerField(verbose_name='Valor Compra', default=0)
     vrTransporte = models.IntegerField(verbose_name='Transporte',default= 0)
@@ -218,5 +219,6 @@ class Ajustes(models.Model):
     productoAjuste = models.ForeignKey(Producto,verbose_name='Producto')
     bodegaAjuste = models.ForeignKey(Bodega,verbose_name='Bodega')
     pesoAjuste = models.DecimalField(verbose_name='Ajuste',default=0,max_digits=9, decimal_places=3)
-    observacion = models.CharField(max_length=200,verbose_name='Observaciones')
+    unidades = models.IntegerField(verbose_name='Unidades', null= True,default=0)
+    observacion = models.TextField(verbose_name='Observaciones',max_length=150)
     guardado = models.BooleanField(default=False)

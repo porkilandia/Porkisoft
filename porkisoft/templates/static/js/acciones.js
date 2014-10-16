@@ -63,7 +63,7 @@ $(document).on('ready', inicio);
 
      //var tablaEmpacado = $('#tablaEmpacado tr');
      //tablaEmpacado.on('click',maneja);
-
+    $('#tablaAjustes').dataTable();
      $('#canalPendiente').dataTable();
      $('#tablaenTajados').dataTable();
      $('#tablacostos').dataTable({ "pageLength": 13 });
@@ -88,7 +88,7 @@ $(document).on('ready', inicio);
      $('#tablaReporteMovimientos').dataTable();
      $('#tablaFritos').dataTable();
      $('#TablaCondimento').dataTable();
-     $('#tablaAjustes').dataTable();
+
 
 
      $('#id_fecha').datepicker({ dateFormat: "dd/mm/yy" });
@@ -124,6 +124,24 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function GuardarAjuste(idAjuste)
+{
+    var opcion = confirm('Desea guardar este Ajuste, recuerde que esto afectara el inventario.');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/inventario/guardarAjustes/',
+            dataType: "json",
+            type: "get",
+            data: {'idAjuste': idAjuste},
+            success: function (respuesta) {
+                var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+            }
+
+        });
+    }
+}
+
 function consultaMovimientos()
 {
     var fechaInicio = $('#inicio').val();
@@ -389,12 +407,13 @@ function consultaCompras() {
                                 "<tr><td>" + respuesta[i].fields.fechaCompra +
                                 "</td><td>" + NombreProvedor +
                                 "</td><td>" + NombreBodega +
+                                "</td><td>" + respuesta[i].fields.cantCabezas +
                                 "</td><td>" + '$ ' + respuesta[i].fields.vrCompra +
                                 "</td></tr>");
                         TotalCompra += respuesta[i].fields.vrCompra;
                     }
 
-                tablaCompra.append("<tr><th id = 'total' colspan='3' style='text-align: right'>" + 'Total :'  +"</th><th>"+ '$ ' +TotalCompra +"</th></tr>");
+                tablaCompra.append("<tr><th id = 'total' colspan='4' style='text-align: right'>" + 'Total :'  +"</th><th>"+ '$ ' +TotalCompra +"</th></tr>");
 
                 //var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                     }

@@ -17,8 +17,8 @@
             <th>Producto</th>
             <th>Bodega</th>
             <th>Peso</th>
+            <th>Unidades</th>
             <th>Observacion</th>
-            <th>Guardado</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -33,12 +33,18 @@
             <td>{{ ajuste.productoAjuste }}</td>
             <td>{{ ajuste.bodegaAjuste }}</td>
             <td>{{ ajuste.pesoAjuste }}</td>
+            <td>{{ ajuste.unidades }}</td>
             <td>{{ ajuste.observacion }}</td>
+            {% if ajuste.guardado == False %}
             <td>
-                <a href="#"><img src="{{ STATIC_URL }}img/modificar.png"></a>
-                <a href="#" id="borrador"><img src="{{ STATIC_URL }}img/borrar.png"></a>
+                <a onclick="GuardarAjuste({{ ajuste.id }})" href="#">Guardar</a>
+                <a  href="{% url 'Inventario.views.EditarAjustes' ajuste.id %}">Editar</a>
 
             </td>
+            {% else %}
+            <td></td>
+            {% endif %}
+
 
         </tr>
             {% empty %}
@@ -52,7 +58,7 @@
     </table>
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarBodega">
-             <legend>Ganado <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+             <legend>Ajuste <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
 
                   {{ formulario }}
 
@@ -60,8 +66,6 @@
 
              <legend>Acciones</legend>
              <input type="submit" class="btn btn-primary"  value="Guardar">
-             <a href="/inventario/compra/"><input type="button" class="btn btn-default" value="Volver"></a>
-
          </fieldset>
      </form>
 {% endblock contenido %}

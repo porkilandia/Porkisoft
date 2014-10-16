@@ -381,6 +381,11 @@ img {
     height: 60px;
     width:310px;
 }
+#id_observacion
+{
+    height: 60px;
+    width:370px;
+}
 
 .img-responsive,
 .thumbnail > img,

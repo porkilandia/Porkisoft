@@ -102,7 +102,7 @@ def GestionCanal(request,idrecepcion):
 
             else:
                 menudo = 12000 * cantidad
-                transporte = 7000* cantidad
+                transporte = 9000* cantidad
                 deguello = 48200 * cantidad
                 pesoPorkilandia = Decimal(request.POST.get('pesoPorkilandia'))
                 cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gte = 200)# busca registros que el peso sea mayor o igual a 150

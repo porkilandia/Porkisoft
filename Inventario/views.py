@@ -239,7 +239,8 @@ def GestionPlanillaRecepcion(request,idcompra):
 
     recepciones = PlanillaRecepcion.objects.filter(compra = idcompra)
     detCompra = DetalleCompra.objects.filter(compra = idcompra)
-
+    compra = Compra.objects.get(pk = idcompra)
+    compra.cantCabezas = detCompra.count()
 
     if request.method == 'POST':
         formulario = PlanillaRecepcionForm(request.POST)
@@ -346,10 +347,12 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA***********************************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=30)
+    fechainicio = date.today() - timedelta(days=50)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()
+
+
     if request.method == 'POST':
         formulario = CompraForm(request.POST)
         if formulario.is_valid():
@@ -729,6 +732,53 @@ def GestionAjustes(request):
             return HttpResponseRedirect('/inventario/ajustes')
     else:
         formulario =AjustesForm()
+
+    return render_to_response('Inventario/GestionAjustes.html',{'formulario':formulario,'ajustes':ajustes },
+                              context_instance = RequestContext(request))
+
+def GuardarAjuste(request):
+    idAjuste = request.GET.get('idAjuste')
+    ajuste = Ajustes.objects.get(pk = int(idAjuste))
+
+    bodegaAjuste = ProductoBodega.objects.get(bodega = ajuste.bodegaAjuste.codigoBodega,producto = ajuste.productoAjuste.codigoProducto)
+
+    bodegaAjuste.pesoProductoStock = ajuste.pesoAjuste
+    bodegaAjuste.unidadesStock = ajuste.unidades
+    bodegaAjuste.save()
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'AJU%d'%(ajuste.id)
+    movimiento.fechaMov = ajuste.fechaAjuste
+    movimiento.productoMov = ajuste.productoAjuste
+    if ajuste.pesoAjuste == 0:
+        movimiento.entrada = ajuste.unidades
+    else:
+        movimiento.entrada = ajuste.pesoAjuste
+
+    movimiento.Hasta = ajuste.bodegaAjuste.nombreBodega
+    movimiento.save()
+
+    ajuste.guardado = True
+    ajuste.save()
+
+    msj = 'Guardado exitoso'
+    respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def EditarAjustes(request,idAjuste):
+    fechainicio = date.today() - timedelta(days=20)
+    fechafin = date.today()
+    ajustes = Ajustes.objects.all().order_by('fechaAjuste').filter(fechaAjuste__range = (fechainicio,fechafin))
+    ajuste = Ajustes.objects.get(pk = idAjuste)
+    if request.method == 'POST':
+
+        formulario = AjustesForm(request.POST,instance=ajuste)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/inventario/ajustes')
+    else:
+        formulario =AjustesForm(instance=ajuste)
 
     return render_to_response('Inventario/GestionAjustes.html',{'formulario':formulario,'ajustes':ajustes },
                               context_instance = RequestContext(request))

@@ -22,6 +22,16 @@ class VentaForm(ModelForm):
         exclude = ('TotalVenta',"TotalCredito","TotalContado","descuadre","residuo","guardado",)
 
 class VentaDetalleForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(VentaDetalleForm,self).__init__(*args, **kwargs)
+        q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses')
+        q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos')
+        q3 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdas')
+        q4 = Producto.objects.filter(grupo__nombreGrupo = 'Compra/Venta')
+        q5 = Producto.objects.filter(grupo__nombreGrupo = 'Pollos')
+
+        self.fields['productoVenta'].queryset = q1 | q2 | q3 | q4 | q5
+
     class Meta:
         model = DetalleVenta
 
