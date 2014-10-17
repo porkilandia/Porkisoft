@@ -44,7 +44,7 @@ class CompraForm(ModelForm):
     tipo = forms.ModelChoiceField(queryset = Grupo.objects.all())
     class Meta:
         model = Compra
-        exclude = ("vrCompra",)
+        exclude = ("vrCompra","cantCabezas",)
 
 class DetalleCompraForm(ModelForm):
 

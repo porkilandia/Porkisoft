@@ -88,6 +88,7 @@ $(document).on('ready', inicio);
      $('#tablaReporteMovimientos').dataTable();
      $('#tablaFritos').dataTable();
      $('#TablaCondimento').dataTable();
+     $('#tablaCroquetas').dataTable();
 
 
 

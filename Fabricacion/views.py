@@ -256,7 +256,7 @@ def GestionSacrificio(request,idrecepcion):
                               context_instance = RequestContext(request))
 
 def GestionEnsalinado(request):
-    fechainicio = date.today() - timedelta(days=30)
+    fechainicio = date.today() - timedelta(days=15)
     fechafin = date.today()
     ensalinados = Ensalinado.objects.filter(fechaEnsalinado__range =(fechainicio,fechafin))
     #ensalinados = Ensalinado.objects.all()
@@ -658,7 +658,7 @@ def existencias(request):
 
 def GestionApanado(request):
 
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=15)
     fechafin = date.today()
     apanados = ProcesoApanado.objects.filter(fechaApanado__range =(fechainicio,fechafin))
     #apanados = ProcesoApanado.objects.all()
@@ -871,7 +871,7 @@ def costeoMolido(request):
 #**********************************************PROCESO CONDIMENTADO*****************************************************
 
 def GestionCondimentado(request):
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=15)
     fechafin = date.today()
     condimentados = Condimentado.objects.filter(fecha__range =(fechainicio,fechafin))
     #condimentados = Condimentado.objects.all()
@@ -973,7 +973,7 @@ def TraerCostoFilete(request):
 #**********************************************PROCESO TAJADO **********************************************************
 
 def GestionTajado(request):
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=15)
     fechafin = date.today()
     exito = True
     tajados = Tajado.objects.all().filter(fechaTajado__range = (fechainicio,fechafin))
@@ -1620,8 +1620,10 @@ def InformeCanalesPendientes(request):
                               context_instance = RequestContext(request))
 
 def GestionDescarneCabeza(request):
-
-    descarnes = DescarneCabeza.objects.all()
+    fechainicio = date.today() - timedelta(days=15)
+    fechafin = date.today()
+    descarnes = DescarneCabeza.objects.filter(fecha__range =(fechainicio,fechafin))
+    #descarnes = DescarneCabeza.objects.all()
     costoCabeza = Producto.objects.filter(nombreProducto = 'Cabeza')
 
     # sacamos el costo de las cabezas de cerdo y cerda ppor separado
@@ -2230,8 +2232,10 @@ def GuardarMenudos(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionFrito(request):
-
-    fritos = TallerFrito.objects.all()
+    fechainicio = date.today() - timedelta(days=15)
+    fechafin = date.today()
+    fritos = TallerFrito.objects.filter(fechaFrito__range =(fechainicio,fechafin))
+    #fritos = TallerFrito.objects.all()
 
     if request.method == 'POST':
 
@@ -2346,8 +2350,10 @@ def GuardarFrito(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionCarneCond(request):
-
-    carnes = TallerCarneCondimentada.objects.all()
+    fechainicio = date.today() - timedelta(days=15)
+    fechafin = date.today()
+    carnes = TallerCarneCondimentada.objects.filter(fechaCarCond__range =(fechainicio,fechafin))
+    #carnes = TallerCarneCondimentada.objects.all()
 
     if request.method == 'POST':
 
@@ -2436,7 +2442,10 @@ def GuardarCarneCond(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionCroqueta(request):
-    croquetas = TallerCroquetas.objects.all()
+    fechainicio = date.today() - timedelta(days=15)
+    fechafin = date.today()
+    croquetas = TallerCroquetas.objects.filter(fechaCroqueta__range =(fechainicio,fechafin))
+    #croquetas = TallerCroquetas.objects.all()
 
     if request.method == 'POST':
 
@@ -2553,7 +2562,10 @@ def GuardarCroqueta(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionReApanado(request):
-    reApanado = TallerReapanado.objects.all()
+    fechainicio = date.today() - timedelta(days=15)
+    fechafin = date.today()
+    reApanado = TallerReapanado.objects.filter(fechaReApanado__range =(fechainicio,fechafin))
+    #reApanado = TallerReapanado.objects.all()
 
     if request.method == 'POST':
 
@@ -2635,7 +2647,10 @@ def GuardarReApanado(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionConversiones(request):
-    conversiones = Conversiones.objects.all()
+    fechainicio = date.today() - timedelta(days=15)
+    fechafin = date.today()
+    conversiones = Conversiones.objects.filter(fechaConversion__range =(fechainicio,fechafin))
+    #conversiones = Conversiones.objects.all()
 
     if request.method == 'POST':
         formulario = ConversionesForm(request.POST)

@@ -14,7 +14,9 @@ class SacrificioForm(ModelForm):
 class EnsalinadoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(EnsalinadoForm,self).__init__(*args, **kwargs)
-        self.fields['productoEnsalinado'].queryset = Producto.objects.filter(nombreProducto__contains = 'Filete de Cerda')
+        q1 = Producto.objects.filter(nombreProducto__contains = 'Filete de Cerda')
+        q2 = Producto.objects.filter(nombreProducto__contains = 'Pierna de Cerda')
+        self.fields['productoEnsalinado'].queryset = q1 |q2
     class Meta:
         model = Ensalinado
         exclude = ("costoKilo" , "costoTotal","guardado","estado",)
@@ -45,9 +47,16 @@ class TajadoForm(ModelForm):
         q1 = Producto.objects.filter(grupo__nombreGrupo ='Cerdos')
         q2 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas')
         q3 = Producto.objects.filter(grupo__nombreGrupo ='Pollos')
+
+        fechainicio = date.today() - timedelta(days=15)
+        fechafin = date.today()
+
+        planilla = PlanillaDesposte.objects.filter(tipoDesposte = 'Cerdas').order_by('fechaDesposte')
+        compra = Compra.objects.filter(tipo__nombreGrupo = 'Pollos').order_by('-fechaCompra')
+
         self.fields['producto'].queryset = q1 | q2 | q3
-        self.fields['desposteHistorico'].queryset = PlanillaDesposte.objects.filter(tipoDesposte = 'Cerdas').order_by('fechaDesposte')
-        self.fields['polloHistorico'].queryset = Compra.objects.filter(tipo__nombreGrupo = 'Pollos').order_by('-fechaCompra')
+        self.fields['desposteHistorico'].queryset = planilla.filter(fechaDesposte__range = (fechainicio,fechafin))
+        self.fields['polloHistorico'].queryset = compra.filter(fechaCompra__range = (fechainicio,fechafin))
 
     class Meta:
         model = Tajado
