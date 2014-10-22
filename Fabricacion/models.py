@@ -375,3 +375,13 @@ class Conversiones(models.Model):
     costoP2 = models.IntegerField(verbose_name='Costo Producto 2',default=0)
     guardado = models.BooleanField(default=False)
 
+class TallerBolaEnsalinada(models.Model):
+    fechaBolaCondimentada = models.DateField(verbose_name='Fecha')
+    pesoBola = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3,default=0)
+    sal = models.DecimalField(verbose_name='Peso Sal', max_digits=9, decimal_places=3,default=0)
+    papaina = models.DecimalField(verbose_name='Peso Papaina', max_digits=9, decimal_places=3,default=0)
+    pesoTotal = models.DecimalField(verbose_name='Peso Total', max_digits=9, decimal_places=3,default=0)
+    costoKiloEns = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    pesoDespues = models.DecimalField(verbose_name='Peso Despues', max_digits=9, decimal_places=3,default=0)
+    puntoBodega = models.ForeignKey(Bodega,verbose_name='Punto')
+    guardado = models.BooleanField(default=False)

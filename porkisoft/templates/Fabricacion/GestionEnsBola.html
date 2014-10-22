@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Condimentado{% endblock titulo %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+
+
+    <table  id="TablaEnsBola" class="table-striped">
+
+        <thead>
+        <tr>
+
+
+            <th>Fecha</th>
+            <th>Peso</th>
+            <th>Sal</th>
+            <th>Papaina</th>
+            <th>Coto Kilo</th>
+            <th>Peso Pre</th>
+            <th>Peso Pos</th>
+            <th>Acciones</th>
+
+        </tr>
+        </thead>
+        {% for ensBola in ensBolas %}
+            <tr>
+                <td>{{ ensBola.fechaBolaCondimentada }}</td>
+                <td>{{ ensBola.pesoBola }}</td>
+                <td>{{ ensBola.sal }}</td>
+                <td>{{ ensBola.papaina }}</td>
+                <td>{{ ensBola.costoKiloEns }}</td>
+                <td>{{ ensBola.pesoTotal }}</td>
+                <td>{{ ensBola.pesoDespues }}</td>
+
+                {% if condimentado.guardado == True %}
+                    <a onclick="CostearEnsBola({{ ensBola.id }})" href="#">Costear</a>
+                    <a href="{% url 'Fabricacion.views.EditaEnsBola' ensBola.id %}">Actualizar</a>
+                {% else %}
+                    <td>
+                    <a onclick="GuardarEnsBola({{ ensBola.id }})" href="#">Guardar</a>
+                    </td>
+                {% endif %}
+
+
+
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun registro para mostrar
+                </td>
+            </tr>
+
+
+        {% endfor %}
+
+    </table>
+     <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarProducto">
+             <legend>Nuevo Proceso <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+             {{ formulario }}
+             <br/><br/>
+             <legend>Acciones</legend>
+             <input class="btn btn-primary" value="Guardar" type="submit">
+         </fieldset>
+    </form>
+
+{% endblock contenido %}

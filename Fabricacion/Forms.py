@@ -16,7 +16,8 @@ class EnsalinadoForm(ModelForm):
         super(EnsalinadoForm,self).__init__(*args, **kwargs)
         q1 = Producto.objects.filter(nombreProducto__contains = 'Filete de Cerda')
         q2 = Producto.objects.filter(nombreProducto__contains = 'Pierna de Cerda')
-        self.fields['productoEnsalinado'].queryset = q1 |q2
+        q3 = Producto.objects.filter(nombreProducto__contains = 'Bola')
+        self.fields['productoEnsalinado'].queryset = q1 |q2 | q3
     class Meta:
         model = Ensalinado
         exclude = ("costoKilo" , "costoTotal","guardado","estado",)
@@ -48,10 +49,10 @@ class TajadoForm(ModelForm):
         q2 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas')
         q3 = Producto.objects.filter(grupo__nombreGrupo ='Pollos')
 
-        fechainicio = date.today() - timedelta(days=15)
+        fechainicio = date.today() - timedelta(days=20)
         fechafin = date.today()
 
-        planilla = PlanillaDesposte.objects.filter(tipoDesposte = 'Cerdas').order_by('fechaDesposte')
+        planilla = PlanillaDesposte.objects.all().order_by('-fechaDesposte')
         compra = Compra.objects.filter(tipo__nombreGrupo = 'Pollos').order_by('-fechaCompra')
 
         self.fields['producto'].queryset = q1 | q2 | q3
@@ -229,3 +230,8 @@ class ConversionesForm(ModelForm):
     class Meta:
         model = Conversiones
         exclude = ("costoP1","costoP2","guardado",)
+
+class EnsBolaForm(ModelForm):
+    class Meta:
+        model = TallerBolaEnsalinada
+        exclude = ("pesoTotal","costoKiloEns","guardado",)

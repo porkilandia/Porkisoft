@@ -54,7 +54,7 @@ $(document).on('ready', inicio);
      $('#id_puntoCroq').on('change',VerificarInsCroquetas);
      $('#id_puntoReApanado').on('change',VerificarReApanados);
      $('#id_puntoConversion').on('change',VerificarConversiones);
-     $('#compraReses').on('change',ReporteUtilidadRes);
+     //$('#compraReses').on('change',ReporteUtilidadRes);
      $('#Excel').on('click',Exportar);
      $('#ExpExcelFaltantes').on('click',ExportarFaltantes);
      $('#id_pesoEnvio').on('focus',PasaValorEnvio);
@@ -89,6 +89,7 @@ $(document).on('ready', inicio);
      $('#tablaFritos').dataTable();
      $('#TablaCondimento').dataTable();
      $('#tablaCroquetas').dataTable();
+     $('#TablaEnsBola').dataTable();
 
 
 
@@ -114,6 +115,7 @@ $(document).on('ready', inicio);
      $('#id_fechaCroqueta').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCarCond').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaAjuste').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaBolaCondimentada').datepicker({ dateFormat: "dd/mm/yy" });
 
      $( "#bodegaFaltantes" ).selectmenu({ width: 200 });
 
@@ -125,6 +127,39 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+
+function GuardarEnsBola(idEnsalinado)
+{
+    var opcion = confirm('Desea guardar este Ajuste, recuerde que esto afectara el inventario.');
+    if (opcion == true) {
+        $.ajax({
+
+            url: '/inventario/guardarEnsBola/',
+            dataType: "json",
+            type: "get",
+            data: {'idEnsalinado': idEnsalinado},
+            success: function (respuesta) {
+                var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+            }
+
+        });
+    }
+}
+function CostearEnsBola(idEnsalinado)
+{
+     $.ajax({
+
+            url: '/fabricacion/costearEnsBola/',
+            dataType: "json",
+            type: "get",
+            data: {'idEnsalinado': idEnsalinado},
+            success: function (respuesta) {
+                var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+            }
+
+        });
+
+}
 function GuardarAjuste(idAjuste)
 {
     var opcion = confirm('Desea guardar este Ajuste, recuerde que esto afectara el inventario.');
@@ -275,52 +310,29 @@ function ReporteFaltantes() {
 
 }
 
-function ReporteUtilidadRes()
+function ReportePesosLote()
 {
-    var idCompra = $('#compraReses').val();
-    var lista = $('#ListaPrecios').val();
-    var totalCosto = 0;
-    var totalVenta = 0;
-    var utilidad = 0;
-    var rentabilidad = 0;
-
+    var idCompra = $('#compras').val();
 
     $.ajax({
 
             url: '/fabricacion/utilidadReses/',
             dataType: "json",
             type: "get",
-            data: {'idCompra': idCompra,'lista':lista},
+            data: {'idCompra': idCompra},
             success: function (respuesta)
             {
-                    $("#tablaReporteCosto").find("tr:gt(0)").remove();
-                    $("#tablaReporteVenta").find("tr:gt(0)").remove();
+                    $("#tablaPesoLote").find("tr:gt(0)").remove();
 
-                    $.each(respuesta.costo,function(key,value){
+                    $.each(respuesta.Pesos,function(key,value){
                     if(value != 0)
                     {
-                        $("#tablaReporteCosto").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) + "</td></tr>");
-                        totalCosto += Math.ceil(value)
+                        $("#tablaPesoLote").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) + "</td></tr>");
+
                     }
 
                 });
 
-                    $.each(respuesta.venta,function(key,value){
-                    if(value != 0) {
-                        $("#tablaReporteVenta").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) + "</td></tr>");
-                        totalVenta += Math.ceil(value)
-                    }
-
-                });
-
-                utilidad = totalVenta - totalCosto;
-                rentabilidad = (utilidad *100)/totalVenta;
-                var tablaReporteTotal = $("#tablaReporteTotal");
-
-                tablaReporteTotal.append("<tr><td>" + 'Total Costo' + "</td><td>" + totalCosto + "</td></tr>");
-                tablaReporteTotal.append("<tr><td>" + 'Total Venta' + "</td><td>" + totalVenta + "</td></tr>");
-                tablaReporteTotal.append("<tr><td>" + 'Total Utilidad' + "</td><td>" + utilidad + "</td></tr>");
-                tablaReporteTotal.append("<tr><td>" + 'Total Rentabilidad' + "</td><td>" + rentabilidad + "</td></tr>");
             }
 
         });
@@ -1143,7 +1155,7 @@ function ExistenciasApanado()
 {
     var miga = $('#id_miga').val();
     // Miga Preparada 109
-    Existencias(109,6,miga);
+    Existencias(109,5,miga);
 }
 function TraecostoEnsalinado()
 {

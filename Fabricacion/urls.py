@@ -31,6 +31,11 @@ urlpatterns = patterns('',
     url(r'^costearFritos/$',CostearFrito),
     url(r'^guardarFritos/$',GuardarFrito),
 
+    url(r'^ensBola/$',GestionEnsBola),
+    url(r'^costearEnsBola/$',CostearEnsBola),
+    url(r'^guardarEnsBola/$',GuardarEnsBola),
+    url(r'^editaEnsBola/(?P<idEns>\d+)',EditaEnsBola),
+
     url(r'^carneCondimentada/$',GestionCarneCond),
     url(r'^costearCarneCond/$',CostearCarneCond),
     url(r'^guardarCarneCond/$',GuardarCarneCond),

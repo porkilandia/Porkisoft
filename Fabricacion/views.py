@@ -321,19 +321,26 @@ def GuardaEnsalinado(request):
     ensalinado.save()
 
     # se guarda en el Producto el Costo del Kilo
-    piernaEnsalinada = Producto.objects.get(nombreProducto = 'Pierna Ensalinada')
-    piernaEnsalinada.costoProducto = costoKilo
-    piernaEnsalinada.save()
-
-    #Se guarda la cantidad final en la bodega de taller
     movimientos = Movimientos()
     movimientos.tipo = 'ENS%d'%(ensalinado.codigoEnsalinado)
     movimientos.fechaMov = ensalinado.fechaEnsalinado
-    movimientos.productoMov = piernaEnsalinada
+
+    if producto.grupo.nombreGrupo == 'Cerdas':
+        piernaEnsalinada = Producto.objects.get(nombreProducto = 'Pierna Ensalinada')
+        piernaEnsalinada.costoProducto = costoKilo
+        piernaEnsalinada.save()
+        bodegaEnsalinado = ProductoBodega.objects.get(bodega = 6,producto = piernaEnsalinada.codigoProducto)
+        bodegaEnsalinado.pesoProductoStock += ensalinado.pesoProductoDespues
+        movimientos.productoMov = piernaEnsalinada
+    else:
+        BolaEnsalinada = Producto.objects.get(nombreProducto = 'Bola Ensalinada')
+        BolaEnsalinada.costoProducto = costoKilo
+        BolaEnsalinada.save()
+        bodegaEnsalinado = ProductoBodega.objects.get(bodega = 6,producto = BolaEnsalinada.codigoProducto)
+        movimientos.productoMov = BolaEnsalinada
+
     movimientos.entrada = ensalinado.pesoProductoDespues
     movimientos.save()
-
-    bodegaEnsalinado = ProductoBodega.objects.get(bodega = 6,producto = piernaEnsalinada.codigoProducto)
     bodegaEnsalinado.pesoProductoStock += ensalinado.pesoProductoDespues
     bodegaEnsalinado.save()
 
@@ -680,7 +687,7 @@ def GuardarApanado(request):
     Filete = Producto.objects.get(pk = apanado.productoApanado.codigoProducto)
 
     bodegaFilete = ProductoBodega.objects.get(bodega = 5,producto = Filete.codigoProducto)
-    bodegaMiga = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Miga Preparada')
+    bodegaMiga = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Miga Preparada')
     bodegaHuevos = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Huevos')
     bodegaFileteApanadoCerdo = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Filete Apanado Cerdo')
     bodegaFileteApanadoPollo = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Filete Apanado Pollo')
@@ -871,7 +878,7 @@ def costeoMolido(request):
 #**********************************************PROCESO CONDIMENTADO*****************************************************
 
 def GestionCondimentado(request):
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     condimentados = Condimentado.objects.filter(fecha__range =(fechainicio,fechafin))
     #condimentados = Condimentado.objects.all()
@@ -1161,7 +1168,7 @@ def GuardarTajado(request):
 #***********************************************PLANILLA DESPOSTE*******************************************************
 
 def GestionDesposte(request):
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
     despostes = PlanillaDesposte.objects.filter(fechaDesposte__range =(fechainicio,fechafin))
     #despostes = PlanillaDesposte.objects.all()
@@ -2751,48 +2758,148 @@ def  TemplateUtilidadPorLote(request):
     q1 = Compra.objects.filter(tipo__nombreGrupo = 'Reses')
     q2 = Compra.objects.filter(tipo__nombreGrupo = 'Cerdas')
     q3 = Compra.objects.filter(tipo__nombreGrupo = 'Cerdos')
-    listaPrecios = ListaDePrecios.objects.all()
+    compras = q1 | q2 | q3
 
-    return render_to_response('Fabricacion/TemplateUtilidadPorLote.html',{'listaPrecios':listaPrecios,'comprasReses':q1,'comprasCerdos':q3,'comprasCerdas':q2 },
+    return render_to_response('Fabricacion/TemplateUtilidadPorLote.html',{'compras':compras},
                               context_instance = RequestContext(request))
 
 def ReporteUtilidadPorLote(request):
     idCompra = request.GET.get('idCompra')
     compra = Compra.objects.get(pk = int(idCompra))
-    idLista = request.GET.get('lista')
-    listaPrecio = ListaDePrecios.objects.get(pk = int(idLista))
-    detalleListaPrecios = DetalleLista.objects.filter(lista = listaPrecio.codigoLista)
     canales = Canal.objects.filter(recepcion__compra = int(idCompra))
-    precios = ListaDePrecios.objects.all()
-
-    detallesPrecios = DetalleLista.objects.all().filter(precioVenta__gt = 0 )
     ListaPesos = {}
-    ListaPrecios = {}
+    cont = 0
 
     #inicializamos la lista
-    for lista in detalleListaPrecios:
-        ListaPesos[lista.productoLista.nombreProducto] = 0
-        ListaPrecios[lista.productoLista.nombreProducto] = 0
+    for canal in canales:
+        if canal.planilla:
+            detalleDespostes = DetallePlanilla.objects.filter(planilla__codigoPlanilla = canal.planilla.codigoPlanilla)
+            cont += 1
+            for detalle in detalleDespostes:
+                ListaPesos[detalle.producto.nombreProducto] = 0
+
+    planillaAnterior = 0
+    planillaActual = 0
 
     for canal in canales:
-        detalleDespostes = DetallePlanilla.objects.filter(planilla__codigoPlanilla = canal.planilla.codigoPlanilla)
-        for detalle in detalleDespostes:
-            ListaPesos[detalle.producto.nombreProducto] += ceil(detalle.PesoProducto/1000) * detalle.costoProducto
-            ListaPrecios[detalle.producto.nombreProducto] += ceil(detalle.PesoProducto/1000)
-
-    print(ListaPesos)
-    for lista in detalleListaPrecios:
-        ListaPrecios[lista.productoLista.nombreProducto] *= lista.precioVenta
-
+        if canal.planilla:
+            planillaActual = canal.planilla.codigoPlanilla
+            detalleDespostes = DetallePlanilla.objects.filter(planilla__codigoPlanilla = canal.planilla.codigoPlanilla)
+            if planillaAnterior != planillaActual:
+                for detalle in detalleDespostes:
+                    ListaPesos[detalle.producto.nombreProducto] += ceil(detalle.PesoProducto)
+            planillaAnterior = planillaActual
 
 
-    listas = {'venta':ListaPrecios,'costo':ListaPesos}
+
+    #for llave,valor in ListaPesos.items():
+     #   ListaPesos[llave] = valor/cont
+
+    listas = {'Pesos':ListaPesos}
 
     respuesta = json.dumps(listas)
 
     return HttpResponse(respuesta,mimetype='application/json')
 
 
+def GestionEnsBola(request):
+    fechainicio = date.today() - timedelta(days=15)
+    fechafin = date.today()
+    ensBolas = TallerBolaEnsalinada.objects.filter(fechaBolaCondimentada__range =(fechainicio,fechafin))
+    #conversiones = Conversiones.objects.all()
+
+    if request.method == 'POST':
+        formulario = EnsBolaForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/ensBola')
+    else:
+        formulario = EnsBolaForm()
+
+    return render_to_response('Fabricacion/GestionEnsBola.html',{'formulario':formulario,'ensBolas':ensBolas },
+                              context_instance = RequestContext(request))
+def EditaEnsBola(request,idEns):
+    fechainicio = date.today() - timedelta(days=15)
+    fechafin = date.today()
+    ensBolas = TallerBolaEnsalinada.objects.filter(fechaBolaCondimentada__range =(fechainicio,fechafin))
+    ensBola = TallerBolaEnsalinada.objects.get(pk = idEns)
+    #conversiones = Conversiones.objects.all()
+
+    if request.method == 'POST':
+        formulario = EnsBolaForm(request.POST,instance=ensBola)
+        if formulario.is_valid():
+            dato = formulario.save()
+            #Guardamos el producto Ensalinado
+            bolaEns =  Producto.objects.get(nombreProducto = 'Bola Ensalinada')
+            bodega = ProductoBodega.objects.get(bodega = dato.puntoBodega.codigoBodega,producto = bolaEns.codigoProducto)
+            bodega.pesoProductoStock += dato.pesoDespues
+            bodega.save()
+
+            return HttpResponseRedirect('/fabricacion/ensBola')
+    else:
+        formulario = EnsBolaForm(instance=ensBola)
+
+    return render_to_response('Fabricacion/GestionEnsBola.html',{'formulario':formulario,'ensBolas':ensBolas },
+                              context_instance = RequestContext(request))
+
+def CostearEnsBola(request):
+
+    idEnsalinado = request.GET.get('idEnsalinado')
+    ensBola = TallerBolaEnsalinada.objects.get(pk = int(idEnsalinado))
+    bolaEns =  Producto.objects.get(nombreProducto = 'Bola Ensalinada')
+
+    pesoCarne= ensBola.pesoBola
+    pesoSal = ensBola.sal
+    pesoPapaina = ensBola.papaina
+
+    costoSal = Producto.objects.get(nombreProducto = 'Sal').costoProducto * (pesoSal/1000)
+    costoPapaina = Producto.objects.get(nombreProducto = 'Papaina').costoProducto * (pesoPapaina/1000)
+    costoCarne = Producto.objects.get(nombreProducto = 'Bola').costoProducto * (pesoCarne/1000)
+
+    costoTotal = costoSal + costoPapaina + costoCarne
+    pesoTotal = pesoCarne + pesoSal + pesoPapaina
+    costoKilo = costoTotal/(ensBola.pesoDespues/1000)
+
+    bolaEns.costoProducto = costoKilo
+    bolaEns.save()
+
+    ensBola.costoKiloEns = costoKilo
+    ensBola.pesoTotal = pesoTotal
+    ensBola.save()
+
+    msj = 'Costeado Exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def GuardarEnsBola(request):
+
+    idEnsalinado = request.GET.get('idEnsalinado')
+    ensBola = TallerBolaEnsalinada.objects.get(pk = int(idEnsalinado))
+
+    bolaEns =  Producto.objects.get(nombreProducto = 'Bola Ensalinada')
+    pesoAntes = ensBola.pesoBola
+    pesoSal = ensBola.sal
+    pesoPapaina = ensBola.papaina
+
+    sal = Producto.objects.get(nombreProducto = 'Sal')
+    papaina = Producto.objects.get(nombreProducto = 'Papaina')
+    carne = Producto.objects.get(nombreProducto = 'Bola')
+
+    bodegaSal = ProductoBodega.objects.get(bodega = 6,producto = sal.codigoProducto)
+    bodegaSal.pesoProductoStock -= pesoSal
+    bodegaSal.save()
+
+    bodegaPapaina = ProductoBodega.objects.get(bodega = 6,producto = papaina.codigoProducto)
+    bodegaPapaina.pesoProductoStock -= pesoPapaina
+    bodegaPapaina.save()
+
+    bodegaCarne = ProductoBodega.objects.get(bodega = ensBola.puntoBodega.codigoBodega,producto = carne.codigoProducto)
+    bodegaCarne.pesoProductoStock -= pesoAntes
+    bodegaCarne.save()
+
+    msj = 'Guardado Exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
 
 
 
