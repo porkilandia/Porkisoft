@@ -54,7 +54,7 @@ $(document).on('ready', inicio);
      $('#id_puntoCroq').on('change',VerificarInsCroquetas);
      $('#id_puntoReApanado').on('change',VerificarReApanados);
      $('#id_puntoConversion').on('change',VerificarConversiones);
-     //$('#compraReses').on('change',ReporteUtilidadRes);
+     $('#id_puntoBodega').on('change',VerificaBolaEns);
      $('#Excel').on('click',Exportar);
      $('#ExpExcelFaltantes').on('click',ExportarFaltantes);
      $('#id_pesoEnvio').on('focus',PasaValorEnvio);
@@ -127,14 +127,25 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function VerificaBolaEns()
+{
+   var idBodega = $('#id_puntoBodega').val();
+   var pesoBola = $('#id_pesoBola').val();
+    var pesoSal = $('#id_sal').val();
+   var pesoPapaina = $('#id_papaina').val();
 
+    Existencias(97,idBodega,pesoBola);
+    Existencias(89,6,pesoSal);
+    Existencias(95,6,pesoPapaina);
+
+}
 function GuardarEnsBola(idEnsalinado)
 {
     var opcion = confirm('Desea guardar este Ajuste, recuerde que esto afectara el inventario.');
     if (opcion == true) {
         $.ajax({
 
-            url: '/inventario/guardarEnsBola/',
+            url: '/fabricacion/guardarEnsBola/',
             dataType: "json",
             type: "get",
             data: {'idEnsalinado': idEnsalinado},

@@ -878,7 +878,7 @@ def costeoMolido(request):
 #**********************************************PROCESO CONDIMENTADO*****************************************************
 
 def GestionCondimentado(request):
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
     condimentados = Condimentado.objects.filter(fecha__range =(fechainicio,fechafin))
     #condimentados = Condimentado.objects.all()
@@ -1131,9 +1131,15 @@ def GuardarTajado(request):
     detTajado = DetalleTajado.objects.filter(tajado = int(idTajado))
     tajado = Tajado.objects.get(pk = int(idTajado))
     #guardamos el producto utilizado
-    bodegaTajado = ProductoBodega.objects.get(bodega = 5, producto = tajado.producto.codigoProducto)
-    bodegaTajado.pesoProductoStock -= tajado.pesoProducto
-    bodegaTajado.save()
+    if tajado.producto.nombreProducto == 'Pierna Ensalinada':
+        bodegaTajado = ProductoBodega.objects.get(bodega = 6, producto = tajado.producto.codigoProducto)
+        bodegaTajado.pesoProductoStock -= tajado.pesoProducto
+        bodegaTajado.save()
+    else:
+        bodegaTajado = ProductoBodega.objects.get(bodega = 5, producto = tajado.producto.codigoProducto)
+        bodegaTajado.pesoProductoStock -= tajado.pesoProducto
+        bodegaTajado.save()
+
 
     movimiento = Movimientos()
     movimiento.tipo = 'TJD%d'%(tajado.codigoTajado)
@@ -2693,25 +2699,33 @@ def GuardarConversion(request):
     #****************************************************SALIDA********************************************************
 
     bodegaP1.pesoProductoStock -= conversion.pesoConversion
+    bodegaP1.unidadesStock -= conversion.unidades
     bodegaP1.save()
     movimiento = Movimientos()
     movimiento.tipo = 'CON%d'%(conversion.id)
     movimiento.fechaMov = conversion.fechaConversion
     movimiento.productoMov = producto1
     movimiento.desde = conversion.puntoConversion.nombreBodega
-    movimiento.salida = conversion.pesoConversion
+    if conversion.pesoConversion == 0:
+        movimiento.salida = conversion.unidades
+    else:
+        movimiento.salida = conversion.pesoConversion
     movimiento.save()
 
     #****************************************************ENTRADA********************************************************
 
     bodegaP2.pesoProductoStock += conversion.pesoConversion
+    bodegaP2.unidadesStock += conversion.unidades
     bodegaP2.save()
     movimiento = Movimientos()
     movimiento.tipo = 'CON%d'%(conversion.id)
     movimiento.fechaMov = conversion.fechaConversion
     movimiento.productoMov = producto2
     movimiento.Hasta = conversion.puntoConversion.nombreBodega
-    movimiento.entrada = conversion.pesoConversion
+    if conversion.pesoConversion == 0:
+        movimiento.entrada = conversion.unidades
+    else:
+        movimiento.entrada = conversion.pesoConversion
     movimiento.save()
 
     conversion.costoP1 = costoP1
@@ -2755,9 +2769,9 @@ def ReporteTraslados(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def  TemplateUtilidadPorLote(request):
-    q1 = Compra.objects.filter(tipo__nombreGrupo = 'Reses')
-    q2 = Compra.objects.filter(tipo__nombreGrupo = 'Cerdas')
-    q3 = Compra.objects.filter(tipo__nombreGrupo = 'Cerdos')
+    q1 = Compra.objects.filter(tipo__nombreGrupo = 'Reses').order_by('fechaCompra')
+    q2 = Compra.objects.filter(tipo__nombreGrupo = 'Cerdas').order_by('fechaCompra')
+    q3 = Compra.objects.filter(tipo__nombreGrupo = 'Cerdos').order_by('fechaCompra')
     compras = q1 | q2 | q3
 
     return render_to_response('Fabricacion/TemplateUtilidadPorLote.html',{'compras':compras},
@@ -2896,6 +2910,9 @@ def GuardarEnsBola(request):
     bodegaCarne = ProductoBodega.objects.get(bodega = ensBola.puntoBodega.codigoBodega,producto = carne.codigoProducto)
     bodegaCarne.pesoProductoStock -= pesoAntes
     bodegaCarne.save()
+
+    ensBola.guardado = True
+    ensBola.save()
 
     msj = 'Guardado Exitoso'
     respuesta = json.dumps(msj)

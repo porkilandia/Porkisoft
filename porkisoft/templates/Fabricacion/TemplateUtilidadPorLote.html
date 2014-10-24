@@ -7,9 +7,9 @@
 {% block contenido %}
 <div id="rangoCompras">
 
-     <label for="compras">Compras Reses</label><select id="compras">
+     <label for="compras">Compras</label><select id="compras">
         {% for compra in compras %}
-            <option value={{ compra.codigoCompra }}>{{ compra.fechaCompra }}</option>
+            <option value={{ compra.codigoCompra }}>{{ compra.fechaCompra }} ({{ compra.tipo }})</option>
         {% endfor %}
     </select>
      <a  onclick="ReportePesosLote()" href="#"><input type="button" value="Consultar"></a>
@@ -23,8 +23,8 @@
             <table id="tablaPesoLote" class="table-striped">
         <thead>
         <tr>
-            <th >dato 1</th>
-            <th >Dato 2</th>
+            <th >Producto</th>
+            <th >Total Despostado</th>
         </tr>
         </thead>
 

@@ -152,12 +152,13 @@ class DescarneForm(ModelForm):
 class MolidoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(MolidoForm,self).__init__(*args, **kwargs)
-        q1 = Producto.objects.filter(grupo__nombreGrupo ='Cerdos')
-        q2 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas')
-        q3 = Producto.objects.filter(grupo__nombreGrupo ='Pollos')
-        q4 = Producto.objects.filter(grupo__nombreGrupo ='Reses')
+        q1 = Producto.objects.filter(grupo__nombreGrupo ='Cerdos').filter(nombreProducto = 'Pierna de Cerdo')
+        q2 = Producto.objects.filter(grupo__nombreGrupo ='Reses').filter(nombreProducto = 'Procesos de Res')
+        q3 = Producto.objects.filter(grupo__nombreGrupo ='Reses').filter(nombreProducto = 'Lagartos')
+        q4 = Producto.objects.filter(grupo__nombreGrupo ='Reses').filter(nombreProducto = 'Cogotes')
+        q5 = Producto.objects.filter(grupo__nombreGrupo ='Reses').filter(nombreProducto = 'Bola')
 
-        self.fields['productoMolido'].queryset = q1 | q2 | q3 | q4
+        self.fields['productoMolido'].queryset = q1 | q2 | q3 | q4 | q5
     class Meta:
         model = Molida
         exclude = ("costoKiloMolido","guardado","costoKilo",)

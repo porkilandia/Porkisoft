@@ -148,7 +148,7 @@ class DetallePlanilla (models.Model):
     PesoProducto = models.DecimalField(max_digits=9,decimal_places=3, verbose_name='Peso Producto')
     costoProducto = models.BigIntegerField(verbose_name = 'Costo Primario', default=0)
     costoAdtvo = models.BigIntegerField(verbose_name = 'Costo Admin', default=0)
-    grupo = models.CharField(verbose_name='Grupo', choices=OpGrupo,default='Macho', max_length=20)
+    grupo = models.CharField(verbose_name='Grupo', choices=OpGrupo,default='Grupo Carnes', max_length=20)
     vrKiloCarnes = models.IntegerField(verbose_name='Vr.Carnes 1', default=0)
     vrKiloCarnes2 = models.IntegerField(verbose_name='Vr.Carnes 2', default=0)
     vrKiloCarnes3 = models.IntegerField(verbose_name='Vr.Carnes 3', default=0)
@@ -368,6 +368,7 @@ class TallerReapanado(models.Model):
 class Conversiones(models.Model):
     fechaConversion = models.DateField(verbose_name='Fecha')
     pesoConversion = models.DecimalField(verbose_name='Peso', max_digits=9, decimal_places=3,default=0)
+    unidades = models.IntegerField(verbose_name='unidades',default=0)
     productoUno = models.CharField(verbose_name='Producto 1', max_length=50)
     productoDos = models.CharField(verbose_name='Producto 2', max_length=50)
     puntoConversion =  models.ForeignKey(Bodega)

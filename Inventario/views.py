@@ -339,7 +339,7 @@ def GestionGanado(request,idcompra):
 
             return HttpResponseRedirect('/inventario/ganado/'+idcompra)
     else:
-        formulario = GanadoForm(initial={'precioKiloEnPie':3200,'compra':idcompra,'piel':'Friana'})
+        formulario = GanadoForm(initial={'precioKiloEnPie':3300,'compra':idcompra,'piel':'Friana'})
 
     return render_to_response('Inventario/GestionGanado.html',{'formulario':formulario,'ganados':ganados,'compra':idcompra },
                               context_instance = RequestContext(request))
@@ -347,7 +347,7 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA***********************************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()
@@ -360,7 +360,7 @@ def GestionCompra(request):
 
             return HttpResponseRedirect('/inventario/compra')
     else:
-        formulario =CompraForm()
+        formulario =CompraForm(initial={'encargado':12951685})
 
     return render_to_response('Inventario/GestionCompras.html',{'formulario':formulario,'compras':compras },
                               context_instance = RequestContext(request))
@@ -373,6 +373,9 @@ def GestionDetalleCompra(request,idcompra):
     totalCompra  = 0
     for dcmp in detcompras: # clacular los totales de la lista de detalles de subproducto
                 totalCompra += dcmp.subtotal
+
+    compra.vrCompra = totalCompra
+    compra.save()
 
     if request.method == 'POST':
         formulario = DetalleCompraForm(idcompra,request.POST)

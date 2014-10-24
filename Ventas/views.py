@@ -69,8 +69,10 @@ def GestionDetallePedido(request,idpedido):
                               context_instance = RequestContext(request))
 
 def GestionVentas(request):
-
-    ventas = Venta.objects.all()
+    fechainicio = date.today() - timedelta(days=20)
+    fechafin = date.today()
+    ventas = Venta.objects.filter(fechaVenta__range =(fechainicio,fechafin))
+    #ventas = Venta.objects.all()
 
     if request.method =='POST':
         formulario = VentaForm(request.POST)
