@@ -334,6 +334,7 @@ function ReportePesosLote()
             success: function (respuesta)
             {
                     $("#tablaPesoLote").find("tr:gt(0)").remove();
+                    $("#tablaPesoCarne").find("tr:gt(0)").remove();
 
                     $.each(respuesta.Pesos,function(key,value){
                     if(value != 0)
@@ -341,9 +342,12 @@ function ReportePesosLote()
                         $("#tablaPesoLote").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) + "</td></tr>");
 
                     }
+                    });
 
-                });
+                    $.each(respuesta.adicionales,function(key,value){
 
+                        $("#tablaPesoCarne").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                    });
             }
 
         });

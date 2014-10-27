@@ -1411,7 +1411,7 @@ def GestionDesposteActualizado(request, idplanilla):
            detalles.vrKiloHuesos = vrKiloHuesos
            detalles.vrKiloSubProd = vrKiloSubProd
            detalles.vrKiloDesecho = vrKiloDesecho
-           detalles.pesoCarne = pesoCarnes
+           detalles.pesoCarne = pesoCarnes + pesoCarnes2 + pesoCarnes3 + pesoCarnes4
            detalles.pesoCostilla = pesoCostillas
            detalles.pesoHueso = pesoHuesos
            detalles.pesoSubProd = pesoSubProd
@@ -2782,34 +2782,54 @@ def ReporteUtilidadPorLote(request):
     compra = Compra.objects.get(pk = int(idCompra))
     canales = Canal.objects.filter(recepcion__compra = int(idCompra))
     ListaPesos = {}
-    cont = 0
+
+
+    carnes = 0
+    costillas =0
+    huesos = 0
+    subproductos = 0
+    desechos = 0
 
     #inicializamos la lista
     for canal in canales:
         if canal.planilla:
             detalleDespostes = DetallePlanilla.objects.filter(planilla__codigoPlanilla = canal.planilla.codigoPlanilla)
-            cont += 1
+
             for detalle in detalleDespostes:
                 ListaPesos[detalle.producto.nombreProducto] = 0
 
+
+
     planillaAnterior = 0
     planillaActual = 0
-
+    cont = 0
     for canal in canales:
         if canal.planilla:
             planillaActual = canal.planilla.codigoPlanilla
             detalleDespostes = DetallePlanilla.objects.filter(planilla__codigoPlanilla = canal.planilla.codigoPlanilla)
+            cont = 0
             if planillaAnterior != planillaActual:
                 for detalle in detalleDespostes:
                     ListaPesos[detalle.producto.nombreProducto] += ceil(detalle.PesoProducto)
+                    if cont == 0:
+                        carnes += ceil(detalle.pesoCarne)
+                        costillas += ceil(detalle.pesoCostilla)
+                        subproductos += ceil(detalle.pesoSubProd)
+                        huesos += ceil(detalle.pesoHueso)
+                        desechos += ceil(detalle.pesoDesecho)
+                        cont += 1
+
             planillaAnterior = planillaActual
 
+    adicionales = {}
+    adicionales['Carne'] = carnes
+    adicionales['Costilla'] = costillas
+    adicionales['SubProducto'] = subproductos
+    adicionales['Hueso'] = huesos
+    adicionales['Desecho'] = desechos
 
 
-    #for llave,valor in ListaPesos.items():
-     #   ListaPesos[llave] = valor/cont
-
-    listas = {'Pesos':ListaPesos}
+    listas = {'Pesos':ListaPesos,'adicionales':adicionales}
 
     respuesta = json.dumps(listas)
 
