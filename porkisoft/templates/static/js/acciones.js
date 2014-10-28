@@ -323,6 +323,7 @@ function ReporteFaltantes() {
 
 function ReportePesosLote()
 {
+    $( "#progressbar" ).show();
     var idCompra = $('#compras').val();
 
     $.ajax({
@@ -348,6 +349,7 @@ function ReportePesosLote()
 
                         $("#tablaPesoCarne").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) + "</td></tr>");
                     });
+                $( "#progressbar" ).hide();
             }
 
         });

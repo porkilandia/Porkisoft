@@ -278,6 +278,7 @@ def EditaListas(request,idDetLista):
     return render_to_response('Ventas/GestionDetalleListas.html',{'formulario':formulario,'lista':lista,'detalleListas':detalleListas},
                               context_instance = RequestContext(request))
 
+def PuntoVenta(request):
+    productos = Producto.objects.all()
 
-
-
+    return render_to_response('Ventas/GestionDetalleListas.html',{},context_instance = RequestContext(request))
