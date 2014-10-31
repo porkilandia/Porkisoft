@@ -206,6 +206,40 @@ fieldset {
     margin: 0 2px;
     border: 1px solid #c0c0c0;
 }
+#encabezado
+{
+    border-style: solid;
+    font-size: 1em;
+
+
+}
+#encabezado th
+{
+    font-weight: bold;
+    text-align: center;
+    padding: 0,5em;
+
+}
+#pie
+{
+    border-style: solid;
+    font-size: 1em;
+
+
+}
+#pie th
+{
+    font-weight: bold;
+    height: 3em;
+    text-align: center;
+
+}
+.tablabodegas td
+{
+    border-bottom: solid;
+    border-bottom-width: 1px;
+}
+
 #formularioSecundario
 {
     top: 35em;
@@ -214,6 +248,7 @@ fieldset {
 {
     width: 35%;
     display: inline-block;
+    margin: 0 auto;
 }
 #rangoFaltantes
 {
@@ -224,6 +259,10 @@ fieldset {
 {
     width: 25%;
     display: inline-block;
+}
+#progressbar
+{
+   width: 35%;
 }
 legend {
     width: 30%;
@@ -837,6 +876,7 @@ pre code {
 #acordeon
 {
     width: 35%;
+
 }
 #homeAccordeon
 {

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Punto de venta{% endblock titulo %}
+{% block mensajes %}
+    Punto de venta
+{% endblock mensajes %}
+{% block contenido %}
+    <div id="progressbar"></div>
+<input value="Imprimir" type="button" onclick="imprimir()">
+<div id="imp">
+    <table class="table-striped">
+        <tr>
+            <th>PROKILANDIA SAS</th>
+            <th>VENTA N°</th>
+        </tr>
+    </table>
+    <br/>
+    <table class="table-striped">
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+        </tr>
+        <tr>
+            <td>Lomo</td>
+            <td>1 Kg</td>
+            <td>0 und</td>
+            <td>$ 16000</td>
+        </tr>
+    </table>
+</div>
+
+
+{% endblock contenido %}

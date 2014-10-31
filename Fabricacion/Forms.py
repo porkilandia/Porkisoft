@@ -190,7 +190,9 @@ class FritoForm(ModelForm):
 class CarneCondForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(CarneCondForm,self).__init__(*args, **kwargs)
-        self.fields['productoCond'].queryset = Producto.objects.filter(grupo__nombreGrupo = 'Reses')
+        q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses')
+        q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos')
+        self.fields['productoCond'].queryset = q1 | q2
 
     class Meta:
         model = TallerCarneCondimentada

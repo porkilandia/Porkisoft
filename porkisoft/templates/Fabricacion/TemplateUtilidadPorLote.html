@@ -5,6 +5,7 @@
     Reporte Compras
 {% endblock mensajes %}
 {% block contenido %}
+    <div id="progressbar"></div>
 <div id="rangoCompras">
 
      <label for="compras">Compras</label><select id="compras">
@@ -17,7 +18,7 @@
         <br/>
         <br/>
    </div>
-    <div id="acordeon">
+    <div id="acordeon" style="align-self: center">
         <h3>Peso Total</h3>
         <div>
             <table id="tablaPesoLote" class="table-striped">
@@ -43,5 +44,5 @@
         </table>
         </div>
     </div>
-    <div id="progressbar"></div>
+
 {% endblock contenido %}

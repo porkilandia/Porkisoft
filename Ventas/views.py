@@ -69,7 +69,7 @@ def GestionDetallePedido(request,idpedido):
                               context_instance = RequestContext(request))
 
 def GestionVentas(request):
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
     ventas = Venta.objects.filter(fechaVenta__range =(fechainicio,fechafin))
     #ventas = Venta.objects.all()
@@ -280,5 +280,4 @@ def EditaListas(request,idDetLista):
 
 def PuntoVenta(request):
     productos = Producto.objects.all()
-
-    return render_to_response('Ventas/GestionDetalleListas.html',{},context_instance = RequestContext(request))
+    return render_to_response('Ventas/TemplateVentas.html',{'productos':productos},context_instance = RequestContext(request))

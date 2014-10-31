@@ -347,7 +347,7 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA***********************************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=30)
+    fechainicio = date.today() - timedelta(days=15)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()
@@ -500,7 +500,7 @@ def EditaCompra(request,idDetCompra):
                                                         context_instance = RequestContext(request))
 #********************************************TRASLADOS******************************************************
 def GestionTraslados(request):
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
     traslados = Traslado.objects.all().order_by('fechaTraslado').filter(fechaTraslado__range = (fechainicio,fechafin))
     if request.method == 'POST':
@@ -686,7 +686,8 @@ def ReporteCompra(request):
 
 def TemplateReporteFaltantes (request):
     bodegas = Bodega.objects.all()
-    return render_to_response('Inventario/ReporteFaltantes.html',{'bodegas':bodegas},
+    hoy = datetime.today()
+    return render_to_response('Inventario/ReporteFaltantes.html',{'bodegas':bodegas,'hoy':hoy},
                                                         context_instance = RequestContext(request))
 
 def ReporteFaltantes (request):

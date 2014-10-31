@@ -878,7 +878,7 @@ def costeoMolido(request):
 #**********************************************PROCESO CONDIMENTADO*****************************************************
 
 def GestionCondimentado(request):
-    fechainicio = date.today() - timedelta(days=30)
+    fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
     condimentados = Condimentado.objects.filter(fecha__range =(fechainicio,fechafin))
     #condimentados = Condimentado.objects.all()
@@ -2245,7 +2245,7 @@ def GuardarMenudos(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionFrito(request):
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
     fritos = TallerFrito.objects.filter(fechaFrito__range =(fechainicio,fechafin))
     #fritos = TallerFrito.objects.all()

@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Reporte Compras{% endblock titulo %}
+{% block titulo %}Reporte Bodegas{% endblock titulo %}
 {% block mensajes %}
-    Reporte Compras
+    Reporte Bodegas
 {% endblock mensajes %}
 {% block contenido %}
 <div id="rangoFaltantes">
@@ -12,38 +12,66 @@
         {% endfor %}
     </select>
 
-     <a  onclick="ReporteFaltantes()" href="#"><input type="button" value="Consultar" class="btn btn-success"></a>
+    <a  onclick="ReporteFaltantes()" href="#"><input type="button" value="Consultar" class="btn btn-success"></a>
     <a id="ExpExcelFaltantes" href="#"><input type="button" value="Excel" class="btn btn-primary"></a>
+    <a onclick="imprimir()" href="#"><input type="button" value="Imprimir" class="btn btn-default"></a>
         <br/>
         <br/>
         <br/>
    </div>
-    <table id="tablaReporteFaltante" class="table-striped">
-        <thead>
+<div id="areaImpresion">
+    <br/><br/>
+    <table id="encabezado">
         <tr>
-            <th>Producto</th>
-            <th >Bodega</th>
-            <th>Peso</th>
-            <th>Unidades</th>
-            <th>Fisico</th>
-            <th>Faltante</th>
-
-        </tr>
-        </thead>
-        <tr>
-            <th>Responsable </th>
-            <th >Reviso</th>
-            <th>Aprobo</th>
-
+            <th style="font-size: 1.5em">PORKILANDIA</th>
+            <th>REPORTE DE INVENTARIO</th>
         </tr>
         <tr>
-            <td> </td>
-            <td ></td>
-            <td></td>
-
+            <th style="font-size: 1.5em">SAS</th>
+            <th>{{ hoy|date }}</th>
         </tr>
-
     </table>
+    <br/><br/>
+    <table id="tablaReporteFaltante" class="table-striped">
+            <thead>
+            <tr>
+                <th>Producto</th>
+                <th >Bodega</th>
+                <th>Peso</th>
+                <th>Unidades</th>
+                <th>Fisico</th>
+                <th>Faltante</th>
+
+            </tr>
+            </thead>
+            <tr>
+                <th>Responsable </th>
+                <th >Reviso</th>
+                <th>Aprobo</th>
+
+            </tr>
+            <tr>
+                <td> </td>
+                <td ></td>
+                <td></td>
+
+            </tr>
+
+        </table>
+    <br/><br/>
+<table id="pie">
+        <tr>
+            <th>Revisó</th>
+            <th>Encargado</th>
+        </tr>
+
+        <tr>
+            <th>______________________________</th>
+            <th>______________________________</th>
+        </tr>
+    </table>
+
+</div>
 
 
 {% endblock contenido %}

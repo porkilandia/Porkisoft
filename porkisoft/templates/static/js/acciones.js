@@ -5,9 +5,9 @@ $(document).on('ready', inicio);
     /*$(document).keypress(function(e)
      {
 
-         if(e.which == 67)
+         if(e.which == 2)
          {
-                showModalDialog('/fabricacion/costos/')
+                showModalDialog('/ventas/listaPrecios/')
          }
 
 
@@ -63,7 +63,9 @@ $(document).on('ready', inicio);
 
      //var tablaEmpacado = $('#tablaEmpacado tr');
      //tablaEmpacado.on('click',maneja);
-    $('#tablaAjustes').dataTable();
+     $('#encabezado').hide();
+     $('#pie').hide();
+     $('#tablaAjustes').dataTable();
      $('#canalPendiente').dataTable();
      $('#tablaenTajados').dataTable();
      $('#tablacostos').dataTable({ "pageLength": 13 });
@@ -90,6 +92,8 @@ $(document).on('ready', inicio);
      $('#TablaCondimento').dataTable();
      $('#tablaCroquetas').dataTable();
      $('#TablaEnsBola').dataTable();
+     $('#listaDePrecios').dataTable();
+
 
 
 
@@ -117,6 +121,7 @@ $(document).on('ready', inicio);
      $('#id_fechaAjuste').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaBolaCondimentada').datepicker({ dateFormat: "dd/mm/yy" });
 
+
      $( "#bodegaFaltantes" ).selectmenu({ width: 200 });
 
      $('#homeAccordeon').accordion({ heightStyle: "content" });
@@ -127,6 +132,22 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function imprimir()
+{
+    var encabezado = $('#encabezado');
+    var pie = $('#pie');
+    var tablaBodega = $('#tablaReporteFaltante');
+    encabezado.show();
+    pie.show();
+    tablaBodega.addClass('tablabodegas');
+    $('#areaImpresion').printArea();
+    encabezado.hide();
+    pie.hide();
+    tablaBodega.removeClass('tablabodegas');
+
+
+}
+
 function VerificaBolaEns()
 {
    var idBodega = $('#id_puntoBodega').val();
@@ -232,7 +253,7 @@ function PasaValorEnvio()
 
 function ExportarFaltantes()
 {
-    $('#tablaReporteFaltante').tableExport({type:'pdf',escape:'false',pdfFontSize:8});
+    $('#tablaReporteFaltante').tableExport({type:'excel',escape:'false',pdfFontSize:8});
 }
 function Exportar()
 {
