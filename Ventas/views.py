@@ -279,5 +279,53 @@ def EditaListas(request,idDetLista):
                               context_instance = RequestContext(request))
 
 def PuntoVenta(request):
-    productos = Producto.objects.all()
-    return render_to_response('Ventas/TemplateVentas.html',{'productos':productos},context_instance = RequestContext(request))
+    ventas = VentaPunto.objects.filter(fechaVenta = datetime.today())
+
+    if request.method =='POST':
+        formulario = VentaPuntoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/ventas/ventaPunto/')
+    else:
+        formulario = VentaPuntoForm()
+    return render_to_response('Ventas/TemplateVentaPunto.html',{'ventas':ventas,'formulario':formulario},
+                              context_instance = RequestContext(request))
+
+def DetallePuntoVenta(request,idVenta):
+    detVentas =DetalleVentaPunto.objects.filter(venta = idVenta)
+    venta = VentaPunto.objects.get(pk = idVenta)
+
+    totalFactura = 0
+
+    for detalle in detVentas:
+        totalFactura += detalle.vrTotalPunto
+
+    venta.TotalVenta = totalFactura
+    venta.save()
+
+    if request.method =='POST':
+        formulario = DetalleVentaPuntoForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/ventas/detalleVentaPunto/'+ idVenta)
+    else:
+        formulario = DetalleVentaPuntoForm(initial={'venta':idVenta})
+    return render_to_response('Ventas/TemplateDetalleVentaPunto.html',{'venta':venta,'formulario':formulario,'detVentas':detVentas},
+                              context_instance = RequestContext(request))
+
+def GestionCaja(request):
+    Cajas = Caja.objects.all()
+
+    if request.method =='POST':
+        formulario = CajaForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/ventas/caja/')
+    else:
+        formulario = CajaForm()
+    return render_to_response('Ventas/TemplateCaja.html',{'Cajas':Cajas,'formulario':formulario},
+                              context_instance = RequestContext(request))
+

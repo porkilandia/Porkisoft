@@ -449,9 +449,16 @@ def GestionCondimento(request):
             condimento = formulario.save()
 
             #Guardamos el condimento producido en Bodega
-            bodega = ProductoBodega.objects.get(bodega = 6, producto__nombreProducto = 'Condimento Natural')
+            bodega = ProductoBodega.objects.get(bodega = 5, producto__nombreProducto = 'Condimento Natural')
             bodega.pesoProductoStock += condimento.pesoCondimento
             bodega.save()
+
+            movimientos = Movimientos()
+            movimientos.tipo = 'COND%d'%(condimento.codigoCondimento)
+            movimientos.fechaMov = condimento.fecha
+            movimientos.productoMov = bodega.producto
+            movimientos.Hasta = bodega.bodega.nombreBodega
+            movimientos.save()
 
             #guardamos el peso de producto en Kg ya que al ingresar este se especifica en gramos
             condimento.pesoCondimento = (condimento.pesoCondimento / 1000)
@@ -482,6 +489,15 @@ def GestionDetalleCondimento(request,idcondimento):
             bodega = ProductoBodega.objects.get(bodega = 6, producto = detalle.productoCondimento.codigoProducto)
             bodega.pesoProductoStock -= (detalle.pesoProducto * condimento.cantFormulas)
             bodega.save()
+
+            movimientos = Movimientos()
+            movimientos.tipo = 'COND%d'%(condimento.codigoCondimento)
+            movimientos.fechaMov = condimento.fecha
+            movimientos.productoMov = producto
+            movimientos.salida = detalle.pesoProducto * condimento.cantFormulas
+            movimientos.desde = bodega.bodega.nombreBodega
+            movimientos.save()
+
 
             detalle.costoProducto = costoProducto
             detalle.costoTotalProducto = costoTotalVerduras
@@ -917,7 +933,7 @@ def GuardarCondimentado(request):
 
     #******************************SALIDA CONDIMENTO**********************************************
 
-    bodegaCondimento = ProductoBodega.objects.get(bodega = 6,producto = condimento.codigoProducto)
+    bodegaCondimento = ProductoBodega.objects.get(bodega = 5,producto = condimento.codigoProducto)
     bodegaCondimento.pesoProductoStock -= condimentado.condimento
     bodegaCondimento.save()
 
@@ -2768,6 +2784,48 @@ def ReporteTraslados(request):
 
     return HttpResponse(respuesta,mimetype='application/json')
 
+#************************************************REPORTE TRASLADO POR BODEGA*******************************************
+def TemplateTrasladosBodega(request):
+    bodegas = Bodega.objects.all()
+    return render_to_response('Fabricacion/TemplateTrasladoBodega.html',{'bodegas':bodegas },
+                              context_instance = RequestContext(request))
+
+def ReporteTrasladosBodega(request):
+    idBodega = request.GET.get('bodega')
+
+    bodega = Bodega.objects.get(pk = int(idBodega))
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    traslados = Traslado.objects.filter(fechaTraslado__range = (finicio,ffin)).filter(bodegaDestino = bodega.nombreBodega)
+
+    ListaTraslado = {}
+
+    for traslado in traslados:
+        detalleTraslados = DetalleTraslado.objects.filter(traslado = traslado.codigoTraslado)
+        for detalle in detalleTraslados:
+            ListaTraslado[detalle.productoTraslado.nombreProducto] = 0
+
+    for traslado in traslados:
+        detalleTraslados = DetalleTraslado.objects.filter(traslado = traslado.codigoTraslado)
+        for detalle in detalleTraslados:
+            ListaTraslado[detalle.productoTraslado.nombreProducto] += ceil(detalle.pesoTraslado)
+
+
+    lista = {'traslado':ListaTraslado}
+
+    respuesta = json.dumps(lista)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
 def  TemplateUtilidadPorLote(request):
     q1 = Compra.objects.filter(tipo__nombreGrupo = 'Reses').order_by('fechaCompra')
     q2 = Compra.objects.filter(tipo__nombreGrupo = 'Cerdas').order_by('fechaCompra')
@@ -2938,9 +2996,72 @@ def GuardarEnsBola(request):
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 
+def TemplateTalleresPuntos(request):
+    bodegas = Bodega.objects.filter(codigoBodega__range = (1,4))
+    return render_to_response('Fabricacion/TemplateTalleresPuntos.html',{'bodegas':bodegas},
+                              context_instance = RequestContext(request))
 
 
+def ReporteTallerPunto(request):
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    bodega = request.GET.get('bodega')
 
 
+    pesoFrito = {}
+    pesoFrito['Frito Condimentado'] = 0
+
+    pesoCroqueta = {}
+    pesoCroqueta['Croqueta Apanada'] = 0
+
+    pesoCarneCond = {}
+    pesoCarneCond['Carne Condimentada'] = 0
+
+    pesoBolaEns = {}
+    pesoBolaEns['Carne Ensalinada'] = 0
+
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    frito = TallerFrito.objects.filter(fechaFrito__range = (finicio,ffin)).filter(punto = int(bodega))
+    promedioFrito = frito.aggregate(Avg('costoKiloFrito'))
+
+    for fr in frito:
+        pesoFrito['Frito Condimentado'] += ceil(fr.pesoTotalFrito)
 
 
+    croquetas = TallerCroquetas.objects.filter(fechaCroqueta__range = (finicio,ffin)).filter(puntoCroq = int(bodega))
+    promedioCroqueta = croquetas.aggregate(Avg('costoKiloCroqueta'))
+
+    for croqueta in croquetas:
+        pesoCroqueta['Croqueta Apanada'] += ceil(croqueta.pesoTotalCroqueta)
+
+
+    carneCond = TallerCarneCondimentada.objects.filter(fechaCarCond__range = (finicio,ffin)).filter(puntoCond = int(bodega))
+    promedioCarneCond = carneCond.aggregate(Avg('costoKiloCond'))
+
+    for cCond in carneCond:
+        pesoCarneCond['Carne Condimentada'] += ceil(cCond.pesoTotalCond)
+
+
+    bolaEns = TallerBolaEnsalinada.objects.filter(fechaBolaCondimentada__range = (finicio,ffin)).filter(puntoBodega = int(bodega))
+    promedioBolaEns = bolaEns.aggregate(Avg('costoKiloEns'))
+
+    for bEns in bolaEns:
+        pesoBolaEns['Carne Ensalinada'] += ceil(bEns.pesoDespues)
+
+
+    listas = {'promedioFrito':promedioFrito,'pesoFrito':pesoFrito,'promedioCroqueta':promedioCroqueta,
+              'pesoCroqueta':pesoCroqueta,'promedioCarneCond':promedioCarneCond,'pesoCarneCond':pesoCarneCond,
+              'promedioBolaEns':promedioBolaEns,'pesoBolaEns':pesoBolaEns}
+
+
+    respuesta = json.dumps(listas)
+
+    return HttpResponse(respuesta,mimetype='application/json')

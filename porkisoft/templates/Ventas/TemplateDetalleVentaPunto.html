@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Listas De Precios::{% endblock titulo %}
+{% block mensajes %}Ventas Norte {% endblock mensajes %}
+{% block contenido %}
+<a  href="#"><input type="button" value="Cobrar" class="btn btn-warning"></a>
+<br/><br/><br/>
+    <table id="tablaVentaPunto" class="table-striped" >
+
+        <thead >
+        <tr>
+            <th>Codigo</th>
+            <th>Fecha</th>
+            <th>Total Venta</th>
+            <th>Restaurante</th>
+            <th>Guardado</th>
+
+        </tr>
+        </thead>
+            <td>{{ venta.numeroVenta }}</td>
+            <td>{{ venta.fechaVenta }}</td>
+            <td>{{ venta.TotalVenta }}</td>
+            {% if venta.restaurante == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+            {% if venta.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+
+    </table>
+    <br/><br/>
+    <table id="tablaDetalleVentaPunto" class="table-striped" >
+
+        <thead >
+        <tr>
+
+            <th>Producto</th>
+            <th>Peso</th>
+            <th>Unidades</th>
+            <th>Vr.Unitario</th>
+            <th>Vr.Total</th>
+            <th>Acciones</th>
+
+
+        </tr>
+        </thead>
+        {% for detventa in detVentas %}
+            <tr>
+            <td>{{ detventa.productoVenta }}</td>
+            <td>{{ detventa.peso }}</td>
+            <td>{{ detventa.unidades }}</td>
+            <td>$ {{ detventa.vrUnitarioPunto }}</td>
+            <td>$ {{ detventa.vrTotalPunto }}</td>
+            <td>
+                <a href="#">Editar</a>
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="FrmVenta">
+             <legend>Venta</legend>
+
+                  {{ formulario }}
+
+              <br/>
+          <input class="btn btn-success" value="Guardar" type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}

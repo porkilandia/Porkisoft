@@ -206,7 +206,10 @@ class CroquetaFrom(ModelForm):
 class ReapanadoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(ReapanadoForm,self).__init__(*args, **kwargs)
-        self.fields['chuelta'].queryset = Producto.objects.filter(nombreProducto__contains = 'Filete Apanado')
+        q1 = Producto.objects.filter(nombreProducto__contains = 'Filete Apanado')
+        q2 = Producto.objects.filter(nombreProducto__contains = 'Condimentado')
+        q3 = Producto.objects.filter(nombreProducto__contains = 'Condimentada')
+        self.fields['chuelta'].queryset = q1 | q2 | q3
     class Meta:
         model = TallerReapanado
         exclude = ("pesoTotalReApanado","guardado",)

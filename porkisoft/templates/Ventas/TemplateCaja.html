@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Caja ::{% endblock titulo %}
+{% block mensajes %}Caja Norte {% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+<br/><br/><br/>
+    <table class="table-striped" >
+
+        <thead >
+        <tr>
+            <th>Codigo</th>
+            <th>Fecha</th>
+            <th>Jornada</th>
+            <th>Encargado</th>
+            <th>Base</th>
+            <th>Total Venta</th>
+            <th>Total Efectivo</th>
+            <th>Total Residuo</th>
+            <th>Acciones</th>
+
+
+        </tr>
+        </thead>
+        {% for caja in Cajas %}
+            <tr>
+            <td>{{ caja.numeroCaja }}</td>
+            <td>{{ caja.fechaCaja }}</td>
+            <td>{{ caja.jornada }}</td>
+            <td>{{ caja.encargado }}</td>
+            <td>{{ caja.base }}</td>
+            <td>{{ caja.TotalVenta }}</td>
+            <td>{{ caja.TotalEfectivo }}</td>
+            <td>{{ caja.TotalResiduo }}</td>
+            <td>
+                <a href="#">Detalles</a>
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Caja<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+
+                  {{ formulario }}
+
+              <br/>
+          <input class="btn btn-default" value="Guardar" type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}

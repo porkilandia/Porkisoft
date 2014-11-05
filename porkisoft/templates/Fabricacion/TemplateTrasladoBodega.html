@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Reporte Traslados{% endblock titulo %}
+{% block mensajes %}
+    Reporte Traslados
+{% endblock mensajes %}
+{% block contenido %}
+
+<div id="rangoCompras">
+     <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
+     <label for="fin">Fecha Final</label><input id="fin" type="text">
+
+     <label for="bodega">Bodega</label><select id="bodega">
+        {% for bod in bodegas %}
+            <option value={{ bod.codigoBodega }}>{{ bod.nombreBodega }}</option>
+        {% endfor %}
+    </select>
+
+    <a  onclick="consultaTrasladosBodega()" href="#"><input type="button" value="Consultar"></a>
+        <br/>
+        <br/>
+        <br/>
+   </div>
+    <table id="tablaTrasladoBodega" class="table-striped">
+        <thead>
+        <tr>
+            <th >Producto</th>
+            <th>Total Peso</th>
+
+        </tr>
+        </thead>
+
+    </table>
+
+
+{% endblock contenido %}

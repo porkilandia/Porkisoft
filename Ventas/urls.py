@@ -20,5 +20,8 @@ urlpatterns = patterns('',
     url(r'^editaLista/(?P<idDetLista>\d+)',EditaListas),
 
     url(r'^ventaPunto/$',PuntoVenta),
+    url(r'^detalleVentaPunto/(?P<idVenta>\d+)',DetallePuntoVenta),
+
+    url(r'^caja/$',GestionCaja),
 
 )

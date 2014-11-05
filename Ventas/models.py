@@ -79,5 +79,43 @@ class DetallePedido (models.Model):
     vrTotal = models.IntegerField(verbose_name='Vr.Total',default=0)
     estado = models.BooleanField(verbose_name='Estado',default=False)
 
+class VentaPunto(models.Model):
+
+    numeroVenta = models.AutoField(primary_key=True, verbose_name='Numero Factura')
+    fechaVenta = models.DateField(verbose_name='Fecha',auto_now=True)
+    TotalVenta = models.IntegerField(verbose_name='Total Venta',default=0)
+    restaurante = models.BooleanField(verbose_name='Restaurante',default=False)
+    guardado = models.BooleanField(default=False,verbose_name='Guardado')
+
+    def __unicode__(self):
+        return self.numeroVenta
+
+class DetalleVentaPunto (models.Model):
+    venta = models.ForeignKey(VentaPunto)
+    productoVenta = models.ForeignKey(Producto,null=True,verbose_name='Producto')
+    pesoVentaPunto = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso',null= True,default=0)
+    unidades = models.IntegerField(verbose_name='Unidades',null= True,default=0)
+    vrUnitarioPunto = models.IntegerField(verbose_name='Vr.Unitario', default=0)
+    vrTotalPunto = models.IntegerField(verbose_name='Vr.Total',default=0)
 
 
+class Caja (models.Model):
+    jornadas = (
+    ('AM', 'AM'),
+    ('PM', 'PM'),
+    )
+    numeroCaja = models.AutoField(primary_key=True, verbose_name='Numero Caja')
+    fechaCaja = models.DateField(verbose_name='Fecha',auto_now=True)
+    jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)
+    encargado = models.ForeignKey(Empleado,verbose_name='Encargado')
+    base = models.IntegerField(verbose_name='Total Base',default=0)
+    TotalVenta = models.IntegerField(verbose_name='Total Venta',default=0)
+    TotalEfectivo = models.IntegerField(verbose_name='Total Efectivo',default=0)
+    TotalResiduo = models.IntegerField(verbose_name='Total Residuo',default=0)
+
+class Retiros (models.Model):
+
+    fechaRetiro = models.DateField(verbose_name='Fecha',auto_now=True)
+    encargado = models.ForeignKey(Empleado,verbose_name='Encargado')
+    cantidad = models.IntegerField(verbose_name='Cantidad',default=0)
+    observacion = models.TextField(verbose_name='Observacion')

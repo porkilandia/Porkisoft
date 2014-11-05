@@ -127,7 +127,9 @@ $(document).on('ready', inicio);
      $('#homeAccordeon').accordion({ heightStyle: "content" });
      $('#acordeon').accordion({ heightStyle: "content" });
      $( "#progressbar" ).progressbar({value: false}).hide();
-
+     $('#FrmVenta').show();
+     $("label[for=id_venta],#id_venta").hide();
+     $("label[for=id_productoVenta]").hide();
 
 }
 
@@ -375,6 +377,101 @@ function ReportePesosLote()
 
         });
 
+}
+function ReporteTelleresPuntos ()
+{
+    $( "#progressbar" ).show();
+    var inicio = $('#inicio').val();
+    var fin = $('#fin').val();
+    var bodega = $('#bodega').val();
+
+    $.ajax({
+
+            url : '/fabricacion/reporteTallerPunto/',
+            dataType : "json",
+            type : "get",
+            data : {'inicio':inicio,'fin':fin,'bodega':bodega},
+            success : function(respuesta)
+            {
+                $("#tablaCostoFrito").find("tr:gt(0)").remove();
+                $("#tablaPesoFrito").find("tr:gt(0)").remove();
+                $("#tablaCostoCroqueta").find("tr:gt(0)").remove();
+                $("#tablaPesoCroqueta").find("tr:gt(0)").remove();
+                $("#tablaCostoCarne").find("tr:gt(0)").remove();
+                $("#tablaPesoCarne").find("tr:gt(0)").remove();
+                $("#tablaCostoBola").find("tr:gt(0)").remove();
+                $("#tablaPesoBola").find("tr:gt(0)").remove();
+
+                $.each(respuesta.promedioFrito,function(key,value){
+
+                    $("#tablaCostoFrito").append("<tr><td>" + 'Frito Condimentado' + "</td><td style='text-align: right'>"+'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.pesoFrito,function(key,value){
+
+                    $("#tablaPesoFrito").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) +' grs'+ "</td></tr>");
+                });
+
+                /*******************************************************************************************************/
+                $.each(respuesta.promedioCroqueta,function(key,value){
+
+                    $("#tablaCostoCroqueta").append("<tr><td>" + 'Croqueta Apanada' + "</td><td style='text-align: right'>"+'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.pesoCroqueta,function(key,value){
+
+                    $("#tablaPesoCroqueta").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) +' grs'+ "</td></tr>");
+                });
+
+                /*******************************************************************************************************/
+                $.each(respuesta.promedioCarneCond,function(key,value){
+
+                    $("#tablaCostoCarne").append("<tr><td>" + 'Carne Condimentada' + "</td><td style='text-align: right'>"+'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.pesoCarneCond,function(key,value){
+
+                    $("#tablaPesoCarne").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) +' grs'+ "</td></tr>");
+                });
+
+                /*******************************************************************************************************/
+                $.each(respuesta.promedioBolaEns,function(key,value){
+
+                    $("#tablaCostoBola").append("<tr><td>" + 'Carne Ensalinada' + "</td><td style='text-align: right'>"+'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.pesoBolaEns,function(key,value){
+
+                    $("#tablaPesoBola").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) +' grs'+ "</td></tr>");
+                });
+
+            $( "#progressbar" ).hide();
+            }
+
+        });
+}
+function consultaTrasladosBodega ()
+{
+    $( "#progressbar" ).show();
+    var inicio = $('#inicio').val();
+    var fin = $('#fin').val();
+    var bodega = $('#bodega').val();
+
+    $.ajax({
+
+            url : '/fabricacion/reporteTrasladoBodega/',
+            dataType : "json",
+            type : "get",
+            data : {'inicio':inicio,'fin':fin,'bodega':bodega},
+            success : function(respuesta)
+            {
+                $("#tablaTrasladoBodega").find("tr:gt(0)").remove();
+
+                $.each(respuesta.traslado,function(key,value){
+
+                    $("#tablaTrasladoBodega").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) + "</td></tr>");
+                });
+
+            $( "#progressbar" ).hide();
+            }
+
+        });
 }
 function consultaTraslados() {
 

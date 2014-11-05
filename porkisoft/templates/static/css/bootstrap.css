@@ -1823,6 +1823,39 @@ table th[class*="col-"] {
     position: absolute;
     right: 8em;
 }
+#tablaVentaPunto
+{
+    width: 80%;
+}
+#tablaDetalleVentaPunto
+{
+    width: 80%;
+}
+#FrmVenta
+{
+    position: fixed;
+    right: 1em;
+   width: 20%;
+}
+#FrmVenta input
+{
+    font-size: 1.2em;
+    width: 80px;
+}
+#tablaTrasladoBodega
+{
+    width: 30%;
+}
+#tablaTrasladoBodega td
+{
+    text-align: left;
+}
+#FrmVenta select
+{
+    font-size: 1.2em;
+    width: 240px;
+
+}
 #cerrar
 {
     position: fixed;

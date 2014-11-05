@@ -51,6 +51,12 @@ urlpatterns = patterns('',
     url(r'^templateTraslado/$',TemplateTraslados),
     url(r'^reporteTraslado/$',ReporteTraslados),
 
+    url(r'^templateTrasladoBodega/$',TemplateTrasladosBodega),
+    url(r'^reporteTrasladoBodega/$',ReporteTrasladosBodega),
+
+    url(r'^templateTalleresPuntos/$',TemplateTalleresPuntos),
+    url(r'^reporteTallerPunto/$',ReporteTallerPunto),
+
     url(r'^templateUtilidad/$',TemplateUtilidadPorLote),
     url(r'^utilidadReses/$',ReporteUtilidadPorLote),
 

@@ -347,7 +347,7 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA***********************************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()
@@ -400,9 +400,9 @@ def GestionDetalleCompra(request,idcompra):
                 productoBodega.save()
 
                 if detalleCompra.pesoProducto == 0:
-                    movimiento.entrada = detalleCompra.pesoProducto
-                else:
                     movimiento.entrada = detalleCompra.unidades
+                else:
+                    movimiento.entrada = detalleCompra.pesoProducto
 
                 producto.costoProducto = detalleCompra.vrCompraProducto
                 producto.save()

@@ -42,3 +42,15 @@ class ListaDePreciosForm(ModelForm):
 class DetalleListaForm(ModelForm):
     class Meta:
         model = DetalleLista
+
+class VentaPuntoForm(ModelForm):
+    class Meta:
+        model = VentaPunto
+        exclude = ("TotalVenta","guardado",)
+class DetalleVentaPuntoForm(ModelForm):
+    class Meta:
+        model = DetalleVentaPunto
+class CajaForm(ModelForm):
+    class Meta:
+        model = Caja
+        exclude = ("TotalVenta","TotalResiduo",)

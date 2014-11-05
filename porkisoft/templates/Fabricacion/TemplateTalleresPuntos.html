@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Pechugas Condimentadas::{% endblock titulo %}
+{% block mensajes %}
+Promedio de productos
+
+{% endblock mensajes %}
+{% block contenido %}
+
+    <div id="rango">
+     <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
+     <label for="fin">Fecha Final</label><input id="fin" type="text">
+     <label for="bodega">Bodega</label><select id="bodega">
+        {% for bod in bodegas %}
+            <option value={{ bod.codigoBodega }}>{{ bod.nombreBodega }}</option>
+        {% endfor %}
+    </select>
+
+     <a  onclick="ReporteTelleresPuntos()" href="#"><input type="button" value="Consultar"></a>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+<div id="acordeon">
+<h3>Reporte Frito</h3>
+<div>
+   <table id="tablaCostoFrito" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaPesoFrito" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+    <h3>Reporte Croquetas</h3>
+<div>
+    <table id="tablaCostoCroqueta" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaPesoCroqueta" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+
+
+    <h3>Reporte Carne Condimentada</h3>
+<div>
+    <table id="tablaCostoCarne" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaPesoCarne" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+<h3>Reporte Bola Ensalinada</h3>
+<div>
+    <table id="tablaCostoBola" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaPesoBola" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+
+</div>
+<div id="progressbar"></div>
+{% endblock contenido %}
+<div id="progressbar"></div>
