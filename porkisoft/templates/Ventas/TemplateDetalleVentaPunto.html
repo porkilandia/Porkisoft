@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block titulo %}::Listas De Precios::{% endblock titulo %}
+{% block titulo %}::Porkilandia Norte::{% endblock titulo %}
 {% block mensajes %}Ventas Norte {% endblock mensajes %}
 {% block contenido %}
-<a  href="#"><input type="button" value="Cobrar" class="btn btn-warning"></a>
+<a  onclick="Cobrar()" href="#"><input type="button" value="Cobrar" class="btn btn-warning"></a>
 <br/><br/><br/>
     <table id="tablaVentaPunto" class="table-striped" >
 
@@ -17,7 +17,7 @@
 
         </tr>
         </thead>
-            <td>{{ venta.numeroVenta }}</td>
+            <td id="NumVenta">{{ venta.numeroVenta }}</td>
             <td>{{ venta.fechaVenta }}</td>
             <td>{{ venta.TotalVenta }}</td>
             {% if venta.restaurante == True %}
@@ -51,13 +51,19 @@
         {% for detventa in detVentas %}
             <tr>
             <td>{{ detventa.productoVenta }}</td>
-            <td>{{ detventa.peso }}</td>
+            <td>{{ detventa.pesoVentaPunto}}</td>
             <td>{{ detventa.unidades }}</td>
             <td>$ {{ detventa.vrUnitarioPunto }}</td>
             <td>$ {{ detventa.vrTotalPunto }}</td>
-            <td>
-                <a href="#">Editar</a>
+            {% if venta.guardado == True %}
+                <td></td>
+            {% else %}
+                <td>
+                <a href="{% url 'Ventas.views.EditaPuntoVenta' detventa.id %}">Editar</a>
+                <a href="{% url 'Ventas.views.EliminaPuntoVenta' detventa.id %}" style="color: red">Borrar</a>
             </td>
+            {% endif %}
+
 
         </tr>
             {% empty %}

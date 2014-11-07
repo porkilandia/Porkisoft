@@ -315,6 +315,58 @@ def DetallePuntoVenta(request,idVenta):
     return render_to_response('Ventas/TemplateDetalleVentaPunto.html',{'venta':venta,'formulario':formulario,'detVentas':detVentas},
                               context_instance = RequestContext(request))
 
+def EditaPuntoVenta(request,idDetVenta):
+    detVenta = DetalleVentaPunto.objects.get(pk = idDetVenta)
+    detVentas =DetalleVentaPunto.objects.filter(venta = detVenta.venta.numeroVenta)
+    venta = VentaPunto.objects.get(pk = detVenta.venta.numeroVenta)
+
+    totalFactura = 0
+
+    for detalle in detVentas:
+        totalFactura += detalle.vrTotalPunto
+
+    venta.TotalVenta = totalFactura
+    venta.save()
+
+    if request.method =='POST':
+        formulario = DetalleVentaPuntoForm(request.POST,instance=detVenta)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/ventas/detalleVentaPunto/'+ str(venta.numeroVenta))
+    else:
+        formulario = DetalleVentaPuntoForm(initial={'venta':venta.numeroVenta},instance=detVenta)
+    return render_to_response('Ventas/TemplateDetalleVentaPunto.html',{'venta':venta,'formulario':formulario,'detVentas':detVentas},
+                              context_instance = RequestContext(request))
+
+def EliminaPuntoVenta(request,idDetVenta):
+    detVenta = DetalleVentaPunto.objects.get(pk = idDetVenta)
+    detVentas = DetalleVentaPunto.objects.filter(venta = detVenta.venta.numeroVenta)
+    venta = VentaPunto.objects.get(pk = detVenta.venta.numeroVenta)
+    detVenta.delete()
+
+    totalFactura = 0
+
+    for detalle in detVentas:
+        totalFactura += detalle.vrTotalPunto
+
+    venta.TotalVenta = totalFactura
+    venta.save()
+
+    return HttpResponseRedirect('/ventas/detalleVentaPunto/'+ str(venta.numeroVenta))
+
+def CobrarVenta(request):
+
+    idVenta = request.GET.get('venta')
+    venta = VentaPunto.objects.get(pk = int(idVenta))
+    #pendiete efectuar operaciones de inventario
+    venta.guardado = True
+    venta.save()
+    msj = 'Cobro exitoso!!'
+    respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
 def GestionCaja(request):
     Cajas = Caja.objects.all()
 
@@ -329,3 +381,33 @@ def GestionCaja(request):
     return render_to_response('Ventas/TemplateCaja.html',{'Cajas':Cajas,'formulario':formulario},
                               context_instance = RequestContext(request))
 
+def EditaCaja(request,idCaja):
+    caja = Caja.objects.get(pk = idCaja)
+    Cajas = Caja.objects.all()
+
+    if request.method =='POST':
+        formulario = CajaForm(request.POST,instance=caja)
+        if formulario.is_valid():
+            formulario.save()
+
+            facturas = VentaPunto.objects.filter(fechaVenta = caja.fechaCaja)
+            ventaDia = 0
+            for factura in facturas:
+                ventaDia += factura.TotalVenta
+            caja.TotalVenta = ventaDia
+            caja.TotalResiduo = (caja.TotalVenta + caja.base) - caja.TotalEfectivo
+            caja.save()
+
+            return HttpResponseRedirect('/ventas/caja/')
+    else:
+        formulario = CajaForm(instance=caja)
+    return render_to_response('Ventas/TemplateCaja.html',{'Cajas':Cajas,'formulario':formulario},
+                              context_instance = RequestContext(request))
+
+def ValorProdVenta(request):
+
+    idProducto = request.GET.get('idProducto')
+    lista = ListaDePrecios.objects.get(nombreLista = 'Norte/Lorenzo')
+    valor = DetalleLista.objects.filter(lista = lista.codigoLista).get(productoLista = int(idProducto)).precioVenta
+    respuesta = json.dumps(valor)
+    return HttpResponse(respuesta,mimetype='application/json')

@@ -33,7 +33,7 @@
             <td>{{ caja.TotalEfectivo }}</td>
             <td>{{ caja.TotalResiduo }}</td>
             <td>
-                <a href="#">Detalles</a>
+                <a href="{% url 'Ventas.views.EditaCaja' caja.numeroCaja %}">Arqueo</a>
             </td>
 
         </tr>

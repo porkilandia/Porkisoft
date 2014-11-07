@@ -53,4 +53,4 @@ class DetalleVentaPuntoForm(ModelForm):
 class CajaForm(ModelForm):
     class Meta:
         model = Caja
-        exclude = ("TotalVenta","TotalResiduo",)
+        exclude = ("TotalVenta","TotalResiduo","TotalCaja",)

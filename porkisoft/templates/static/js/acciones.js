@@ -58,6 +58,10 @@ $(document).on('ready', inicio);
      $('#Excel').on('click',Exportar);
      $('#ExpExcelFaltantes').on('click',ExportarFaltantes);
      $('#id_pesoEnvio').on('focus',PasaValorEnvio);
+     $('#id_vrTotalPunto').on('focus',calculoTotalVenta);
+     var vrUnitario = $('#id_vrUnitarioPunto');
+     vrUnitario.on('focus',traeValorVenta);
+     vrUnitario.on('focus',existenciasVenta);
 
 
 
@@ -134,6 +138,71 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function existenciasVenta()
+{
+    var idProducto = $('#id_productoVenta').val();
+    var peso = $('#id_pesoVentaPunto').val();
+    var und = $('#id_unidades').val();
+    Existencias(idProducto,1,peso);
+    ExistenciasUnd(idProducto,1,und);
+}
+function traeValorVenta()
+{
+    var idProducto = $('#id_productoVenta').val();
+    var peso = $('#id_pesoVentaPunto').val();
+    var und = $('#id_unidades').val();
+
+     $.ajax({
+            url: '/ventas/valorProdVenta/',
+            dataType: "json",
+            type: "get",
+            data: {'idProducto': idProducto,'peso':peso,'und':und},
+            success: function (respuesta) {
+                    $('#id_vrUnitarioPunto').val(respuesta);
+                            }
+
+        });
+
+}
+function calculoTotalVenta()
+{
+    var peso = $('#id_pesoVentaPunto').val();
+    var und = $('#id_unidades').val();
+    var total = 0;
+    var vrUnitario = $('#id_vrUnitarioPunto').val();
+    peso = parseInt(peso);
+
+    if (peso == 0)
+    {
+        total = und * vrUnitario;
+        $('#id_vrTotalPunto').val(total);
+    }
+    else
+    {
+        total = (peso/1000) * vrUnitario;
+        $('#id_vrTotalPunto').val(total);
+    }
+
+}
+function Cobrar()
+{
+    var venta = $('#NumVenta').text();
+
+    var opcion = confirm('Desea Cobrar esta Factura, recuerde que esto afectara el inventario.');
+    if (opcion == true) {
+        $.ajax({
+            url: '/ventas/cobrar/',
+            dataType: "json",
+            type: "get",
+            data: {'venta': venta},
+            success: function (respuesta) {
+                var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+            }
+
+        });
+    }
+}
+
 function imprimir()
 {
     var encabezado = $('#encabezado');
@@ -348,17 +417,25 @@ function ReportePesosLote()
 {
     $( "#progressbar" ).show();
     var idCompra = $('#compras').val();
+    var idLista = $('#listaP').val();
+    var TotalCosto = 0;
+    var TotalCompra = 0;
+    var perdida = 0;
+    var TotalVenta = 0
+    var tablaCosto = $("#tablaCostoLote");
 
     $.ajax({
 
             url: '/fabricacion/utilidadReses/',
             dataType: "json",
             type: "get",
-            data: {'idCompra': idCompra},
+            data: {'idCompra': idCompra,'idLista':idLista},
             success: function (respuesta)
             {
                     $("#tablaPesoLote").find("tr:gt(0)").remove();
                     $("#tablaPesoCarne").find("tr:gt(0)").remove();
+                    $("#tablaPorcentaje").find("tr:gt(0)").remove();
+                    tablaCosto.find("tr:gt(0)").remove();
 
                     $.each(respuesta.Pesos,function(key,value){
                     if(value != 0)
@@ -372,6 +449,27 @@ function ReportePesosLote()
 
                         $("#tablaPesoCarne").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) + "</td></tr>");
                     });
+                    $.each(respuesta.perdida,function(key,value){
+
+                       perdida = value;
+                    });
+                    $.each(respuesta.ListaVenta,function(key,value){
+
+                       TotalVenta += value;
+                    });
+
+                    $.each(respuesta.costo,function(key,value){
+                        TotalCosto += Math.ceil(value);
+                    });
+                    $.each(respuesta.compras,function(key,value){
+                        TotalCompra = value;
+                    });
+                    var gananciaEstimada = TotalVenta - TotalCosto;
+                    tablaCosto.append("<tr><td>" + 'Total Compra' + "</td><td style='text-align: right' >" +'$ '+ TotalCompra + "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'Costo Total' + "</td><td style='text-align: right' >"+'$ ' + TotalCosto + "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'Total Venta Estimada' + "</td><td style='text-align: right' >" +'$ '+ Math.round(TotalVenta) + "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'Total Ganancia Estimada' + "</td><td style='text-align: right' >" +'$ '+ Math.round(gananciaEstimada) + "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'perdida de Pie a Canal' + "</td><td style='text-align: right' >" + perdida +' %'+ "</td></tr>");
                 $( "#progressbar" ).hide();
             }
 
@@ -401,6 +499,7 @@ function ReporteTelleresPuntos ()
                 $("#tablaPesoCarne").find("tr:gt(0)").remove();
                 $("#tablaCostoBola").find("tr:gt(0)").remove();
                 $("#tablaPesoBola").find("tr:gt(0)").remove();
+                $("#tablaCostoMolida").find("tr:gt(0)").remove();
 
                 $.each(respuesta.promedioFrito,function(key,value){
 
@@ -439,6 +538,15 @@ function ReporteTelleresPuntos ()
                 $.each(respuesta.pesoBolaEns,function(key,value){
 
                     $("#tablaPesoBola").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) +' grs'+ "</td></tr>");
+                });
+                /*******************************************************************************************************/
+                $.each(respuesta.promedioMolida,function(key,value){
+
+                    $("#tablaCostoMolida").append("<tr><td>" + 'Carne Molida' + "</td><td style='text-align: right'>"+'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.pesoMolida,function(key,value){
+
+                    $("#tablaPesoMolida").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) +' grs'+ "</td></tr>");
                 });
 
             $( "#progressbar" ).hide();
@@ -1502,6 +1610,28 @@ function Existencias(idProducto,idBodega,pesoProducto)
             dataType : "json",
             type : "get",
             data : {'producto':idProducto,'bodega':idBodega,'peso':pesoProducto},
+            success : function(respuesta)
+            {
+                if (respuesta != '')
+                {
+                    var n = noty({text: respuesta, type:'error',layout: 'bottom'});
+                    //alert(respuesta);
+                }
+
+            }
+
+        });
+}
+function ExistenciasUnd(idProducto,idBodega,unidades)
+{
+    /*Metodo para verificar el stock del producto seleccionado*/
+
+    $.ajax({
+
+            url : '/fabricacion/existenciasund/',
+            dataType : "json",
+            type : "get",
+            data : {'producto':idProducto,'bodega':idBodega,'unidades':unidades},
             success : function(respuesta)
             {
                 if (respuesta != '')

@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
-{% block titulo %}::Pechugas Condimentadas::{% endblock titulo %}
+{% block titulo %}::Talleres Puntos::{% endblock titulo %}
 {% block mensajes %}
-Promedio de productos
+Reporte Talleres Puntos
 
 {% endblock mensajes %}
 {% block contenido %}
@@ -120,6 +120,31 @@ Promedio de productos
 
     </table>
 </div>
+<h3>Reporte Cogotes Molidos</h3>
+<div>
+    <table id="tablaCostoMolida" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaPesoMolida" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+
 
 </div>
 <div id="progressbar"></div>

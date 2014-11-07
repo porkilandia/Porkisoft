@@ -13,15 +13,16 @@
             <option value={{ compra.codigoCompra }}>{{ compra.fechaCompra }} ({{ compra.tipo }})</option>
         {% endfor %}
     </select>
+
      <a  onclick="ReportePesosLote()" href="#"><input type="button" value="Consultar"></a>
         <br/>
         <br/>
         <br/>
    </div>
     <div id="acordeon" style="align-self: center">
-        <h3>Peso Total</h3>
+        <h3>Analisis de Rendimiento</h3>
         <div>
-            <table id="tablaPesoLote" class="table-striped">
+            <table id="tablaCostoLote" class="table-striped">
         <thead>
         <tr>
             <th >Producto</th>
@@ -31,6 +32,19 @@
 
         </table>
         </div>
+        <h3>Peso Total</h3>
+        <div>
+            <table id="tablaPesoLote" class="table-striped">
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th >Total Despostado</th>
+        </tr>
+        </thead>
+
+        </table>
+        </div>
+
          <h3>Peso por Grupos</h3>
         <div>
             <table id="tablaPesoCarne" class="table-striped">
@@ -43,6 +57,7 @@
 
         </table>
         </div>
+
     </div>
 
 {% endblock contenido %}

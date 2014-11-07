@@ -21,7 +21,13 @@ urlpatterns = patterns('',
 
     url(r'^ventaPunto/$',PuntoVenta),
     url(r'^detalleVentaPunto/(?P<idVenta>\d+)',DetallePuntoVenta),
+    url(r'^editaVentaPunto/(?P<idDetVenta>\d+)',EditaPuntoVenta),
+    url(r'^eliminaVentaPunto/(?P<idDetVenta>\d+)',EliminaPuntoVenta),
+    url(r'^valorProdVenta/$',ValorProdVenta),
 
     url(r'^caja/$',GestionCaja),
+    url(r'^editaCaja/(?P<idCaja>\d+)',EditaCaja),
+
+    url(r'^cobrar/$',CobrarVenta),
 
 )

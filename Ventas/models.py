@@ -108,10 +108,11 @@ class Caja (models.Model):
     fechaCaja = models.DateField(verbose_name='Fecha',auto_now=True)
     jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)
     encargado = models.ForeignKey(Empleado,verbose_name='Encargado')
-    base = models.IntegerField(verbose_name='Total Base',default=0)
-    TotalVenta = models.IntegerField(verbose_name='Total Venta',default=0)
-    TotalEfectivo = models.IntegerField(verbose_name='Total Efectivo',default=0)
-    TotalResiduo = models.IntegerField(verbose_name='Total Residuo',default=0)
+    base = models.IntegerField(verbose_name='Base',default=0)
+    TotalVenta = models.IntegerField(verbose_name='Venta',default=0)
+    TotalCaja = models.IntegerField(verbose_name='Caja',default=0)
+    TotalEfectivo = models.IntegerField(verbose_name='Efectivo',default=0)
+    TotalResiduo = models.IntegerField(verbose_name='Residuo',default=0)
 
 class Retiros (models.Model):
 

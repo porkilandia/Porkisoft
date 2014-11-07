@@ -347,7 +347,7 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA***********************************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=30)
+    fechainicio = date.today() - timedelta(days=37)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()

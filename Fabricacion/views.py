@@ -679,6 +679,23 @@ def existencias(request):
 
     return HttpResponse(respuesta,mimetype='application/json')
 
+def existenciasUnd(request):
+    # Metodo que verifica las existencias de un producto determinado
+    idProducto = request.GET.get('producto')
+    idBodega = request.GET.get('bodega')
+    unidades = request.GET.get('unidades')
+
+    bodega = ProductoBodega.objects.get(bodega =  int(idBodega),producto = int(idProducto))
+
+    if int(unidades) <= bodega.unidadesStock:
+        msj = ''
+    else:
+        msj = 'No se puede usar esa cantidad ; La cantidad disponible de %s es: %s' % (bodega.producto.nombreProducto,str(bodega.unidadesStock))
+
+    respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
 def GestionApanado(request):
 
     fechainicio = date.today() - timedelta(days=15)
@@ -816,7 +833,7 @@ def costeoApanado(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionMolido(request):
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=37)
     fechafin = date.today()
     molidos = Molida.objects.filter(fechaMolido__range =(fechainicio,fechafin))
     #molidos = Molida.objects.all()
@@ -2837,10 +2854,14 @@ def  TemplateUtilidadPorLote(request):
 
 def ReporteUtilidadPorLote(request):
     idCompra = request.GET.get('idCompra')
+    idLista = request.GET.get('idLista')
     compra = Compra.objects.get(pk = int(idCompra))
     canales = Canal.objects.filter(recepcion__compra = int(idCompra))
     ListaPesos = {}
+    ListaCosto = {}
+    ListaVenta = {}
 
+    vrCompra = compra.vrCompra
 
     carnes = 0
     costillas =0
@@ -2855,20 +2876,26 @@ def ReporteUtilidadPorLote(request):
 
             for detalle in detalleDespostes:
                 ListaPesos[detalle.producto.nombreProducto] = 0
+                ListaCosto[detalle.producto.nombreProducto] = 0
+                ListaVenta[detalle.producto.nombreProducto] = 0
 
 
 
     planillaAnterior = 0
     planillaActual = 0
     cont = 0
+    perdidaPC = 0
     for canal in canales:
         if canal.planilla:
             planillaActual = canal.planilla.codigoPlanilla
             detalleDespostes = DetallePlanilla.objects.filter(planilla__codigoPlanilla = canal.planilla.codigoPlanilla)
+            recepcion = PlanillaRecepcion.objects.get(pk = canal.recepcion.codigoRecepcion)
+            perdidaPC = recepcion.difPieCanal
             cont = 0
             if planillaAnterior != planillaActual:
                 for detalle in detalleDespostes:
                     ListaPesos[detalle.producto.nombreProducto] += ceil(detalle.PesoProducto)
+
                     if cont == 0:
                         carnes += ceil(detalle.pesoCarne)
                         costillas += ceil(detalle.pesoCostilla)
@@ -2879,6 +2906,16 @@ def ReporteUtilidadPorLote(request):
 
             planillaAnterior = planillaActual
 
+    for key ,value in ListaPesos.items():
+        producto = Producto.objects.get(nombreProducto = key)
+        ListaCosto[key] = (value /1000) * producto.costoProducto
+
+    for key ,value in ListaPesos.items():
+        producto = Producto.objects.get(nombreProducto = key)
+        ListaVenta[key] = (value /1000) * (producto.costoProducto * 1.33)
+
+
+
     adicionales = {}
     adicionales['Carne'] = carnes
     adicionales['Costilla'] = costillas
@@ -2886,8 +2923,15 @@ def ReporteUtilidadPorLote(request):
     adicionales['Hueso'] = huesos
     adicionales['Desecho'] = desechos
 
+    perdida = {}
+    perdida['Perdida de Peso'] = ceil(perdidaPC)
 
-    listas = {'Pesos':ListaPesos,'adicionales':adicionales}
+    compras = {}
+    compras['Total Compra'] = vrCompra
+
+
+    listas = {'Pesos':ListaPesos,'adicionales':adicionales,'perdida':perdida,'costo':ListaCosto,'compras':compras,'ListaVenta':ListaVenta}
+
 
     respuesta = json.dumps(listas)
 
@@ -3021,6 +3065,10 @@ def ReporteTallerPunto(request):
     pesoBolaEns = {}
     pesoBolaEns['Carne Ensalinada'] = 0
 
+    pesoMolida = {}
+    pesoMolida['Carne Molida'] = 0
+
+
     fechaInicio = str(inicio)
     fechaFin = str(fin)
     formatter_string = "%d/%m/%Y"
@@ -3057,9 +3105,19 @@ def ReporteTallerPunto(request):
         pesoBolaEns['Carne Ensalinada'] += ceil(bEns.pesoDespues)
 
 
+    carneMolida = Conversiones.objects.filter(fechaConversion__range = (finicio,ffin)).\
+        filter(puntoConversion = int(bodega)).filter(productoUno = 'Cogotes , (Reses)').\
+        filter(productoDos = 'Carne Molida , (Reses)')
+
+    promedioMolida = carneMolida.aggregate(Avg('costoP1'))
+
+    for cMolida in carneMolida:
+        pesoMolida['Carne Molida'] += ceil(cMolida.pesoConversion)
+
+
     listas = {'promedioFrito':promedioFrito,'pesoFrito':pesoFrito,'promedioCroqueta':promedioCroqueta,
               'pesoCroqueta':pesoCroqueta,'promedioCarneCond':promedioCarneCond,'pesoCarneCond':pesoCarneCond,
-              'promedioBolaEns':promedioBolaEns,'pesoBolaEns':pesoBolaEns}
+              'promedioBolaEns':promedioBolaEns,'pesoBolaEns':pesoBolaEns,'promedioMolida':promedioMolida,'pesoMolida':pesoMolida}
 
 
     respuesta = json.dumps(listas)
