@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block titulo %}::Listas De Precios::{% endblock titulo %}
+{% block titulo %}::Listas De Ventas::{% endblock titulo %}
 {% block mensajes %}Ventas Norte {% endblock mensajes %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
@@ -10,7 +10,9 @@
         <thead >
         <tr>
             <th>Codigo</th>
+            <th>No. Factura</th>
             <th>Fecha</th>
+            <th>Encargado</th>
             <th>Total Venta</th>
             <th>Restaurante</th>
             <th>Guardado</th>
@@ -27,7 +29,9 @@
             {% endif %}
 
             <td>{{ venta.numeroVenta }}</td>
+            <td>{{ venta.factura }}</td>
             <td>{{ venta.fechaVenta }}</td>
+            <td>{{ venta.encargado }}</td>
             <td>{{ venta.TotalVenta }}</td>
             {% if venta.restaurante == True %}
                 <td>Si</td>

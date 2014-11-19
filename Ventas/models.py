@@ -81,7 +81,9 @@ class DetallePedido (models.Model):
 
 class VentaPunto(models.Model):
 
-    numeroVenta = models.AutoField(primary_key=True, verbose_name='Numero Factura')
+    numeroVenta = models.AutoField(primary_key=True, verbose_name='Codigo')
+    factura = models.IntegerField(verbose_name='No.Factura',default=0)
+    encargado = models.ForeignKey(Empleado,verbose_name='Encargado')
     fechaVenta = models.DateField(verbose_name='Fecha',auto_now=True)
     TotalVenta = models.IntegerField(verbose_name='Total Venta',default=0)
     restaurante = models.BooleanField(verbose_name='Restaurante',default=False)

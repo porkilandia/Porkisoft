@@ -215,7 +215,7 @@ class Movimientos(models.Model):
     salida = models.DecimalField(verbose_name='Salida',default=0,max_digits=9, decimal_places=3)
 
 class Ajustes(models.Model):
-    fechaAjuste = models.DateField(verbose_name='Fecha')
+    fechaAjuste = models.DateField(verbose_name='Fecha',auto_now=True)
     productoAjuste = models.ForeignKey(Producto,verbose_name='Producto')
     bodegaAjuste = models.ForeignKey(Bodega,verbose_name='Bodega')
     pesoAjuste = models.DecimalField(verbose_name='Ajuste',default=0,max_digits=9, decimal_places=3)

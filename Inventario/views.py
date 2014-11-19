@@ -24,26 +24,12 @@ def listaProvedoresAjax(request):
     provedores = Proveedor.objects.all()
     data = serializers.serialize('json',provedores,fields = ('nit','nombreProv','direccionProv','telefonoProv',
                                                              'email','ciudad'))
-
     return HttpResponse(data, mimetype='application/json')
 
 
 def home(request):
     productosBajoStock = ProductoBodega.objects.all().filter(pesoProductoStock__gt = 500).order_by('bodega')
     costosProductos = Producto.objects.all().order_by('nombreProducto')
-    productos = Producto.objects.all()
-    bodegas = Bodega.objects.all()
-
-    '''for bodega in bodegas:
-        if bodega.codigoBodega != 6:
-            for producto in productos:
-                if producto.grupo.id == 1 or producto.grupo.id == 2 or producto.grupo.id == 9 or producto.grupo.id == 11:
-                    bodegaProducto = ProductoBodega.objects.get(bodega = bodega.codigoBodega,producto = producto.codigoProducto)
-                    if bodegaProducto.unidadesStock == 0:
-                        bodegaProducto.deshidratacion = bodegaProducto.pesoProductoStock - ((bodegaProducto.pesoProductoStock * Decimal(0.5)/100))
-                        bodegaProducto.save()'''
-
-
     return render_to_response('Home.html',{'productosBajoStock':productosBajoStock,'costosProductos':costosProductos},
                               context_instance = RequestContext(request))
 
@@ -347,7 +333,7 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA***********************************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=37)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()
@@ -500,7 +486,7 @@ def EditaCompra(request,idDetCompra):
                                                         context_instance = RequestContext(request))
 #********************************************TRASLADOS******************************************************
 def GestionTraslados(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     traslados = Traslado.objects.all().order_by('fechaTraslado').filter(fechaTraslado__range = (fechainicio,fechafin))
     if request.method == 'POST':
@@ -537,7 +523,7 @@ def GestionDetalleTraslado(request,idtraslado):
                                                          'traslado': traslado,'detraslados': detraslados},
                                                         context_instance = RequestContext(request))
 def EditaDetalleTraslado(request,idDettraslado):
-    det = DetalleTraslado.objects.get(pk = idDettraslado )
+    det = DetalleTraslado.objects.get(pk = idDettraslado)
     traslado = Traslado.objects.get(pk = det.traslado.codigoTraslado)
     detraslados = DetalleTraslado.objects.filter(traslado = traslado.codigoTraslado)
 

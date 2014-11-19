@@ -102,7 +102,8 @@ class CondimentadoForm(ModelForm):
         q2 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas').filter(nombreProducto__contains = 'Filete de')
         q3 = Producto.objects.filter(grupo__nombreGrupo ='Pollos').filter(nombreProducto__contains = 'Filete de')
         q4 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas').filter(nombreProducto__contains = 'Ensalinada')
-        self.fields['producto'].queryset = q1 | q2 | q3 | q4
+        q5 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas').filter(nombreProducto__contains = 'Lomo')
+        self.fields['producto'].queryset = q1 | q2 | q3 | q4 |q5
     class Meta:
         model = Condimentado
 
@@ -143,6 +144,7 @@ class DetalleDesposteForm(ModelForm):
 class costoForm(ModelForm):
     class Meta:
         model = ValoresCostos
+        exclude = ("valorCif","valorMod",)
 
 class DescarneForm(ModelForm):
     class Meta:
@@ -228,9 +230,10 @@ class ConversionesForm(ModelForm):
         q4 = Producto.objects.filter(grupo__nombreGrupo = 'Compra/Venta')
         q5 = Producto.objects.filter(grupo__nombreGrupo = 'Desechos')
         q6 = Producto.objects.filter(grupo__nombreGrupo = 'Pollos')
+        q7 = Producto.objects.filter(grupo__nombreGrupo = 'Insumos')
 
-        self.fields['productoUno'].queryset = q1 | q2 | q3 | q4 | q5 | q6
-        self.fields['productoDos'].queryset = q1 | q2 | q3 | q4 | q5 | q6
+        self.fields['productoUno'].queryset = q1 | q2 | q3 | q4 | q5 | q6 | q7
+        self.fields['productoDos'].queryset = q1 | q2 | q3 | q4 | q5 | q6 | q7
 
 
     class Meta:
@@ -241,3 +244,8 @@ class EnsBolaForm(ModelForm):
     class Meta:
         model = TallerBolaEnsalinada
         exclude = ("pesoTotal","costoKiloEns","guardado",)
+
+class ChicharronForm(ModelForm):
+    class Meta:
+        model = TallerChicharron
+        exclude = ("costoUndChicharron","costoUndGrasa","guardado",)

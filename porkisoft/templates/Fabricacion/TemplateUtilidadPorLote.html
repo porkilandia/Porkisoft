@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Reporte Compras{% endblock titulo %}
+{% block titulo %}Reporte Rendimiento{% endblock titulo %}
 {% block mensajes %}
-    Reporte Compras
+    Reporte Rendimiento por lote
 {% endblock mensajes %}
 {% block contenido %}
     <div id="progressbar"></div>
@@ -56,6 +56,29 @@
         </thead>
 
         </table>
+        </div>
+
+    </div>
+
+     <div id="diagrama">
+
+       <div id="SubProducto">
+            <p id="tituloGrafica">SubProducto</p>
+        </div>
+        <div id="Grasa">
+            <p id="tituloGrafica">Grasa</p>
+        </div>
+        <div id="carne">
+            <p id="tituloGrafica">carne</p>
+        </div>
+        <div id="Desecho">
+            <p id="tituloGrafica">Desecho</p>
+        </div>
+        <div id="Costilla">
+            <p id="tituloGrafica">Costilla</p>
+        </div>
+        <div id="Hueso">
+            <p id="tituloGrafica">Hueso</p>
         </div>
 
     </div>

@@ -12,7 +12,9 @@ $(document).on('ready', inicio);
 
 
      });*/
-
+     $('#encabezado').hide();
+     $('#pie').hide();
+     $('#pieRecibo').hide();
      $('#id_precioTotal').on('focus',calculoGanado);
      $('#id_difPesos').on('focus',calculoCanal);
      $('#id_vrCompraProducto').on('focus', calculoCompra);
@@ -67,8 +69,6 @@ $(document).on('ready', inicio);
 
      //var tablaEmpacado = $('#tablaEmpacado tr');
      //tablaEmpacado.on('click',maneja);
-     $('#encabezado').hide();
-     $('#pie').hide();
      $('#tablaAjustes').dataTable();
      $('#canalPendiente').dataTable();
      $('#tablaenTajados').dataTable();
@@ -134,10 +134,39 @@ $(document).on('ready', inicio);
      $('#FrmVenta').show();
      $("label[for=id_venta],#id_venta").hide();
      $("label[for=id_productoVenta]").hide();
+     $('#diagrama').hide();
 
 }
 
 /**************************************************** METODOS *********************************************************/
+function GuardarChicharron(idChicharron) {
+
+    $.ajax({
+            url: '/fabricacion/guardarChicharrones/',
+            dataType: "json",
+            type: "get",
+            data: {'idChicharron': idChicharron},
+            success: function (respuesta) {
+                        var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+                        }
+
+        });
+
+}
+function CostearChicharron(idChicharron) {
+
+    $.ajax({
+            url: '/fabricacion/costearChicharrones/',
+            dataType: "json",
+            type: "get",
+            data: {'idChicharron': idChicharron},
+            success: function (respuesta) {
+                        var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+                        }
+
+        });
+
+}
 function existenciasVenta()
 {
     var idProducto = $('#id_productoVenta').val();
@@ -184,6 +213,20 @@ function calculoTotalVenta()
     }
 
 }
+function ImprimirRecibo()
+{
+                var encabezado = $('#encabezado');
+                var pie = $('#pieRecibo');
+                var tablaDetVenta = $('#tablaDetalleVentaPunto');
+                encabezado.show();
+                pie.show();
+                tablaDetVenta.find("th:eq(5)").hide();
+                tablaDetVenta.addClass('recibo');
+                $('#recibo').printArea();
+                encabezado.hide();
+                pie.hide();
+                tablaDetVenta.removeClass('recibo');
+}
 function Cobrar()
 {
     var venta = $('#NumVenta').text();
@@ -197,10 +240,13 @@ function Cobrar()
             data: {'venta': venta},
             success: function (respuesta) {
                 var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+                location.reload();
+
             }
 
         });
     }
+
 }
 
 function imprimir()
@@ -421,8 +467,9 @@ function ReportePesosLote()
     var TotalCosto = 0;
     var TotalCompra = 0;
     var perdida = 0;
-    var TotalVenta = 0
+    var TotalVenta = 0;
     var tablaCosto = $("#tablaCostoLote");
+
 
     $.ajax({
 
@@ -445,9 +492,46 @@ function ReportePesosLote()
                     }
                     });
 
+                    var SubProducto =  $('#SubProducto');
+                    var Grasa =  $('#Grasa');
+                    var carne =  $('#carne');
+                    var Desecho =  $('#Desecho');
+                    var Costilla =  $('#Costilla');
+                    var Hueso =  $('#Hueso');
+
                     $.each(respuesta.adicionales,function(key,value){
 
-                        $("#tablaPesoCarne").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                        $("#tablaPesoCarne").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) +' %'+ "</td></tr>");
+                        $('#diagrama').show();
+                        var  alto = Math.ceil(value) * 4;
+
+                        if (key == 'SubProducto')
+                        {
+                           SubProducto.height(alto);
+                        }
+                        if (key == 'Grasa')
+                        {
+                           Grasa.height(alto);
+                        }
+                        if (key == 'Carne')
+                        {
+                           carne.height(alto);
+                        }
+                        if (key == 'Desecho')
+                        {
+                           Desecho.height(alto);
+                        }
+
+                        if (key == 'Costilla')
+                        {
+                           Costilla.height(alto);
+                        }
+                        if (key == 'Hueso')
+                        {
+                           Hueso.height(alto);
+                        }
+
+
                     });
                     $.each(respuesta.perdida,function(key,value){
 
@@ -465,11 +549,21 @@ function ReportePesosLote()
                         TotalCompra = value;
                     });
                     var gananciaEstimada = TotalVenta - TotalCosto;
+                    var costo = TotalCosto - TotalCompra;
+                    var utilidad = (gananciaEstimada * 100)/TotalVenta;
+
                     tablaCosto.append("<tr><td>" + 'Total Compra' + "</td><td style='text-align: right' >" +'$ '+ TotalCompra + "</td></tr>");
-                    tablaCosto.append("<tr><td>" + 'Costo Total' + "</td><td style='text-align: right' >"+'$ ' + TotalCosto + "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'Costo Operacion' + "</td><td style='text-align: right' >"+'$ ' + costo + "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'Total Costo' + "</td><td style='text-align: right' >"+'$ ' + TotalCosto + "</td></tr>");
+
+
                     tablaCosto.append("<tr><td>" + 'Total Venta Estimada' + "</td><td style='text-align: right' >" +'$ '+ Math.round(TotalVenta) + "</td></tr>");
-                    tablaCosto.append("<tr><td>" + 'Total Ganancia Estimada' + "</td><td style='text-align: right' >" +'$ '+ Math.round(gananciaEstimada) + "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'Utilidad Estimada' + "</td><td style='text-align: right' >" +'$ '+ Math.round(gananciaEstimada) + "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'Utilidad' + "</td><td style='text-align: right' >" + Math.round(utilidad) +' %'+ "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'perdida de Pie a Canal' + "</td><td style='text-align: right' >" + perdida +' %'+ "</td></tr>");
+
+                /*******************************************************************************************************/
+
                 $( "#progressbar" ).hide();
             }
 

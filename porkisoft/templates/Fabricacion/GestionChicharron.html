@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Taller Chicharron ::{% endblock titulo %}
+{% block mensajes %}
+    Taller Chicharron
+{% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+
+    <table id="tablabodegas" class="table-striped" >
+
+        <thead>
+        <tr>
+
+            <th>Fecha</th>
+            <th>Producto</th>
+            <th>Tocino</th>
+            <th>Sal</th>
+            <th>Und Grasa</th>
+            <th>Und Chicharron</th>
+            <th>Grasa</th>
+            <th>Chicharron</th>
+            <th>Costo CH</th>
+            <th>Costo Grasa</th>
+            <th>Guardado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        {% for chicharron in chicharrones %}
+        <tr>
+            <td>{{ chicharron.fechaChicharron }}</td>
+            <td>{{ chicharron.productoCh }}grs</td>
+            <td>{{ chicharron.Tocino|floatformat }}grs</td>
+            <td>{{ chicharron.Sal }}</td>
+            <td>{{ chicharron.undGrasa }}</td>
+            <td>{{ chicharron.undChicharron }}</td>
+            <td>${{ chicharron.grasa }}</td>
+            <td>{{ chicharron.chicharron }}</td>
+            <td>{{ chicharron.costoUndChicharron }}</td>
+            <td>{{ chicharron.costoUndGrasa }}</td>
+            {% if chicharron.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+
+            <td>
+                <a onclick="CostearChicharron({{ chicharron.id }})" href="#">Costear</a>
+                <a onclick="GuardarChicharron({{ chicharron.id }})" href="#">Guardar</a>
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Molida <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+
+                  {{ formulario }}
+
+              <br/>
+             <br/>
+          <input class="btn btn-primary" value="Guardar" type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}

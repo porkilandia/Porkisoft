@@ -911,7 +911,7 @@ def costeoMolido(request):
 #**********************************************PROCESO CONDIMENTADO*****************************************************
 
 def GestionCondimentado(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     condimentados = Condimentado.objects.filter(fecha__range =(fechainicio,fechafin))
     #condimentados = Condimentado.objects.all()
@@ -1328,23 +1328,23 @@ def GestionDesposteActualizado(request, idplanilla):
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
 
     elif tipoDesposte == 'Cerdas':
-        vrCarnes = ceil((vrTotalCanales * 33)/100)
-        vrCarnes2 = ceil((vrTotalCanales * 29)/100)
+        vrCarnes = ceil((vrTotalCanales * 34)/100)
+        vrCarnes2 = ceil((vrTotalCanales * 30)/100)
         vrCarnes3 = 0
         vrCarnes4 = 0
         vrCostillas = ceil((vrTotalCanales * 12)/100)
         vrHuesos = ceil((vrTotalCanales * 4)/100)
         vrsubProd = ceil((vrTotalCanales * 15)/100)
-        vrDesecho = ceil((vrTotalCanales * 1)/100)
+        vrDesecho = ceil((vrTotalCanales * 2)/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
     else:
-        vrCarnes = ceil((vrTotalCanales * 6)/100)
-        vrCarnes2 = ceil((vrTotalCanales * Decimal(27))/100)
-        vrCarnes3 = ceil((vrTotalCanales * 30)/100)
-        vrCarnes4 = ceil((vrTotalCanales * Decimal(10))/100)
-        vrCostillas = ceil((vrTotalCanales * 9)/100)
-        vrHuesos = ceil((vrTotalCanales * 7)/100)
+        vrCarnes = ceil((vrTotalCanales * Decimal(6.5))/100)
+        vrCarnes2 = ceil((vrTotalCanales * Decimal(30))/100)
+        vrCarnes3 = ceil((vrTotalCanales * Decimal(30.5))/100)
+        vrCarnes4 = ceil((vrTotalCanales * Decimal(12))/100)
+        vrCostillas = ceil((vrTotalCanales * 4)/100)
+        vrHuesos = ceil((vrTotalCanales * 10)/100)
         vrsubProd = ceil((vrTotalCanales * 3)/100)
         vrDesecho = ceil((vrTotalCanales * 2)/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
@@ -1807,7 +1807,7 @@ def GuardaDescarne(request):
         bodegaProcesos.save()
 
         #se saca del inventario toda la cabeza
-        cabeza = Producto.objects.get(nombreProducto = 'Cabeza',grupo__nombreGrupo = 'Cerdas')
+        cabeza = Producto.objects.get(nombreProducto = 'Cabeza Cerda',grupo__nombreGrupo = 'Cerdas')
         bodegaCabeza = ProductoBodega.objects.get(bodega = 5, producto = cabeza.codigoProducto)
         bodegaCabeza.pesoProductoStock -= descarne.pesoCabezas
 
@@ -2278,7 +2278,7 @@ def GuardarMenudos(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionFrito(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     fritos = TallerFrito.objects.filter(fechaFrito__range =(fechainicio,fechafin))
     #fritos = TallerFrito.objects.all()
@@ -2912,16 +2912,25 @@ def ReporteUtilidadPorLote(request):
 
     for key ,value in ListaPesos.items():
         producto = Producto.objects.get(nombreProducto = key)
-        ListaVenta[key] = (value /1000) * (producto.costoProducto * 1.33)
+        ListaVenta[key] = (value /1000) * (producto.costoProducto * 1.30)
+
+    tocino = 0
+
+    for key ,value in ListaPesos.items():
+        if key == 'Tocino' or key == 'Tocino Cerda' :
+            tocino = value
 
 
+    subproductos = subproductos - tocino
+    TotalDespostado = carnes + costillas + subproductos + huesos + tocino + desechos
 
     adicionales = {}
-    adicionales['Carne'] = carnes
-    adicionales['Costilla'] = costillas
-    adicionales['SubProducto'] = subproductos
-    adicionales['Hueso'] = huesos
-    adicionales['Desecho'] = desechos
+    adicionales['Carne'] = (carnes * 100)/TotalDespostado
+    adicionales['Costilla'] = (costillas * 100)/TotalDespostado
+    adicionales['SubProducto'] = (subproductos * 100)/TotalDespostado
+    adicionales['Hueso'] = (huesos * 100)/TotalDespostado
+    adicionales['Grasa'] = (tocino * 100)/TotalDespostado
+    adicionales['Desecho'] = (desechos * 100)/TotalDespostado
 
     perdida = {}
     perdida['Perdida de Peso'] = ceil(perdidaPC)
@@ -3121,5 +3130,148 @@ def ReporteTallerPunto(request):
 
 
     respuesta = json.dumps(listas)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+
+def GestionChicharron(request):
+    fechainicio = date.today() - timedelta(days=20)
+    fechafin = date.today()
+    chicharrones = TallerChicharron.objects.filter(fechaChicharron__range =(fechainicio,fechafin))
+
+    if request.method == 'POST':
+
+        formulario = ChicharronForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/chicharrones')
+    else:
+        formulario = ChicharronForm()
+
+    return render_to_response('Fabricacion/GestionChicharron.html',{'formulario':formulario,'chicharrones':chicharrones },
+                              context_instance = RequestContext(request))
+
+def CostearChicharoones(request):
+    idChicharron = request.GET.get('idChicharron')
+    chicharron = TallerChicharron.objects.get(pk = int(idChicharron))
+
+    producto = Producto.objects.get(pk = chicharron.productoCh.codigoProducto)
+    sal = Producto.objects.get(nombreProducto = 'Sal')
+    tocino = 0
+    if producto.grupo.nombreGrupo == 'Cerdos':
+        tocino = Producto.objects.get(nombreProducto = 'Tocino')
+    else:
+        tocino = Producto.objects.get(nombreProducto = 'Tocino Cerda')
+
+    costoSal = sal.costoProducto
+    costoTocino = tocino.costoProducto
+    pesoSal = chicharron.Sal
+    pesoTocino = chicharron.Tocino
+    pesochicharron = chicharron.chicharron
+    pesoGrasa = chicharron.grasa
+    undChicharron = chicharron.undChicharron
+    undGrasa = chicharron.undGrasa
+    costoTarrina = Producto.objects.get(nombreProducto = 'Tarrinas').costoProducto
+
+    costoTotalTocino = (pesoTocino /1000) * costoTocino
+    costoTotalSal = (pesoSal /1000) * costoSal
+
+    CostoTotalChicharron = costoTotalTocino + chicharron.cif + chicharron.mod + costoTotalSal
+    CostoKiloProcesado = CostoTotalChicharron / ((pesochicharron/1000) + (pesoGrasa/1000))
+
+    pesoUnitarioChichcarron = pesochicharron / undChicharron
+    pesoUnitarioGrasa = pesoGrasa / undGrasa
+
+    costoUnitarioChicharron = (pesoUnitarioChichcarron /1000) * CostoKiloProcesado + 13
+    costoUnitarioGrasa = (pesoUnitarioGrasa /1000) * CostoKiloProcesado + costoTarrina
+
+    chicharron.costoUndChicharron = costoUnitarioChicharron
+    chicharron.costoUndGrasa = costoUnitarioGrasa
+    chicharron.save()
+
+    msj = 'Costeo Exitoso'
+
+    respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def GuardarChicharron(request):
+    idChicharron = request.GET.get('idChicharron')
+    chicharron = TallerChicharron.objects.get(pk = int(idChicharron))
+    producto = Producto.objects.get(pk = chicharron.productoCh.codigoProducto)
+    sal = Producto.objects.get(nombreProducto = 'Sal')
+    tocino = 0
+    if producto.grupo.nombreGrupo == 'Cerdos':
+        tocino = Producto.objects.get(nombreProducto = 'Tocino')
+    else:
+        tocino = Producto.objects.get(nombreProducto = 'Tocino Cerda')
+
+    tarrina = Producto.objects.get(nombreProducto = 'Tarrinas')
+    grasaEnTarro = Producto.objects.get(nombreProducto = 'Grasa En Tarro')
+    chicharronProd = Producto.objects.get(nombreProducto = 'Chicharrones')
+
+    BodegaSal = ProductoBodega.objects.get(bodega = 6,producto = sal.codigoProducto)
+    BodegaTocino = ProductoBodega.objects.get(bodega = 5 , producto = tocino.codigoProducto)
+    BodegaTarrina = ProductoBodega.objects.get(bodega = 5 , producto = tarrina.codigoProducto)
+    BodegagrasaEnTarro = ProductoBodega.objects.get(bodega = 5 , producto = grasaEnTarro.codigoProducto)
+    BodegachicharronProd = ProductoBodega.objects.get(bodega = 5 , producto = chicharronProd.codigoProducto)
+
+    BodegaSal.pesoProductoStock -= chicharron.Sal
+    BodegaSal.save()
+    movimiento = Movimientos()
+    movimiento.tipo = 'CHI%d'%(chicharron.id)
+    movimiento.fechaMov = chicharron.fechaChicharron
+    movimiento.productoMov = sal
+    movimiento.desde = BodegaSal.bodega.nombreBodega
+    movimiento.salida = chicharron.Sal
+    movimiento.save()
+
+    BodegaTocino.pesoProductoStock -= chicharron.Tocino
+    BodegaTocino.save()
+    movimiento = Movimientos()
+    movimiento.tipo = 'CHI%d'%(chicharron.id)
+    movimiento.fechaMov = chicharron.fechaChicharron
+    movimiento.productoMov = tocino
+    movimiento.desde = BodegaTocino.bodega.nombreBodega
+    movimiento.salida = chicharron.Tocino
+    movimiento.save()
+
+
+    BodegaTarrina.unidadesStock -= chicharron.undGrasa
+    BodegaTarrina.save()
+    movimiento = Movimientos()
+    movimiento.tipo = 'CHI%d'%(chicharron.id)
+    movimiento.fechaMov = chicharron.fechaChicharron
+    movimiento.productoMov = tarrina
+    movimiento.desde = BodegaTarrina.bodega.nombreBodega
+    movimiento.salida = chicharron.undGrasa
+    movimiento.save()
+
+    BodegagrasaEnTarro.unidadesStock += chicharron.undGrasa
+    BodegagrasaEnTarro.save()
+    movimiento = Movimientos()
+    movimiento.tipo = 'CHI%d'%(chicharron.id)
+    movimiento.fechaMov = chicharron.fechaChicharron
+    movimiento.productoMov = grasaEnTarro
+    movimiento.Hasta = BodegagrasaEnTarro.bodega.nombreBodega
+    movimiento.entrada = chicharron.undGrasa
+    movimiento.save()
+
+    BodegachicharronProd.unidadesStock += chicharron.undChicharron
+    BodegachicharronProd.save()
+    movimiento = Movimientos()
+    movimiento.tipo = 'CHI%d'%(chicharron.id)
+    movimiento.fechaMov = chicharron.fechaChicharron
+    movimiento.productoMov = chicharronProd
+    movimiento.Hasta = BodegachicharronProd.bodega.nombreBodega
+    movimiento.entrada = chicharron.undChicharron
+    movimiento.save()
+
+    chicharron.guardado = True
+    chicharron.save()
+
+    msj = 'Guardado Exitoso'
+
+    respuesta = json.dumps(msj)
 
     return HttpResponse(respuesta,mimetype='application/json')

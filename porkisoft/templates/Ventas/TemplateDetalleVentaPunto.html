@@ -4,13 +4,16 @@
 {% block mensajes %}Ventas Norte {% endblock mensajes %}
 {% block contenido %}
 <a  onclick="Cobrar()" href="#"><input type="button" value="Cobrar" class="btn btn-warning"></a>
+<a  onclick="ImprimirRecibo()" href="#"><input type="button" value="Imprimir" class="btn btn-success"></a>
 <br/><br/><br/>
     <table id="tablaVentaPunto" class="table-striped" >
 
         <thead >
         <tr>
             <th>Codigo</th>
+            <th>Factura</th>
             <th>Fecha</th>
+            <th>Encargado</th>
             <th>Total Venta</th>
             <th>Restaurante</th>
             <th>Guardado</th>
@@ -18,7 +21,9 @@
         </tr>
         </thead>
             <td id="NumVenta">{{ venta.numeroVenta }}</td>
+            <td>{{ venta.factura }}</td>
             <td>{{ venta.fechaVenta }}</td>
+            <td>{{ venta.encargado }}</td>
             <td>{{ venta.TotalVenta }}</td>
             {% if venta.restaurante == True %}
                 <td>Si</td>
@@ -32,15 +37,33 @@
             {% endif %}
 
     </table>
-    <br/><br/>
-    <table id="tablaDetalleVentaPunto" class="table-striped" >
+    <br/>
+    <div id="recibo">
+        <table id="encabezado">
+            <tr><th>PORKILANDIA S.A.S.</th></tr>
+            <tr><th>Nit: 900606687-6</th></tr>
+            <tr><th>Regimen Comun</th></tr>
+            <tr><th>Resolucion : 140000039353</th></tr>
+            <tr><th>Expedida el : 09-04-2013</th></tr>
+            <tr><th>Cll 16 # 31-02 San andres</th></tr>
+            <tr><th>Telefonos : 729 13 36 - 315 582 2270</th></tr>
+            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+            <tr><th style="text-align: left">Fecha : {{ Hora }}</th></tr>
+            <tr><th style="text-align: left">Factura N°: {{ venta.factura }}</th></tr>
+            <tr><th style="text-align: left">Encargado : {{ venta.encargado }}</th></tr>
+            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+
+
+        </table>
+     <br/>
+        <table id="tablaDetalleVentaPunto" class="table-striped" >
 
         <thead >
         <tr>
 
             <th>Producto</th>
             <th>Peso</th>
-            <th>Unidades</th>
+            <th>Und</th>
             <th>Vr.Unitario</th>
             <th>Vr.Total</th>
             <th>Acciones</th>
@@ -50,8 +73,8 @@
         </thead>
         {% for detventa in detVentas %}
             <tr>
-            <td>{{ detventa.productoVenta }}</td>
-            <td>{{ detventa.pesoVentaPunto}}</td>
+            <td>{{ detventa.productoVenta.nombreProducto }}</td>
+            <td>{{ detventa.pesoVentaPunto|floatformat }}</td>
             <td>{{ detventa.unidades }}</td>
             <td>$ {{ detventa.vrUnitarioPunto }}</td>
             <td>$ {{ detventa.vrTotalPunto }}</td>
@@ -61,7 +84,7 @@
                 <td>
                 <a href="{% url 'Ventas.views.EditaPuntoVenta' detventa.id %}">Editar</a>
                 <a href="{% url 'Ventas.views.EliminaPuntoVenta' detventa.id %}" style="color: red">Borrar</a>
-            </td>
+                </td>
             {% endif %}
 
 
@@ -75,6 +98,24 @@
 
         {% endfor %}
     </table>
+    <br/>
+        <table id="pieRecibo">
+                <tr>
+                    <th>Total Compra:_________________ $ {{ venta.TotalVenta }} </th>
+                </tr>
+                <tr>
+                    <th>__________________________________</th>
+                </tr>
+                <tr>
+                    <th>!! GRACIAS POR SU COMPRA !!</th>
+                </tr>
+                <tr>
+                    <th style="font-size: 0.8em">Generado en PORKISOFT V.1.0</th>
+                </tr>
+
+            </table>
+    </div>
+
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="FrmVenta">
              <legend>Venta</legend>

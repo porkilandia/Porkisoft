@@ -239,6 +239,9 @@ class ValoresCostos(models.Model):
     valorCif = models.IntegerField(verbose_name='Valor Cif',default=0)
     valorMod = models.IntegerField(verbose_name='Valor Mod',default=0)
     valorKiloPie = models.IntegerField(verbose_name='Valor Kilo en Pie',default=0)
+    inicia = models.IntegerField(verbose_name='vr Inicial',default=0)
+    actual = models.IntegerField(verbose_name='vr actual',default=0)
+    finaliza = models.IntegerField(verbose_name='vr Final',default=0)
     fecha = models.DateField(verbose_name='Fecha Actualizacion', auto_now=True)
 
     def __unicode__(self):
@@ -385,4 +388,19 @@ class TallerBolaEnsalinada(models.Model):
     costoKiloEns = models.IntegerField(verbose_name='Costo Kilo',default=0)
     pesoDespues = models.DecimalField(verbose_name='Peso Despues', max_digits=9, decimal_places=3,default=0)
     puntoBodega = models.ForeignKey(Bodega,verbose_name='Punto')
+    guardado = models.BooleanField(default=False)
+
+class TallerChicharron(models.Model):
+    fechaChicharron = models.DateField(verbose_name='Fecha')
+    productoCh = models.ForeignKey(Producto,verbose_name='Producto')
+    Tocino = models.DecimalField(verbose_name='Peso Croqueta', max_digits=9, decimal_places=3,default=0)
+    Sal = models.DecimalField(verbose_name='Peso Sal', max_digits=9, decimal_places=3,default=0)
+    undGrasa = models.IntegerField(verbose_name='und. Grasa',default=0)
+    undChicharron = models.IntegerField(verbose_name='und. Chicharron',default=0)
+    chicharron = models.DecimalField(verbose_name='Peso Chicharron', max_digits=9, decimal_places=3,default=0)
+    grasa = models.DecimalField(verbose_name='Peso Grasa', max_digits=9, decimal_places=3,default=0)
+    costoUndChicharron = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    costoUndGrasa = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    mod = models.IntegerField(verbose_name='Mod',default=0)
+    cif = models.IntegerField(verbose_name='Cif',default=0)
     guardado = models.BooleanField(default=False)

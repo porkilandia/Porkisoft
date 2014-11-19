@@ -2,6 +2,7 @@
 from django.shortcuts import render_to_response,HttpResponseRedirect
 from django.template import RequestContext
 from Ventas.Forms import *
+from Fabricacion.models import *
 
 from datetime import *
 from decimal import Decimal
@@ -280,11 +281,19 @@ def EditaListas(request,idDetLista):
 
 def PuntoVenta(request):
     ventas = VentaPunto.objects.filter(fechaVenta = datetime.today())
+    consecutivo = ValoresCostos.objects.get(nombreCosto = 'Facturacion')
 
     if request.method =='POST':
         formulario = VentaPuntoForm(request.POST)
         if formulario.is_valid():
-            formulario.save()
+            if consecutivo.actual < consecutivo.finaliza:
+                transaccion = formulario.save()
+                numeroFactura = consecutivo.actual + 1
+                consecutivo.actual = numeroFactura
+                consecutivo.save()
+                transaccion.factura = numeroFactura
+                transaccion.save()
+
 
             return HttpResponseRedirect('/ventas/ventaPunto/')
     else:
@@ -295,6 +304,7 @@ def PuntoVenta(request):
 def DetallePuntoVenta(request,idVenta):
     detVentas =DetalleVentaPunto.objects.filter(venta = idVenta)
     venta = VentaPunto.objects.get(pk = idVenta)
+    consecutivo = ValoresCostos.objects.get(nombreCosto = 'Facturacion')
 
     totalFactura = 0
 
@@ -304,6 +314,8 @@ def DetallePuntoVenta(request,idVenta):
     venta.TotalVenta = totalFactura
     venta.save()
 
+    Hora = datetime.now()
+
     if request.method =='POST':
         formulario = DetalleVentaPuntoForm(request.POST)
         if formulario.is_valid():
@@ -312,7 +324,8 @@ def DetallePuntoVenta(request,idVenta):
             return HttpResponseRedirect('/ventas/detalleVentaPunto/'+ idVenta)
     else:
         formulario = DetalleVentaPuntoForm(initial={'venta':idVenta})
-    return render_to_response('Ventas/TemplateDetalleVentaPunto.html',{'venta':venta,'formulario':formulario,'detVentas':detVentas},
+    return render_to_response('Ventas/TemplateDetalleVentaPunto.html',{'Hora':Hora,'venta':venta,'formulario':formulario,
+                                                                       'detVentas':detVentas,'consecutivo':consecutivo},
                               context_instance = RequestContext(request))
 
 def EditaPuntoVenta(request,idDetVenta):
@@ -359,13 +372,33 @@ def CobrarVenta(request):
 
     idVenta = request.GET.get('venta')
     venta = VentaPunto.objects.get(pk = int(idVenta))
-    #pendiete efectuar operaciones de inventario
+    detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
+
+    for detalle in detalleVenta:
+        bodegaProducto = ProductoBodega.objects.get(bodega = 1,producto = detalle.productoVenta.codigoProducto)
+        movimiento = Movimientos()
+        movimiento.tipo = 'VNNOR%d'%(venta.numeroVenta)
+        movimiento.fechaMov = venta.fechaVenta
+        movimiento.productoMov = detalle.productoVenta
+        movimiento.desde = bodegaProducto.bodega.nombreBodega
+
+        if detalle.pesoVentaPunto == 0:
+            bodegaProducto.unidadesStock -= detalle.unidades
+            movimiento.salida = detalle.unidades
+        else:
+            bodegaProducto.pesoProductoStock -= detalle.pesoVentaPunto
+            movimiento.salida = detalle.pesoVentaPunto
+
+        #bodegaProducto.save()
+        #movimiento.save()
+
     venta.guardado = True
     venta.save()
-    msj = 'Cobro exitoso!!'
+    msj = 'Cobro exitoso, se han guardado %d registros'%(detalleVenta.count())
     respuesta = json.dumps(msj)
 
     return HttpResponse(respuesta,mimetype='application/json')
+
 
 def GestionCaja(request):
     Cajas = Caja.objects.all()
@@ -411,3 +444,4 @@ def ValorProdVenta(request):
     valor = DetalleLista.objects.filter(lista = lista.codigoLista).get(productoLista = int(idProducto)).precioVenta
     respuesta = json.dumps(valor)
     return HttpResponse(respuesta,mimetype='application/json')
+

@@ -85,6 +85,10 @@ urlpatterns = patterns('',
     url(r'^conversiones/$',GestionConversiones),
     url(r'^Guardaconversiones/$',GuardarConversion),
 
+    url(r'^chicharrones/$',GestionChicharron),
+    url(r'^costearChicharrones/$',CostearChicharoones),
+    url(r'^guardarChicharrones/$',GuardarChicharron),
+
 
     #url(r'^detalleDesposte/(?P<idplanilla>\d+)',GestionCanalDetalleDesposte),
     #url(r'^costoDesposte/(?P<idplanilla>\d+)',CostoDesposte),
