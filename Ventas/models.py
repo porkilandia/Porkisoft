@@ -112,6 +112,7 @@ class Caja (models.Model):
     encargado = models.ForeignKey(Empleado,verbose_name='Encargado')
     base = models.IntegerField(verbose_name='Base',default=0)
     TotalVenta = models.IntegerField(verbose_name='Venta',default=0)
+    TotalRetiro = models.IntegerField(verbose_name='Venta',default=0)
     TotalCaja = models.IntegerField(verbose_name='Caja',default=0)
     TotalEfectivo = models.IntegerField(verbose_name='Efectivo',default=0)
     TotalResiduo = models.IntegerField(verbose_name='Residuo',default=0)
@@ -120,5 +121,26 @@ class Retiros (models.Model):
 
     fechaRetiro = models.DateField(verbose_name='Fecha',auto_now=True)
     encargado = models.ForeignKey(Empleado,verbose_name='Encargado')
+    nombreEncargado = models.CharField(verbose_name='Nombre Empleado',max_length=50,blank=True)
     cantidad = models.IntegerField(verbose_name='Cantidad',default=0)
     observacion = models.TextField(verbose_name='Observacion')
+    guardado = models.BooleanField(default=False,verbose_name='Guardado')
+
+
+class Devolucion (models.Model):
+
+    fechaDevolucion = models.DateField(verbose_name='Fecha',auto_now=True)
+    encargado = models.ForeignKey(Empleado,verbose_name='Encargado')
+    observacion = models.TextField(verbose_name='Observacion')
+    guardado = models.BooleanField(default=False,verbose_name='Guardado')
+
+    def __unicode__(self):
+        return self.id
+
+class DetalleDevolucion (models.Model):
+
+    devolucion = models.ForeignKey(Devolucion)
+    productoDev = models.ForeignKey(Producto,verbose_name='Producto')
+    pesoProducto = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso',null= True,default=0)
+    cantidad = models.IntegerField(verbose_name='Und',default=0)
+

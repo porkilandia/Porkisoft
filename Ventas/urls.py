@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, url
-
 from Ventas.views import *
 
 
@@ -29,5 +28,12 @@ urlpatterns = patterns('',
     url(r'^editaCaja/(?P<idCaja>\d+)',EditaCaja),
 
     url(r'^cobrar/$',CobrarVenta),
+
+    url(r'^retiro/$',GestionRetiros),
+    url(r'^ImprimirRetiro/$',ImprimirRetiro),
+
+    url(r'^devoluciones/$',GestionarDevolucion),
+    url(r'^detalleDevoluciones/(?P<idDev>\d+)',GestionDetalleDevolucion),
+    url(r'^GuardarDevolucion/$',GuardarDevolucion),
 
 )

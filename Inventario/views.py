@@ -295,11 +295,19 @@ def GestionGanado(request,idcompra):
     ganados = Ganado.objects.filter(compra = idcompra).order_by('-codigoGanado')
     compra = Compra.objects.get(pk = idcompra)
     detallecompra = DetalleCompra()
+    totalPie = 0
+    for ganado in ganados:
+        totalPie += ganado.pesoEnPie
+        ganado.TotalpesoEnPie = totalPie
+        ganado.save()
+
 
     if request.method == 'POST':
         formulario = GanadoForm(request.POST)
         if formulario.is_valid():
             ganado = formulario.save()
+
+
 
             detallecompra.compra = compra
             detallecompra.ganado = ganado
@@ -330,10 +338,10 @@ def GestionGanado(request,idcompra):
     return render_to_response('Inventario/GestionGanado.html',{'formulario':formulario,'ganados':ganados,'compra':idcompra },
                               context_instance = RequestContext(request))
 
-#**********************************************COMPRA***********************************************************
+#**********************************************COMPRA********************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()

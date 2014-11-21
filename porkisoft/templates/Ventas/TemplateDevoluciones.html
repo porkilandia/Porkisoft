@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
-{% block titulo %}::Caja ::{% endblock titulo %}
-{% block mensajes %}Caja Norte {% endblock mensajes %}
+{% block titulo %}::Devoluciones ::{% endblock titulo %}
+{% block mensajes %}Devoluciones Norte {% endblock mensajes %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
 <br/><br/><br/>
@@ -9,33 +9,28 @@
 
         <thead >
         <tr>
-            <th>Codigo</th>
             <th>Fecha</th>
-            <th>Jornada</th>
             <th>Encargado</th>
-            <th>Base</th>
-            <th>Retiros</th>
-            <th>Total Venta</th>
-            <th>Total Efectivo</th>
-            <th>Total Residuo</th>
+            <th>Observacion</th>
+            <th>Guardado</th>
             <th>Acciones</th>
 
 
         </tr>
         </thead>
-        {% for caja in Cajas %}
+        {% for devolucion in devoluciones %}
             <tr>
-            <td>{{ caja.numeroCaja }}</td>
-            <td>{{ caja.fechaCaja }}</td>
-            <td>{{ caja.jornada }}</td>
-            <td>{{ caja.encargado }}</td>
-            <td>{{ caja.base }}</td>
-            <td>{{ caja.TotalRetiro }}</td>
-            <td>{{ caja.TotalVenta }}</td>
-            <td>{{ caja.TotalEfectivo }}</td>
-            <td>{{ caja.TotalResiduo }}</td>
+            <td>{{ devolucion.fechaDevolucion }}</td>
+            <td>{{ devolucion.encargado }}</td>
+            <td>{{ devolucion.observacion }}</td>
+            {% if devolucion.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+
             <td>
-                <a href="{% url 'Ventas.views.EditaCaja' caja.numeroCaja %}">Arqueo</a>
+                <a href="{% url 'Ventas.views.GestionDetalleDevolucion' devolucion.id %}">Detalle</a>
             </td>
 
         </tr>

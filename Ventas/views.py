@@ -6,6 +6,7 @@ from Fabricacion.models import *
 
 from datetime import *
 from decimal import Decimal
+from django.core import serializers
 
 import json
 from django.template.loader import render_to_string
@@ -424,11 +425,19 @@ def EditaCaja(request,idCaja):
             formulario.save()
 
             facturas = VentaPunto.objects.filter(fechaVenta = caja.fechaCaja)
+            retiros = Retiros.objects.filter(fechaRetiro = caja.fechaCaja).filter(guardado = True)
             ventaDia = 0
+            retirosDia = 0
+
+            for retiro in retiros:
+                retirosDia += retiro.cantidad
+
             for factura in facturas:
                 ventaDia += factura.TotalVenta
+
             caja.TotalVenta = ventaDia
-            caja.TotalResiduo = (caja.TotalVenta + caja.base) - caja.TotalEfectivo
+            caja.TotalRetiro = retirosDia
+            caja.TotalResiduo = (caja.TotalVenta + caja.base) - (caja.TotalEfectivo + retirosDia)
             caja.save()
 
             return HttpResponseRedirect('/ventas/caja/')
@@ -443,5 +452,82 @@ def ValorProdVenta(request):
     lista = ListaDePrecios.objects.get(nombreLista = 'Norte/Lorenzo')
     valor = DetalleLista.objects.filter(lista = lista.codigoLista).get(productoLista = int(idProducto)).precioVenta
     respuesta = json.dumps(valor)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def GestionRetiros(request):
+
+    retiros = Retiros.objects.filter(fechaRetiro = datetime.today())
+
+    if request.method =='POST':
+        formulario = RetirosForm(request.POST)
+        if formulario.is_valid():
+            datos = formulario.save()
+            cadena = '%s %s'%(datos.encargado.nombre, datos.encargado.apellido)
+            datos.nombreEncargado = cadena
+            datos.save()
+
+            return HttpResponseRedirect('/ventas/retiro/')
+    else:
+        formulario = RetirosForm()
+
+    return render_to_response('Ventas/TemplateRetiros.html',{'retiros':retiros,'formulario':formulario},
+                              context_instance = RequestContext(request))
+
+def ImprimirRetiro(request):
+    idRetiro = request.GET.get('idRetiro')
+    retiro = Retiros.objects.filter(pk = int(idRetiro))
+    respuesta = serializers.serialize('json',retiro)
+    for ret in retiro:
+        ret.guardado = True
+        ret.save()
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def GestionarDevolucion(request):
+    devoluciones = Devolucion.objects.filter(fechaDevolucion = datetime.today())
+
+    if request.method =='POST':
+        formulario = DevolucionesForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/ventas/devoluciones/')
+    else:
+        formulario = DevolucionesForm()
+
+    return render_to_response('Ventas/TemplateDevoluciones.html',{'devoluciones':devoluciones,'formulario':formulario},
+                              context_instance = RequestContext(request))
+
+def GestionDetalleDevolucion(request,idDev):
+    devolucion = Devolucion.objects.get(pk = idDev)
+    detalles = DetalleDevolucion.objects.filter(devolucion = idDev)
+
+    if request.method =='POST':
+        formulario = DetalleDevolucionForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/ventas/detalleDevoluciones/'+ idDev)
+    else:
+        formulario = DetalleDevolucionForm(initial={'devolucion':idDev})
+
+    return render_to_response('Ventas/TemplateDetalleDevolucion.html',{'detalles':detalles,'devolucion':devolucion,
+                                                                       'formulario':formulario},
+                              context_instance = RequestContext(request))
+
+def GuardarDevolucion(request):
+
+    idDetalleDev = request.GET.get('idDetalleDev')
+    detalles = DetalleDevolucion.objects.filter(devolucion = int(idDetalleDev))
+    for detalle in detalles:
+        bodegaProd = ProductoBodega.objects.get(bodega = 1, producto = detalle.productoDev.codigoProducto)
+        if detalle.pesoProducto == 0:
+            bodegaProd.unidadesStock += detalle.cantidad
+        else:
+            bodegaProd.pesoProductoStock += detalle.pesoProducto
+        bodegaProd.save()
+
+    msj = 'Se guargaron Exitosamente las devoluciones'
+
+    respuesta = json.dumps(msj)
+
     return HttpResponse(respuesta,mimetype='application/json')
 

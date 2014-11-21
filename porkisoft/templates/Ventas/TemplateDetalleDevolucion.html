@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Devoluciones::{% endblock titulo %}
+{% block mensajes %}Detalle Devoluciones {% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+<a onclick="GuardarDevolucion()"href="#"><input type="button" value="Guardar Devolucion" class="btn btn-danger"></a>
+<br/><br/><br/>
+    <table class="table-striped" >
+
+        <thead >
+        <tr>
+            <th>Codigo</th>
+            <th>Fecha</th>
+            <th>Encargado</th>
+            <th>Guardado</th>
+        </tr>
+        </thead>
+        <tr>
+            <td id="idDetDevolucion">{{ devolucion.id }}</td>
+            <td>{{ devolucion.fechaDevolucion }}</td>
+            <td>{{ devolucion.encargado }}</td>
+            {% if devolucion.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+        </tr>
+    </table>
+
+    <br/><br/>
+    <table class="table-striped" >
+
+        <thead >
+        <tr>
+
+            <th>Producto</th>
+            <th>Peso</th>
+            <th>Unidades</th>
+
+        </tr>
+        </thead>
+        {% for detalle in detalles %}
+        <tr>
+            <td>{{ detalle.productoDev }}</td>
+            <td>{{ detalle.pesoProducto }}</td>
+            <td>{{ detalle.cantidad }}</td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Devolucion<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+
+                  {{ formulario }}
+
+              <br/>
+          <input class="btn btn-default" value="Guardar" type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}

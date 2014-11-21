@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Listas De Retiros::{% endblock titulo %}
+{% block mensajes %}Retiros Norte {% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+<br/><br/><br/>
+    <table class="table-striped" >
+
+        <thead >
+        <tr>
+            <th>Fecha</th>
+            <th>Encargado</th>
+            <th>Total Efectivo</th>
+            <th>Observacion</th>
+            <th>Guardado</th>
+            <th>Acciones</th>
+
+
+        </tr>
+        </thead>
+        {% for retiro in retiros %}
+            {% if retiro.guardado == True %}
+                <tr style="color: green">
+            {% else %}
+                 <tr style="color: red">
+            {% endif %}
+
+            <td>{{ retiro.fechaRetiro }}</td>
+            <td>{{ retiro.encargado }}</td>
+            <td>{{ retiro.cantidad }}</td>
+            <td>{{ retiro.observacion }}</td>
+
+            {% if retiro.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+            {% if retiro.guardado == True %}
+                <td></td>
+            {% else %}
+                <td>
+                <a onclick="imprimirRetiro({{ retiro.id }})"  href="#">Imprimir</a>
+                </td>
+            {% endif %}
+
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+
+
+    <div id="ImpRetiro">
+        <table id="encabezado">
+            <tr><th>PORKILANDIA S.A.S.</th></tr>
+            <tr><th>COMPROBANTE DE RETIRO DE EFECTIVO</th></tr>
+            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+            <tr><th id="fechaRetiro"></th></tr>
+            <tr><th id="EncargadoRetiro"></th></tr>
+            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+        </table>
+        <table id="Retiro">
+            <tr>
+                <th>Efectivo</th>
+                <th>Observacion</th>
+            </tr>
+        </table>
+        <table id="pieRecibo">
+
+                <tr>
+                    <th>__________________________________</th>
+                </tr>
+                <tr>
+                    <th style="font-size: 0.8em">Generado en PORKISOFT V.1.0</th>
+                </tr>
+                <tr>
+                    <th style="font-size: 0.8em">-- 2014 --</th>
+                </tr>
+
+        </table>
+    </div>
+
+
+
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarBodega">
+             <legend>Venta<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+
+                  {{ formulario }}
+
+              <br/>
+          <input class="btn btn-default" value="Guardar" type="submit">
+         </fieldset>
+     </form>
+{% endblock contenido %}

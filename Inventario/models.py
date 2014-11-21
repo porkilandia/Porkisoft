@@ -156,6 +156,7 @@ class Ganado(models.Model):
     precioKiloEnPie = models.IntegerField(verbose_name='Precio Kilo en Pie')
     precioTotal = models.IntegerField(verbose_name='Precio Total')
     fechaIngreso = models.DateField(auto_now=True, blank=True, null=True)
+    TotalpesoEnPie = models.DecimalField(verbose_name = 'Peso en Pie (grs)',max_digits=9, decimal_places=3)
 
     def __unicode__(self):
         return self.codigoGanado

@@ -15,6 +15,7 @@ $(document).on('ready', inicio);
      $('#encabezado').hide();
      $('#pie').hide();
      $('#pieRecibo').hide();
+     $('#Retiro').hide();
      $('#id_precioTotal').on('focus',calculoGanado);
      $('#id_difPesos').on('focus',calculoCanal);
      $('#id_vrCompraProducto').on('focus', calculoCompra);
@@ -139,6 +140,65 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function GuardarDevolucion() {
+    var idDetalleDev = $('#idDetDevolucion').text();
+        var opcion = confirm('Desea Imprimir este Comprobante?');
+    if (opcion == true)
+    {
+        $.ajax({
+            url: '/ventas/GuardarDevolucion/',
+            dataType: "json",
+            type: "get",
+            data: {'idDetalleDev': idDetalleDev},
+            success: function (respuesta)
+            {
+
+            }
+
+    });
+    }
+}
+function imprimirRetiro(idRetiro) {
+    var tablaRetiro = $('#Retiro');
+
+    var opcion = confirm('Desea Imprimir este Comprobante?');
+    if (opcion == true)
+    {
+        $.ajax({
+            url: '/ventas/ImprimirRetiro/',
+            dataType: "json",
+            type: "get",
+            data: {'idRetiro': idRetiro},
+            success: function (respuesta) {
+                        tablaRetiro.find("tr:gt(0)").remove();
+                        var encabezado = $('#encabezado');
+                        var pie = $('#pieRecibo');
+                        encabezado.show();
+                        pie.show();
+                        tablaRetiro.show();
+                        tablaRetiro.find("th:eq(5)").hide();
+                        for (var i=0;i<respuesta.length;i++)
+                            {
+                                $('#fechaRetiro').text('Fecha :' + respuesta[i].fields.fechaRetiro);
+                                $('#EncargadoRetiro').text('Encargado :' + respuesta[i].fields.nombreEncargado);
+                                tablaRetiro.append(
+                                        "<tr><td>" +'$ '+ respuesta[i].fields.cantidad +
+                                        "</td><td>"  + respuesta[i].fields.observacion +
+                                        "</td></tr>");
+
+                            }
+                        tablaRetiro.addClass('recibo');
+                        $('#ImpRetiro').printArea();
+                        encabezado.hide();
+                        pie.hide();
+                        tablaRetiro.hide();
+
+                        }
+    });
+    }
+
+
+}
 function GuardarChicharron(idChicharron) {
 
     $.ajax({

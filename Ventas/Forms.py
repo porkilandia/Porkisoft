@@ -53,4 +53,17 @@ class DetalleVentaPuntoForm(ModelForm):
 class CajaForm(ModelForm):
     class Meta:
         model = Caja
-        exclude = ("TotalVenta","TotalResiduo","TotalCaja",)
+        exclude = ("TotalVenta","TotalResiduo","TotalCaja","TotalRetiro",)
+
+class RetirosForm(ModelForm):
+    class Meta:
+        model = Retiros
+        exclude = ("guardado","nombreEncargado",)
+
+class DevolucionesForm(ModelForm):
+    class Meta:
+        model = Devolucion
+        exclude = ("guardado",)
+class DetalleDevolucionForm(ModelForm):
+    class Meta:
+        model = DetalleDevolucion
