@@ -14,6 +14,7 @@
             <th>Factura</th>
             <th>Fecha</th>
             <th>Encargado</th>
+            <th>Jornada</th>
             <th>Total Venta</th>
             <th>Restaurante</th>
             <th>Guardado</th>
@@ -24,7 +25,8 @@
             <td>{{ venta.factura }}</td>
             <td>{{ venta.fechaVenta }}</td>
             <td>{{ venta.encargado }}</td>
-            <td>{{ venta.TotalVenta }}</td>
+            <td>{{ venta.jornada }}</td>
+            <td id="totalVentaDet">{{ venta.TotalVenta }}</td>
             {% if venta.restaurante == True %}
                 <td>Si</td>
             {% else %}
@@ -98,10 +100,16 @@
 
         {% endfor %}
     </table>
+        <br/><br/>
+    <div id="calculaVuelto">
+        <label for="totalCompra">Total Venta</label><input id="totalCompra" type="text"/>
+        <label for="efectivo">Efectivo</label><input id="efectivo" type="text"/>
+        <label for="regreso">Regreso</label><input id="regreso" type="text"/>
+    </div>
     <br/>
         <table id="pieRecibo">
                 <tr>
-                    <th>Total Compra:_________________ $ {{ venta.TotalVenta }} </th>
+                    <th>Total Compra:...................... $ {{ venta.TotalVenta }} </th>
                 </tr>
                 <tr>
                     <th>__________________________________</th>

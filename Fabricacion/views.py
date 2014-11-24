@@ -1671,18 +1671,17 @@ def GestionDescarneCabeza(request):
     descarnes = DescarneCabeza.objects.filter(fecha__range =(fechainicio,fechafin))
     #descarnes = DescarneCabeza.objects.all()
     costoCabeza = Producto.objects.filter(nombreProducto = 'Cabeza')
+    cabezaCerda = Producto.objects.filter(nombreProducto = 'Cabeza Cerda')
 
     # sacamos el costo de las cabezas de cerdo y cerda ppor separado
     costoCabezaCerdo = 0
     costoCabezaCerda = 0
 
     for costo in costoCabeza:
-        if costo.grupo.nombreGrupo == 'Cerdos':
-            costoCabezaCerdo = costo.costoProducto
-        else:
-            costoCabezaCerda = costo.costoProducto
+        costoCabezaCerdo = costo.costoProducto
 
-
+    for costo in cabezaCerda:
+        costoCabezaCerda = costo.costoProducto
 
     if request.method == 'POST':
         formulario = DescarneForm(request.POST)

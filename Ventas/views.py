@@ -424,10 +424,15 @@ def EditaCaja(request,idCaja):
         if formulario.is_valid():
             formulario.save()
 
-            facturas = VentaPunto.objects.filter(fechaVenta = caja.fechaCaja)
+            facturas = VentaPunto.objects.filter(fechaVenta = caja.fechaCaja).filter(jornada = caja.jornada)
             retiros = Retiros.objects.filter(fechaRetiro = caja.fechaCaja).filter(guardado = True)
+            restaurantes = VentaPunto.objects.filter(restaurante = True)
             ventaDia = 0
             retirosDia = 0
+            restauranteDia = 0
+
+            for restaurante in restaurantes:
+                restauranteDia += restaurante.TotalVenta
 
             for retiro in retiros:
                 retirosDia += retiro.cantidad
@@ -435,9 +440,10 @@ def EditaCaja(request,idCaja):
             for factura in facturas:
                 ventaDia += factura.TotalVenta
 
-            caja.TotalVenta = ventaDia
+            caja.TotalRestaurante = restauranteDia
+            caja.TotalVenta = ventaDia - restauranteDia
             caja.TotalRetiro = retirosDia
-            caja.TotalResiduo = (caja.TotalVenta + caja.base) - (caja.TotalEfectivo + retirosDia)
+            caja.TotalResiduo = (caja.TotalVenta + caja.base + restauranteDia) - (caja.TotalEfectivo + retirosDia)
             caja.save()
 
             return HttpResponseRedirect('/ventas/caja/')
@@ -526,8 +532,6 @@ def GuardarDevolucion(request):
         bodegaProd.save()
 
     msj = 'Se guargaron Exitosamente las devoluciones'
-
     respuesta = json.dumps(msj)
-
     return HttpResponse(respuesta,mimetype='application/json')
 

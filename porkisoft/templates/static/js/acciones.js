@@ -65,6 +65,7 @@ $(document).on('ready', inicio);
      var vrUnitario = $('#id_vrUnitarioPunto');
      vrUnitario.on('focus',traeValorVenta);
      vrUnitario.on('focus',existenciasVenta);
+     $('#regreso').on('focus',calculoRegreso);
 
 
 
@@ -136,10 +137,19 @@ $(document).on('ready', inicio);
      $("label[for=id_venta],#id_venta").hide();
      $("label[for=id_productoVenta]").hide();
      $('#diagrama').hide();
+     $('#totalCompra').val($('#totalVentaDet').text()).attr('disabled','-1');
 
 }
 
 /**************************************************** METODOS *********************************************************/
+function calculoRegreso() {
+    var efectivo = $('#efectivo').val();
+    var totalCompra= $('#totalCompra').val();
+
+    var resultado = efectivo - totalCompra;
+    $('#regreso').val(resultado);
+
+}
 function GuardarDevolucion() {
     var idDetalleDev = $('#idDetDevolucion').text();
         var opcion = confirm('Desea Imprimir este Comprobante?');
@@ -278,6 +288,8 @@ function ImprimirRecibo()
                 var encabezado = $('#encabezado');
                 var pie = $('#pieRecibo');
                 var tablaDetVenta = $('#tablaDetalleVentaPunto');
+                var calculadora = $('#calculaVuelto');
+                calculadora.hide();
                 encabezado.show();
                 pie.show();
                 tablaDetVenta.find("th:eq(5)").hide();

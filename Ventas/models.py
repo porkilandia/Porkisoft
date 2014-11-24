@@ -80,10 +80,15 @@ class DetallePedido (models.Model):
     estado = models.BooleanField(verbose_name='Estado',default=False)
 
 class VentaPunto(models.Model):
+    jornadas = (
+    ('AM', 'AM'),
+    ('PM', 'PM'),
+    )
 
     numeroVenta = models.AutoField(primary_key=True, verbose_name='Codigo')
     factura = models.IntegerField(verbose_name='No.Factura',default=0)
     encargado = models.ForeignKey(Empleado,verbose_name='Encargado')
+    jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)
     fechaVenta = models.DateField(verbose_name='Fecha',auto_now=True)
     TotalVenta = models.IntegerField(verbose_name='Total Venta',default=0)
     restaurante = models.BooleanField(verbose_name='Restaurante',default=False)
@@ -113,6 +118,7 @@ class Caja (models.Model):
     base = models.IntegerField(verbose_name='Base',default=0)
     TotalVenta = models.IntegerField(verbose_name='Venta',default=0)
     TotalRetiro = models.IntegerField(verbose_name='Venta',default=0)
+    TotalRestaurante = models.IntegerField(verbose_name='Venta',default=0)
     TotalCaja = models.IntegerField(verbose_name='Caja',default=0)
     TotalEfectivo = models.IntegerField(verbose_name='Efectivo',default=0)
     TotalResiduo = models.IntegerField(verbose_name='Residuo',default=0)

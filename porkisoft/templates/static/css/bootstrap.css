@@ -279,6 +279,25 @@ fieldset {
     width: 25%;
     display: inline-block;
 }
+#FrmVentaPunto
+{
+    width: 20%;
+    margin: 15em 15em 6em 15em;
+}
+
+#FrmVentaPunto a
+{
+    position: fixed;
+    right: 30em;
+}
+#calculaVuelto
+{
+    width: 30%;
+    font-size: 2em;
+    position: fixed;
+    right: -6em;
+    top: 16em;;
+}
 #progressbar
 {
    width: 35%;

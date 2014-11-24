@@ -15,6 +15,7 @@
             <th>Encargado</th>
             <th>Base</th>
             <th>Retiros</th>
+            <th>Rest.</th>
             <th>Total Venta</th>
             <th>Total Efectivo</th>
             <th>Total Residuo</th>
@@ -29,11 +30,12 @@
             <td>{{ caja.fechaCaja }}</td>
             <td>{{ caja.jornada }}</td>
             <td>{{ caja.encargado }}</td>
-            <td>{{ caja.base }}</td>
-            <td>{{ caja.TotalRetiro }}</td>
-            <td>{{ caja.TotalVenta }}</td>
-            <td>{{ caja.TotalEfectivo }}</td>
-            <td>{{ caja.TotalResiduo }}</td>
+            <td>$ {{ caja.base }}</td>
+            <td>$ {{ caja.TotalRetiro }}</td>
+            <td>$ {{ caja.TotalRestaurante }}</td>
+            <td>$ {{ caja.TotalVenta }}</td>
+            <td>$ {{ caja.TotalEfectivo }}</td>
+            <td>$ {{ caja.TotalResiduo }}</td>
             <td>
                 <a href="{% url 'Ventas.views.EditaCaja' caja.numeroCaja %}">Arqueo</a>
             </td>

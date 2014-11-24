@@ -46,14 +46,14 @@ class DetalleListaForm(ModelForm):
 class VentaPuntoForm(ModelForm):
     class Meta:
         model = VentaPunto
-        exclude = ("TotalVenta","guardado",)
+        exclude = ("TotalVenta","guardado","factura",)
 class DetalleVentaPuntoForm(ModelForm):
     class Meta:
         model = DetalleVentaPunto
 class CajaForm(ModelForm):
     class Meta:
         model = Caja
-        exclude = ("TotalVenta","TotalResiduo","TotalCaja","TotalRetiro",)
+        exclude = ("TotalVenta","TotalResiduo","TotalCaja","TotalRetiro","TotalRestaurante",)
 
 class RetirosForm(ModelForm):
     class Meta:

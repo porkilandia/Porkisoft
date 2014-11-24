@@ -13,6 +13,7 @@
             <th>No. Factura</th>
             <th>Fecha</th>
             <th>Encargado</th>
+            <th>Jornada</th>
             <th>Total Venta</th>
             <th>Restaurante</th>
             <th>Guardado</th>
@@ -32,6 +33,7 @@
             <td>{{ venta.factura }}</td>
             <td>{{ venta.fechaVenta }}</td>
             <td>{{ venta.encargado }}</td>
+            <td>{{ venta.jornada }}</td>
             <td>{{ venta.TotalVenta }}</td>
             {% if venta.restaurante == True %}
                 <td>Si</td>
@@ -58,7 +60,7 @@
         {% endfor %}
     </table>
     <form method="post" class="form-horizontal">{% csrf_token %}
-         <fieldset id="agregarBodega">
+         <fieldset id="FrmVentaPunto">
              <legend>Venta<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
 
                   {{ formulario }}
