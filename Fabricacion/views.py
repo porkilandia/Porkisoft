@@ -32,6 +32,14 @@ def GestionCanal(request,idrecepcion):
         kiloCanal = can.vrKiloCanal
         nroCanal = can.nroCanal
 
+    canalMuestra = Canal.objects.filter(recepcion = idrecepcion)
+    PesoTotalCanales= 0
+
+    for cnl in canalMuestra:
+        PesoTotalCanales += cnl.pesoPorkilandia
+
+
+    recepcion.pesoCanales = PesoTotalCanales
     recepcion.vrKiloCanal = kiloCanal
     recepcion.save()
 
@@ -2395,7 +2403,7 @@ def GuardarFrito(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionCarneCond(request):
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=50)
     fechafin = date.today()
     carnes = TallerCarneCondimentada.objects.filter(fechaCarCond__range =(fechainicio,fechafin))
     #carnes = TallerCarneCondimentada.objects.all()
@@ -2641,9 +2649,8 @@ def GuardarReApanado(request):
 
     chuletaReApanada = pesoMiga + pesoChuleta
 
-    bodegaChuleta.pesoProductoStock -= reApanado.pesoChuleta
-    bodegaChuleta.save()
-
+    #bodegaChuleta.pesoProductoStock -= pesoChuleta
+    #bodegaChuleta.save()
     movimiento = Movimientos()
     movimiento.tipo = 'RAP%d'%(reApanado.id)
     movimiento.fechaMov = reApanado.fechaReApanado
@@ -2663,7 +2670,9 @@ def GuardarReApanado(request):
     movimiento.save()
 
     if reApanado.chuelta.grupo.nombreGrupo == 'Cerdos':
-        bodegaChuletaCerdo.pesoProductoStock += chuletaReApanada
+
+        #entra
+        bodegaChuletaCerdo.pesoProductoStock += reApanado.miga
         bodegaChuletaCerdo.save()
         movimiento = Movimientos()
         movimiento.tipo = 'RAP%d'%(reApanado.id)
@@ -2673,7 +2682,7 @@ def GuardarReApanado(request):
         movimiento.Hasta = bodegaChuletaCerdo.bodega.nombreBodega
         movimiento.save()
     else:
-        bodegaChuletaPollo.pesoProductoStock += chuletaReApanada
+        bodegaChuletaPollo.pesoProductoStock += reApanado.miga
         bodegaChuletaPollo.save()
         movimiento = Movimientos()
         movimiento.tipo = 'RAP%d'%(reApanado.id)
@@ -2947,7 +2956,7 @@ def ReporteUtilidadPorLote(request):
 
 
 def GestionEnsBola(request):
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=60)
     fechafin = date.today()
     ensBolas = TallerBolaEnsalinada.objects.filter(fechaBolaCondimentada__range =(fechainicio,fechafin))
     #conversiones = Conversiones.objects.all()
@@ -2974,7 +2983,7 @@ def EditaEnsBola(request,idEns):
         if formulario.is_valid():
             dato = formulario.save()
             #Guardamos el producto Ensalinado
-            bolaEns =  Producto.objects.get(nombreProducto = 'Bola Ensalinada')
+            bolaEns =  Producto.objects.get(nombreProducto = 'Bola')
             bodega = ProductoBodega.objects.get(bodega = dato.puntoBodega.codigoBodega,producto = bolaEns.codigoProducto)
             bodega.pesoProductoStock += dato.pesoDespues
             bodega.save()
@@ -3052,7 +3061,6 @@ def TemplateTalleresPuntos(request):
     bodegas = Bodega.objects.filter(codigoBodega__range = (1,4))
     return render_to_response('Fabricacion/TemplateTalleresPuntos.html',{'bodegas':bodegas},
                               context_instance = RequestContext(request))
-
 
 def ReporteTallerPunto(request):
 

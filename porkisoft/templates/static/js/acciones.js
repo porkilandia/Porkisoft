@@ -12,6 +12,13 @@ $(document).on('ready', inicio);
 
 
      });*/
+    // oculta el boton de guardado en pedido en caso de que sea contado
+    var tipo = $('#tipoPedido').text();
+    if (tipo == 'Contado')
+    {
+        $('#GuardaPedidoCredito').hide();
+    }
+     $('#agregarProducto').show();
      $('#encabezado').hide();
      $('#pie').hide();
      $('#pieRecibo').hide();
@@ -27,9 +34,9 @@ $(document).on('ready', inicio);
      $('#costear').on('click',CostearDesposte);
      $('#costearTajado').on('click',CostearTajado);
      $('#guardar').on('click',GuardarDesposte);
-
+     $('#id_vrTotalPedido').on('focus',CalculaTotalPedido);
      $('#id_productoVenta').on('blur',consultaValorProducto);
-
+     $('#id_vrUnitario').on('focus',ExistenciasPedido);
      $('#id_vrTotal').on('focus',calculoValorProducto);
      $('#guardarVentas').on('click',GuardarVentas);
      $('#Guardatraslado').on('click',GuardarTraslado);
@@ -99,6 +106,7 @@ $(document).on('ready', inicio);
      $('#tablaCroquetas').dataTable();
      $('#TablaEnsBola').dataTable();
      $('#listaDePrecios').dataTable();
+     $('#TablaMiga').dataTable();
 
 
 
@@ -142,6 +150,66 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function CalculaTotalPedido() {
+    var peso = $('#id_pesoPedido').val();
+    var unidades = $('#id_unidadesPedido').val();
+    var vrUnitario = $('#id_vrUnitario').val();
+    var total = 0;
+    if (peso == 0)
+    {
+       total = unidades * vrUnitario;
+       $('#id_vrTotalPedido').val(total);
+    }else{
+        total = (peso/1000) * vrUnitario;
+       $('#id_vrTotalPedido').val(total);
+    }
+}
+function ExistenciasPedido() {
+    var peso = $('#id_pesoPedido').val();
+    var unidades = $('#id_unidadesPedido').val();
+    var bodega = $('#bodegaPedido').text();
+    var producto = $('#id_producto').val();
+    var Lista= $('#listaPrecios').text();
+
+    Existencias(producto,bodega,peso);
+    ExistenciasUnd(producto,bodega,unidades);
+    VerificarPrecioPedido(Lista,producto)
+
+
+}
+function VerificarPrecioPedido(idLista,idProducto) {
+
+        $.ajax({
+            url: '/ventas/verificarPrecioPedido/',
+            dataType: "json",
+            type: "get",
+            data: {'idLista': idLista,'idProducto':idProducto},
+            success: function (respuesta)
+            {
+                $('#id_vrUnitario').val(respuesta);
+            }
+
+    });
+}
+function GuardarPedido(idPedido) {
+
+    var opcion = confirm('Desea Guardar este Registro?, tenga en cuenta que afectara el Inventario');
+    if (opcion == true)
+    {
+        $.ajax({
+            url: '/ventas/guardarPedido/',
+            dataType: "json",
+            type: "get",
+            data: {'idPedido': idPedido},
+            success: function (respuesta)
+            {
+                var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+            }
+
+    });
+    }
+
+}
 function calculoRegreso() {
     var efectivo = $('#efectivo').val();
     var totalCompra= $('#totalCompra').val();
@@ -250,12 +318,13 @@ function traeValorVenta()
     var idProducto = $('#id_productoVenta').val();
     var peso = $('#id_pesoVentaPunto').val();
     var und = $('#id_unidades').val();
+    var numVenta = $('#NumVenta').text();
 
      $.ajax({
             url: '/ventas/valorProdVenta/',
             dataType: "json",
             type: "get",
-            data: {'idProducto': idProducto,'peso':peso,'und':und},
+            data: {'idProducto': idProducto,'peso':peso,'und':und,'numVenta':numVenta},
             success: function (respuesta) {
                     $('#id_vrUnitarioPunto').val(respuesta);
                             }

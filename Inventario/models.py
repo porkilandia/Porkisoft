@@ -28,7 +28,8 @@ class Producto(models.Model):
     nombreProducto = models.CharField(verbose_name = 'Nombre Producto',max_length=50)
     costoProducto = models.BigIntegerField(verbose_name = 'Costo Producto', default=0)
     precioSugerido = models.IntegerField(verbose_name='Precio Sugerido', default=0)
-    gravado = models.BooleanField(verbose_name = 'Gravado', default=False)
+    gravado = models.BooleanField(verbose_name = 'Gravado 1', default=False)
+    gravado2 = models.BooleanField(verbose_name = 'Gravado 2', default=False)
     excento = models.BooleanField(verbose_name='Excento',default=False)
     excluido = models.BooleanField(verbose_name='Excluido',default=False)
 

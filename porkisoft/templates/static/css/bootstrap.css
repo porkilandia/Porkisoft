@@ -298,6 +298,14 @@ fieldset {
     right: -6em;
     top: 16em;;
 }
+#tablaProductos
+{
+    width: 70%;
+}
+#agregarProducto
+{
+    right: 1em;
+}
 #progressbar
 {
    width: 35%;

@@ -4,7 +4,7 @@
 {% block mensajes %}Detalles del pedido{% endblock mensajes %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
-<a id="generarPdf" href="{% url 'Ventas.views.ReportePedido' idPedido %}"><input type="button" value="Pdf" class="btn btn-success"></a>
+<a id="GuardaPedidoCredito" onclick="GuardarPedido({{ pedido.numeroPedido }})" href="#"><input type="button" value="Guardar" class="btn btn-warning"></a>
     <br/><br/><br/>
     <table class="table-striped" >
 
@@ -12,9 +12,11 @@
         <tr>
             <th>Factura</th>
             <th>Fecha y hora</th>
+            <th>Lista Precios</th>
             <th>Empleado</th>
             <th>Cliente</th>
             <th>Bodega</th>
+            <th>Tipo</th>
             <th>Vr.Pedido</th>
 
 
@@ -23,9 +25,16 @@
             <tr>
                 <td>{{ pedido.numeroFactura }}</td>
                 <td>{{ pedido.fechaPedido }}</td>
+                <td id="listaPrecios">{{ pedido.listaPrecioPedido.codigoLista }}</td>
                 <td>{{ pedido.empleado }}</td>
                 <td>{{ pedido.cliente }}</td>
-                <td>{{ pedido.bodega}}</td>
+                <td id="bodegaPedido">{{ pedido.bodega.codigoBodega}}</td>
+                {% if pedido.credito == True %}
+                    <td id="tipoPedido">Credito</td>
+                {% else %}
+                    <td id="tipoPedido" >Contado</td>
+                {% endif %}
+
                 <td>{{ pedido.TotalVenta }}</td>
             </tr>
 
@@ -71,10 +80,10 @@
         {% for det  in detPedido %}
         <tr>
             <td>{{ det.producto }}</td>
-            <td>{{ det.peso }}grs</td>
-            <td>{{ det.unidades }}</td>
+            <td>{{ det.pesoPedido }}grs</td>
+            <td>{{ det.unidadesPedido }}</td>
             <td>{{ det.vrUnitario }}</td>
-            <td>{{ det.vrTotal }}</td>
+            <td>{{ det.vrTotalPedido }}</td>
             {% if det.estado == False %}
                 <td>
                 <a href="#">pendiente</a>

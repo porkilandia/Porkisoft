@@ -11,6 +11,7 @@ Carne Condimentada
 
         <thead>
         <tr>
+            <th>id</th>
             <th>Fecha</th>
             <th>Punto</th>
             <th>Producto</th>
@@ -28,7 +29,7 @@ Carne Condimentada
         {% if carne.guardado == False %}
         <tr style="color: red">
         {% endif %}
-
+            <td>{{ carne.id }}</td>
             <td>{{ carne.fechaCarCond }}</td>
             <td>{{ carne.puntoCond }}</td>
             <td>{{ carne.productoCond }}</td>

@@ -5,12 +5,6 @@
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
 
-        <label for="pedidos">Filtro de pedidos</label><select name="" id="pedidos">
-            {% for pedido in pedidos %}
-                <option value="{{ pedido.numeroPedido }}">{{ pedido.fechaPedido }}</option>
-            {% endfor %}
-        </select>
-
     <br/><br/><br/>
     <table id="tablabodegas" class="table-striped" >
 
@@ -18,9 +12,11 @@
         <tr>
             <th>Factura</th>
             <th>Fecha y hora</th>
+            <th>Lista Precios</th>
             <th>Empleado</th>
             <th>Cliente</th>
             <th>Bodega</th>
+            <th>Tipo</th>
             <th>Vr. Pedido</th>
             <th>Accion</th>
 
@@ -30,9 +26,16 @@
         <tr>
             <td>{{ pedido.numeroFactura }}</td>
             <td>{{ pedido.fechaPedido }}</td>
+            <td>{{ pedido.listaPrecioPedido }}</td>
             <td>{{ pedido.empleado }}</td>
             <td>{{ pedido.cliente }}</td>
             <td>{{ pedido.bodega}}</td>
+            {% if pedido.credito == True %}
+                <td id="tipoPedido">Credito</td>
+            {% else %}
+                <td id="tipoPedido" >Contado</td>
+            {% endif %}
+
             <td> {{ pedido.TotalVenta }} </td>
             <td>
                 <a href="{% url 'Ventas.views.GestionDetallePedido' pedido.numeroPedido %}">Detalles</a>

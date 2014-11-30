@@ -13,25 +13,6 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 
 
-'''def generar_pdf(html):
-    # Función para generar el archivo PDF y devolverlo mediante HttpResponse
-    result = StringIO.StringIO()
-    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
-    if not pdf.err:
-        return HttpResponse(result.getvalue(), mimetype='application/pdf')
-    return HttpResponse('Error al generar el PDF: %s' % cgi.escape(html))
-
-
-def ReportePedido(request,idpedido):
-   # vista de ejemplo con un hipotético modelo Libro
-    detallePedido = DetallePedido.objects.filter(pedido = idpedido)
-    pedido = Pedido.objects.get(pk = idpedido)
-
-    html = render_to_string('Ventas/Pedido_pdf.html', {'pagesize':'A4', 'detallePedido':detallePedido,'pedido':pedido},
-                            context_instance=RequestContext(request))
-    return generar_pdf(html)'''
-
-
 def GestionPedidos(request,idcliente):
     pedidos = Pedido.objects.filter(cliente = idcliente)
     cliente = Cliente.objects.get(pk = idcliente)
@@ -52,14 +33,14 @@ def GestionDetallePedido(request,idpedido):
     vrPedido = 0
 
     for det in detPedido:
-        vrPedido += det.vrTotal
+        vrPedido += det.vrTotalPedido
 
     if request.method =='POST':
         formulario = DetallePedidoForm(request.POST)
         if formulario.is_valid():
             detalle = formulario.save()
 
-            pedido.TotalVenta = vrPedido + detalle.vrTotal
+            pedido.TotalVenta = vrPedido + detalle.vrTotalPedido
             pedido.save()
 
             return HttpResponseRedirect('/ventas/detallePedido/'+idpedido)
@@ -71,7 +52,7 @@ def GestionDetallePedido(request,idpedido):
                               context_instance = RequestContext(request))
 
 def GestionVentas(request):
-    fechainicio = date.today() - timedelta(days=30)
+    fechainicio = date.today() - timedelta(days=50)
     fechafin = date.today()
     ventas = Venta.objects.filter(fechaVenta__range =(fechainicio,fechafin))
     #ventas = Venta.objects.all()
@@ -390,8 +371,8 @@ def CobrarVenta(request):
             bodegaProducto.pesoProductoStock -= detalle.pesoVentaPunto
             movimiento.salida = detalle.pesoVentaPunto
 
-        #bodegaProducto.save()
-        #movimiento.save()
+        bodegaProducto.save()
+        movimiento.save()
 
     venta.guardado = True
     venta.save()
@@ -426,7 +407,7 @@ def EditaCaja(request,idCaja):
 
             facturas = VentaPunto.objects.filter(fechaVenta = caja.fechaCaja).filter(jornada = caja.jornada)
             retiros = Retiros.objects.filter(fechaRetiro = caja.fechaCaja).filter(guardado = True)
-            restaurantes = VentaPunto.objects.filter(restaurante = True)
+            restaurantes = VentaPunto.objects.filter(restaurante = True).filter(fechaVenta = caja.fechaCaja)
             ventaDia = 0
             retirosDia = 0
             restauranteDia = 0
@@ -453,10 +434,17 @@ def EditaCaja(request,idCaja):
                               context_instance = RequestContext(request))
 
 def ValorProdVenta(request):
-
     idProducto = request.GET.get('idProducto')
-    lista = ListaDePrecios.objects.get(nombreLista = 'Norte/Lorenzo')
-    valor = DetalleLista.objects.filter(lista = lista.codigoLista).get(productoLista = int(idProducto)).precioVenta
+    numVenta = request.GET.get('numVenta')
+    venta = VentaPunto.objects.get(pk = int(numVenta))
+
+    if venta.restaurante == True:
+        lista = ListaDePrecios.objects.get(nombreLista = 'Restaurantes Norte')
+        valor = DetalleLista.objects.filter(lista = lista.codigoLista).get(productoLista = int(idProducto)).precioVenta
+    else:
+        lista = ListaDePrecios.objects.get(nombreLista = 'Norte/Lorenzo')
+        valor = DetalleLista.objects.filter(lista = lista.codigoLista).get(productoLista = int(idProducto)).precioVenta
+
     respuesta = json.dumps(valor)
     return HttpResponse(respuesta,mimetype='application/json')
 
@@ -535,3 +523,26 @@ def GuardarDevolucion(request):
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 
+def GuaradarPedido(request):
+
+    idPedido = request.GET.get('idPedido')
+    pedido = Pedido.objects.get(pk = int(idPedido))
+    detPedido = DetallePedido.objects.filter(pedido = int(idPedido))
+
+    for det in detPedido:
+        bodega = ProductoBodega.objects.get(bodega = pedido.bodega.codigoBodega,producto = det.producto.codigoProducto)
+        bodega.pesoProductoStock -= det.pesoPedido
+        bodega.unidadesStock -= det.unidadesPedido
+        bodega.save()
+
+    msj = 'Se guargaron Exitosamente los Registros'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def VerificarPrecioPedido(request):
+    idLista = request.GET.get('idLista')
+    idProducto = request.GET.get('idProducto')
+    detalleLista = DetalleLista.objects.get(lista = int(idLista),productoLista = int(idProducto))
+    valorProducto = detalleLista.precioVenta
+    respuesta = json.dumps(valorProducto)
+    return HttpResponse(respuesta,mimetype='application/json')

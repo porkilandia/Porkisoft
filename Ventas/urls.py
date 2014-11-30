@@ -13,6 +13,10 @@ urlpatterns = patterns('',
 
     url(r'^pedido/(?P<idcliente>\d+)',GestionPedidos),
     url(r'^detallePedido/(?P<idpedido>\d+)',GestionDetallePedido),
+    url(r'^guardarPedido/$',GuaradarPedido),
+    url(r'^verificarPrecioPedido/$',VerificarPrecioPedido),
+
+
     #url(r'^pedidoPdf/(?P<idpedido>\d+)',ReportePedido),
     url(r'^listaPrecios/$',GestionLista),
     url(r'^detalleLista/(?P<idLista>\d+)',GestionDetalleLista),

@@ -59,12 +59,13 @@ class Pedido(models.Model):
     numeroPedido = models.AutoField(primary_key=True, verbose_name='Numero Pedido')
     numeroFactura = models.BigIntegerField(verbose_name='Factura No.',default=0)
     fechaPedido = models.DateTimeField(verbose_name='Fecha', auto_now=True)
+    listaPrecioPedido = models.ForeignKey(ListaDePrecios,verbose_name='Lista Precios')
     cliente = models.ForeignKey(Cliente)
     empleado = models.ForeignKey(Empleado)
     bodega = models.ForeignKey(Bodega)
     TotalVenta = models.IntegerField(verbose_name='Total Venta',default=0)
-    descuento = models.BooleanField(verbose_name='Descuento',default=False)
-
+    credito = models.BooleanField(verbose_name='Credito',default=False)
+    contado = models.BooleanField(verbose_name='Contado',default=False)
 
     def __unicode__(self):
         return self.numeroPedido
@@ -73,10 +74,10 @@ class DetallePedido (models.Model):
     pedido = models.ForeignKey(Pedido)
     producto = models.ForeignKey(Producto,null=True)
     subproducto = models.ForeignKey(SubProducto, null=True)
-    peso = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso(grs)',null= True,default=0)
-    unidades = models.IntegerField(verbose_name='Unidades',null= True,default=0)
+    pesoPedido = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso(grs)',null= True,default=0)
+    unidadesPedido = models.IntegerField(verbose_name='Unidades',null= True,default=0)
     vrUnitario = models.IntegerField(verbose_name='Vr.Unitario', default=0)
-    vrTotal = models.IntegerField(verbose_name='Vr.Total',default=0)
+    vrTotalPedido = models.IntegerField(verbose_name='Vr.Total',default=0)
     estado = models.BooleanField(verbose_name='Estado',default=False)
 
 class VentaPunto(models.Model):
