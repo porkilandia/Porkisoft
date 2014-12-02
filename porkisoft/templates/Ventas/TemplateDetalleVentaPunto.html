@@ -3,8 +3,8 @@
 {% block titulo %}::Porkilandia Norte::{% endblock titulo %}
 {% block mensajes %}Ventas Norte {% endblock mensajes %}
 {% block contenido %}
-<a  onclick="Cobrar()" href="#"><input type="button" value="Cobrar" class="btn btn-warning"></a>
-<a  onclick="ImprimirRecibo()" href="#"><input type="button" value="Imprimir" class="btn btn-success"></a>
+<a  id="cobraVenta" onclick="Cobrar()" href="#"><input type="button" value="Cobrar" class="btn btn-warning"></a>
+<a  id="imprimeRecibo" onclick="ImprimirRecibo()" href="#"><input type="button" value="Imprimir" class="btn btn-success"></a>
 <br/><br/><br/>
     <table id="tablaVentaPunto" class="table-striped" >
 
@@ -33,9 +33,9 @@
                 <td>No</td>
             {% endif %}
             {% if venta.guardado == True %}
-                <td>Si</td>
+                <td id="guardado">Si</td>
             {% else %}
-                <td>No</td>
+                <td id="guardado">No</td>
             {% endif %}
 
     </table>
@@ -46,6 +46,7 @@
             <tr><th>Nit: 900606687-6</th></tr>
             <tr><th>Regimen Comun</th></tr>
             <tr><th>Resolucion : 140000039353</th></tr>
+            <tr><th>Rango:000000 hasta 999999</th></tr>
             <tr><th>Expedida el : 09-04-2013</th></tr>
             <tr><th>Cll 16 # 31-02 San andres</th></tr>
             <tr><th>Telefonos : 729 13 36 - 315 582 2270</th></tr>
@@ -110,6 +111,9 @@
         <table id="pieRecibo">
                 <tr>
                     <th>Total Compra:...................... $ {{ venta.TotalVenta }} </th>
+                </tr>
+                <tr>
+                    <th>Total Gravado:...................... $ {{ totalGravado }} </th>
                 </tr>
                 <tr>
                     <th>__________________________________</th>

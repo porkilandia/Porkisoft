@@ -93,7 +93,10 @@ def GestionCanal(request,idrecepcion):
 
                 pesoPorkilandia = Decimal(request.POST.get('pesoPorkilandia'))
 
-                vrFactura = (pesoCanales + pesoPorkilandia) * 6950 #--> 6050 es el valor establecido por granjas el paraiso
+                costoKilocerdo = ValoresCostos.objects.get(nombreCosto = 'Costo Cerdo')
+
+
+                vrFactura = (pesoCanales + pesoPorkilandia) * costoKilocerdo.valorKiloPie #--> 6050 es el valor establecido por granjas el paraiso
                 pesoPie = Decimal(ceil(pesoCanales + Decimal(request.POST.get('pesoPorkilandia')))) / (Decimal(0.82))
                 #KiloPie = vrFactPie / pesoPie
                 vrFactPie = (vrFactura - deguello - flete) + menudo
@@ -2726,8 +2729,8 @@ def GuardarConversion(request):
     nombre1 = pro1.split(' ,')
     nombre2 = pro2.split(' ,')
 
-    producto1 = Producto.objects.get(nombreProducto = nombre1[0])
-    producto2 = Producto.objects.get(nombreProducto = nombre2[0])
+    producto1 = Producto.objects.get(nombreProducto = nombre1[1])
+    producto2 = Producto.objects.get(nombreProducto = nombre2[1])
 
     bodegaP1 = ProductoBodega.objects.get(bodega = conversion.puntoConversion.codigoBodega,producto = producto1.codigoProducto)
     bodegaP2 = ProductoBodega.objects.get(bodega = conversion.puntoConversion.codigoBodega,producto = producto2.codigoProducto)

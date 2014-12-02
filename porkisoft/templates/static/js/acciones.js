@@ -11,8 +11,14 @@ $(document).on('ready', inicio);
          }
 
 
-     });*/
+     });
+     */
     // oculta el boton de guardado en pedido en caso de que sea contado
+    var estado = $('#guardado').text();
+        if (estado == 'Si')
+        {
+            $('#cobraVenta').hide();
+        }
     var tipo = $('#tipoPedido').text();
     if (tipo == 'Contado')
     {
@@ -78,6 +84,7 @@ $(document).on('ready', inicio);
 
      //var tablaEmpacado = $('#tablaEmpacado tr');
      //tablaEmpacado.on('click',maneja);
+     $('#TablaPuntoNorte').dataTable();
      $('#tablaAjustes').dataTable();
      $('#canalPendiente').dataTable();
      $('#tablaenTajados').dataTable();
@@ -150,6 +157,47 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function consultaAZ() {
+
+    var inicio = $('#inicio').val();
+    var fechaFin = $('#fin').val();
+    var jornada = $('#jornada').val();
+
+    $.ajax({
+            url: '/ventas/reporteAZ/',
+            dataType: "json",
+            type: "get",
+            data: {'inicio': inicio,'fin':fechaFin,'jornada':jornada},
+            success: function (respuesta)
+            {
+                $("#TablaExcentos").find("tr:gt(0)").remove();
+                $("#TablaExcluidos").find("tr:gt(0)").remove();
+                $("#TablaGravados1").find("tr:gt(0)").remove();
+                $("#TablaGravados2").find("tr:gt(0)").remove();
+
+                $.each(respuesta.excentos,function(key,value){
+
+                    $("#TablaExcentos").append("<tr><td>" + key + "</td><td style='text-align: right'>"+'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.excluidos,function(key,value){
+
+                    $("#TablaExcluidos").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+
+                $.each(respuesta.gravados1,function(key,value){
+
+                    $("#TablaGravados1").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.gravados2,function(key,value){
+
+                    $("#TablaGravados2").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+
+
+            }
+
+    });
+}
 function CalculaTotalPedido() {
     var peso = $('#id_pesoPedido').val();
     var unidades = $('#id_unidadesPedido').val();
@@ -230,7 +278,7 @@ function GuardarDevolucion() {
             data: {'idDetalleDev': idDetalleDev},
             success: function (respuesta)
             {
-
+                var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
             }
 
     });
@@ -348,7 +396,7 @@ function calculoTotalVenta()
     else
     {
         total = (peso/1000) * vrUnitario;
-        $('#id_vrTotalPunto').val(total);
+        $('#id_vrTotalPunto').val(Math.round(total));
     }
 
 }
@@ -367,6 +415,8 @@ function ImprimirRecibo()
                 encabezado.hide();
                 pie.hide();
                 tablaDetVenta.removeClass('recibo');
+                calculadora.show();
+                $('#imprimeRecibo').hide();
 }
 function Cobrar()
 {
@@ -381,6 +431,8 @@ function Cobrar()
             data: {'venta': venta},
             success: function (respuesta) {
                 var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+                $('#cobraVenta').hide();
+                $('#imprimeRecibo').show();
                 location.reload();
 
             }

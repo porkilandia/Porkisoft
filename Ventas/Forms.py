@@ -48,6 +48,16 @@ class VentaPuntoForm(ModelForm):
         model = VentaPunto
         exclude = ("TotalVenta","guardado","factura",)
 class DetalleVentaPuntoForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(DetalleVentaPuntoForm,self).__init__(*args, **kwargs)
+
+        q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses').filter(numeroProducto__gt = 0)
+        q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos').filter(numeroProducto__gt = 0)
+        #q3 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdas')
+        q4 = Producto.objects.filter(grupo__nombreGrupo = 'Compra/Venta').filter(numeroProducto__gt = 0)
+        q5 = Producto.objects.filter(grupo__nombreGrupo = 'Pollos').filter(numeroProducto__gt = 0)
+        self.fields['productoVenta'].queryset = q1 | q2 | q4 | q5
+
     class Meta:
         model = DetalleVentaPunto
 class CajaForm(ModelForm):

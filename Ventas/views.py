@@ -3,11 +3,11 @@ from django.shortcuts import render_to_response,HttpResponseRedirect
 from django.template import RequestContext
 from Ventas.Forms import *
 from Fabricacion.models import *
-
+from math import ceil
 from datetime import *
 from decimal import Decimal
 from django.core import serializers
-
+from django.db.models import Avg
 import json
 from django.template.loader import render_to_string
 from django.http import HttpResponse
@@ -262,7 +262,7 @@ def EditaListas(request,idDetLista):
                               context_instance = RequestContext(request))
 
 def PuntoVenta(request):
-    ventas = VentaPunto.objects.filter(fechaVenta = datetime.today())
+    ventas = VentaPunto.objects.filter(fechaVenta = datetime.today()).filter(jornada = 'PM')
     consecutivo = ValoresCostos.objects.get(nombreCosto = 'Facturacion')
 
     if request.method =='POST':
@@ -279,7 +279,10 @@ def PuntoVenta(request):
 
             return HttpResponseRedirect('/ventas/ventaPunto/')
     else:
-        formulario = VentaPuntoForm()
+        valorInicial = ValoresCostos.objects.get(nombreCosto = 'Cajero Norte')
+        empleado = valorInicial.empleado
+        jornada = valorInicial.jornada
+        formulario = VentaPuntoForm(initial={'encargado':empleado,'jornada':jornada})
     return render_to_response('Ventas/TemplateVentaPunto.html',{'ventas':ventas,'formulario':formulario},
                               context_instance = RequestContext(request))
 
@@ -289,9 +292,15 @@ def DetallePuntoVenta(request,idVenta):
     consecutivo = ValoresCostos.objects.get(nombreCosto = 'Facturacion')
 
     totalFactura = 0
+    totalGravado = 0
 
     for detalle in detVentas:
         totalFactura += detalle.vrTotalPunto
+        if detalle.productoVenta.gravado == True or detalle.productoVenta.gravado == True:
+            totalGravado += detalle.vrTotalPunto
+
+    totalGravado = (totalGravado /1.16) * 0.16
+
 
     venta.TotalVenta = totalFactura
     venta.save()
@@ -305,8 +314,10 @@ def DetallePuntoVenta(request,idVenta):
 
             return HttpResponseRedirect('/ventas/detalleVentaPunto/'+ idVenta)
     else:
+
         formulario = DetalleVentaPuntoForm(initial={'venta':idVenta})
-    return render_to_response('Ventas/TemplateDetalleVentaPunto.html',{'Hora':Hora,'venta':venta,'formulario':formulario,
+    return render_to_response('Ventas/TemplateDetalleVentaPunto.html',{'totalGravado':totalGravado,'Hora':Hora,
+                                                                       'venta':venta,'formulario':formulario,
                                                                        'detVentas':detVentas,'consecutivo':consecutivo},
                               context_instance = RequestContext(request))
 
@@ -406,8 +417,8 @@ def EditaCaja(request,idCaja):
             formulario.save()
 
             facturas = VentaPunto.objects.filter(fechaVenta = caja.fechaCaja).filter(jornada = caja.jornada)
-            retiros = Retiros.objects.filter(fechaRetiro = caja.fechaCaja).filter(guardado = True)
-            restaurantes = VentaPunto.objects.filter(restaurante = True).filter(fechaVenta = caja.fechaCaja)
+            retiros = Retiros.objects.filter(fechaRetiro = caja.fechaCaja).filter(guardado = True).filter(jornada = caja.jornada)
+            restaurantes = VentaPunto.objects.filter(restaurante = True).filter(fechaVenta = caja.fechaCaja).filter(jornada = caja.jornada)
             ventaDia = 0
             retirosDia = 0
             restauranteDia = 0
@@ -422,9 +433,9 @@ def EditaCaja(request,idCaja):
                 ventaDia += factura.TotalVenta
 
             caja.TotalRestaurante = restauranteDia
-            caja.TotalVenta = ventaDia - restauranteDia
+            caja.TotalVenta = ventaDia
             caja.TotalRetiro = retirosDia
-            caja.TotalResiduo = (caja.TotalVenta + caja.base + restauranteDia) - (caja.TotalEfectivo + retirosDia)
+            caja.TotalResiduo = caja.TotalVenta - (caja.TotalEfectivo + retirosDia)
             caja.save()
 
             return HttpResponseRedirect('/ventas/caja/')
@@ -545,4 +556,54 @@ def VerificarPrecioPedido(request):
     detalleLista = DetalleLista.objects.get(lista = int(idLista),productoLista = int(idProducto))
     valorProducto = detalleLista.precioVenta
     respuesta = json.dumps(valorProducto)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def TemplateAZ(request):
+
+    return render_to_response('Ventas/TemplateAZ.html',{},
+                              context_instance = RequestContext(request))
+
+def ReporteAZ(request):
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    jornada = request.GET.get('jornada')
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(jornada = jornada)
+
+    gravados1 = {}
+    gravados2 = {}
+    excentos = {}
+    excluidos = {}
+
+    gravados1['Gravados 1'] = 0
+    gravados2['Gravados 2'] = 0
+    excentos['Excentos'] = 0
+    excluidos['Excluidos'] = 0
+
+    for venta in ventas:
+        detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
+        for detalle in detalleVenta:
+            if detalle.productoVenta.gravado == True:
+                gravados1['Gravados 1'] += detalle.vrTotalPunto
+            elif detalle.productoVenta.gravado2 == True:
+                gravados2['Gravados 2'] += detalle.vrTotalPunto
+            elif detalle.productoVenta.excento == True:
+                excentos['Excentos'] += detalle.vrTotalPunto
+            elif detalle.productoVenta.excluido == True:
+                excluidos['Excluidos'] += detalle.vrTotalPunto
+
+    listas = {'gravados1':gravados1,'gravados2':gravados2,'excentos':excentos,'excluidos':excluidos}
+    print(listas)
+
+
+    respuesta = json.dumps(listas)
+
     return HttpResponse(respuesta,mimetype='application/json')

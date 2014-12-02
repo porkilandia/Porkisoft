@@ -125,9 +125,14 @@ class Caja (models.Model):
     TotalResiduo = models.IntegerField(verbose_name='Residuo',default=0)
 
 class Retiros (models.Model):
+    jornadas = (
+    ('AM', 'AM'),
+    ('PM', 'PM'),
+    )
 
     fechaRetiro = models.DateField(verbose_name='Fecha',auto_now=True)
     encargado = models.ForeignKey(Empleado,verbose_name='Encargado')
+    jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)
     nombreEncargado = models.CharField(verbose_name='Nombre Empleado',max_length=50,blank=True)
     cantidad = models.IntegerField(verbose_name='Cantidad',default=0)
     observacion = models.TextField(verbose_name='Observacion')

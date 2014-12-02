@@ -25,6 +25,7 @@ class Producto(models.Model):
 
     codigoProducto = models.AutoField(primary_key=True, verbose_name='Codigo Producto')
     grupo = models.ForeignKey(Grupo)
+    numeroProducto = models.BigIntegerField(verbose_name='Numero')
     nombreProducto = models.CharField(verbose_name = 'Nombre Producto',max_length=50)
     costoProducto = models.BigIntegerField(verbose_name = 'Costo Producto', default=0)
     precioSugerido = models.IntegerField(verbose_name='Precio Sugerido', default=0)
@@ -35,7 +36,7 @@ class Producto(models.Model):
 
 
     def __unicode__(self):
-        cadena = '%s , (%s)'%(self.nombreProducto,self.grupo.nombreGrupo)
+        cadena = '%d , %s , (%s)'%(self.numeroProducto,self.nombreProducto,self.grupo.nombreGrupo)
         return cadena
 
     class Meta:

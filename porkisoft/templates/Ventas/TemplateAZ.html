@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::AZ::{% endblock titulo %}
+{% block mensajes %}
+AZ
+
+{% endblock mensajes %}
+{% block contenido %}
+<div id="progressbar"></div>
+    <div id="rango">
+     <label>Fecha Inicio</label><input id="inicio" type="text">
+     <label>Fecha Final</label><input id="fin" type="text">
+        <label for="jornada">Grupo</label><select id="jornada">
+            <option value='AM'>AM</option>
+            <option value='PM'>PM</option>
+        </select>
+
+     <a  onclick="consultaAZ()" href="#"><input type="button" value="Consultar"></a>
+    <br/>
+    <br/>
+    </div>
+
+
+<div id="acordeon">
+<h3>Excentos</h3>
+    <div>
+        <table id="TablaExcentos" class="table-striped" style="width: 95%">
+
+            <thead>
+            <tr>
+                <th>Categoria</th>
+                <th>Valor</th>
+            </tr>
+            </thead>
+
+        </table>
+    </div>
+<h3>Excluidos</h3>
+    <div>
+        <table id="TablaExcluidos" class="table-striped" style="width: 95%">
+
+            <thead>
+            <tr>
+                <th>Categoria</th>
+                <th>Valor</th>
+            </tr>
+            </thead>
+
+        </table>
+    </div>
+<h3>Gravados 1</h3>
+    <div>
+        <table id="TablaGravados1" class="table-striped" style="width: 95%">
+
+            <thead>
+            <tr>
+                <th>Categoria</th>
+                <th>Valor</th>
+            </tr>
+            </thead>
+
+        </table>
+    </div>
+<h3>Gravados 2</h3>
+    <div>
+        <table id="TablaGravados2" class="table-striped" style="width: 95%">
+
+            <thead>
+            <tr>
+                <th>Categoria</th>
+                <th>Valor</th>
+            </tr>
+            </thead>
+
+        </table>
+    </div>
+
+</div>
+
+{% endblock contenido %}

@@ -40,4 +40,7 @@ urlpatterns = patterns('',
     url(r'^detalleDevoluciones/(?P<idDev>\d+)',GestionDetalleDevolucion),
     url(r'^GuardarDevolucion/$',GuardarDevolucion),
 
+    url(r'^templateAZ/$',TemplateAZ),
+    url(r'^reporteAZ/$',ReporteAZ),
+
 )

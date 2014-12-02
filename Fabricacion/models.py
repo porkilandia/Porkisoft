@@ -234,6 +234,10 @@ class Condimentado(models.Model):
 
 
 class ValoresCostos(models.Model):
+    jornadas = (
+    ('AM', 'AM'),
+    ('PM', 'PM'),
+    )
     codigoCosto = models.AutoField(primary_key= True)
     nombreCosto = models.CharField(max_length=50,verbose_name='Nombre')
     valorCif = models.IntegerField(verbose_name='Valor Cif',default=0)
@@ -243,6 +247,8 @@ class ValoresCostos(models.Model):
     actual = models.IntegerField(verbose_name='vr actual',default=0)
     finaliza = models.IntegerField(verbose_name='vr Final',default=0)
     fecha = models.DateField(verbose_name='Fecha Actualizacion', auto_now=True)
+    empleado = models.ForeignKey(Empleado)
+    jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)
 
     def __unicode__(self):
         return self.codigoCosto
