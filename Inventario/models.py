@@ -36,7 +36,7 @@ class Producto(models.Model):
 
 
     def __unicode__(self):
-        cadena = '%d , %s , (%s)'%(self.numeroProducto,self.nombreProducto,self.grupo.nombreGrupo)
+        cadena = '%d ,%s , (%s)'%(self.numeroProducto,self.nombreProducto,self.grupo.nombreGrupo)
         return cadena
 
     class Meta:
@@ -225,3 +225,20 @@ class Ajustes(models.Model):
     unidades = models.IntegerField(verbose_name='Unidades', null= True,default=0)
     observacion = models.TextField(verbose_name='Observaciones',max_length=150)
     guardado = models.BooleanField(default=False)
+
+class Faltantes(models.Model):
+    fechaFaltante = models.DateField(verbose_name='Fecha')
+    bodegaFaltante = models.ForeignKey(Bodega,verbose_name='Bodega')
+    guardado = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return self.id
+
+class DetalleFaltantes(models.Model):
+    faltante = models.ForeignKey(Faltantes,verbose_name='Faltante')
+    productoFaltante = models.ForeignKey(Producto,verbose_name='Producto')
+    pesoActual = models.DecimalField(verbose_name='Peso Actual',default=0,max_digits=9, decimal_places=3)
+    unidadActual = models.IntegerField(verbose_name='Unidad Actual', null= True,default=0)
+    pesoFisico = models.DecimalField(verbose_name='Peso Fisico',default=0,max_digits=9, decimal_places=3)
+    unidadFisica = models.IntegerField(verbose_name='Unidad Fisica', null= True,default=0)
+    diferencia = models.DecimalField(verbose_name='Diferencia',default=0,max_digits=9, decimal_places=3)

@@ -783,8 +783,77 @@ def EditarAjustes(request,idAjuste):
 
 
 
+def GestionFaltante(request):
+    faltantes = Faltantes.objects.all()
+    if request.method == 'POST':
+        formulario = FaltanteForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/inventario/faltante')
+    else:
+        formulario = FaltanteForm()
+
+    return render_to_response('Inventario/TemplateFaltante.html',{'formulario':formulario,'faltantes':faltantes },
+                              context_instance = RequestContext(request))
+
+def GenerarFaltante(request):
+    idFaltante = request.GET.get('idFaltante')
+    nombreBodega = request.GET.get('nombreBodega')
+    bodega = Bodega.objects.get(nombreBodega = nombreBodega)
+    faltante = Faltantes.objects.get(pk = int(idFaltante))
+    existencias = ProductoBodega.objects.filter(bodega = bodega.codigoBodega).filter(pesoProductoStock__gt = 0)
+    existencias2 = ProductoBodega.objects.filter(bodega = bodega.codigoBodega).filter(unidadesStock__gt = 0)
+
+    for existencia in existencias:
+        detalleFaltante = DetalleFaltantes()
+        detalleFaltante.faltante = faltante
+        detalleFaltante.productoFaltante = existencia.producto
+        detalleFaltante.pesoActual = existencia.pesoProductoStock
+        detalleFaltante.save()
+
+    for existencia in existencias2:
+        detalleFaltante = DetalleFaltantes()
+        detalleFaltante.faltante = faltante
+        detalleFaltante.productoFaltante = existencia.producto
+        detalleFaltante.unidadActual = existencia.unidadesStock
+        detalleFaltante.save()
 
 
+    msj = 'Reporte Generado Exitosamente'
+    respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def GestionDetalleFaltante(request,idFaltante):
+    faltante = Faltantes.objects.get(pk = idFaltante)
+    detalleFaltantes = DetalleFaltantes.objects.filter(faltante = idFaltante)
+
+    if request.method == 'POST':
+        formulario = DetalleFaltanteForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/inventario/detalleFaltante'+ idFaltante)
+    else:
+        formulario = DetalleFaltanteForm()
+
+    return render_to_response('Inventario/TemplateGestionDetalleFaltante.html',{'formulario':formulario,'faltante':faltante,'detalleFaltantes':detalleFaltantes },
+                              context_instance = RequestContext(request))
+
+def EditaDetalleFaltante(request,idDetFaltante):
+    detFaltante = DetalleFaltantes.objects.get(pk  = idDetFaltante)
+    faltante = Faltantes.objects.get(pk = detFaltante.faltante.id)
+    detalleFaltantes = DetalleFaltantes.objects.filter(faltante = faltante.id)
+
+    if request.method == 'POST':
+        formulario = DetalleFaltanteForm(request.POST,instance=detFaltante)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/inventario/detalleFaltante'+ str(faltante.id))
+    else:
+        formulario = DetalleFaltanteForm(initial={'faltante':faltante.id},instance=detFaltante)
+
+    return render_to_response('Inventario/TemplateGestionDetalleFaltante.html',{'formulario':formulario,'faltante':faltante,'detalleFaltantes':detalleFaltantes },
+                              context_instance = RequestContext(request))
 
 
 

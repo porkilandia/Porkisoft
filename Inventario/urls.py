@@ -50,5 +50,10 @@ urlpatterns = patterns('',
     url(r'^editarSP/(?P<idSproducto>\d+)',editarSubproducto),
     url(r'^movimiento/$',GestionMovimientos),
 
+    url(r'^faltante/$',GestionFaltante),
+    url(r'^detalleFaltante/(?P<idFaltante>\d+)',GestionDetalleFaltante),
+    url(r'^EditaFaltante/(?P<idDetFaltante>\d+)',EditaDetalleFaltante),
+    url(r'^generarFaltante/$',GenerarFaltante),
+
 
 )

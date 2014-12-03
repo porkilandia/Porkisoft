@@ -2728,9 +2728,10 @@ def GuardarConversion(request):
 
     nombre1 = pro1.split(' ,')
     nombre2 = pro2.split(' ,')
-
+    variable = nombre1[1]
+    variable = nombre2[1]
     producto1 = Producto.objects.get(nombreProducto = nombre1[1])
-    producto2 = Producto.objects.get(nombreProducto = nombre2[1])
+    producto2 = Producto.objects.get(nombreProducto = nombre1[1])
 
     bodegaP1 = ProductoBodega.objects.get(bodega = conversion.puntoConversion.codigoBodega,producto = producto1.codigoProducto)
     bodegaP2 = ProductoBodega.objects.get(bodega = conversion.puntoConversion.codigoBodega,producto = producto2.codigoProducto)

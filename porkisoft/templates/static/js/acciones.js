@@ -19,11 +19,11 @@ $(document).on('ready', inicio);
         {
             $('#cobraVenta').hide();
         }
-    var tipo = $('#tipoPedido').text();
+    /*var tipo = $('#tipoPedido').text();
     if (tipo == 'Contado')
     {
         $('#GuardaPedidoCredito').hide();
-    }
+    }*/
      $('#agregarProducto').show();
      $('#encabezado').hide();
      $('#pie').hide();
@@ -75,6 +75,7 @@ $(document).on('ready', inicio);
      $('#ExpExcelFaltantes').on('click',ExportarFaltantes);
      $('#id_pesoEnvio').on('focus',PasaValorEnvio);
      $('#id_vrTotalPunto').on('focus',calculoTotalVenta);
+     $('#id_diferencia').on('focus',calculoDiferencia);
      var vrUnitario = $('#id_vrUnitarioPunto');
      vrUnitario.on('focus',traeValorVenta);
      vrUnitario.on('focus',existenciasVenta);
@@ -115,9 +116,6 @@ $(document).on('ready', inicio);
      $('#listaDePrecios').dataTable();
      $('#TablaMiga').dataTable();
 
-
-
-
      $('#id_fecha').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCompra').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaDesposte').datepicker({ dateFormat: "dd/mm/yy" });
@@ -141,7 +139,8 @@ $(document).on('ready', inicio);
      $('#id_fechaCarCond').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaAjuste').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaBolaCondimentada').datepicker({ dateFormat: "dd/mm/yy" });
-
+    $('#id_fechaCaja').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaFaltante').datepicker({ dateFormat: "dd/mm/yy" });
 
      $( "#bodegaFaltantes" ).selectmenu({ width: 200 });
 
@@ -157,11 +156,79 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function ImprimirAZ()
+{
+                var encabezado = $('#encabezado');
+                var pie = $('#pieRecibo');
+                var tablaExcentos = $('#TablaExcentos');
+                var tablaExcluidos = $('#TablaExcluidos');
+                var tablaGravados = $('#TablaGravados1');
+                var tablaGravados2 = $('#TablaGravados2');
+                var inicio = $('#inicio').val();
+                var jornada = $('#jornada').val();
+                encabezado.show();
+                pie.show();
+                $('#fechaAZ').append(': '+ inicio);
+                $('#jornadaAZ').append(': '+ jornada);
+                tablaExcentos.addClass('recibo');
+                tablaExcluidos.addClass('recibo');
+                tablaGravados.addClass('recibo');
+                tablaGravados2.addClass('recibo');
+
+                $('#recibo').printArea();
+                encabezado.hide();
+                pie.hide();
+
+                tablaExcentos.removeClass('recibo');
+                tablaExcluidos.removeClass('recibo');
+                tablaGravados.removeClass('recibo');
+                tablaGravados2.removeClass('recibo');
+
+}
+function calculoDiferencia() {
+    var pesoActual = $('#id_pesoActual').val();
+    var undActual = $('#id_unidadActual').val();
+    var pesoFisico = $('#id_pesoFisico').val();
+    var undFisica = $('#id_unidadFisica').val();
+    var diferencia = 0;
+    if (pesoActual == 0)
+    {
+        diferencia = undActual - undFisica;
+    }else
+    {
+        diferencia = pesoActual - pesoFisico;
+    }
+
+    $('#id_diferencia').val(diferencia);
+
+}
+function GenerarReportFaltantes(idFaltante) {
+
+    var nombreBodega = $('#nombreBodega').text();
+    var opcion = confirm('Desea Generar un Reporte de inventario?');
+    if (opcion == true) {
+        $.ajax({
+            url: '/inventario/generarFaltante/',
+            dataType: "json",
+            type: "get",
+            data: {'idFaltante': idFaltante, 'nombreBodega': nombreBodega},
+            success: function (respuesta) {
+                var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+            }
+
+        });
+    }
+}
 function consultaAZ() {
 
     var inicio = $('#inicio').val();
     var fechaFin = $('#fin').val();
     var jornada = $('#jornada').val();
+    var gravados1= 0;
+    var gravados2= 0;
+    var IvaGravados1= 0;
+    var IvaGravados2= 0;
+    var VentaTotal = 0;
 
     $.ajax({
             url: '/ventas/reporteAZ/',
@@ -186,13 +253,24 @@ function consultaAZ() {
 
                 $.each(respuesta.gravados1,function(key,value){
 
+                    gravados1 = value;
                     $("#TablaGravados1").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
                 });
                 $.each(respuesta.gravados2,function(key,value){
-
+                    gravados2 = value;
                     $("#TablaGravados2").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
                 });
+                $.each(respuesta.totalVenta,function(key,value){
 
+                    $("#ventaTotal").append(' $ '+value);
+                });
+
+                IvaGravados1 = gravados1 * 0.16;
+                IvaGravados2 = gravados2 * 0.16;
+                $("#grav1").append(' $ '+gravados1);
+                $("#grav2").append(' $ '+gravados2);
+                $("#IvaGrav1").append(' $ '+IvaGravados1);
+                $("#IvaGrav2").append(' $ '+IvaGravados2);
 
             }
 

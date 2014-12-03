@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'PuntoVentaNorte.html' %}
 
 {% block titulo %}::AZ::{% endblock titulo %}
 {% block mensajes %}
@@ -8,73 +8,69 @@ AZ
 {% block contenido %}
 <div id="progressbar"></div>
     <div id="rango">
-     <label>Fecha Inicio</label><input id="inicio" type="text">
-     <label>Fecha Final</label><input id="fin" type="text">
+     <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
+     <label for="fin" >Fecha Final</label><input id="fin" type="text">
         <label for="jornada">Grupo</label><select id="jornada">
             <option value='AM'>AM</option>
             <option value='PM'>PM</option>
         </select>
 
-     <a  onclick="consultaAZ()" href="#"><input type="button" value="Consultar"></a>
+    <a  onclick="consultaAZ()" href="#"><input type="button" value="Consultar"></a>
+    <a  onclick="ImprimirAZ()" href="#"><input type="button" value="Imprimir"></a>
     <br/>
     <br/>
     </div>
-
-
-<div id="acordeon">
-<h3>Excentos</h3>
-    <div>
-        <table id="TablaExcentos" class="table-striped" style="width: 95%">
-
-            <thead>
-            <tr>
-                <th>Categoria</th>
-                <th>Valor</th>
-            </tr>
-            </thead>
-
+<div id="recibo">
+    <table id="encabezado">
+            <tr><th>PORKILANDIA S.A.S.</th></tr>
+            <tr><th>Nit: 900606687-6</th></tr>
+            <tr><th>Regimen Comun</th></tr>
+            <tr><th>Resolucion : 140000039353</th></tr>
+            <tr><th>Rango:000000 hasta 999999</th></tr>
+            <tr><th>Expedida el : 09-04-2013</th></tr>
+            <tr><th>Cll 16 # 31-02 San andres</th></tr>
+            <tr><th>Telefonos : 729 13 36 - 315 582 2270</th></tr>
+            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+            <tr><th>REPORTE INFORMACION TRIBUTARIA</th></tr>
+            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+            <tr><th id="fechaAZ" style="text-align: left">Fecha</th></tr>
+            <tr><th id="jornadaAZ" style="text-align: left">Jornada</th></tr>
+            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
         </table>
-    </div>
-<h3>Excluidos</h3>
-    <div>
-        <table id="TablaExcluidos" class="table-striped" style="width: 95%">
 
-            <thead>
-            <tr>
-                <th>Categoria</th>
-                <th>Valor</th>
-            </tr>
-            </thead>
+                <table id="TablaExcentos" class="table-striped" style="width: 25%">
 
-        </table>
-    </div>
-<h3>Gravados 1</h3>
-    <div>
-        <table id="TablaGravados1" class="table-striped" style="width: 95%">
+                </table>
 
-            <thead>
-            <tr>
-                <th>Categoria</th>
-                <th>Valor</th>
-            </tr>
-            </thead>
+                <table id="TablaExcluidos" class="table-striped" style="width: 25%">
 
-        </table>
-    </div>
-<h3>Gravados 2</h3>
-    <div>
-        <table id="TablaGravados2" class="table-striped" style="width: 95%">
+                </table>
 
-            <thead>
-            <tr>
-                <th>Categoria</th>
-                <th>Valor</th>
-            </tr>
-            </thead>
+                <table id="TablaGravados1" class="table-striped" style="width: 25%">
 
-        </table>
-    </div>
+                </table>
+
+                <table id="TablaGravados2" class="table-striped" style="width: 25%">
+
+                </table>
+
+            <table id="pieRecibo">
+                <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+                <tr><th id="grav1" style="text-align: left">Gravados 1 :</th></tr>
+                <tr><th id="IvaGrav1" style="text-align: left">Iva 16% :</th></tr>
+                <tr><th id="grav2" style="text-align: left">Gravados 2 :</th></tr>
+                <tr><th id="IvaGrav2" style="text-align: left">Iva 16% :</th></tr>
+                <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+                <tr><th id="ventaTotal" style="text-align: left">Total Venta :</th></tr>
+                <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+                <tr>
+                    <th style="font-size: 0.8em">Generado en PORKISOFT V.1.0</th>
+                </tr>
+
+            </table>
+
 
 </div>
+
 
 {% endblock contenido %}

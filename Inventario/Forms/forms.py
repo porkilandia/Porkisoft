@@ -94,3 +94,12 @@ class AjustesForm(ModelForm):
     class Meta:
         model = Ajustes
         exclude = ("guardado",)
+
+class FaltanteForm(ModelForm):
+    class Meta:
+        model = Faltantes
+        exclude = ("guardado",)
+class DetalleFaltanteForm(ModelForm):
+    class Meta:
+        model = DetalleFaltantes
+

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block titulo %}Faltantes{% endblock titulo %}
+{% block mensajes %}
+    Detalle Faltantes
+
+{% endblock mensajes %}
+{% block contenido %}
+    <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+    <br/><br/><br/>
+
+    <table class="table-striped">
+        <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Bodega</th>
+            <th>Guardado</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+            <td>{{ faltante.fechaFaltante }}</td>
+            <td>{{ faltante.bodegaFaltante }}</td>
+            {% if faltante.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+        </tr>
+        </tbody>
+
+     </table>
+
+    <table class="table-striped">
+        <thead>
+        <tr>
+
+            <th>Producto</th>
+            <th>Peso Actual</th>
+            <th>Unidad Actual</th>
+            <th>Peso Fisico</th>
+            <th>Unidad Fisico</th>
+            <th>Diferencia</th>
+            <th>Acciones</th>
+        </tr>
+       </thead>
+        <tbody>
+            {% for detalle in detalleFaltantes %}
+            <tr>
+
+                <td>{{ detalle.productoFaltante.nombreProducto }}</td>
+                <td>{{ detalle.pesoActual }}</td>
+                <td>{{ detalle.unidadActual }}</td>
+                <td>{{ detalle.pesoFisico }}</td>
+                <td>{{ detalle.unidadFisica }}</td>
+                <td>{{ detalle.diferencia }}</td>
+                <td>
+                   <a href="{% url 'Inventario.views.EditaDetalleFaltante' detalle.id %}">Edita</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+
+      </table>
+
+
+
+    <form method="post">{% csrf_token %}
+         <fieldset id="agregarDetalle">
+             <legend>Detalle Faltantes <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+
+                  {{ formulario }}
+
+              <br/>
+             <br/>
+                <legend>Acciones</legend>
+                 <input type="submit" value="Guardar" class="btn btn-primary">
+          </fieldset>
+     </form>
+
+
+
+{% endblock contenido %}

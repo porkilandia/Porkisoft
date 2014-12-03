@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Faltantes{% endblock titulo %}
+{% block mensajes %}
+    Faltantes
+
+{% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+    <table id="tablaTraslados" class="table-striped">
+        <thead>
+        <tr>
+            <th>Fehca</th>
+            <th>Bodega</th>
+            <th>Guardado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        {% for faltante in faltantes %}
+        <tr>
+            <td>{{ faltante.fechaFaltante }}</td>
+            <td id="nombreBodega">{{ faltante.bodegaFaltante }}</td>
+            {% if faltante.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+
+            <td>
+                <a onclick="GenerarReportFaltantes({{ faltante.id }})" href="#">Generar</a>
+                <a href="{% url 'Inventario.views.GestionDetalleFaltante' faltante.id %}">Detalle</a>
+            </td>
+
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">
+                   Ningun Registro para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+
+
+    </table>
+    <form class="form-horizontal" method="post">{% csrf_token %}
+         <fieldset id="agregarSubproducto">
+             <legend>
+                 Faltante
+                 <a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/>
+             </a></legend>
+
+                  {{ formulario }}
+
+              <br/><br/>
+          <legend>Acciones</legend>
+          <input value="Guardar" type="submit" class="btn btn-primary">
+         </fieldset>
+     </form>
+
+{% endblock contenido %}

@@ -113,7 +113,7 @@ class Caja (models.Model):
     ('PM', 'PM'),
     )
     numeroCaja = models.AutoField(primary_key=True, verbose_name='Numero Caja')
-    fechaCaja = models.DateField(verbose_name='Fecha',auto_now=True)
+    fechaCaja = models.DateField(verbose_name='Fecha')
     jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)
     encargado = models.ForeignKey(Empleado,verbose_name='Encargado')
     base = models.IntegerField(verbose_name='Base',default=0)
