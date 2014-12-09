@@ -55,5 +55,7 @@ urlpatterns = patterns('',
     url(r'^EditaFaltante/(?P<idDetFaltante>\d+)',EditaDetalleFaltante),
     url(r'^generarFaltante/$',GenerarFaltante),
 
+    url(r'^cantidadActual/$',CantidadActual),
+
 
 )

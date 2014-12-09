@@ -341,7 +341,7 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA********************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=30)
+    fechainicio = date.today() - timedelta(days=18)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()
@@ -365,8 +365,12 @@ def GestionDetalleCompra(request,idcompra):
     compra = Compra.objects.get(pk = idcompra)
     detcompras = DetalleCompra.objects.filter(compra = idcompra)
     totalCompra  = 0
-    for dcmp in detcompras: # clacular los totales de la lista de detalles de subproducto
-                totalCompra += dcmp.subtotal
+    totalPeso = 0
+    # clacular los totales de la lista de detalles de subproducto
+    for dcmp in detcompras:
+        totalCompra += dcmp.subtotal
+    for dcmp in detcompras:
+        totalPeso += dcmp.pesoProducto
 
     compra.vrCompra = totalCompra
     compra.save()
@@ -449,8 +453,8 @@ def GestionDetalleCompra(request,idcompra):
         formulario = DetalleCompraForm(idcompra,initial={'compra':idcompra })
 
     return render_to_response('Inventario/GestionDetalleCompra.html',{'formulario':formulario,
-                                                         'compra': compra,
-                                                         'detcompras': detcompras, 'totalCompra':totalCompra},
+                                                         'compra': compra,'detcompras': detcompras,
+                                                         'totalCompra':totalCompra,'totalPeso':totalPeso},
                                                         context_instance = RequestContext(request))
 
 def EditaCompra(request,idDetCompra):
@@ -719,7 +723,7 @@ def ReporteMovimientos(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionAjustes(request):
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=5)
     fechafin = date.today()
     ajustes = Ajustes.objects.all().order_by('fechaAjuste').filter(fechaAjuste__range = (fechainicio,fechafin))
     if request.method == 'POST':
@@ -740,27 +744,60 @@ def GuardarAjuste(request):
 
     bodegaAjuste = ProductoBodega.objects.get(bodega = ajuste.bodegaAjuste.codigoBodega,producto = ajuste.productoAjuste.codigoProducto)
 
-    bodegaAjuste.pesoProductoStock = ajuste.pesoAjuste
-    bodegaAjuste.unidadesStock = ajuste.unidades
-    bodegaAjuste.save()
+    if ajuste.sumar == True:
+        bodegaAjuste.pesoProductoStock += ajuste.pesoAjuste
+        bodegaAjuste.unidadesStock += ajuste.unidades
+        bodegaAjuste.save()
 
-    movimiento = Movimientos()
-    movimiento.tipo = 'AJU%d'%(ajuste.id)
-    movimiento.fechaMov = ajuste.fechaAjuste
-    movimiento.productoMov = ajuste.productoAjuste
-    if ajuste.pesoAjuste == 0:
-        movimiento.entrada = ajuste.unidades
+        movimiento = Movimientos()
+        movimiento.tipo = 'AJU%d'%(ajuste.id)
+        movimiento.fechaMov = ajuste.fechaAjuste
+        movimiento.productoMov = ajuste.productoAjuste
+        if ajuste.pesoAjuste == 0:
+            movimiento.entrada = ajuste.unidades
+        else:
+            movimiento.entrada = ajuste.pesoAjuste
+        movimiento.Hasta = ajuste.bodegaAjuste.nombreBodega
+        movimiento.save()
     else:
-        movimiento.entrada = ajuste.pesoAjuste
+        bodegaAjuste.pesoProductoStock -= ajuste.pesoAjuste
+        bodegaAjuste.unidadesStock -= ajuste.unidades
+        bodegaAjuste.save()
 
-    movimiento.Hasta = ajuste.bodegaAjuste.nombreBodega
-    movimiento.save()
+        movimiento = Movimientos()
+        movimiento.tipo = 'AJU%d'%(ajuste.id)
+        movimiento.fechaMov = ajuste.fechaAjuste
+        movimiento.productoMov = ajuste.productoAjuste
+        if ajuste.pesoAjuste == 0:
+            movimiento.salida = ajuste.unidades
+        else:
+            movimiento.salida = ajuste.pesoAjuste
+        movimiento.Hasta = ajuste.bodegaAjuste.nombreBodega
+        movimiento.save()
 
     ajuste.guardado = True
     ajuste.save()
 
     msj = 'Guardado exitoso'
     respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def CantidadActual(request):
+    idProducto = request.GET.get('producto')
+    idBodega = request.GET.get('bodega')
+
+    bodega = ProductoBodega.objects.get(bodega = int(idBodega),producto = int(idProducto))
+    pesoActual = {}
+    undActual = {}
+
+    pesoActual['Peso Actual'] = ceil(bodega.pesoProductoStock)
+    undActual['Unidades Actuales'] = bodega.unidadesStock
+
+    lista = {'pesoActual':pesoActual,'undActual':undActual}
+
+
+    respuesta = json.dumps(lista)
 
     return HttpResponse(respuesta,mimetype='application/json')
 
@@ -803,6 +840,8 @@ def GenerarFaltante(request):
     faltante = Faltantes.objects.get(pk = int(idFaltante))
     existencias = ProductoBodega.objects.filter(bodega = bodega.codigoBodega).filter(pesoProductoStock__gt = 0)
     existencias2 = ProductoBodega.objects.filter(bodega = bodega.codigoBodega).filter(unidadesStock__gt = 0)
+    existencias3 = ProductoBodega.objects.filter(bodega = bodega.codigoBodega).filter(pesoProductoStock__lt = 0)
+    existencias4 = ProductoBodega.objects.filter(bodega = bodega.codigoBodega).filter(unidadesStock__lt = 0)
 
     for existencia in existencias:
         detalleFaltante = DetalleFaltantes()
@@ -812,6 +851,20 @@ def GenerarFaltante(request):
         detalleFaltante.save()
 
     for existencia in existencias2:
+        detalleFaltante = DetalleFaltantes()
+        detalleFaltante.faltante = faltante
+        detalleFaltante.productoFaltante = existencia.producto
+        detalleFaltante.unidadActual = existencia.unidadesStock
+        detalleFaltante.save()
+
+    for existencia in existencias3:
+        detalleFaltante = DetalleFaltantes()
+        detalleFaltante.faltante = faltante
+        detalleFaltante.productoFaltante = existencia.producto
+        detalleFaltante.pesoActual = existencia.pesoProductoStock
+        detalleFaltante.save()
+
+    for existencia in existencias4:
         detalleFaltante = DetalleFaltantes()
         detalleFaltante.faltante = faltante
         detalleFaltante.productoFaltante = existencia.producto

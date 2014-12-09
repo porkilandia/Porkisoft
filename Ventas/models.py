@@ -66,6 +66,7 @@ class Pedido(models.Model):
     TotalVenta = models.IntegerField(verbose_name='Total Venta',default=0)
     credito = models.BooleanField(verbose_name='Credito',default=False)
     contado = models.BooleanField(verbose_name='Contado',default=False)
+    guardado = models.BooleanField(default=False,verbose_name='Guardado')
 
     def __unicode__(self):
         return self.numeroPedido
@@ -156,3 +157,16 @@ class DetalleDevolucion (models.Model):
     pesoProducto = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso',null= True,default=0)
     cantidad = models.IntegerField(verbose_name='Und',default=0)
 
+class ConfiguracionPuntos(models.Model):
+    jornadas = (
+    ('AM', 'AM'),
+    ('PM', 'PM'),
+    )
+    fecha = models.DateField(verbose_name='Fecha Actualizacion')
+    nombreConfiguracion = models.CharField(verbose_name='Nombre',max_length=50)
+    cajero = models.ForeignKey(Empleado,verbose_name='Cajero')
+    jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)
+    inicia = models.IntegerField(verbose_name='vr Inicial',default=0)
+    actual = models.IntegerField(verbose_name='vr actual',default=0)
+    finaliza = models.IntegerField(verbose_name='vr Final',default=0)
+    consecutivoZ = models.IntegerField(verbose_name='ConsecZ',default=0)

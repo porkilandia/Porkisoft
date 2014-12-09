@@ -59,6 +59,7 @@
             <th>Vr. Arroba Canal</th>
             <th>Genero</th>
             <th>Estado</th>
+            <th>Accion</th>
 
 
 
@@ -85,7 +86,7 @@
             {% else %}
                 <td>Pendiente</td>
             {% endif %}
-            
+              <td><a href="{% url 'Fabricacion.views.BorrarCanal' cnl.codigoCanal %}">Borrar</a></td>
 
         </tr>
 

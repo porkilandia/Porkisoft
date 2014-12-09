@@ -18,6 +18,7 @@
             <th>Bodega</th>
             <th>Tipo</th>
             <th>Vr. Pedido</th>
+            <th>Guardado</th>
             <th>Accion</th>
 
         </tr>
@@ -37,8 +38,13 @@
             {% endif %}
 
             <td> {{ pedido.TotalVenta }} </td>
+            {% if pedido.guardado == True %}
+                    <td id="tipoPedido">Si</td>
+                {% else %}
+                    <td id="tipoPedido" >No</td>
+                {% endif %}
             <td>
-                <a href="{% url 'Ventas.views.GestionDetallePedido' pedido.numeroPedido %}">Detalles</a>
+                <a  href="{% url 'Ventas.views.GestionDetallePedido' pedido.numeroPedido %}">Detalles</a>
             </td>
 
         </tr>

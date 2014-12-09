@@ -1,43 +1,40 @@
 {% extends 'base.html' %}
 
-{% block titulo %}::Caja ::{% endblock titulo %}
-{% block mensajes %}Caja Norte {% endblock mensajes %}
+{% block titulo %}::Configuracion Puntos de Venta ::{% endblock titulo %}
+{% block mensajes %}Configuracion Puntos de Venta{% endblock mensajes %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
 <br/><br/><br/>
-    <table id="tablaCaja" class="table-striped" >
+    <table class="table-striped">
 
         <thead >
         <tr>
-            <th>Codigo</th>
             <th>Fecha</th>
+            <th>Nombre</th>
+            <th>Cajero</th>
             <th>Jornada</th>
-            <th>Encargado</th>
-            <th>Base</th>
-            <th>Retiros</th>
-            <th>Rest.</th>
-            <th>Total Venta</th>
-            <th>Total Efectivo</th>
-            <th>Total Residuo</th>
+            <th>Consec Fact Inicial</th>
+            <th>Consec Fact Actual</th>
+            <th>Consec Fact Filnal</th>
+            <th>Consec Z</th>
             <th>Acciones</th>
 
 
         </tr>
         </thead>
-        {% for caja in Cajas %}
+        {% for configuracion in configuraciones %}
             <tr>
-            <td>{{ caja.numeroCaja }}</td>
-            <td>{{ caja.fechaCaja }}</td>
-            <td>{{ caja.jornada }}</td>
-            <td>{{ caja.encargado }}</td>
-            <td>$ {{ caja.base }}</td>
-            <td>$ {{ caja.TotalRetiro }}</td>
-            <td>$ {{ caja.TotalRestaurante }}</td>
-            <td>$ {{ caja.TotalVenta }}</td>
-            <td>$ {{ caja.TotalEfectivo }}</td>
-            <td>$ {{ caja.TotalResiduo }}</td>
+            <td>{{ configuracion.fecha }}</td>
+            <td>{{ configuracion.nombreConfiguracion }}</td>
+            <td>{{ configuracion.cajero }}</td>
+            <td>{{ configuracion.jornada }}</td>
+            <td>{{ configuracion.inicia }}</td>
+            <td>{{ configuracion.actual }}</td>
+            <td>{{ configuracion.finaliza }}</td>
+            <td>{{ configuracion.consecutivoZ }}</td>
+
             <td>
-                <a href="{% url 'Ventas.views.EditaCaja' caja.numeroCaja %}">Arqueo</a>
+                <a href="{% url 'Ventas.views.EditaConfigPuntos' configuracion.id  %}">Editar</a>
             </td>
 
         </tr>

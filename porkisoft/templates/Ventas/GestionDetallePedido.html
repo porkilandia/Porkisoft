@@ -18,6 +18,7 @@
             <th>Bodega</th>
             <th>Tipo</th>
             <th>Vr.Pedido</th>
+            <th>Guardado</th>
 
 
         </tr>
@@ -36,6 +37,11 @@
                 {% endif %}
 
                 <td>{{ pedido.TotalVenta }}</td>
+                {% if pedido.guardado == True %}
+                    <td id="tipoPedido">Si</td>
+                {% else %}
+                    <td id="tipoPedido" >No</td>
+                {% endif %}
             </tr>
 
     </table>
@@ -89,10 +95,9 @@
                 <a href="#">pendiente</a>
             </td>
             {% else %}
-                <td>
-                <a href="#">Entregado</a>
-            </td>
+                <td>  <a href="#">Entregado</a> </td>
             {% endif %}
+            <td><a href="{% url 'Ventas.views.BorrarDetallePedido' det.id %}">Borrar</a></td>
 
         </tr>
 

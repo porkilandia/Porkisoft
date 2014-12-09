@@ -18,12 +18,15 @@ urlpatterns = patterns('',
     url(r'^guardarApanado/$',GuardarApanado),
     url(r'^costearMolido/$',costeoMolido),
     url(r'^guardarMolido/$',GuardarMolido),
+
     url(r'^costearEmpaque/$',CostearEmpacado),
     url(r'^guardarEmpaque/$',GuardarEmpacado),
     url(r'^consultaCostoChuleta/$',ConsultaCostoChuleta),
 
     url(r'^condimentado/$',GestionCondimentado),
+
     url(r'^empacadoApanado/$',GestionEmpacadoApanados),
+    url(r'^editaEmpacadoApanado/(?P<idEmpacado>\d+)',EditaEmpacadoApanados),
 
     url(r'^menudos/$',GestionMenudos),
     url(r'^guardarMenudo/$',GuardarMenudos),
@@ -64,6 +67,8 @@ urlpatterns = patterns('',
      url(r'^molida/$',GestionMolido),
 
     url(r'^canal/(?P<idrecepcion>\d+)',GestionCanal),
+    url(r'^borrarCanal/(?P<idcanal>\d+)',BorrarCanal),
+
     url(r'^marcarcanal/(?P<idcanal>\d+)',MarcarCanalDesposte),
 
     url(r'^desposte/$',GestionDesposte),
@@ -82,6 +87,7 @@ urlpatterns = patterns('',
     url(r'^tallerReApanado/$',GestionReApanado),
     url(r'^guardarReApanado/$',GuardarReApanado),
 
+
     url(r'^conversiones/$',GestionConversiones),
     url(r'^Guardaconversiones/$',GuardarConversion),
 
@@ -94,7 +100,10 @@ urlpatterns = patterns('',
     #url(r'^costoDesposte/(?P<idplanilla>\d+)',CostoDesposte),
 
     url(r'^ensalinados/$', GestionEnsalinado),
+
     url(r'^tajado/$', GestionTajado),
+    url(r'^editaTajado/(?P<idTajado>\d+)',EditaTajado),
+
     url(r'^detalleTajado/(?P<idTajado>\d+)', GestionDetalleTajado),
     url(r'^editadetalleTajado/(?P<idDetTajado>\d+)', EditaDetalleTajado),
     url(r'^verduras/(?P<idDetcompra>\d+)', GestionVerduras),
@@ -105,6 +114,7 @@ urlpatterns = patterns('',
     url(r'^detallemiga/(?P<idmiga>\d+)', GestionDetalleMiga),
     url(r'^costoMiga/(?P<idmiga>\d+)',CostoMiga),
     url(r'^apanados/$',GestionApanado),
+    url(r'^editaApanados/(?P<idApanado>\d+)',EditaApanado),
     url(r'^promedio/$',promedioCostoProducto),
     url(r'^calcPromedio/$',CalcularPromedio),
     url(r'^TemplateCondPo/$',TemplatePromedioPechugaCond),

@@ -50,6 +50,7 @@
                 <td></td>
             {% else %}
                 <td>
+                <a href="{% url 'Fabricacion.views.EditaApanado' apanado.id %}">Editar</a>
                 <a onclick="CostearApanado({{ apanado.id }})" href="#">Costear</a>
                 <a onclick="GuardarApanado({{ apanado.id }})" href="#">Guardar</a>
             </td>

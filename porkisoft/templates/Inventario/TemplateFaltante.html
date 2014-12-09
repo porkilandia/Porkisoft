@@ -10,6 +10,7 @@
     <table id="tablaTraslados" class="table-striped">
         <thead>
         <tr>
+            <th>id</th>
             <th>Fehca</th>
             <th>Bodega</th>
             <th>Guardado</th>
@@ -18,6 +19,7 @@
         </thead>
         {% for faltante in faltantes %}
         <tr>
+            <td>{{ faltante.id }}</td>
             <td>{{ faltante.fechaFaltante }}</td>
             <td id="nombreBodega">{{ faltante.bodegaFaltante }}</td>
             {% if faltante.guardado == True %}

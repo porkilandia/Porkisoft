@@ -1,40 +1,40 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Reporte Compras{% endblock titulo %}
+{% block titulo %}Reporte Ventas{% endblock titulo %}
 {% block mensajes %}
-    Reporte Compras
+    Reporte Ventas
 {% endblock mensajes %}
 {% block contenido %}
 <div id="rangoCompras">
      <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
      <label for="fin">Fecha Final</label><input id="fin" type="text">
+
      <label for="bodega">Bodega</label><select id="bodega">
         {% for bod in bodega %}
             <option value={{ bod.codigoBodega }}>{{ bod.nombreBodega }}</option>
         {% endfor %}
     </select>
-    <label for="provedor">Proveedor</label><select id="provedor">
-        {% for prov in provedor %}
-            <option value={{ prov.codigoProveedor }}>{{ prov.nombreProv }}</option>
-        {% endfor %}
+
+    <label for="jornada">Jornada</label><select id="jornada">
+        <option value='AM'>AM</option>
+        <option value='PM'>PM</option>
     </select>
 
-     <a  onclick="consultaCompras()" href="#"><input type="button" value="Consultar"></a>
+    <a  onclick="consultaListaVentas()" href="#"><input type="button" value="Consultar"></a>
         <br/>
         <br/>
         <br/>
    </div>
-    <table id="tablaReporteCompra" class="table-striped">
+    <table id="tablaListaVenta" class="table-striped">
         <thead>
         <tr>
             <th>Codigo</th>
+            <th>Factura</th>
             <th>Fecha</th>
-            <th>Proveedor</th>
-            <th>Bodega</th>
-            <th>Cantidad</th>
-            <th>Vr. Compra</th>
+            <th>Cajero</th>
+            <th>Jornada</th>
+            <th>Total Venta</th>
             <th>Accion</th>
-
         </tr>
         </thead>
 

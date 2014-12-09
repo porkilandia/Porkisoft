@@ -49,7 +49,7 @@ class TajadoForm(ModelForm):
         q2 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas')
         q3 = Producto.objects.filter(grupo__nombreGrupo ='Pollos')
 
-        fechainicio = date.today() - timedelta(days=20)
+        fechainicio = date.today() - timedelta(days=10)
         fechafin = date.today()
 
         planilla = PlanillaDesposte.objects.all().order_by('-fechaDesposte')
@@ -168,7 +168,11 @@ class MolidoForm(ModelForm):
 class EmpacadoApanadoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(EmpacadoApanadoForm,self).__init__(*args, **kwargs)
-        self.fields['produccion'].queryset = ProcesoApanado.objects.all().order_by('-fechaApanado')
+
+        fechainicio = date.today() - timedelta(days=10)
+        fechafin = date.today()
+
+        self.fields['produccion'].queryset = ProcesoApanado.objects.all().filter(fechaApanado__range = (fechainicio,fechafin)).order_by('-fechaApanado')
         self.fields['productoAEmpacar'].queryset = Producto.objects.filter(nombreProducto__contains = 'Filete Apanado')
     class Meta:
         model = EmpacadoApanados

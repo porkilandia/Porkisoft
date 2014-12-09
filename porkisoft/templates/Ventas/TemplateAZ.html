@@ -1,4 +1,4 @@
-{% extends 'PuntoVentaNorte.html' %}
+{% extends 'base.html' %}
 
 {% block titulo %}::AZ::{% endblock titulo %}
 {% block mensajes %}
@@ -35,30 +35,26 @@ AZ
             <tr><th style="font-size: 1.1em">__________________________________</th></tr>
             <tr><th id="fechaAZ" style="text-align: left">Fecha</th></tr>
             <tr><th id="jornadaAZ" style="text-align: left">Jornada</th></tr>
+            <tr><th id="inicioConsecVentas" style="text-align: left">Inicio</th></tr>
+            <tr><th id="finConsecVentas" style="text-align: left">fin</th></tr>
+            <tr><th id="ConsecZ" style="text-align: left">Consecutivo</th></tr>
             <tr><th style="font-size: 1.1em">__________________________________</th></tr>
         </table>
 
-                <table id="TablaExcentos" class="table-striped" style="width: 25%">
+                <table id="TablaExcentos" class="table-striped" style="width: 25%"></table>
 
-                </table>
+                <table id="TablaExcluidos" class="table-striped" style="width: 25%"></table>
 
-                <table id="TablaExcluidos" class="table-striped" style="width: 25%">
+                <table id="TablaGravados1" class="table-striped" style="width: 25%"></table>
 
-                </table>
+                <table id="TablaGravados2" class="table-striped" style="width: 25%"></table>
 
-                <table id="TablaGravados1" class="table-striped" style="width: 25%">
-
-                </table>
-
-                <table id="TablaGravados2" class="table-striped" style="width: 25%">
-
-                </table>
-
-            <table id="pieRecibo">
+                <table id="pieRecibo">
                 <tr><th style="font-size: 1.1em">__________________________________</th></tr>
-                <tr><th id="grav1" style="text-align: left">Gravados 1 :</th></tr>
+
+                <tr><th id="grav1" style="text-align: left">Venta Gravada :</th></tr>
                 <tr><th id="IvaGrav1" style="text-align: left">Iva 16% :</th></tr>
-                <tr><th id="grav2" style="text-align: left">Gravados 2 :</th></tr>
+                <tr><th id="grav2" style="text-align: left">Venta Gravada :</th></tr>
                 <tr><th id="IvaGrav2" style="text-align: left">Iva 16% :</th></tr>
                 <tr><th style="font-size: 1.1em">__________________________________</th></tr>
                 <tr><th id="ventaTotal" style="text-align: left">Total Venta :</th></tr>
@@ -68,6 +64,39 @@ AZ
                 </tr>
 
             </table>
+
+
+
+                <table id="TablaPesables" class="table-striped" style="width: 25%">
+
+                    <tr>
+                        <th>--Pesables--</th>
+                        <th>_________</th>
+                    </tr>
+                </table>
+
+                <table id="TablaValPesables" class="table-striped" style="width: 25%">
+                    <tr>
+                        <th>Valor Pesables</th>
+                        <th>_________</th>
+                    </tr>
+                </table>
+
+                <table id="TablaNoPesables" class="table-striped" style="width: 25%">
+                    <tr>
+                        <th>No Pesables</th>
+                        <th>_________</th>
+                    </tr>
+                </table>
+
+                <table id="TablaValNoPesables" class="table-striped" style="width: 25%">
+                    <tr>
+                        <th>Valor No Pesables</th>
+                        <th>_________</th>
+                    </tr>
+                </table>
+
+
 
 
 </div>

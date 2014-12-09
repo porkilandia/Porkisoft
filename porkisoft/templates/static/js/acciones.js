@@ -2,23 +2,17 @@ $(document).on('ready', inicio);
 
  function inicio()
  {
-    /*$(document).keypress(function(e)
-     {
 
-         if(e.which == 2)
-         {
-                showModalDialog('/ventas/listaPrecios/')
-         }
-
-
-     });
-     */
     // oculta el boton de guardado en pedido en caso de que sea contado
+     /**************************************Template Venta Norte*********************************************/
     var estado = $('#guardado').text();
+    var productoVenta = $('#id_productoVenta');
+    productoVenta.focus();
         if (estado == 'Si')
         {
             $('#cobraVenta').hide();
         }
+     /***********************************************************************************/
     /*var tipo = $('#tipoPedido').text();
     if (tipo == 'Contado')
     {
@@ -29,6 +23,7 @@ $(document).on('ready', inicio);
      $('#pie').hide();
      $('#pieRecibo').hide();
      $('#Retiro').hide();
+
      $('#id_precioTotal').on('focus',calculoGanado);
      $('#id_difPesos').on('focus',calculoCanal);
      $('#id_vrCompraProducto').on('focus', calculoCompra);
@@ -41,7 +36,7 @@ $(document).on('ready', inicio);
      $('#costearTajado').on('click',CostearTajado);
      $('#guardar').on('click',GuardarDesposte);
      $('#id_vrTotalPedido').on('focus',CalculaTotalPedido);
-     $('#id_productoVenta').on('blur',consultaValorProducto);
+     productoVenta.on('blur',consultaValorProducto);
      $('#id_vrUnitario').on('focus',ExistenciasPedido);
      $('#id_vrTotal').on('focus',calculoValorProducto);
      $('#guardarVentas').on('click',GuardarVentas);
@@ -80,12 +75,13 @@ $(document).on('ready', inicio);
      vrUnitario.on('focus',traeValorVenta);
      vrUnitario.on('focus',existenciasVenta);
      $('#regreso').on('focus',calculoRegreso);
+     $('#id_cantidadActual').on('focus',CantidadActual);
 
 
 
      //var tablaEmpacado = $('#tablaEmpacado tr');
      //tablaEmpacado.on('click',maneja);
-     $('#TablaPuntoNorte').dataTable();
+     //$('#TablaPuntoNorte').dataTable();
      $('#tablaAjustes').dataTable();
      $('#canalPendiente').dataTable();
      $('#tablaenTajados').dataTable();
@@ -115,6 +111,7 @@ $(document).on('ready', inicio);
      $('#TablaEnsBola').dataTable();
      $('#listaDePrecios').dataTable();
      $('#TablaMiga').dataTable();
+     $('#tablaCaja').dataTable();
 
      $('#id_fecha').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCompra').datepicker({ dateFormat: "dd/mm/yy" });
@@ -148,6 +145,7 @@ $(document).on('ready', inicio);
      $('#acordeon').accordion({ heightStyle: "content" });
      $( "#progressbar" ).progressbar({value: false}).hide();
      $('#FrmVenta').show();
+     $('#FrmVentaPunto').show();
      $("label[for=id_venta],#id_venta").hide();
      $("label[for=id_productoVenta]").hide();
      $('#diagrama').hide();
@@ -156,6 +154,123 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function consultaListaVentas() {
+
+    var bodega = $('#bodega option:selected');
+
+    var fechaInicio = $('#inicio').val();
+    var fechaFin = $('#fin').val();
+    var CodigoBodega = bodega.val();
+    var jornadaVta = $('#jornada').val();
+    var TotalVenta = 0
+
+    var NombreBodega = bodega.text();
+
+    var TablaVenta = $("#tablaListaVenta");
+
+        $.ajax({
+
+            url: '/ventas/reporteListaVentaNorte/',
+            dataType: "json",
+            type: "get",
+            data: {'inicio': fechaInicio,'fin': fechaFin,'bodega': CodigoBodega,'jornada': jornadaVta},
+            success: function (respuesta) {
+                    TablaVenta.find("tr:gt(0)").remove();
+                    $('#total').remove();
+                    for (var i=0;i<respuesta.length;i++)
+                    {
+
+                        TablaVenta.append(
+                                "<tr><td>" + respuesta[i].pk +
+                                "</td><td>" + respuesta[i].fields.factura +
+                                "</td><td>" + respuesta[i].fields.fechaVenta +
+                                "</td><td>" + respuesta[i].fields.encargado +
+                                "</td><td>" + respuesta[i].fields.jornada +
+                                "</td><td>" + '$ ' + respuesta[i].fields.TotalVenta +
+                                "</td><td>" + "<a target='_blank'' href='/ventas/detalleVentaPunto/"+ respuesta[i].pk + "'>"+'Detalles'+"</a>" +
+                                "</td></tr>");
+                        TotalVenta += respuesta[i].fields.TotalVenta;
+                    }
+
+                TablaVenta.append("<tr><th id = 'total' colspan='5' style='text-align: right'>" + 'Total :'  +"</th><th>"+ '$ ' +TotalVenta +"</th></tr>");
+
+                //var n = noty({text: respuesta, type:'success',layout: 'bottom'});
+                    }
+
+        });
+
+}
+
+function CantidadActual() {
+    var producto = $('#id_productoAjuste').val();
+    var bodega = $('#id_bodegaAjuste').val();
+
+    $.ajax({
+            url: '/inventario/cantidadActual/',
+            dataType: "json",
+            type: "get",
+            data: {'producto': producto, 'bodega': bodega},
+            success: function (respuesta) {
+
+                $.each(respuesta.pesoActual,function(key,value){
+                    $('#id_cantidadActual').val(value)
+                });
+                $.each(respuesta.undActual,function(key,value){
+                    $('#id_unidadActual').val(value)
+                });
+            }
+
+        });
+
+
+}
+function ReporteVentasNorte() {
+       var inicio = $('#inicio').val();
+        var fin = $('#fin').val();
+        var jornada = $('#jornada').val();
+        var totalVentaPesables = 0;
+        var totalVentaNoPesables = 0;
+
+    $.ajax({
+            url: '/ventas/reporteVentaNorte/',
+            dataType: "json",
+            type: "get",
+            data: {'inicio': inicio, 'fin': fin,'jornada':jornada},
+            success: function (respuesta) {
+
+                 $("#tablaRepPP").find("tr:gt(0)").remove();
+                $("#tablaRepVN").find("tr:gt(0)").remove();
+                $("#tablaReCPP").find("tr:gt(0)").remove();
+                $("#tablaRepVCP").find("tr:gt(0)").remove();
+
+
+
+                $.each(respuesta.PesoProductos,function(key,value){
+
+                    $("#tablaRepPP").append("<tr><td>" + key + "</td><td style='text-align: right'>"+ Math.ceil(value) +' grs'+ "</td></tr>");
+                });
+                $.each(respuesta.ValorProductos,function(key,value){
+
+                    totalVentaPesables += Math.ceil(value);
+                    $("#tablaRepVN").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+
+                $.each(respuesta.UdnProductos,function(key,value){
+
+                    $("#tablaReCPP").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value)+' unds' + "</td></tr>");
+                });
+                $.each(respuesta.ValorUnds,function(key,value){
+                    totalVentaNoPesables += Math.ceil(value);
+                    $("#tablaRepVCP").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+
+                $('#totalPesables').append(': $'+totalVentaPesables);
+                $('#totalNoPesables').append(': $'+totalVentaNoPesables);
+            }
+
+        });
+
+}
 function ImprimirAZ()
 {
                 var encabezado = $('#encabezado');
@@ -164,16 +279,28 @@ function ImprimirAZ()
                 var tablaExcluidos = $('#TablaExcluidos');
                 var tablaGravados = $('#TablaGravados1');
                 var tablaGravados2 = $('#TablaGravados2');
+
+                var tablaPesables = $('#TablaPesables');
+                var TablaValorPesables = $('#TablaValPesables');
+                var tablaNoPesables = $('#TablaNoPesables');
+                var tablaValorNoPesables = $('#TablaValNoPesables');
+
+
                 var inicio = $('#inicio').val();
                 var jornada = $('#jornada').val();
                 encabezado.show();
                 pie.show();
                 $('#fechaAZ').append(': '+ inicio);
                 $('#jornadaAZ').append(': '+ jornada);
+
                 tablaExcentos.addClass('recibo');
                 tablaExcluidos.addClass('recibo');
                 tablaGravados.addClass('recibo');
                 tablaGravados2.addClass('recibo');
+                tablaPesables.addClass('recibo');
+                TablaValorPesables.addClass('recibo');
+                tablaNoPesables.addClass('recibo');
+                tablaValorNoPesables.addClass('recibo');
 
                 $('#recibo').printArea();
                 encabezado.hide();
@@ -183,6 +310,10 @@ function ImprimirAZ()
                 tablaExcluidos.removeClass('recibo');
                 tablaGravados.removeClass('recibo');
                 tablaGravados2.removeClass('recibo');
+                tablaPesables.removeClass('recibo');
+                TablaValorPesables.removeClass('recibo');
+                tablaNoPesables.removeClass('recibo');
+                tablaValorNoPesables.removeClass('recibo');
 
 }
 function calculoDiferencia() {
@@ -264,13 +395,47 @@ function consultaAZ() {
 
                     $("#ventaTotal").append(' $ '+value);
                 });
+                /**************Reporte pesables y no pesables*******************/
+                $.each(respuesta.PesoProductos,function(key,value){
 
-                IvaGravados1 = gravados1 * 0.16;
-                IvaGravados2 = gravados2 * 0.16;
-                $("#grav1").append(' $ '+gravados1);
-                $("#grav2").append(' $ '+gravados2);
-                $("#IvaGrav1").append(' $ '+IvaGravados1);
-                $("#IvaGrav2").append(' $ '+IvaGravados2);
+                    $("#TablaPesables").append("<tr><td>" + key + "</td><td style='text-align: right'>"+ Math.ceil(value)+' grs' + "</td></tr>");
+                });
+                $.each(respuesta.ValorProductos,function(key,value){
+
+                    $("#TablaValPesables").append("<tr><td>" + key + "</td><td style='text-align: right'>"+'$ ' + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.UdnProductos,function(key,value){
+
+                    $("#TablaNoPesables").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value)+' unds' + "</td></tr>");
+                });
+                $.each(respuesta.ValorUnds,function(key,value){
+
+                    $("#TablaValNoPesables").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+                /**************************************************************************/
+
+                $.each(respuesta.inicial,function(key,value){
+
+                    $("#inicioConsecVentas").append(' : '+ value);
+                });
+                $.each(respuesta.final,function(key,value){
+
+                    $("#finConsecVentas").append(' : '+ value);
+                });
+                $.each(respuesta.consec,function(key,value){
+
+                    $("#ConsecZ").append(' : '+ value);
+                });
+
+                var grav1 = gravados1 / 1.16;
+                var grav2 = gravados2 / 1.16;
+                IvaGravados1 = grav1 * 0.16;
+                IvaGravados2 = grav2 * 0.16;
+                $("#grav1").append(' $ '+Math.round(grav1));
+                $("#grav2").append(' $ '+Math.round(grav2));
+                $("#IvaGrav1").append(' $ '+Math.round(IvaGravados1));
+                $("#IvaGrav2").append(' $ '+Math.round(IvaGravados2));
+
 
             }
 
@@ -495,6 +660,7 @@ function ImprimirRecibo()
                 tablaDetVenta.removeClass('recibo');
                 calculadora.show();
                 $('#imprimeRecibo').hide();
+                //window.open("/ventas/ventaPunto","_self");
 }
 function Cobrar()
 {
@@ -509,8 +675,6 @@ function Cobrar()
             data: {'venta': venta},
             success: function (respuesta) {
                 var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
-                $('#cobraVenta').hide();
-                $('#imprimeRecibo').show();
                 location.reload();
 
             }
@@ -713,8 +877,8 @@ function ReporteFaltantes() {
                             tablaFaltante.append(
                                 "<tr><td>" + respuesta[i].fields.nombreProducto +
                                 "</td><td>" + NombreBodega +
-                                "</td><td>" + respuesta[i].fields.pesoProductoStock +
-                                "</td><td>" + respuesta[i].fields.unidadesStock +
+                                "</td><td>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                "</td><td>" + parseInt(respuesta[i].fields.unidadesStock) +
                                 "</td><td>" + '' +
                                 "</td><td>" + '' +
                                 "</td></tr>");
@@ -1024,12 +1188,16 @@ function consultaCompras() {
                     $('#total').remove();
                     for (var i=0;i<respuesta.length;i++)
                     {
+                        //
                         tablaCompra.append(
-                                "<tr><td>" + respuesta[i].fields.fechaCompra +
+                                "<tr><td>" + respuesta[i].pk +
+                                "</td><td>" + respuesta[i].fields.fechaCompra +
                                 "</td><td>" + NombreProvedor +
                                 "</td><td>" + NombreBodega +
                                 "</td><td>" + respuesta[i].fields.cantCabezas +
                                 "</td><td>" + '$ ' + respuesta[i].fields.vrCompra +
+                                "</td><td>" + "<a target='_blank'' href='/inventario/detcompra/"+ respuesta[i].pk + "'>"+'Detalles'+"</a>"
+                                    +"<a target='_blank'' href='/inventario/recepcion/"+ respuesta[i].pk + "'>"+'Recepcion'+"</a>" +
                                 "</td></tr>");
                         TotalCompra += respuesta[i].fields.vrCompra;
                     }

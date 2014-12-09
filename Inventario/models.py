@@ -221,9 +221,13 @@ class Ajustes(models.Model):
     fechaAjuste = models.DateField(verbose_name='Fecha',auto_now=True)
     productoAjuste = models.ForeignKey(Producto,verbose_name='Producto')
     bodegaAjuste = models.ForeignKey(Bodega,verbose_name='Bodega')
+    cantidadActual = models.DecimalField(verbose_name='Cantidad actual',default=0,max_digits=9, decimal_places=3)
+    unidadActual = models.DecimalField(verbose_name='Unidad actual',default=0,max_digits=9, decimal_places=3)
     pesoAjuste = models.DecimalField(verbose_name='Ajuste',default=0,max_digits=9, decimal_places=3)
     unidades = models.IntegerField(verbose_name='Unidades', null= True,default=0)
     observacion = models.TextField(verbose_name='Observaciones',max_length=150)
+    sumar = models.BooleanField(default=False)
+    restar = models.BooleanField(default=False)
     guardado = models.BooleanField(default=False)
 
 class Faltantes(models.Model):

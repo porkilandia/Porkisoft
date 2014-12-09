@@ -34,6 +34,8 @@ def GestionDetallePedido(request,idpedido):
 
     for det in detPedido:
         vrPedido += det.vrTotalPedido
+    pedido.TotalVenta = vrPedido
+    pedido.save()
 
     if request.method =='POST':
         formulario = DetallePedidoForm(request.POST)
@@ -51,6 +53,16 @@ def GestionDetallePedido(request,idpedido):
                                                                   'detPedido':detPedido,'vrPedido':vrPedido},
                               context_instance = RequestContext(request))
 
+def BorrarDetallePedido(request,idpedido):
+
+    detPedido = DetallePedido.objects.get(pk = idpedido)
+
+    pedido = Pedido.objects.get(pk = detPedido.pedido.numeroPedido)
+    detPedido.delete()
+
+    return HttpResponseRedirect('/ventas/detallePedido/'+ str(pedido.numeroPedido))
+
+
 def GestionVentas(request):
     fechainicio = date.today() - timedelta(days=50)
     fechafin = date.today()
@@ -67,6 +79,8 @@ def GestionVentas(request):
 
     return render_to_response('Ventas/GestionVentas.html',{'formulario':formulario,'ventas':ventas},
                               context_instance = RequestContext(request))
+
+
 
 def GestionDetalleVentas(request,idVenta):
 
@@ -263,7 +277,7 @@ def EditaListas(request,idDetLista):
 
 def PuntoVenta(request):
     ventas = VentaPunto.objects.filter(fechaVenta = datetime.today()).filter(guardado = False)
-    consecutivo = ValoresCostos.objects.get(nombreCosto = 'Facturacion')
+    consecutivo = ConfiguracionPuntos.objects.get(nombreConfiguracion = 'Porkilandia Norte')
 
     if request.method =='POST':
         formulario = VentaPuntoForm(request.POST)
@@ -279,8 +293,8 @@ def PuntoVenta(request):
 
             return HttpResponseRedirect('/ventas/ventaPunto/')
     else:
-        valorInicial = ValoresCostos.objects.get(nombreCosto = 'Cajero Norte')
-        empleado = valorInicial.empleado
+        valorInicial = ConfiguracionPuntos.objects.get(nombreConfiguracion = 'Porkilandia Norte')
+        empleado = valorInicial.cajero
         jornada = valorInicial.jornada
         formulario = VentaPuntoForm(initial={'encargado':empleado,'jornada':jornada})
     return render_to_response('Ventas/TemplateVentaPunto.html',{'ventas':ventas,'formulario':formulario},
@@ -296,12 +310,10 @@ def DetallePuntoVenta(request,idVenta):
 
     for detalle in detVentas:
         totalFactura += detalle.vrTotalPunto
-        if detalle.productoVenta.gravado == True or detalle.productoVenta.gravado == True:
+        if detalle.productoVenta.gravado == True or detalle.productoVenta.gravado2 == True:
             totalGravado += detalle.vrTotalPunto
 
     totalGravado = (totalGravado /1.16) * 0.16
-
-
     venta.TotalVenta = totalFactura
     venta.save()
 
@@ -436,7 +448,7 @@ def EditaCaja(request,idCaja):
             caja.TotalRestaurante = restauranteDia
             caja.TotalVenta = ventaDia - restauranteDia
             caja.TotalRetiro = retirosDia
-            caja.TotalResiduo = (caja.TotalVenta ) - (caja.TotalEfectivo + retirosDia)
+            caja.TotalResiduo = (caja.TotalEfectivo + retirosDia) - (caja.TotalVenta )
             caja.save()
 
             return HttpResponseRedirect('/ventas/caja/')
@@ -547,6 +559,9 @@ def GuaradarPedido(request):
         bodega.unidadesStock -= det.unidadesPedido
         bodega.save()
 
+    pedido.guardado = True
+    pedido.save()
+
     msj = 'Se guargaron Exitosamente los Registros'
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
@@ -561,8 +576,7 @@ def VerificarPrecioPedido(request):
 
 def TemplateAZ(request):
 
-    return render_to_response('Ventas/TemplateAZ.html',{},
-                              context_instance = RequestContext(request))
+    return render_to_response('Ventas/TemplateAZ.html',{},context_instance = RequestContext(request))
 
 def ReporteAZ(request):
 
@@ -577,13 +591,18 @@ def ReporteAZ(request):
     finicio = fi.date()
     ffin = ff.date()
 
-    ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(jornada = jornada)
+    #ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(jornada = jornada)
+    ventas = VentaPunto.objects.filter(fechaVenta = finicio,jornada = jornada).order_by('factura')
+    consecutivo = ConfiguracionPuntos.objects.get(nombreConfiguracion = 'Porkilandia Norte')
 
     gravados1 = {}
     gravados2 = {}
     excentos = {}
     excluidos = {}
     totalVenta = {}
+    inicial = {}
+    final = {}
+    consec = {}
 
     gravados1['Gravados 1'] = 0
     gravados2['Gravados 2'] = 0
@@ -591,9 +610,17 @@ def ReporteAZ(request):
     excluidos['Excluidos'] = 0
     totalVenta['Total Venta'] = 0
 
+    finaliza = 0
+    cantVentas = ventas.count()
+
+    for venta in ventas:
+        finaliza = venta.factura
+
+
     for venta in ventas:
         detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
         totalVenta['Total Venta'] += venta.TotalVenta
+        finaliza = venta.factura
         for detalle in detalleVenta:
             if detalle.productoVenta.gravado == True:
                 gravados1['Gravados 1'] += detalle.vrTotalPunto
@@ -604,8 +631,160 @@ def ReporteAZ(request):
             elif detalle.productoVenta.excluido == True:
                 excluidos['Excluidos'] += detalle.vrTotalPunto
 
-    listas = {'gravados1':gravados1,'gravados2':gravados2,'excentos':excentos,'excluidos':excluidos,'totalVenta':totalVenta}
+    inicializa = finaliza - cantVentas
+    consecutivo.consecutivoZ += 1
+    consecutivo.save()
+
+    inicial['inicializa'] = inicializa
+    final['Finaliza'] = finaliza
+    consec['Consecutivo'] = consecutivo.consecutivoZ
+
+    #*********************************Pesos y Valores Vendidos *********************************************************
+
+    PesoProductos = {}
+    UdnProductos = {}
+    ValorProductos = {}
+    ValorUnds = {}
+
+    for venta in ventas:
+        detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
+        for detalle in detalleVenta:
+            if detalle.pesoVentaPunto == 0:
+                UdnProductos[detalle.productoVenta.nombreProducto] = 0
+                ValorUnds[detalle.productoVenta.nombreProducto] = 0
+            else:
+                PesoProductos[detalle.productoVenta.nombreProducto] = 0
+                ValorProductos[detalle.productoVenta.nombreProducto] = 0
+
+
+
+    for venta in ventas:
+        detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
+        for detalle in detalleVenta:
+            if detalle.pesoVentaPunto == 0:
+                UdnProductos[detalle.productoVenta.nombreProducto] += detalle.unidades
+                ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+            else:
+                PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+
+
+    listas = {'gravados1':gravados1,'gravados2':gravados2,
+              'excentos':excentos,'excluidos':excluidos,
+              'totalVenta':totalVenta,'inicial':inicial,'final':final,
+              'consec':consec,'PesoProductos':PesoProductos,'ValorProductos':ValorProductos,
+              'UdnProductos':UdnProductos,'ValorUnds':ValorUnds}
+
     respuesta = json.dumps(listas)
 
     return HttpResponse(respuesta,mimetype='application/json')
 
+def TemplateReporteVentaNorte(request):
+    return render_to_response('Ventas/TemplateRepoVentaNorte.html',{},
+                              context_instance = RequestContext(request))
+
+def ReporteVentaNorte(request):
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    jornada = request.GET.get('jornada')
+
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(jornada = jornada)
+
+    PesoProductos = {}
+    UdnProductos = {}
+    ValorProductos = {}
+    ValorUnds = {}
+
+    for venta in ventas:
+        detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
+        for detalle in detalleVenta:
+            if detalle.pesoVentaPunto == 0:
+                UdnProductos[detalle.productoVenta.nombreProducto] = 0
+                ValorUnds[detalle.productoVenta.nombreProducto] = 0
+            else:
+                PesoProductos[detalle.productoVenta.nombreProducto] = 0
+                ValorProductos[detalle.productoVenta.nombreProducto] = 0
+
+
+
+    for venta in ventas:
+        detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
+        for detalle in detalleVenta:
+            if detalle.pesoVentaPunto == 0:
+                UdnProductos[detalle.productoVenta.nombreProducto] += detalle.unidades
+                ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+            else:
+                PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+
+
+
+    listas = {'PesoProductos':PesoProductos,'ValorProductos':ValorProductos,'UdnProductos':UdnProductos,'ValorUnds':ValorUnds}
+    respuesta = json.dumps(listas)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def GestionConfigPuntos(request):
+    configuraciones = ConfiguracionPuntos.objects.all()
+    if request.method =='POST':
+        formulario = ConfigPuntosForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/ventas/configPuntos/')
+    else:
+        formulario = ConfigPuntosForm()
+
+    return render_to_response('Ventas/TemplateConfigPuntos.html',{'configuraciones':configuraciones,'formulario':formulario},
+                              context_instance = RequestContext(request))
+
+def EditaConfigPuntos(request,idConfig):
+    configuracion = ConfiguracionPuntos.objects.get(pk = idConfig)
+    configuraciones = ConfiguracionPuntos.objects.all()
+    if request.method =='POST':
+        formulario = ConfigPuntosForm(request.POST,instance=configuracion)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/ventas/configPuntos/')
+    else:
+        formulario = ConfigPuntosForm(instance=configuracion)
+
+    return render_to_response('Ventas/TemplateConfigPuntos.html',{'configuraciones':configuraciones,'formulario':formulario},
+                              context_instance = RequestContext(request))
+
+def TemplateRepListVentasNorte(request):
+    provedor = Proveedor.objects.all()
+    bodega = Bodega.objects.all()
+
+    return render_to_response('Ventas/TemplateRepListVentasNorte.html',{'provedor':provedor,'bodega':bodega},
+                              context_instance = RequestContext(request))
+
+def RepListVentasNorte(request):
+    jornada = request.GET.get('jornada')
+    idBodega = request.GET.get('bodega')
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+
+    bodega = Bodega.objects.get(pk = int(idBodega))
+    ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(jornada = jornada).order_by('factura')
+    respuesta = serializers.serialize('json',ventas)
+
+
+    return HttpResponse(respuesta,mimetype='application/json')

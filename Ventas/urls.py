@@ -12,7 +12,9 @@ urlpatterns = patterns('',
     url(r'^editaDetVenta/(?P<idDetVenta>\d+)',EditaDetalleVentas),
 
     url(r'^pedido/(?P<idcliente>\d+)',GestionPedidos),
+
     url(r'^detallePedido/(?P<idpedido>\d+)',GestionDetallePedido),
+    url(r'^BorrardetallePedido/(?P<idpedido>\d+)',BorrarDetallePedido),
     url(r'^guardarPedido/$',GuaradarPedido),
     url(r'^verificarPrecioPedido/$',VerificarPrecioPedido),
 
@@ -43,4 +45,12 @@ urlpatterns = patterns('',
     url(r'^templateAZ/$',TemplateAZ),
     url(r'^reporteAZ/$',ReporteAZ),
 
+    url(r'^templateReporteVentaNorte/$',TemplateReporteVentaNorte),
+    url(r'^reporteVentaNorte/$',ReporteVentaNorte),
+
+    url(r'^configPuntos/$',GestionConfigPuntos),
+    url(r'^editaConfigPuntos/(?P<idConfig>\d+)',EditaConfigPuntos),
+
+    url(r'^TemplateListaVentaNorte/$',TemplateRepListVentasNorte),
+    url(r'^reporteListaVentaNorte/$',RepListVentasNorte),
 )

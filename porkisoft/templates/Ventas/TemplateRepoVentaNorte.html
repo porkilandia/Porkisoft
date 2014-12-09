@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Ventas Puntos::{% endblock titulo %}
+{% block mensajes %}
+Ventas Norte
+
+{% endblock mensajes %}
+{% block contenido %}
+
+    <div id="rango">
+     <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
+     <label for="fin">Fecha Final</label><input id="fin" type="text">
+     <label for="jornada">Grupo</label><select id="jornada">
+         <option value='AM'>AM</option>
+         <option value='PM'>PM</option>
+     </select>
+     <a  onclick="ReporteVentasNorte()" href="#"><input type="button" value="Consultar"></a>
+
+        <br/>
+        <br/>
+        <br/>
+    </div>
+<div id="acordeon">
+        <h3>Pesables</h3>
+        <div>
+           <table id="tablaRepPP" class="table-striped" style="width: 95%">
+
+                <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Peso</th>
+                </tr>
+                </thead>
+
+            </table>
+        </div>
+            <h3 id="totalPesables">Valor Total</h3>
+        <div>
+            <table id="tablaRepVN" class="table-striped" style="width: 95%">
+
+                <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Valor</th>
+                </tr>
+                </thead>
+
+            </table>
+        </div>
+ <h3>No Pesables</h3>
+        <div>
+           <table id="tablaReCPP" class="table-striped" style="width: 95%">
+
+                <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Peso</th>
+                </tr>
+                </thead>
+
+            </table>
+        </div>
+            <h3 id="totalNoPesables">Valor Total</h3>
+        <div>
+            <table id="tablaRepVCP" class="table-striped" style="width: 95%">
+
+                <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Valor</th>
+                </tr>
+                </thead>
+
+            </table>
+        </div>
+</div>
+<div id="progressbar"></div>
+{% endblock contenido %}
+<div id="progressbar"></div>

@@ -49,17 +49,21 @@ class DetalleListaForm(ModelForm):
 class VentaPuntoForm(ModelForm):
     class Meta:
         model = VentaPunto
-        exclude = ("TotalVenta","guardado","factura",)
+        exclude = ("TotalVenta","guardado","factura","restaurante",)
 class DetalleVentaPuntoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(DetalleVentaPuntoForm,self).__init__(*args, **kwargs)
 
         q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses').filter(numeroProducto__gt = 0).order_by('numeroProducto')
         q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos').filter(numeroProducto__gt = 0).order_by('numeroProducto')
-        q3 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdas').filter(numeroProducto__gt = 0).order_by('numeroProducto')
+        #q3 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdas').filter(numeroProducto__gt = 0).order_by('numeroProducto')
         q4 = Producto.objects.filter(grupo__nombreGrupo = 'Compra/Venta').filter(numeroProducto__gt = 0).order_by('numeroProducto')
         q5 = Producto.objects.filter(grupo__nombreGrupo = 'Pollos').filter(numeroProducto__gt = 0).order_by('numeroProducto')
-        self.fields['productoVenta'].queryset = q1 | q2 | q3 | q4 | q5
+
+        q6 = Producto.objects.filter(nombreProducto = 'Pierna de Cerda').filter(numeroProducto__gt = 0).order_by('numeroProducto')
+        q7 = Producto.objects.filter(nombreProducto = 'Lomo Canon Cerda').filter(numeroProducto__gt = 0).order_by('numeroProducto')
+        q8 = Producto.objects.filter(nombreProducto = 'Picadillo').filter(numeroProducto__gt = 0).order_by('numeroProducto')
+        self.fields['productoVenta'].queryset = q1 | q2 | q4 | q5 | q6 | q7 | q8
 
     class Meta:
         model = DetalleVentaPunto
@@ -80,3 +84,7 @@ class DevolucionesForm(ModelForm):
 class DetalleDevolucionForm(ModelForm):
     class Meta:
         model = DetalleDevolucion
+
+class ConfigPuntosForm(ModelForm):
+    class Meta :
+        model = ConfiguracionPuntos

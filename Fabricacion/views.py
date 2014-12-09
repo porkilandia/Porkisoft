@@ -159,7 +159,6 @@ def GestionCanal(request,idrecepcion):
             canal = Canal.objects.filter(recepcion = idrecepcion)
             detCompra = DetalleCompra.objects.filter(compra = compra.codigoCompra)
 
-
             if recepcion.tipoGanado == 'Mayor':
                 for det in detCompra:
                     ganado = Ganado.objects.get(pk = det.ganado.codigoGanado)
@@ -167,10 +166,8 @@ def GestionCanal(request,idrecepcion):
             else:
                 TotalPesoPie = pesoPie
 
-
             for cnl in canal:
                 PesoTotalCanales += cnl.pesoPorkilandia
-
 
             recepcion.difPieCanal = ceil(((Decimal(TotalPesoPie) - PesoTotalCanales)*100)/Decimal(TotalPesoPie))
             recepcion.pesoCanales = PesoTotalCanales
@@ -185,6 +182,16 @@ def GestionCanal(request,idrecepcion):
     return render_to_response('Fabricacion/GestionCanal.html',{'formulario':formulario,'canales':canales,'recepcion':recepcion},
                               context_instance = RequestContext(request))
 
+def BorrarCanal(request, idcanal):
+
+    canal = Canal.objects.get(pk=idcanal)
+    recepcion = PlanillaRecepcion.objects.get(pk = canal.recepcion.codigoRecepcion)
+    canales = Canal.objects.filter(recepcion = recepcion.codigoRecepcion)
+
+    canal.delete()
+
+    return render_to_response('Fabricacion/GestionCanal.html',{'canales':canales,'recepcion':recepcion},
+                              context_instance = RequestContext(request))
 
 def MarcarCanalDesposte(request, idcanal):
 
@@ -724,6 +731,23 @@ def GestionApanado(request):
 
     return render_to_response('Fabricacion/GestionApanado.html',{'formulario':formulario,'apanados':apanados },
                               context_instance = RequestContext(request))
+def EditaApanado(request,idApanado):
+    apanado = ProcesoApanado.objects.get(pk = idApanado)
+    fechainicio = date.today() - timedelta(days=15)
+    fechafin = date.today()
+    apanados = ProcesoApanado.objects.filter(fechaApanado__range =(fechainicio,fechafin))
+    #apanados = ProcesoApanado.objects.all()
+
+    if request.method == 'POST':
+        formulario = ApanadoForm(request.POST,instance=apanado)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/apanados')
+    else:
+        formulario = ApanadoForm(instance=apanado)
+
+    return render_to_response('Fabricacion/GestionApanado.html',{'formulario':formulario,'apanados':apanados },
+                              context_instance = RequestContext(request))
 def GuardarApanado(request):
 
     idApanado = request.GET.get('idApanado')
@@ -1029,7 +1053,6 @@ def GestionTajado(request):
     exito = True
     tajados = Tajado.objects.all().filter(fechaTajado__range = (fechainicio,fechafin))
 
-
     if request.method == 'POST':
 
         formulario = TajadoForm(request.POST)
@@ -1038,6 +1061,24 @@ def GestionTajado(request):
             return HttpResponseRedirect('/fabricacion/tajado/')
     else:
         formulario = TajadoForm()
+
+    return render_to_response('Fabricacion/GestionTajado.html',{'exito':exito,'formulario':formulario,'tajados':tajados},
+                              context_instance = RequestContext(request))
+
+def EditaTajado(request,idTajado):
+    tajado = Tajado.objects.get(pk = idTajado)
+    fechainicio = date.today() - timedelta(days=15)
+    fechafin = date.today()
+    exito = True
+    tajados = Tajado.objects.all().filter(fechaTajado__range = (fechainicio,fechafin))
+
+    if request.method == 'POST':
+        formulario = TajadoForm(request.POST,instance=tajado)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/tajado/')
+    else:
+        formulario = TajadoForm(instance=tajado)
 
     return render_to_response('Fabricacion/GestionTajado.html',{'exito':exito,'formulario':formulario,'tajados':tajados},
                               context_instance = RequestContext(request))
@@ -1849,6 +1890,26 @@ def GestionEmpacadoApanados(request):
     return render_to_response('Fabricacion/GestionEmpaqueApanado.html',{'formulario':formulario,'empaques':empaques },
                               context_instance = RequestContext(request))
 
+def EditaEmpacadoApanados(request,idEmpacado):
+    empaque = EmpacadoApanados.objects.get(pk = idEmpacado)
+    fechainicio = date.today() - timedelta(days=20)
+    fechafin = date.today()
+    empaques  = EmpacadoApanados.objects.filter(fechaEmpacado__range =(fechainicio,fechafin))
+    #empaques  = EmpacadoApanados.objects.all()
+
+    if request.method == 'POST':
+
+        formulario = EmpacadoApanadoForm(request.POST,instance=empaque)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/fabricacion/empacadoApanado')
+    else:
+        formulario = EmpacadoApanadoForm(initial={'mod':1812},instance=empaque)
+
+    return render_to_response('Fabricacion/GestionEmpaqueApanado.html',{'formulario':formulario,'empaques':empaques },
+                              context_instance = RequestContext(request))
+
 
 def CostearEmpacado(request):
     idEmpaque = request.GET.get('idEmpaque')
@@ -2288,7 +2349,7 @@ def GuardarMenudos(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionFrito(request):
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
     fritos = TallerFrito.objects.filter(fechaFrito__range =(fechainicio,fechafin))
     #fritos = TallerFrito.objects.all()
@@ -2406,7 +2467,7 @@ def GuardarFrito(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionCarneCond(request):
-    fechainicio = date.today() - timedelta(days=50)
+    fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
     carnes = TallerCarneCondimentada.objects.filter(fechaCarCond__range =(fechainicio,fechafin))
     #carnes = TallerCarneCondimentada.objects.all()
