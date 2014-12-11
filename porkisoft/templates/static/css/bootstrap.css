@@ -265,7 +265,7 @@ fieldset {
 }
 #rangoCompras
 {
-    width: 35%;
+    width: 39%;
     display: inline-block;
     margin: 0 auto;
 }
@@ -281,7 +281,7 @@ fieldset {
 }
 #FrmVentaPunto
 {
-    width: 23%;
+    width: 25%;
    position: fixed;
     right: 2em;
     top: 9em;

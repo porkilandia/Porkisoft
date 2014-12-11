@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Reporte Despostes{% endblock titulo %}
+{% block mensajes %}
+    Reporte Despostes
+{% endblock mensajes %}
+{% block contenido %}
+
+<div id="rangoCompras">
+     <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
+     <label for="fin">Fecha Final</label><input id="fin" type="text">
+
+     <label for="grupos">Bodega</label><select id="grupos">
+        {% for grupo in grupos %}
+            <option value={{ grupo.id }}>{{ grupo.nombreGrupo }}</option>
+        {% endfor %}
+    </select>
+
+    <a  onclick="ReporteListaDesposte()" href="#"><input type="button" value="Consultar"></a>
+        <br/>
+        <br/>
+        <br/>
+   </div>
+    <table id="tablaListaDesposte" class="table-striped">
+        <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Fecha</th>
+            <th>Cabezas</th>
+            <th>Total Despostado</th>
+            <th>Total Canal</th>
+            <th>Dif. Canal Desp</th>
+            <th>Tipo</th>
+            <th>Cif</th>
+            <th>Mod</th>
+            <th>Accion</th>
+
+
+
+        </tr>
+        </thead>
+
+    </table>
+
+
+{% endblock contenido %}

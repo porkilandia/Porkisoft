@@ -17,12 +17,15 @@ class Ensalinado(models.Model):
 
 
 class LimpiezaVerduras(models.Model):
-    compra = models.ForeignKey(DetalleCompra)
-    producto = models.ForeignKey(Producto)
+    productoLimpiar = models.ForeignKey(Producto)
+    pesoProducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3, default=0)
+    compra = models.ForeignKey(Compra,verbose_name='Compra')
+    valorProducto = models.IntegerField(verbose_name='Valor Producto')
+    valorTransporte = models.IntegerField(verbose_name='Valor Transporte')
     cif = models.DecimalField(verbose_name='CIF', max_digits=9, decimal_places=3, default=0)
     mod = models.DecimalField(verbose_name='MOD', max_digits=9, decimal_places=3, default=0)
-    pesoProducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3, default=0)
     vrKilo = models.IntegerField(verbose_name='Vr. Kilo',default=0)
+    guardado = models.BooleanField(default=False)
 
 class Enlagunado(models.Model):
     codigoEnlagunado = models.AutoField(primary_key=True)

@@ -6,15 +6,24 @@
 {% endblock mensajes %}
 {% block contenido %}
 <div id="rangoCompras">
+
+     <label for="porBodega">Por Bodega</label><input name="TipoReporte" id="porBodega" type="radio">
+     <label for="porProducto">Por Producto</label><input name="TipoReporte" id="porProducto" type="radio">
      <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
      <label for="fin">Fecha Final</label><input id="fin" type="text">
+     <label for="bodega">Bodega</label><select id="bodega">
+        {% for bodega in bodegas %}
+            <option value={{ bodega.codigoBodega }}>{{ bodega.nombreBodega }}</option>
+        {% endfor %}
+     </select>
      <label for="productoMovimiento">Producto</label><select id="productoMovimiento">
         {% for producto in productos %}
             <option value={{ producto.codigoProducto }}>{{ producto.nombreProducto }}-{{ producto.grupo.nombreGrupo }}</option>
         {% endfor %}
      </select>
 
-     <a  onclick="consultaMovimientos()" href="#"><input type="button" value="Consultar"></a>
+     <a  onclick="consultaMovimientos()" href="#"><input type="button" value="Consultar" class="btn btn-success"></a>
+     <a  onclick="ImprimirMovimientos()" href="#"><input type="button" value="Imprimir" class="btn btn-primary" ></a>
         <br/>
         <br/>
         <br/>

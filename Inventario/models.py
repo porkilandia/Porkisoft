@@ -211,6 +211,7 @@ class PlanillaRecepcion(models.Model):
 class Movimientos(models.Model):
     tipo = models.CharField(verbose_name='Tipo',max_length=20)
     productoMov = models.ForeignKey(Producto)
+    nombreProd = models.CharField(max_length=50,verbose_name='Nombre Producto',blank=True)
     fechaMov = models.DateField(verbose_name='Fecha')
     desde = models.CharField(max_length=30,blank=True)
     Hasta = models.CharField(max_length=30,blank=True)

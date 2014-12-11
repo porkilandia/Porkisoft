@@ -72,6 +72,9 @@ urlpatterns = patterns('',
     url(r'^marcarcanal/(?P<idcanal>\d+)',MarcarCanalDesposte),
 
     url(r'^desposte/$',GestionDesposte),
+    url(r'^templateListDesp/$',TemplateListaDesposte),
+    url(r'^reporteListDesp/$',ReporteListaDesposte),
+
     url(r'^sacrificio/(?P<idrecepcion>\d+)',GestionSacrificio),
 
     url(r'^detalleDesposte/(?P<idplanilla>\d+)',GestionDesposteActualizado),
@@ -106,7 +109,7 @@ urlpatterns = patterns('',
 
     url(r'^detalleTajado/(?P<idTajado>\d+)', GestionDetalleTajado),
     url(r'^editadetalleTajado/(?P<idDetTajado>\d+)', EditaDetalleTajado),
-    url(r'^verduras/(?P<idDetcompra>\d+)', GestionVerduras),
+    url(r'^verduras/$', GestionVerduras),
     url(r'^condimento/$', GestionCondimento),
     url(r'^detallecondimento/(?P<idcondimento>\d+)', GestionDetalleCondimento),
     url(r'^costoCond/(?P<idcondimento>\d+)',CostoCondimento),

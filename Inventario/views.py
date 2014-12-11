@@ -341,7 +341,7 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA********************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=18)
+    fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()
@@ -387,6 +387,7 @@ def GestionDetalleCompra(request,idcompra):
             movimiento.tipo = 'CMP%d'%(compra.codigoCompra)
             movimiento.fechaMov = compra.fechaCompra
             movimiento.productoMov = detalleCompra.producto
+            movimiento.nombreProd =  detalleCompra.producto.nombreProducto
             movimiento.Hasta = compra.bodegaCompra.nombreBodega
 
             # Si el producto es un insumo
@@ -483,6 +484,7 @@ def EditaCompra(request,idDetCompra):
                 movimiento.tipo = 'CMP%d'%(compra.codigoCompra)
                 movimiento.fechaMov = compra.fechaCompra
                 movimiento.productoMov = detcomp.producto
+                movimiento.nombreProd = detcomp.producto.nombreProducto
                 movimiento.entrada = datos.pesoDescongelado
                 movimiento.Hasta = bodega.bodega.nombreBodega
                 movimiento.save()
@@ -597,6 +599,7 @@ def GuardarTraslado(request):
         movimiento = Movimientos()
         movimiento.tipo = 'TRS%d'%(traslado.codigoTraslado)
         movimiento.productoMov = detalle.productoTraslado
+        movimiento.nombreProd = detalle.productoTraslado.nombreProducto
         movimiento.fechaMov = traslado.fechaTraslado
         movimiento.desde = bodegaOrigen.bodega.nombreBodega
         movimiento.Hasta = bodegaDestino.bodega.nombreBodega
@@ -692,19 +695,21 @@ def ReporteFaltantes (request):
     idBodega = request.GET.get('bodega')
     bodega = Bodega.objects.get(pk = int(idBodega))
 
-    productoBodega = ProductoBodega.objects.filter(bodega = bodega.codigoBodega)
+    productoBodega = ProductoBodega.objects.filter(bodega = bodega.codigoBodega).filter(producto__numeroProducto__gt = 0).order_by('nombreProducto')
 
     respuesta = serializers.serialize('json',productoBodega)
-
     return HttpResponse(respuesta,mimetype='application/json')
 
 
 def TemplateMovimientos(request):
     productos = Producto.objects.all()
-    return render_to_response('Inventario/ReporteMovimientos.html',{'productos':productos},context_instance = RequestContext(request))
+    bodegas = Bodega.objects.all()
+    return render_to_response('Inventario/ReporteMovimientos.html',{'productos':productos,'bodegas':bodegas},
+                              context_instance = RequestContext(request))
 
 def ReporteMovimientos(request):
     idProducto = request.GET.get('producto')
+    idBodega = request.GET.get('bodega')
 
     inicio = request.GET.get('inicio')
     fin = request.GET.get('fin')
@@ -715,8 +720,12 @@ def ReporteMovimientos(request):
     ff = datetime.strptime(fechaFin, formatter_string)
     finicio = fi.date()
     ffin = ff.date()
-
-    movimientos = Movimientos.objects.filter(fechaMov__range = (finicio,ffin)).filter(productoMov = int(idProducto))
+    movimientos = ''
+    if idProducto :
+        movimientos = Movimientos.objects.filter(fechaMov__range = (finicio,ffin)).filter(productoMov = int(idProducto))
+    elif idBodega:
+        bodega = Bodega.objects.get(pk = int(idBodega))
+        movimientos = Movimientos.objects.filter(fechaMov__range = (finicio,ffin)).filter(Hasta = bodega.nombreBodega)
 
     respuesta = serializers.serialize('json',movimientos)
 
@@ -753,6 +762,7 @@ def GuardarAjuste(request):
         movimiento.tipo = 'AJU%d'%(ajuste.id)
         movimiento.fechaMov = ajuste.fechaAjuste
         movimiento.productoMov = ajuste.productoAjuste
+        movimiento.nombreProd = ajuste.productoAjuste.nombreProducto
         if ajuste.pesoAjuste == 0:
             movimiento.entrada = ajuste.unidades
         else:
@@ -768,6 +778,7 @@ def GuardarAjuste(request):
         movimiento.tipo = 'AJU%d'%(ajuste.id)
         movimiento.fechaMov = ajuste.fechaAjuste
         movimiento.productoMov = ajuste.productoAjuste
+        movimiento.nombreProd = ajuste.productoAjuste.nombreProducto
         if ajuste.pesoAjuste == 0:
             movimiento.salida = ajuste.unidades
         else:

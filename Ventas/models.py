@@ -88,10 +88,10 @@ class VentaPunto(models.Model):
     )
 
     numeroVenta = models.AutoField(primary_key=True, verbose_name='Codigo')
+    fechaVenta = models.DateField(verbose_name='Fecha')
     factura = models.IntegerField(verbose_name='No.Factura',default=0)
     encargado = models.ForeignKey(Empleado,verbose_name='Encargado')
     jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)
-    fechaVenta = models.DateField(verbose_name='Fecha',auto_now=True)
     TotalVenta = models.IntegerField(verbose_name='Total Venta',default=0)
     restaurante = models.BooleanField(verbose_name='Restaurante',default=False)
     guardado = models.BooleanField(default=False,verbose_name='Guardado')

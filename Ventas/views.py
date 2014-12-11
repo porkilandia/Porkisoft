@@ -294,9 +294,10 @@ def PuntoVenta(request):
             return HttpResponseRedirect('/ventas/ventaPunto/')
     else:
         valorInicial = ConfiguracionPuntos.objects.get(nombreConfiguracion = 'Porkilandia Norte')
+
         empleado = valorInicial.cajero
         jornada = valorInicial.jornada
-        formulario = VentaPuntoForm(initial={'encargado':empleado,'jornada':jornada})
+        formulario = VentaPuntoForm(initial={'encargado':empleado,'jornada':jornada,'fechaVenta':datetime.today()})
     return render_to_response('Ventas/TemplateVentaPunto.html',{'ventas':ventas,'formulario':formulario},
                               context_instance = RequestContext(request))
 
@@ -448,7 +449,7 @@ def EditaCaja(request,idCaja):
             caja.TotalRestaurante = restauranteDia
             caja.TotalVenta = ventaDia - restauranteDia
             caja.TotalRetiro = retirosDia
-            caja.TotalResiduo = (caja.TotalEfectivo + retirosDia) - (caja.TotalVenta )
+            caja.TotalResiduo = (caja.TotalEfectivo - retirosDia  ) - (caja.TotalVenta - retirosDia )
             caja.save()
 
             return HttpResponseRedirect('/ventas/caja/')
@@ -788,3 +789,20 @@ def RepListVentasNorte(request):
 
 
     return HttpResponse(respuesta,mimetype='application/json')
+
+def AnulaVentas(request):
+    idFactura = request.GET.get('idFactura')
+    factura = VentaPunto.objects.get(pk = int(idFactura))
+    detalleFactura = DetalleVentaPunto.objects.filter(venta = factura.numeroVenta)
+
+    for detalle in detalleFactura:
+        bodega = ProductoBodega.objects.get(bodega = 1,producto = detalle.productoVenta.codigoProducto)
+        bodega.pesoProductoStock += detalle.pesoVentaPunto
+        bodega.unidadesStock += detalle.unidades
+        bodega.save()
+
+    factura.delete()
+    msj = 'Registro Eliminado Correctamente'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+

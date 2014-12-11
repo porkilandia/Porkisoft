@@ -49,7 +49,7 @@ class TajadoForm(ModelForm):
         q2 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas')
         q3 = Producto.objects.filter(grupo__nombreGrupo ='Pollos')
 
-        fechainicio = date.today() - timedelta(days=10)
+        fechainicio = date.today() - timedelta(days=20)
         fechafin = date.today()
 
         planilla = PlanillaDesposte.objects.all().order_by('-fechaDesposte')

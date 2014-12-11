@@ -154,6 +154,62 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function ReporteListaDesposte() {
+
+    var grupo = $('#grupos option:selected');
+    var CodigoGrupo = grupo.val();
+    var NombreGrupo = grupo.text();
+     var fechaInicio = $('#inicio').val();
+    var fechaFin = $('#fin').val();
+
+    var tablaDesposte = $("#tablaListaDesposte");
+
+        $.ajax({
+
+            url: '/fabricacion/reporteListDesp/',
+            dataType: "json",
+            type: "get",
+            data: {'grupo': CodigoGrupo,'inicio':fechaInicio,'fin':fechaFin},
+            success: function (respuesta) {
+                    tablaDesposte.find("tr:gt(0)").remove();
+
+                    for (var i=0;i<respuesta.length;i++)
+                    {
+                            tablaDesposte.append(
+                                "<tr><td>" + respuesta[i].pk +
+                                "</td><td>" + respuesta[i].fields.fechaDesposte +
+                                "</td><td>" + respuesta[i].fields.resesADespostar +
+                                "</td><td>" + respuesta[i].fields.totalDespostado +
+                                "</td><td>" + respuesta[i].fields.totalCanal +
+                                "</td><td>" + respuesta[i].fields.difCanalADespostado +
+                                "</td><td>" + respuesta[i].fields.tipoDesposte +
+                                "</td><td>" + respuesta[i].fields.cif +
+                                "</td><td>" + respuesta[i].fields.mod +
+                                "</td><td>" + "<a target='_blank'' href='/fabricacion/detalleDesposte/"+ respuesta[i].pk + "'>"+'Detalles'+"</a>" +
+                                "</td></tr>");
+
+                    }
+
+                    }
+
+        });
+
+}
+function AnularFactura(idFactura,numFactura) {
+    alert(idFactura);
+    var opcion = confirm('Desea Anular la factura No.'+ numFactura +' ?');
+    if (opcion == true) {
+        $.ajax({
+            url: '/ventas/anulaVenta/',
+            dataType: "json",
+            type: "get",
+            data: {'idFactura': idFactura},
+            success: function (respuesta) {
+                var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+            }
+        });
+    }
+}
 function consultaListaVentas() {
 
     var bodega = $('#bodega option:selected');
@@ -162,7 +218,7 @@ function consultaListaVentas() {
     var fechaFin = $('#fin').val();
     var CodigoBodega = bodega.val();
     var jornadaVta = $('#jornada').val();
-    var TotalVenta = 0
+    var TotalVenta = 0;
 
     var NombreBodega = bodega.text();
 
@@ -188,6 +244,7 @@ function consultaListaVentas() {
                                 "</td><td>" + respuesta[i].fields.jornada +
                                 "</td><td>" + '$ ' + respuesta[i].fields.TotalVenta +
                                 "</td><td>" + "<a target='_blank'' href='/ventas/detalleVentaPunto/"+ respuesta[i].pk + "'>"+'Detalles'+"</a>" +
+                                             "<a onclick='AnularFactura("+ respuesta[i].pk+","+respuesta[i].fields.factura +")' href='#'>"+'Anular'+"</a>" +
                                 "</td></tr>");
                         TotalVenta += respuesta[i].fields.TotalVenta;
                     }
@@ -762,20 +819,30 @@ function GuardarAjuste(idAjuste)
     }
 }
 
+function ImprimirMovimientos() {
+
+}
+
 function consultaMovimientos()
 {
+
+    if($("#porBodega").is(':checked')) {
+            var bodega = $('#bodega').val();
+            //var NombreBodega = bodega.text();
+        } else {
+            var producto = $('#productoMovimiento').val();
+            //var NombreProducto = producto.text();
+        }
     var fechaInicio = $('#inicio').val();
     var fechaFin = $('#fin').val();
-    var producto = $('#productoMovimiento option:selected');
     var TablaMovimientos = $('#tablaReporteMovimientos');
-    var NombreProducto = producto.text();
 
     $.ajax({
 
             url: '/inventario/reporteMovimientos/',
             dataType: "json",
             type: "get",
-            data: {'inicio': fechaInicio,'fin': fechaFin,'producto': producto.val()},
+            data: {'inicio': fechaInicio,'fin': fechaFin,'producto': producto,'bodega':bodega},
             success: function (respuesta) {
                     TablaMovimientos.find("tr:gt(0)").remove();
 
@@ -784,7 +851,7 @@ function consultaMovimientos()
                         TablaMovimientos.append(
                                 "<tr><td>" + respuesta[i].fields.tipo +
                                 "</td><td>" + respuesta[i].fields.fechaMov +
-                                "</td><td>" + NombreProducto +
+                                "</td><td>" + respuesta[i].fields.nombreProd +
                                 "</td><td>"  + respuesta[i].fields.desde +
                                 "</td><td>"  + respuesta[i].fields.Hasta +
                                 "</td><td>"  + respuesta[i].fields.entrada +
@@ -852,11 +919,8 @@ function Exportar()
 function ReporteFaltantes() {
 
     var bodega = $('#bodegaFaltantes option:selected');
-
     var CodigoBodega = bodega.val();
-
     var NombreBodega = bodega.text();
-
     var productos = '';
 
    var tablaFaltante = $("#tablaReporteFaltante");
@@ -873,17 +937,18 @@ function ReporteFaltantes() {
                     for (var i=0;i<respuesta.length;i++)
                     {
 
-                        if((respuesta[i].fields.pesoProductoStock != 0)||(respuesta[i].fields.unidadesStock != 0)){
+                        //if((respuesta[i].fields.pesoProductoStock != 0)||(respuesta[i].fields.unidadesStock != 0)){
                             tablaFaltante.append(
-                                "<tr><td>" + respuesta[i].fields.nombreProducto +
+                                "<tr><td>" + respuesta[i].fields.producto +
+                                "</td><td>" + respuesta[i].fields.nombreProducto +
                                 "</td><td>" + NombreBodega +
                                 "</td><td>" +parseInt(respuesta[i].fields.pesoProductoStock) +
                                 "</td><td>" + parseInt(respuesta[i].fields.unidadesStock) +
-                                "</td><td>" + '' +
-                                "</td><td>" + '' +
+                                "</td><td>" + '.' +
+                                "</td><td>" + '.' +
                                 "</td></tr>");
 
-                        }
+                        //}
 
 
                     }
