@@ -444,7 +444,9 @@ def EditaCaja(request,idCaja):
                 retirosDia += retiro.cantidad
 
             for factura in facturas:
-                ventaDia += factura.TotalVenta
+                if factura.anulado == False:
+                    ventaDia += factura.TotalVenta
+                #ventaDia += factura.TotalVenta
 
             caja.TotalRestaurante = restauranteDia
             caja.TotalVenta = ventaDia - restauranteDia
@@ -801,8 +803,10 @@ def AnulaVentas(request):
         bodega.unidadesStock += detalle.unidades
         bodega.save()
 
-    factura.delete()
-    msj = 'Registro Eliminado Correctamente'
+    factura.anulado = True
+    factura.save()
+
+    msj = 'Registro Anulado Correctamente'
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 

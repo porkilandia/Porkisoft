@@ -407,65 +407,29 @@ def GuardaEnsalinado(request):
 
 def GestionVerduras(request):
 
-    '''
     verduras = LimpiezaVerduras.objects.all()
-    producto = Producto.objects.get(pk = detalleCompra.producto.codigoProducto)
-    detalles = DetalleCompra.objects.filter(compra = compra.codigoCompra)
-
-    pesoDetalle = 0
-
-    for detalle in detalles:
-        pesoDetalle += detalle.pesoProducto
 
     if request.method == 'POST':
 
         formulario = LimpiezaVerdurasForm(request.POST)
         if formulario.is_valid():
-            verdura = formulario.save()
-
-            #Calculo del costo de la verdura limpia
-
-            vrCompra = detalleCompra.subtotal
-            porcentajeTransporte = ((detalleCompra.pesoProducto * 100) /pesoDetalle)/100
-            transporte = compra.vrTransporte * porcentajeTransporte
-            mod = verdura.mod
-            cif = verdura.cif
-            costo = vrCompra + cif + mod + transporte
-            costoKilo = ceil(costo / (verdura.pesoProducto / 1000 ))
-
-            #Se guarda el costo de la verdura limpia
-            verdura.vrKilo = costoKilo
-            verdura.save()
-
-            #guardamos el producto en Bodega
-
-            bodegaProducto = ProductoBodega.objects.get(bodega = 6 , producto = producto.codigoProducto )
-            bodegaProducto.pesoProductoStock += verdura.pesoProducto
-            bodegaProducto.pesoProductoKilos = bodegaProducto.pesoProductoStock / 1000
-            bodegaProducto.save()
-
-            #guardamos el costo del producto
-
-            producto.costoProducto = costoKilo
-            producto.save()
-
-            # se cambia el estado a verdadero para producto Limpio!!!
-            detalleCompra.estado = True
-            detalleCompra.save()
-
-
-            return HttpResponseRedirect('/fabricacion/verduras/'+ idDetcompra)
+            formulario.save()
+            return HttpResponseRedirect('/fabricacion/verduras/')
     else:
-        formulario = LimpiezaVerdurasForm(initial={'compra':idDetcompra,'producto': detalleCompra.producto.codigoProducto})
+        formulario = LimpiezaVerdurasForm()
 
-    return render_to_response('Fabricacion/GestionVerduras.html',{'formulario':formulario,'verduras':verduras,
-                                                                 'compra':detalleCompra.compra.codigoCompra },
-                              context_instance = RequestContext(request))'''
+    return render_to_response('Fabricacion/GestionVerduras.html',{'formulario':formulario,'verduras':verduras},
+                              context_instance = RequestContext(request))
 
 def CostearVerduras(request):
     idLimpieza = request.GET.get('idLimpieza')
     limpieza = LimpiezaVerduras.objects.get(pk = int(idLimpieza))
+    detalleCompra = DetalleCompra.objects.filter(compra = limpieza.compra.codigoCompra)
     pesoTotal = 0
+
+    for detalle in detalleCompra:
+        pesoTotal += detalle.pesoProducto
+
     producto = Producto.objects.get(pk = limpieza.productoLimpiar.codigoProducto)
 
     vrCompra = limpieza.valorProducto
@@ -488,16 +452,12 @@ def CostearVerduras(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GuardarVerduras(request):
-
-
     '''
     #guardamos el producto en Bodega
     bodegaProducto = ProductoBodega.objects.get(bodega = 6 , producto = producto.codigoProducto )
     bodegaProducto.pesoProductoStock += verdura.pesoProducto
     bodegaProducto.pesoProductoKilos = bodegaProducto.pesoProductoStock / 1000
     bodegaProducto.save()
-
-
 
     # se cambia el estado a verdadero para producto Limpio!!!
     detalleCompra.estado = True

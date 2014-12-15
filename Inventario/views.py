@@ -720,14 +720,16 @@ def ReporteMovimientos(request):
     ff = datetime.strptime(fechaFin, formatter_string)
     finicio = fi.date()
     ffin = ff.date()
-    movimientos = ''
+    q1 = ''
+    q2 = ''
     if idProducto :
-        movimientos = Movimientos.objects.filter(fechaMov__range = (finicio,ffin)).filter(productoMov = int(idProducto))
+        q1 = Movimientos.objects.filter(fechaMov__range = (finicio,ffin)).filter(productoMov = int(idProducto))
     elif idBodega:
         bodega = Bodega.objects.get(pk = int(idBodega))
-        movimientos = Movimientos.objects.filter(fechaMov__range = (finicio,ffin)).filter(Hasta = bodega.nombreBodega)
+        q1 = Movimientos.objects.filter(fechaMov__range = (finicio,ffin)).filter(Hasta = bodega.nombreBodega).exclude(tipo__contains = 'VN').order_by('tipo')
+        q2 = Movimientos.objects.filter(fechaMov__range = (finicio,ffin)).filter(desde = bodega.nombreBodega).exclude(tipo__contains = 'VN').order_by('tipo')
 
-    respuesta = serializers.serialize('json',movimientos)
+    respuesta = serializers.serialize('json',q1|q2)
 
     return HttpResponse(respuesta,mimetype='application/json')
 

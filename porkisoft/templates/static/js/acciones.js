@@ -18,11 +18,13 @@ $(document).on('ready', inicio);
     {
         $('#GuardaPedidoCredito').hide();
     }*/
+
      $('#agregarProducto').show();
      $('#encabezado').hide();
      $('#pie').hide();
      $('#pieRecibo').hide();
      $('#Retiro').hide();
+     $('#tablaMovi').hide();
 
      $('#id_precioTotal').on('focus',calculoGanado);
      $('#id_difPesos').on('focus',calculoCanal);
@@ -104,7 +106,7 @@ $(document).on('ready', inicio);
      $('#tablaReApanado').dataTable();
      $('#tablaCCond').dataTable();
      $('#tablaConversiones').dataTable();
-     $('#tablaReporteMovimientos').dataTable();
+     //$('#tablaReporteMovimientos').dataTable();
      $('#tablaFritos').dataTable();
      $('#TablaCondimento').dataTable();
      $('#tablaCroquetas').dataTable();
@@ -821,6 +823,27 @@ function GuardarAjuste(idAjuste)
 
 function ImprimirMovimientos() {
 
+                var encabezado = $('#encabezado');
+                var pie = $('#pieRecibo');
+                var tablaRepoMovimientos = $('#tablaReporteMovimientos');
+                var tablaMovimientos = $('#tablaMovi');
+                var calculadora = $('#calculaVuelto');
+                calculadora.hide();
+                encabezado.show();
+                pie.show();
+                tablaRepoMovimientos.hide();
+                tablaMovimientos.show();
+
+                tablaRepoMovimientos.addClass('recibo');
+                tablaMovimientos.addClass('recibo');
+
+                $('#recibo').printArea();
+                encabezado.hide();
+                pie.hide();
+                tablaMovimientos.removeClass('recibo');
+                tablaRepoMovimientos.removeClass    ('recibo');
+                calculadora.show();
+                $('#imprimeRecibo').hide();
 }
 
 function consultaMovimientos()
@@ -835,8 +858,10 @@ function consultaMovimientos()
         }
     var fechaInicio = $('#inicio').val();
     var fechaFin = $('#fin').val();
-    var TablaMovimientos = $('#tablaReporteMovimientos');
-
+    var TablaRepoMovimientos = $('#tablaReporteMovimientos');
+    var TablaMovimientos = $('#tablaMovi');
+    var NombreBodega = '';
+    var Fecha = '';
     $.ajax({
 
             url: '/inventario/reporteMovimientos/',
@@ -844,11 +869,11 @@ function consultaMovimientos()
             type: "get",
             data: {'inicio': fechaInicio,'fin': fechaFin,'producto': producto,'bodega':bodega},
             success: function (respuesta) {
-                    TablaMovimientos.find("tr:gt(0)").remove();
+                    TablaRepoMovimientos.find("tr:gt(0)").remove();
 
                     for (var i=0;i<respuesta.length;i++)
                     {
-                        TablaMovimientos.append(
+                        TablaRepoMovimientos.append(
                                 "<tr><td>" + respuesta[i].fields.tipo +
                                 "</td><td>" + respuesta[i].fields.fechaMov +
                                 "</td><td>" + respuesta[i].fields.nombreProd +
@@ -858,8 +883,21 @@ function consultaMovimientos()
                                 "</td><td>"  + respuesta[i].fields.salida +
                                 "</td></tr>");
 
+                        TablaMovimientos.append(
+                                "<tr><td>" + respuesta[i].fields.tipo +
+                                "</td><td>" + respuesta[i].fields.nombreProd +
+                                "</td><td>"  + Math.round(respuesta[i].fields.entrada) +
+                                "</td><td>"  + Math.round(respuesta[i].fields.salida) +
+                                "</td></tr>");
+
+                         NombreBodega = respuesta[i].fields.Hasta;
+                         Fecha = respuesta[i].fields.fechaMov;
+
+
                     }
-                    }
+                $('#fechaMov').append(' : '+Fecha);
+                $('#bodegaMov').append(' : '+NombreBodega);
+             }
 
         });
 }

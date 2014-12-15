@@ -95,6 +95,7 @@ class VentaPunto(models.Model):
     TotalVenta = models.IntegerField(verbose_name='Total Venta',default=0)
     restaurante = models.BooleanField(verbose_name='Restaurante',default=False)
     guardado = models.BooleanField(default=False,verbose_name='Guardado')
+    anulado = models.BooleanField(default=False,verbose_name='Anulado')
 
     def __unicode__(self):
         return self.numeroVenta

@@ -28,6 +28,7 @@
         <br/>
         <br/>
    </div>
+
     <table id="tablaReporteMovimientos" class="table-striped">
         <thead>
         <tr>
@@ -41,6 +42,51 @@
         </tr>
         </thead>
     </table>
+        <br/><br/>
 
+
+    <div id="recibo">
+        <table id="encabezado">
+            <tr><th>PORKILANDIA S.A.S.</th></tr>
+            <tr><th>Nit: 900606687-6</th></tr>
+            <tr><th>Regimen Comun</th></tr>
+            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+                <tr><th>REPORTE DE MOVIMIENTOS DE PRODUCTOS</th></tr>
+            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+            <tr><th id="fechaMov" style="text-align: left">Fecha</th></tr>
+            <tr><th id="bodegaMov" style="text-align: left">Bodega</th></tr>
+            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+
+
+        </table>
+     <br/>
+        <table id="tablaMovi" class="table-striped">
+        <thead>
+        <tr>
+            <th>Tipo</th>
+            <th>Producto</th>
+            <th>Entrada</th>
+            <th>Salida</th>
+        </tr>
+        </thead>
+    </table>
+        <br/><br/>
+
+    <br/>
+        <table id="pieRecibo">
+
+                <tr>
+                    <th>__________________________________</th>
+                </tr>
+                <tr>
+                    <th>Encargado</th>
+                </tr>
+
+                <tr>
+                    <th style="font-size: 0.8em">Generado en PORKISOFT V.1.0</th>
+                </tr>
+
+            </table>
+    </div>
 
 {% endblock contenido %}
