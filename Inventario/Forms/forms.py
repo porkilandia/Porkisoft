@@ -39,6 +39,7 @@ class ProductoBodegaForm(ModelForm):
 class GanadoForm(ModelForm):
     class Meta:
         model = Ganado
+        exclude = ('TotalpesoEnPie',)
 
 class CompraForm(ModelForm):
     tipo = forms.ModelChoiceField(queryset = Grupo.objects.all())

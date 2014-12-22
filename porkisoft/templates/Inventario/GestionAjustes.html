@@ -18,6 +18,7 @@
             <th>Bodega</th>
             <th>Peso</th>
             <th>Unidades</th>
+            <th>Tipo</th>
             <th>Observacion</th>
             <th>Acciones</th>
         </tr>
@@ -34,6 +35,12 @@
             <td>{{ ajuste.bodegaAjuste }}</td>
             <td>{{ ajuste.pesoAjuste }}</td>
             <td>{{ ajuste.unidades }}</td>
+            {% if ajuste.restar == True %}
+                <td>Resta</td>
+            {% else %}
+                <td>Suma</td>
+            {% endif %}
+
             <td>{{ ajuste.observacion }}</td>
             {% if ajuste.guardado == False %}
             <td>

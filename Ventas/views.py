@@ -11,6 +11,7 @@ from django.db.models import Avg
 import json
 from django.template.loader import render_to_string
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 def GestionPedidos(request,idcliente):
@@ -274,10 +275,17 @@ def EditaListas(request,idDetLista):
 
     return render_to_response('Ventas/GestionDetalleListas.html',{'formulario':formulario,'lista':lista,'detalleListas':detalleListas},
                               context_instance = RequestContext(request))
-
+@login_required()
 def PuntoVenta(request):
-    ventas = VentaPunto.objects.filter(fechaVenta = datetime.today()).filter(guardado = False)
-    consecutivo = ConfiguracionPuntos.objects.get(nombreConfiguracion = 'Porkilandia Norte')
+    usuario = request.user.username
+    emp = Empleado.objects.get(usuario = usuario)
+    valorInicial = ConfiguracionPuntos.objects.get(bodega = emp.punto.codigoBodega)
+    punto = emp.punto.codigoBodega
+    empleado = emp.codigoEmpleado
+    jornada = valorInicial.jornada
+
+    ventas = VentaPunto.objects.filter(fechaVenta = datetime.today()).filter(guardado = False).filter(puntoVenta = emp.punto.codigoBodega )
+    consecutivo = ConfiguracionPuntos.objects.get(bodega = emp.punto.codigoBodega)
 
     if request.method =='POST':
         formulario = VentaPuntoForm(request.POST)
@@ -293,11 +301,8 @@ def PuntoVenta(request):
 
             return HttpResponseRedirect('/ventas/ventaPunto/')
     else:
-        valorInicial = ConfiguracionPuntos.objects.get(nombreConfiguracion = 'Porkilandia Norte')
 
-        empleado = valorInicial.cajero
-        jornada = valorInicial.jornada
-        formulario = VentaPuntoForm(initial={'encargado':empleado,'jornada':jornada,'fechaVenta':datetime.today()})
+        formulario = VentaPuntoForm(initial={'encargado':empleado,'jornada':jornada,'fechaVenta':datetime.today(),'puntoVenta':punto})
     return render_to_response('Ventas/TemplateVentaPunto.html',{'ventas':ventas,'formulario':formulario},
                               context_instance = RequestContext(request))
 
@@ -381,7 +386,7 @@ def CobrarVenta(request):
     detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
 
     for detalle in detalleVenta:
-        bodegaProducto = ProductoBodega.objects.get(bodega = 1,producto = detalle.productoVenta.codigoProducto)
+        bodegaProducto = ProductoBodega.objects.get(bodega = venta.puntoVenta.codigoBodega,producto = detalle.productoVenta.codigoProducto)
         movimiento = Movimientos()
         movimiento.tipo = 'VNNOR%d'%(venta.numeroVenta)
         movimiento.fechaMov = venta.fechaVenta
@@ -562,6 +567,20 @@ def GuaradarPedido(request):
         bodega.unidadesStock -= det.unidadesPedido
         bodega.save()
 
+        movimiento = Movimientos()
+        movimiento.tipo = 'PED%d'%(pedido.numeroPedido)
+        movimiento.fechaMov = pedido.fechaPedido
+        movimiento.productoMov = det.producto
+        movimiento.nombreProd = det.producto.nombreProducto
+        movimiento.desde = bodega.bodega.nombreBodega
+
+        if det.pesoPedido == 0:
+            movimiento.salida = det.unidadesPedido
+        else:
+            movimiento.salida = det.pesoPedido
+
+        movimiento.save()
+
     pedido.guardado = True
     pedido.save()
 
@@ -578,8 +597,8 @@ def VerificarPrecioPedido(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def TemplateAZ(request):
-
-    return render_to_response('Ventas/TemplateAZ.html',{},context_instance = RequestContext(request))
+    bodegas = Bodega.objects.all()
+    return render_to_response('Ventas/TemplateAZ.html',{'bodegas':bodegas},context_instance = RequestContext(request))
 
 def ReporteAZ(request):
 
@@ -594,9 +613,11 @@ def ReporteAZ(request):
     finicio = fi.date()
     ffin = ff.date()
 
+    idBodega = request.GET.get('bodega')
+
     #ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(jornada = jornada)
-    ventas = VentaPunto.objects.filter(fechaVenta = finicio,jornada = jornada).order_by('factura')
-    consecutivo = ConfiguracionPuntos.objects.get(nombreConfiguracion = 'Porkilandia Norte')
+    ventas = VentaPunto.objects.filter(fechaVenta = finicio,jornada = jornada,puntoVenta = int(idBodega)).filter(anulado = False).order_by('factura')
+    consecutivo = ConfiguracionPuntos.objects.get(bodega = int(idBodega))
 
     gravados1 = {}
     gravados2 = {}
@@ -609,12 +630,21 @@ def ReporteAZ(request):
 
     gravados1['Gravados 1'] = 0
     gravados2['Gravados 2'] = 0
-    excentos['Excentos'] = 0
+    excentos['Exentos'] = 0
     excluidos['Excluidos'] = 0
     totalVenta['Total Venta'] = 0
 
     finaliza = 0
     cantVentas = ventas.count()
+    cont =  0
+    inicializa = 0
+
+    for venta in ventas:
+        if cont == 0:
+            cont +=1
+            inicializa = venta.factura
+        else:
+            break
 
     for venta in ventas:
         finaliza = venta.factura
@@ -624,17 +654,18 @@ def ReporteAZ(request):
         detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
         totalVenta['Total Venta'] += venta.TotalVenta
         finaliza = venta.factura
-        for detalle in detalleVenta:
-            if detalle.productoVenta.gravado == True:
-                gravados1['Gravados 1'] += detalle.vrTotalPunto
-            elif detalle.productoVenta.gravado2 == True:
-                gravados2['Gravados 2'] += detalle.vrTotalPunto
-            elif detalle.productoVenta.excento == True:
-                excentos['Excentos'] += detalle.vrTotalPunto
-            elif detalle.productoVenta.excluido == True:
-                excluidos['Excluidos'] += detalle.vrTotalPunto
+        if venta.anulado == False:
+            for detalle in detalleVenta:
+                if detalle.productoVenta.gravado == True:
+                    gravados1['Gravados 1'] += detalle.vrTotalPunto
+                elif detalle.productoVenta.gravado2 == True:
+                    gravados2['Gravados 2'] += detalle.vrTotalPunto
+                elif detalle.productoVenta.excento == True:
+                    excentos['Exentos'] += detalle.vrTotalPunto
+                elif detalle.productoVenta.excluido == True:
+                    excluidos['Excluidos'] += detalle.vrTotalPunto
 
-    inicializa = finaliza - cantVentas
+    #inicializa = finaliza - cantVentas
     consecutivo.consecutivoZ += 1
     consecutivo.save()
 
@@ -786,7 +817,7 @@ def RepListVentasNorte(request):
 
 
     bodega = Bodega.objects.get(pk = int(idBodega))
-    ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(jornada = jornada).order_by('factura')
+    ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin),puntoVenta = bodega.codigoBodega).filter(jornada = jornada).order_by('factura')
     respuesta = serializers.serialize('json',ventas)
 
 
@@ -798,7 +829,7 @@ def AnulaVentas(request):
     detalleFactura = DetalleVentaPunto.objects.filter(venta = factura.numeroVenta)
 
     for detalle in detalleFactura:
-        bodega = ProductoBodega.objects.get(bodega = 1,producto = detalle.productoVenta.codigoProducto)
+        bodega = ProductoBodega.objects.get(bodega = factura.puntoVenta.codigoBodega,producto = detalle.productoVenta.codigoProducto)
         bodega.pesoProductoStock += detalle.pesoVentaPunto
         bodega.unidadesStock += detalle.unidades
         bodega.save()

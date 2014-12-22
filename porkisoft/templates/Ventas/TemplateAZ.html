@@ -14,6 +14,13 @@ AZ
             <option value='AM'>AM</option>
             <option value='PM'>PM</option>
         </select>
+        <label for="bodega">Punto</label><select id="bodega">
+            {% for bodega in bodegas %}
+                <option value={{ bodega.codigoBodega }}>{{ bodega.nombreBodega }}</option>
+            {% endfor %}
+
+
+        </select>
 
     <a  onclick="consultaAZ()" href="#"><input type="button" value="Consultar"></a>
     <a  onclick="ImprimirAZ()" href="#"><input type="button" value="Imprimir"></a>

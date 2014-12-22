@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <Meta charset="utf-8"/>
     <title>{% block titulo %}{% endblock titulo %}</title>
@@ -24,9 +24,10 @@
 
         <div id="nav">
            <ul>
-                                                <li><a href="/ventas/ventaPunto"><img src="{{ STATIC_URL }}img/item.png" alt="" />Venta Punto</a></li>
+               <li><a href="/ventas/ventaPunto"><img src="{{ STATIC_URL }}img/item.png" alt="" />Venta Punto</a></li>
                <li><a href="/ventas/retiro"><img src="{{ STATIC_URL }}img/item.png" alt="" />Retiro Efectivo</a></li>
                <li><a href="/ventas/devoluciones"><img src="{{ STATIC_URL }}img/item.png" alt="" />Devolucion Mercancia</a></li>
+               <li><a id="cerrarSesion" href="/nomina/logOut"><img src="{{ STATIC_URL }}img/item.png" alt="" />Cerrar Sesion / Usuario: {{ user.username|capfirst }}</a></li>
 
            </ul>
 

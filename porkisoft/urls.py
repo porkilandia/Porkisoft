@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^ventas/', include('Ventas.urls')),
     url(r'^fabricacion/', include('Fabricacion.urls')),
 
+
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

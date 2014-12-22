@@ -1,7 +1,7 @@
 # Django settings for porkisoft project.
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-
+from django.core.urlresolvers import reverse_lazy
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -131,6 +131,8 @@ INSTALLED_APPS = (
     'south',
     'gunicorn',
 )
+
+LOGIN_URL = reverse_lazy('login')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

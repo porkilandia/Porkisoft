@@ -1,4 +1,5 @@
 from Inventario.models import *
+from Nomina.models import *
 
 class Ensalinado(models.Model):
     codigoEnsalinado = models.AutoField(primary_key=True)
@@ -18,7 +19,8 @@ class Ensalinado(models.Model):
 
 class LimpiezaVerduras(models.Model):
     productoLimpiar = models.ForeignKey(Producto)
-    pesoProducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3, default=0)
+    pesoProducto = models.DecimalField(verbose_name='Peso Antes', max_digits=9, decimal_places=3, default=0)
+    pesoDespues = models.DecimalField(verbose_name='Peso Despues', max_digits=9, decimal_places=3, default=0)
     compra = models.ForeignKey(Compra,verbose_name='Compra')
     valorProducto = models.IntegerField(verbose_name='Valor Producto')
     valorTransporte = models.IntegerField(verbose_name='Valor Transporte')
@@ -246,12 +248,7 @@ class ValoresCostos(models.Model):
     valorCif = models.IntegerField(verbose_name='Valor Cif',default=0)
     valorMod = models.IntegerField(verbose_name='Valor Mod',default=0)
     valorKiloPie = models.IntegerField(verbose_name='Valor Kilo en Pie',default=0)
-    inicia = models.IntegerField(verbose_name='vr Inicial',default=0)
-    actual = models.IntegerField(verbose_name='vr actual',default=0)
-    finaliza = models.IntegerField(verbose_name='vr Final',default=0)
     fecha = models.DateField(verbose_name='Fecha Actualizacion', auto_now=True)
-    empleado = models.ForeignKey(Empleado)
-    jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)
 
     def __unicode__(self):
         return self.codigoCosto

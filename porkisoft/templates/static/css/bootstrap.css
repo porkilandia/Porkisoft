@@ -286,6 +286,19 @@ fieldset {
     right: 2em;
     top: 9em;
 }
+#InicioSesion
+{
+    width: 30%;
+    position: fixed;
+    right: 40em;
+    top:15em;
+}
+#cerrarSesion
+{
+    position: fixed;
+    right: 2em;
+
+}
 
 #FrmVentaPunto a
 {

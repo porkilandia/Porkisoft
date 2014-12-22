@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <Meta charset="utf-8"/>
     <title>{% block titulo %}{% endblock titulo %}</title>
@@ -100,6 +100,9 @@
                                 <ul>
                                     <li><a href="/nomina/empleado/"><img src="{{ STATIC_URL }}img/item.png" alt="" />Gestion de Empleado</a></li>
                                     <li><a href="/nomina/cargo"><img src="{{ STATIC_URL }}img/item.png" alt="" />Gestion de Cargos</a></li>
+                                    <li><a href="/nomina/usuarios"><img src="{{ STATIC_URL }}img/item.png" alt="" />Gestion de Usuarios</a></li>
+                                    <li><a href="/nomina/login"><img src="{{ STATIC_URL }}img/item.png" alt="" />Iniciar Sesion</a></li>
+
                                 </ul>
                             </li>
                             <li><a href="/inventario/provedor"><img src="{{ STATIC_URL }}img/item.png" alt="" />Proveedor</a></li>
@@ -107,9 +110,9 @@
 
                         </ul>
                     </li>
-
+                    <li><a id="cerrarSesion" href="/nomina/logOut"><img src="{{ STATIC_URL }}img/item.png" alt="" />Cerrar Sesion / Usuario: {{ user.username|capfirst }}</a></li>
                     <img class="close" src="images/spacer.gif" alt="" />
-                    {{ hoy }}
+
                 </ul>
 
             </div>

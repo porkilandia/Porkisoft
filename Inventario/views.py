@@ -1,14 +1,11 @@
  # -*- coding: UTF-8 -*-
 from decimal import Decimal
 from math import ceil
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
 from django.core import serializers
 from django.http import HttpResponse
-
-
-
 from django.template.loader import render_to_string
 import json
 from Inventario.Forms.forms import *
@@ -26,7 +23,7 @@ def listaProvedoresAjax(request):
                                                              'email','ciudad'))
     return HttpResponse(data, mimetype='application/json')
 
-
+@login_required()
 def home(request):
     productosBajoStock = ProductoBodega.objects.all().filter(pesoProductoStock__gt = 500).order_by('bodega')
     costosProductos = Producto.objects.all().order_by('nombreProducto')
@@ -333,7 +330,8 @@ def GestionGanado(request,idcompra):
 
             return HttpResponseRedirect('/inventario/ganado/'+idcompra)
     else:
-        formulario = GanadoForm(initial={'precioKiloEnPie':3300,'compra':idcompra,'piel':'Friana'})
+        kiloEnPie= ValoresCostos.objects.get(nombreCosto = 'Costos Reses').valorKiloPie
+        formulario = GanadoForm(initial={'precioKiloEnPie':kiloEnPie,'compra':idcompra,'piel':'Friana'})
 
     return render_to_response('Inventario/GestionGanado.html',{'formulario':formulario,'ganados':ganados,'compra':idcompra },
                               context_instance = RequestContext(request))
@@ -341,11 +339,10 @@ def GestionGanado(request,idcompra):
 #**********************************************COMPRA********************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=25)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()
-
 
     if request.method == 'POST':
         formulario = CompraForm(request.POST)
@@ -366,14 +363,16 @@ def GestionDetalleCompra(request,idcompra):
     detcompras = DetalleCompra.objects.filter(compra = idcompra)
     totalCompra  = 0
     totalPeso = 0
+
     # clacular los totales de la lista de detalles de subproducto
     for dcmp in detcompras:
         totalCompra += dcmp.subtotal
     for dcmp in detcompras:
         totalPeso += dcmp.pesoProducto
 
-    compra.vrCompra = totalCompra
-    compra.save()
+    if compra.tipo.nombreGrupo == 'Cerdos' or compra.tipo.nombreGrupo == 'Cerdas':
+        compra.vrCompra = totalCompra
+        compra.save()
 
     if request.method == 'POST':
         formulario = DetalleCompraForm(idcompra,request.POST)
@@ -446,7 +445,7 @@ def GestionDetalleCompra(request,idcompra):
                 totalCompra += dcmp.subtotal
 
             compra.vrCompra = totalCompra
-            compra.save()
+            #compra.save()
 
 
             return HttpResponseRedirect('/inventario/detcompra/'+ idcompra)
@@ -722,14 +721,16 @@ def ReporteMovimientos(request):
     ffin = ff.date()
     q1 = ''
     q2 = ''
+    respuesta = ''
+
     if idProducto :
         q1 = Movimientos.objects.filter(fechaMov__range = (finicio,ffin)).filter(productoMov = int(idProducto))
+        respuesta = serializers.serialize('json',q1)
     elif idBodega:
         bodega = Bodega.objects.get(pk = int(idBodega))
         q1 = Movimientos.objects.filter(fechaMov__range = (finicio,ffin)).filter(Hasta = bodega.nombreBodega).exclude(tipo__contains = 'VN').order_by('tipo')
         q2 = Movimientos.objects.filter(fechaMov__range = (finicio,ffin)).filter(desde = bodega.nombreBodega).exclude(tipo__contains = 'VN').order_by('tipo')
-
-    respuesta = serializers.serialize('json',q1|q2)
+        respuesta = serializers.serialize('json',q1|q2)
 
     return HttpResponse(respuesta,mimetype='application/json')
 

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Usuarios{% endblock titulo %}
+{% block mensajes %}
+    Listado de Usuarios
+{% endblock mensajes %}
+{% block contenido %}
+
+    <table id="tablaProductos" class="table-striped">
+
+        <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Empleado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.username }}</td>
+            <td>{{ usuario.empleado }}</td>
+            <td><a href="#">Editar</a></td>
+        </tr>
+            {% empty %}
+            <tr>
+                <td colspan="12">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </tbody>
+    </table>
+
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset id="agregarProducto">
+             <legend>Nuevo Usuario</legend>
+             {{ formulario }}
+             <br/><br/>
+             <legend>Acciones</legend>
+             <input class="btn btn-primary" value="Guardar" type="submit">
+         </fieldset>
+    </form>
+
+{% endblock contenido %}

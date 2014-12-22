@@ -60,7 +60,7 @@
                 <tr>
                     <td>{{ detalle.producto }}</td>
                     <td>{{ detalle.unidades }}</td>
-                    <td>{{ detalle.pesoProducto| floatformat }}Kg</td>
+                    <td>{{ detalle.pesoProducto| floatformat }}grs</td>
                     <td>${{ detalle.costoKilo| floatformat }}</td>
                     <td>
                         <a href="{% url 'Fabricacion.views.EditaDetalleTajado' detalle.id %}">Modificar</a>

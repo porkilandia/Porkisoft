@@ -23,7 +23,14 @@ class EnsalinadoForm(ModelForm):
         exclude = ("costoKilo" , "costoTotal","guardado","estado",)
 
 class LimpiezaVerdurasForm(ModelForm):
-    class Meta:
+     def __init__(self, *args, **kwargs):
+        super(LimpiezaVerdurasForm,self).__init__(*args, **kwargs)
+        q1 = Producto.objects.filter(grupo__nombreGrupo = 'Verduras')
+        q2 = Compra.objects.filter(tipo__nombreGrupo = 'Verduras').order_by('-fechaCompra')
+        self.fields['productoLimpiar'].queryset = q1
+        self.fields['compra'].queryset = q2
+
+     class Meta:
         model = LimpiezaVerduras
         exclude = ('vrKilo',)
 
@@ -110,7 +117,7 @@ class CondimentadoForm(ModelForm):
 class DesposteForm(ModelForm):
     class Meta:
         model = PlanillaDesposte
-        exclude = ("resesADespostar","totalDespostado","difCanalADespostado","totalCanal","tipoDesposte","guardado",)
+        exclude = ("resesADespostar","totalDespostado","difCanalADespostado","totalCanal","guardado",)
 
 class CanalForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -169,7 +176,7 @@ class EmpacadoApanadoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(EmpacadoApanadoForm,self).__init__(*args, **kwargs)
 
-        fechainicio = date.today() - timedelta(days=10)
+        fechainicio = date.today() - timedelta(days=20)
         fechafin = date.today()
 
         self.fields['produccion'].queryset = ProcesoApanado.objects.all().filter(fechaApanado__range = (fechainicio,fechafin)).order_by('-fechaApanado')

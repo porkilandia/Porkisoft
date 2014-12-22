@@ -6,6 +6,8 @@
 {% endblock %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+
+
     <br/><br/><br/>
     <table  class="table-striped" >
 
@@ -16,18 +18,21 @@
             <th>Vr. Kilo</th>
             <th>Cif</th>
             <th>Mod</th>
+            <th>Acciones</th>
 
         </tr>
         </thead>
         {% for verdura in verduras %}
         <tr>
-            <td>{{ verdura.producto }}</td>
+            <td>{{ verdura.productoLimpiar }}</td>
             <td>{{ verdura.pesoProducto | floatformat }}grs</td>
             <td>$ {{ verdura.vrKilo}}</td>
             <td>{{ verdura.cif }}</td>
             <td>{{ verdura.mod }}</td>
-
-
+            <td>
+                <a onclick="CostearVerduras({{ verdura.id }})" href="#"><input type="button" value="Costear" ></a>
+                <a onclick="GuardarVerduras({{ verdura.id }})" href="#"><input type="button" value="Guardar" ></a>
+            </td>
 
         </tr>
             {% empty %}
@@ -41,13 +46,12 @@
     </table>
 
     <form method="post" class="form-horizontal">{% csrf_token %}
-         <fieldset id="agregarProducto">
+         <fieldset>
              <legend>Nuevo Limpieza<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
              {{ formulario }}
              <br/><br/>
              <legend>Acciones</legend>
              <input class="btn btn-primary" value="Guardar" type="submit">
-             <a href="/detcompra/{{ compra }}"><input type="button" class="btn btn-success" value="Volver"></a>
          </fieldset>
     </form>
 

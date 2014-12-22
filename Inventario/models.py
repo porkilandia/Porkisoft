@@ -1,7 +1,5 @@
 from django.db import models
 
-from Nomina.models import Empleado
-
 # Create your models here.
 
 class Grupo(models.Model):
@@ -92,7 +90,7 @@ class Traslado(models.Model):
     codigoTraslado = models.AutoField(verbose_name='Codigo Traslado', primary_key=True)
     bodegaActual = models.ForeignKey(Bodega)
     bodegaDestino = models.CharField(max_length=20,verbose_name='Bodega Destino')
-    empleado = models.ForeignKey(Empleado)
+    #empleado = models.ForeignKey(Empleado)
     fechaTraslado = models.DateField(verbose_name='Fecha')
     estadoTraslado = models.CharField(verbose_name='Estado',max_length=9,choices=OpEstTraslado)
     descripcionTraslado = models.TextField(verbose_name='Descripcion', max_length=200)
@@ -133,7 +131,7 @@ class Compra(models.Model):
     codigoCompra = models.AutoField(primary_key=True)
     tipo = models.ForeignKey(Grupo)
     bodegaCompra = models.ForeignKey(Bodega,blank=True,default=5)
-    encargado = models.ForeignKey(Empleado)
+    #encargado = models.ForeignKey(Empleado)
     proveedor = models.ForeignKey(Proveedor)
     cantCabezas = models.IntegerField(verbose_name='# Cabezas', default=0)
     fechaCompra = models.DateField(verbose_name='Fecha',blank=True,null=True)
@@ -158,7 +156,7 @@ class Ganado(models.Model):
     precioKiloEnPie = models.IntegerField(verbose_name='Precio Kilo en Pie')
     precioTotal = models.IntegerField(verbose_name='Precio Total')
     fechaIngreso = models.DateField(auto_now=True, blank=True, null=True)
-    TotalpesoEnPie = models.DecimalField(verbose_name = 'Peso en Pie (grs)',max_digits=9, decimal_places=3)
+    TotalpesoEnPie = models.DecimalField(verbose_name = 'Peso en Pie (grs)',max_digits=9, decimal_places=3,default=0)
 
     def __unicode__(self):
         return self.codigoGanado
@@ -192,7 +190,7 @@ class PlanillaRecepcion(models.Model):
     )
     codigoRecepcion = models.AutoField(primary_key=True)
     compra = models.ForeignKey(Compra)
-    empleado = models.ForeignKey(Empleado)
+    #empleado = models.ForeignKey(Empleado)
     tipoGanado = models.CharField(verbose_name='Tipo Ganado', choices=TipoGanado, max_length=11)
     fechaRecepcion = models.DateField(verbose_name='Fecha')
     cantCabezas = models.IntegerField(verbose_name='# Cabezas', default=0)

@@ -78,6 +78,7 @@ $(document).on('ready', inicio);
      vrUnitario.on('focus',existenciasVenta);
      $('#regreso').on('focus',calculoRegreso);
      $('#id_cantidadActual').on('focus',CantidadActual);
+     $('#id_compra').on('change',ValorVerduras);
 
 
 
@@ -121,7 +122,8 @@ $(document).on('ready', inicio);
      $('#id_fechaTajado').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaEnsalinado').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaApanado').datepicker({ dateFormat: "dd/mm/yy" });
-     $('#id_fechaVenta').datepicker({ dateFormat: "dd/mm/yy" });
+     var fechaVenta = $('#id_fechaVenta')
+     fechaVenta.datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaRecepcion').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaSacrificio').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaFabricacion').datepicker({ dateFormat: "dd/mm/yy" });
@@ -148,14 +150,72 @@ $(document).on('ready', inicio);
      $( "#progressbar" ).progressbar({value: false}).hide();
      $('#FrmVenta').show();
      $('#FrmVentaPunto').show();
+     $('#InicioSesion').show();
+
      $("label[for=id_venta],#id_venta").hide();
      $("label[for=id_productoVenta]").hide();
      $('#diagrama').hide();
      $('#totalCompra').val($('#totalVentaDet').text()).attr('disabled','-1');
+     //fechaVenta.attr('disabled','-1');
+     //$('#id_encargado').attr('disabled','-1');
+     //$('#id_jornada').attr('disabled','-1');
 
 }
 
 /**************************************************** METODOS *********************************************************/
+function ValorVerduras() {
+
+    var idProducto = $('#id_productoLimpiar').val();
+    var idCompra = $('#id_compra').val();
+
+    $.ajax({
+            url: '/fabricacion/ValorVerduras/',
+            dataType: "json",
+            type: "get",
+            data: {'idProducto': idProducto,'idCompra':idCompra},
+            success: function (respuesta) {
+                $.each(respuesta.valorProducto,function(key,value){
+                    $('#id_valorProducto').val(value);
+                });
+                $.each(respuesta.valorTransporte,function(key,value){
+                    $('#id_valorTransporte').val(value);
+                });
+            }
+        });
+
+}
+
+function CostearVerduras(idVerdura) {
+
+    $.ajax({
+            url: '/fabricacion/costearVerduras/',
+            dataType: "json",
+            type: "get",
+            data: {'idVerdura': idVerdura},
+            success: function (respuesta) {
+                var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+            }
+        });
+
+}
+function GuardarVerduras(idVerdura) {
+
+   var opcion = confirm('Desea Guardar el registro ?');
+    if (opcion == true) {
+        $.ajax({
+            url: '/fabricacion/guardarVerduras/',
+            dataType: "json",
+            type: "get",
+            data: {'idVerdura': idVerdura},
+            success: function (respuesta) {
+                var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+            }
+        });
+    }
+
+}
+
+
 function ReporteListaDesposte() {
 
     var grupo = $('#grupos option:selected');
@@ -198,7 +258,7 @@ function ReporteListaDesposte() {
 
 }
 function AnularFactura(idFactura,numFactura) {
-    alert(idFactura);
+
     var opcion = confirm('Desea Anular la factura No.'+ numFactura +' ?');
     if (opcion == true) {
         $.ajax({
@@ -214,39 +274,45 @@ function AnularFactura(idFactura,numFactura) {
 }
 function consultaListaVentas() {
 
-    var bodega = $('#bodega option:selected');
-
+    var bodega = $('#bodega').val();
     var fechaInicio = $('#inicio').val();
     var fechaFin = $('#fin').val();
-    var CodigoBodega = bodega.val();
     var jornadaVta = $('#jornada').val();
     var TotalVenta = 0;
-
-    var NombreBodega = bodega.text();
-
+    var estado = '';
     var TablaVenta = $("#tablaListaVenta");
+    var linkAnulado = ''
 
         $.ajax({
 
             url: '/ventas/reporteListaVentaNorte/',
             dataType: "json",
             type: "get",
-            data: {'inicio': fechaInicio,'fin': fechaFin,'bodega': CodigoBodega,'jornada': jornadaVta},
+            data: {'inicio': fechaInicio,'fin': fechaFin,'bodega': bodega,'jornada': jornadaVta},
             success: function (respuesta) {
                     TablaVenta.find("tr:gt(0)").remove();
                     $('#total').remove();
                     for (var i=0;i<respuesta.length;i++)
                     {
+                        if(respuesta[i].fields.anulado)
+                        {
+                            estado = 'Anulada';
+                            linkAnulado = ''
+                        }else
+                        {
+                            estado = 'Activo';
+                            linkAnulado = "<a onclick='AnularFactura("+ respuesta[i].pk+","+respuesta[i].fields.factura +")' href='#'>"+'Anular'+"</a>";
+                        }
 
                         TablaVenta.append(
                                 "<tr><td>" + respuesta[i].pk +
+                                "</td><td>" + estado +
                                 "</td><td>" + respuesta[i].fields.factura +
                                 "</td><td>" + respuesta[i].fields.fechaVenta +
                                 "</td><td>" + respuesta[i].fields.encargado +
                                 "</td><td>" + respuesta[i].fields.jornada +
                                 "</td><td>" + '$ ' + respuesta[i].fields.TotalVenta +
-                                "</td><td>" + "<a target='_blank'' href='/ventas/detalleVentaPunto/"+ respuesta[i].pk + "'>"+'Detalles'+"</a>" +
-                                             "<a onclick='AnularFactura("+ respuesta[i].pk+","+respuesta[i].fields.factura +")' href='#'>"+'Anular'+"</a>" +
+                                "</td><td>" + "<a target='_blank'' href='/ventas/detalleVentaPunto/"+ respuesta[i].pk + "'>"+'Detalles'+"</a>" +linkAnulado +
                                 "</td></tr>");
                         TotalVenta += respuesta[i].fields.TotalVenta;
                     }
@@ -413,6 +479,7 @@ function consultaAZ() {
 
     var inicio = $('#inicio').val();
     var fechaFin = $('#fin').val();
+    var bodega = $('#bodega').val();
     var jornada = $('#jornada').val();
     var gravados1= 0;
     var gravados2= 0;
@@ -424,7 +491,7 @@ function consultaAZ() {
             url: '/ventas/reporteAZ/',
             dataType: "json",
             type: "get",
-            data: {'inicio': inicio,'fin':fechaFin,'jornada':jornada},
+            data: {'bodega':bodega,'inicio': inicio,'fin':fechaFin,'jornada':jornada},
             success: function (respuesta)
             {
                 $("#TablaExcentos").find("tr:gt(0)").remove();
@@ -1291,8 +1358,22 @@ function consultaCompras() {
                     $('#total').remove();
                     for (var i=0;i<respuesta.length;i++)
                     {
-                        //
-                        tablaCompra.append(
+                        if( (respuesta[i].fields.tipo == 2)||(respuesta[i].fields.tipo == 3) )
+                            {
+                               tablaCompra.append(
+
+                                "<tr><td>" + respuesta[i].pk +
+                                "</td><td>" + respuesta[i].fields.fechaCompra +
+                                "</td><td>" + NombreProvedor +
+                                "</td><td>" + NombreBodega +
+                                "</td><td>" + respuesta[i].fields.cantCabezas +
+                                "</td><td>" + '$ ' + respuesta[i].fields.vrCompra +
+                                "</td><td>" +"<a target='_blank'' href='/inventario/recepcion/"+ respuesta[i].pk + "'>"+'Recepcion'+"</a>" +
+                                "</td></tr>");
+                            }else
+                                {
+                                    tablaCompra.append(
+
                                 "<tr><td>" + respuesta[i].pk +
                                 "</td><td>" + respuesta[i].fields.fechaCompra +
                                 "</td><td>" + NombreProvedor +
@@ -1302,6 +1383,10 @@ function consultaCompras() {
                                 "</td><td>" + "<a target='_blank'' href='/inventario/detcompra/"+ respuesta[i].pk + "'>"+'Detalles'+"</a>"
                                     +"<a target='_blank'' href='/inventario/recepcion/"+ respuesta[i].pk + "'>"+'Recepcion'+"</a>" +
                                 "</td></tr>");
+
+                                }
+                        //
+
                         TotalCompra += respuesta[i].fields.vrCompra;
                     }
 

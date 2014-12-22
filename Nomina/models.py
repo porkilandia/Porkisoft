@@ -1,5 +1,5 @@
 from django.db import models
-
+from Inventario.models import *
 # Create your models here.
 class Cargo(models.Model):
     codigoCargo = models.AutoField(primary_key=True, verbose_name='Codigo Cargo')
@@ -10,6 +10,8 @@ class Cargo(models.Model):
 
 class Empleado(models.Model):
     codigoEmpleado = models.BigIntegerField(primary_key=True,verbose_name='Cedula')
+    punto = models.ForeignKey(Bodega)
+    usuario =  models.CharField(max_length= 50, verbose_name='Usuario')
     nombre = models.CharField(max_length= 50, verbose_name='Nombre')
     apellido = models.CharField(max_length= 50, verbose_name='Apellido')
     direccion = models.CharField(max_length=100,verbose_name='Direccion')

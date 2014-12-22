@@ -116,16 +116,17 @@ def GestionCanal(request,idrecepcion):
                 transporte = 9000* cantidad
                 deguello = 48200 * cantidad
                 pesoPorkilandia = Decimal(request.POST.get('pesoPorkilandia'))
-                cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gte = 200)# busca registros que el peso sea mayor o igual a 150
-                cantidadCanalCerdasChicas = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__lte = 199)# busca registros que el peso sea menor o igual a 150
+                cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gt = 0)# busca registros que el peso sea mayor o igual a 150
+                #cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gte = 200)# busca registros que el peso sea mayor o igual a 150
+                #cantidadCanalCerdasChicas = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__lte = 199)# busca registros que el peso sea menor o igual a 150
 
-                incrementoCG = 35 * cantidadCanalCerdasGrandes.count()
-                incrementoCP = 32 * cantidadCanalCerdasChicas.count()
+                incrementoCG = 32 * cantidadCanalCerdasGrandes.count()
+                #incrementoCP = 32 * cantidadCanalCerdasChicas.count()
 
-                if pesoPorkilandia >= 200:
-                    incrementoCG += 35
-                else:
-                    incrementoCP += 32
+                if pesoPorkilandia >= 0:
+                    incrementoCG += 32
+                #else:
+                    #incrementoCP += 32
 
 
                 if pesoCanales == 0:#para cuando se ingresa la primera vez
@@ -133,7 +134,7 @@ def GestionCanal(request,idrecepcion):
 
 
 
-                pesoPie = pesoCanales + pesoPorkilandia + incrementoCG + incrementoCP
+                pesoPie = pesoCanales + pesoPorkilandia + incrementoCG #+ incrementoCP
                 vrFactura = pesoPie * ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas').valorKiloPie
                  #--> 4400 es el valor establecido por granjas el paraiso
                 costoCanales = (vrFactura + deguello + transporte) - menudo
@@ -189,9 +190,7 @@ def BorrarCanal(request, idcanal):
     canales = Canal.objects.filter(recepcion = recepcion.codigoRecepcion)
 
     canal.delete()
-
-    return render_to_response('Fabricacion/GestionCanal.html',{'canales':canales,'recepcion':recepcion},
-                              context_instance = RequestContext(request))
+    return HttpResponseRedirect('/fabricacion/canal/'+ str(recepcion.codigoRecepcion))
 
 def MarcarCanalDesposte(request, idcanal):
 
@@ -274,7 +273,7 @@ def GestionSacrificio(request,idrecepcion):
                               context_instance = RequestContext(request))
 
 def GestionEnsalinado(request):
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
     ensalinados = Ensalinado.objects.filter(fechaEnsalinado__range =(fechainicio,fechafin))
     #ensalinados = Ensalinado.objects.all()
@@ -421,6 +420,19 @@ def GestionVerduras(request):
     return render_to_response('Fabricacion/GestionVerduras.html',{'formulario':formulario,'verduras':verduras},
                               context_instance = RequestContext(request))
 
+def ValorVerduras(request):
+    idCompra = request.GET.get('idCompra')
+    idProducto = request.GET.get('idProducto')
+    compra = Compra.objects.get(pk = int(idCompra))
+    detalleCompra = DetalleCompra.objects.get(compra = compra.codigoCompra,producto = int(idProducto))
+    valorProducto = {}
+    valorTransporte = {}
+    valorProducto['Valor Producto'] = detalleCompra.subtotal
+    valorTransporte['Valor Transporte'] = compra.vrTransporte
+    lista = {'valorProducto':valorProducto,'valorTransporte':valorTransporte}
+    respuesta = json.dumps(lista)
+    return HttpResponse(respuesta,mimetype='application/json')
+
 def CostearVerduras(request):
     idLimpieza = request.GET.get('idLimpieza')
     limpieza = LimpiezaVerduras.objects.get(pk = int(idLimpieza))
@@ -452,20 +464,17 @@ def CostearVerduras(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GuardarVerduras(request):
-    '''
-    #guardamos el producto en Bodega
-    bodegaProducto = ProductoBodega.objects.get(bodega = 6 , producto = producto.codigoProducto )
-    bodegaProducto.pesoProductoStock += verdura.pesoProducto
-    bodegaProducto.pesoProductoKilos = bodegaProducto.pesoProductoStock / 1000
-    bodegaProducto.save()
+    idLimpieza = request.GET.get('idLimpieza')
+    limpieza = LimpiezaVerduras.objects.get(pk = int(idLimpieza))
 
-    # se cambia el estado a verdadero para producto Limpio!!!
-    detalleCompra.estado = True
-    detalleCompra.save()
+    productoAntes = ProductoBodega.objects.get(bodega = 6,producto = limpieza.productoLimpiar.codigoProducto)
+    productoLimpio = ProductoBodega.objects.get(bodega = 6,producto = limpieza.productoLimpiar.codigoProducto)
 
-    msj = 'Costeado exitoso'
-    respuesta = json.dumps(msj)
-    return HttpResponse(respuesta,mimetype='application/json')'''
+    productoAntes.pesoProductoStock -= limpieza.pesoProducto
+    productoAntes.save()
+
+    productoLimpio.pesoProductoStock += limpieza.pesoDespues
+    productoLimpio.save()
 
     msj = 'Guardado exitoso'
     respuesta = json.dumps(msj)
@@ -1076,7 +1085,7 @@ def TraerCostoFilete(request):
 #**********************************************PROCESO TAJADO **********************************************************
 
 def GestionTajado(request):
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     exito = True
     tajados = Tajado.objects.all().filter(fechaTajado__range = (fechainicio,fechafin))
@@ -1311,7 +1320,7 @@ def ReporteListaDesposte(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionDesposte(request):
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     despostes = PlanillaDesposte.objects.filter(fechaDesposte__range =(fechainicio,fechafin))
     #despostes = PlanillaDesposte.objects.all()
@@ -1443,14 +1452,14 @@ def GestionDesposteActualizado(request, idplanilla):
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
     else:
-        vrCarnes = ceil((vrTotalCanales * Decimal(6.5))/100)
+        vrCarnes = ceil((vrTotalCanales * Decimal(7.5))/100)
         vrCarnes2 = ceil((vrTotalCanales * Decimal(30))/100)
         vrCarnes3 = ceil((vrTotalCanales * Decimal(30.5))/100)
         vrCarnes4 = ceil((vrTotalCanales * Decimal(12))/100)
         vrCostillas = ceil((vrTotalCanales * 4)/100)
-        vrHuesos = ceil((vrTotalCanales * 10)/100)
-        vrsubProd = ceil((vrTotalCanales * 3)/100)
-        vrDesecho = ceil((vrTotalCanales * 2)/100)
+        vrHuesos = ceil((vrTotalCanales * 11)/100)
+        vrsubProd = ceil((vrTotalCanales * Decimal(1.5))/100)
+        vrDesecho = ceil((vrTotalCanales * Decimal(0.5))/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
 
@@ -2863,10 +2872,8 @@ def GuardarConversion(request):
 
     nombre1 = pro1.split(' ,')
     nombre2 = pro2.split(' ,')
-    variable = nombre1[1]
-    variable = nombre2[1]
     producto1 = Producto.objects.get(nombreProducto = nombre1[1])
-    producto2 = Producto.objects.get(nombreProducto = nombre1[1])
+    producto2 = Producto.objects.get(nombreProducto = nombre2[1])
 
     bodegaP1 = ProductoBodega.objects.get(bodega = conversion.puntoConversion.codigoBodega,producto = producto1.codigoProducto)
     bodegaP2 = ProductoBodega.objects.get(bodega = conversion.puntoConversion.codigoBodega,producto = producto2.codigoProducto)

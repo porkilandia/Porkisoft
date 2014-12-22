@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Productos{% endblock titulo %}
+{% block titulo %}Empleados{% endblock titulo %}
 {% block mensajes %}
-    Lista de empleados Porkilandia
+    Listado de Empleados
 {% endblock %}
 {% block contenido %}
 <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
@@ -17,6 +17,8 @@
             <th>Direccion</th>
             <th>Telefono</th>
             <th>Cargo</th>
+            <th>Usuario</th>
+            <th>Punto</th>
             <th>Acciones</th>
 
         </tr>
@@ -29,12 +31,14 @@
             <td>{{ empleado.direccion }}</td>
             <td>{{ empleado.telefono }}</td>
             <td>{{ empleado.cargo }}</td>
+            <td>{{ empleado.usuario }}</td>
+            <td>{{ empleado.punto }}</td>
 
 
 
 
             <td>
-                <a href="#">Modificar</a>
+                <a href="{% url 'Nomina.views.EditaEmpleados' empleado.codigoEmpleado %}">Modificar</a>
             </td>
 
         </tr>
@@ -48,7 +52,7 @@
         {% endfor %}
     </table>
     <form method="post" class="form-actions">{% csrf_token %}
-         <fieldset id="agregarProducto">
+         <fieldset >
              <legend>Empleado<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
               <div>
                   {{ formulario }}

@@ -88,7 +88,9 @@ class VentaPunto(models.Model):
     )
 
     numeroVenta = models.AutoField(primary_key=True, verbose_name='Codigo')
+
     fechaVenta = models.DateField(verbose_name='Fecha')
+    puntoVenta = models.ForeignKey(Bodega)
     factura = models.IntegerField(verbose_name='No.Factura',default=0)
     encargado = models.ForeignKey(Empleado,verbose_name='Encargado')
     jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)
@@ -164,6 +166,7 @@ class ConfiguracionPuntos(models.Model):
     ('PM', 'PM'),
     )
     fecha = models.DateField(verbose_name='Fecha Actualizacion')
+    bodega = models.ForeignKey(Bodega)
     nombreConfiguracion = models.CharField(verbose_name='Nombre',max_length=50)
     cajero = models.ForeignKey(Empleado,verbose_name='Cajero')
     jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)

@@ -109,7 +109,12 @@ urlpatterns = patterns('',
 
     url(r'^detalleTajado/(?P<idTajado>\d+)', GestionDetalleTajado),
     url(r'^editadetalleTajado/(?P<idDetTajado>\d+)', EditaDetalleTajado),
+
     url(r'^verduras/$', GestionVerduras),
+    url(r'^costearVerduras/$', CostearVerduras),
+    url(r'^guardarVerduras/$', GuardarVerduras),
+    url(r'^ValorVerduras/$', ValorVerduras),
+
     url(r'^condimento/$', GestionCondimento),
     url(r'^detallecondimento/(?P<idcondimento>\d+)', GestionDetalleCondimento),
     url(r'^costoCond/(?P<idcondimento>\d+)',CostoCondimento),
