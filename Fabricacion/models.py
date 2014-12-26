@@ -399,7 +399,7 @@ class TallerBolaEnsalinada(models.Model):
 class TallerChicharron(models.Model):
     fechaChicharron = models.DateField(verbose_name='Fecha')
     productoCh = models.ForeignKey(Producto,verbose_name='Producto')
-    Tocino = models.DecimalField(verbose_name='Peso Croqueta', max_digits=9, decimal_places=3,default=0)
+    Tocino = models.DecimalField(verbose_name='Peso Tocino', max_digits=9, decimal_places=3,default=0)
     Sal = models.DecimalField(verbose_name='Peso Sal', max_digits=9, decimal_places=3,default=0)
     undGrasa = models.IntegerField(verbose_name='und. Grasa',default=0)
     undChicharron = models.IntegerField(verbose_name='und. Chicharron',default=0)

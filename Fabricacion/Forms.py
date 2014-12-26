@@ -125,7 +125,7 @@ class CanalForm(ModelForm):
 
         if (PlanillaDesposte.objects.all()):
             #self.fields['planilla'].queryset = PlanillaDesposte.objects.all()
-            self.fields['planilla'].queryset = PlanillaDesposte.objects.filter(tipoDesposte = None)
+            self.fields['planilla'].queryset = PlanillaDesposte.objects.filter(tipoDesposte = '')
 
     class Meta:
         model=Canal

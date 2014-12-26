@@ -336,7 +336,7 @@ def GestionGanado(request,idcompra):
     return render_to_response('Inventario/GestionGanado.html',{'formulario':formulario,'ganados':ganados,'compra':idcompra },
                               context_instance = RequestContext(request))
 
-#**********************************************COMPRA********************************************
+#**********************************************************COMPRA*******************************************************
 def GestionCompra(request):
 
     fechainicio = date.today() - timedelta(days=25)
@@ -370,9 +370,8 @@ def GestionDetalleCompra(request,idcompra):
     for dcmp in detcompras:
         totalPeso += dcmp.pesoProducto
 
-    if compra.tipo.nombreGrupo == 'Cerdos' or compra.tipo.nombreGrupo == 'Cerdas':
-        compra.vrCompra = totalCompra
-        compra.save()
+    compra.vrCompra = totalCompra
+    compra.save()
 
     if request.method == 'POST':
         formulario = DetalleCompraForm(idcompra,request.POST)
@@ -445,7 +444,7 @@ def GestionDetalleCompra(request,idcompra):
                 totalCompra += dcmp.subtotal
 
             compra.vrCompra = totalCompra
-            #compra.save()
+            compra.save()
 
 
             return HttpResponseRedirect('/inventario/detcompra/'+ idcompra)

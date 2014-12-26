@@ -107,8 +107,8 @@ def GestionCanal(request,idrecepcion):
                 canal.vrKiloCanal = vrKiloCanal
                 canal.vrArrobaCanal= vrArrobaCanal
 
-                encargado = Empleado.objects.get(pk = compra.encargado.codigoEmpleado)
-                provedor = Proveedor.objects.get(pk = compra.proveedor.codigoProveedor)
+                #encargado = Empleado.objects.get(pk = compra.encargado.codigoEmpleado)
+                #provedor = Proveedor.objects.get(pk = compra.proveedor.codigoProveedor)
 
 
             else:
@@ -1429,8 +1429,8 @@ def GestionDesposteActualizado(request, idplanilla):
 
     # calculamos el valor de cada grupo multiplicando el %Grupo por el vrTotalCanales
     if tipoDesposte == 'Cerdos':
-        vrCarnes = ceil((vrTotalCanales * Decimal(40))/100)
-        vrCarnes2 = ceil((vrTotalCanales * Decimal(28))/100)
+        vrCarnes = ceil((vrTotalCanales * Decimal(41))/100)
+        vrCarnes2 = ceil((vrTotalCanales * Decimal(29))/100)
         vrCarnes3 = 0
         vrCarnes4 = 0
         vrCostillas = ceil((vrTotalCanales * 12)/100)
@@ -2363,7 +2363,7 @@ def ReporteDescarnes(request):
 
 def GestionMenudos(request):
 
-    menudos = Menudos.objects.all()
+    menudos = Menudos.objects.all().order_by('fechaMenudo')
 
     if request.method == 'POST':
 

@@ -20044,7 +20044,7 @@
     </procedure>
   </data-source>
   <data-source source="LOCAL" name="Django default" uuid="e6c5d31a-2a16-4f3d-a793-cda232fd9c2e">
-    <database-info product="PostgreSQL" version="9.3.4" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.3 JDBC4 (build 1100)">
+    <database-info product="PostgreSQL" version="9.3.5" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.3 JDBC4 (build 1100)">
       <identifier-quote-string>&quot;</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact"/>
@@ -22367,19 +22367,13 @@
       <column name="viewowner" sqlType="name" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="definition" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
     </table>
-    <table name="Fabricacion_apanado" schema="public" catalog="porkisoftdb" type="TABLE">
-      <column name="codigoApanado" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX2FwYW5hZG9fY29kaWdvQXBhbmFkb19zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
-      <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="huevos" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="miga" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="pesoFilete" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="totalApanado" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="costoKiloApanado" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <primary-key name="Fabricacion_apanado_pkey" columns="codigoApanado"/>
-      <foreign-key name="producto_id_refs_codigoProducto_02c94d95" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="Fabricacion_apanado_producto_id" unique="false" columns="producto_id"/>
+    <table name="Fabricacion_auxiliarpromedios" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX2F1eGlsaWFycHJvbWVkaW9zX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+      <column name="nombreProducto" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="costo" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="Fabricacion_auxiliarpromedios_pkey" columns="id"/>
     </table>
-    <table name="Fabricacion_apanado_codigoApanado_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+    <table name="Fabricacion_auxiliarpromedios_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -22402,6 +22396,7 @@
       <column name="vrArrobaCanal" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="genero" sqlType="varchar" precision="7" scale="0" nullable="false" jdbcType="12"/>
       <column name="estado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="nroCanal" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="Fabricacion_canal_pkey" columns="codigoCanal"/>
       <foreign-key name="planilla_id_refs_codigoPlanilla_ffc017ad" columns="planilla_id" ref-table="Fabricacion_planilladesposte" ref-schema="public" ref-catalog="" ref-columns="codigoPlanilla" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="recepcion_id_refs_codigoRecepcion_7e737a50" columns="recepcion_id" ref-table="Inventario_planillarecepcion" ref-schema="public" ref-catalog="" ref-columns="codigoRecepcion" update-rule="3" delete-rule="3" deferrability="1"/>
@@ -22420,48 +22415,24 @@
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
     </table>
-    <table name="Fabricacion_condimentadotajado" schema="public" catalog="porkisoftdb" type="TABLE">
-      <column name="codigoTajado" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX2NvbmRpbWVudGFkb3RhamFkb19jb2RpZ29UYWphZG9fc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
-      <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="pesoProductoEnsalinado" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="condimento" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="filete" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="recortes" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="procesos" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <primary-key name="Fabricacion_condimentadotajado_pkey" columns="codigoTajado"/>
-      <foreign-key name="producto_id_refs_codigoProducto_337c9d9c" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="Fabricacion_condimentadotajado_producto_id" unique="false" columns="producto_id"/>
-    </table>
-    <table name="Fabricacion_condimentadotajado_codigoTajado_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
-      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
-      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
-      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
-    </table>
-    <table name="Fabricacion_condimentadotajadopechuga" schema="public" catalog="porkisoftdb" type="TABLE">
-      <column name="codigo" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX2NvbmRpbWVudGFkb3RhamFkb3BlY2h1Z2FfY29kaWdvX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
-      <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="compra" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+    <table name="Fabricacion_condimentado" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="codigo" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX2NvbmRpbWVudGFkb19jb2RpZ29fc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
       <column name="fecha" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
-      <column name="PesoDescongelado" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="fileteACond" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoACondimentar" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="condimento" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="fileteAApanar" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="condimentoAP" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="huesos" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="piel" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="procesos" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <primary-key name="Fabricacion_condimentadotajadopechuga_pkey" columns="codigo"/>
-      <foreign-key name="producto_id_refs_codigoProducto_1824370e" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="Fabricacion_condimentadotajadopechuga_producto_id" unique="false" columns="producto_id"/>
+      <column name="costoFilete" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="costoCondimento" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoFileteCond" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="costoFileteCond" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="mod" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cif" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="Fabricacion_condimentado_pkey" columns="codigo"/>
+      <foreign-key name="producto_id_refs_codigoProducto_36c6a3e7" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Fabricacion_condimentado_producto_id" unique="false" columns="producto_id"/>
     </table>
-    <table name="Fabricacion_condimentadotajadopechuga_codigo_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+    <table name="Fabricacion_condimentado_codigo_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -22480,6 +22451,8 @@
       <column name="pesoCondimento" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="costoCondimento" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="costoLitroCondimento" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="mod" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cif" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="Fabricacion_condimento_pkey" columns="codigoCondimento"/>
       <exported-key name="condimento_id_refs_codigoCondimento_c8075748" table="Fabricacion_detallecondimento" schema="public" catalog="porkisoftdb" columns="condimento_id"/>
     </table>
@@ -22495,18 +22468,77 @@
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
     </table>
+    <table name="Fabricacion_conversiones" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX2NvbnZlcnNpb25lc19pZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="fechaConversion" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="pesoConversion" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="productoUno" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="productoDos" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="costoP1" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="costoP2" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="puntoConversion_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="unidades" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="Fabricacion_conversiones_pkey" columns="id"/>
+      <foreign-key name="puntoConversion_id_refs_codigoBodega_bc94cd05" columns="puntoConversion_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Fabricacion_conversiones_puntoConversion_id" unique="false" columns="puntoConversion_id"/>
+    </table>
+    <table name="Fabricacion_conversiones_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Fabricacion_descarnecabeza" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX2Rlc2Nhcm5lY2FiZXphX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+      <column name="fecha" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="cantidad" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="recortes" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="caretas" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="lenguas" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="procesos" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="mod" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cif" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="vrKiloRecorte" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="vrKiloLengua" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="vrKiloCareta" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="vrKiloProceso" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tipo" sqlType="varchar" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="pesoCabezas" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="cantRecosrtes" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="Fabricacion_descarnecabeza_pkey" columns="id"/>
+    </table>
+    <table name="Fabricacion_descarnecabeza_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
     <table name="Fabricacion_detallecondimento" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX2RldGFsbGVjb25kaW1lbnRvX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="condimento_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="pesoProducto" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="costoProducto" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="costoTotalProducto" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="productoCondimento_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="Fabricacion_detallecondimento_pkey" columns="id"/>
       <foreign-key name="condimento_id_refs_codigoCondimento_c8075748" columns="condimento_id" ref-table="Fabricacion_condimento" ref-schema="public" ref-catalog="" ref-columns="codigoCondimento" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="producto_id_refs_codigoProducto_6ff2e0e0" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="productoCondimento_id_refs_codigoProducto_6ff2e0e0" columns="productoCondimento_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="Fabricacion_detallecondimento_condimento_id" unique="false" columns="condimento_id"/>
-      <index name="Fabricacion_detallecondimento_producto_id" unique="false" columns="producto_id"/>
+      <index name="Fabricacion_detallecondimento_productoCondimento_id" unique="false" columns="productoCondimento_id"/>
     </table>
     <table name="Fabricacion_detallecondimento_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -22547,15 +22579,15 @@
     <table name="Fabricacion_detallemiga" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX2RldGFsbGVtaWdhX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="miga_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="PesoProducto" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="costoProducto" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="costoTotalProducto" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="productoMiga_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="Fabricacion_detallemiga_pkey" columns="id"/>
       <foreign-key name="miga_id_refs_codigoMiga_bb14f627" columns="miga_id" ref-table="Fabricacion_miga" ref-schema="public" ref-catalog="" ref-columns="codigoMiga" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="producto_id_refs_codigoProducto_0bb34a4a" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="productoMiga_id_refs_codigoProducto_0bb34a4a" columns="productoMiga_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="Fabricacion_detallemiga_miga_id" unique="false" columns="miga_id"/>
-      <index name="Fabricacion_detallemiga_producto_id" unique="false" columns="producto_id"/>
+      <index name="Fabricacion_detallemiga_productoMiga_id" unique="false" columns="productoMiga_id"/>
     </table>
     <table name="Fabricacion_detallemiga_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -22585,6 +22617,12 @@
       <column name="pesoDesecho" sqlType="numeric" precision="15" scale="3" nullable="false" jdbcType="2"/>
       <column name="vrKiloCostilla" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="pesoCostilla" sqlType="numeric" precision="15" scale="3" nullable="false" jdbcType="2"/>
+      <column name="unidades" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="costoProducto" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="costoAdtvo" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="vrKiloCarnes2" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="vrKiloCarnes3" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="vrKiloCarnes4" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="Fabricacion_detalleplanilla_pkey" columns="id"/>
       <foreign-key name="planilla_id_refs_codigoPlanilla_9728422d" columns="planilla_id" ref-table="Fabricacion_planilladesposte" ref-schema="public" ref-catalog="" ref-columns="codigoPlanilla" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="producto_id_refs_codigoProducto_702df5f7" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
@@ -22592,6 +22630,62 @@
       <index name="Fabricacion_detalleplanilla_producto_id" unique="false" columns="producto_id"/>
     </table>
     <table name="Fabricacion_detalleplanilla_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Fabricacion_detalletajado" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX2RldGFsbGV0YWphZG9faWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+      <column name="tajado_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoProducto" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="unidades" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="costoKilo" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="Fabricacion_detalletajado_pkey" columns="id"/>
+      <foreign-key name="tajado_id_refs_codigoTajado_6014422d" columns="tajado_id" ref-table="Fabricacion_tajado" ref-schema="public" ref-catalog="" ref-columns="codigoTajado" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="producto_id_refs_codigoProducto_3a33dfa9" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Fabricacion_detalletajado_producto_id" unique="false" columns="producto_id"/>
+      <index name="Fabricacion_detalletajado_tajado_id" unique="false" columns="tajado_id"/>
+    </table>
+    <table name="Fabricacion_detalletajado_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Fabricacion_empacadoapanados" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX2VtcGFjYWRvYXBhbmFkb3NfaWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+      <column name="fechaEmpacado" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="productoAEmpacar_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cantBandejas" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="stikers" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="costobandeja" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoBandeja" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="mod" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="produccion_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="costoKiloChuleta" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoChuelta" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="Fabricacion_empacadoapanados_pkey" columns="id"/>
+      <foreign-key name="produccion_id_refs_id_d43f7c12" columns="produccion_id" ref-table="Fabricacion_procesoapanado" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="productoAEmpacar_id_refs_codigoProducto_1c099f2c" columns="productoAEmpacar_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Fabricacion_empacadoapanados_produccion_id" unique="false" columns="produccion_id"/>
+      <index name="Fabricacion_empacadoapanados_productoAEmpacar_id" unique="false" columns="productoAEmpacar_id"/>
+    </table>
+    <table name="Fabricacion_empacadoapanados_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -22629,7 +22723,6 @@
     <table name="Fabricacion_ensalinado" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="codigoEnsalinado" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX2Vuc2FsaW5hZG9fY29kaWdvRW5zYWxpbmFkb19zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="fechaEnsalinado" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
-      <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="pesoProducto" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="pesoSal" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="pesoPapaina" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
@@ -22637,9 +22730,13 @@
       <column name="pesoProductoDespues" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="costoKilo" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="costoTotal" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="productoEnsalinado_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="estado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="mod" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="Fabricacion_ensalinado_pkey" columns="codigoEnsalinado"/>
-      <foreign-key name="producto_id_refs_codigoProducto_becc82fe" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="Fabricacion_ensalinado_producto_id" unique="false" columns="producto_id"/>
+      <foreign-key name="productoEnsalinado_id_refs_codigoProducto_becc82fe" columns="productoEnsalinado_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Fabricacion_ensalinado_productoEnsalinado_id" unique="false" columns="productoEnsalinado_id"/>
     </table>
     <table name="Fabricacion_ensalinado_codigoEnsalinado_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -22656,18 +22753,47 @@
     <table name="Fabricacion_limpiezaverduras" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX2xpbXBpZXphdmVyZHVyYXNfaWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
       <column name="compra_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="cif" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="mod" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="pesoProducto" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="vrKilo" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="productoLimpiar_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="valorProducto" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="valorTransporte" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="pesoDespues" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <primary-key name="Fabricacion_limpiezaverduras_pkey" columns="id"/>
-      <foreign-key name="compra_id_refs_id_42858d3d" columns="compra_id" ref-table="Inventario_detallecompra" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="producto_id_refs_codigoProducto_d01e2539" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="compra_id_refs_codigoCompra_3a3601d5" columns="compra_id" ref-table="Inventario_compra" ref-schema="public" ref-catalog="" ref-columns="codigoCompra" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="productoLimpiar_id_refs_codigoProducto_d01e2539" columns="productoLimpiar_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="Fabricacion_limpiezaverduras_compra_id" unique="false" columns="compra_id"/>
-      <index name="Fabricacion_limpiezaverduras_producto_id" unique="false" columns="producto_id"/>
+      <index name="Fabricacion_limpiezaverduras_productoLimpiar_id" unique="false" columns="productoLimpiar_id"/>
     </table>
     <table name="Fabricacion_limpiezaverduras_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Fabricacion_menudos" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX21lbnVkb3NfaWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+      <column name="fechaMenudo" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="cantMenudos" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="costoMenudo" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="costoEscaldado" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoPicadillo" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="costoKiloPicadillo" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="mod" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cif" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="Fabricacion_menudos_pkey" columns="id"/>
+    </table>
+    <table name="Fabricacion_menudos_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -22682,14 +22808,43 @@
     <table name="Fabricacion_miga" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="codigoMiga" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX21pZ2FfY29kaWdvTWlnYV9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="cantidadFormulas" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
-      <column name="fechaFabricacion" sqlType="timestamptz" precision="35" scale="6" nullable="false" jdbcType="93"/>
+      <column name="fechaFabricacion" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
       <column name="PesoFormulaMiga" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="costoFormulaMiga" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="costoKiloMigaProcesada" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="mod" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cif" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="Fabricacion_miga_pkey" columns="codigoMiga"/>
       <exported-key name="miga_id_refs_codigoMiga_bb14f627" table="Fabricacion_detallemiga" schema="public" catalog="porkisoftdb" columns="miga_id"/>
     </table>
     <table name="Fabricacion_miga_codigoMiga_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Fabricacion_molida" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX21vbGlkYV9pZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="fechaMolido" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="pesoAmoler" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="productoMolido_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="costoKilo" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="mod" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cif" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="totalMolido" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="costoKiloMolido" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="Fabricacion_molida_pkey" columns="id"/>
+      <foreign-key name="productoMolido_id_refs_codigoProducto_416dc5d9" columns="productoMolido_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Fabricacion_molida_productoMolido_id" unique="false" columns="productoMolido_id"/>
+    </table>
+    <table name="Fabricacion_molida_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -22708,13 +22863,45 @@
       <column name="totalDespostado" sqlType="numeric" precision="13" scale="3" nullable="false" jdbcType="2"/>
       <column name="totalCanal" sqlType="numeric" precision="11" scale="3" nullable="false" jdbcType="2"/>
       <column name="difCanalADespostado" sqlType="numeric" precision="11" scale="3" nullable="false" jdbcType="2"/>
-      <column name="costoProduccionTotal" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="tipoDesposte" sqlType="varchar" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="cif" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="mod" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <primary-key name="Fabricacion_planilladesposte_pkey" columns="codigoPlanilla"/>
       <exported-key name="planilla_id_refs_codigoPlanilla_ffc017ad" table="Fabricacion_canal" schema="public" catalog="porkisoftdb" columns="planilla_id"/>
       <exported-key name="planilla_id_refs_codigoPlanilla_9728422d" table="Fabricacion_detalleplanilla" schema="public" catalog="porkisoftdb" columns="planilla_id"/>
+      <exported-key name="desposteHistorico_id_refs_codigoPlanilla_635b4986" table="Fabricacion_tajado" schema="public" catalog="porkisoftdb" columns="desposteHistorico_id"/>
     </table>
     <table name="Fabricacion_planilladesposte_codigoPlanilla_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Fabricacion_procesoapanado" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX3Byb2Nlc29hcGFuYWRvX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+      <column name="huevos" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="miga" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="pesoFilete" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="totalApanado" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="costoKiloApanado" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="fechaApanado" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="productoApanado_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="mod" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cif" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="Fabricacion_procesoapanado_pkey" columns="id"/>
+      <foreign-key name="productoApanado_id_refs_codigoProducto_ba593097" columns="productoApanado_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="produccion_id_refs_id_d43f7c12" table="Fabricacion_empacadoapanados" schema="public" catalog="porkisoftdb" columns="produccion_id"/>
+      <index name="Fabricacion_procesoapanado_productoApanado_id" unique="false" columns="productoApanado_id"/>
+    </table>
+    <table name="Fabricacion_procesoapanado_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -22757,9 +22944,212 @@
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
     </table>
+    <table name="Fabricacion_tajado" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="codigoTajado" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX3RhamFkb19jb2RpZ29UYWphZG9fc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+      <column name="responsable_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="fechaTajado" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="pesoProducto" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="totalTajado" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="costoKiloFilete" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="desposteHistorico_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="cif" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="mod" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="polloHistorico_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="Fabricacion_tajado_pkey" columns="codigoTajado"/>
+      <foreign-key name="desposteHistorico_id_refs_codigoPlanilla_635b4986" columns="desposteHistorico_id" ref-table="Fabricacion_planilladesposte" ref-schema="public" ref-catalog="" ref-columns="codigoPlanilla" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="polloHistorico_id_refs_codigoCompra_48bf708e" columns="polloHistorico_id" ref-table="Inventario_compra" ref-schema="public" ref-catalog="" ref-columns="codigoCompra" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="producto_id_refs_codigoProducto_b720b902" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="responsable_id_refs_codigoEmpleado_b0ec479f" columns="responsable_id" ref-table="Nomina_empleado" ref-schema="public" ref-catalog="" ref-columns="codigoEmpleado" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="tajado_id_refs_codigoTajado_6014422d" table="Fabricacion_detalletajado" schema="public" catalog="porkisoftdb" columns="tajado_id"/>
+      <index name="Fabricacion_tajado_desposteHistorico_id" unique="false" columns="desposteHistorico_id"/>
+      <index name="Fabricacion_tajado_polloHistorico_id" unique="false" columns="polloHistorico_id"/>
+      <index name="Fabricacion_tajado_producto_id" unique="false" columns="producto_id"/>
+      <index name="Fabricacion_tajado_responsable_id" unique="false" columns="responsable_id"/>
+    </table>
+    <table name="Fabricacion_tajado_codigoTajado_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Fabricacion_tallerbolaensalinada" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX3RhbGxlcmJvbGFlbnNhbGluYWRhX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+      <column name="fechaBolaCondimentada" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="pesoBola" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="sal" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="papaina" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="pesoTotal" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="costoKiloEns" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="pesoDespues" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="puntoBodega_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="Fabricacion_tallerbolaensalinada_pkey" columns="id"/>
+      <foreign-key name="puntoBodega_id_refs_codigoBodega_a84526ef" columns="puntoBodega_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Fabricacion_tallerbolaensalinada_puntoBodega_id" unique="false" columns="puntoBodega_id"/>
+    </table>
+    <table name="Fabricacion_tallerbolaensalinada_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Fabricacion_tallercarnecondimentada" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX3RhbGxlcmNhcm5lY29uZGltZW50YWRhX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+      <column name="fechaCarCond" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="pesoProducto" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="condimento" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="productoCond_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoTotalCond" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="costoKiloCond" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="puntoCond_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="Fabricacion_tallercarnecondimentada_pkey" columns="id"/>
+      <foreign-key name="puntoCond_id_refs_codigoBodega_ea1c3309" columns="puntoCond_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="productoCond_id_refs_codigoProducto_7ef4870f" columns="productoCond_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Fabricacion_tallercarnecondimentada_productoCond_id" unique="false" columns="productoCond_id"/>
+      <index name="Fabricacion_tallercarnecondimentada_puntoCond_id" unique="false" columns="puntoCond_id"/>
+    </table>
+    <table name="Fabricacion_tallercarnecondimentada_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Fabricacion_tallerchicharron" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX3RhbGxlcmNoaWNoYXJyb25faWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+      <column name="fechaChicharron" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="Tocino" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="Sal" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="undGrasa" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="undChicharron" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="chicharron" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="grasa" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="costoUndChicharron" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="costoUndGrasa" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="mod" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cif" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="productoCh_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="Fabricacion_tallerchicharron_pkey" columns="id"/>
+      <foreign-key name="productoCh_id_refs_codigoProducto_a90fbd9a" columns="productoCh_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Fabricacion_tallerchicharron_productoCh_id" unique="false" columns="productoCh_id"/>
+    </table>
+    <table name="Fabricacion_tallerchicharron_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Fabricacion_tallercroquetas" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX3RhbGxlcmNyb3F1ZXRhc19pZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="fechaCroqueta" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="condimento" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="miga" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="puntoCroq_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="croqueta" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="pesoTotalCroqueta" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="costoKiloCroqueta" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="Fabricacion_tallercroquetas_pkey" columns="id"/>
+      <foreign-key name="puntoCroq_id_refs_codigoBodega_35ef3a75" columns="puntoCroq_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Fabricacion_tallercroquetas_puntoCroq_id" unique="false" columns="puntoCroq_id"/>
+    </table>
+    <table name="Fabricacion_tallercroquetas_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Fabricacion_tallerfrito" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX3RhbGxlcmZyaXRvX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+      <column name="fechaFrito" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="productoFrito_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoProducto" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="condimento" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="pesoTotalFrito" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="costoKiloFrito" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="punto_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="Fabricacion_tallerfrito_pkey" columns="id"/>
+      <foreign-key name="punto_id_refs_codigoBodega_77851092" columns="punto_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="productoFrito_id_refs_codigoProducto_3a141d2d" columns="productoFrito_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Fabricacion_tallerfrito_productoFrito_id" unique="false" columns="productoFrito_id"/>
+      <index name="Fabricacion_tallerfrito_punto_id" unique="false" columns="punto_id"/>
+    </table>
+    <table name="Fabricacion_tallerfrito_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Fabricacion_tallerreapanado" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX3RhbGxlcnJlYXBhbmFkb19pZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="fechaReApanado" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="pesoChuleta" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="miga" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="chuelta_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="puntoReApanado_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoTotalReApanado" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="Fabricacion_tallerreapanado_pkey" columns="id"/>
+      <foreign-key name="puntoReApanado_id_refs_codigoBodega_6cdf2b77" columns="puntoReApanado_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="chuelta_id_refs_codigoProducto_8ca05dc2" columns="chuelta_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Fabricacion_tallerreapanado_chuelta_id" unique="false" columns="chuelta_id"/>
+      <index name="Fabricacion_tallerreapanado_puntoReApanado_id" unique="false" columns="puntoReApanado_id"/>
+    </table>
+    <table name="Fabricacion_tallerreapanado_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
     <table name="Fabricacion_valorescostos" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="codigoCosto" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkZhYnJpY2FjaW9uX3ZhbG9yZXNjb3N0b3NfY29kaWdvQ29zdG9fc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
-      <column name="nombreCosto" sqlType="varchar" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="nombreCosto" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
       <column name="fecha" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
       <column name="valorCif" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="valorMod" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -22778,17 +23168,60 @@
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
     </table>
+    <table name="Inventario_ajustes" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkludmVudGFyaW9fYWp1c3Rlc19pZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="fechaAjuste" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="productoAjuste_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="bodegaAjuste_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoAjuste" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="observacion" sqlType="text" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="unidades" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="cantidadActual" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="sumar" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="restar" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="unidadActual" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <primary-key name="Inventario_ajustes_pkey" columns="id"/>
+      <foreign-key name="bodegaAjuste_id_refs_codigoBodega_ba211c6f" columns="bodegaAjuste_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="productoAjuste_id_refs_codigoProducto_2880e489" columns="productoAjuste_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Inventario_ajustes_bodegaAjuste_id" unique="false" columns="bodegaAjuste_id"/>
+      <index name="Inventario_ajustes_productoAjuste_id" unique="false" columns="productoAjuste_id"/>
+    </table>
+    <table name="Inventario_ajustes_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
     <table name="Inventario_bodega" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="codigoBodega" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkludmVudGFyaW9fYm9kZWdhX2NvZGlnb0JvZGVnYV9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="nombreBodega" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
       <column name="direccionBodega" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
       <column name="telefonoBodega" sqlType="varchar" precision="10" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="Inventario_bodega_pkey" columns="codigoBodega"/>
+      <exported-key name="puntoConversion_id_refs_codigoBodega_bc94cd05" table="Fabricacion_conversiones" schema="public" catalog="porkisoftdb" columns="puntoConversion_id"/>
+      <exported-key name="puntoBodega_id_refs_codigoBodega_a84526ef" table="Fabricacion_tallerbolaensalinada" schema="public" catalog="porkisoftdb" columns="puntoBodega_id"/>
+      <exported-key name="puntoCond_id_refs_codigoBodega_ea1c3309" table="Fabricacion_tallercarnecondimentada" schema="public" catalog="porkisoftdb" columns="puntoCond_id"/>
+      <exported-key name="puntoCroq_id_refs_codigoBodega_35ef3a75" table="Fabricacion_tallercroquetas" schema="public" catalog="porkisoftdb" columns="puntoCroq_id"/>
+      <exported-key name="punto_id_refs_codigoBodega_77851092" table="Fabricacion_tallerfrito" schema="public" catalog="porkisoftdb" columns="punto_id"/>
+      <exported-key name="puntoReApanado_id_refs_codigoBodega_6cdf2b77" table="Fabricacion_tallerreapanado" schema="public" catalog="porkisoftdb" columns="puntoReApanado_id"/>
+      <exported-key name="bodegaAjuste_id_refs_codigoBodega_ba211c6f" table="Inventario_ajustes" schema="public" catalog="porkisoftdb" columns="bodegaAjuste_id"/>
+      <exported-key name="bodegaCompra_id_refs_codigoBodega_6a5dde73" table="Inventario_compra" schema="public" catalog="porkisoftdb" columns="bodegaCompra_id"/>
+      <exported-key name="bodegaFaltante_id_refs_codigoBodega_253be0b3" table="Inventario_faltantes" schema="public" catalog="porkisoftdb" columns="bodegaFaltante_id"/>
       <exported-key name="bodega_id_refs_codigoBodega_d3100edf" table="Inventario_productobodega" schema="public" catalog="porkisoftdb" columns="bodega_id"/>
       <exported-key name="bodega_id_refs_codigoBodega_f80353b1" table="Inventario_subproductobodega" schema="public" catalog="porkisoftdb" columns="bodega_id"/>
       <exported-key name="bodegaActual_id_refs_codigoBodega_691913c4" table="Inventario_traslado" schema="public" catalog="porkisoftdb" columns="bodegaActual_id"/>
+      <exported-key name="punto_id_refs_codigoBodega_d20c2267" table="Nomina_empleado" schema="public" catalog="porkisoftdb" columns="punto_id"/>
+      <exported-key name="bodega_id_refs_codigoBodega_efa0b148" table="Ventas_configuracionpuntos" schema="public" catalog="porkisoftdb" columns="bodega_id"/>
       <exported-key name="bodega_id_refs_codigoBodega_d7725285" table="Ventas_pedido" schema="public" catalog="porkisoftdb" columns="bodega_id"/>
       <exported-key name="bodega_id_refs_codigoBodega_0fac73ec" table="Ventas_venta" schema="public" catalog="porkisoftdb" columns="bodega_id"/>
+      <exported-key name="puntoVenta_id_refs_codigoBodega_df4572fc" table="Ventas_ventapunto" schema="public" catalog="porkisoftdb" columns="puntoVenta_id"/>
     </table>
     <table name="Inventario_bodega_codigoBodega_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -22805,19 +23238,22 @@
     <table name="Inventario_compra" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="codigoCompra" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkludmVudGFyaW9fY29tcHJhX2NvZGlnb0NvbXByYV9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="tipo_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="encargado_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="proveedor_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="fechaCompra" sqlType="date" precision="13" scale="0" nullable="true" jdbcType="91"/>
       <column name="vrCompra" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="vrTransporte" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="bodegaCompra_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cantCabezas" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="Inventario_compra_pkey" columns="codigoCompra"/>
+      <foreign-key name="bodegaCompra_id_refs_codigoBodega_6a5dde73" columns="bodegaCompra_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="tipo_id_refs_id_011e3042" columns="tipo_id" ref-table="Inventario_grupo" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="proveedor_id_refs_codigoProveedor_6580f1ae" columns="proveedor_id" ref-table="Inventario_proveedor" ref-schema="public" ref-catalog="" ref-columns="codigoProveedor" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="encargado_id_refs_codigoEmpleado_2519a09f" columns="encargado_id" ref-table="Nomina_empleado" ref-schema="public" ref-catalog="" ref-columns="codigoEmpleado" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="compra_id_refs_codigoCompra_3a3601d5" table="Fabricacion_limpiezaverduras" schema="public" catalog="porkisoftdb" columns="compra_id"/>
+      <exported-key name="polloHistorico_id_refs_codigoCompra_48bf708e" table="Fabricacion_tajado" schema="public" catalog="porkisoftdb" columns="polloHistorico_id"/>
       <exported-key name="compra_id_refs_codigoCompra_92bfe8e9" table="Inventario_detallecompra" schema="public" catalog="porkisoftdb" columns="compra_id"/>
       <exported-key name="compra_id_refs_codigoCompra_25ba25fd" table="Inventario_ganado" schema="public" catalog="porkisoftdb" columns="compra_id"/>
       <exported-key name="compra_id_refs_codigoCompra_9882a087" table="Inventario_planillarecepcion" schema="public" catalog="porkisoftdb" columns="compra_id"/>
-      <index name="Inventario_compra_encargado_id" unique="false" columns="encargado_id"/>
+      <index name="Inventario_compra_bodegaCompra_id" unique="false" columns="bodegaCompra_id"/>
       <index name="Inventario_compra_proveedor_id" unique="false" columns="proveedor_id"/>
       <index name="Inventario_compra_tipo_id" unique="false" columns="tipo_id"/>
     </table>
@@ -22843,16 +23279,44 @@
       <column name="vrCompraProducto" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="subtotal" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="estado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="pesoDescongelado" sqlType="numeric" precision="15" scale="3" nullable="true" jdbcType="2"/>
+      <column name="vrKiloDescongelado" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="Inventario_detallecompra_pkey" columns="id"/>
       <foreign-key name="compra_id_refs_codigoCompra_92bfe8e9" columns="compra_id" ref-table="Inventario_compra" ref-schema="public" ref-catalog="" ref-columns="codigoCompra" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="ganado_id_refs_codigoGanado_e7683698" columns="ganado_id" ref-table="Inventario_ganado" ref-schema="public" ref-catalog="" ref-columns="codigoGanado" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="producto_id_refs_codigoProducto_8a002381" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="compra_id_refs_id_42858d3d" table="Fabricacion_limpiezaverduras" schema="public" catalog="porkisoftdb" columns="compra_id"/>
       <index name="Inventario_detallecompra_compra_id" unique="false" columns="compra_id"/>
       <index name="Inventario_detallecompra_ganado_id" unique="false" columns="ganado_id"/>
       <index name="Inventario_detallecompra_producto_id" unique="false" columns="producto_id"/>
     </table>
     <table name="Inventario_detallecompra_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Inventario_detallefaltantes" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkludmVudGFyaW9fZGV0YWxsZWZhbHRhbnRlc19pZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="faltante_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="productoFaltante_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoActual" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="unidadActual" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="pesoFisico" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="unidadFisica" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="diferencia" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <primary-key name="Inventario_detallefaltantes_pkey" columns="id"/>
+      <foreign-key name="faltante_id_refs_id_66bc1552" columns="faltante_id" ref-table="Inventario_faltantes" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="productoFaltante_id_refs_codigoProducto_50671e33" columns="productoFaltante_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Inventario_detallefaltantes_faltante_id" unique="false" columns="faltante_id"/>
+      <index name="Inventario_detallefaltantes_productoFaltante_id" unique="false" columns="productoFaltante_id"/>
+    </table>
+    <table name="Inventario_detallefaltantes_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -22891,18 +23355,18 @@
     <table name="Inventario_detalletraslado" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkludmVudGFyaW9fZGV0YWxsZXRyYXNsYWRvX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="traslado_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="SubProducto_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="pesoTraslado" sqlType="numeric" precision="9" scale="3" nullable="true" jdbcType="2"/>
       <column name="unidadesTraslado" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="pesoEnvio" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="pesoLlegada" sqlType="numeric" precision="9" scale="3" nullable="true" jdbcType="2"/>
+      <column name="productoTraslado_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="Inventario_detalletraslado_pkey" columns="id"/>
-      <foreign-key name="producto_id_refs_codigoProducto_6b747f0b" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="productoTraslado_id_refs_codigoProducto_6b747f0b" columns="productoTraslado_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="SubProducto_id_refs_codigoSubProducto_bc5b232d" columns="SubProducto_id" ref-table="Inventario_subproducto" ref-schema="public" ref-catalog="" ref-columns="codigoSubProducto" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="traslado_id_refs_codigoTraslado_df42ed12" columns="traslado_id" ref-table="Inventario_traslado" ref-schema="public" ref-catalog="" ref-columns="codigoTraslado" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="Inventario_detalletraslado_SubProducto_id" unique="false" columns="SubProducto_id"/>
-      <index name="Inventario_detalletraslado_producto_id" unique="false" columns="producto_id"/>
+      <index name="Inventario_detalletraslado_productoTraslado_id" unique="false" columns="productoTraslado_id"/>
       <index name="Inventario_detalletraslado_traslado_id" unique="false" columns="traslado_id"/>
     </table>
     <table name="Inventario_detalletraslado_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
@@ -22917,14 +23381,36 @@
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
     </table>
+    <table name="Inventario_faltantes" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkludmVudGFyaW9fZmFsdGFudGVzX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+      <column name="fechaFaltante" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="bodegaFaltante_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="Inventario_faltantes_pkey" columns="id"/>
+      <foreign-key name="bodegaFaltante_id_refs_codigoBodega_253be0b3" columns="bodegaFaltante_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="faltante_id_refs_id_66bc1552" table="Inventario_detallefaltantes" schema="public" catalog="porkisoftdb" columns="faltante_id"/>
+      <index name="Inventario_faltantes_bodegaFaltante_id" unique="false" columns="bodegaFaltante_id"/>
+    </table>
+    <table name="Inventario_faltantes_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
     <table name="Inventario_ganado" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="codigoGanado" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkludmVudGFyaW9fZ2FuYWRvX2NvZGlnb0dhbmFkb19zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
-      <column name="piel" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="pesoEnPie" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="precioKiloEnPie" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="precioTotal" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="fechaIngreso" sqlType="date" precision="13" scale="0" nullable="true" jdbcType="91"/>
       <column name="compra_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="TotalpesoEnPie" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <primary-key name="Inventario_ganado_pkey" columns="codigoGanado"/>
       <foreign-key name="compra_id_refs_codigoCompra_25ba25fd" columns="compra_id" ref-table="Inventario_compra" ref-schema="public" ref-catalog="" ref-columns="codigoCompra" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="ganado_id_refs_codigoGanado_e7683698" table="Inventario_detallecompra" schema="public" catalog="porkisoftdb" columns="ganado_id"/>
@@ -22963,10 +23449,35 @@
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
     </table>
+    <table name="Inventario_movimientos" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkludmVudGFyaW9fbW92aW1pZW50b3NfaWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+      <column name="tipo" sqlType="varchar" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="fechaMov" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="productoMov_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="entrada" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="salida" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="desde" sqlType="varchar" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Hasta" sqlType="varchar" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="nombreProd" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="Inventario_movimientos_pkey" columns="id"/>
+      <foreign-key name="productoMov_id_refs_codigoProducto_23a61de1" columns="productoMov_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Inventario_movimientos_productoMov_id" unique="false" columns="productoMov_id"/>
+    </table>
+    <table name="Inventario_movimientos_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
     <table name="Inventario_planillarecepcion" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="codigoRecepcion" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkludmVudGFyaW9fcGxhbmlsbGFyZWNlcGNpb25fY29kaWdvUmVjZXBjaW9uX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="compra_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="empleado_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="tipoGanado" sqlType="varchar" precision="11" scale="0" nullable="false" jdbcType="12"/>
       <column name="fechaRecepcion" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
       <column name="cantCabezas" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -22974,14 +23485,14 @@
       <column name="transporte" sqlType="varchar" precision="11" scale="0" nullable="false" jdbcType="12"/>
       <column name="difPieCanal" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
       <column name="pesoCanales" sqlType="numeric" precision="9" scale="3" nullable="false" jdbcType="2"/>
+      <column name="vrKiloCanal" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="vrTransporte" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="Inventario_planillarecepcion_pkey" columns="codigoRecepcion"/>
       <foreign-key name="compra_id_refs_codigoCompra_9882a087" columns="compra_id" ref-table="Inventario_compra" ref-schema="public" ref-catalog="" ref-columns="codigoCompra" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="provedor_id_refs_codigoProveedor_77f036c1" columns="provedor_id" ref-table="Inventario_proveedor" ref-schema="public" ref-catalog="" ref-columns="codigoProveedor" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="empleado_id_refs_codigoEmpleado_d6fc0b7e" columns="empleado_id" ref-table="Nomina_empleado" ref-schema="public" ref-catalog="" ref-columns="codigoEmpleado" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="recepcion_id_refs_codigoRecepcion_7e737a50" table="Fabricacion_canal" schema="public" catalog="porkisoftdb" columns="recepcion_id"/>
       <exported-key name="recepcion_id_refs_codigoRecepcion_c2ce7df1" table="Fabricacion_sacrificio" schema="public" catalog="porkisoftdb" columns="recepcion_id"/>
       <index name="Inventario_planillarecepcion_compra_id" unique="false" columns="compra_id"/>
-      <index name="Inventario_planillarecepcion_empleado_id" unique="false" columns="empleado_id"/>
       <index name="Inventario_planillarecepcion_provedor_id" unique="false" columns="provedor_id"/>
     </table>
     <table name="Inventario_planillarecepcion_codigoRecepcion_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
@@ -22999,32 +23510,45 @@
     <table name="Inventario_producto" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="codigoProducto" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkludmVudGFyaW9fcHJvZHVjdG9fY29kaWdvUHJvZHVjdG9fc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
       <column name="grupo_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="porcentajeCalidad" sqlType="numeric" precision="5" scale="2" nullable="false" jdbcType="2"/>
       <column name="nombreProducto" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
       <column name="costoProducto" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="vrVentaProducto" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="gravado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="excento" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="excluido" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="precioSugerido" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="gravado2" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="numeroProducto" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <primary-key name="Inventario_producto_pkey" columns="codigoProducto"/>
       <foreign-key name="grupo_id_refs_id_1a3e897d" columns="grupo_id" ref-table="Inventario_grupo" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="producto_id_refs_codigoProducto_02c94d95" table="Fabricacion_apanado" schema="public" catalog="porkisoftdb" columns="producto_id"/>
-      <exported-key name="producto_id_refs_codigoProducto_337c9d9c" table="Fabricacion_condimentadotajado" schema="public" catalog="porkisoftdb" columns="producto_id"/>
-      <exported-key name="producto_id_refs_codigoProducto_1824370e" table="Fabricacion_condimentadotajadopechuga" schema="public" catalog="porkisoftdb" columns="producto_id"/>
-      <exported-key name="producto_id_refs_codigoProducto_6ff2e0e0" table="Fabricacion_detallecondimento" schema="public" catalog="porkisoftdb" columns="producto_id"/>
+      <exported-key name="producto_id_refs_codigoProducto_36c6a3e7" table="Fabricacion_condimentado" schema="public" catalog="porkisoftdb" columns="producto_id"/>
+      <exported-key name="productoCondimento_id_refs_codigoProducto_6ff2e0e0" table="Fabricacion_detallecondimento" schema="public" catalog="porkisoftdb" columns="productoCondimento_id"/>
       <exported-key name="producto_id_refs_codigoProducto_b42f03ce" table="Fabricacion_detalleenlagunado" schema="public" catalog="porkisoftdb" columns="producto_id"/>
-      <exported-key name="producto_id_refs_codigoProducto_0bb34a4a" table="Fabricacion_detallemiga" schema="public" catalog="porkisoftdb" columns="producto_id"/>
+      <exported-key name="productoMiga_id_refs_codigoProducto_0bb34a4a" table="Fabricacion_detallemiga" schema="public" catalog="porkisoftdb" columns="productoMiga_id"/>
       <exported-key name="producto_id_refs_codigoProducto_702df5f7" table="Fabricacion_detalleplanilla" schema="public" catalog="porkisoftdb" columns="producto_id"/>
+      <exported-key name="producto_id_refs_codigoProducto_3a33dfa9" table="Fabricacion_detalletajado" schema="public" catalog="porkisoftdb" columns="producto_id"/>
+      <exported-key name="productoAEmpacar_id_refs_codigoProducto_1c099f2c" table="Fabricacion_empacadoapanados" schema="public" catalog="porkisoftdb" columns="productoAEmpacar_id"/>
       <exported-key name="producto_id_refs_codigoProducto_ab761b64" table="Fabricacion_enlagunado" schema="public" catalog="porkisoftdb" columns="producto_id"/>
-      <exported-key name="producto_id_refs_codigoProducto_becc82fe" table="Fabricacion_ensalinado" schema="public" catalog="porkisoftdb" columns="producto_id"/>
-      <exported-key name="producto_id_refs_codigoProducto_d01e2539" table="Fabricacion_limpiezaverduras" schema="public" catalog="porkisoftdb" columns="producto_id"/>
+      <exported-key name="productoEnsalinado_id_refs_codigoProducto_becc82fe" table="Fabricacion_ensalinado" schema="public" catalog="porkisoftdb" columns="productoEnsalinado_id"/>
+      <exported-key name="productoLimpiar_id_refs_codigoProducto_d01e2539" table="Fabricacion_limpiezaverduras" schema="public" catalog="porkisoftdb" columns="productoLimpiar_id"/>
+      <exported-key name="productoMolido_id_refs_codigoProducto_416dc5d9" table="Fabricacion_molida" schema="public" catalog="porkisoftdb" columns="productoMolido_id"/>
+      <exported-key name="productoApanado_id_refs_codigoProducto_ba593097" table="Fabricacion_procesoapanado" schema="public" catalog="porkisoftdb" columns="productoApanado_id"/>
+      <exported-key name="producto_id_refs_codigoProducto_b720b902" table="Fabricacion_tajado" schema="public" catalog="porkisoftdb" columns="producto_id"/>
+      <exported-key name="productoCond_id_refs_codigoProducto_7ef4870f" table="Fabricacion_tallercarnecondimentada" schema="public" catalog="porkisoftdb" columns="productoCond_id"/>
+      <exported-key name="productoCh_id_refs_codigoProducto_a90fbd9a" table="Fabricacion_tallerchicharron" schema="public" catalog="porkisoftdb" columns="productoCh_id"/>
+      <exported-key name="productoFrito_id_refs_codigoProducto_3a141d2d" table="Fabricacion_tallerfrito" schema="public" catalog="porkisoftdb" columns="productoFrito_id"/>
+      <exported-key name="chuelta_id_refs_codigoProducto_8ca05dc2" table="Fabricacion_tallerreapanado" schema="public" catalog="porkisoftdb" columns="chuelta_id"/>
+      <exported-key name="productoAjuste_id_refs_codigoProducto_2880e489" table="Inventario_ajustes" schema="public" catalog="porkisoftdb" columns="productoAjuste_id"/>
       <exported-key name="producto_id_refs_codigoProducto_8a002381" table="Inventario_detallecompra" schema="public" catalog="porkisoftdb" columns="producto_id"/>
+      <exported-key name="productoFaltante_id_refs_codigoProducto_50671e33" table="Inventario_detallefaltantes" schema="public" catalog="porkisoftdb" columns="productoFaltante_id"/>
       <exported-key name="producto_id_refs_codigoProducto_3a7c2a0c" table="Inventario_detallesubproducto" schema="public" catalog="porkisoftdb" columns="producto_id"/>
-      <exported-key name="producto_id_refs_codigoProducto_6b747f0b" table="Inventario_detalletraslado" schema="public" catalog="porkisoftdb" columns="producto_id"/>
+      <exported-key name="productoTraslado_id_refs_codigoProducto_6b747f0b" table="Inventario_detalletraslado" schema="public" catalog="porkisoftdb" columns="productoTraslado_id"/>
+      <exported-key name="productoMov_id_refs_codigoProducto_23a61de1" table="Inventario_movimientos" schema="public" catalog="porkisoftdb" columns="productoMov_id"/>
       <exported-key name="producto_id_refs_codigoProducto_2edbae59" table="Inventario_productobodega" schema="public" catalog="porkisoftdb" columns="producto_id"/>
+      <exported-key name="productoDev_id_refs_codigoProducto_ecce8b49" table="Ventas_detalledevolucion" schema="public" catalog="porkisoftdb" columns="productoDev_id"/>
+      <exported-key name="productoLista_id_refs_codigoProducto_241fcba5" table="Ventas_detallelista" schema="public" catalog="porkisoftdb" columns="productoLista_id"/>
       <exported-key name="producto_id_refs_codigoProducto_1968295d" table="Ventas_detallepedido" schema="public" catalog="porkisoftdb" columns="producto_id"/>
-      <exported-key name="producto_id_refs_codigoProducto_b73d27b9" table="Ventas_detalleventa" schema="public" catalog="porkisoftdb" columns="producto_id"/>
+      <exported-key name="productoVenta_id_refs_codigoProducto_b73d27b9" table="Ventas_detalleventa" schema="public" catalog="porkisoftdb" columns="productoVenta_id"/>
+      <exported-key name="productoVenta_id_refs_codigoProducto_05333b27" table="Ventas_detalleventapunto" schema="public" catalog="porkisoftdb" columns="productoVenta_id"/>
       <index name="Inventario_producto_grupo_id" unique="false" columns="grupo_id"/>
     </table>
     <table name="Inventario_producto_codigoProducto_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
@@ -23043,9 +23567,10 @@
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkludmVudGFyaW9fcHJvZHVjdG9ib2RlZ2FfaWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
       <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="bodega_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="pesoProductoStock" sqlType="numeric" precision="9" scale="2" nullable="false" jdbcType="2"/>
+      <column name="pesoProductoStock" sqlType="numeric" precision="15" scale="2" nullable="false" jdbcType="2"/>
       <column name="pesoProductoKilos" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="unidadesStock" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="nombreProducto" sqlType="varchar" precision="100" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="Inventario_productobodega_pkey" columns="id"/>
       <foreign-key name="bodega_id_refs_codigoBodega_d3100edf" columns="bodega_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="producto_id_refs_codigoProducto_2edbae59" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
@@ -23107,7 +23632,6 @@
       <exported-key name="SubProducto_id_refs_codigoSubProducto_bc5b232d" table="Inventario_detalletraslado" schema="public" catalog="porkisoftdb" columns="SubProducto_id"/>
       <exported-key name="subProducto_id_refs_codigoSubProducto_91d0c404" table="Inventario_subproductobodega" schema="public" catalog="porkisoftdb" columns="subProducto_id"/>
       <exported-key name="subproducto_id_refs_codigoSubProducto_a45c706f" table="Ventas_detallepedido" schema="public" catalog="porkisoftdb" columns="subproducto_id"/>
-      <exported-key name="subproducto_id_refs_codigoSubProducto_bab81477" table="Ventas_detalleventa" schema="public" catalog="porkisoftdb" columns="subproducto_id"/>
     </table>
     <table name="Inventario_subproducto_codigoSubProducto_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -23148,16 +23672,14 @@
       <column name="codigoTraslado" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkludmVudGFyaW9fdHJhc2xhZG9fY29kaWdvVHJhc2xhZG9fc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
       <column name="bodegaActual_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="bodegaDestino" sqlType="varchar" precision="20" scale="0" nullable="false" jdbcType="12"/>
-      <column name="empleado_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="fechaTraslado" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
       <column name="estadoTraslado" sqlType="varchar" precision="9" scale="0" nullable="false" jdbcType="12"/>
       <column name="descripcionTraslado" sqlType="text" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <primary-key name="Inventario_traslado_pkey" columns="codigoTraslado"/>
       <foreign-key name="bodegaActual_id_refs_codigoBodega_691913c4" columns="bodegaActual_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="empleado_id_refs_codigoEmpleado_1bfaaca2" columns="empleado_id" ref-table="Nomina_empleado" ref-schema="public" ref-catalog="" ref-columns="codigoEmpleado" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="traslado_id_refs_codigoTraslado_df42ed12" table="Inventario_detalletraslado" schema="public" catalog="porkisoftdb" columns="traslado_id"/>
       <index name="Inventario_traslado_bodegaActual_id" unique="false" columns="bodegaActual_id"/>
-      <index name="Inventario_traslado_empleado_id" unique="false" columns="empleado_id"/>
     </table>
     <table name="Inventario_traslado_codigoTraslado_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -23196,14 +23718,20 @@
       <column name="direccion" sqlType="varchar" precision="100" scale="0" nullable="false" jdbcType="12"/>
       <column name="telefono" sqlType="varchar" precision="10" scale="0" nullable="false" jdbcType="12"/>
       <column name="cargo_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="usuario" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="punto_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="Nomina_empleado_pkey" columns="codigoEmpleado"/>
+      <foreign-key name="punto_id_refs_codigoBodega_d20c2267" columns="punto_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="cargo_id_refs_codigoCargo_d0ac2771" columns="cargo_id" ref-table="Nomina_cargo" ref-schema="public" ref-catalog="" ref-columns="codigoCargo" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="encargado_id_refs_codigoEmpleado_2519a09f" table="Inventario_compra" schema="public" catalog="porkisoftdb" columns="encargado_id"/>
-      <exported-key name="empleado_id_refs_codigoEmpleado_d6fc0b7e" table="Inventario_planillarecepcion" schema="public" catalog="porkisoftdb" columns="empleado_id"/>
-      <exported-key name="empleado_id_refs_codigoEmpleado_1bfaaca2" table="Inventario_traslado" schema="public" catalog="porkisoftdb" columns="empleado_id"/>
+      <exported-key name="responsable_id_refs_codigoEmpleado_b0ec479f" table="Fabricacion_tajado" schema="public" catalog="porkisoftdb" columns="responsable_id"/>
+      <exported-key name="encargado_id_refs_codigoEmpleado_fb4a3219" table="Ventas_caja" schema="public" catalog="porkisoftdb" columns="encargado_id"/>
+      <exported-key name="cajero_id_refs_codigoEmpleado_a201684a" table="Ventas_configuracionpuntos" schema="public" catalog="porkisoftdb" columns="cajero_id"/>
+      <exported-key name="encargado_id_refs_codigoEmpleado_395d106a" table="Ventas_devolucion" schema="public" catalog="porkisoftdb" columns="encargado_id"/>
       <exported-key name="empleado_id_refs_codigoEmpleado_fbb030cf" table="Ventas_pedido" schema="public" catalog="porkisoftdb" columns="empleado_id"/>
-      <exported-key name="empleado_id_refs_codigoEmpleado_db2317fb" table="Ventas_venta" schema="public" catalog="porkisoftdb" columns="empleado_id"/>
+      <exported-key name="encargado_id_refs_codigoEmpleado_01cbd97c" table="Ventas_retiros" schema="public" catalog="porkisoftdb" columns="encargado_id"/>
+      <exported-key name="encargado_id_refs_codigoEmpleado_754c41a6" table="Ventas_ventapunto" schema="public" catalog="porkisoftdb" columns="encargado_id"/>
       <index name="Nomina_empleado_cargo_id" unique="false" columns="cargo_id"/>
+      <index name="Nomina_empleado_punto_id" unique="false" columns="punto_id"/>
     </table>
     <table name="Telemercadeo_cliente" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="codigoCliente" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlRlbGVtZXJjYWRlb19jbGllbnRlX2NvZGlnb0NsaWVudGVfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
@@ -23213,9 +23741,113 @@
       <column name="nit" sqlType="varchar" precision="15" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="Telemercadeo_cliente_pkey" columns="codigoCliente"/>
       <exported-key name="cliente_id_refs_codigoCliente_5b58295d" table="Ventas_pedido" schema="public" catalog="porkisoftdb" columns="cliente_id"/>
-      <exported-key name="cliente_id_refs_codigoCliente_5e983e15" table="Ventas_venta" schema="public" catalog="porkisoftdb" columns="cliente_id"/>
     </table>
     <table name="Telemercadeo_cliente_codigoCliente_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Ventas_caja" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="numeroCaja" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlZlbnRhc19jYWphX251bWVyb0NhamFfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+      <column name="fechaCaja" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="jornada" sqlType="varchar" precision="5" scale="0" nullable="false" jdbcType="12"/>
+      <column name="encargado_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="base" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TotalVenta" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TotalEfectivo" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TotalResiduo" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TotalCaja" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TotalRetiro" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TotalRestaurante" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="Ventas_caja_pkey" columns="numeroCaja"/>
+      <foreign-key name="encargado_id_refs_codigoEmpleado_fb4a3219" columns="encargado_id" ref-table="Nomina_empleado" ref-schema="public" ref-catalog="" ref-columns="codigoEmpleado" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Ventas_caja_encargado_id" unique="false" columns="encargado_id"/>
+    </table>
+    <table name="Ventas_caja_numeroCaja_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Ventas_configuracionpuntos" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlZlbnRhc19jb25maWd1cmFjaW9ucHVudG9zX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+      <column name="fecha" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="nombreConfiguracion" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cajero_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="jornada" sqlType="varchar" precision="5" scale="0" nullable="false" jdbcType="12"/>
+      <column name="inicia" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="actual" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="finaliza" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="consecutivoZ" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="bodega_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="Ventas_configuracionpuntos_pkey" columns="id"/>
+      <foreign-key name="bodega_id_refs_codigoBodega_efa0b148" columns="bodega_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="cajero_id_refs_codigoEmpleado_a201684a" columns="cajero_id" ref-table="Nomina_empleado" ref-schema="public" ref-catalog="" ref-columns="codigoEmpleado" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Ventas_configuracionpuntos_bodega_id" unique="false" columns="bodega_id"/>
+      <index name="Ventas_configuracionpuntos_cajero_id" unique="false" columns="cajero_id"/>
+    </table>
+    <table name="Ventas_configuracionpuntos_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Ventas_detalledevolucion" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlZlbnRhc19kZXRhbGxlZGV2b2x1Y2lvbl9pZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="devolucion_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="productoDev_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoProducto" sqlType="numeric" precision="9" scale="3" nullable="true" jdbcType="2"/>
+      <column name="cantidad" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="Ventas_detalledevolucion_pkey" columns="id"/>
+      <foreign-key name="productoDev_id_refs_codigoProducto_ecce8b49" columns="productoDev_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="devolucion_id_refs_id_d1e5c585" columns="devolucion_id" ref-table="Ventas_devolucion" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Ventas_detalledevolucion_devolucion_id" unique="false" columns="devolucion_id"/>
+      <index name="Ventas_detalledevolucion_productoDev_id" unique="false" columns="productoDev_id"/>
+    </table>
+    <table name="Ventas_detalledevolucion_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Ventas_detallelista" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlZlbnRhc19kZXRhbGxlbGlzdGFfaWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+      <column name="lista_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="productoLista_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="costoKilo" sqlType="numeric" precision="9" scale="3" nullable="true" jdbcType="2"/>
+      <column name="precioVenta" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="Ventas_detallelista_pkey" columns="id"/>
+      <foreign-key name="productoLista_id_refs_codigoProducto_241fcba5" columns="productoLista_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="lista_id_refs_codigoLista_06ca29f5" columns="lista_id" ref-table="Ventas_listadeprecios" ref-schema="public" ref-catalog="" ref-columns="codigoLista" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Ventas_detallelista_lista_id" unique="false" columns="lista_id"/>
+      <index name="Ventas_detallelista_productoLista_id" unique="false" columns="productoLista_id"/>
+    </table>
+    <table name="Ventas_detallelista_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -23232,11 +23864,11 @@
       <column name="pedido_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="subproducto_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="peso" sqlType="numeric" precision="9" scale="3" nullable="true" jdbcType="2"/>
-      <column name="unidades" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="vrUnitario" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="vrTotal" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="estado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="pesoPedido" sqlType="numeric" precision="9" scale="3" nullable="true" jdbcType="2"/>
+      <column name="unidadesPedido" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="vrTotalPedido" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="Ventas_detallepedido_pkey" columns="id"/>
       <foreign-key name="producto_id_refs_codigoProducto_1968295d" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="subproducto_id_refs_codigoSubProducto_a45c706f" columns="subproducto_id" ref-table="Inventario_subproducto" ref-schema="public" ref-catalog="" ref-columns="codigoSubProducto" update-rule="3" delete-rule="3" deferrability="1"/>
@@ -23260,21 +23892,90 @@
     <table name="Ventas_detalleventa" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlZlbnRhc19kZXRhbGxldmVudGFfaWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
       <column name="venta_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="producto_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="subproducto_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="peso" sqlType="numeric" precision="9" scale="3" nullable="true" jdbcType="2"/>
       <column name="unidades" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="vrUnitario" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="vrTotal" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="credito" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="contado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="productoVenta_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="Ventas_detalleventa_pkey" columns="id"/>
-      <foreign-key name="producto_id_refs_codigoProducto_b73d27b9" columns="producto_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="subproducto_id_refs_codigoSubProducto_bab81477" columns="subproducto_id" ref-table="Inventario_subproducto" ref-schema="public" ref-catalog="" ref-columns="codigoSubProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="productoVenta_id_refs_codigoProducto_b73d27b9" columns="productoVenta_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="venta_id_refs_numeroVenta_ebe4c9e8" columns="venta_id" ref-table="Ventas_venta" ref-schema="public" ref-catalog="" ref-columns="numeroVenta" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="Ventas_detalleventa_producto_id" unique="false" columns="producto_id"/>
-      <index name="Ventas_detalleventa_subproducto_id" unique="false" columns="subproducto_id"/>
+      <index name="Ventas_detalleventa_productoVenta_id" unique="false" columns="productoVenta_id"/>
       <index name="Ventas_detalleventa_venta_id" unique="false" columns="venta_id"/>
     </table>
     <table name="Ventas_detalleventa_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Ventas_detalleventapunto" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlZlbnRhc19kZXRhbGxldmVudGFwdW50b19pZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="venta_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="productoVenta_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="unidades" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="vrUnitarioPunto" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="vrTotalPunto" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pesoVentaPunto" sqlType="numeric" precision="9" scale="3" nullable="true" jdbcType="2"/>
+      <primary-key name="Ventas_detalleventapunto_pkey" columns="id"/>
+      <foreign-key name="productoVenta_id_refs_codigoProducto_05333b27" columns="productoVenta_id" ref-table="Inventario_producto" ref-schema="public" ref-catalog="" ref-columns="codigoProducto" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="venta_id_refs_numeroVenta_9d92c37c" columns="venta_id" ref-table="Ventas_ventapunto" ref-schema="public" ref-catalog="" ref-columns="numeroVenta" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Ventas_detalleventapunto_productoVenta_id" unique="false" columns="productoVenta_id"/>
+      <index name="Ventas_detalleventapunto_venta_id" unique="false" columns="venta_id"/>
+    </table>
+    <table name="Ventas_detalleventapunto_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Ventas_devolucion" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlZlbnRhc19kZXZvbHVjaW9uX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+      <column name="fechaDevolucion" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="encargado_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="observacion" sqlType="text" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <primary-key name="Ventas_devolucion_pkey" columns="id"/>
+      <foreign-key name="encargado_id_refs_codigoEmpleado_395d106a" columns="encargado_id" ref-table="Nomina_empleado" ref-schema="public" ref-catalog="" ref-columns="codigoEmpleado" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="devolucion_id_refs_id_d1e5c585" table="Ventas_detalledevolucion" schema="public" catalog="porkisoftdb" columns="devolucion_id"/>
+      <index name="Ventas_devolucion_encargado_id" unique="false" columns="encargado_id"/>
+    </table>
+    <table name="Ventas_devolucion_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Ventas_listadeprecios" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="codigoLista" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlZlbnRhc19saXN0YWRlcHJlY2lvc19jb2RpZ29MaXN0YV9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="fecha" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="nombreLista" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="Ventas_listadeprecios_pkey" columns="codigoLista"/>
+      <exported-key name="lista_id_refs_codigoLista_06ca29f5" table="Ventas_detallelista" schema="public" catalog="porkisoftdb" columns="lista_id"/>
+      <exported-key name="listaPrecioPedido_id_refs_codigoLista_a749135d" table="Ventas_pedido" schema="public" catalog="porkisoftdb" columns="listaPrecioPedido_id"/>
+      <exported-key name="lista_id_refs_codigoLista_a8a05470" table="Ventas_venta" schema="public" catalog="porkisoftdb" columns="lista_id"/>
+    </table>
+    <table name="Ventas_listadeprecios_codigoLista_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -23292,17 +23993,22 @@
       <column name="empleado_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="cliente_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="bodega_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="descuento" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="TotalVenta" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="numeroFactura" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="credito" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="contado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="listaPrecioPedido_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <primary-key name="Ventas_pedido_pkey" columns="numeroPedido"/>
       <foreign-key name="bodega_id_refs_codigoBodega_d7725285" columns="bodega_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="empleado_id_refs_codigoEmpleado_fbb030cf" columns="empleado_id" ref-table="Nomina_empleado" ref-schema="public" ref-catalog="" ref-columns="codigoEmpleado" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="cliente_id_refs_codigoCliente_5b58295d" columns="cliente_id" ref-table="Telemercadeo_cliente" ref-schema="public" ref-catalog="" ref-columns="codigoCliente" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="listaPrecioPedido_id_refs_codigoLista_a749135d" columns="listaPrecioPedido_id" ref-table="Ventas_listadeprecios" ref-schema="public" ref-catalog="" ref-columns="codigoLista" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="pedido_id_refs_numeroPedido_7dd8aff6" table="Ventas_detallepedido" schema="public" catalog="porkisoftdb" columns="pedido_id"/>
       <index name="Ventas_pedido_bodega_id" unique="false" columns="bodega_id"/>
       <index name="Ventas_pedido_cliente_id" unique="false" columns="cliente_id"/>
       <index name="Ventas_pedido_empleado_id" unique="false" columns="empleado_id"/>
+      <index name="Ventas_pedido_listaPrecioPedido_id" unique="false" columns="listaPrecioPedido_id"/>
     </table>
     <table name="Ventas_pedido_numeroPedido_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -23316,24 +24022,84 @@
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
     </table>
+    <table name="Ventas_retiros" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlZlbnRhc19yZXRpcm9zX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+      <column name="fechaRetiro" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="encargado_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cantidad" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="observacion" sqlType="text" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="nombreEncargado" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="jornada" sqlType="varchar" precision="5" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="Ventas_retiros_pkey" columns="id"/>
+      <foreign-key name="encargado_id_refs_codigoEmpleado_01cbd97c" columns="encargado_id" ref-table="Nomina_empleado" ref-schema="public" ref-catalog="" ref-columns="codigoEmpleado" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="Ventas_retiros_encargado_id" unique="false" columns="encargado_id"/>
+    </table>
+    <table name="Ventas_retiros_id_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
     <table name="Ventas_venta" schema="public" catalog="porkisoftdb" type="TABLE">
       <column name="numeroVenta" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlZlbnRhc192ZW50YV9udW1lcm9WZW50YV9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
-      <column name="fechaVenta" sqlType="timestamptz" precision="35" scale="6" nullable="false" jdbcType="93"/>
-      <column name="empleado_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="cliente_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="fechaVenta" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
       <column name="bodega_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="descuento" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="TotalVenta" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TotalCredito" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TotalContado" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="lista_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="TotalRegistradora" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="descuadre" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="residuo" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="efectivo" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="jornada" sqlType="varchar" precision="5" scale="0" nullable="false" jdbcType="12"/>
+      <column name="restaurante" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <primary-key name="Ventas_venta_pkey" columns="numeroVenta"/>
       <foreign-key name="bodega_id_refs_codigoBodega_0fac73ec" columns="bodega_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="empleado_id_refs_codigoEmpleado_db2317fb" columns="empleado_id" ref-table="Nomina_empleado" ref-schema="public" ref-catalog="" ref-columns="codigoEmpleado" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="cliente_id_refs_codigoCliente_5e983e15" columns="cliente_id" ref-table="Telemercadeo_cliente" ref-schema="public" ref-catalog="" ref-columns="codigoCliente" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="lista_id_refs_codigoLista_a8a05470" columns="lista_id" ref-table="Ventas_listadeprecios" ref-schema="public" ref-catalog="" ref-columns="codigoLista" update-rule="3" delete-rule="3" deferrability="1"/>
       <exported-key name="venta_id_refs_numeroVenta_ebe4c9e8" table="Ventas_detalleventa" schema="public" catalog="porkisoftdb" columns="venta_id"/>
       <index name="Ventas_venta_bodega_id" unique="false" columns="bodega_id"/>
-      <index name="Ventas_venta_cliente_id" unique="false" columns="cliente_id"/>
-      <index name="Ventas_venta_empleado_id" unique="false" columns="empleado_id"/>
+      <index name="Ventas_venta_lista_id" unique="false" columns="lista_id"/>
     </table>
     <table name="Ventas_venta_numeroVenta_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
+      <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="increment_by" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="max_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="min_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="cache_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="log_cnt" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+    </table>
+    <table name="Ventas_ventapunto" schema="public" catalog="porkisoftdb" type="TABLE">
+      <column name="numeroVenta" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlZlbnRhc192ZW50YXB1bnRvX251bWVyb1ZlbnRhX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+      <column name="fechaVenta" sqlType="date" precision="13" scale="0" nullable="false" jdbcType="91"/>
+      <column name="TotalVenta" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="restaurante" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="guardado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="factura" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="encargado_id" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="jornada" sqlType="varchar" precision="5" scale="0" nullable="false" jdbcType="12"/>
+      <column name="anulado" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <column name="puntoVenta_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="Ventas_ventapunto_pkey" columns="numeroVenta"/>
+      <foreign-key name="puntoVenta_id_refs_codigoBodega_df4572fc" columns="puntoVenta_id" ref-table="Inventario_bodega" ref-schema="public" ref-catalog="" ref-columns="codigoBodega" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="encargado_id_refs_codigoEmpleado_754c41a6" columns="encargado_id" ref-table="Nomina_empleado" ref-schema="public" ref-catalog="" ref-columns="codigoEmpleado" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="venta_id_refs_numeroVenta_9d92c37c" table="Ventas_detalleventapunto" schema="public" catalog="porkisoftdb" columns="venta_id"/>
+      <index name="Ventas_ventapunto_encargado_id" unique="false" columns="encargado_id"/>
+      <index name="Ventas_ventapunto_puntoVenta_id" unique="false" columns="puntoVenta_id"/>
+    </table>
+    <table name="Ventas_ventapunto_numeroVenta_seq" schema="public" catalog="porkisoftdb" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>

@@ -12,7 +12,7 @@ $(document).on('ready', inicio);
         {
             $('#cobraVenta').hide();
         }
-     /***********************************************************************************/
+    /***********************************************************************************/
     /*var tipo = $('#tipoPedido').text();
     if (tipo == 'Contado')
     {
@@ -115,6 +115,7 @@ $(document).on('ready', inicio);
      $('#listaDePrecios').dataTable();
      $('#TablaMiga').dataTable();
      $('#tablaCaja').dataTable();
+     $('#tablaMenudos').dataTable();
 
      $('#id_fecha').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCompra').datepicker({ dateFormat: "dd/mm/yy" });
