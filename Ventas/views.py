@@ -412,7 +412,10 @@ def CobrarVenta(request):
 
 
 def GestionCaja(request):
-    Cajas = Caja.objects.all()
+    fechainicio = date.today() - timedelta(days=5)
+    fechafin = date.today()
+    Cajas = Caja.objects.filter(fechaCaja__range =(fechainicio,fechafin))
+    #Cajas = Caja.objects.all()
 
     if request.method =='POST':
         formulario = CajaForm(request.POST)

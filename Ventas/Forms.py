@@ -60,9 +60,9 @@ class DetalleVentaPuntoForm(ModelForm):
         q4 = Producto.objects.filter(grupo__nombreGrupo = 'Compra/Venta').filter(numeroProducto__gt = 0).order_by('numeroProducto')
         q5 = Producto.objects.filter(grupo__nombreGrupo = 'Pollos').filter(numeroProducto__gt = 0).order_by('numeroProducto')
 
-        q6 = Producto.objects.filter(nombreProducto = 'Pierna de Cerda').filter(numeroProducto__gt = 0).order_by('numeroProducto')
-        q7 = Producto.objects.filter(nombreProducto = 'Lomo Canon Cerda').filter(numeroProducto__gt = 0).order_by('numeroProducto')
-        q8 = Producto.objects.filter(nombreProducto = 'Picadillo').filter(numeroProducto__gt = 0).order_by('numeroProducto')
+        q6 = Producto.objects.filter(nombreProducto = 'Pierna de Cerda').order_by('numeroProducto')
+        q7 = Producto.objects.filter(nombreProducto = 'Lomo Canon Cerda').order_by('numeroProducto')
+        q8 = Producto.objects.filter(nombreProducto = 'Picadillo').order_by('numeroProducto')
         self.fields['productoVenta'].queryset = q1 | q2 | q4 | q5 | q6 | q7 | q8
 
     class Meta:

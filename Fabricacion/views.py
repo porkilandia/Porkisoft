@@ -3012,10 +3012,12 @@ def ReporteUtilidadPorLote(request):
     idCompra = request.GET.get('idCompra')
     idLista = request.GET.get('idLista')
     compra = Compra.objects.get(pk = int(idCompra))
-    canales = Canal.objects.filter(recepcion__compra = int(idCompra))
+    canales = Canal.objects.filter(recepcion__compra = int(idCompra)).order_by('planilla')
     ListaPesos = {}
     ListaCosto = {}
     ListaVenta = {}
+    costoOperativo = {}
+    costoOperativo['Costo Operativo'] = 0
 
     vrCompra = compra.vrCompra
 
@@ -3027,7 +3029,7 @@ def ReporteUtilidadPorLote(request):
 
     #inicializamos la lista
     for canal in canales:
-        if canal.planilla:
+        if canal.planilla != '':
             detalleDespostes = DetallePlanilla.objects.filter(planilla__codigoPlanilla = canal.planilla.codigoPlanilla)
 
             for detalle in detalleDespostes:
@@ -3036,19 +3038,21 @@ def ReporteUtilidadPorLote(request):
                 ListaVenta[detalle.producto.nombreProducto] = 0
 
 
-
     planillaAnterior = 0
     planillaActual = 0
     cont = 0
     perdidaPC = 0
     for canal in canales:
-        if canal.planilla:
+        if canal.planilla != '':
             planillaActual = canal.planilla.codigoPlanilla
             detalleDespostes = DetallePlanilla.objects.filter(planilla__codigoPlanilla = canal.planilla.codigoPlanilla)
             recepcion = PlanillaRecepcion.objects.get(pk = canal.recepcion.codigoRecepcion)
             perdidaPC = recepcion.difPieCanal
             cont = 0
             if planillaAnterior != planillaActual:
+                print(planillaActual)
+                pln = PlanillaDesposte.objects.get(pk = planillaActual)
+                costoOperativo['Costo Operativo'] += (pln.mod + pln.cif)
                 for detalle in detalleDespostes:
                     ListaPesos[detalle.producto.nombreProducto] += ceil(detalle.PesoProducto)
 
@@ -3068,7 +3072,7 @@ def ReporteUtilidadPorLote(request):
 
     for key ,value in ListaPesos.items():
         producto = Producto.objects.get(nombreProducto = key)
-        ListaVenta[key] = (value /1000) * (producto.costoProducto * 1.30)
+        ListaVenta[key] = (value /1000) * (producto.costoProducto * 1.23)
 
     tocino = 0
 
@@ -3095,7 +3099,10 @@ def ReporteUtilidadPorLote(request):
     compras['Total Compra'] = vrCompra
 
 
-    listas = {'Pesos':ListaPesos,'adicionales':adicionales,'perdida':perdida,'costo':ListaCosto,'compras':compras,'ListaVenta':ListaVenta}
+    listas = {'costoOperativo':costoOperativo,'Pesos':ListaPesos,'adicionales':adicionales,'perdida':perdida,
+              'costo':ListaCosto,'compras':compras,'ListaVenta':ListaVenta}
+
+    print(costoOperativo)
 
 
     respuesta = json.dumps(listas)

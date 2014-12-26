@@ -1074,6 +1074,7 @@ function ReportePesosLote()
     var TotalCompra = 0;
     var perdida = 0;
     var TotalVenta = 0;
+    var modCif = 0;
     var tablaCosto = $("#tablaCostoLote");
 
 
@@ -1154,13 +1155,17 @@ function ReportePesosLote()
                     $.each(respuesta.compras,function(key,value){
                         TotalCompra = value;
                     });
-                    var gananciaEstimada = TotalVenta - TotalCosto;
-                    var costo = TotalCosto - TotalCompra;
+                    $.each(respuesta.costoOperativo,function(key,value){
+                        modCif = value;
+                    });
+
+                    var costo = TotalCompra + modCif;
+                    var gananciaEstimada = TotalVenta - costo;
                     var utilidad = (gananciaEstimada * 100)/TotalVenta;
 
                     tablaCosto.append("<tr><td>" + 'Total Compra' + "</td><td style='text-align: right' >" +'$ '+ TotalCompra + "</td></tr>");
-                    tablaCosto.append("<tr><td>" + 'Costo Operacion' + "</td><td style='text-align: right' >"+'$ ' + costo + "</td></tr>");
-                    tablaCosto.append("<tr><td>" + 'Total Costo' + "</td><td style='text-align: right' >"+'$ ' + TotalCosto + "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'Costo Operacion' + "</td><td style='text-align: right' >"+'$ ' + modCif + "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'Total Operacion' + "</td><td style='text-align: right' >"+'$ ' + costo + "</td></tr>");
 
 
                     tablaCosto.append("<tr><td>" + 'Total Venta Estimada' + "</td><td style='text-align: right' >" +'$ '+ Math.round(TotalVenta) + "</td></tr>");
