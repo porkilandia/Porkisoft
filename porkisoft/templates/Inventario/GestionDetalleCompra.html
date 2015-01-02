@@ -71,13 +71,7 @@
             <td>$ {{ detcompra.vrCompraProducto }}</td>
             <td>$ {{ detcompra.vrKiloDescongelado }}</td>
             <td>$ {{ detcompra.subtotal }}</td>
-            {% if compra.tipo.nombreGrupo == 'Verduras' %}
-                {% if detcompra.estado == False %}
-                    <td><a href="{% url 'Fabricacion.views.GestionVerduras' detcompra.id %}">Pendiete</a></td>
-                {% else %}
-                    <td><a href="{% url 'Fabricacion.views.GestionVerduras' detcompra.id %}">Ver Detalles</a></td>
-                {% endif %}
-            {% endif %}
+
             {% if compra.tipo.nombreGrupo == 'Pollos' %}
                 {% if detcompra.estado == False %}
                     <td><a href="{% url 'Inventario.views.EditaCompra' detcompra.id %}">Pendiente</a></td>

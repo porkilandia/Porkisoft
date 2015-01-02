@@ -18,6 +18,7 @@
             <th>Vr. Kilo</th>
             <th>Cif</th>
             <th>Mod</th>
+            <th>Guardado</th>
             <th>Acciones</th>
 
         </tr>
@@ -29,9 +30,15 @@
             <td>$ {{ verdura.vrKilo}}</td>
             <td>{{ verdura.cif }}</td>
             <td>{{ verdura.mod }}</td>
+            {% if verdura.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+
             <td>
-                <a onclick="CostearVerduras({{ verdura.id }})" href="#"><input type="button" value="Costear" ></a>
-                <a onclick="GuardarVerduras({{ verdura.id }})" href="#"><input type="button" value="Guardar" ></a>
+                <a onclick="CostearVerduras({{ verdura.id }})" href="#">Costear</a>
+                <a onclick="GuardarVerduras({{ verdura.id }})" href="#">Guardar</a>
             </td>
 
         </tr>

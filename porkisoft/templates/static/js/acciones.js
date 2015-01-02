@@ -776,6 +776,10 @@ function ImprimirRecibo()
                 var pie = $('#pieRecibo');
                 var tablaDetVenta = $('#tablaDetalleVentaPunto');
                 var calculadora = $('#calculaVuelto');
+                var efectivo = $('#efectivo').val();
+                var regreso = $('#regreso').val();
+                $('#efectivoImp').append(efectivo);
+                $('#regresoImp').append(regreso);
                 calculadora.hide();
                 encabezado.show();
                 pie.show();
@@ -803,6 +807,7 @@ function Cobrar()
             success: function (respuesta) {
                 var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
                 location.reload();
+                //$('#efectivo').val(10000);
 
             }
 

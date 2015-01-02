@@ -38,7 +38,6 @@ def GestionCanal(request,idrecepcion):
     for cnl in canalMuestra:
         PesoTotalCanales += cnl.pesoPorkilandia
 
-
     recepcion.pesoCanales = PesoTotalCanales
     recepcion.vrKiloCanal = kiloCanal
     recepcion.save()
@@ -46,8 +45,6 @@ def GestionCanal(request,idrecepcion):
 
     if request.method == 'POST':
         formulario = CanalForm(request.POST)
-
-
         if formulario.is_valid():
 
             #planilla = PlanillaDesposte.objects.get(pk = request.POST.get('planilla'))
@@ -94,8 +91,6 @@ def GestionCanal(request,idrecepcion):
                 pesoPorkilandia = Decimal(request.POST.get('pesoPorkilandia'))
 
                 costoKilocerdo = ValoresCostos.objects.get(nombreCosto = 'Costo Cerdo')
-
-
                 vrFactura = (pesoCanales + pesoPorkilandia) * costoKilocerdo.valorKiloPie #--> 6050 es el valor establecido por granjas el paraiso
                 pesoPie = Decimal(ceil(pesoCanales + Decimal(request.POST.get('pesoPorkilandia')))) / (Decimal(0.82))
                 #KiloPie = vrFactPie / pesoPie
@@ -109,8 +104,6 @@ def GestionCanal(request,idrecepcion):
 
                 #encargado = Empleado.objects.get(pk = compra.encargado.codigoEmpleado)
                 #provedor = Proveedor.objects.get(pk = compra.proveedor.codigoProveedor)
-
-
             else:
                 menudo = 12000 * cantidad
                 transporte = 9000* cantidad
@@ -127,16 +120,11 @@ def GestionCanal(request,idrecepcion):
                     incrementoCG += 32
                 #else:
                     #incrementoCP += 32
-
-
                 if pesoCanales == 0:#para cuando se ingresa la primera vez
                     pesoCanales = 1000
 
-
-
-                pesoPie = pesoCanales + pesoPorkilandia + incrementoCG #+ incrementoCP
+                pesoPie = pesoCanales + pesoPorkilandia + incrementoCG # + incrementoCP
                 vrFactura = pesoPie * ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas').valorKiloPie
-                 #--> 4400 es el valor establecido por granjas el paraiso
                 costoCanales = (vrFactura + deguello + transporte) - menudo
                 vrKiloCanal = ceil(costoCanales / (pesoCanales + pesoPorkilandia))
                 vrArrobaCanal = vrKiloCanal * 12.5
@@ -174,7 +162,6 @@ def GestionCanal(request,idrecepcion):
             recepcion.pesoCanales = PesoTotalCanales
             recepcion.cantCabezas = cantidad
             recepcion.save()
-
 
             return HttpResponseRedirect('/fabricacion/canal/'+ idrecepcion)
     else:
@@ -223,7 +210,6 @@ def GestionSacrificio(request,idrecepcion):
         ganado = Ganado.objects.get(pk = det.ganado.codigoGanado)
         #totalPieles += ganado.piel
 
-
     if request.method == 'POST':
         formSacrificio = SacrificioForm(request.POST)
 
@@ -247,7 +233,7 @@ def GestionSacrificio(request,idrecepcion):
             sacrificio.save()
 
             prodLimpieza = ['Cola','Rinones','Creadillas','Recortes Sacrificio','Ubre' ]
-            item = ['cola','rinones','creadillas','recortes','ubre' ]
+            item = ['cola','rinones','creadillas','recortes','ubre']
             cont = 0
 
             for productos  in prodLimpieza:
@@ -259,14 +245,11 @@ def GestionSacrificio(request,idrecepcion):
                 existencia.pesoProductoStock += existencia.pesoProductoStock + Decimal(request.POST.get(item[cont]))
                 existencia.save()
 
-                cont +=1
-
-
+                cont += 1
             return HttpResponseRedirect('/fabricacion/sacrificio/'+idrecepcion)
 
     else:
         formSacrificio = SacrificioForm(initial={'recepcion':idrecepcion})
-
 
     return render_to_response('Fabricacion/GestionSacrificio.html',{'formSacrificio':formSacrificio,
                                                                    'sacrificios':sacrificios},
@@ -295,8 +278,6 @@ def EditaEnsalinado(request,idEnsalinado):
     fechafin = date.today()
     ensalinados = Ensalinado.objects.filter(fechaEnsalinado__range =(fechainicio,fechafin))
     ensalinado = Ensalinado.objects.get(pk = idEnsalinado)
-
-
     if request.method == 'POST':
         formulario = EnsalinadoForm(request.POST,instance=ensalinado)
 
@@ -434,7 +415,7 @@ def ValorVerduras(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def CostearVerduras(request):
-    idLimpieza = request.GET.get('idLimpieza')
+    idLimpieza = request.GET.get('idVerdura')
     limpieza = LimpiezaVerduras.objects.get(pk = int(idLimpieza))
     detalleCompra = DetalleCompra.objects.filter(compra = limpieza.compra.codigoCompra)
     pesoTotal = 0
@@ -464,7 +445,7 @@ def CostearVerduras(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GuardarVerduras(request):
-    idLimpieza = request.GET.get('idLimpieza')
+    idLimpieza = request.GET.get('idVerdura')
     limpieza = LimpiezaVerduras.objects.get(pk = int(idLimpieza))
 
     productoAntes = ProductoBodega.objects.get(bodega = 6,producto = limpieza.productoLimpiar.codigoProducto)
@@ -476,12 +457,15 @@ def GuardarVerduras(request):
     productoLimpio.pesoProductoStock += limpieza.pesoDespues
     productoLimpio.save()
 
+    limpieza.guardado = True
+    limpieza.save()
+
     msj = 'Guardado exitoso'
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionCondimento(request):
-    condimentos  = Condimento.objects.all()
+    condimentos = Condimento.objects.all()
 
     if request.method == 'POST':
 
@@ -548,8 +532,6 @@ def GestionDetalleCondimento(request,idcondimento):
 
             detalle.save()
 
-
-
             return HttpResponseRedirect('/fabricacion/detallecondimento/'+ idcondimento)
     else:
         formulario = DetalleCondimentoForm(initial={'condimento':idcondimento})
@@ -587,8 +569,6 @@ def CostoCondimento(request,idcondimento):
     producto.costoProducto = costoLitroCond
     producto.save()
 
-
-
     return render_to_response('Fabricacion/GestionDetalleCondimento.html',{'formulario':formulario,
                                                                    'condimento': condimento,'idcondimento':idcondimento,
                                                                    'detalleCondimentos':detalleCondimentos },
@@ -596,7 +576,7 @@ def CostoCondimento(request,idcondimento):
 
 
 
-#*********************************************************** MIGA*******************************************************
+#******************************************************* MIGA***********************************************************
 
 def GestionMiga(request):
     migas  = Miga.objects.all()
