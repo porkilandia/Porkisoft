@@ -2,22 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionVerduras.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionVerduras.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateDetalleVentaPunto.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateDetalleVentaPunto.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Nomina/migrations/0002_auto__add_field_empleado_usuario.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Nomina/migrations/0003_auto__add_field_empleado_punto.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Ventas/migrations/0039_auto__add_field_configuracionpuntos_bodega.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Ventas/migrations/0040_auto__add_field_ventapunto_puntoVenta.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Inventario/migrations/0041_auto__del_field_compra_encargado__del_field_planillarecepcion_empleado.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0086_auto__del_field_limpiezaverduras_producto__add_field_limpiezaverduras_.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0087_auto__add_field_limpiezaverduras_pesoDespues.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Fabricacion/migrations/0088_auto__del_field_valorescostos_finaliza__del_field_valorescostos_actual.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/html2canvas.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/html2canvas.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/css/jquery.alerts.css" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/jquery.alerts.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery.alerts.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery.alerts.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/jquery.base64.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/jquery.base64.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/simple_html_dom.php" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/simple_html_dom.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/tableExport.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/tableExport.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/urls.py" afterPath="$PROJECT_DIR$/Inventario/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/views.py" afterPath="$PROJECT_DIR$/Fabricacion/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Inventario/views.py" afterPath="$PROJECT_DIR$/Inventario/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ventas/views.py" afterPath="$PROJECT_DIR$/Ventas/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="porkisoft.iws" />
@@ -43,30 +41,7 @@
     <favorites_list name="porkisoft" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="acciones.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3379" max-vertical-offset="57078">
-              <caret line="168" column="42" selection-start-line="168" selection-start-column="42" selection-end-line="168" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Fabricacion/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1816609" vertical-offset="315" max-vertical-offset="71946">
-              <caret line="20" column="107" selection-start-line="20" selection-start-column="80" selection-end-line="20" selection-end-column="107" />
-              <folding>
-                <element signature="e#25#52#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -181,100 +156,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Porkisoft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Inventario" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1002,7 +883,11 @@
       <created>1420216305550</created>
       <updated>1420216305551</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="Copia de seguridad 2 Enero 2015">
+      <created>1420720018626</created>
+      <updated>1420720018626</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1027,7 +912,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1317" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1582,14 +1467,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3379" max-vertical-offset="57078">
-          <caret line="168" column="42" selection-start-line="168" selection-start-column="42" selection-end-line="168" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../lib/python2.7/site-packages/django/core/handlers/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33103448" vertical-offset="1920" max-vertical-offset="5859">
@@ -1605,6 +1482,14 @@
           <folding>
             <element signature="e#25#52#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25778547" vertical-offset="3379" max-vertical-offset="57078">
+          <caret line="168" column="42" selection-start-line="168" selection-start-column="42" selection-end-line="168" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
