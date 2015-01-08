@@ -356,6 +356,31 @@ def GestionCompra(request):
     return render_to_response('Inventario/GestionCompras.html',{'formulario':formulario,'compras':compras },
                               context_instance = RequestContext(request))
 
+def ModificaCompra(request,idCompra):
+
+    fechainicio = date.today() - timedelta(days=25)
+    fechafin = date.today()
+    compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
+    compra = Compra.objects.get(pk = idCompra)
+    #compras= Compra.objects.all()
+
+    if request.method == 'POST':
+        formulario = CompraForm(request.POST,instance=compra)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/inventario/compra')
+    else:
+        formulario = CompraForm(initial={'encargado':12951685},instance=compra)
+
+    return render_to_response('Inventario/GestionCompras.html',{'formulario':formulario,'compras':compras },
+                              context_instance = RequestContext(request))
+
+def borrarDetCompra(request, idDetCompra):
+    detCompra = DetalleCompra.objects.get(pk = idDetCompra)
+    detCompra.delete()
+    return  HttpResponseRedirect('/inventario/detcompra/'+str(detCompra.compra.codigoCompra))
+
 
 def GestionDetalleCompra(request,idcompra):
 
@@ -376,76 +401,7 @@ def GestionDetalleCompra(request,idcompra):
     if request.method == 'POST':
         formulario = DetalleCompraForm(idcompra,request.POST)
         if formulario.is_valid():
-            detalleCompra = formulario.save()
-
-            productoBodega = ProductoBodega.objects.get(bodega = compra.bodegaCompra.codigoBodega,producto = detalleCompra.producto.codigoProducto)
-            producto = Producto.objects.get(pk = detalleCompra.producto.codigoProducto)
-
-            movimiento = Movimientos()#Registro los datos en la tabla de movimientos
-            movimiento.tipo = 'CMP%d'%(compra.codigoCompra)
-            movimiento.fechaMov = compra.fechaCompra
-            movimiento.productoMov = detalleCompra.producto
-            movimiento.nombreProd =  detalleCompra.producto.nombreProducto
-            movimiento.Hasta = compra.bodegaCompra.nombreBodega
-
-            # Si el producto es un insumo
-
-            if detalleCompra.producto.grupo.id == 6 :
-
-                productoBodega.pesoProductoStock += detalleCompra.pesoProducto
-                productoBodega.unidadesStock += detalleCompra.unidades
-                productoBodega.save()
-
-                if detalleCompra.pesoProducto == 0:
-                    movimiento.entrada = detalleCompra.unidades
-                else:
-                    movimiento.entrada = detalleCompra.pesoProducto
-
-                producto.costoProducto = detalleCompra.vrCompraProducto
-                producto.save()
-
-            # Si el producto es una verdura
-            elif detalleCompra.producto.grupo.id == 7:
-                movimiento.entrada = detalleCompra.pesoProducto
-                productoBodega.pesoProductoStock += 0
-                productoBodega.save()
-
-            #Si el producto es para compra venta
-
-            elif detalleCompra.producto.grupo.id == 9:
-
-                productoBodegaCV = ProductoBodega.objects.get(bodega = compra.bodegaCompra.codigoBodega,producto = detalleCompra.producto.codigoProducto)
-                productoBodegaCV.pesoProductoStock += detalleCompra.pesoProducto
-                productoBodegaCV.unidadesStock += detalleCompra.unidades
-                productoBodegaCV.save()
-                if detalleCompra.pesoProducto == 0:
-                    movimiento.entrada = detalleCompra.unidades
-                else:
-                    movimiento.entrada = detalleCompra.pesoProducto
-
-                producto.costoProducto = detalleCompra.vrCompraProducto
-                producto.save()
-
-            #Si el producto es Basico Procesado
-            elif detalleCompra.producto.grupo.id == 8:
-
-                producto.costoProducto = detalleCompra.vrCompraProducto
-                producto.save()
-                productoBodegaBP = ProductoBodega.objects.get(bodega = 6,producto = detalleCompra.producto.codigoProducto)
-                productoBodegaBP.pesoProductoStock += detalleCompra.pesoProducto
-                productoBodegaBP.save()
-                movimiento.entrada = detalleCompra.pesoProducto
-
-
-            movimiento.save()
-            detcompras = DetalleCompra.objects.filter(compra = idcompra)
-            totalCompra  = 0
-            for dcmp in detcompras: # clacular los totales de la lista de detalles de subproducto
-                totalCompra += dcmp.subtotal
-
-            compra.vrCompra = totalCompra
-            compra.save()
-
+            formulario.save()
 
             return HttpResponseRedirect('/inventario/detcompra/'+ idcompra)
     else:
@@ -455,6 +411,73 @@ def GestionDetalleCompra(request,idcompra):
                                                          'compra': compra,'detcompras': detcompras,
                                                          'totalCompra':totalCompra,'totalPeso':totalPeso},
                                                         context_instance = RequestContext(request))
+
+def EditaDetalleCompra(request,idDetCompra):
+
+    detCompra = DetalleCompra.objects.get(pk = idDetCompra)
+    compra = Compra.objects.get(pk = detCompra.compra.codigoCompra)
+    detcompras = DetalleCompra.objects.filter(compra = compra.codigoCompra)
+    totalCompra  = 0
+    totalPeso = 0
+
+    # clacular los totales de la lista de detalles de subproducto
+    for dcmp in detcompras:
+        totalCompra += dcmp.subtotal
+    for dcmp in detcompras:
+        totalPeso += dcmp.pesoProducto
+
+    compra.vrCompra = totalCompra
+    compra.save()
+
+    if request.method == 'POST':
+        formulario = DetalleCompraForm(str(compra.codigoCompra),request.POST,instance=detCompra)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/inventario/detcompra/'+ str(compra.codigoCompra))
+    else:
+        formulario = DetalleCompraForm(str(compra.codigoCompra),initial={'compra':compra.codigoCompra},instance=detCompra)
+
+    return render_to_response('Inventario/GestionDetalleCompra.html',{'formulario':formulario,
+                                                         'compra': compra,'detcompras': detcompras,
+                                                         'totalCompra':totalCompra,'totalPeso':totalPeso},
+                                                        context_instance = RequestContext(request))
+
+def GuardarDetCompra(request):
+    idcompra = request.GET.get('idCompra')
+    compra = Compra.objects.get(pk = int(idcompra))
+    detcompras = DetalleCompra.objects.filter(compra = compra.codigoCompra)
+
+    for detalle in detcompras:
+        productoBodega = ProductoBodega.objects.get(bodega = compra.bodegaCompra.codigoBodega,producto = detalle.producto.codigoProducto)
+        producto = Producto.objects.get(pk = detalle.producto.codigoProducto)
+        movimiento = Movimientos()#Registro los datos en la tabla de movimientos
+        movimiento.tipo = 'CMP%d'%(compra.codigoCompra)
+        movimiento.fechaMov = compra.fechaCompra
+        movimiento.productoMov = detalle.producto
+        movimiento.nombreProd =  detalle.producto.nombreProducto
+        movimiento.Hasta = compra.bodegaCompra.nombreBodega
+
+        if compra.tipo.id == 6 or compra.tipo.id == 7 or compra.tipo.id == 8 or compra.tipo.id == 9:
+
+            productoBodega.pesoProductoStock += detalle.pesoProducto
+            productoBodega.unidadesStock += detalle.unidades
+            productoBodega.save()
+
+            if detalle.pesoProducto == 0:
+                movimiento.entrada = detalle.unidades
+            else:
+                movimiento.entrada = detalle.pesoProducto
+
+            producto.costoProducto = detalle.vrCompraProducto
+            producto.save()
+            movimiento.save()
+
+    msj = 'Registros Guardados exitosamente'
+    respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
 
 def EditaCompra(request,idDetCompra):
 

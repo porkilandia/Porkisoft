@@ -36,11 +36,14 @@
             <td style="font-weight: bold; text-align: center">
                 {% if compra.tipo.nombreGrupo == 'Cerdos' or compra.tipo.nombreGrupo == 'Cerdas' %}
                     <a href="{% url 'Inventario.views.GestionPlanillaRecepcion' compra.codigoCompra %}">Recepcion</a>
+                    <a href="{% url 'Inventario.views.ModificaCompra' compra.codigoCompra %}">Editar</a>
                 {% elif compra.tipo.nombreGrupo == 'Reses' %}
                     <a href="{% url 'Inventario.views.GestionDetalleCompra' compra.codigoCompra %}">Compras</a>
                     <a href="{% url 'Inventario.views.GestionPlanillaRecepcion' compra.codigoCompra %}">Recepcion</a>
+                    <a href="{% url 'Inventario.views.ModificaCompra' compra.codigoCompra %}">Editar</a>
                 {% else %}
                     <a href="{% url 'Inventario.views.GestionDetalleCompra' compra.codigoCompra %}">Compras</a>
+                    <a href="{% url 'Inventario.views.ModificaCompra' compra.codigoCompra %}">Editar</a>
                 {% endif %}
 
             </td>
@@ -64,8 +67,6 @@
 
               <legend>Acciones</legend>
              <input type="submit" value="Guardar" class="btn btn-primary">
-             <a href="#"><input type="button" value="Porvedor" class="btn btn-success"></a>
-             <a href="#"><input type="button" value="Empleado" class="btn btn-success"></a>
 
          </fieldset>
      </form>

@@ -7,13 +7,13 @@
 {% block contenido %}
     <a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
     <a href="{% url 'Inventario.views.GestionGanado' compra.codigoCompra %}"><input type="button" value="Ganado" class="btn btn-success"></a>
+    <a onclick="GuardarCompra()" href="#"><input type="button" value="Guardar" class="btn btn-warning"></a>
     <br/><br/><br/>
 
     <table class="table-striped">
         <thead>
         <tr>
             <th>Codigo</th>
-            <th>Encargado</th>
             <th>Proveedor</th>
             <th>Bodega</th>
             <th>Fecha Compra</th>
@@ -26,8 +26,7 @@
         <tbody>
 
             <tr>
-            <td>{{ compra.codigoCompra }}</td>
-            <td>{{ compra.encargado }}</td>
+            <td id="CodigoCompra">{{ compra.codigoCompra }}</td>
             <td>{{ compra.proveedor }}</td>
             <td>{{ compra.bodegaCompra }}</td>
             <td>{{ compra.fechaCompra }}</td>
@@ -78,6 +77,9 @@
                 {% else %}
                     <td>Actualizado</td>
                 {% endif %}
+            {% else %}
+                <td><a href="{% url 'Inventario.views.EditaDetalleCompra' detcompra.id %}">Editar</a>
+                <a href="{% url 'Inventario.views.borrarDetCompra' detcompra.id %}">Borrar</a></td>
             {% endif %}
 
         </tr>

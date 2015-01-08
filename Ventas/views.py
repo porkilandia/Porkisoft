@@ -430,7 +430,9 @@ def GestionCaja(request):
 
 def EditaCaja(request,idCaja):
     caja = Caja.objects.get(pk = idCaja)
-    Cajas = Caja.objects.all()
+    fechainicio = date.today() - timedelta(days=5)
+    fechafin = date.today()
+    Cajas = Caja.objects.filter(fechaCaja__range =(fechainicio,fechafin))
 
     if request.method =='POST':
         formulario = CajaForm(request.POST,instance=caja)

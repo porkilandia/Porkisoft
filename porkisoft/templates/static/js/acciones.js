@@ -164,6 +164,23 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function GuardarCompra() {
+
+    var idCompra = $('#CodigoCompra').text();
+
+    var opcion = confirm('Desea Guardar el registro ?');
+    if (opcion == true) {
+        $.ajax({
+            url: '/inventario/guardaCompra/',
+            dataType: "json",
+            type: "get",
+            data: {'idCompra': idCompra},
+            success: function (respuesta) {
+                var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+            }
+        });
+    }
+}
 function ValorVerduras() {
 
     var idProducto = $('#id_productoLimpiar').val();

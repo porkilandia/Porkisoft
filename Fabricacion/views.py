@@ -15,9 +15,6 @@ from Fabricacion.models import *
 from Inventario.models import *
 from Ventas.models import *
 
-
-
-
 #******************************************************CANAL***********************************************************
 def GestionCanal(request,idrecepcion):
 
@@ -27,6 +24,7 @@ def GestionCanal(request,idrecepcion):
     sacrificio = Sacrificio.objects.get(recepcion = idrecepcion)
     cantidad = canales.count() +1
     kiloCanal = 0
+
     nroCanal = 0 #Representa el numero de canal actual
     for can in canales :
         kiloCanal = can.vrKiloCanal
@@ -89,7 +87,6 @@ def GestionCanal(request,idrecepcion):
 
 
                 pesoPorkilandia = Decimal(request.POST.get('pesoPorkilandia'))
-
                 costoKilocerdo = ValoresCostos.objects.get(nombreCosto = 'Costo Cerdo')
                 vrFactura = (pesoCanales + pesoPorkilandia) * costoKilocerdo.valorKiloPie #--> 6050 es el valor establecido por granjas el paraiso
                 pesoPie = Decimal(ceil(pesoCanales + Decimal(request.POST.get('pesoPorkilandia')))) / (Decimal(0.82))
@@ -3009,7 +3006,7 @@ def ReporteUtilidadPorLote(request):
 
     #inicializamos la lista
     for canal in canales:
-        if canal.planilla != '':
+        if canal.planilla != '' and canal.planilla != None:
             detalleDespostes = DetallePlanilla.objects.filter(planilla__codigoPlanilla = canal.planilla.codigoPlanilla)
 
             for detalle in detalleDespostes:
@@ -3023,7 +3020,7 @@ def ReporteUtilidadPorLote(request):
     cont = 0
     perdidaPC = 0
     for canal in canales:
-        if canal.planilla != '':
+        if canal.planilla != '' and canal.planilla != None:
             planillaActual = canal.planilla.codigoPlanilla
             detalleDespostes = DetallePlanilla.objects.filter(planilla__codigoPlanilla = canal.planilla.codigoPlanilla)
             recepcion = PlanillaRecepcion.objects.get(pk = canal.recepcion.codigoRecepcion)
