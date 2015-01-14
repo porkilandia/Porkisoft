@@ -137,6 +137,7 @@ class Compra(models.Model):
     fechaCompra = models.DateField(verbose_name='Fecha',blank=True,null=True)
     vrCompra = models.IntegerField(verbose_name='Valor Compra', default=0)
     vrTransporte = models.IntegerField(verbose_name='Transporte',default= 0)
+    guardado = models.BooleanField(default=False)
 
     def __unicode__(self):
         cadena = "%s -- $%d"%(str(self.fechaCompra),self.vrCompra)

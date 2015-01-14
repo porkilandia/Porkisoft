@@ -34,6 +34,7 @@ def home(request):
 def listaProductos(request):
     productos = Producto.objects.all().order_by('codigoProducto')
 
+
     #se actualiza el precio sugerido del producto
     '''for producto in productos:
 
@@ -72,9 +73,9 @@ def listaProductos(request):
 
             return HttpResponseRedirect('/inventario/listaProd')
     else:
-        formulario =ProductoForm()
+        formulario = ProductoForm()
 
-    return render_to_response('Inventario/GestionProducto.html',{'formulario':formulario,'productos':productos },
+    return render_to_response('Inventario/GestionProducto.html', {'formulario':formulario,'productos':productos},
                               context_instance = RequestContext(request))
 
 def borrar_producto(request, id_producto):
@@ -339,7 +340,7 @@ def GestionGanado(request,idcompra):
 #**********************************************************COMPRA*******************************************************
 def GestionCompra(request):
 
-    fechainicio = date.today() - timedelta(days=25)
+    fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     #compras= Compra.objects.all()
@@ -358,7 +359,7 @@ def GestionCompra(request):
 
 def ModificaCompra(request,idCompra):
 
-    fechainicio = date.today() - timedelta(days=25)
+    fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     compra = Compra.objects.get(pk = idCompra)
@@ -473,6 +474,8 @@ def GuardarDetCompra(request):
             producto.save()
             movimiento.save()
 
+    compra.guardado = True
+    compra.save()
     msj = 'Registros Guardados exitosamente'
     respuesta = json.dumps(msj)
 

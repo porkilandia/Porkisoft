@@ -18,6 +18,7 @@
             <th>Bodega</th>
             <th>Fecha Compra</th>
             <th>Vr. Compra</th>
+            <th>Guardado</th>
 
 
 
@@ -31,6 +32,11 @@
             <td>{{ compra.bodegaCompra }}</td>
             <td>{{ compra.fechaCompra }}</td>
             <td>$ {{ compra.vrCompra }}</td>
+            {% if compra.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
 
         </tr>
         </tbody>

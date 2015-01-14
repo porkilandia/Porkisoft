@@ -13,6 +13,30 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
+def TemplateTipoPedido(request):
+
+    clientes = Cliente.objects.all()
+    return render_to_response('Ventas/TemplateRepoPedidos.html',{'clientes':clientes},
+                              context_instance = RequestContext(request))
+
+def ReporteTipoPedido(request):
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    idCliente = request.GET.get('cliente')
+
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(cliente = int(idCliente))
+    respuesta = serializers.serialize('json',pedidos)
+    return HttpResponse(respuesta,mimetype='application/json')
+
 
 def GestionPedidos(request,idcliente):
     pedidos = Pedido.objects.filter(cliente = idcliente)
@@ -27,6 +51,11 @@ def GestionPedidos(request,idcliente):
 
     return render_to_response('Ventas/GestionPedido.html',{'formulario':formulario,'pedidos':pedidos,'cliente':cliente},
                               context_instance = RequestContext(request))
+
+def BorrarPedidos(request,idpedido):
+    pedido = Pedido.objects.get(pk = idpedido)
+    pedido.delete()
+    return HttpResponseRedirect('/ventas/pedido/'+str(pedido.cliente.codigoCliente))
 
 def GestionDetallePedido(request,idpedido):
     pedido = Pedido.objects.get(pk = idpedido)
@@ -589,7 +618,7 @@ def GuaradarPedido(request):
     pedido.guardado = True
     pedido.save()
 
-    msj = 'Se guargaron Exitosamente los Registros'
+    msj = 'Se guardaron Exitosamente los Registros'
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 
@@ -824,7 +853,6 @@ def RepListVentasNorte(request):
     bodega = Bodega.objects.get(pk = int(idBodega))
     ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin),puntoVenta = bodega.codigoBodega).filter(jornada = jornada).order_by('factura')
     respuesta = serializers.serialize('json',ventas)
-
 
     return HttpResponse(respuesta,mimetype='application/json')
 

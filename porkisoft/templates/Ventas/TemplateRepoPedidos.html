@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Ventas Puntos::{% endblock titulo %}
+{% block mensajes %}
+Ventas Norte
+
+{% endblock mensajes %}
+{% block contenido %}
+
+    <div id="rango">
+     <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
+     <label for="fin">Fecha Final</label><input id="fin" type="text">
+     <label for="cliente">CLiente</label><select id="cliente">
+         {% for cliente in clientes %}
+             <option value="{{ cliente.codigoCliente }}">{{ cliente.nombreCliente }}</option>
+        {% endfor %}
+     </select>
+     <a  onclick="ReporteTipoPedido()" href="#"><input type="button" value="Consultar"></a>
+
+        <br/>
+        <br/>
+        <br/>
+    </div>
+<table id="TablaPedidos" class="table-striped">
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Fecha</th>
+            <th>Factura</th>
+            <th>Total Venta</th>
+            <th>Credito</th>
+            <th>Contado</th>
+        </tr>
+    </thead>
+
+
+</table>
+<div id="progressbar"></div>
+{% endblock contenido %}
+<div id="progressbar"></div>

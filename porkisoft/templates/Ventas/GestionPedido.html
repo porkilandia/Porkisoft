@@ -45,6 +45,7 @@
                 {% endif %}
             <td>
                 <a  href="{% url 'Ventas.views.GestionDetallePedido' pedido.numeroPedido %}">Detalles</a>
+                <a  href="{% url 'Ventas.views.BorrarPedidos' pedido.numeroPedido %}">Borrar</a>
             </td>
 
         </tr>

@@ -7,22 +7,36 @@ $(document).on('ready', inicio);
      /**************************************Template Venta Norte*********************************************/
     var estado = $('#guardado').text();
     var productoVenta = $('#id_productoVenta');
+    var pesoVentaPunto = $('#id_pesoVentaPunto');
+    var unidadesVentaPunto = $('#id_unidades');
+    var total= 0;
+    pesoVentaPunto.on('change',calculoTotalVentaPunto);
+    unidadesVentaPunto.on('change',calculoTotalVentaPunto);
+     function calculoTotalVentaPunto() {
+         if (pesoVentaPunto.val() == 0)
+         {
+            total = unidadesVentaPunto.val() * $('#id_vrUnitarioPunto').val();
+            $('#id_vrTotalPunto').val(total);
+         }else
+         {
+            total = (pesoVentaPunto.val()/1000) * $('#id_vrUnitarioPunto').val();
+            $('#id_vrTotalPunto').val(total);
+         }
+
+     }
+     pesoVentaPunto.on('change',calculoTotalVentaPunto);
+
     productoVenta.focus();
         if (estado == 'Si')
         {
             $('#cobraVenta').hide();
         }
-    /***********************************************************************************/
-    /*var tipo = $('#tipoPedido').text();
-    if (tipo == 'Contado')
-    {
-        $('#GuardaPedidoCredito').hide();
-    }*/
+    /******************************************************************************************************************/
 
      $('#agregarProducto').show();
-     $('#encabezado').hide();
+     $('#encabezado').toggle();
      $('#pie').hide();
-     $('#pieRecibo').hide();
+     $('#pieRecibo').toggle();
      $('#Retiro').hide();
      $('#tablaMovi').hide();
 
@@ -38,7 +52,7 @@ $(document).on('ready', inicio);
      $('#costearTajado').on('click',CostearTajado);
      $('#guardar').on('click',GuardarDesposte);
      $('#id_vrTotalPedido').on('focus',CalculaTotalPedido);
-     productoVenta.on('blur',consultaValorProducto);
+     //productoVenta.on('blur',consultaValorProducto);
      $('#id_vrUnitario').on('focus',ExistenciasPedido);
      $('#id_vrTotal').on('focus',calculoValorProducto);
      $('#guardarVentas').on('click',GuardarVentas);
@@ -74,8 +88,9 @@ $(document).on('ready', inicio);
      $('#id_vrTotalPunto').on('focus',calculoTotalVenta);
      $('#id_diferencia').on('focus',calculoDiferencia);
      var vrUnitario = $('#id_vrUnitarioPunto');
-     vrUnitario.on('focus',traeValorVenta);
-     vrUnitario.on('focus',existenciasVenta);
+     productoVenta.on('change',traeValorVenta);
+     pesoVentaPunto.on('change',existenciasVenta);
+     unidadesVentaPunto.on('change',existenciasVenta);
      $('#regreso').on('focus',calculoRegreso);
      $('#id_cantidadActual').on('focus',CantidadActual);
      $('#id_compra').on('change',ValorVerduras);
@@ -164,6 +179,60 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function ReporteTipoPedido() {
+
+    var fechaInicio = $('#inicio').val();
+    var fechaFin = $('#fin').val();
+    var cliente = $('#cliente').val();
+    var TablaPedidos = $('#TablaPedidos');
+    var credito = '';
+    var contado = '';
+    var vrContado= 0;
+    var vrCredito= 0;
+
+    $.ajax({
+
+            url: '/ventas/consultaTipoPedido/',
+            dataType: "json",
+            type: "get",
+            data: {'inicio':fechaInicio,'fin':fechaFin,'cliente':cliente},
+            success: function (respuesta) {
+                    TablaPedidos.find("tr:gt(0)").remove();
+
+                    for (var i=0;i<respuesta.length;i++)
+                    {
+                        if (respuesta[i].fields.credito == true)
+                            {
+                                credito = 'Si';
+                                contado = 'No';
+                                vrCredito += respuesta[i].fields.TotalVenta;
+
+                            }else
+                            {
+                                credito = 'No';
+                                contado = 'Si';
+                                vrContado += respuesta[i].fields.TotalVenta;
+                            }
+                            TablaPedidos.append(
+                                "<tr><td>" + respuesta[i].pk +
+                                "</td><td>" + respuesta[i].fields.fechaPedido +
+                                "</td><td>" + respuesta[i].fields.numeroFactura +
+                                "</td><td>"+"$" + respuesta[i].fields.TotalVenta +
+                                "</td><td>" + credito +
+                                "</td><td>" + contado +
+                                "</td></tr>");
+
+                    }
+                    TablaPedidos.append("<tr><th>"+"Total Creditos"+
+                                        "</th><th>"+"$"+vrCredito+"</th></tr>"+
+                                        "</th><th>"+"Total Contado"+
+                                        "</th><th>"+"$"+ vrContado + "</th></tr>" );
+                    }
+
+        });
+
+
+}
 function GuardarCompra() {
 
     var idCompra = $('#CodigoCompra').text();
@@ -299,7 +368,8 @@ function consultaListaVentas() {
     var TotalVenta = 0;
     var estado = '';
     var TablaVenta = $("#tablaListaVenta");
-    var linkAnulado = ''
+    var linkAnulado = '';
+
 
         $.ajax({
 
@@ -315,11 +385,13 @@ function consultaListaVentas() {
                         if(respuesta[i].fields.anulado)
                         {
                             estado = 'Anulada';
-                            linkAnulado = ''
+                            linkAnulado = '';
+
                         }else
                         {
                             estado = 'Activo';
                             linkAnulado = "<a onclick='AnularFactura("+ respuesta[i].pk+","+respuesta[i].fields.factura +")' href='#'>"+'Anular'+"</a>";
+                            TotalVenta += respuesta[i].fields.TotalVenta;
                         }
 
                         TablaVenta.append(
@@ -332,7 +404,10 @@ function consultaListaVentas() {
                                 "</td><td>" + '$ ' + respuesta[i].fields.TotalVenta +
                                 "</td><td>" + "<a target='_blank'' href='/ventas/detalleVentaPunto/"+ respuesta[i].pk + "'>"+'Detalles'+"</a>" +linkAnulado +
                                 "</td></tr>");
-                        TotalVenta += respuesta[i].fields.TotalVenta;
+
+
+
+
                     }
 
                 TablaVenta.append("<tr><th id = 'total' colspan='5' style='text-align: right'>" + 'Total :'  +"</th><th>"+ '$ ' +TotalVenta +"</th></tr>");

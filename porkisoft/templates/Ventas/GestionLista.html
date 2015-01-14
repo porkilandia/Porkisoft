@@ -12,6 +12,8 @@
             <th>Codigo</th>
             <th>Fecha</th>
             <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Punto</th>
             <th>Acciones</th>
 
 
@@ -22,6 +24,8 @@
             <td>{{ lista.codigoLista }}</td>
             <td>{{ lista.fecha }}</td>
             <td>{{ lista.nombreLista }}</td>
+            <td>{{ lista.tipoLista }}</td>
+            <td>{{ lista.bodega }}</td>
 
             <td>
                 <a href="{% url 'Ventas.views.GestionDetalleLista' lista.codigoLista %}">Detalles</a>

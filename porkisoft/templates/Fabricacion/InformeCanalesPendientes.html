@@ -13,6 +13,7 @@
             <th>Tipo</th>
             <th>Compra</th>
             <th>Genero</th>
+            <th>Accion</th>
 
         </tr>
         </thead>
@@ -25,6 +26,9 @@
             <td>{{ canalPendiente.recepcion.compra.tipo.nombreGrupo }}</td>
             <td>{{ canalPendiente.recepcion.compra.fechaCompra }}</td>
             <td>{{ canalPendiente.genero }}</td>
+            <td>
+                <a target="_blank" href="{% url 'Fabricacion.views.verCanal' canalPendiente.codigoCanal %}#">Ver</a>
+            </td>
 
 
         </tr>

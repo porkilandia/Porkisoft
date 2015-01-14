@@ -54,6 +54,9 @@ class DetalleVentaPuntoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(DetalleVentaPuntoForm,self).__init__(*args, **kwargs)
 
+        fechainicio = date.today()
+        self.fields['venta'].queryset = VentaPunto.objects.filter(fechaVenta = fechainicio)
+
         q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses').filter(numeroProducto__gt = 0).order_by('numeroProducto')
         q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos').filter(numeroProducto__gt = 0).order_by('numeroProducto')
         #q3 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdas').filter(numeroProducto__gt = 0).order_by('numeroProducto')

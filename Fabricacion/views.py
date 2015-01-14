@@ -172,7 +172,6 @@ def BorrarCanal(request, idcanal):
     canal = Canal.objects.get(pk=idcanal)
     recepcion = PlanillaRecepcion.objects.get(pk = canal.recepcion.codigoRecepcion)
     canales = Canal.objects.filter(recepcion = recepcion.codigoRecepcion)
-
     canal.delete()
     return HttpResponseRedirect('/fabricacion/canal/'+ str(recepcion.codigoRecepcion))
 
@@ -180,19 +179,18 @@ def MarcarCanalDesposte(request, idcanal):
 
     canal = Canal.objects.get(pk=idcanal)
     recepcion = PlanillaRecepcion.objects.get(pk = canal.recepcion.codigoRecepcion)
-    canales = Canal.objects.filter(recepcion = recepcion.codigoRecepcion)
+    desposte = PlanillaDesposte.objects.get(tipoDesposte = '')
 
-    if request.method == 'POST':
-        formulario = CanalForm(request.POST,instance=canal)
-        if formulario.is_valid():
-
-            formulario.save()
-            return HttpResponseRedirect('/fabricacion/canal/'+ str(recepcion.codigoRecepcion))
+    if canal.estado == True:
+        canal.planilla = None
+        canal.estado = False
+        canal.save()
     else:
-        formulario = CanalForm(initial={'estado':True},instance=canal)
+        canal.planilla = desposte
+        canal.estado = True
+        canal.save()
 
-    return render_to_response('Fabricacion/GestionCanal.html',{'formulario':formulario,'canales':canales,'recepcion':recepcion},
-                              context_instance = RequestContext(request))
+    return HttpResponseRedirect('/fabricacion/canal/'+ str(recepcion.codigoRecepcion))
 
 
 def GestionSacrificio(request,idrecepcion):
@@ -1756,6 +1754,11 @@ def InformeCanalesPendientes(request):
     return render_to_response('Fabricacion/InformeCanalesPendientes.html',{'canalesPendientes':canalPendiente},
                               context_instance = RequestContext(request))
 
+def verCanal(request,idCanal):
+    canal = Canal.objects.get(pk = idCanal)
+    recepcion = PlanillaRecepcion.objects.get(pk = canal.recepcion.codigoRecepcion)
+    return HttpResponseRedirect('/fabricacion/canal/'+ str(recepcion.codigoRecepcion))
+
 def GestionDescarneCabeza(request):
     fechainicio = date.today() - timedelta(days=15)
     fechafin = date.today()
@@ -2825,7 +2828,7 @@ def GuardarReApanado(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionConversiones(request):
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=7)
     fechafin = date.today()
     conversiones = Conversiones.objects.filter(fechaConversion__range =(fechainicio,fechafin))
     #conversiones = Conversiones.objects.all()
@@ -2840,6 +2843,11 @@ def GestionConversiones(request):
 
     return render_to_response('Fabricacion/GestionReConversiones.html',{'formulario':formulario,'conversiones':conversiones },
                               context_instance = RequestContext(request))
+def BorrarConversiones(request,idConversion):
+    conversion = Conversiones.objects.get(pk = idConversion)
+    conversion.delete()
+    return HttpResponseRedirect('/fabricacion/conversiones')
+
 def GuardarConversion(request):
     idConversion = request.GET.get('idConversion')
     conversion = Conversiones.objects.get(pk = int(idConversion))

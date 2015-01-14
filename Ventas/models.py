@@ -5,9 +5,17 @@ from Nomina.models import Empleado
 
 # Create your models here.
 class ListaDePrecios(models.Model):
+    tipo = (
+    ('Restaurante', 'Restaurante'),
+    ('Punto', 'Punto'),
+    ('Contrato', 'Contrato'),
+    )
     codigoLista = models.AutoField(primary_key=True)
     fecha = models.DateField(verbose_name='Fecha')
     nombreLista = models.CharField(max_length=50,verbose_name='Nombre')
+    tipoLista = models.CharField(verbose_name='Tipo',max_length=15,choices=tipo)
+    bodega = models.ForeignKey(Bodega)
+
 
     def __unicode__(self):
         cadena = '%d | %s'%(self.codigoLista,self.nombreLista)

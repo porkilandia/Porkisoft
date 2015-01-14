@@ -67,6 +67,7 @@ urlpatterns = patterns('',
      url(r'^molida/$',GestionMolido),
 
     url(r'^canal/(?P<idrecepcion>\d+)',GestionCanal),
+    url(r'^verCanal/(?P<idCanal>\d+)',verCanal),
     url(r'^borrarCanal/(?P<idcanal>\d+)',BorrarCanal),
 
     url(r'^marcarcanal/(?P<idcanal>\d+)',MarcarCanalDesposte),
@@ -93,11 +94,11 @@ urlpatterns = patterns('',
 
     url(r'^conversiones/$',GestionConversiones),
     url(r'^Guardaconversiones/$',GuardarConversion),
+    url(r'^borraConversion/(?P<idConversion>\d+)',BorrarConversiones),
 
     url(r'^chicharrones/$',GestionChicharron),
     url(r'^costearChicharrones/$',CostearChicharoones),
     url(r'^guardarChicharrones/$',GuardarChicharron),
-
 
     #url(r'^detalleDesposte/(?P<idplanilla>\d+)',GestionCanalDetalleDesposte),
     #url(r'^costoDesposte/(?P<idplanilla>\d+)',CostoDesposte),
