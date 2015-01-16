@@ -25,9 +25,23 @@
         <div id="nav">
            <ul>
                <li><a href="/ventas/ventaPunto"><img src="{{ STATIC_URL }}img/item.png" alt="" />Venta Punto</a></li>
-               <li><a href="/ventas/retiro"><img src="{{ STATIC_URL }}img/item.png" alt="" />Retiro Efectivo</a></li>
-               <li><a href="/ventas/devoluciones"><img src="{{ STATIC_URL }}img/item.png" alt="" />Devolucion Mercancia</a></li>
                <li><a id="cerrarSesion" href="/nomina/logOut"><img src="{{ STATIC_URL }}img/item.png" alt="" />Cerrar Sesion / Usuario: {{ user.username|capfirst }}</a></li>
+               <li><span id="talleres" tabindex="1">Talleres de Puntos</span>
+                        <ul>
+                            <li><a href="/fabricacion/fritos"><img src="{{ STATIC_URL }}img/item.png" alt="" />Taller Frito</a></li>
+                            <li><a href="/fabricacion/carneCondimentada"><img src="{{ STATIC_URL }}img/item.png" alt="" />Taller Carne Condimentada</a></li>
+                            <li><a href="/fabricacion/croquetas"><img src="{{ STATIC_URL }}img/item.png" alt="" />Taller Croquetas</a></li>
+                            <li><a href="/fabricacion/tallerReApanado"><img src="{{ STATIC_URL }}img/item.png" alt="" />Taller Reapanado</a></li>
+                            <li><a href="/fabricacion/conversiones"><img src="{{ STATIC_URL }}img/item.png" alt="" />Conversiones</a></li>
+                            <li><a href="/fabricacion/ensBola"><img src="{{ STATIC_URL }}img/item.png" alt="" />Bola Ensalinada</a></li>
+                            <li><a href="/inventario/compra"><img src="{{ STATIC_URL }}img/item.png" alt="" />Compra</a></li>
+                            <li><a href="/inventario/traslado"><img src="{{ STATIC_URL }}img/item.png" alt="" />Traslado</a></li>
+                            <li><a href="/telemercadeo/cliente/"><img src="{{ STATIC_URL }}img/item.png" alt="" />Pedidos y contratos</a></li>
+                            <li><a href="/ventas/retiro"><img src="{{ STATIC_URL }}img/item.png" alt="" />Retiro Efectivo</a></li>
+                            <li><a href="/ventas/devoluciones"><img src="{{ STATIC_URL }}img/item.png" alt="" />Devolucion Mercancia</a></li>
+                            <li><a href="/ventas/templateAZ"><img src="{{ STATIC_URL }}img/item.png" alt="" />Reporte Z</a></li>
+                        </ul>
+               </li>
 
            </ul>
 

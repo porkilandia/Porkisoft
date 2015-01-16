@@ -1,112 +1,117 @@
-{% extends 'base.html' %}
-
-{% block titulo %}::AZ::{% endblock titulo %}
-{% block mensajes %}
-AZ
-
-{% endblock mensajes %}
-{% block contenido %}
-<div id="progressbar"></div>
-    <div id="rango">
-     <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
-     <label for="fin" >Fecha Final</label><input id="fin" type="text">
-        <label for="jornada">Grupo</label><select id="jornada">
-            <option value='AM'>AM</option>
-            <option value='PM'>PM</option>
-        </select>
-        <label for="bodega">Punto</label><select id="bodega">
-            {% for bodega in bodegas %}
-                <option value={{ bodega.codigoBodega }}>{{ bodega.nombreBodega }}</option>
-            {% endfor %}
+{% extends plantilla %}
 
 
-        </select>
+        {% block titulo %}::AZ::{% endblock titulo %}
+    {% block mensajes %}
+    AZ
 
-    <a  onclick="consultaAZ()" href="#"><input type="button" value="Consultar"></a>
-    <a  onclick="ImprimirAZ()" href="#"><input type="button" value="Imprimir"></a>
-    <br/>
-    <br/>
-    </div>
-<div id="recibo">
-    <table id="encabezado">
-            <tr><th>PORKILANDIA S.A.S.</th></tr>
-            <tr><th>Nit: 900606687-6</th></tr>
-            <tr><th>Regimen Comun</th></tr>
-            <tr><th>Resolucion : 140000039353</th></tr>
-            <tr><th>Rango:000000 hasta 999999</th></tr>
-            <tr><th>Expedida el : 09-04-2013</th></tr>
-            <tr><th>Cll 16 # 31-02 San andres</th></tr>
-            <tr><th>Telefonos : 729 13 36 - 315 582 2270</th></tr>
-            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
-            <tr><th>REPORTE INFORMACION TRIBUTARIA</th></tr>
-            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
-            <tr><th id="fechaAZ" style="text-align: left">Fecha</th></tr>
-            <tr><th id="jornadaAZ" style="text-align: left">Jornada</th></tr>
-            <tr><th id="inicioConsecVentas" style="text-align: left">Inicio</th></tr>
-            <tr><th id="finConsecVentas" style="text-align: left">fin</th></tr>
-            <tr><th id="ConsecZ" style="text-align: left">Consecutivo</th></tr>
-            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
-        </table>
-
-                <table id="TablaExcentos" class="table-striped" style="width: 25%"></table>
-
-                <table id="TablaExcluidos" class="table-striped" style="width: 25%"></table>
-
-                <table id="TablaGravados1" class="table-striped" style="width: 25%"></table>
-
-                <table id="TablaGravados2" class="table-striped" style="width: 25%"></table>
-
-                <table id="pieRecibo">
-                <tr><th style="font-size: 1.1em">__________________________________</th></tr>
-
-                <tr><th id="grav1" style="text-align: left">Venta Gravada :</th></tr>
-                <tr><th id="IvaGrav1" style="text-align: left">Iva 16% :</th></tr>
-                <tr><th id="grav2" style="text-align: left">Venta Gravada :</th></tr>
-                <tr><th id="IvaGrav2" style="text-align: left">Iva 16% :</th></tr>
-                <tr><th style="font-size: 1.1em">__________________________________</th></tr>
-                <tr><th id="ventaTotal" style="text-align: left">Total Venta :</th></tr>
-                <tr><th style="font-size: 1.1em">__________________________________</th></tr>
-                <tr>
-                    <th style="font-size: 0.8em">Generado en PORKISOFT V.1.0</th>
-                </tr>
-
-            </table>
+    {% endblock mensajes %}
+    {% block contenido %}
+        {% if empleado.cargo.nombreCargo == 'Jefe de Punto' %}
+            <div id="progressbar"></div>
+                <div id="rango">
+                 <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
+                 <label for="fin" >Fecha Final</label><input id="fin" type="text">
+                    <label for="jornada">Grupo</label><select id="jornada">
+                        <option value='AM'>AM</option>
+                        <option value='PM'>PM</option>
+                    </select>
+                    <label for="bodega">Punto</label><select id="bodega">
+                        {% for bodega in bodegas %}
+                            <option value={{ bodega.codigoBodega }}>{{ bodega.nombreBodega }}</option>
+                        {% endfor %}
 
 
+                    </select>
 
-                <table id="TablaPesables" class="table-striped" style="width: 25%">
+                <a  onclick="consultaAZ()" href="#"><input type="button" value="Consultar"></a>
+                <a  onclick="ImprimirAZ()" href="#"><input type="button" value="Imprimir"></a>
+                <br/>
+                <br/>
+                </div>
+            <div id="recibo">
+                <table id="encabezado">
+                        <tr><th>PORKILANDIA S.A.S.</th></tr>
+                        <tr><th>Nit: 900606687-6</th></tr>
+                        <tr><th>Regimen Comun</th></tr>
+                        <tr><th>Resolucion : 140000039353</th></tr>
+                        <tr><th>Rango:000000 hasta 999999</th></tr>
+                        <tr><th>Expedida el : 09-04-2013</th></tr>
+                        <tr><th>Cll 16 # 31-02 San andres</th></tr>
+                        <tr><th>Telefonos : 729 13 36 - 315 582 2270</th></tr>
+                        <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+                        <tr><th>REPORTE INFORMACION TRIBUTARIA</th></tr>
+                        <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+                        <tr><th id="fechaAZ" style="text-align: left">Fecha</th></tr>
+                        <tr><th id="jornadaAZ" style="text-align: left">Jornada</th></tr>
+                        <tr><th id="inicioConsecVentas" style="text-align: left">Inicio</th></tr>
+                        <tr><th id="finConsecVentas" style="text-align: left">fin</th></tr>
+                        <tr><th id="ConsecZ" style="text-align: left">Consecutivo</th></tr>
+                        <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+                    </table>
 
-                    <tr>
-                        <th>--Pesables--</th>
-                        <th>_________</th>
-                    </tr>
-                </table>
+                            <table id="TablaExcentos" class="table-striped" style="width: 25%"></table>
 
-                <table id="TablaValPesables" class="table-striped" style="width: 25%">
-                    <tr>
-                        <th>Valor Pesables</th>
-                        <th>_________</th>
-                    </tr>
-                </table>
+                            <table id="TablaExcluidos" class="table-striped" style="width: 25%"></table>
 
-                <table id="TablaNoPesables" class="table-striped" style="width: 25%">
-                    <tr>
-                        <th>No Pesables</th>
-                        <th>_________</th>
-                    </tr>
-                </table>
+                            <table id="TablaGravados1" class="table-striped" style="width: 25%"></table>
 
-                <table id="TablaValNoPesables" class="table-striped" style="width: 25%">
-                    <tr>
-                        <th>Valor No Pesables</th>
-                        <th>_________</th>
-                    </tr>
-                </table>
+                            <table id="TablaGravados2" class="table-striped" style="width: 25%"></table>
+
+                            <table id="pieRecibo">
+                            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+
+                            <tr><th id="grav1" style="text-align: left">Venta Gravada :</th></tr>
+                            <tr><th id="IvaGrav1" style="text-align: left">Iva 16% :</th></tr>
+                            <tr><th id="grav2" style="text-align: left">Venta Gravada :</th></tr>
+                            <tr><th id="IvaGrav2" style="text-align: left">Iva 16% :</th></tr>
+                            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+                            <tr><th id="ventaTotal" style="text-align: left">Total Venta :</th></tr>
+                            <tr><th style="font-size: 1.1em">__________________________________</th></tr>
+                            <tr>
+                                <th style="font-size: 0.8em">Generado en PORKISOFT V.1.0</th>
+                            </tr>
+
+                        </table>
 
 
 
+                            <table id="TablaPesables" class="table-striped" style="width: 25%">
 
-</div>
+                                <tr>
+                                    <th>--Pesables--</th>
+                                    <th>_________</th>
+                                </tr>
+                            </table>
+
+                            <table id="TablaValPesables" class="table-striped" style="width: 25%">
+                                <tr>
+                                    <th>Valor Pesables</th>
+                                    <th>_________</th>
+                                </tr>
+                            </table>
+
+                            <table id="TablaNoPesables" class="table-striped" style="width: 25%">
+                                <tr>
+                                    <th>No Pesables</th>
+                                    <th>_________</th>
+                                </tr>
+                            </table>
+
+                            <table id="TablaValNoPesables" class="table-striped" style="width: 25%">
+                                <tr>
+                                    <th>Valor No Pesables</th>
+                                    <th>_________</th>
+                                </tr>
+                            </table>
 
 
-{% endblock contenido %}
+
+
+            </div>
+        {% else %}
+            <h1>No tiene Los permisos necesarios para usar este modulo</h1>
+        {% endif %}
+    {% endblock contenido %}
+
+

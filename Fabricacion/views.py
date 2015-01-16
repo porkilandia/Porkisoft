@@ -1330,7 +1330,12 @@ def EditaDesposte(request,idDesposte):
 def GestionDesposteActualizado(request, idplanilla):
 
     desposte = PlanillaDesposte.objects.get(pk = idplanilla)
-    canales = Canal.objects.filter(planilla = idplanilla).filter(estado = True)
+    canales = ''
+    if Canal.objects.filter(planilla = idplanilla).filter(estado = True).exists():
+        canales = Canal.objects.filter(planilla = idplanilla).filter(estado = True)
+    else:
+        return HttpResponseRedirect('/inventario/compra')
+
     detalleDespostes = DetallePlanilla.objects.filter(planilla = idplanilla)
 
     #Filtramos los despostes en grupos para su posterior costeo

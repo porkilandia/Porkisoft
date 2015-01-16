@@ -4,7 +4,7 @@ $(document).on('ready', inicio);
  {
 
     // oculta el boton de guardado en pedido en caso de que sea contado
-     /**************************************Template Venta Norte*********************************************/
+     /************************************************Template Venta Norte*********************************************/
     var estado = $('#guardado').text();
     var productoVenta = $('#id_productoVenta');
     var pesoVentaPunto = $('#id_pesoVentaPunto');
@@ -156,8 +156,9 @@ $(document).on('ready', inicio);
      $('#id_fechaCarCond').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaAjuste').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaBolaCondimentada').datepicker({ dateFormat: "dd/mm/yy" });
-    $('#id_fechaCaja').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaCaja').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaFaltante').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaPedido').datepicker({ dateFormat: "dd/mm/yy" });
 
      $( "#bodegaFaltantes" ).selectmenu({ width: 200 });
 
@@ -579,6 +580,7 @@ function consultaAZ() {
     var IvaGravados1= 0;
     var IvaGravados2= 0;
     var VentaTotal = 0;
+
 
     $.ajax({
             url: '/ventas/reporteAZ/',

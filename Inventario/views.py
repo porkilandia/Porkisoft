@@ -339,10 +339,14 @@ def GestionGanado(request,idcompra):
 
 #**********************************************************COMPRA*******************************************************
 def GestionCompra(request):
-
-    fechainicio = date.today() - timedelta(days=10)
+    usuario = request.user
+    emp = Empleado.objects.get(usuario = usuario.username)
+    fechainicio = date.today() - timedelta(days=5)
     fechafin = date.today()
-    compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
+    if usuario.is_staff:
+        compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
+    else:
+        compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin)).filter(bodegaCompra = emp.punto.codigoBodega )
     #compras= Compra.objects.all()
 
     if request.method == 'POST':
@@ -352,9 +356,15 @@ def GestionCompra(request):
 
             return HttpResponseRedirect('/inventario/compra')
     else:
-        formulario =CompraForm(initial={'encargado':12951685})
 
-    return render_to_response('Inventario/GestionCompras.html',{'formulario':formulario,'compras':compras },
+        formulario =CompraForm(initial={'encargado':12951685,'bodegaCompra':emp.punto.codigoBodega})
+    plantilla = ''
+    if usuario.is_staff:
+        plantilla = 'base.html'
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+
+    return render_to_response('Inventario/GestionCompras.html',{'plantilla':plantilla,'formulario':formulario,'compras':compras },
                               context_instance = RequestContext(request))
 
 def ModificaCompra(request,idCompra):
@@ -524,9 +534,24 @@ def EditaCompra(request,idDetCompra):
                                                         context_instance = RequestContext(request))
 #********************************************TRASLADOS******************************************************
 def GestionTraslados(request):
+    usuario = request.user
+    empleado = Empleado.objects.get(usuario = usuario.username)
     fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
-    traslados = Traslado.objects.all().order_by('fechaTraslado').filter(fechaTraslado__range = (fechainicio,fechafin))
+
+    if usuario.is_staff:
+        q1 = Traslado.objects.all().order_by('fechaTraslado').\
+        filter(fechaTraslado__range = (fechainicio,fechafin))
+        traslados = q1
+    else:
+        q1 = Traslado.objects.all().order_by('fechaTraslado').\
+        filter(fechaTraslado__range = (fechainicio,fechafin))\
+        .filter(bodegaActual = empleado.punto.codigoBodega)
+        q2 = Traslado.objects.all().order_by('fechaTraslado').\
+        filter(fechaTraslado__range = (fechainicio,fechafin))\
+        .filter(bodegaDestino = empleado.punto.nombreBodega)
+        traslados = q1|q2
+
     if request.method == 'POST':
 
         formulario = TrasladoForm(request.POST)
@@ -536,7 +561,13 @@ def GestionTraslados(request):
     else:
         formulario =TrasladoForm()
 
-    return render_to_response('Inventario/GestionTraslado.html',{'formulario':formulario,'traslados':traslados },
+    plantilla = ''
+    if usuario.is_staff:
+        plantilla = 'base.html'
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+
+    return render_to_response('Inventario/GestionTraslado.html',{'plantilla':plantilla,'formulario':formulario,'traslados':traslados },
                               context_instance = RequestContext(request))
 
 

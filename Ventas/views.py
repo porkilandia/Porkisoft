@@ -39,7 +39,12 @@ def ReporteTipoPedido(request):
 
 
 def GestionPedidos(request,idcliente):
-    pedidos = Pedido.objects.filter(cliente = idcliente)
+    fechainicio = date.today() - timedelta(days=8)
+    fechafin = date.today()
+    usuario = request.user.username
+    emp = Empleado.objects.get(usuario = usuario)
+    pedidos = Pedido.objects.filter(cliente = idcliente).filter(fechaPedido__range =(fechainicio,fechafin)).filter(bodega = emp.punto.codigoBodega)
+    #pedidos = Pedido.objects.filter(cliente = idcliente)
     cliente = Cliente.objects.get(pk = idcliente)
     if request.method =='POST':
         formulario = PedidoForm(request.POST)
@@ -632,7 +637,14 @@ def VerificarPrecioPedido(request):
 
 def TemplateAZ(request):
     bodegas = Bodega.objects.all()
-    return render_to_response('Ventas/TemplateAZ.html',{'bodegas':bodegas},context_instance = RequestContext(request))
+    usuario = request.user
+    empleado = Empleado.objects.get(usuario = usuario.username)
+
+    if usuario.is_staff:
+        plantilla = 'base.html'
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+    return render_to_response('Ventas/TemplateAZ.html',{'empleado':empleado,'plantilla':plantilla,'bodegas':bodegas},context_instance = RequestContext(request))
 
 def ReporteAZ(request):
 
