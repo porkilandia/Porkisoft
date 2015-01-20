@@ -368,7 +368,7 @@ def GestionCompra(request):
                               context_instance = RequestContext(request))
 
 def ModificaCompra(request,idCompra):
-
+    usuario = request.user
     fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
@@ -383,8 +383,14 @@ def ModificaCompra(request,idCompra):
             return HttpResponseRedirect('/inventario/compra')
     else:
         formulario = CompraForm(initial={'encargado':12951685},instance=compra)
+    plantilla = ''
+    if usuario.is_staff:
+        plantilla = 'base.html'
+    else:
+        plantilla = 'PuntoVentaNorte.html'
 
-    return render_to_response('Inventario/GestionCompras.html',{'formulario':formulario,'compras':compras },
+
+    return render_to_response('Inventario/GestionCompras.html',{'plantilla':plantilla,'formulario':formulario,'compras':compras },
                               context_instance = RequestContext(request))
 
 def borrarDetCompra(request, idDetCompra):
@@ -755,6 +761,18 @@ def ReporteFaltantes (request):
     respuesta = serializers.serialize('json',productoBodega)
     return HttpResponse(respuesta,mimetype='application/json')
 
+def Deshidratacion(request):
+    bodega = request.GET.get('bodega')
+
+    productos = Producto.objects.all().filter(pesables = True)
+
+    for producto in productos:
+        bodegas = ProductoBodega.objects.get(bodega = int(bodega),producto = producto.codigoProducto)
+        pesoProducto = bodegas.pesoProductoStock
+
+    msj = 'Deshidratacion aplicada correctamente a %d productos'%productos.count()
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
 
 def TemplateMovimientos(request):
     productos = Producto.objects.all()

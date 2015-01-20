@@ -31,6 +31,8 @@ class Producto(models.Model):
     gravado2 = models.BooleanField(verbose_name = 'Gravado 2', default=False)
     excento = models.BooleanField(verbose_name='Excento',default=False)
     excluido = models.BooleanField(verbose_name='Excluido',default=False)
+    pesables = models.BooleanField(verbose_name='Pesables',default=False)
+    noPesables = models.BooleanField(verbose_name='No Pesables',default=False)
 
 
     def __unicode__(self):

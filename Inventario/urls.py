@@ -27,6 +27,8 @@ urlpatterns = patterns('',
     url(r'^provedor/$',GestionProvedor),
     url(r'^ganado/(?P<idcompra>\d+)',GestionGanado),
 
+    url(r'^deshidratacion/$',Deshidratacion),
+
     url(r'^grupo/$',GestionGrupo),
 
     url(r'^recepcion/(?P<idcompra>\d+)',GestionPlanillaRecepcion),

@@ -86,6 +86,8 @@ urlpatterns = patterns('',
     url(r'^costearCroquetas/$',CostearCroqueta),
     url(r'^guardarCroquetas/$',GuardarCroqueta),
 
+    url(r'^BorraMiga/(?P<idMiga>\d+)',BorrarMiga),
+    url(r'^editaMiga/(?P<idMiga>\d+)',EditaMiga),
     url(r'^guardarMiga/$',GuardarMiga),
 
     url(r'^tallerReApanado/$',GestionReApanado),

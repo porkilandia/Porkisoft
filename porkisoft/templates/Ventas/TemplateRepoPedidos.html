@@ -8,9 +8,16 @@ Ventas Norte
 {% block contenido %}
 
     <div id="rango">
+     <label for="porFecha">Por Fecha</label><input name="TipoReporte" id="porFecha" type="radio">
+     <label for="porCliente">Por Cliente</label><input name="TipoReporte" id="porCliente" type="radio">
      <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
      <label for="fin">Fecha Final</label><input id="fin" type="text">
-     <label for="cliente">CLiente</label><select id="cliente">
+    <label for="bodega">Bodega</label><select id="bodega">
+         {% for bodega in bodegas %}
+             <option value="{{ bodega.codigoBodega }}">{{ bodega.nombreBodega }}</option>
+        {% endfor %}
+     </select>
+     <label for="cliente">Cliente</label><select id="cliente">
          {% for cliente in clientes %}
              <option value="{{ cliente.codigoCliente }}">{{ cliente.nombreCliente }}</option>
         {% endfor %}
@@ -30,6 +37,7 @@ Ventas Norte
             <th>Total Venta</th>
             <th>Credito</th>
             <th>Contado</th>
+            <th>Acciones</th>
         </tr>
     </thead>
 

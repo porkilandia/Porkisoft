@@ -34,9 +34,9 @@ $(document).on('ready', inicio);
     /******************************************************************************************************************/
 
      $('#agregarProducto').show();
-     $('#encabezado').toggle();
+     $('#encabezado').addClass('ocultarRecibo');
+     $('#pieRecibo').addClass('ocultarRecibo');
      $('#pie').hide();
-     $('#pieRecibo').toggle();
      $('#Retiro').hide();
      $('#tablaMovi').hide();
 
@@ -138,7 +138,7 @@ $(document).on('ready', inicio);
      $('#id_fechaTajado').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaEnsalinado').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaApanado').datepicker({ dateFormat: "dd/mm/yy" });
-     var fechaVenta = $('#id_fechaVenta')
+     var fechaVenta = $('#id_fechaVenta');
      fechaVenta.datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaRecepcion').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaSacrificio').datepicker({ dateFormat: "dd/mm/yy" });
@@ -159,6 +159,8 @@ $(document).on('ready', inicio);
      $('#id_fechaCaja').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaFaltante').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaPedido').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaLimpieza').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaChicharron').datepicker({ dateFormat: "dd/mm/yy" });
 
      $( "#bodegaFaltantes" ).selectmenu({ width: 200 });
 
@@ -180,12 +182,40 @@ $(document).on('ready', inicio);
 }
 
 /**************************************************** METODOS *********************************************************/
+function deshidratacion() {
+
+    var bodega = $('#').val();
+
+    $.ajax({
+            url: '/inventario/deshidratacion/',
+            dataType: "json",
+            type: "get",
+            data: {'bodega': bodega},
+            success: function (respuesta) {
+                $.each(respuesta.valorProducto,function(key,value){
+                    $('#id_valorProducto').val(value);
+                });
+                $.each(respuesta.valorTransporte,function(key,value){
+                    $('#id_valorTransporte').val(value);
+                });
+            }
+        });
+}
 function ReporteTipoPedido() {
 
     var fechaInicio = $('#inicio').val();
     var fechaFin = $('#fin').val();
     var cliente = $('#cliente').val();
     var TablaPedidos = $('#TablaPedidos');
+    var filtrpedido = '';
+    var bodega = $('#bodega').val();
+
+    if($("#porFecha").is(':checked')) {
+            filtrpedido = 'fecha';
+        } else {
+            filtrpedido = 'total';
+        }
+
     var credito = '';
     var contado = '';
     var vrContado= 0;
@@ -196,7 +226,7 @@ function ReporteTipoPedido() {
             url: '/ventas/consultaTipoPedido/',
             dataType: "json",
             type: "get",
-            data: {'inicio':fechaInicio,'fin':fechaFin,'cliente':cliente},
+            data: {'bodega':bodega,'inicio':fechaInicio,'fin':fechaFin,'cliente':cliente,'filtrpedido':filtrpedido},
             success: function (respuesta) {
                     TablaPedidos.find("tr:gt(0)").remove();
 
@@ -221,6 +251,7 @@ function ReporteTipoPedido() {
                                 "</td><td>"+"$" + respuesta[i].fields.TotalVenta +
                                 "</td><td>" + credito +
                                 "</td><td>" + contado +
+                                "</td><td>" + "<a target='_blank'' href='/ventas/detallePedido/"+ respuesta[i].pk + "'>"+'Detalles'+"</a>" +
                                 "</td></tr>");
 
                     }
@@ -885,7 +916,7 @@ function ImprimirRecibo()
                 tablaDetVenta.removeClass('recibo');
                 calculadora.show();
                 $('#imprimeRecibo').hide();
-                //window.open("/ventas/ventaPunto","_self");
+
 }
 function Cobrar()
 {
@@ -901,7 +932,6 @@ function Cobrar()
             success: function (respuesta) {
                 var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
                 location.reload();
-                //$('#efectivo').val(10000);
 
             }
 

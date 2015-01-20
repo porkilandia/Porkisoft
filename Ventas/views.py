@@ -16,7 +16,8 @@ from django.contrib.auth.decorators import login_required
 def TemplateTipoPedido(request):
 
     clientes = Cliente.objects.all()
-    return render_to_response('Ventas/TemplateRepoPedidos.html',{'clientes':clientes},
+    bodegas = Bodega.objects.all()
+    return render_to_response('Ventas/TemplateRepoPedidos.html',{'clientes':clientes,'bodegas':bodegas},
                               context_instance = RequestContext(request))
 
 def ReporteTipoPedido(request):
@@ -24,6 +25,8 @@ def ReporteTipoPedido(request):
     inicio = request.GET.get('inicio')
     fin = request.GET.get('fin')
     idCliente = request.GET.get('cliente')
+    filtrpedido = request.GET.get('filtrpedido')
+    bodega = request.GET.get('bodega')
 
     fechaInicio = str(inicio)
     fechaFin = str(fin)
@@ -32,8 +35,13 @@ def ReporteTipoPedido(request):
     ff = datetime.strptime(fechaFin, formatter_string)
     finicio = fi.date()
     ffin = ff.date()
+    pedidos = ''
 
-    pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(cliente = int(idCliente))
+    if filtrpedido == 'fecha':
+        pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(bodega = int(bodega)).order_by('numeroFactura')
+    elif filtrpedido == 'total':
+        pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(cliente = int(idCliente)).filter(bodega = int(bodega)).order_by('numeroFactura')
+
     respuesta = serializers.serialize('json',pedidos)
     return HttpResponse(respuesta,mimetype='application/json')
 

@@ -11,11 +11,12 @@
 
         <thead>
         <tr>
-            <th>Codigo</th>
+            <th>Reg.</th>
             <th>Nombre</th>
             <th>Costo Kg</th>
             <th>Precio Sugerido</th>
             <th>Grupo</th>
+            <th>Codigo</th>
             <th>Categoria</th>
             <th>Acciones</th>
         </tr>
@@ -32,7 +33,7 @@
             {% endif %}
             <td>$ {{ producto.precioSugerido | floatformat }}</td>
             <td>{{ producto.grupo }}</td>
-
+            <td>{{ producto.numeroProducto }}</td>
             {% if producto.excento == True %}
                 <td>Excento</td>
             {% elif producto.gravado == True %}
@@ -44,6 +45,7 @@
             {% else %}
                 <td>ninguno</td>
             {% endif %}
+
 
             <td style="text-align: center">
                 <a href="{% url 'Inventario.views.editar_producto' producto.codigoProducto %}">Modif.</a>

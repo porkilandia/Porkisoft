@@ -1999,6 +1999,11 @@ table th[class*="col-"] {
     position: fixed;
     right: 20em;
 }
+.ocultarRecibo
+{
+    display: none;
+}
+
 table a:link
 {
     padding: 5px;

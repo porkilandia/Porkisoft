@@ -1,3 +1,4 @@
+from datetime import date
 from Inventario.models import *
 from Nomina.models import *
 
@@ -18,6 +19,8 @@ class Ensalinado(models.Model):
 
 
 class LimpiezaVerduras(models.Model):
+    hoy = date.today()
+    fechaLimpieza = models.DateField(verbose_name='Fecha',default=hoy)
     productoLimpiar = models.ForeignKey(Producto)
     pesoProducto = models.DecimalField(verbose_name='Peso Antes', max_digits=9, decimal_places=3, default=0)
     pesoDespues = models.DecimalField(verbose_name='Peso Despues', max_digits=9, decimal_places=3, default=0)

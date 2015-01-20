@@ -395,7 +395,6 @@ def GestionVerduras(request):
 
     return render_to_response('Fabricacion/GestionVerduras.html',{'formulario':formulario,'verduras':verduras},
                               context_instance = RequestContext(request))
-
 def ValorVerduras(request):
     idCompra = request.GET.get('idCompra')
     idProducto = request.GET.get('idProducto')
@@ -591,6 +590,27 @@ def GestionMiga(request):
 
     return render_to_response('Fabricacion/GestionMiga.html',{'formulario':formulario,'migas':migas },
                               context_instance = RequestContext(request))
+def EditaMiga(request,idMiga):
+    migas  = Miga.objects.all()
+    miga = Miga.objects.get(pk = idMiga)
+
+    if request.method == 'POST':
+
+        formulario = MigaForm(request.POST,instance=miga)
+        if formulario.is_valid():
+            formulario.save()
+
+            return HttpResponseRedirect('/fabricacion/miga')
+    else:
+        formulario = MigaForm(instance=miga)
+
+    return render_to_response('Fabricacion/GestionMiga.html',{'formulario':formulario,'migas':migas },
+                              context_instance = RequestContext(request))
+def BorrarMiga(request,idMiga):
+    miga = Miga.objects.get(pk = idMiga)
+    miga.delete()
+    return HttpResponseRedirect('/fabricacion/miga')
+
 
 def GestionDetalleMiga(request,idmiga):
     miga = Miga.objects.get(pk = idmiga)
@@ -1421,13 +1441,13 @@ def GestionDesposteActualizado(request, idplanilla):
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
 
     elif tipoDesposte == 'Cerdas':
-        vrCarnes = ceil((vrTotalCanales * 34)/100)
-        vrCarnes2 = ceil((vrTotalCanales * 30)/100)
+        vrCarnes = ceil((vrTotalCanales * 32)/100)
+        vrCarnes2 = ceil((vrTotalCanales * 31)/100)
         vrCarnes3 = 0
         vrCarnes4 = 0
-        vrCostillas = ceil((vrTotalCanales * 12)/100)
+        vrCostillas = ceil((vrTotalCanales * 13)/100)
         vrHuesos = ceil((vrTotalCanales * 4)/100)
-        vrsubProd = ceil((vrTotalCanales * 15)/100)
+        vrsubProd = ceil((vrTotalCanales * 14)/100)
         vrDesecho = ceil((vrTotalCanales * 2)/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
@@ -1765,7 +1785,7 @@ def verCanal(request,idCanal):
     return HttpResponseRedirect('/fabricacion/canal/'+ str(recepcion.codigoRecepcion))
 
 def GestionDescarneCabeza(request):
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=25)
     fechafin = date.today()
     descarnes = DescarneCabeza.objects.filter(fecha__range =(fechainicio,fechafin))
     #descarnes = DescarneCabeza.objects.all()
@@ -3287,9 +3307,11 @@ def ReporteTallerPunto(request):
 
 
 def GestionChicharron(request):
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=15)
     fechafin = date.today()
     chicharrones = TallerChicharron.objects.filter(fechaChicharron__range =(fechainicio,fechafin))
+
+
 
     if request.method == 'POST':
 
