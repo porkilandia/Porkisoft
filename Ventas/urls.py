@@ -20,7 +20,7 @@ urlpatterns = patterns('',
     url(r'^BorrardetallePedido/(?P<idpedido>\d+)',BorrarDetallePedido),
     url(r'^guardarPedido/$',GuaradarPedido),
     url(r'^verificarPrecioPedido/$',VerificarPrecioPedido),
-
+    url(r'^tipoProducto/$',TipoProducto),
 
     #url(r'^pedidoPdf/(?P<idpedido>\d+)',ReportePedido),
     url(r'^listaPrecios/$',GestionLista),

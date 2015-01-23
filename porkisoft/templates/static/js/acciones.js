@@ -11,17 +11,31 @@ $(document).on('ready', inicio);
     var unidadesVentaPunto = $('#id_unidades');
     var total= 0;
     pesoVentaPunto.on('change',calculoTotalVentaPunto);
-    unidadesVentaPunto.on('change',calculoTotalVentaPunto);
+
      function calculoTotalVentaPunto() {
-         if (pesoVentaPunto.val() == 0)
-         {
-            total = unidadesVentaPunto.val() * $('#id_vrUnitarioPunto').val();
-            $('#id_vrTotalPunto').val(total);
-         }else
-         {
-            total = (pesoVentaPunto.val()/1000) * $('#id_vrUnitarioPunto').val();
-            $('#id_vrTotalPunto').val(total);
-         }
+        var producto = productoVenta.val();
+        var vrUnitario =$('#id_vrUnitarioPunto').val();
+         $.ajax({
+            url: '/ventas/tipoProducto/',
+            dataType: "json",
+            type: "get",
+            data: {'producto': producto},
+            success: function (respuesta) {
+
+                if (respuesta == 'pesable')
+                {
+                    total = (pesoVentaPunto.val()/1000) * vrUnitario;
+                    $('#id_vrTotalPunto').val(Math.round(total));
+                }
+                else
+                {
+                    total = pesoVentaPunto.val() * vrUnitario;
+                    $('#id_vrTotalPunto').val(total);
+                }
+
+            }
+
+        });
 
      }
      pesoVentaPunto.on('change',calculoTotalVentaPunto);
@@ -90,7 +104,6 @@ $(document).on('ready', inicio);
      var vrUnitario = $('#id_vrUnitarioPunto');
      productoVenta.on('change',traeValorVenta);
      pesoVentaPunto.on('change',existenciasVenta);
-     unidadesVentaPunto.on('change',existenciasVenta);
      $('#regreso').on('focus',calculoRegreso);
      $('#id_cantidadActual').on('focus',CantidadActual);
      $('#id_compra').on('change',ValorVerduras);
@@ -184,7 +197,7 @@ $(document).on('ready', inicio);
 /**************************************************** METODOS *********************************************************/
 function deshidratacion() {
 
-    var bodega = $('#').val();
+    var bodega = $('#bodegaFaltantes').val();
 
     $.ajax({
             url: '/inventario/deshidratacion/',
@@ -192,12 +205,7 @@ function deshidratacion() {
             type: "get",
             data: {'bodega': bodega},
             success: function (respuesta) {
-                $.each(respuesta.valorProducto,function(key,value){
-                    $('#id_valorProducto').val(value);
-                });
-                $.each(respuesta.valorTransporte,function(key,value){
-                    $('#id_valorTransporte').val(value);
-                });
+                var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
             }
         });
 }
@@ -852,9 +860,29 @@ function existenciasVenta()
 {
     var idProducto = $('#id_productoVenta').val();
     var peso = $('#id_pesoVentaPunto').val();
-    var und = $('#id_unidades').val();
-    Existencias(idProducto,1,peso);
-    ExistenciasUnd(idProducto,1,und);
+
+    $.ajax({
+            url: '/ventas/tipoProducto/',
+            dataType: "json",
+            type: "get",
+            data: {'producto': idProducto},
+            success: function (respuesta) {
+
+                if (respuesta == 'pesable')
+                {
+                    Existencias(idProducto,1,peso);
+                }
+                else
+                {
+                    ExistenciasUnd(idProducto,1,peso);
+                }
+
+            }
+
+        });
+
+
+    //ExistenciasUnd(idProducto,1,peso);
 }
 function traeValorVenta()
 {
@@ -878,12 +906,13 @@ function traeValorVenta()
 function calculoTotalVenta()
 {
     var peso = $('#id_pesoVentaPunto').val();
-    var und = $('#id_unidades').val();
+    //var und = $('#id_unidades').val();
     var total = 0;
     var vrUnitario = $('#id_vrUnitarioPunto').val();
+    var producto = $('#id_productoVenta').val();
     peso = parseInt(peso);
 
-    if (peso == 0)
+    /*if (peso == 0)
     {
         total = und * vrUnitario;
         $('#id_vrTotalPunto').val(total);
@@ -892,7 +921,29 @@ function calculoTotalVenta()
     {
         total = (peso/1000) * vrUnitario;
         $('#id_vrTotalPunto').val(Math.round(total));
-    }
+    }*/
+
+    $.ajax({
+            url: '/ventas/tipoProducto/',
+            dataType: "json",
+            type: "get",
+            data: {'producto': producto},
+            success: function (respuesta) {
+
+                if (respuesta == 'pesable')
+                {
+                    total = (peso/1000) * vrUnitario;
+                    $('#id_vrTotalPunto').val(Math.round(total));
+                }
+                else
+                {
+                    total = peso * vrUnitario;
+                    $('#id_vrTotalPunto').val(total);
+                }
+
+            }
+
+        });
 
 }
 function ImprimirRecibo()
@@ -908,7 +959,7 @@ function ImprimirRecibo()
                 calculadora.hide();
                 encabezado.show();
                 pie.show();
-                tablaDetVenta.find("th:eq(5)").hide();
+                tablaDetVenta.find("th:eq(4)").hide();
                 tablaDetVenta.addClass('recibo');
                 $('#recibo').printArea();
                 encabezado.hide();

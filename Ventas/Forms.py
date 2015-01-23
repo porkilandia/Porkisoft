@@ -70,6 +70,7 @@ class DetalleVentaPuntoForm(ModelForm):
 
     class Meta:
         model = DetalleVentaPunto
+        exclude = ('unidades',)
 class CajaForm(ModelForm):
     class Meta:
         model = Caja

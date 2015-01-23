@@ -341,7 +341,7 @@ def GestionGanado(request,idcompra):
 def GestionCompra(request):
     usuario = request.user
     emp = Empleado.objects.get(usuario = usuario.username)
-    fechainicio = date.today() - timedelta(days=5)
+    fechainicio = date.today() - timedelta(days=22)
     fechafin = date.today()
     if usuario.is_staff:
         compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
@@ -369,7 +369,7 @@ def GestionCompra(request):
 
 def ModificaCompra(request,idCompra):
     usuario = request.user
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=22)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     compra = Compra.objects.get(pk = idCompra)
@@ -763,14 +763,23 @@ def ReporteFaltantes (request):
 
 def Deshidratacion(request):
     bodega = request.GET.get('bodega')
+    cont = 0
 
-    productos = Producto.objects.all().filter(pesables = True)
+    productos = ProductoBodega.objects.filter(bodega = int(bodega),producto__pesables = True)
 
     for producto in productos:
-        bodegas = ProductoBodega.objects.get(bodega = int(bodega),producto = producto.codigoProducto)
-        pesoProducto = bodegas.pesoProductoStock
 
-    msj = 'Deshidratacion aplicada correctamente a %d productos'%productos.count()
+        if producto.pesoProductoStock > 0:
+
+            pesoProducto = producto.pesoProductoStock
+            #Calculo de Deshidratacion
+            deshidratacion = (pesoProducto * Decimal(0.8))/100
+            pesoAjustado = pesoProducto - Decimal(ceil(deshidratacion))
+            producto.pesoProductoStock = pesoAjustado
+            producto.save()
+            cont += 1
+
+    msj = 'Deshidratacion aplicada correctamente a %d productos'%cont
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 

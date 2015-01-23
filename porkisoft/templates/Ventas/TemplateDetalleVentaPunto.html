@@ -66,8 +66,7 @@
         <tr>
 
             <th>Producto</th>
-            <th>Peso</th>
-            <th>Und</th>
+            <th>Cantidad</th>
             <th>Vr.Unitario</th>
             <th>Vr.Total</th>
             <th>Acciones</th>
@@ -79,7 +78,6 @@
             <tr>
             <td>{{ detventa.productoVenta.nombreProducto }}</td>
             <td>{{ detventa.pesoVentaPunto|floatformat }}</td>
-            <td>{{ detventa.unidades }}</td>
             <td>$ {{ detventa.vrUnitarioPunto }}</td>
             <td>$ {{ detventa.vrTotalPunto }}</td>
             {% if venta.guardado == True %}

@@ -347,6 +347,19 @@ def PuntoVenta(request):
         formulario = VentaPuntoForm(initial={'encargado':empleado,'jornada':jornada,'fechaVenta':datetime.today(),'puntoVenta':punto})
     return render_to_response('Ventas/TemplateVentaPunto.html',{'ventas':ventas,'formulario':formulario},
                               context_instance = RequestContext(request))
+def TipoProducto(request):
+
+    idProducto = request.GET.get('producto')
+    producto = Producto.objects.get(pk = int(idProducto))
+
+    if producto.pesables == True:
+        msj = 'pesable'
+    else:
+        msj = 'no pesable'
+
+    respuesta = json.dumps(msj)
+
+    return HttpResponse(respuesta,mimetype='application/json')
 
 def DetallePuntoVenta(request,idVenta):
     detVentas =DetalleVentaPunto.objects.filter(venta = idVenta)
@@ -435,12 +448,12 @@ def CobrarVenta(request):
         movimiento.productoMov = detalle.productoVenta
         movimiento.desde = bodegaProducto.bodega.nombreBodega
 
-        if detalle.pesoVentaPunto == 0:
-            bodegaProducto.unidadesStock -= detalle.unidades
-            movimiento.salida = detalle.unidades
-        else:
+        if detalle.productoVenta.pesables == True:
             bodegaProducto.pesoProductoStock -= detalle.pesoVentaPunto
             movimiento.salida = detalle.pesoVentaPunto
+        else:
+            bodegaProducto.unidadesStock -= int(detalle.pesoVentaPunto)
+            movimiento.salida = int(detalle.pesoVentaPunto)
 
         bodegaProducto.save()
         movimiento.save()
@@ -737,24 +750,25 @@ def ReporteAZ(request):
     for venta in ventas:
         detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
         for detalle in detalleVenta:
-            if detalle.pesoVentaPunto == 0:
-                UdnProductos[detalle.productoVenta.nombreProducto] = 0
-                ValorUnds[detalle.productoVenta.nombreProducto] = 0
-            else:
+            if detalle.productoVenta.pesables == True:
                 PesoProductos[detalle.productoVenta.nombreProducto] = 0
                 ValorProductos[detalle.productoVenta.nombreProducto] = 0
+            else:
+                UdnProductos[detalle.productoVenta.nombreProducto] = 0
+                ValorUnds[detalle.productoVenta.nombreProducto] = 0
 
 
 
     for venta in ventas:
         detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
         for detalle in detalleVenta:
-            if detalle.pesoVentaPunto == 0:
-                UdnProductos[detalle.productoVenta.nombreProducto] += detalle.unidades
-                ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
-            else:
+            if detalle.productoVenta.pesables == True:
                 PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
                 ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+            else:
+                UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+
 
 
     listas = {'gravados1':gravados1,'gravados2':gravados2,

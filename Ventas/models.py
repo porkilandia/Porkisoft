@@ -113,7 +113,7 @@ class VentaPunto(models.Model):
 class DetalleVentaPunto (models.Model):
     venta = models.ForeignKey(VentaPunto)
     productoVenta = models.ForeignKey(Producto,null=True,verbose_name='Producto')
-    pesoVentaPunto = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso',null= True,default=0)
+    pesoVentaPunto = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Cantidad',null= True,default=0)
     unidades = models.IntegerField(verbose_name='Unidades',null= True,default=0)
     vrUnitarioPunto = models.IntegerField(verbose_name='Vr.Unitario', default=0)
     vrTotalPunto = models.IntegerField(verbose_name='Vr.Total',default=0)
