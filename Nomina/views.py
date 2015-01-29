@@ -96,15 +96,14 @@ def Login(request):
                     login(request,acceso)
                     empleado = Empleado.objects.get(usuario = usuario)
                     valorInicial = ConfiguracionPuntos.objects.get(bodega = empleado.punto.codigoBodega)
-
                     usuario = request.user
                     #empleado.cargo.nombreCargo == 'Cajero'
                     if usuario.is_staff:
-                        return HttpResponseRedirect('/')
+                        return render_to_response('Inicio.html',{},context_instance = RequestContext(request))
                     else:
                         valorInicial.jornada = request.POST['jornada']
                         valorInicial.save()
-                        return HttpResponseRedirect('/ventas/ventaPunto')
+                        return render_to_response('InicioVentas.html',{},context_instance = RequestContext(request))
 
                 else:
                     mensaje = 'Tu usuario esta inactivo'

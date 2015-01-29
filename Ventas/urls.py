@@ -4,6 +4,7 @@ from Ventas.views import *
 
 urlpatterns = patterns('',
 
+    url(r'^inicioVentas/$',InicioVentas),
     url(r'^ventas/$',GestionVentas),
     url(r'^detalleVentas/(?P<idVenta>\d+)',GestionDetalleVentas),
     url(r'^consultaPrecioProducto/$',consultaValorProducto),
