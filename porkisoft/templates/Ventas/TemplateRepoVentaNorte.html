@@ -8,9 +8,17 @@ Ventas Norte
 {% block contenido %}
 
     <div id="rango">
+     <label for="ventas">Ventas</label><input name="TipoReporte" id="ventas" type="radio">
+     <label for="pedidos">Pedidos</label><input name="TipoReporte" id="pedidos" type="radio">
      <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
      <label for="fin">Fecha Final</label><input id="fin" type="text">
-     <label for="jornada">Grupo</label><select id="jornada">
+     <label for="bodega">Punto</label><select id="bodega">
+        {% for bodega in bodegas %}
+            <option value='{{ bodega.codigoBodega }}'>{{ bodega.nombreBodega }}</option>
+        {% endfor %}
+
+     </select>
+     <label for="jornada">Jornada</label><select id="jornada">
          <option value='AM'>AM</option>
          <option value='PM'>PM</option>
      </select>

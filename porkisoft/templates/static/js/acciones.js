@@ -483,17 +483,28 @@ function CantidadActual() {
 
 }
 function ReporteVentasNorte() {
+
+    var tipoReporte = '';
+
+    if($("#ventas").is(':checked')) {
+           tipoReporte = 'ventas';
+
+        } else {
+           tipoReporte = 'pedidos';
+        }
+
        var inicio = $('#inicio').val();
         var fin = $('#fin').val();
         var jornada = $('#jornada').val();
         var totalVentaPesables = 0;
         var totalVentaNoPesables = 0;
+        var bodega = $('#bodega').val();
 
     $.ajax({
             url: '/ventas/reporteVentaNorte/',
             dataType: "json",
             type: "get",
-            data: {'inicio': inicio, 'fin': fin,'jornada':jornada},
+            data: {'inicio': inicio, 'fin': fin,'jornada':jornada,'bodega':bodega,'tipoReporte':tipoReporte},
             success: function (respuesta) {
 
                  $("#tablaRepPP").find("tr:gt(0)").remove();

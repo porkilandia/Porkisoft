@@ -475,20 +475,20 @@ def GuardarDetCompra(request):
         movimiento.nombreProd =  detalle.producto.nombreProducto
         movimiento.Hasta = compra.bodegaCompra.nombreBodega
 
-        if compra.tipo.id == 6 or compra.tipo.id == 7 or compra.tipo.id == 8 or compra.tipo.id == 9:
+        #if compra.tipo.id == 6 or compra.tipo.id == 7 or compra.tipo.id == 8 or compra.tipo.id == 9:
 
-            productoBodega.pesoProductoStock += detalle.pesoProducto
-            productoBodega.unidadesStock += detalle.unidades
-            productoBodega.save()
+        productoBodega.pesoProductoStock += detalle.pesoProducto
+        productoBodega.unidadesStock += detalle.unidades
+        productoBodega.save()
 
-            if detalle.pesoProducto == 0:
-                movimiento.entrada = detalle.unidades
-            else:
-                movimiento.entrada = detalle.pesoProducto
+        if detalle.producto.pesables == True:
+            movimiento.entrada = detalle.pesoProducto
+        else:
+            movimiento.entrada = detalle.unidades
 
-            producto.costoProducto = detalle.vrCompraProducto
-            producto.save()
-            movimiento.save()
+        producto.costoProducto = detalle.vrCompraProducto
+        producto.save()
+        movimiento.save()
 
     compra.guardado = True
     compra.save()

@@ -1454,11 +1454,11 @@ def GestionDesposteActualizado(request, idplanilla):
     else:
         vrCarnes = ceil((vrTotalCanales * Decimal(7.5))/100)
         vrCarnes2 = ceil((vrTotalCanales * Decimal(30))/100)
-        vrCarnes3 = ceil((vrTotalCanales * Decimal(30.5))/100)
+        vrCarnes3 = ceil((vrTotalCanales * Decimal(31.5))/100)
         vrCarnes4 = ceil((vrTotalCanales * Decimal(12))/100)
         vrCostillas = ceil((vrTotalCanales * 4)/100)
         vrHuesos = ceil((vrTotalCanales * 11)/100)
-        vrsubProd = ceil((vrTotalCanales * Decimal(1.5))/100)
+        vrsubProd = ceil((vrTotalCanales * Decimal(1))/100)
         vrDesecho = ceil((vrTotalCanales * Decimal(0.5))/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
@@ -1580,6 +1580,12 @@ def GestionDesposteActualizado(request, idplanilla):
 
     return render_to_response('Fabricacion/GestionDeposteActualizado.html',
                               contexto,context_instance = RequestContext(request))
+
+def borrarDetDesposte(request,idDesp):
+    detalle = DetallePlanilla.objects.get(pk = idDesp)
+    desposte = PlanillaDesposte.objects.get(pk = detalle.planilla.codigoPlanilla)
+    detalle.delete()
+    HttpResponseRedirect('/fabricacion/detalleDesposte/'+ str(desposte.codigoPlanilla))
 
 def costeoDesposte(request):
     idDesposte = request.GET.get('idDesposte')

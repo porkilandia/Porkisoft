@@ -308,10 +308,10 @@ fieldset {
 #calculaVuelto
 {
     width: 30%;
-    font-size: 2em;
+    font-size: 1.1em;
     position: fixed;
-    right: -5em;
-    top: 18em;;
+    right: -3em;
+    top: 35em;;
 }
 #tablaProductos
 {

@@ -124,6 +124,7 @@
                 <td>{{ carne.costoAdtvo }}</td>
                 <td>
                     <a href="{% url 'Fabricacion.views.EditaDetPlanilla' carne.id %}">Modificar</a>
+                    <a href="{% url 'Fabricacion.views.borrarDetDesposte' carne.id %}">Borrar</a>
                 </td>
 
             </tr>
@@ -173,6 +174,7 @@
                 <td>{{ carne2.costoAdtvo }}</td>
                 <td>
                     <a href="{% url 'Fabricacion.views.EditaDetPlanilla' carne2.id %}">Modificar</a>
+                    <a href="{% url 'Fabricacion.views.borrarDetDesposte' carne2.id %}">Borrar</a>
                 </td>
 
             </tr>
@@ -221,6 +223,7 @@
                 <td>{{ carne3.costoAdtvo }}</td>
                 <td>
                     <a href="{% url 'Fabricacion.views.EditaDetPlanilla' carne3.id %}">Modificar</a>
+                    <a href="{% url 'Fabricacion.views.borrarDetDesposte' carne3.id %}">Borrar</a>
                 </td>
 
             </tr>
@@ -269,6 +272,7 @@
                 <td>{{ carne4.costoAdtvo }}</td>
                 <td>
                     <a href="{% url 'Fabricacion.views.EditaDetPlanilla' carne4.id %}">Modificar</a>
+                    <a href="{% url 'Fabricacion.views.borrarDetDesposte' carne4.id %}">Borrar</a>
                 </td>
 
             </tr>
@@ -321,6 +325,7 @@
                 <td>{{ costilla.costoAdtvo }}</td>
                 <td>
                     <a href="{% url 'Fabricacion.views.EditaDetPlanilla' costilla.id %}">Modificar</a>
+                    <a href="{% url 'Fabricacion.views.borrarDetDesposte' costilla.id %}">Borrar</a>
                 </td>
             </tr>
         {% empty %}
@@ -367,6 +372,7 @@
                 <td>{{ subp.costoAdtvo }}</td>
                 <td>
                     <a href="{% url 'Fabricacion.views.EditaDetPlanilla' subp.id %}">Modificar</a>
+                    <a href="{% url 'Fabricacion.views.borrarDetDesposte' subp.id %}">Borrar</a>
                 </td>
             </tr>
         {% empty %}
@@ -414,6 +420,7 @@
                 <td>{{ hueso.costoAdtvo }}</td>
                 <td>
                     <a href="{% url 'Fabricacion.views.EditaDetPlanilla' hueso.id %}">Modificar</a>
+                    <a href="{% url 'Fabricacion.views.borrarDetDesposte' hueso.id %}">Borrar</a>
                 </td>
             </tr>
         {% empty %}
@@ -461,6 +468,7 @@
                 <td>{{ desecho.costoAdtvo }}</td>
                 <td>
                     <a href="{% url 'Fabricacion.views.EditaDetPlanilla' desecho.id %}">Modificar</a>
+                    <a href="{% url 'Fabricacion.views.borrarDetDesposte' desecho.id %}">Borrar</a>
                 </td>
             </tr>
         {% empty %}
