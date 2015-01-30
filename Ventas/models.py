@@ -182,3 +182,6 @@ class ConfiguracionPuntos(models.Model):
     actual = models.IntegerField(verbose_name='vr actual',default=0)
     finaliza = models.IntegerField(verbose_name='vr Final',default=0)
     consecutivoZ = models.IntegerField(verbose_name='ConsecZ',default=0)
+
+class prueba(models.Model):
+    prueba = models.CharField(max_length=10)

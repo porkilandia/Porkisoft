@@ -413,3 +413,5 @@ class TallerChicharron(models.Model):
     mod = models.IntegerField(verbose_name='Mod',default=0)
     cif = models.IntegerField(verbose_name='Cif',default=0)
     guardado = models.BooleanField(default=False)
+
+
