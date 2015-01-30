@@ -317,7 +317,7 @@ def EditaListas(request,idDetLista):
 
     return render_to_response('Ventas/GestionDetalleListas.html',{'formulario':formulario,'lista':lista,'detalleListas':detalleListas},
                               context_instance = RequestContext(request))
-
+@login_required()
 def InicioVentas(request):
     return render_to_response('Ventas/TemplateVentaPunto.html',{},context_instance = RequestContext(request))
 

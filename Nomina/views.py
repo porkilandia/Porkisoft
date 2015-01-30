@@ -90,7 +90,7 @@ def Login(request):
             usuario = request.POST['username']
             clave = request.POST['password']
             acceso = authenticate(username = usuario,password = clave)
-            print(acceso)
+
             if acceso is not None:
                 if acceso.is_active:
                     login(request,acceso)

@@ -23,11 +23,10 @@ def listaProvedoresAjax(request):
                                                              'email','ciudad'))
     return HttpResponse(data, mimetype='application/json')
 
+@login_required()
 def inicio(request):
     return render_to_response('Inicio.html',{},context_instance = RequestContext(request))
 
-
-@login_required()
 def home(request):
     productosBajoStock = ProductoBodega.objects.all().filter(pesoProductoStock__gt = 500).order_by('bodega')
     costosProductos = Producto.objects.all().order_by('nombreProducto')
