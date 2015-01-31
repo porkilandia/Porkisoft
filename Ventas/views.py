@@ -549,12 +549,14 @@ def ValorProdVenta(request):
     idProducto = request.GET.get('idProducto')
     numVenta = request.GET.get('numVenta')
     venta = VentaPunto.objects.get(pk = int(numVenta))
+    usuario = request.user.username
+    emp = Empleado.objects.get(usuario = usuario)
 
     if venta.restaurante == True:
         lista = ListaDePrecios.objects.get(nombreLista = 'Restaurantes Norte')
         valor = DetalleLista.objects.filter(lista = lista.codigoLista).get(productoLista = int(idProducto)).precioVenta
     else:
-        lista = ListaDePrecios.objects.get(nombreLista = 'Norte/Lorenzo')
+        lista = ListaDePrecios.objects.get(tipoLista = 'Punto',bodega = emp.punto.codigoBodega)
         valor = DetalleLista.objects.filter(lista = lista.codigoLista).get(productoLista = int(idProducto)).precioVenta
 
     respuesta = json.dumps(valor)
