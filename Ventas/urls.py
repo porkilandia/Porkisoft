@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     #url(r'^pedidoPdf/(?P<idpedido>\d+)',ReportePedido),
     url(r'^listaPrecios/$',GestionLista),
     url(r'^detalleLista/(?P<idLista>\d+)',GestionDetalleLista),
+    url(r'^editaListaPrecios/(?P<idLista>\d+)',EditaListaPrecios),
     url(r'^editaLista/(?P<idDetLista>\d+)',EditaListas),
 
     url(r'^ventaPunto/$',PuntoVenta),

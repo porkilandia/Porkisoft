@@ -277,6 +277,22 @@ def GestionLista(request):
     return render_to_response('Ventas/GestionLista.html',{'formulario':formulario,'listas':listas},
                               context_instance = RequestContext(request))
 
+def EditaListaPrecios(request,idLista):
+    listas = ListaDePrecios.objects.all()
+    lista = ListaDePrecios.objects.get(pk = idLista)
+
+    if request.method =='POST':
+        formulario = ListaDePreciosForm(request.POST,instance=lista)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/ventas/listaPrecios/')
+    else:
+        formulario = ListaDePreciosForm(instance=lista)
+
+    return render_to_response('Ventas/GestionLista.html',{'formulario':formulario,'listas':listas},
+                              context_instance = RequestContext(request))
+
+
 def GestionDetalleLista(request,idLista):
     lista = ListaDePrecios.objects.get(pk= idLista)
     detalleListas = DetalleLista.objects.filter(lista = lista.codigoLista)
@@ -857,11 +873,6 @@ def ReporteVentaNorte(request):
                 else:
                     UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
                     ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
-
-
-
-
-
 
     listas = {'PesoProductos':PesoProductos,'ValorProductos':ValorProductos,'UdnProductos':UdnProductos,'ValorUnds':ValorUnds}
     respuesta = json.dumps(listas)
