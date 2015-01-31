@@ -1585,7 +1585,7 @@ def borrarDetDesposte(request,idDesp):
     detalle = DetallePlanilla.objects.get(pk = idDesp)
     desposte = PlanillaDesposte.objects.get(pk = detalle.planilla.codigoPlanilla)
     detalle.delete()
-    HttpResponseRedirect('/fabricacion/detalleDesposte/'+ str(desposte.codigoPlanilla))
+    return HttpResponseRedirect('/fabricacion/detalleDesposte/'+ str(desposte.codigoPlanilla))
 
 def costeoDesposte(request):
     idDesposte = request.GET.get('idDesposte')
