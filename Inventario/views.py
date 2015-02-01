@@ -174,9 +174,9 @@ def GestionBodega(request):
     bodegas = Bodega.objects.all()
     prodBods = ProductoBodega.objects.all()
 
-    '''for bodega in prodBods:
+    for bodega in prodBods:
         bodega.nombreProducto = bodega.producto.nombreProducto
-        bodega.save()'''
+        bodega.save()
 
 
     if request.method == 'POST':
