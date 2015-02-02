@@ -2666,7 +2666,12 @@ def GestionCroqueta(request):
 def CostearCroqueta(request):
     idCorqueta = request.GET.get('idCroqueta')
     regCroqueta = TallerCroquetas.objects.get(pk = int(idCorqueta))
-    croquetaApanada = Producto.objects.get(nombreProducto = 'Croqueta Apanada')
+
+    if regCroqueta.puntoCroq == 'Norte':
+        croquetaApanada = Producto.objects.get(nombreProducto = 'Croqueta Apanada')
+    else:
+        croquetaApanada = Producto.objects.get(nombreProducto = 'Pollo Molido')
+
     croquetaCocida = Producto.objects.get(nombreProducto = 'Croqueta Cocinada')
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
     miga = Producto.objects.get(nombreProducto = 'Miga Preparada')
@@ -2701,7 +2706,12 @@ def CostearCroqueta(request):
 def GuardarCroqueta(request):
     idCorqueta = request.GET.get('idCroqueta')
     regCroqueta = TallerCroquetas.objects.get(pk = int(idCorqueta))
-    croquetaApanada = Producto.objects.get(nombreProducto = 'Croqueta Apanada')
+
+    if regCroqueta.puntoCroq == 'Norte':
+        croquetaApanada = Producto.objects.get(nombreProducto = 'Croqueta Apanada')
+    else:
+        croquetaApanada = Producto.objects.get(nombreProducto = 'Pollo Molido')
+
     croquetaCocida = Producto.objects.get(nombreProducto = 'Croqueta Cocinada')
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
     miga = Producto.objects.get(nombreProducto = 'Miga Preparada')

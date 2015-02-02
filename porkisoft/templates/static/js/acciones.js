@@ -103,7 +103,7 @@ $(document).on('ready', inicio);
      $('#id_diferencia').on('focus',calculoDiferencia);
      var vrUnitario = $('#id_vrUnitarioPunto');
      productoVenta.on('change',traeValorVenta);
-     pesoVentaPunto.on('change',existenciasVenta);
+     //pesoVentaPunto.on('change',existenciasVenta);
      $('#regreso').on('focus',calculoRegreso);
      $('#id_cantidadActual').on('focus',CantidadActual);
      $('#id_compra').on('change',ValorVerduras);
