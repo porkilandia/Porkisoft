@@ -2,18 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateDetalleVentaPunto.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateDetalleVentaPunto.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/html2canvas.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/html2canvas.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/css/jquery.alerts.css" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/jquery.alerts.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery.alerts.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery.alerts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/jquery.base64.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/jquery.base64.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/simple_html_dom.php" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/simple_html_dom.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/tableExport.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/tableExport.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Fabricacion/views.py" afterPath="$PROJECT_DIR$/Fabricacion/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/porkisoft.iml" afterPath="$PROJECT_DIR$/.idea/porkisoft.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="porkisoft.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,57 +29,50 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="porkisoft" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="acciones.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="acciones.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="35382" max-vertical-offset="60627">
-              <caret line="1712" column="9" selection-start-line="1712" selection-start-column="9" selection-end-line="1712" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.6666667" vertical-offset="17386" max-vertical-offset="52956">
+              <caret line="976" column="33" selection-start-line="976" selection-start-column="33" selection-end-line="976" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-              <caret line="10" column="19" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Ventas/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="11064" max-vertical-offset="19866">
-              <caret line="555" column="4" selection-start-line="555" selection-start-column="4" selection-end-line="555" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="6671" max-vertical-offset="17028">
+              <caret line="411" column="98" selection-start-line="411" selection-start-column="86" selection-end-line="411" selection-end-column="98" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porkisoft/templates/base.html">
+      <file leaf-file-name="TemplateDetalleVentaPunto.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateDetalleVentaPunto.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.777779" vertical-offset="0" max-vertical-offset="3885">
-              <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+            <state vertical-scroll-proportion="-12.0" vertical-offset="1242" max-vertical-offset="1980">
+              <caret line="87" column="62" selection-start-line="87" selection-start-column="55" selection-end-line="87" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Fabricacion/views.py">
+      <file leaf-file-name="TemplateVentaPunto.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateVentaPunto.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8854167" vertical-offset="56424" max-vertical-offset="72723">
-              <caret line="2713" column="0" selection-start-line="2713" selection-start-column="0" selection-end-line="2713" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1368">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -97,67 +89,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
-    <option name="changedFiles">
+    <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Nomina/models.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateConfigPuntos.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateVentaPunto.html" />
-        <option value="$PROJECT_DIR$/Nomina/urls.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Nomina/GestionEmpleados.html" />
-        <option value="$PROJECT_DIR$/Nomina/Forms.py" />
-        <option value="$PROJECT_DIR$/Inventario/Forms/forms.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionValoresCostos.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Login.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Nomina/Cargo.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateRepListVentasNorte.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/DetalleTajado.html" />
-        <option value="$PROJECT_DIR$/Fabricacion/Forms.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionCanal.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionPedido.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionReConversiones.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/InformeCanalesPendientes.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionCompras.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionTraslado.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/PuntoVentaNorte.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateAZ.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateRepoPedidos.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/GestionProducto.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionVerduras.html" />
-        <option value="$PROJECT_DIR$/Inventario/urls.py" />
-        <option value="$PROJECT_DIR$/Inventario/models.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionMiga.html" />
-        <option value="$PROJECT_DIR$/Ventas/Forms.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateDetalleVentaPunto.html" />
-        <option value="$PROJECT_DIR$/porkisoft/settings.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/ReporteFaltantes.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateRepoVentaNorte.html" />
-        <option value="$PROJECT_DIR$/Fabricacion/urls.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDeposteActualizado.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionEnsBola.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Inicio.html" />
-        <option value="$PROJECT_DIR$/Nomina/views.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/InicioVentas.html" />
-        <option value="$PROJECT_DIR$/porkisoft/urls.py" />
-        <option value="$PROJECT_DIR$/Fabricacion/models.py" />
-        <option value="$PROJECT_DIR$/Telemercadeo/models.py" />
-        <option value="$PROJECT_DIR$/Ventas/models.py" />
-        <option value="$PROJECT_DIR$/Ventas/urls.py" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionLista.html" />
-        <option value="$PROJECT_DIR$/porkisoft/templates/base.html" />
-        <option value="$PROJECT_DIR$/Inventario/views.py" />
-        <option value="$PROJECT_DIR$/Ventas/views.py" />
         <option value="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
-        <option value="$PROJECT_DIR$/Fabricacion/views.py" />
       </list>
     </option>
   </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="49" />
-    <option name="y" value="24" />
-    <option name="width" value="1317" />
-    <option name="height" value="744" />
+    <option name="x" value="-1" />
+    <option name="width" value="1368" />
+    <option name="height" value="736" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -185,6 +130,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -219,7 +165,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -230,7 +175,7 @@
     <property name="SearchEverywhereHistory" value="GestionDetallCond&#10;GestionDetalleCompra&#10;verduras&#10;GestionCompra&#10;limpiez&#10;Limpieza&#10;GestionDEtalleComp&#10;GestionCanal&#10;GestionCompras&#10;GestionCondimento&#10;GestionDeta&#10;panel&#10;GestionDetalleCo&#10;GestionDetalleComp&#10;GestionCana&#10;GestionPlanillaRe&#10;Ganado&#10;Canal&#10;GestionCa&#10;GestionDetall&#10;GestionGanado&#10;GestionComp&#10;GestionG&#10;GestionGana" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="dynamic.classpath" value="false" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Python" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -241,6 +186,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="JavaScriptLanguageLevel" value="JSX" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -261,7 +207,7 @@
       <recent name="$PROJECT_DIR$/porkisoft/templates/static/js" />
     </key>
   </component>
-  <component name="RunManager" selected="Django server.Porkisoft">
+  <component name="RunManager" selected="Django server.PorkisoftLocal">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -344,29 +290,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="/usr/bin/python2.7" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="porkisoft" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="localhost" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -395,6 +319,43 @@
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python2.7" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="porkisoft" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="porkisoft" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -413,6 +374,15 @@
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Attests">
@@ -435,42 +405,48 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
-      <option name="VM_PARAMETERS" value="" />
-      <option name="USER_CFG_CLASS" />
-      <option name="CONTEXT_PROVIDER" />
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="porkisoft" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
       <method />
     </configuration>
-    <configuration default="false" name="Porkisoft" type="Python.DjangoServer" factoryName="Django server">
+    <configuration default="false" name="PorkisoftLocal" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="porkisoft.settings" />
       </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/../bin/python" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="porkisoft" />
       <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8003" />
-      <option name="host" value="0.0.0.0" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
       <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="http://0.0.0.0:8003" />
+      <option name="browserUrl" value="http://localhost:8000/" />
       <option name="runTestServer" value="false" />
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
       <option name="customRunCommand" value="" />
-      <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Django server.Porkisoft" />
+      <item index="0" class="java.lang.String" itemvalue="Django server.PorkisoftLocal" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -481,546 +457,301 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="" />
       <created>1398862732741</created>
+      <option name="number" value="Default" />
       <updated>1398862732741</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Trabajo sobre el proceso de cannal, los pasos son los siguientes &#10;* realizo una compra&#10;* ingreso el ganado que voy a comprar&#10;* regreso a la ventana de compras y diligencio la ficha de sacrificio&#10;* una vez diligenciada la ficha sacrificio paso a la creacion de una planilla de desposte&#10;* dentro de la compra visualizo el ganado que compre y luego uno a uno paso a canal las reses que quiero despostar&#10;* voy a desposte y las reses seleccionadas estan listas para ser despostadas.&#10;&#10;debo incluir costos en todos estos procesos&#10;">
-      <created>1398901064088</created>
-      <updated>1398901064088</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Trabajo sobre el proceso de cannal, los pasos son los siguientes &#10;* realizo una compra&#10;* ingreso el ganado que voy a comprar&#10;* regreso a la ventana de compras y diligencio la ficha de sacrificio&#10;* una vez diligenciada la ficha sacrificio paso a la creacion de una planilla de desposte&#10;* dentro de la compra visualizo el ganado que compre y luego uno a uno paso a canal las reses que quiero despostar&#10;* voy a desposte y las reses seleccionadas estan listas para ser despostadas.&#10;&#10;debo incluir costos en todos estos procesos&#10;">
-      <created>1398902881387</created>
-      <updated>1398902881387</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Trabajo sobre el proceso de cannal, los pasos son los siguientes &#10;* realizo una compra&#10;* ingreso el ganado que voy a comprar&#10;* regreso a la ventana de compras y diligencio la ficha de sacrificio&#10;* una vez diligenciada la ficha sacrificio paso a la creacion de una planilla de desposte&#10;* dentro de la compra visualizo el ganado que compre y luego uno a uno paso a canal las reses que quiero despostar&#10;* voy a desposte y las reses seleccionadas estan listas para ser despostadas.&#10;&#10;Realice un cambio grande aumente otro template RecepcionGanado el cual sirve para dar ingreso a los canales despues del sacrificio&#10;">
-      <created>1399073353986</created>
-      <updated>1399073353986</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Trabajo sobre el proceso de cannal, los pasos son los siguientes &#10;* realizo una compra&#10;* ingreso el ganado que voy a comprar&#10;* regreso a la ventana de compras y diligencio la ficha de sacrificio&#10;* una vez diligenciada la ficha sacrificio paso a la creacion de una planilla de desposte&#10;* dentro de la compra visualizo el ganado que compre y luego uno a uno paso a canal las reses que quiero despostar&#10;* voy a desposte y las reses seleccionadas estan listas para ser despostadas.&#10;&#10;Realice un cambio grande aumente otro template RecepcionGanado el cual sirve para dar ingreso a los canales despues del sacrificio&#10;">
-      <created>1399074804881</created>
-      <updated>1399074804881</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Costeo de productos Funcionando&#10;">
-      <created>1399334667719</created>
-      <updated>1399334667719</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Costo de productos en desposte funcionando ok&#10;">
-      <created>1399587521389</created>
-      <updated>1399587521389</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos en Proceso">
-      <created>1399678826615</created>
-      <updated>1399678826615</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;creacion de subproductos y compra de insumos.">
-      <created>1400017501120</created>
-      <updated>1400017501120</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Pendiente: &#10;*costo de cada insumo comprado">
-      <created>1400110258632</created>
-      <updated>1400110258632</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Pendiente: &#10;*costo de cada insumo comprado pendiente&#10;*limpieza de verduras ok">
-      <created>1400194019383</created>
-      <updated>1400194019383</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Costo de cada insumo comprado OK&#10;Limpieza de verduras ok&#10;Pendiente: &#10;*Condimentado&#10;&#10;">
-      <created>1400537951659</created>
-      <updated>1400537951659</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Costo de cada insumo comprado OK&#10;Limpieza de verduras ok&#10;Condimentado ok&#10;produccion de miga OK&#10;Actualizacion de inventarios OK&#10;Pendiente: &#10;* Apanado&#10;&#10;">
-      <created>1400625580992</created>
-      <updated>1400625580992</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Costo de cada insumo comprado OK&#10;Limpieza de verduras ok&#10;Condimentado ok&#10;produccion de miga OK&#10;Actualizacion de inventarios OK&#10;Apanado Ok&#10;Pendiente: &#10;*Empacado&#10;*Ingresar un ejemplo Completo desde compra hasta empaque de producto&#10;&#10;">
-      <created>1400716358570</created>
-      <updated>1400716358570</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Costo de cada insumo comprado OK&#10;Limpieza de verduras ok&#10;Condimentado ok&#10;produccion de miga OK&#10;Actualizacion de inventarios OK&#10;Apanado Ok&#10;Pendiente: &#10;*Empacado&#10;*Ingresar un ejemplo Completo desde compra hasta empaque de producto pendiente&#10;&#10;">
-      <created>1401231767969</created>
-      <updated>1401231767969</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Costo de productos en desposte funcionando ok&#10;Costo de Cerdos Ok&#10;Costo Cerdas OK&#10;&#10;Ensalinado de pierna de cerdo Ok &#10;Costo de cada insumo comprado OK&#10;Limpieza de verduras ok&#10;Condimentado ok&#10;produccion de miga OK&#10;Actualizacion de inventarios OK&#10;Apanado Ok&#10;Pendiente: &#10;*Empacado&#10;*Ingresar un ejemplo Completo desde compra hasta empaque de producto pendiente&#10;cambiando a postgress y subiendo a Heroku&#10;">
-      <created>1401456924980</created>
-      <updated>1401456924980</updated>
-    </task>
-    <task id="LOCAL-00016" summary="listo para heroku&#10;">
-      <created>1401460273477</created>
-      <updated>1401460273477</updated>
-    </task>
-    <task id="LOCAL-00017" summary="listo para heroku&#10;">
-      <created>1401493509522</created>
-      <updated>1401493509522</updated>
-    </task>
-    <task id="LOCAL-00018" summary="sirviendo estaticos&#10;">
-      <created>1401803784634</created>
-      <updated>1401803784634</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Cambio de home como url de acceso directo&#10;">
-      <created>1401807318147</created>
-      <updated>1401807318147</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Cambio de home como url de acceso directo&#10;Creacion de la vista para grupo&#10;">
-      <created>1401810600454</created>
-      <updated>1401810600454</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Reparacion de las url de acceso a cada plantilla">
-      <created>1401811292011</created>
-      <updated>1401811292011</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Reparacion de las url de acceso a cada plantilla">
-      <created>1401811804937</created>
-      <updated>1401811804937</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Reparacion de la asignacion de bodegas">
-      <created>1401813441331</created>
-      <updated>1401813441331</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Creacion del modulo de pedidos">
-      <created>1401911475589</created>
-      <updated>1401911475589</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Creacion del modulo de pedidos&#10;adicion de los campos nit y num factura">
-      <created>1401912752318</created>
-      <updated>1401912752318</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Creacion del modulo de pedidos&#10;adicion de los campos nit y num factura">
-      <created>1401913247422</created>
-      <updated>1401913247422</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Creacion del modulo de pedidos&#10;adicion de los campos nit y num factura">
-      <created>1401920699258</created>
-      <updated>1401920699258</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Organizacion de archivos en la carpeta de cada aplicacion">
-      <created>1402001587705</created>
-      <updated>1402001587705</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Organizacion de archivos en la carpeta de cada aplicacion">
-      <created>1402001905973</created>
-      <updated>1402001905973</updated>
-    </task>
-    <task id="LOCAL-00030" summary="creacion de pdf para clientes">
-      <created>1402064470568</created>
-      <updated>1402064470568</updated>
-    </task>
-    <task id="LOCAL-00031" summary="creacion de pdf para clientes">
-      <created>1402064634569</created>
-      <updated>1402064634569</updated>
-    </task>
-    <task id="LOCAL-00032" summary="creacion de pdf para clientes">
-      <created>1402066241904</created>
-      <updated>1402066241904</updated>
-    </task>
-    <task id="LOCAL-00033" summary="creacion de pdf para clientes">
-      <created>1402066320176</created>
-      <updated>1402066320176</updated>
-    </task>
-    <task id="LOCAL-00034" summary="pendiante implementacion en servidor de produccion">
-      <created>1402082151630</created>
-      <updated>1402082151630</updated>
-    </task>
-    <task id="LOCAL-00035" summary="pendiante implementacion en servidor de produccion">
-      <created>1402096075337</created>
-      <updated>1402096075337</updated>
-    </task>
-    <task id="LOCAL-00036" summary="pendiante implementacion en servidor de produccion">
-      <created>1402096212162</created>
-      <updated>1402096212162</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Actualizaciones de las vistas implementacion del formulario flotante y comprobacion de el modulo desposte">
-      <created>1402499737956</created>
-      <updated>1402499737956</updated>
-    </task>
-    <task id="LOCAL-00038" summary="uso de Ajax y json en la nueva planilla de desposte">
-      <created>1403304309104</created>
-      <updated>1403304309104</updated>
-    </task>
-    <task id="LOCAL-00039" summary="copia seguridad">
-      <created>1403724156755</created>
-      <updated>1403724156755</updated>
-    </task>
-    <task id="LOCAL-00040" summary="Puesta en marcha de el nuevo sistema de costeo para desposte">
-      <created>1404776270585</created>
-      <updated>1404776270585</updated>
-    </task>
-    <task id="LOCAL-00041" summary="Cambiando de fechas automaticas a fechas manuales">
-      <created>1405518169267</created>
-      <updated>1405518169267</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Cambiando de fechas automaticas a fechas manuales">
-      <created>1405628515486</created>
-      <updated>1405628515486</updated>
-    </task>
-    <task id="LOCAL-00043" summary="empieza la implementacion de software">
-      <created>1407157675056</created>
-      <updated>1407157675056</updated>
-    </task>
-    <task id="LOCAL-00044" summary="empieza la implementacion de software">
-      <created>1407451416590</created>
-      <updated>1407451416590</updated>
-    </task>
-    <task id="LOCAL-00045" summary="Copia de seguridad 11 agosto 2014">
-      <created>1407763589572</created>
-      <updated>1407763589572</updated>
-    </task>
-    <task id="LOCAL-00046" summary="Copia de seguridad 11 pm agosto 2014">
-      <created>1407801316093</created>
-      <updated>1407801316093</updated>
-    </task>
-    <task id="LOCAL-00047" summary="Copia de seguridad 12 am agosto 2014">
-      <created>1407863052295</created>
-      <updated>1407863052295</updated>
-    </task>
-    <task id="LOCAL-00048" summary="Copia de seguridad 12 pm agosto 2014">
-      <created>1407887506318</created>
-      <updated>1407887506318</updated>
-    </task>
-    <task id="LOCAL-00049" summary="Copia de seguridad 13 pm agosto 2014">
-      <created>1407975535706</created>
-      <updated>1407975535707</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Copia de seguridad 13 pm agosto 2014">
-      <created>1408061386862</created>
-      <updated>1408061386862</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Copia de seguridad 13 pm agosto 2014">
-      <created>1408061390946</created>
-      <updated>1408061390946</updated>
-    </task>
-    <task id="LOCAL-00052" summary="Copia de seguridad 15 pm agosto 2014">
-      <created>1408147520243</created>
-      <updated>1408147520243</updated>
-    </task>
-    <task id="LOCAL-00053" summary="Copia de seguridad 15 pm agosto 2014">
-      <created>1408398415807</created>
-      <updated>1408398415807</updated>
-    </task>
-    <task id="LOCAL-00054" summary="Copia de seguridad 19 pm agosto 2014">
-      <created>1408493564507</created>
-      <updated>1408493564507</updated>
-    </task>
-    <task id="LOCAL-00055" summary="Copia de seguridad 25 pm agosto 2014">
-      <created>1409011539175</created>
-      <updated>1409011539176</updated>
-    </task>
-    <task id="LOCAL-00056" summary="Copia de seguridad 26 pm agosto 2014">
-      <created>1409095958373</created>
-      <updated>1409095958373</updated>
-    </task>
-    <task id="LOCAL-00057" summary="Copia de seguridad 26 pm agosto 2014">
-      <created>1409183780680</created>
-      <updated>1409183780680</updated>
-    </task>
-    <task id="LOCAL-00058" summary="Copia de seguridad 26 pm agosto 2014">
-      <created>1409245358953</created>
-      <updated>1409245358954</updated>
-    </task>
-    <task id="LOCAL-00059" summary="Copia de seguridad 28 pm agosto 2014">
-      <created>1409264014173</created>
-      <updated>1409264014173</updated>
-    </task>
-    <task id="LOCAL-00060" summary="Copia de seguridad 28 pm agosto 2014">
-      <created>1409267582495</created>
-      <updated>1409267582495</updated>
-    </task>
-    <task id="LOCAL-00061" summary="Copia de seguridad 29 am agosto 2014">
-      <created>1409331764586</created>
-      <updated>1409331764587</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Copia de seguridad 29 pm agosto 2014">
-      <created>1409354112112</created>
-      <updated>1409354112112</updated>
-    </task>
-    <task id="LOCAL-00063" summary="Copia de seguridad 4 agosto 2014 pm">
-      <created>1409865756397</created>
-      <updated>1409865756397</updated>
-    </task>
-    <task id="LOCAL-00064" summary="Copia de seguridad 9 agosto 2014 pm">
-      <created>1410275843329</created>
-      <updated>1410275843329</updated>
-    </task>
-    <task id="LOCAL-00065" summary="Copia de seguridad 9 septiembre 2014 pm">
-      <created>1410303084458</created>
-      <updated>1410303084458</updated>
-    </task>
-    <task id="LOCAL-00066" summary="Copia de seguridad 11 septiembre 2014 pm">
-      <created>1410481257237</created>
-      <updated>1410481257237</updated>
-    </task>
-    <task id="LOCAL-00067" summary="Copia de seguridad 13 septiembre 2014 pm">
-      <created>1410552247079</created>
-      <updated>1410552247079</updated>
-    </task>
-    <task id="LOCAL-00068" summary="Copia de seguridad 13 septiembre 2014 pm">
-      <created>1410564682211</created>
-      <updated>1410564682211</updated>
-    </task>
-    <task id="LOCAL-00069" summary="Copia de seguridad 16 septiembre 2014 pm">
-      <created>1410910901075</created>
-      <updated>1410910901075</updated>
-    </task>
-    <task id="LOCAL-00070" summary="Copia de seguridad 16 septiembre 2014 pm">
-      <created>1410910905203</created>
-      <updated>1410910905203</updated>
-    </task>
-    <task id="LOCAL-00071" summary="Copia de seguridad 17 septiembre 2014 pm">
-      <created>1410996126371</created>
-      <updated>1410996126371</updated>
-    </task>
-    <task id="LOCAL-00072" summary="Copia de seguridad 18 septiembre 2014 pm">
-      <created>1411084749029</created>
-      <updated>1411084749029</updated>
-    </task>
-    <task id="LOCAL-00073" summary="Copia de seguridad 19 septiembre 2014 pm">
-      <created>1411164691954</created>
-      <updated>1411164691955</updated>
-    </task>
-    <task id="LOCAL-00074" summary="Copia de seguridad 22 septiembre 2014 pm">
-      <created>1411431416697</created>
-      <updated>1411431416697</updated>
-    </task>
-    <task id="LOCAL-00075" summary="Copia de seguridad 23 septiembre 2014 pm">
-      <created>1411515456182</created>
-      <updated>1411515456182</updated>
-    </task>
-    <task id="LOCAL-00076" summary="Copia de seguridad 24 septiembre 2014 pm">
-      <created>1411601068693</created>
-      <updated>1411601068693</updated>
-    </task>
-    <task id="LOCAL-00077" summary="Copia de seguridad 26 septiembre 2014 pm">
-      <created>1411766680162</created>
-      <updated>1411766680162</updated>
-    </task>
-    <task id="LOCAL-00078" summary="Copia de seguridad 29 septiembre 2014 pm">
-      <created>1412032436379</created>
-      <updated>1412032436379</updated>
-    </task>
-    <task id="LOCAL-00079" summary="Copia de seguridad 30 septiembre 2014 pm">
-      <created>1412118812938</created>
-      <updated>1412118812938</updated>
-    </task>
-    <task id="LOCAL-00080" summary="Copia de seguridad 1 Octubre 2014 pm">
-      <created>1412175503999</created>
-      <updated>1412175503999</updated>
-    </task>
-    <task id="LOCAL-00081" summary="Copia de seguridad 1 Octubre 2014 pm">
-      <created>1412176043671</created>
-      <updated>1412176043671</updated>
-    </task>
-    <task id="LOCAL-00082" summary="Copia de seguridad 1 Octubre 2014 pm">
-      <created>1412181576199</created>
-      <updated>1412181576199</updated>
-    </task>
-    <task id="LOCAL-00083" summary="Copia de seguridad 1 Octubre 2014 pm">
-      <created>1412182065711</created>
-      <updated>1412182065711</updated>
-    </task>
-    <task id="LOCAL-00084" summary="Copia de seguridad 1 Octubre 2014 pm">
-      <created>1412202966874</created>
-      <updated>1412202966874</updated>
-    </task>
-    <task id="LOCAL-00085" summary="Copia de seguridad 1 Octubre 2014 pm">
-      <created>1412203119985</created>
-      <updated>1412203119985</updated>
-    </task>
-    <task id="LOCAL-00086" summary="Copia de seguridad 1 Octubre 2014 pm">
-      <created>1412203382837</created>
-      <updated>1412203382837</updated>
     </task>
     <task id="LOCAL-00087" summary="Copia de seguridad 1 Octubre 2014 pm">
       <created>1412203756918</created>
+      <option name="number" value="00087" />
+      <option name="project" value="LOCAL" />
       <updated>1412203756918</updated>
     </task>
     <task id="LOCAL-00088" summary="Copia de seguridad 1 Octubre 2014">
       <created>1412205856631</created>
+      <option name="number" value="00088" />
+      <option name="project" value="LOCAL" />
       <updated>1412205856631</updated>
     </task>
     <task id="LOCAL-00089" summary="Copia de seguridad 3 Octubre 2014">
       <created>1412343546068</created>
+      <option name="number" value="00089" />
+      <option name="project" value="LOCAL" />
       <updated>1412343546068</updated>
     </task>
     <task id="LOCAL-00090" summary="Copia de seguridad 3 Octubre 2014">
       <created>1412379082713</created>
+      <option name="number" value="00090" />
+      <option name="project" value="LOCAL" />
       <updated>1412379082713</updated>
     </task>
     <task id="LOCAL-00091" summary="Copia de seguridad 6 Octubre 2014">
       <created>1412636377143</created>
+      <option name="number" value="00091" />
+      <option name="project" value="LOCAL" />
       <updated>1412636377144</updated>
     </task>
     <task id="LOCAL-00092" summary="Copia de seguridad 13 Octubre 2014">
       <created>1413208536293</created>
+      <option name="number" value="00092" />
+      <option name="project" value="LOCAL" />
       <updated>1413208536293</updated>
     </task>
     <task id="LOCAL-00093" summary="Copia de seguridad 16 Octubre 2014">
       <created>1413414238176</created>
+      <option name="number" value="00093" />
+      <option name="project" value="LOCAL" />
       <updated>1413414238177</updated>
     </task>
     <task id="LOCAL-00094" summary="Copia de seguridad 16 Octubre 2014">
       <created>1413500641758</created>
+      <option name="number" value="00094" />
+      <option name="project" value="LOCAL" />
       <updated>1413500641758</updated>
     </task>
     <task id="LOCAL-00095" summary="Copia de seguridad 17 Octubre 2014">
       <created>1413577215635</created>
+      <option name="number" value="00095" />
+      <option name="project" value="LOCAL" />
       <updated>1413577215635</updated>
     </task>
     <task id="LOCAL-00096" summary="Copia de seguridad 22 Octubre 2014">
       <created>1413986638542</created>
+      <option name="number" value="00096" />
+      <option name="project" value="LOCAL" />
       <updated>1413986638542</updated>
     </task>
     <task id="LOCAL-00097" summary="Copia de seguridad 24 Octubre 2014">
       <created>1414186419062</created>
+      <option name="number" value="00097" />
+      <option name="project" value="LOCAL" />
       <updated>1414186419062</updated>
     </task>
     <task id="LOCAL-00098" summary="Copia de seguridad 27 Octubre 2014">
       <created>1414444371285</created>
+      <option name="number" value="00098" />
+      <option name="project" value="LOCAL" />
       <updated>1414444371285</updated>
     </task>
     <task id="LOCAL-00099" summary="Copia de seguridad 28 Octubre 2014">
       <created>1414537687398</created>
+      <option name="number" value="00099" />
+      <option name="project" value="LOCAL" />
       <updated>1414537687398</updated>
     </task>
     <task id="LOCAL-00100" summary="Copia de seguridad 31 Octubre 2014">
       <created>1414794739201</created>
+      <option name="number" value="00100" />
+      <option name="project" value="LOCAL" />
       <updated>1414794739202</updated>
     </task>
     <task id="LOCAL-00101" summary="Copia de seguridad 5 noviembre 2014">
       <created>1415228644302</created>
+      <option name="number" value="00101" />
+      <option name="project" value="LOCAL" />
       <updated>1415228644302</updated>
     </task>
     <task id="LOCAL-00102" summary="Copia de seguridad 7 noviembre 2014">
       <created>1415401303192</created>
+      <option name="number" value="00102" />
+      <option name="project" value="LOCAL" />
       <updated>1415401303192</updated>
     </task>
     <task id="LOCAL-00103" summary="Copia de seguridad 19 noviembre 2014">
       <created>1416410313432</created>
+      <option name="number" value="00103" />
+      <option name="project" value="LOCAL" />
       <updated>1416410313432</updated>
     </task>
     <task id="LOCAL-00104" summary="Copia de seguridad 19 noviembre 2014">
       <created>1416410450242</created>
+      <option name="number" value="00104" />
+      <option name="project" value="LOCAL" />
       <updated>1416410450242</updated>
     </task>
     <task id="LOCAL-00105" summary="Copia de seguridad 24 noviembre 2014">
       <created>1416866050379</created>
+      <option name="number" value="00105" />
+      <option name="project" value="LOCAL" />
       <updated>1416866050379</updated>
     </task>
     <task id="LOCAL-00106" summary="Copia de seguridad 1 Dicienbre 2014">
       <created>1417376253097</created>
+      <option name="number" value="00106" />
+      <option name="project" value="LOCAL" />
       <updated>1417376253097</updated>
     </task>
     <task id="LOCAL-00107" summary="Copia de seguridad 2 Dicienbre 2014">
       <created>1417521975484</created>
+      <option name="number" value="00107" />
+      <option name="project" value="LOCAL" />
       <updated>1417521975485</updated>
     </task>
     <task id="LOCAL-00108" summary="Copia de seguridad 3 Dicienbre 2014">
       <created>1417644528321</created>
+      <option name="number" value="00108" />
+      <option name="project" value="LOCAL" />
       <updated>1417644528322</updated>
     </task>
     <task id="LOCAL-00109" summary="Copia de seguridad 9 Dicienbre 2014">
       <created>1418127245637</created>
+      <option name="number" value="00109" />
+      <option name="project" value="LOCAL" />
       <updated>1418127245637</updated>
     </task>
     <task id="LOCAL-00110" summary="Copia de seguridad 9 Dicienbre 2014">
       <created>1418127336430</created>
+      <option name="number" value="00110" />
+      <option name="project" value="LOCAL" />
       <updated>1418127336430</updated>
     </task>
     <task id="LOCAL-00111" summary="Copia de seguridad 11 Dicienbre 2014">
       <created>1418330878232</created>
+      <option name="number" value="00111" />
+      <option name="project" value="LOCAL" />
       <updated>1418330878232</updated>
     </task>
     <task id="LOCAL-00112" summary="Copia de seguridad 15 Dicienbre 2014">
       <created>1418645267155</created>
+      <option name="number" value="00112" />
+      <option name="project" value="LOCAL" />
       <updated>1418645267155</updated>
     </task>
     <task id="LOCAL-00113" summary="Copia de seguridad 22 Dicienbre 2014">
       <created>1419277193914</created>
+      <option name="number" value="00113" />
+      <option name="project" value="LOCAL" />
       <updated>1419277193914</updated>
     </task>
     <task id="LOCAL-00114" summary="Copia de seguridad 26 Dicienbre 2014">
       <created>1419596462154</created>
+      <option name="number" value="00114" />
+      <option name="project" value="LOCAL" />
       <updated>1419596462155</updated>
     </task>
     <task id="LOCAL-00115" summary="Copia de seguridad 26 Dicienbre 2014">
       <created>1419627741998</created>
+      <option name="number" value="00115" />
+      <option name="project" value="LOCAL" />
       <updated>1419627741998</updated>
     </task>
     <task id="LOCAL-00116" summary="Copia de seguridad 2 Enero 2015">
       <created>1420216305550</created>
+      <option name="number" value="00116" />
+      <option name="project" value="LOCAL" />
       <updated>1420216305551</updated>
     </task>
     <task id="LOCAL-00117" summary="Copia de seguridad 2 Enero 2015">
       <created>1420720018626</created>
+      <option name="number" value="00117" />
+      <option name="project" value="LOCAL" />
       <updated>1420720018626</updated>
     </task>
     <task id="LOCAL-00118" summary="Copia de seguridad 8 Enero 2015">
       <created>1420723219508</created>
+      <option name="number" value="00118" />
+      <option name="project" value="LOCAL" />
       <updated>1420723219508</updated>
     </task>
     <task id="LOCAL-00119" summary="Copia de seguridad 14 Enero 2015">
       <created>1421274683629</created>
+      <option name="number" value="00119" />
+      <option name="project" value="LOCAL" />
       <updated>1421274683629</updated>
     </task>
     <task id="LOCAL-00120" summary="Copia de seguridad 16 Enero 2015">
       <created>1421448726452</created>
+      <option name="number" value="00120" />
+      <option name="project" value="LOCAL" />
       <updated>1421448726453</updated>
     </task>
     <task id="LOCAL-00121" summary="Copia de seguridad 20 Enero 2015">
       <created>1421783843623</created>
+      <option name="number" value="00121" />
+      <option name="project" value="LOCAL" />
       <updated>1421783843623</updated>
     </task>
     <task id="LOCAL-00122" summary="Copia de seguridad 23 Enero 2015">
       <created>1422017326578</created>
+      <option name="number" value="00122" />
+      <option name="project" value="LOCAL" />
       <updated>1422017326578</updated>
     </task>
     <task id="LOCAL-00123" summary="Copia de seguridad 23 Enero 2015">
       <created>1422017378278</created>
+      <option name="number" value="00123" />
+      <option name="project" value="LOCAL" />
       <updated>1422017378278</updated>
     </task>
     <task id="LOCAL-00124" summary="Copia de seguridad 29 Enero 2015">
       <created>1422550071334</created>
+      <option name="number" value="00124" />
+      <option name="project" value="LOCAL" />
       <updated>1422550071334</updated>
     </task>
     <task id="LOCAL-00125" summary="Copia de seguridad 29 Enero 2015">
       <created>1422567876674</created>
+      <option name="number" value="00125" />
+      <option name="project" value="LOCAL" />
       <updated>1422567876674</updated>
     </task>
     <task id="LOCAL-00126" summary="Copia de seguridad 29 Enero 2015">
       <created>1422624724133</created>
+      <option name="number" value="00126" />
+      <option name="project" value="LOCAL" />
       <updated>1422624724133</updated>
     </task>
     <task id="LOCAL-00127" summary="Copia de seguridad 29 Enero 2015">
       <created>1422645939390</created>
+      <option name="number" value="00127" />
+      <option name="project" value="LOCAL" />
       <updated>1422645939390</updated>
     </task>
     <task id="LOCAL-00128" summary="Copia de seguridad 29 Enero 2015">
       <created>1422646703565</created>
+      <option name="number" value="00128" />
+      <option name="project" value="LOCAL" />
       <updated>1422646703565</updated>
     </task>
     <task id="LOCAL-00129" summary="Copia de seguridad 29 Enero 2015">
       <created>1422646880114</created>
+      <option name="number" value="00129" />
+      <option name="project" value="LOCAL" />
       <updated>1422646880114</updated>
     </task>
     <task id="LOCAL-00130" summary="se remueve el 0 en  cantidad en ventas, se adiciona el boton editar en Lista de Precios">
       <created>1422715285610</created>
+      <option name="number" value="00130" />
+      <option name="project" value="LOCAL" />
       <updated>1422715285610</updated>
     </task>
     <task id="LOCAL-00131" summary="Se define de forma automatica la seleccion de lista de precios">
       <created>1422717648008</created>
+      <option name="number" value="00131" />
+      <option name="project" value="LOCAL" />
       <updated>1422717648008</updated>
     </task>
     <task id="LOCAL-00132" summary="se repara el borrar de detalle desposte">
       <created>1422748310289</created>
+      <option name="number" value="00132" />
+      <option name="project" value="LOCAL" />
       <updated>1422748310289</updated>
     </task>
     <task id="LOCAL-00133" summary="Se repara el raiz de info general">
       <created>1422749179316</created>
+      <option name="number" value="00133" />
+      <option name="project" value="LOCAL" />
       <updated>1422749179316</updated>
     </task>
     <task id="LOCAL-00134" summary="se repara error de nombres en el inventario">
       <created>1422750763391</created>
+      <option name="number" value="00134" />
+      <option name="project" value="LOCAL" />
       <updated>1422750763391</updated>
     </task>
     <task id="LOCAL-00135" summary="Cambio den el ValorProdVenta se elimina restaurantes">
       <created>1422805376312</created>
+      <option name="number" value="00135" />
+      <option name="project" value="LOCAL" />
       <updated>1422805376313</updated>
     </task>
     <option name="localTasksCounter" value="136" />
@@ -1047,26 +778,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="49" y="24" width="1317" height="744" extended-state="6" />
+    <frame x="-1" y="0" width="1368" height="736" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.46698874" sideWeight="0.49881983" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3252818" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.46519524" sideWeight="0.49881983" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33280882" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36978757" sideWeight="0.49919486" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34382376" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46376812" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36978757" sideWeight="0.50080514" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5378422" sideWeight="0.5003934" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5378422" sideWeight="0.4996066" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36978757" sideWeight="0.50080514" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3542673" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3514431" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36969697" sideWeight="0.49919486" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34318182" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.53650254" sideWeight="0.4996066" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296617" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1119,17 +852,11 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="187" />
+      <option name="time" value="188" />
     </breakpoint-manager>
+    <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../lib/python2.7/site-packages/django/core/handlers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33103448" vertical-offset="1920" max-vertical-offset="5859">
-          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/GestionDetalleCompra.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.666666" vertical-offset="294" max-vertical-offset="2898">
@@ -1182,7 +909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="566">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1282,14 +1008,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53807104" vertical-offset="1068" max-vertical-offset="3738">
-          <caret line="67" column="14" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Inventario/ReporteFaltantes.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.59574467" vertical-offset="0" max-vertical-offset="1659">
@@ -1326,14 +1044,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42857143" vertical-offset="0" max-vertical-offset="1932">
           <caret line="11" column="78" selection-start-line="11" selection-start-column="71" selection-end-line="11" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateDetalleVentaPunto.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="434" max-vertical-offset="3171">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1382,7 +1092,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3906">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1400,7 +1109,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.443038" vertical-offset="245" max-vertical-offset="798">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1408,7 +1116,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.38062283" vertical-offset="220" max-vertical-offset="798">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1416,7 +1123,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1496,46 +1202,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/base.html">
+    <entry file="file://$PROJECT_DIR$/porkisoft/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.777779" vertical-offset="0" max-vertical-offset="3885">
-          <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ventas/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="11064" max-vertical-offset="19866">
-          <caret line="555" column="4" selection-start-line="555" selection-start-column="4" selection-end-line="555" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="35382" max-vertical-offset="60627">
-          <caret line="1712" column="9" selection-start-line="1712" selection-start-column="9" selection-end-line="1712" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.48214287" vertical-offset="0" max-vertical-offset="3204">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Fabricacion/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8854167" vertical-offset="56424" max-vertical-offset="72723">
-          <caret line="2713" column="0" selection-start-line="2713" selection-start-column="0" selection-end-line="2713" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.39122486" vertical-offset="2" max-vertical-offset="62334">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="504" max-vertical-offset="3330">
+          <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19285715" vertical-offset="0" max-vertical-offset="560">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateVentaPunto.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1368">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ventas/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6671" max-vertical-offset="17028">
+          <caret line="411" column="98" selection-start-line="411" selection-start-column="86" selection-end-line="411" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateDetalleVentaPunto.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.0" vertical-offset="1242" max-vertical-offset="1980">
+          <caret line="87" column="62" selection-start-line="87" selection-start-column="55" selection-end-line="87" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6666667" vertical-offset="17386" max-vertical-offset="52956">
+          <caret line="976" column="33" selection-start-line="976" selection-start-column="33" selection-end-line="976" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
   </component>
 </project>
-

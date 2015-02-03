@@ -967,12 +967,67 @@ function ImprimirRecibo()
                 var regreso = $('#regreso').val();
                 $('#efectivoImp').append(efectivo);
                 $('#regresoImp').append(regreso);
+                var cabecera = $('#Cabecera');
+                var piePagina = $('#piePagina');
+                var totalGravado = $('#Totalgravado').text();
+                var numFactura = $('#numFactura').text();
+                var fechaVenta = $('#FechaVenta').text();
+                var nomEmcargado = $('#NomEncargado').text();
+                var totalCompra = $('#totalCompra').val();
+                var efectivo = $('#efectivo').val();
+                var regreso = $('#regreso').val();
                 calculadora.hide();
                 encabezado.show();
+                cabecera.append(
+                                    "<table id='encabezado'>"+
+                                    "<tr><th>" + 'PORKILANDIA S.A.S.' + "</th></tr>"+
+                                    "<tr><th>" + 'Nit: 900606687-6' + "</th></tr>"+
+                                    "<tr><th>" + 'Regimen Comun' + "</th></tr>"+
+                                    "<tr><th>" + 'Resolucion : 140000039353'+ "</th></tr>"+
+                                    "<tr><th>" + 'Rango:000000 hasta 999999' + "</th></tr>"+
+                                    "<tr><th>" + 'Expedida el : 09-04-2013'+ "</th></tr>"+
+                                    "<tr><th>" + 'Cll 16 # 31-02 San andres' +"</th></tr>"+
+                                    "<tr><th>" + 'Telefonos : 729 13 36 - 315 582 2270'+"</th></tr>"+
+                                    "<tr><th style='font-size: 1.1em'>"+'__________________________________'+"</th></tr>"+
+                                    "<tr><th style='text-align: left'>"+'Fecha : ' + fechaVenta + "</th></tr>"+
+                                    "<tr><th style='text-align: left'>"+'Factura N°: ' + numFactura+ "</th></tr>"+
+                                    "<tr><th style='text-align: left'>"+'Encargado : ' + nomEmcargado + "</th></tr>"+
+                                    "<tr><th style='font-size: 1.1em'>"+'__________________________________'+"</th></tr>"+
+                                    "</table>"
+                );
+
+                piePagina.append(
+                                "<table id='pieRecibo'>"+
+                                    "<tr>"+
+                                        "<th>"+'Total Compra:...................... $ ' + totalCompra + "</th>"+
+                                    "</tr>"+
+                                    "<tr>"+
+                                        "<th id='efectivoImp' >"+'Efectivo:......................'+ efectivo +"</th>"+
+                                    "</tr>"+
+                                    "<tr>"+
+                                        "<th id='regresoImp' >"+'Regreso:......................'+ regreso + "</th>"+
+                                    "</tr>"+
+                                    "<tr>"+
+                                        "<th >"+'Total Gravado:...................... $ '+totalGravado+"</th>"+
+                                    "</tr>"+
+                                    "<tr>"+
+                                        "<th>"+'__________________________________'+"</th>"+
+                                    "</tr>"+
+                                    "<tr>"+
+                                        "<th>"+'!! GRACIAS POR SU COMPRA !!'+"</th>"+
+                                    "</tr>"+
+                                    "<tr>"+
+                                        "<th style='font-size: 0.8em'>"+'Generado en PORKISOFT V.1.0'+"</th>"+
+                                    "</tr>"+
+                                "</table>"
+                );
+
                 pie.show();
                 tablaDetVenta.find("th:eq(4)").hide();
                 tablaDetVenta.addClass('recibo');
                 $('#recibo').printArea();
+                cabecera.hide();
+                piePagina.hide();
                 encabezado.hide();
                 pie.hide();
                 tablaDetVenta.removeClass('recibo');
