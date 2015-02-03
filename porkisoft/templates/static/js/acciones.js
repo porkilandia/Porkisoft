@@ -963,8 +963,6 @@ function ImprimirRecibo()
                 var pie = $('#pieRecibo');
                 var tablaDetVenta = $('#tablaDetalleVentaPunto');
                 var calculadora = $('#calculaVuelto');
-                var efectivo = $('#efectivo').val();
-                var regreso = $('#regreso').val();
                 $('#efectivoImp').append(efectivo);
                 $('#regresoImp').append(regreso);
                 var cabecera = $('#Cabecera');
