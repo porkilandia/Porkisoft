@@ -2,11 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="645bdb95-4cb6-49b1-9f37-8bacacf8b958" name="Default" comment="">
+<<<<<<< Updated upstream
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateDetalleVentaPunto.html" afterPath="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateDetalleVentaPunto.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/porkisoft.iml" afterPath="$PROJECT_DIR$/.idea/porkisoft.iml" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/html2canvas.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/html2canvas.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/css/jquery.alerts.css" afterPath="$PROJECT_DIR$/porkisoft/templates/static/css/jquery.alerts.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery.alerts.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/js/jquery.alerts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/jquery.base64.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/jquery.base64.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/simple_html_dom.php" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/simple_html_dom.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/tableExport.js" afterPath="$PROJECT_DIR$/porkisoft/templates/static/TableExporter/tableExport.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ventas/views.py" afterPath="$PROJECT_DIR$/Ventas/views.py" />
+>>>>>>> Stashed changes
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="porkisoft.iws" />
@@ -41,18 +51,41 @@
       <file leaf-file-name="acciones.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state vertical-scroll-proportion="0.6666667" vertical-offset="17386" max-vertical-offset="52956">
               <caret line="976" column="33" selection-start-line="976" selection-start-column="33" selection-end-line="976" selection-end-column="33" />
+=======
+            <state vertical-scroll-proportion="0.0" vertical-offset="9972" max-vertical-offset="60627">
+              <caret line="484" column="9" selection-start-line="484" selection-start-column="9" selection-end-line="484" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/porkisoft/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+              <caret line="10" column="19" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="19" />
+>>>>>>> Stashed changes
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< Updated upstream
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Ventas/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="6671" max-vertical-offset="17028">
               <caret line="411" column="98" selection-start-line="411" selection-start-column="86" selection-end-line="411" selection-end-column="98" />
+=======
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Ventas/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.69550174" vertical-offset="17133" max-vertical-offset="19887">
+              <caret line="847" column="98" selection-start-line="847" selection-start-column="98" selection-end-line="847" selection-end-column="98" />
+>>>>>>> Stashed changes
               <folding />
             </state>
           </provider>
@@ -68,11 +101,19 @@
           </provider>
         </entry>
       </file>
+<<<<<<< Updated upstream
       <file leaf-file-name="TemplateVentaPunto.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateVentaPunto.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1368">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Fabricacion/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="30321" max-vertical-offset="72723">
+              <caret line="1482" column="8" selection-start-line="1482" selection-start-column="8" selection-end-line="1482" selection-end-column="8" />
+>>>>>>> Stashed changes
               <folding />
             </state>
           </provider>
@@ -92,7 +133,31 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateDetalleVentaPunto.html" />
+<<<<<<< Updated upstream
         <option value="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
+=======
+        <option value="$PROJECT_DIR$/porkisoft/settings.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inventario/ReporteFaltantes.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateRepoVentaNorte.html" />
+        <option value="$PROJECT_DIR$/Fabricacion/urls.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionDeposteActualizado.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/static/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Fabricacion/GestionEnsBola.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Inicio.html" />
+        <option value="$PROJECT_DIR$/Nomina/views.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/InicioVentas.html" />
+        <option value="$PROJECT_DIR$/porkisoft/urls.py" />
+        <option value="$PROJECT_DIR$/Fabricacion/models.py" />
+        <option value="$PROJECT_DIR$/Telemercadeo/models.py" />
+        <option value="$PROJECT_DIR$/Ventas/models.py" />
+        <option value="$PROJECT_DIR$/Ventas/urls.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/Ventas/GestionLista.html" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/base.html" />
+        <option value="$PROJECT_DIR$/Inventario/views.py" />
+        <option value="$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js" />
+        <option value="$PROJECT_DIR$/Fabricacion/views.py" />
+        <option value="$PROJECT_DIR$/Ventas/views.py" />
+>>>>>>> Stashed changes
       </list>
     </option>
   </component>
@@ -180,7 +245,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Documentos" />
-    <property name="SearchEverywhereHistoryKey" value="Croqueta&#9;null&#9;null&#10;GestionBodega&#9;null&#9;null&#10;BorrarDesp&#9;null&#9;null&#10;Cobrar&#9;null&#9;null&#10;Lista&#9;null&#9;null&#10;PuntoVenta&#9;null&#9;null&#10;Usua&#9;null&#9;null&#10;ReporteVent&#9;null&#9;null&#10;Login&#9;null&#9;null&#10;Bola&#9;null&#9;null&#10;Ensalin&#9;null&#9;null&#10;Compra&#9;null&#9;null&#10;Deposte&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionDeposteActualizado.html&#10;Desposte&#9;null&#9;null&#10;Movimientos&#9;null&#9;null&#10;Movimien&#9;null&#9;null&#10;ReporteFalta&#9;null&#9;null&#10;ReporteAZ&#9;null&#9;null&#10;cobrar&#9;null&#9;null&#10;Deshidra&#9;null&#9;null&#10;Deshidratacio&#9;null&#9;null&#10;Miga&#9;null&#9;null&#10;Descarne&#9;null&#9;null&#10;Reporte&#9;null&#9;null&#10;Chicharron&#9;null&#9;null&#10;GestionVerduras&#9;null&#9;null&#10;Condimento&#9;null&#9;null&#10;Verduras&#9;null&#9;null&#10;Producto&#9;null&#9;null&#10;ReporteMovim&#9;null&#9;null&#10;ReportePedid&#9;null&#9;null&#10;Pedido&#9;null&#9;null&#10;Traslado&#9;null&#9;null&#10;logi&#9;null&#9;null&#10;Productos&#9;null&#9;null&#10;pedido&#9;null&#9;null&#10;Conversio&#9;null&#9;null&#10;conversiones&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionReConversiones.html&#10;Canal&#9;null&#9;null&#10;verCana&#9;null&#9;null&#10;canalP&#9;null&#9;null&#10;canal&#9;null&#9;null&#10;canalPendi&#9;null&#9;null&#10;canalesPendie&#9;null&#9;null&#10;Conversion&#9;null&#9;null&#10;GestionVenta&#9;null&#9;null&#10;Caja&#9;null&#9;null&#10;costearVerduras&#9;null&#9;null&#10;Lote&#9;null&#9;null&#10;ListaPr&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="ReporteVe&#9;null&#9;null&#10;ReporteV&#9;null&#9;null&#10;Croqueta&#9;null&#9;null&#10;GestionBodega&#9;null&#9;null&#10;BorrarDesp&#9;null&#9;null&#10;Cobrar&#9;null&#9;null&#10;Lista&#9;null&#9;null&#10;PuntoVenta&#9;null&#9;null&#10;Usua&#9;null&#9;null&#10;ReporteVent&#9;null&#9;null&#10;Login&#9;null&#9;null&#10;Bola&#9;null&#9;null&#10;Ensalin&#9;null&#9;null&#10;Compra&#9;null&#9;null&#10;Deposte&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionDeposteActualizado.html&#10;Desposte&#9;null&#9;null&#10;Movimientos&#9;null&#9;null&#10;Movimien&#9;null&#9;null&#10;ReporteFalta&#9;null&#9;null&#10;ReporteAZ&#9;null&#9;null&#10;cobrar&#9;null&#9;null&#10;Deshidra&#9;null&#9;null&#10;Deshidratacio&#9;null&#9;null&#10;Miga&#9;null&#9;null&#10;Descarne&#9;null&#9;null&#10;Reporte&#9;null&#9;null&#10;Chicharron&#9;null&#9;null&#10;GestionVerduras&#9;null&#9;null&#10;Condimento&#9;null&#9;null&#10;Verduras&#9;null&#9;null&#10;Producto&#9;null&#9;null&#10;ReporteMovim&#9;null&#9;null&#10;ReportePedid&#9;null&#9;null&#10;Pedido&#9;null&#9;null&#10;Traslado&#9;null&#9;null&#10;logi&#9;null&#9;null&#10;Productos&#9;null&#9;null&#10;pedido&#9;null&#9;null&#10;Conversio&#9;null&#9;null&#10;conversiones&#9;FILE&#9;file:///home/jamodev/PorkiDev/Porkisoft/porkisoft/templates/Fabricacion/GestionReConversiones.html&#10;Canal&#9;null&#9;null&#10;verCana&#9;null&#9;null&#10;canalP&#9;null&#9;null&#10;canal&#9;null&#9;null&#10;canalPendi&#9;null&#9;null&#10;canalesPendie&#9;null&#9;null&#10;Conversion&#9;null&#9;null&#10;GestionVenta&#9;null&#9;null&#10;Caja&#9;null&#9;null&#10;costearVerduras&#9;null&#9;null" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
@@ -754,7 +819,11 @@
       <option name="project" value="LOCAL" />
       <updated>1422805376313</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Se modifica el apanado de croquetas para que permita usar 2 productos">
+      <created>1422907339853</created>
+      <updated>1422907339853</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -782,7 +851,12 @@
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+<<<<<<< Updated upstream
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.46519524" sideWeight="0.49881983" order="8" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46698874" sideWeight="0.49881983" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3252818" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+>>>>>>> Stashed changes
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33280882" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46376812" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5378422" sideWeight="0.5003934" order="10" side_tool="true" content_ui="tabs" />
@@ -820,7 +894,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Copia de seguridad 5 noviembre 2014" />
     <MESSAGE value="Copia de seguridad 7 noviembre 2014" />
     <MESSAGE value="Copia de seguridad 19 noviembre 2014" />
     <MESSAGE value="Copia de seguridad 24 noviembre 2014" />
@@ -845,7 +918,8 @@
     <MESSAGE value="Se repara el raiz de info general" />
     <MESSAGE value="se repara error de nombres en el inventario" />
     <MESSAGE value="Cambio den el ValorProdVenta se elimina restaurantes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambio den el ValorProdVenta se elimina restaurantes" />
+    <MESSAGE value="Se modifica el apanado de croquetas para que permita usar 2 productos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se modifica el apanado de croquetas para que permita usar 2 productos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1210,6 +1284,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/Fabricacion/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39122486" vertical-offset="2" max-vertical-offset="62334">
@@ -1222,27 +1297,44 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="504" max-vertical-offset="3330">
           <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+=======
+    <entry file="file://$PROJECT_DIR$/porkisoft/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="19" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/porkisoft/urls.py">
+    <entry file="file://$PROJECT_DIR$/Fabricacion/views.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state vertical-scroll-proportion="0.19285715" vertical-offset="0" max-vertical-offset="560">
           <caret line="10" column="19" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="19" />
+=======
+        <state vertical-scroll-proportion="0.0" vertical-offset="30321" max-vertical-offset="72723">
+          <caret line="1482" column="8" selection-start-line="1482" selection-start-column="8" selection-end-line="1482" selection-end-column="8" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/Ventas/TemplateVentaPunto.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1368">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.0" vertical-offset="9972" max-vertical-offset="60627">
+          <caret line="484" column="9" selection-start-line="484" selection-start-column="9" selection-end-line="484" selection-end-column="9" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Ventas/views.py">
+<<<<<<< Updated upstream
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="6671" max-vertical-offset="17028">
           <caret line="411" column="98" selection-start-line="411" selection-start-column="86" selection-end-line="411" selection-end-column="98" />
@@ -1262,6 +1354,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6666667" vertical-offset="17386" max-vertical-offset="52956">
           <caret line="976" column="33" selection-start-line="976" selection-start-column="33" selection-end-line="976" selection-end-column="33" />
+=======
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.69550174" vertical-offset="17133" max-vertical-offset="19887">
+          <caret line="847" column="98" selection-start-line="847" selection-start-column="98" selection-end-line="847" selection-end-column="98" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
