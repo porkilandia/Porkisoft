@@ -54,8 +54,7 @@ class DetalleVentaPuntoForm(ModelForm):
     def __init__(self,idVenta, *args, **kwargs):
         super(DetalleVentaPuntoForm,self).__init__(*args, **kwargs)
 
-
-        #self.fields['venta'].queryset = VentaPunto.objects.filter(fechaVenta = fechainicio)
+        #SE LIMITA EL NUMERO DE REGISTROS QUE SE RENDERIZAN PARA AUMENTAR LA VELOCIDAD DE CARGA
         Hoy = date.today()
         venta = VentaPunto.objects.get(pk = idVenta)
         consulta = VentaPunto.objects.filter(jornada = venta.jornada,puntoVenta = venta.puntoVenta.codigoBodega,
