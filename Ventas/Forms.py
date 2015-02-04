@@ -51,11 +51,17 @@ class VentaPuntoForm(ModelForm):
         model = VentaPunto
         exclude = ("TotalVenta","guardado","factura","restaurante","anulado",)
 class DetalleVentaPuntoForm(ModelForm):
-    def __init__(self, *args, **kwargs):
+    def __init__(self,idVenta, *args, **kwargs):
         super(DetalleVentaPuntoForm,self).__init__(*args, **kwargs)
 
-        fechainicio = date.today()
-        self.fields['venta'].queryset = VentaPunto.objects.filter(fechaVenta = fechainicio)
+
+        #self.fields['venta'].queryset = VentaPunto.objects.filter(fechaVenta = fechainicio)
+        Hoy = date.today()
+        venta = VentaPunto.objects.get(pk = idVenta)
+        consulta = VentaPunto.objects.filter(jornada = venta.jornada,puntoVenta = venta.puntoVenta.codigoBodega,
+                                             encargado = venta.encargado.codigoEmpleado,fechaVenta = Hoy)
+
+        self.fields['venta'].queryset = consulta
 
         q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses').filter(numeroProducto__gt = 0).order_by('numeroProducto')
         q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos').filter(numeroProducto__gt = 0).order_by('numeroProducto')

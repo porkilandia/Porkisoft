@@ -401,14 +401,14 @@ def DetallePuntoVenta(request,idVenta):
     Hora = datetime.now()
 
     if request.method =='POST':
-        formulario = DetalleVentaPuntoForm(request.POST)
+        formulario = DetalleVentaPuntoForm(idVenta,request.POST)
         if formulario.is_valid():
             formulario.save()
 
             return HttpResponseRedirect('/ventas/detalleVentaPunto/'+ idVenta)
     else:
 
-        formulario = DetalleVentaPuntoForm(initial={'venta':idVenta})
+        formulario = DetalleVentaPuntoForm(idVenta,initial={'venta':idVenta})
     return render_to_response('Ventas/TemplateDetalleVentaPunto.html',{'totalGravado':totalGravado,'Hora':Hora,
                                                                        'venta':venta,'formulario':formulario,
                                                                        'detVentas':detVentas,'consecutivo':consecutivo},

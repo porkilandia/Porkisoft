@@ -96,7 +96,6 @@ class VentaPunto(models.Model):
     )
 
     numeroVenta = models.AutoField(primary_key=True, verbose_name='Codigo')
-
     fechaVenta = models.DateField(verbose_name='Fecha')
     puntoVenta = models.ForeignKey(Bodega)
     factura = models.IntegerField(verbose_name='No.Factura',default=0)
