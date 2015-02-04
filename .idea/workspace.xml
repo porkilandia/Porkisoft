@@ -41,8 +41,33 @@
       <file leaf-file-name="acciones.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state vertical-scroll-proportion="0.6666667" vertical-offset="17386" max-vertical-offset="52956">
               <caret line="976" column="33" selection-start-line="976" selection-start-column="33" selection-end-line="976" selection-end-column="33" />
+=======
+            <state vertical-scroll-proportion="0.0" vertical-offset="17316" max-vertical-offset="52884">
+              <caret line="962" column="4" selection-start-line="962" selection-start-column="4" selection-end-line="962" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Forms.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Ventas/Forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.47857141" vertical-offset="740" max-vertical-offset="1782">
+              <caret line="62" column="48" selection-start-line="56" selection-start-column="8" selection-end-line="62" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Ventas/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1398" max-vertical-offset="3402">
+              <caret line="98" column="14" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="14" />
+>>>>>>> Stashed changes
               <folding />
             </state>
           </provider>
@@ -460,6 +485,7 @@
       <option name="number" value="Default" />
       <updated>1398862732741</updated>
     </task>
+<<<<<<< Updated upstream
     <task id="LOCAL-00087" summary="Copia de seguridad 1 Octubre 2014 pm">
       <created>1412203756918</created>
       <option name="number" value="00087" />
@@ -490,6 +516,8 @@
       <option name="project" value="LOCAL" />
       <updated>1412636377144</updated>
     </task>
+=======
+>>>>>>> Stashed changes
     <task id="LOCAL-00092" summary="Copia de seguridad 13 Octubre 2014">
       <created>1413208536293</created>
       <option name="number" value="00092" />
@@ -754,7 +782,41 @@
       <option name="project" value="LOCAL" />
       <updated>1422805376313</updated>
     </task>
+<<<<<<< Updated upstream
     <option name="localTasksCounter" value="136" />
+=======
+    <task id="LOCAL-00136" summary="Se modifica la impresion del recibo de caja">
+      <created>1422992141227</created>
+      <option name="number" value="00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1422992141228</updated>
+    </task>
+    <task id="LOCAL-00137" summary="Se modifica la impresion del recibo de caja">
+      <created>1422992272847</created>
+      <option name="number" value="00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1422992272847</updated>
+    </task>
+    <task id="LOCAL-00138" summary="se reduce el numero de registros en la plantilla detalle venta y se aumenta la velocidad">
+      <created>1423083232110</created>
+      <option name="number" value="00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1423083232111</updated>
+    </task>
+    <task id="LOCAL-00139" summary="se reduce el numero de registros en la plantilla detalle venta y se aumenta la velocidad">
+      <created>1423083290316</created>
+      <option name="number" value="00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1423083290316</updated>
+    </task>
+    <task id="LOCAL-00140" summary="se reduce el numero de registros en la plantilla detalle venta y se aumenta la velocidad">
+      <created>1423083894285</created>
+      <option name="number" value="00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1423083894285</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
+>>>>>>> Stashed changes
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -781,11 +843,19 @@
     <frame x="-1" y="0" width="1368" height="736" extended-state="6" />
     <editor active="false" />
     <layout>
+<<<<<<< Updated upstream
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.46519524" sideWeight="0.49881983" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33280882" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46376812" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5378422" sideWeight="0.5003934" order="10" side_tool="true" content_ui="tabs" />
+=======
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32767403" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46519524" sideWeight="0.49848485" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33280882" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46376812" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46519524" sideWeight="0.50151515" order="10" side_tool="true" content_ui="tabs" />
+>>>>>>> Stashed changes
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36978757" sideWeight="0.50080514" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3542673" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3514431" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1260,8 +1330,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/porkisoft/templates/static/js/acciones.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state vertical-scroll-proportion="0.6666667" vertical-offset="17386" max-vertical-offset="52956">
           <caret line="976" column="33" selection-start-line="976" selection-start-column="33" selection-end-line="976" selection-end-column="33" />
+=======
+        <state vertical-scroll-proportion="0.47857141" vertical-offset="740" max-vertical-offset="1782">
+          <caret line="62" column="48" selection-start-line="56" selection-start-column="8" selection-end-line="62" selection-end-column="48" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
