@@ -58,9 +58,11 @@ def GestionPedidos(request,idcliente):
 
     usuario = request.user
     if usuario.is_staff:
+        pedidos = Pedido.objects.filter(cliente = idcliente).filter(fechaPedido__range =(fechainicio,fechafin))
         plantilla = 'base.html'
 
     else:
+        pedidos = Pedido.objects.filter(cliente = idcliente).filter(fechaPedido__range =(fechainicio,fechafin)).filter(bodega = emp.punto.codigoBodega)
         plantilla = 'PuntoVentaNorte.html'
 
     if request.method =='POST':
