@@ -1221,17 +1221,17 @@ def costearTajado(request):
         for tjdo in detTajado:
             producto = Producto.objects.get(pk = tjdo.producto.codigoProducto)
             if tjdo.producto.nombreProducto == 'Filete de Pollo':
-                tjdo.costoKilo = costoTotal * Decimal(0.953)/(tjdo.pesoProducto/1000)
+                tjdo.costoKilo = costoTotal * Decimal(0.970)/(tjdo.pesoProducto/1000)
                 costokilo = tjdo.costoKilo
                 tajado.totalTajado = tjdo.pesoProducto
             elif tjdo.producto.nombreProducto == 'Hueso de pollo':
-                tjdo.costoKilo = costoTotal * Decimal(0.016)/(tjdo.pesoProducto/1000)
+                tjdo.costoKilo = costoTotal * Decimal(0.01)/(tjdo.pesoProducto/1000)
                 costokilo = tjdo.costoKilo
             elif tjdo.producto.nombreProducto == 'Piel':
-                tjdo.costoKilo = costoTotal * Decimal(0.019)/(tjdo.pesoProducto/1000)
+                tjdo.costoKilo = costoTotal * Decimal(0.01)/(tjdo.pesoProducto/1000)
                 costokilo = tjdo.costoKilo
             elif tjdo.producto.nombreProducto == 'Procesos de pollo':
-                tjdo.costoKilo = costoTotal * Decimal(0.012)/(tjdo.pesoProducto/1000)
+                tjdo.costoKilo = costoTotal * Decimal(0.01)/(tjdo.pesoProducto/1000)
                 costokilo = tjdo.costoKilo
             producto.costoProducto =  costokilo
             producto.save()
