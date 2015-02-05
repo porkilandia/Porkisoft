@@ -348,8 +348,13 @@ def GestionCompra(request):
     fechafin = date.today()
     if usuario.is_staff:
         compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
+        plantilla = 'base.html'
+
     else:
         compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin)).filter(bodegaCompra = emp.punto.codigoBodega )
+        plantilla = 'PuntoVentaNorte.html'
+
+
     #compras= Compra.objects.all()
 
     if request.method == 'POST':
@@ -359,13 +364,8 @@ def GestionCompra(request):
 
             return HttpResponseRedirect('/inventario/compra')
     else:
-
         formulario =CompraForm(initial={'encargado':12951685,'bodegaCompra':emp.punto.codigoBodega})
-    plantilla = ''
-    if usuario.is_staff:
-        plantilla = 'base.html'
-    else:
-        plantilla = 'PuntoVentaNorte.html'
+
 
     return render_to_response('Inventario/GestionCompras.html',{'plantilla':plantilla,'formulario':formulario,'compras':compras },
                               context_instance = RequestContext(request))

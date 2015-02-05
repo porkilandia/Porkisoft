@@ -42,14 +42,18 @@ class ListaDePreciosForm(ModelForm):
     class Meta:
         model = ListaDePrecios
 
+
 class DetalleListaForm(ModelForm):
     class Meta:
         model = DetalleLista
+
 
 class VentaPuntoForm(ModelForm):
     class Meta:
         model = VentaPunto
         exclude = ("TotalVenta","guardado","factura","restaurante","anulado",)
+
+
 class DetalleVentaPuntoForm(ModelForm):
     def __init__(self,idVenta, *args, **kwargs):
         super(DetalleVentaPuntoForm,self).__init__(*args, **kwargs)

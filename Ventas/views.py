@@ -52,8 +52,17 @@ def GestionPedidos(request,idcliente):
     usuario = request.user.username
     emp = Empleado.objects.get(usuario = usuario)
     pedidos = Pedido.objects.filter(cliente = idcliente).filter(fechaPedido__range =(fechainicio,fechafin)).filter(bodega = emp.punto.codigoBodega)
+
     #pedidos = Pedido.objects.filter(cliente = idcliente)
     cliente = Cliente.objects.get(pk = idcliente)
+
+    usuario = request.user
+    if usuario.is_staff:
+        plantilla = 'base.html'
+
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+
     if request.method =='POST':
         formulario = PedidoForm(request.POST)
         if formulario.is_valid():
@@ -62,7 +71,7 @@ def GestionPedidos(request,idcliente):
     else:
         formulario = PedidoForm(initial={'cliente':cliente})
 
-    return render_to_response('Ventas/GestionPedido.html',{'formulario':formulario,'pedidos':pedidos,'cliente':cliente},
+    return render_to_response('Ventas/GestionPedido.html',{'plantilla':plantilla,'formulario':formulario,'pedidos':pedidos,'cliente':cliente},
                               context_instance = RequestContext(request))
 
 def BorrarPedidos(request,idpedido):
