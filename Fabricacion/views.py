@@ -2871,7 +2871,15 @@ def GuardarReApanado(request):
 def GestionConversiones(request):
     fechainicio = date.today() - timedelta(days=7)
     fechafin = date.today()
-    conversiones = Conversiones.objects.filter(fechaConversion__range =(fechainicio,fechafin))
+    usuario = request.user
+    emp = Empleado.objects.get(usuario = usuario.username)
+    if usuario.is_staff:
+        conversiones = Conversiones.objects.filter(fechaConversion__range =(fechainicio,fechafin))
+        plantilla = 'base.html'
+    else:
+        conversiones = Conversiones.objects.filter(fechaConversion__range =(fechainicio,fechafin)).filter(puntoConversion = emp.punto.codigoBodega)
+        plantilla = 'PuntoVentaNorte.html'
+
     #conversiones = Conversiones.objects.all()
 
     if request.method == 'POST':
@@ -2882,12 +2890,15 @@ def GestionConversiones(request):
     else:
         formulario = ConversionesForm()
 
-    return render_to_response('Fabricacion/GestionReConversiones.html',{'formulario':formulario,'conversiones':conversiones },
+    return render_to_response('Fabricacion/GestionReConversiones.html',{'plantilla':plantilla,'formulario':formulario,'conversiones':conversiones },
                               context_instance = RequestContext(request))
+
+
 def BorrarConversiones(request,idConversion):
     conversion = Conversiones.objects.get(pk = idConversion)
     conversion.delete()
     return HttpResponseRedirect('/fabricacion/conversiones')
+
 
 def GuardarConversion(request):
     idConversion = request.GET.get('idConversion')
