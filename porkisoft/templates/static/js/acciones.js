@@ -517,32 +517,32 @@ function ReporteVentasNorte() {
 
                 $.each(respuesta.PesoProductos,function(key,value){
 
-                    $("#tablaRepPP").append("<tr><td>" + key + "</td><td style='text-align: right'>"+ Math.ceil(value) +' grs'+ "</td></tr>");
+                    $("#tablaRepPP").append("<tr><td>" + key + "</td><td style='text-align: right'>"+ Math.ceil(value) + "</td></tr>");
                 });
                 $.each(respuesta.ValorProductos,function(key,value){
 
                     totalVentaPesables += Math.ceil(value);
-                    $("#tablaRepVN").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
+                    $("#tablaRepVN").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) + "</td></tr>");
                 });
 
                 $.each(respuesta.UdnProductos,function(key,value){
 
-                    $("#tablaReCPP").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value)+' unds' + "</td></tr>");
+                    $("#tablaReCPP").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) + "</td></tr>");
                 });
                 $.each(respuesta.ValorUnds,function(key,value){
                     totalVentaNoPesables += Math.ceil(value);
-                    $("#tablaRepVCP").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
+                    $("#tablaRepVCP").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) + "</td></tr>");
                 });
 
                 var sumaTotal = totalVentaNoPesables + totalVentaPesables;
                 sumatoria.append("<tr><td>" + 'Pesables' +
-                                 "</td><td>"+'$ ' + totalVentaPesables +
+                                 "</td><td>"+ totalVentaPesables +
                                  "</td></tr>"+
                                  "<tr><td>" + 'No Pesables' +
-                                 "</td><td>"+'$ ' + totalVentaNoPesables +
+                                 "</td><td>" + totalVentaNoPesables +
                                  "</td></tr>"+
                                  "<tr><td>" + 'Total' +
-                                 "</td><td>"+ '$ ' +  sumaTotal +
+                                 "</td><td>" +  sumaTotal +
                                  "</td></tr>");
                 $('#totalPesables').append(': $'+totalVentaPesables);
                 $('#totalNoPesables').append(': $'+totalVentaNoPesables);
