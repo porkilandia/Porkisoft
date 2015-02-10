@@ -483,7 +483,7 @@ function CantidadActual() {
 
 }
 function ReporteVentasNorte() {
-
+    $( "#progressbar" ).show();
     var tipoReporte = '';
 
     if($("#ventas").is(':checked')) {
@@ -493,12 +493,13 @@ function ReporteVentasNorte() {
            tipoReporte = 'pedidos';
         }
 
-       var inicio = $('#inicio').val();
+        var inicio = $('#inicio').val();
         var fin = $('#fin').val();
         var jornada = $('#jornada').val();
         var totalVentaPesables = 0;
         var totalVentaNoPesables = 0;
         var bodega = $('#bodega').val();
+        var sumatoria = $('#sumasTotales');
 
     $.ajax({
             url: '/ventas/reporteVentaNorte/',
@@ -507,11 +508,11 @@ function ReporteVentasNorte() {
             data: {'inicio': inicio, 'fin': fin,'jornada':jornada,'bodega':bodega,'tipoReporte':tipoReporte},
             success: function (respuesta) {
 
-                 $("#tablaRepPP").find("tr:gt(0)").remove();
+                $("#tablaRepPP").find("tr:gt(0)").remove();
                 $("#tablaRepVN").find("tr:gt(0)").remove();
                 $("#tablaReCPP").find("tr:gt(0)").remove();
                 $("#tablaRepVCP").find("tr:gt(0)").remove();
-
+                sumatoria.find("tr:gt(0)").remove();
 
 
                 $.each(respuesta.PesoProductos,function(key,value){
@@ -533,8 +534,20 @@ function ReporteVentasNorte() {
                     $("#tablaRepVCP").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
                 });
 
+                var sumaTotal = totalVentaNoPesables + totalVentaPesables;
+                sumatoria.append("<tr><td>" + 'Pesables' +
+                                 "</td><td>"+'$ ' + totalVentaPesables +
+                                 "</td></tr>"+
+                                 "<tr><td>" + 'No Pesables' +
+                                 "</td><td>"+'$ ' + totalVentaNoPesables +
+                                 "</td></tr>"+
+                                 "<tr><td>" + 'Total' +
+                                 "</td><td>"+ '$ ' +  sumaTotal +
+                                 "</td></tr>");
                 $('#totalPesables').append(': $'+totalVentaPesables);
                 $('#totalNoPesables').append(': $'+totalVentaNoPesables);
+
+            $( "#progressbar" ).hide();
             }
 
         });
@@ -957,7 +970,7 @@ function calculoTotalVenta()
         });
 
 }
-function ImprimirRecibo()
+function ImprimirRecibo(telefono)
 {
                 var encabezado = $('#encabezado');
                 var pie = $('#pieRecibo');
@@ -972,6 +985,7 @@ function ImprimirRecibo()
                 var totalCompra = $('#totalCompra').val();
                 var efectivo = $('#efectivo').val();
                 var regreso = $('#regreso').val();
+                var direccion = $('#direccion').text();
                 calculadora.hide();
                 encabezado.show();
                 cabecera.append(
@@ -982,8 +996,8 @@ function ImprimirRecibo()
                                     "<tr><th>" + 'Resolucion : 140000039353'+ "</th></tr>"+
                                     "<tr><th>" + 'Rango:000000 hasta 999999' + "</th></tr>"+
                                     "<tr><th>" + 'Expedida el : 09-04-2013'+ "</th></tr>"+
-                                    "<tr><th>" + 'Cll 16 # 31-02 San andres' +"</th></tr>"+
-                                    "<tr><th>" + 'Telefonos : 729 13 36 - 315 582 2270'+"</th></tr>"+
+                                    "<tr><th>" + direccion +"</th></tr>"+
+                                    "<tr><th>" + telefono +"</th></tr>"+
                                     "<tr><th style='font-size: 1.1em'>"+'__________________________________'+"</th></tr>"+
                                     "<tr><th style='text-align: left'>"+'Fecha : ' + fechaVenta + "</th></tr>"+
                                     "<tr><th style='text-align: left'>"+'Factura N°: ' + numFactura+ "</th></tr>"+

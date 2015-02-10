@@ -21,6 +21,7 @@ Ventas Norte
      <label for="jornada">Jornada</label><select id="jornada">
          <option value='AM'>AM</option>
          <option value='PM'>PM</option>
+         <option value='Completa'>Toda la Jornada</option>
      </select>
      <a  onclick="ReporteVentasNorte()" href="#"><input type="button" value="Consultar"></a>
 
@@ -28,6 +29,8 @@ Ventas Norte
         <br/>
         <br/>
     </div>
+
+<div id="progressbar"></div>
 <div id="acordeon">
         <h3>Pesables</h3>
         <div>
@@ -75,6 +78,19 @@ Ventas Norte
                 <thead>
                 <tr>
                     <th>Producto</th>
+                    <th>Valor</th>
+                </tr>
+                </thead>
+
+            </table>
+        </div>
+        <h3 id="totalNoPesables">Valor Total</h3>
+        <div>
+            <table id="sumasTotales" class="table-striped" style="width: 95%">
+
+                <thead>
+                <tr>
+                    <th>Concepto</th>
                     <th>Valor</th>
                 </tr>
                 </thead>

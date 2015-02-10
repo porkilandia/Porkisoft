@@ -836,8 +836,14 @@ def ReporteVentaNorte(request):
     ValorProductos = {}
     ValorUnds = {}
 
+
+
     if tipoReporte == 'ventas':
-        ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(jornada = jornada , puntoVenta = int(bodega))
+        if jornada == 'Completa':
+            print(jornada)
+            ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(puntoVenta = int(bodega))
+        else:
+            ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(jornada = jornada , puntoVenta = int(bodega))
 
         for venta in ventas:
             detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
