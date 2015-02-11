@@ -471,27 +471,32 @@ def CobrarVenta(request):
     venta = VentaPunto.objects.get(pk = int(idVenta))
     detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
 
-    for detalle in detalleVenta:
-        bodegaProducto = ProductoBodega.objects.get(bodega = venta.puntoVenta.codigoBodega,producto = detalle.productoVenta.codigoProducto)
-        movimiento = Movimientos()
-        movimiento.tipo = 'VNNOR%d'%(venta.numeroVenta)
-        movimiento.fechaMov = venta.fechaVenta
-        movimiento.productoMov = detalle.productoVenta
-        movimiento.desde = bodegaProducto.bodega.nombreBodega
+    if venta.guardado == False:
 
-        if detalle.productoVenta.pesables == True:
-            bodegaProducto.pesoProductoStock -= detalle.pesoVentaPunto
-            movimiento.salida = detalle.pesoVentaPunto
-        else:
-            bodegaProducto.unidadesStock -= int(detalle.pesoVentaPunto)
-            movimiento.salida = int(detalle.pesoVentaPunto)
+        for detalle in detalleVenta:
+            bodegaProducto = ProductoBodega.objects.get(bodega = venta.puntoVenta.codigoBodega,producto = detalle.productoVenta.codigoProducto)
+            movimiento = Movimientos()
+            movimiento.tipo = 'VNNOR%d'%(venta.numeroVenta)
+            movimiento.fechaMov = venta.fechaVenta
+            movimiento.productoMov = detalle.productoVenta
+            movimiento.desde = bodegaProducto.bodega.nombreBodega
 
-        bodegaProducto.save()
-        movimiento.save()
+            if detalle.productoVenta.pesables == True:
+                bodegaProducto.pesoProductoStock -= detalle.pesoVentaPunto
+                movimiento.salida = detalle.pesoVentaPunto
+            else:
+                bodegaProducto.unidadesStock -= int(detalle.pesoVentaPunto)
+                movimiento.salida = int(detalle.pesoVentaPunto)
 
-    venta.guardado = True
-    venta.save()
-    msj = 'Cobro exitoso, se han guardado %d registros'%(detalleVenta.count())
+            bodegaProducto.save()
+            movimiento.save()
+
+        venta.guardado = True
+        venta.save()
+        msj = 'Cobro exitoso, se han guardado %d registros'%(detalleVenta.count())
+    else:
+        msj = 'La Venta ya esta guardada'
+
     respuesta = json.dumps(msj)
 
     return HttpResponse(respuesta,mimetype='application/json')
