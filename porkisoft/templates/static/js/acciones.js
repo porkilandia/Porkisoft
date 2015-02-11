@@ -9,6 +9,7 @@ $(document).on('ready', inicio);
     var productoVenta = $('#id_productoVenta');
     var pesoVentaPunto = $('#id_pesoVentaPunto');
     var unidadesVentaPunto = $('#id_unidades');
+
     var total= 0;
     pesoVentaPunto.on('change',calculoTotalVentaPunto);
 
@@ -44,6 +45,7 @@ $(document).on('ready', inicio);
         if (estado == 'Si')
         {
             $('#cobraVenta').hide();
+            $('#FormularioVentaPunto').val().attr('disabled','-1');
         }
     /******************************************************************************************************************/
 
