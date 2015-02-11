@@ -41,12 +41,15 @@ $(document).on('ready', inicio);
      }
      pesoVentaPunto.on('change',calculoTotalVentaPunto);
 
-    productoVenta.focus();
-        if (estado == 'Si')
+
+    if (estado == 'Si')
         {
+            $('#FormularioVentaPunto').hide();
             $('#cobraVenta').hide();
-            $('#FormularioVentaPunto').val().attr('disabled','-1');
+
         }
+    productoVenta.focus();
+
     /******************************************************************************************************************/
 
      $('#agregarProducto').show();
