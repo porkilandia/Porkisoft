@@ -493,6 +493,9 @@ function ReporteVentasNorte() {
     else if($("#pedidos").is(':checked')) {
            tipoReporte = 'pedidos';
         }
+     else if($("#clienteDet").is(':checked')) {
+           tipoReporte = 'clienteDetalle';
+        }
     else
     {
         tipoReporte = 'todo';
@@ -505,12 +508,13 @@ function ReporteVentasNorte() {
         var totalVentaNoPesables = 0;
         var bodega = $('#bodega').val();
         var sumatoria = $('#sumasTotales');
+        var cliente = $('#cliente').val();
 
     $.ajax({
             url: '/ventas/reporteVentaNorte/',
             dataType: "json",
             type: "get",
-            data: {'inicio': inicio, 'fin': fin,'jornada':jornada,'bodega':bodega,'tipoReporte':tipoReporte},
+            data: {'cliente':cliente,'inicio': inicio, 'fin': fin,'jornada':jornada,'bodega':bodega,'tipoReporte':tipoReporte},
             success: function (respuesta) {
 
                 $("#tablaRepPP").find("tr:gt(0)").remove();

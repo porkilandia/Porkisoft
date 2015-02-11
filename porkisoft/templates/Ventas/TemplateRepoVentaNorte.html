@@ -12,6 +12,7 @@ Ventas Norte
             <label for="ventas">Ventas</label><input name="TipoReporte" id="ventas" type="radio">
             <label for="pedidos">Pedidos</label><input name="TipoReporte" id="pedidos" type="radio">
             <label for="totales">Todo</label><input name="TipoReporte" id="totales" type="radio">
+            <label for="clienteDet">Cliente Detallado</label><input name="TipoReporte" id="clienteDet" type="radio">
         </div>
 
      <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
@@ -26,6 +27,12 @@ Ventas Norte
          <option value='AM'>AM</option>
          <option value='PM'>PM</option>
          <option value='Completa'>Toda la Jornada</option>
+     </select>
+    <label for="cliente">Cliente</label><select id="cliente">
+        {% for cliente in clientes %}
+            <option value='{{ cliente.codigoCliente }}'>{{ cliente.nombreCliente }}</option>
+        {% endfor %}
+
      </select>
      <a  onclick="ReporteVentasNorte()" href="#"><input type="button" value="Consultar"></a>
 

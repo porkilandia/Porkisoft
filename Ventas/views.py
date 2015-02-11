@@ -812,7 +812,8 @@ def ReporteAZ(request):
 
 def TemplateReporteVentaNorte(request):
     bodegas = Bodega.objects.all()
-    return render_to_response('Ventas/TemplateRepoVentaNorte.html',{'bodegas':bodegas},
+    clientes = Cliente.objects.all()
+    return render_to_response('Ventas/TemplateRepoVentaNorte.html',{'clientes':clientes,'bodegas':bodegas},
                               context_instance = RequestContext(request))
 
 def ReporteVentaNorte(request):
@@ -822,6 +823,7 @@ def ReporteVentaNorte(request):
     jornada = request.GET.get('jornada')
     bodega = request.GET.get('bodega')
     tipoReporte = request.GET.get('tipoReporte')
+    idCliente = request.GET.get('cliente')
 
     fechaInicio = str(inicio)
     fechaFin = str(fin)
@@ -864,6 +866,29 @@ def ReporteVentaNorte(request):
                     ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
     elif tipoReporte == 'pedidos':
         pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(bodega = int(bodega))
+
+        for pedido in pedidos:
+            detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
+            for detalle in detallePedido:
+                if detalle.producto.pesables:
+                    PesoProductos[detalle.producto.nombreProducto] = 0
+                    ValorProductos[detalle.producto.nombreProducto] = 0
+                else:
+                    UdnProductos[detalle.producto.nombreProducto] = 0
+                    ValorUnds[detalle.producto.nombreProducto] = 0
+
+        for pedido in pedidos:
+            detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
+            for detalle in detallePedido:
+                if detalle.producto.pesables:
+                    PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
+                    ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+                else:
+                    UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
+                    ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+
+    elif tipoReporte == 'clienteDetalle':
+        pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(cliente = int(idCliente),bodega = int(bodega))
 
         for pedido in pedidos:
             detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
