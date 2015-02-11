@@ -836,11 +836,9 @@ def ReporteVentaNorte(request):
     ValorProductos = {}
     ValorUnds = {}
 
-
-
     if tipoReporte == 'ventas':
         if jornada == 'Completa':
-            print(jornada)
+
             ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(puntoVenta = int(bodega))
         else:
             ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(jornada = jornada , puntoVenta = int(bodega))
@@ -864,7 +862,7 @@ def ReporteVentaNorte(request):
                 else:
                     UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
                     ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
-    else:
+    elif tipoReporte == 'pedidos':
         pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(bodega = int(bodega))
 
         for pedido in pedidos:
@@ -877,8 +875,6 @@ def ReporteVentaNorte(request):
                     UdnProductos[detalle.producto.nombreProducto] = 0
                     ValorUnds[detalle.producto.nombreProducto] = 0
 
-
-
         for pedido in pedidos:
             detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
             for detalle in detallePedido:
@@ -888,6 +884,56 @@ def ReporteVentaNorte(request):
                 else:
                     UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
                     ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+
+    else:
+         ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(puntoVenta = int(bodega))
+         pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(bodega = int(bodega))
+
+         #inicializamos los diccionarios con las dos consultas
+
+         for venta in ventas:
+             detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
+             for detalle in detalleVenta:
+                 if detalle.productoVenta.pesables:
+                     PesoProductos[detalle.productoVenta.nombreProducto] = 0
+                     ValorProductos[detalle.productoVenta.nombreProducto] = 0
+                 else:
+                     UdnProductos[detalle.productoVenta.nombreProducto] = 0
+                     ValorUnds[detalle.productoVenta.nombreProducto] = 0
+
+         for pedido in pedidos:
+            detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
+            for detalle in detallePedido:
+                if detalle.producto.pesables:
+                    PesoProductos[detalle.producto.nombreProducto] = 0
+                    ValorProductos[detalle.producto.nombreProducto] = 0
+                else:
+                    UdnProductos[detalle.producto.nombreProducto] = 0
+                    ValorUnds[detalle.producto.nombreProducto] = 0
+
+         # ahora poblamos los diccionarios con las consultas
+
+         for venta in ventas:
+             detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
+             for detalle in detalleVenta:
+                 if detalle.productoVenta.pesables:
+                     PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                     ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+                 else:
+                     UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                     ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+
+         for pedido in pedidos:
+            detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
+            for detalle in detallePedido:
+                if detalle.producto.pesables:
+                    PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
+                    ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+                else:
+                    UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
+                    ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+
+
 
     listas = {'PesoProductos':PesoProductos,'ValorProductos':ValorProductos,'UdnProductos':UdnProductos,'ValorUnds':ValorUnds}
     respuesta = json.dumps(listas)

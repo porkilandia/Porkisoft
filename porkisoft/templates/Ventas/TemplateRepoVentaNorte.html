@@ -8,8 +8,12 @@ Ventas Norte
 {% block contenido %}
 
     <div id="rango">
-     <label for="ventas">Ventas</label><input name="TipoReporte" id="ventas" type="radio">
-     <label for="pedidos">Pedidos</label><input name="TipoReporte" id="pedidos" type="radio">
+        <div id="grupoopciones">
+            <label for="ventas">Ventas</label><input name="TipoReporte" id="ventas" type="radio">
+            <label for="pedidos">Pedidos</label><input name="TipoReporte" id="pedidos" type="radio">
+            <label for="totales">Todo</label><input name="TipoReporte" id="totales" type="radio">
+        </div>
+
      <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
      <label for="fin">Fecha Final</label><input id="fin" type="text">
      <label for="bodega">Punto</label><select id="bodega">

@@ -489,9 +489,14 @@ function ReporteVentasNorte() {
     if($("#ventas").is(':checked')) {
            tipoReporte = 'ventas';
 
-        } else {
+    }
+    else if($("#pedidos").is(':checked')) {
            tipoReporte = 'pedidos';
         }
+    else
+    {
+        tipoReporte = 'todo';
+    }
 
         var inicio = $('#inicio').val();
         var fin = $('#fin').val();

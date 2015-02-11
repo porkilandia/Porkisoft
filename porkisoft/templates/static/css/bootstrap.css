@@ -279,6 +279,11 @@ fieldset {
     width: 25%;
     display: inline-block;
 }
+#grupoopciones
+{
+    width: 0%;
+    display: block;
+}
 #FrmVentaPunto
 {
     width: 25%;
