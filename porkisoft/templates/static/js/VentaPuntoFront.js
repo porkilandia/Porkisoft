@@ -7,14 +7,15 @@ function inicio()
     var estado = $('#guardado').text();
     var productoVenta = $('#id_productoVenta');
     var pesoVentaPunto = $('#id_pesoVentaPunto');
-    var unidadesVentaPunto = $('#id_unidades');
+    var cobraVenta = $('#cobraVenta');
+
     var total= 0;
     pesoVentaPunto.on('change',calculoTotalVentaPunto);
 
     if (estado == 'Si')
         {
             $('#FormularioVentaPunto').hide();
-            $('#cobraVenta').hide();
+            cobraVenta.hide();
 
         }
 
@@ -24,6 +25,8 @@ function inicio()
          $('#InicioSesion').show();
          productoVenta.on('change',traeValorVenta);
          $('#regreso').on('focus',calculoRegreso);
+         $('#imprimeRecibo').on('click',ImprimirRecibo);
+         cobraVenta.on('click',Cobrar);
          var fechaVenta = $('#id_fechaVenta');
          fechaVenta.datepicker({ dateFormat: "dd/mm/yy" });
          $('#id_vrTotalPunto').on('focus',calculoTotalVenta);
@@ -56,8 +59,9 @@ function Cobrar()
 
     }
 
-   function ImprimirRecibo(telefono)
+   function ImprimirRecibo()
             {
+
                 var encabezado = $('#encabezado');
                 var pie = $('#pieRecibo');
                 var tablaDetVenta = $('#tablaDetalleVentaPunto');
@@ -83,7 +87,6 @@ function Cobrar()
                                     "<tr><th>" + 'Rango:000000 hasta 999999' + "</th></tr>"+
                                     "<tr><th>" + 'Expedida el : 09-04-2013'+ "</th></tr>"+
                                     "<tr><th>" + direccion +"</th></tr>"+
-                                    "<tr><th>" + telefono +"</th></tr>"+
                                     "<tr><th style='font-size: 1.1em'>"+'__________________________________'+"</th></tr>"+
                                     "<tr><th style='text-align: left'>"+'Fecha : ' + fechaVenta + "</th></tr>"+
                                     "<tr><th style='text-align: left'>"+'Factura N°: ' + numFactura+ "</th></tr>"+

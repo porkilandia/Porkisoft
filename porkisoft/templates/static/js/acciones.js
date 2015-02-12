@@ -136,7 +136,6 @@ $(document).on('ready', inicio);
 
 /**************************************************** METODOS *********************************************************/
 
-
 function deshidratacion() {
 
     var bodega = $('#bodegaFaltantes').val();
