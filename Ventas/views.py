@@ -352,12 +352,10 @@ def InicioVentas(request):
 def PuntoVenta(request):
     usuario = request.user.username
     emp = Empleado.objects.get(usuario = usuario)
-    valorInicial = ConfiguracionPuntos.objects.get(bodega = emp.punto.codigoBodega)
+    jornada = ConfiguracionPuntos.objects.get(bodega = emp.punto.codigoBodega).jornada
     punto = emp.punto.codigoBodega
     empleado = emp.codigoEmpleado
-    jornada = valorInicial.jornada
-
-    ventas = VentaPunto.objects.filter(fechaVenta = datetime.today()).filter(guardado = False).filter(puntoVenta = emp.punto.codigoBodega )
+    ventas = VentaPunto.objects.filter(fechaVenta = datetime.today()).filter(guardado = False,puntoVenta = emp.punto.codigoBodega)
     consecutivo = ConfiguracionPuntos.objects.get(bodega = emp.punto.codigoBodega)
 
     if request.method =='POST':
@@ -393,7 +391,7 @@ def TipoProducto(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def DetallePuntoVenta(request,idVenta):
-    detVentas =DetalleVentaPunto.objects.filter(venta = idVenta)
+    detVentas =DetalleVentaPunto.objects.select_related('venta').filter(venta = idVenta)
     venta = VentaPunto.objects.get(pk = idVenta)
     consecutivo = ValoresCostos.objects.get(nombreCosto = 'Facturacion')
 
@@ -469,7 +467,7 @@ def CobrarVenta(request):
 
     idVenta = request.GET.get('venta')
     venta = VentaPunto.objects.get(pk = int(idVenta))
-    detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
+    detalleVenta =DetalleVentaPunto.objects.select_related('venta').filter(venta = int(idVenta))
 
     if venta.guardado == False:
 
