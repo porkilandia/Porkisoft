@@ -3,6 +3,7 @@
 {% block titulo %}::Listas De Ventas::{% endblock titulo %}
 {% block mensajes %}Usuario actual : {{ user.username }}{% endblock mensajes %}
 {% block contenido %}
+
 <br/><br/><br/>
     <table id="TablaPuntoNorte" class="table-striped" >
 
@@ -61,7 +62,6 @@
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="FrmVentaPunto">
              <legend>Venta</legend>
-
                   {{ formulario }}
               <br/>
 

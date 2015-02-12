@@ -4,19 +4,16 @@
     <Meta charset="utf-8"/>
     <title>{% block titulo %}{% endblock titulo %}</title>
 
-    <!-- <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/miCSS.css"/> -->
-    <!-- Include one of jTable styles. -->
-
-
+    <!--
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/miCSS.css"/>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery.dataTable.css"/>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery.dataTable_themeroller.css"/>
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/menu.css"/>
+    -->
+
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery.alerts.css"/>
-     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}jquery-ui-1.11.1/jquery-ui.css"/>
-
-
-
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}jquery-ui-1.11.1/jquery-ui.css"/>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/menu.css"/>
 
 </head>
 <body>
@@ -65,24 +62,26 @@
 
         <script type="text/javascript" src="{{ STATIC_URL }}jquery-ui-1.11.1/external/jquery/jquery.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}jquery-ui-1.11.1/jquery-ui.js"></script>
-        <!-- Include jTable script file. -->
-        <script type="text/javascript" src="{{ STATIC_URL }}jtable/jquery.jtable.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/acciones.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/VentaPuntoFront.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bPopup.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.alerts.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/noty/packaged/jquery.noty.packaged.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/PrintArea.js"></script>
 
+
+        <!--
+
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bPopup.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/noty/packaged/jquery.noty.packaged.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}TableExporter/tableExport.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}TableExporter/jquery.base64.js"></script>
-
         <script type="text/javascript" src="{{ STATIC_URL }}TableExporter/jspdf/libs/sprintf.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}TableExporter/jspdf/libs/base64.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}TableExporter/jspdf/jspdf.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}jtable/jquery.jtable.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
+        -->
 
-        <script type="text/javascript" src="{{ STATIC_URL }}js/PrintArea.js"></script>
 
 
 </body>

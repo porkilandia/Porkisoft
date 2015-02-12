@@ -374,8 +374,8 @@ def PuntoVenta(request):
 
             return HttpResponseRedirect('/ventas/ventaPunto/')
     else:
-
         formulario = VentaPuntoForm(initial={'encargado':empleado,'jornada':jornada,'fechaVenta':datetime.today(),'puntoVenta':punto})
+
     return render_to_response('Ventas/TemplateVentaPunto.html',{'ventas':ventas,'formulario':formulario},
                               context_instance = RequestContext(request))
 def TipoProducto(request):

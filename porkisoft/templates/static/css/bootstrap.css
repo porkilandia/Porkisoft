@@ -286,10 +286,11 @@ fieldset {
 }
 #FrmVentaPunto
 {
-    width: 25%;
+    display: block;
+   width: 25%;
    position: fixed;
-    right: 2em;
-    top: 9em;
+   right: 2em;
+   top: 9em;
 }
 #InicioSesion
 {
@@ -1911,6 +1912,7 @@ table th[class*="col-"] {
 }
 #FrmVenta
 {
+    display: block;
     position: fixed;
     top: 10em;
     right: 1em;
