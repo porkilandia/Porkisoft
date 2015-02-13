@@ -2,9 +2,18 @@ from django.shortcuts import render_to_response,HttpResponseRedirect
 from django.template import RequestContext
 
 from Telemercadeo.Forms import *
+from Ventas.models import *
 
 
 def GestionCliente(request):
+
+    pedidos = Pedido.objects.all()
+
+    for pedido in pedidos:
+
+        pedido.NombreCliente = pedido.cliente.nombreCliente
+        pedido.save()
+
     clientes = Cliente.objects.all()
     usuario = request.user
     if usuario.is_staff:

@@ -42,7 +42,7 @@ def ReporteTipoPedido(request):
     elif filtrpedido == 'total':
         pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(cliente = int(idCliente)).filter(bodega = int(bodega)).order_by('numeroFactura')
 
-    respuesta = serializers.serialize('json',pedidos)
+    respuesta = serializers.serialize('json',pedidos.order_by('NombreCliente'))
     return HttpResponse(respuesta,mimetype='application/json')
 
 

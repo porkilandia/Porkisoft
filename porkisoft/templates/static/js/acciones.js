@@ -261,6 +261,7 @@ function ReporteTipoPedido() {
                                 "<tr><td>" + respuesta[i].pk +
                                 "</td><td>" + respuesta[i].fields.fechaPedido +
                                 "</td><td>" + respuesta[i].fields.numeroFactura +
+                                "</td><td>" + respuesta[i].fields.NombreCliente +
                                 "</td><td>"+"$" + respuesta[i].fields.TotalVenta +
                                 "</td><td>" + credito +
                                 "</td><td>" + contado +
