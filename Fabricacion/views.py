@@ -2430,7 +2430,16 @@ def GuardarMenudos(request):
 def GestionFrito(request):
     fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
-    fritos = TallerFrito.objects.filter(fechaFrito__range =(fechainicio,fechafin))
+    usuario = request.user
+    emp = Empleado.objects.get(usuario = usuario.username)
+    if usuario.is_staff:
+        plantilla = 'base.html'
+        fritos = TallerFrito.objects.filter(fechaFrito__range =(fechainicio,fechafin))
+
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+        fritos = TallerFrito.objects.filter(fechaFrito__range =(fechainicio,fechafin),punto = emp.punto.codigoBodega)
+
     #fritos = TallerFrito.objects.all()
 
     if request.method == 'POST':
@@ -2443,7 +2452,7 @@ def GestionFrito(request):
     else:
         formulario = FritoForm()
 
-    return render_to_response('Fabricacion/GestionFritos.html',{'formulario':formulario,'fritos':fritos },
+    return render_to_response('Fabricacion/GestionFritos.html',{'plantilla':plantilla,'formulario':formulario,'fritos':fritos },
                               context_instance = RequestContext(request))
 
 def CostearFrito(request):
@@ -2552,8 +2561,15 @@ def GuardarFrito(request):
 def GestionCarneCond(request):
     fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
-    carnes = TallerCarneCondimentada.objects.filter(fechaCarCond__range =(fechainicio,fechafin))
-    #carnes = TallerCarneCondimentada.objects.all()
+    usuario = request.user
+    emp = Empleado.objects.get(usuario = usuario.username)
+    if usuario.is_staff:
+        plantilla = 'base.html'
+        carnes = TallerCarneCondimentada.objects.filter(fechaCarCond__range =(fechainicio,fechafin))
+
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+        carnes = TallerCarneCondimentada.objects.filter(fechaCarCond__range =(fechainicio,fechafin),puntoCond = emp.punto.codigoBodega)
 
     if request.method == 'POST':
 
@@ -2565,7 +2581,7 @@ def GestionCarneCond(request):
     else:
         formulario = CarneCondForm()
 
-    return render_to_response('Fabricacion/GestionCarneCond.html',{'formulario':formulario,'carnes':carnes },
+    return render_to_response('Fabricacion/GestionCarneCond.html',{'plantilla':plantilla,'formulario':formulario,'carnes':carnes },
                               context_instance = RequestContext(request))
 
 def CostearCarneCond(request):
@@ -2645,10 +2661,17 @@ def GuardarCarneCond(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionCroqueta(request):
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
-    croquetas = TallerCroquetas.objects.filter(fechaCroqueta__range =(fechainicio,fechafin))
-    #croquetas = TallerCroquetas.objects.all()
+    usuario = request.user
+    emp = Empleado.objects.get(usuario = usuario.username)
+    if usuario.is_staff:
+        plantilla = 'base.html'
+        croquetas = TallerCroquetas.objects.filter(fechaCroqueta__range =(fechainicio,fechafin))
+
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+        croquetas = TallerCroquetas.objects.filter(fechaCroqueta__range =(fechainicio,fechafin),puntoCroq = emp.punto.codigoBodega)
 
     if request.method == 'POST':
 
@@ -2660,7 +2683,7 @@ def GestionCroqueta(request):
     else:
         formulario = CroquetaFrom()
 
-    return render_to_response('Fabricacion/GestionCroquetas.html',{'formulario':formulario,'croquetas':croquetas },
+    return render_to_response('Fabricacion/GestionCroquetas.html',{'plantilla':plantilla,'formulario':formulario,'croquetas':croquetas },
                               context_instance = RequestContext(request))
 
 def CostearCroqueta(request):
@@ -2779,10 +2802,19 @@ def GuardarCroqueta(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionReApanado(request):
-    fechainicio = date.today() - timedelta(days=15)
+
+    fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
-    reApanado = TallerReapanado.objects.filter(fechaReApanado__range =(fechainicio,fechafin))
-    #reApanado = TallerReapanado.objects.all()
+    usuario = request.user
+    emp = Empleado.objects.get(usuario = usuario.username)
+    if usuario.is_staff:
+        plantilla = 'base.html'
+        reApanado = TallerReapanado.objects.filter(fechaReApanado__range =(fechainicio,fechafin))
+
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+        reApanado = TallerReapanado.objects.filter(fechaReApanado__range =(fechainicio,fechafin), puntoReApanado= emp.punto.codigoBodega )
+
 
     if request.method == 'POST':
 
@@ -2794,7 +2826,7 @@ def GestionReApanado(request):
     else:
         formulario = ReapanadoForm()
 
-    return render_to_response('Fabricacion/GestionReApanado.html',{'formulario':formulario,'reApanado':reApanado },
+    return render_to_response('Fabricacion/GestionReApanado.html',{'plantilla':plantilla,'formulario':formulario,'reApanado':reApanado },
                               context_instance = RequestContext(request))
 
 def GuardarReApanado(request):

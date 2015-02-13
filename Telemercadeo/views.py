@@ -7,8 +7,6 @@ from Ventas.models import *
 
 def GestionCliente(request):
 
-    pedidos = Pedido.objects.all()
-
     clientes = Cliente.objects.all()
     usuario = request.user
     if usuario.is_staff:

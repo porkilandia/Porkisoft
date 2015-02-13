@@ -71,6 +71,8 @@ def GestionPedidos(request,idcliente):
             dato = formulario.save()
             dato.NombreCliente = dato.cliente.nombreCliente
             dato.save()
+
+
             return HttpResponseRedirect('/ventas/pedido/'+idcliente)
     else:
         formulario = PedidoForm(initial={'cliente':cliente})
