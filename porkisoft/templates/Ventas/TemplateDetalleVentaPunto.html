@@ -7,8 +7,8 @@
         </div>
 {% endblock mensajes %}
 {% block contenido %}
-<a id="imprimeRecibo" href="#"><input type="button" value="Imprimir" class="btn btn-success"></a><br/>
-<a  id="cobraVenta" href="#"><input type="button" value="Cobrar" class="btn btn-warning"></a>
+<a id="imprimeRecibo" onclick="ImprimirRecibo()" href="#"><input type="button" value="Imprimir" class="btn btn-success"></a><br/>
+<a  id="cobraVenta" onclick="Cobrar()" href="#"><input type="button" value="Cobrar" class="btn btn-warning"></a>
 
 <br/><br/><br/><br/>
     <table id="tablaVentaPunto" class="table-striped" >

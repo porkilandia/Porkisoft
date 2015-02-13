@@ -3,6 +3,101 @@
  * Copyright 2011-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+/*****************************MENU*******************************************/
+#nav {
+    top: 0;
+    left: 0;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    width: 100%;
+    z-index:2;
+}
+#nav ul {
+
+    background: linear-gradient(#d3070b, #86070b);
+    font-size: 1em;
+    height:50px;
+    list-style:none outside none;
+    margin:0;
+    padding:1em;
+}
+#nav ul ul {
+    background-color: #d3070b;
+    display:none;
+    height:auto;
+    left:0;
+    padding:1em;
+    position:absolute;
+    top:37px;
+    width:220px;
+
+    background-image:-webkit-gradient(left center , #F8FAFF 0%, #B8D1F8 15%, #FFFFFF 15%, #FFFFFF 100%);
+    background-image:-moz-linear-gradient(left center , #F8FAFF 0%, #B8D1F8 15%, #FFFFFF 15%, #FFFFFF 100%);
+}
+#nav ul ul ul {
+    display:none;
+    left:210px;
+    position:absolute;
+    top:-1px;
+    width:168px;
+}
+#nav ul li {
+    float:left;
+    margin:0;
+    position:relative;
+
+}
+#nav ul li a {
+
+    color: #ececec;
+    cursor:default;
+    display:block;
+    padding:0.3em 0.3em 0.3em;
+    text-decoration:none;
+}
+#nav ul li span {
+    color: #ececec;
+    cursor:default;
+    display:block;
+    padding:0.3em 1em 0.3em;
+    position:relative;
+    vertical-align: middle;
+}
+#nav ul ul li {
+    float:none;
+    margin-right:0;
+    padding:1px;
+    text-indent:2px;
+}
+#nav ul ul li a,#nav ul ul li span {
+    padding:3px 3px 5px 2px;
+}
+#nav ul ul li a img,#nav ul ul li span img {
+    border-width:0;
+    float:left;
+    margin-right:5px;
+    vertical-align:middle;
+}
+#nav ul li:hover > a,#nav ul li:hover > span {
+
+    color: #deff7c;
+    text-shadow: 0 0 1.5em #ececec;
+}
+#nav img.close {
+    display:none;
+    height:100%;
+    left:0;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:-1;
+}
+#nav ul li span:focus + ul,#nav ul li ul:hover,#nav ul:hover + img.close {
+    display:block;
+}
+
+/****************************************************************************/
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {

@@ -984,7 +984,7 @@ function calculoTotalVenta()
         });
 
 }
-function ImprimirRecibo(telefono)
+function ImprimirRecibo()
 {
                 var encabezado = $('#encabezado');
                 var pie = $('#pieRecibo');
@@ -1011,7 +1011,6 @@ function ImprimirRecibo(telefono)
                                     "<tr><th>" + 'Rango:000000 hasta 999999' + "</th></tr>"+
                                     "<tr><th>" + 'Expedida el : 09-04-2013'+ "</th></tr>"+
                                     "<tr><th>" + direccion +"</th></tr>"+
-                                    "<tr><th>" + telefono +"</th></tr>"+
                                     "<tr><th style='font-size: 1.1em'>"+'__________________________________'+"</th></tr>"+
                                     "<tr><th style='text-align: left'>"+'Fecha : ' + fechaVenta + "</th></tr>"+
                                     "<tr><th style='text-align: left'>"+'Factura N°: ' + numFactura+ "</th></tr>"+
