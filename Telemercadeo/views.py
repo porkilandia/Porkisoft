@@ -9,11 +9,6 @@ def GestionCliente(request):
 
     pedidos = Pedido.objects.all()
 
-    for pedido in pedidos:
-
-        pedido.NombreCliente = pedido.cliente.nombreCliente
-        pedido.save()
-
     clientes = Cliente.objects.all()
     usuario = request.user
     if usuario.is_staff:

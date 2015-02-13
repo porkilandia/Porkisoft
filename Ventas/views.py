@@ -51,7 +51,7 @@ def GestionPedidos(request,idcliente):
     fechafin = date.today()
     usuario = request.user.username
     emp = Empleado.objects.get(usuario = usuario)
-    pedidos = Pedido.objects.filter(cliente = idcliente).filter(fechaPedido__range =(fechainicio,fechafin)).filter(bodega = emp.punto.codigoBodega)
+    #pedidos = Pedido.objects.filter(cliente = idcliente).filter(fechaPedido__range =(fechainicio,fechafin)).filter(bodega = emp.punto.codigoBodega)
 
     #pedidos = Pedido.objects.filter(cliente = idcliente)
     cliente = Cliente.objects.get(pk = idcliente)
@@ -68,7 +68,9 @@ def GestionPedidos(request,idcliente):
     if request.method =='POST':
         formulario = PedidoForm(request.POST)
         if formulario.is_valid():
-            formulario.save()
+            dato = formulario.save()
+            dato.NombreCliente = dato.cliente.nombreCliente
+            dato.save()
             return HttpResponseRedirect('/ventas/pedido/'+idcliente)
     else:
         formulario = PedidoForm(initial={'cliente':cliente})
