@@ -48,7 +48,8 @@
             <td>{{ detalle.precioVenta }}</td>
 
             <td>
-                 <a href="{% url 'Ventas.views.EditaListas' detalle.id %}">Actualizar</a>
+                <a href="{% url 'Ventas.views.EditaListas' detalle.id %}">Actualizar</a>
+                <a href="{% url 'Ventas.views.borrarItemListaPrecios' detalle.id %}">Borrar</a>
             </td>
 
         </tr>

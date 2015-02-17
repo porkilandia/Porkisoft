@@ -220,6 +220,7 @@ function ReporteTipoPedido() {
     var fechaFin = $('#fin').val();
     var cliente = $('#cliente').val();
     var TablaPedidos = $('#TablaPedidos');
+    var TablaVentasClientes = $('#TablaVentasClientes');
     var filtrpedido = '';
     var bodega = $('#bodega').val();
 
@@ -242,38 +243,87 @@ function ReporteTipoPedido() {
             data: {'bodega':bodega,'inicio':fechaInicio,'fin':fechaFin,'cliente':cliente,'filtrpedido':filtrpedido},
             success: function (respuesta) {
                     TablaPedidos.find("tr:gt(0)").remove();
+                    TablaVentasClientes.find("tr:gt(0)").remove();
+                    ReporteTipoPedidoContado();
 
-                    for (var i=0;i<respuesta.length;i++)
-                    {
-                        if (respuesta[i].fields.credito == true)
-                            {
-                                credito = 'Si';
-                                contado = 'No';
-                                vrCredito += respuesta[i].fields.TotalVenta;
+                    for (var i=0;i<respuesta.length;i++) {
 
-                            }else
-                            {
-                                credito = 'No';
-                                contado = 'Si';
-                                vrContado += respuesta[i].fields.TotalVenta;
-                            }
-                            TablaPedidos.append(
+                        if (respuesta[i].fields.credito == true) {
+                            credito = 'Si';
+                            contado = 'No';
+                            vrCredito += respuesta[i].fields.TotalVenta;
+
+                        } else {
+                            credito = 'No';
+                            contado = 'Si';
+                            vrContado += respuesta[i].fields.TotalVenta;
+                        }
+
+                        TablaPedidos.append(
                                 "<tr><td>" + respuesta[i].pk +
                                 "</td><td>" + respuesta[i].fields.fechaPedido +
                                 "</td><td>" + respuesta[i].fields.numeroFactura +
                                 "</td><td>" + respuesta[i].fields.NombreCliente +
-                                "</td><td>"+"$" + respuesta[i].fields.TotalVenta +
+                                "</td><td>" + "$" + respuesta[i].fields.TotalVenta +
                                 "</td><td>" + credito +
                                 "</td><td>" + contado +
-                                "</td><td>" + "<a target='_blank'' href='/ventas/detallePedido/"+ respuesta[i].pk + "'>"+'Detalles'+"</a>" +
+                                "</td><td>" + "<a target='_blank'' href='/ventas/detallePedido/" + respuesta[i].pk + "'>" + 'Detalles' + "</a>" +
                                 "</td></tr>");
 
                     }
                     TablaPedidos.append("<tr><th>"+"Total Creditos"+
-                                        "</th><th>"+"$"+vrCredito+"</th></tr>"+
-                                        "</th><th>"+"Total Contado"+
-                                        "</th><th>"+"$"+ vrContado + "</th></tr>" );
+                                        "</th><th>"+"$"+vrCredito+"</th></tr>");
                     }
+
+        });
+
+
+}
+function ReporteTipoPedidoContado() {
+
+    var fechaInicio = $('#inicio').val();
+    var fechaFin = $('#fin').val();
+    var cliente = $('#cliente').val();
+    var TablaPedidos = $('#TablaPedidos');
+    var TablaVentasClientes = $('#TablaVentasClientes');
+    var filtrpedido = '';
+    var bodega = $('#bodega').val();
+    var vrContado = 0;
+
+    if($("#porFecha").is(':checked')) {
+            filtrpedido = 'fecha';
+        } else {
+            filtrpedido = 'total';
+        }
+
+    $.ajax({
+
+            url: '/ventas/consultaTipoPedidoContado/',
+            dataType: "json",
+            type: "get",
+            data: {'bodega':bodega,'inicio':fechaInicio,'fin':fechaFin,'cliente':cliente,'filtrpedido':filtrpedido},
+            success: function (respuesta) {
+                TablaVentasClientes.find("tr:gt(0)").remove();
+
+                for (var j = 0; j < respuesta.length; j++) {
+
+
+                    TablaVentasClientes.append(
+                            "<tr><td>" + respuesta[j].pk +
+                            "</td><td>" + respuesta[j].fields.fechaVenta +
+                            "</td><td>" + respuesta[j].fields.factura +
+                            "</td><td>" + respuesta[j].fields.cliente +
+                            "</td><td>" + "$" + respuesta[j].fields.TotalVenta +
+                            "</td><td>" + "<a target='_blank'' href='/ventas/detalleVentaPunto/" + respuesta[j].pk + "'>" + 'Detalles' + "</a>" +
+                            "</td></tr>");
+
+                            vrContado += respuesta[j].fields.TotalVenta;
+                }
+
+                TablaVentasClientes.append("<tr><th>"+"Total Contado"+
+                                        "</th><th>"+"$"+vrContado+"</th></tr>");
+
+            }
 
         });
 

@@ -37,12 +37,43 @@ def ReporteTipoPedido(request):
     ffin = ff.date()
     pedidos = ''
 
+
     if filtrpedido == 'fecha':
         pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(bodega = int(bodega)).order_by('numeroFactura')
+
     elif filtrpedido == 'total':
-        pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(cliente = int(idCliente)).filter(bodega = int(bodega)).order_by('numeroFactura')
+        pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin),cliente = int(idCliente),bodega = int(bodega)).filter().order_by('numeroFactura')
+
 
     respuesta = serializers.serialize('json',pedidos.order_by('NombreCliente'))
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def ReporteTipoPedidoContado(request):
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    idCliente = request.GET.get('cliente')
+    filtrpedido = request.GET.get('filtrpedido')
+    bodega = request.GET.get('bodega')
+
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+    ventas = ''
+
+    if filtrpedido == 'fecha':
+        ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(puntoVenta = int(bodega),restaurante = True)
+
+    elif filtrpedido == 'total':
+        ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin),cliente = int(idCliente),puntoVenta = int(bodega))
+
+    respuesta = serializers.serialize('json',ventas.order_by('cliente__nombreCliente'))
+
     return HttpResponse(respuesta,mimetype='application/json')
 
 
@@ -51,9 +82,6 @@ def GestionPedidos(request,idcliente):
     fechafin = date.today()
     usuario = request.user.username
     emp = Empleado.objects.get(usuario = usuario)
-    #pedidos = Pedido.objects.filter(cliente = idcliente).filter(fechaPedido__range =(fechainicio,fechafin)).filter(bodega = emp.punto.codigoBodega)
-
-    #pedidos = Pedido.objects.filter(cliente = idcliente)
     cliente = Cliente.objects.get(pk = idcliente)
 
     usuario = request.user
@@ -323,6 +351,12 @@ def GestionDetalleLista(request,idLista):
     return render_to_response('Ventas/GestionDetalleListas.html',{'formulario':formulario,'lista':lista,'detalleListas':detalleListas},
                               context_instance = RequestContext(request))
 
+def borrarItemListaPrecios(request,idDetLista):
+    detLista = DetalleLista.objects.get(pk = idDetLista)
+    detLista.delete()
+    return HttpResponseRedirect('/ventas/detalleLista/'+str(detLista.lista.codigoLista))
+
+
 def consultaCostoProducto(request):
     idProducto = request.GET.get('producto')
     producto = Producto.objects.get(pk = int(idProducto)).costoProducto
@@ -398,6 +432,7 @@ def DetallePuntoVenta(request,idVenta):
     detVentas =DetalleVentaPunto.objects.select_related('venta').filter(venta = idVenta)
     venta = VentaPunto.objects.get(pk = idVenta)
     consecutivo = ValoresCostos.objects.get(nombreCosto = 'Facturacion')
+    ListadoPrecios = DetalleLista.objects.select_related().filter(lista__tipoLista = 'Punto',lista__bodega = venta.puntoVenta.codigoBodega)
 
     totalFactura = 0
     totalGravado = 0
@@ -413,16 +448,20 @@ def DetallePuntoVenta(request,idVenta):
 
     Hora = datetime.now()
 
-    if request.method =='POST':
+    if request.method == 'POST':
         formulario = DetalleVentaPuntoForm(idVenta,request.POST)
         if formulario.is_valid():
-            formulario.save()
-
+            datos = formulario.save()
+            print(request.POST['ProductoVentaPunto'])
+            producto = request.POST['ProductoVentaPunto']
+            prodVenta = Producto.objects.get(pk = int(producto))
+            datos.productoVenta = prodVenta
+            datos.save()
             return HttpResponseRedirect('/ventas/detalleVentaPunto/'+ idVenta)
     else:
 
         formulario = DetalleVentaPuntoForm(idVenta,initial={'venta':idVenta})
-    return render_to_response('Ventas/TemplateDetalleVentaPunto.html',{'totalGravado':totalGravado,'Hora':Hora,
+    return render_to_response('Ventas/TemplateDetalleVentaPunto.html',{'ListadoPrecios':ListadoPrecios,'totalGravado':totalGravado,'Hora':Hora,
                                                                        'venta':venta,'formulario':formulario,
                                                                        'detVentas':detVentas,'consecutivo':consecutivo},
                               context_instance = RequestContext(request))
@@ -569,10 +608,13 @@ def ValorProdVenta(request):
     venta = VentaPunto.objects.get(pk = int(numVenta))
     usuario = request.user.username
     emp = Empleado.objects.get(usuario = usuario)
+    if venta.restaurante == True:
+        lista = ListaDePrecios.objects.get(tipoLista = 'Restaurante',bodega = emp.punto.codigoBodega)
+    else:
+        lista = ListaDePrecios.objects.get(tipoLista = 'Punto',bodega = emp.punto.codigoBodega)
 
-    lista = ListaDePrecios.objects.get(tipoLista = 'Punto',bodega = emp.punto.codigoBodega)
+
     valor = DetalleLista.objects.filter(lista = lista.codigoLista).get(productoLista = int(idProducto)).precioVenta
-
     respuesta = json.dumps(valor)
     return HttpResponse(respuesta,mimetype='application/json')
 
@@ -896,6 +938,17 @@ def ReporteVentaNorte(request):
 
     elif tipoReporte == 'clienteDetalle':
         pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(cliente = int(idCliente),bodega = int(bodega))
+        ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(puntoVenta = int(bodega),cliente = int(idCliente) )
+
+        for venta in ventas:
+             detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
+             for detalle in detalleVenta:
+                 if detalle.productoVenta.pesables:
+                     PesoProductos[detalle.productoVenta.nombreProducto] = 0
+                     ValorProductos[detalle.productoVenta.nombreProducto] = 0
+                 else:
+                     UdnProductos[detalle.productoVenta.nombreProducto] = 0
+                     ValorUnds[detalle.productoVenta.nombreProducto] = 0
 
         for pedido in pedidos:
             detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
@@ -916,6 +969,16 @@ def ReporteVentaNorte(request):
                 else:
                     UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
                     ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+
+        for venta in ventas:
+             detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
+             for detalle in detalleVenta:
+                 if detalle.productoVenta.pesables:
+                     PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                     ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+                 else:
+                     UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                     ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
 
     else:
          ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(puntoVenta = int(bodega))

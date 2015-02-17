@@ -9,7 +9,7 @@ from Ventas.models import *
 class PedidoForm(ModelForm):
     class Meta:
         model = Pedido
-        exclude = ('TotalVenta','descuento',)
+        exclude = ('TotalVenta','descuento','NombreCliente',)
 
 class DetallePedidoForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -51,7 +51,7 @@ class DetalleListaForm(ModelForm):
 class VentaPuntoForm(ModelForm):
     class Meta:
         model = VentaPunto
-        exclude = ("TotalVenta","guardado","factura","restaurante","anulado",)
+        exclude = ("TotalVenta","guardado","factura","anulado",)
 
 
 class DetalleVentaPuntoForm(ModelForm):
@@ -63,10 +63,10 @@ class DetalleVentaPuntoForm(ModelForm):
         venta = VentaPunto.objects.get(pk = idVenta)
         consulta = VentaPunto.objects.filter(jornada = venta.jornada,puntoVenta = venta.puntoVenta.codigoBodega,
                                              encargado = venta.encargado.codigoEmpleado,fechaVenta = Hoy)
-
         self.fields['venta'].queryset = consulta
 
-        q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses').filter(numeroProducto__gt = 0).order_by('numeroProducto')
+
+        '''q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses').filter(numeroProducto__gt = 0).order_by('numeroProducto')
         q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos').filter(numeroProducto__gt = 0).order_by('numeroProducto')
         #q3 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdas').filter(numeroProducto__gt = 0).order_by('numeroProducto')
         q4 = Producto.objects.filter(grupo__nombreGrupo = 'Compra/Venta').filter(numeroProducto__gt = 0).order_by('numeroProducto')
@@ -75,11 +75,11 @@ class DetalleVentaPuntoForm(ModelForm):
         q6 = Producto.objects.filter(nombreProducto = 'Pierna de Cerda').order_by('numeroProducto')
         q7 = Producto.objects.filter(nombreProducto = 'Lomo Canon Cerda').order_by('numeroProducto')
         q8 = Producto.objects.filter(nombreProducto = 'Picadillo').order_by('numeroProducto')
-        self.fields['productoVenta'].queryset = q1 | q2 | q4 | q5 | q6 | q7 | q8
+        self.fields['productoVenta'].queryset = q1 | q2 | q4 | q5 | q6 | q7 | q8'''
 
     class Meta:
         model = DetalleVentaPunto
-        exclude = ('unidades',)
+        exclude = ('unidades','productoVenta',)
 class CajaForm(ModelForm):
     class Meta:
         model = Caja

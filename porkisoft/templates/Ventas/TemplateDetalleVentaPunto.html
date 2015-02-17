@@ -99,8 +99,13 @@
     <form id="FormularioVentaPunto" method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="FrmVenta">
              <legend>Venta</legend>
+             <label for="id_productoVenta">Productos</label><select id="id_productoVenta" name="ProductoVentaPunto">
+                 {% for lista in ListadoPrecios %}
+                     <option value="{{ lista.productoLista.codigoProducto }}">{{ lista.productoLista.numeroProducto }} --{{ lista.productoLista.nombreProducto }}</option>
+                {% endfor %}
+             </select>
 
-                  {{ formulario }}
+                 {{ formulario }}
 
               <br/>
           <input class="btn btn-success" value="Guardar" type="submit">

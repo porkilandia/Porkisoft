@@ -103,6 +103,7 @@ class VentaPunto(models.Model):
     encargado = models.ForeignKey(Empleado,verbose_name='Encargado')
     jornada = models.CharField(verbose_name='Jornada',max_length=5,choices=jornadas)
     TotalVenta = models.IntegerField(verbose_name='Total Venta',default=0)
+    cliente = models.ForeignKey(Cliente,blank=True,null=True,verbose_name='Cliente')
     restaurante = models.BooleanField(verbose_name='Restaurante',default=False)
     guardado = models.BooleanField(default=False,verbose_name='Guardado')
     anulado = models.BooleanField(default=False,verbose_name='Anulado')
@@ -112,7 +113,7 @@ class VentaPunto(models.Model):
 
 class DetalleVentaPunto (models.Model):
     venta = models.ForeignKey(VentaPunto)
-    productoVenta = models.ForeignKey(Producto,null=True,verbose_name='Producto')
+    productoVenta = models.ForeignKey(Producto,null=True,blank=True,verbose_name='Producto')
     pesoVentaPunto = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Cantidad',null= True)
     unidades = models.IntegerField(verbose_name='Unidades',null= True,default=0)
     vrUnitarioPunto = models.IntegerField(verbose_name='Vr.Unitario', default=0)
