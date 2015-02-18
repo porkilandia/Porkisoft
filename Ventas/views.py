@@ -432,7 +432,8 @@ def DetallePuntoVenta(request,idVenta):
     detVentas =DetalleVentaPunto.objects.select_related('venta').filter(venta = idVenta)
     venta = VentaPunto.objects.get(pk = idVenta)
     consecutivo = ValoresCostos.objects.get(nombreCosto = 'Facturacion')
-    ListadoPrecios = DetalleLista.objects.select_related().filter(lista__tipoLista = 'Punto',lista__bodega = venta.puntoVenta.codigoBodega)
+    ListadoPrecios = DetalleLista.objects.select_related().\
+        filter(lista__tipoLista = 'Punto',lista__bodega = venta.puntoVenta.codigoBodega).order_by('productoLista__nombreProducto')
 
     totalFactura = 0
     totalGravado = 0
@@ -454,7 +455,7 @@ def DetallePuntoVenta(request,idVenta):
             datos = formulario.save()
             print(request.POST['ProductoVentaPunto'])
             producto = request.POST['ProductoVentaPunto']
-            prodVenta = Producto.objects.get(pk = int(producto))
+            prodVenta = Producto.objects.select_related().get(pk = int(producto))
             datos.productoVenta = prodVenta
             datos.save()
             return HttpResponseRedirect('/ventas/detalleVentaPunto/'+ idVenta)
