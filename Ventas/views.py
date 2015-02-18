@@ -433,7 +433,8 @@ def DetallePuntoVenta(request,idVenta):
     venta = VentaPunto.objects.get(pk = idVenta)
     consecutivo = ValoresCostos.objects.get(nombreCosto = 'Facturacion')
     ListadoPrecios = DetalleLista.objects.select_related().\
-        filter(lista__tipoLista = 'Punto',lista__bodega = venta.puntoVenta.codigoBodega).order_by('productoLista__nombreProducto')
+        filter(lista__tipoLista = 'Punto',lista__bodega = venta.puntoVenta.codigoBodega).\
+        order_by('productoLista__numeroProducto')
 
     totalFactura = 0
     totalGravado = 0
