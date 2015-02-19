@@ -1347,6 +1347,11 @@ def EditaDesposte(request,idDesposte):
     return render_to_response('Fabricacion/GestionDesposte.html',{'formulario':formulario,'despostes':despostes},
                               context_instance = RequestContext(request))
 
+def borrarDesposte(request,idDesp):
+    desposte = PlanillaDesposte.objects.get(pk = idDesp)
+    desposte.delete()
+    return HttpResponseRedirect('/fabricacion/desposte')
+
 def GestionDesposteActualizado(request, idplanilla):
 
     desposte = PlanillaDesposte.objects.get(pk = idplanilla)

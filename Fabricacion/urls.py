@@ -75,6 +75,7 @@ urlpatterns = patterns('',
     url(r'^desposte/$',GestionDesposte),
     url(r'^templateListDesp/$',TemplateListaDesposte),
     url(r'^reporteListDesp/$',ReporteListaDesposte),
+    url(r'^borrarDesposte/(?P<idDesp>\d+)',borrarDesposte),
     url(r'^borrarDetDesposte/(?P<idDesp>\d+)',borrarDetDesposte),
 
     url(r'^sacrificio/(?P<idrecepcion>\d+)',GestionSacrificio),
