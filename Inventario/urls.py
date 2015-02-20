@@ -43,6 +43,7 @@ urlpatterns = patterns('',
     url(r'^detcompra/(?P<idcompra>\d+)',GestionDetalleCompra),
     url(r'^editaDetCompra/(?P<idDetCompra>\d+)',EditaDetalleCompra),
     url(r'^borrarDetCompra/(?P<idDetCompra>\d+)',borrarDetCompra),
+    url(r'^borrarCompra/(?P<idCompra>\d+)',borrarCompra),
 
     url(r'^editacompra/(?P<idDetCompra>\d+)',EditaCompra),
     url(r'^modifica/(?P<idCompra>\d+)',ModificaCompra),

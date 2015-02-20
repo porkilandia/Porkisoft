@@ -372,6 +372,11 @@ def GestionCompra(request):
     return render_to_response('Inventario/GestionCompras.html',{'plantilla':plantilla,'formulario':formulario,'compras':compras },
                               context_instance = RequestContext(request))
 
+def borrarCompra(request, idCompra):
+    compra = Compra.objects.get(pk = idCompra)
+    compra.delete()
+    return HttpResponseRedirect('/inventario/compra')
+
 def ModificaCompra(request,idCompra):
     usuario = request.user
     fechainicio = date.today() - timedelta(days=22)

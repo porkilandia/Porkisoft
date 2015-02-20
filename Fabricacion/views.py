@@ -738,7 +738,7 @@ def existenciasUnd(request):
 
 def GestionApanado(request):
 
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
     apanados = ProcesoApanado.objects.filter(fechaApanado__range =(fechainicio,fechafin))
     #apanados = ProcesoApanado.objects.all()
