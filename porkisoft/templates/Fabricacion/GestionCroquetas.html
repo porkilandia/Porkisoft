@@ -49,10 +49,9 @@
                 <td>
                 <a id="costearCroquetas" onclick="CostearCroqueta({{ croqueta.id }})" href="#">Costear</a>
                 <a id="guardarCroquetas" onclick="GuardarCroqueta({{ croqueta.id }})" href="#">Guardar</a>
+                <a href="{% url 'Fabricacion.views.borrarCroqueta' croqueta.id %}">Borrar</a>
             </td>
             {% endif %}
-            
-
 
         </tr>
 

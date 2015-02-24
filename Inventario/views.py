@@ -586,6 +586,81 @@ def GestionTraslados(request):
     return render_to_response('Inventario/GestionTraslado.html',{'plantilla':plantilla,'formulario':formulario,'traslados':traslados },
                               context_instance = RequestContext(request))
 
+def EditaTraslados(request,idTraslado):
+    trasladoEditar = Traslado.objects.get(pk = idTraslado)
+    usuario = request.user
+    empleado = Empleado.objects.get(usuario = usuario.username)
+    fechainicio = date.today() - timedelta(days=11)
+    fechafin = date.today()
+
+    if usuario.is_staff:
+        q1 = Traslado.objects.all().order_by('fechaTraslado').\
+        filter(fechaTraslado__range = (fechainicio,fechafin))
+        traslados = q1
+    else:
+        q1 = Traslado.objects.all().order_by('fechaTraslado').\
+        filter(fechaTraslado__range = (fechainicio,fechafin))\
+        .filter(bodegaActual = empleado.punto.codigoBodega)
+        q2 = Traslado.objects.all().order_by('fechaTraslado').\
+        filter(fechaTraslado__range = (fechainicio,fechafin))\
+        .filter(bodegaDestino = empleado.punto.nombreBodega)
+        traslados = q1|q2
+
+    if request.method == 'POST':
+
+        formulario = TrasladoForm(request.POST,instance=trasladoEditar)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/inventario/traslado')
+    else:
+        formulario =TrasladoForm(instance=trasladoEditar)
+
+    plantilla = ''
+    if usuario.is_staff:
+        plantilla = 'base.html'
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+
+    return render_to_response('Inventario/GestionTraslado.html',{'plantilla':plantilla,'formulario':formulario,'traslados':traslados },
+                              context_instance = RequestContext(request))
+
+
+def borrarTraslado(request,idTraslado):
+    traslado = Traslado.objects.select_related().get(pk = idTraslado)
+    detalletraslado = DetalleTraslado.objects.select_related().filter(traslado = idTraslado)
+
+    for detalle in detalletraslado:
+
+        bodegaOrigen = ProductoBodega.objects.get(bodega = traslado.bodegaActual.codigoBodega,producto = detalle.productoTraslado.codigoProducto)
+        bodegaDestino = ProductoBodega.objects.get(bodega__nombreBodega = traslado.bodegaDestino,producto = detalle.productoTraslado.codigoProducto)
+
+        bodegaOrigen.pesoProductoStock += detalle.pesoTraslado
+        bodegaOrigen.unidadesStock += detalle.unidadesTraslado
+
+        bodegaDestino.pesoProductoStock -= detalle.pesoTraslado
+        bodegaDestino.unidadesStock -= detalle.unidadesTraslado
+
+        movimiento = Movimientos()
+        movimiento.tipo = 'TRSREV%d'%(traslado.codigoTraslado)
+        movimiento.productoMov = detalle.productoTraslado
+        movimiento.nombreProd = detalle.productoTraslado.nombreProducto
+        movimiento.fechaMov = traslado.fechaTraslado
+        movimiento.desde = bodegaDestino.bodega.nombreBodega
+        movimiento.Hasta = bodegaOrigen.bodega.nombreBodega
+        if detalle.productoTraslado.noPesables:
+            movimiento.entrada = detalle.unidadesTraslado
+            movimiento.salida = detalle.unidadesTraslado
+        else:
+            movimiento.entrada = detalle.pesoTraslado
+            movimiento.salida = detalle.pesoTraslado
+
+        movimiento.save()
+        bodegaOrigen.save()
+        bodegaDestino.save()
+
+    traslado.delete()
+    return HttpResponseRedirect('/inventario/traslado')
+
 
 def GestionDetalleTraslado(request,idtraslado):
 

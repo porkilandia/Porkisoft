@@ -45,6 +45,7 @@ urlpatterns = patterns('',
     url(r'^guardarCarneCond/$',GuardarCarneCond),
 
     url(r'^croquetas/$',GestionCroqueta),
+    url(r'^borrarCroqueta/(?P<idCroqueta>\d+)',borrarCroqueta),
 
     url(r'^canalPendiente/$',InformeCanalesPendientes),
     url(r'^descarne/$',GestionDescarneCabeza),

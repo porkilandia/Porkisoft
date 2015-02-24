@@ -13,7 +13,6 @@
             <th>Codigo</th>
             <th>Desde</th>
             <th>Hasta</th>
-            <th>Empleado</th>
             <th>Fecha Traslado</th>
             <th>Estado Traslado</th>
             <th>Descripcion</th>
@@ -26,7 +25,6 @@
             <td>{{ traslado.codigoTraslado }}</td>
             <td>{{ traslado.bodegaActual }}</td>
             <td>{{ traslado.bodegaDestino }}</td>
-            <td>{{ traslado.empleado }}</td>
             <td>{{ traslado.fechaTraslado }}</td>
             <td>{{ traslado.estadoTraslado }}</td>
             <td>{{ traslado.descripcionTraslado }}</td>
@@ -38,7 +36,8 @@
 
             <td>
                 <a href="{% url 'Inventario.views.GestionDetalleTraslado' traslado.codigoTraslado %}">Detalle</a>
-
+                <a href="{% url 'Inventario.views.EditaTraslados' traslado.codigoTraslado %}">Modificar</a>
+                <a href="{% url 'Inventario.views.borrarTraslado' traslado.codigoTraslado %}">Borrar</a>
             </td>
 
         </tr>

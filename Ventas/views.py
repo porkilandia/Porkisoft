@@ -983,8 +983,8 @@ def ReporteVentaNorte(request):
                      ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
 
     else:
-         ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(puntoVenta = int(bodega))
-         pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(bodega = int(bodega))
+         ventas = VentaPunto.objects.select_related().filter(fechaVenta__range = (finicio,ffin),puntoVenta = int(bodega))
+         pedidos = Pedido.objects.select_related().filter(fechaPedido__range = (finicio,ffin),bodega = int(bodega))
 
          #inicializamos los diccionarios con las dos consultas
 

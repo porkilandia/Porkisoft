@@ -2691,6 +2691,11 @@ def GestionCroqueta(request):
     return render_to_response('Fabricacion/GestionCroquetas.html',{'plantilla':plantilla,'formulario':formulario,'croquetas':croquetas },
                               context_instance = RequestContext(request))
 
+def borrarCroqueta(request,idCroqueta):
+    croqueta = TallerCroquetas.objects.get(pk = idCroqueta)
+    croqueta.delete()
+    return HttpResponseRedirect('/fabricacion/croquetas')
+
 def CostearCroqueta(request):
     idCorqueta = request.GET.get('idCroqueta')
     regCroqueta = TallerCroquetas.objects.get(pk = int(idCorqueta))
