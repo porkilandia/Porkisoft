@@ -37,7 +37,7 @@
             <td>
                 <a href="{% url 'Inventario.views.GestionDetalleTraslado' traslado.codigoTraslado %}">Detalle</a>
                 <a href="{% url 'Inventario.views.EditaTraslados' traslado.codigoTraslado %}">Modificar</a>
-                {% if traslado.guardado == True %}
+                {% if traslado.guardado == True  %}
                 <a href="{% url 'Inventario.views.borrarTraslado' traslado.codigoTraslado %}">Borrar</a>
                 {% endif %}
             </td>
