@@ -999,14 +999,16 @@ def ReporteVentaNorte(request):
                      ValorUnds[detalle.productoVenta.nombreProducto] = 0
 
          for pedido in pedidos:
-            detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
-            for detalle in detallePedido:
-                if detalle.producto.pesables:
-                    PesoProductos[detalle.producto.nombreProducto] = 0
-                    ValorProductos[detalle.producto.nombreProducto] = 0
-                else:
-                    UdnProductos[detalle.producto.nombreProducto] = 0
-                    ValorUnds[detalle.producto.nombreProducto] = 0
+            if pedido.cliente.nombreCliente != 'Jose Alomia':
+                detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
+                for detalle in detallePedido:
+
+                    if detalle.producto.pesables:
+                        PesoProductos[detalle.producto.nombreProducto] = 0
+                        ValorProductos[detalle.producto.nombreProducto] = 0
+                    else:
+                        UdnProductos[detalle.producto.nombreProducto] = 0
+                        ValorUnds[detalle.producto.nombreProducto] = 0
 
          # ahora poblamos los diccionarios con las consultas
 
@@ -1021,14 +1023,15 @@ def ReporteVentaNorte(request):
                      ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
 
          for pedido in pedidos:
-            detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
-            for detalle in detallePedido:
-                if detalle.producto.pesables:
-                    PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
-                    ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
-                else:
-                    UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
-                    ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+            if pedido.cliente.nombreCliente != 'Jose Alomia':
+                detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
+                for detalle in detallePedido:
+                    if detalle.producto.pesables:
+                        PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
+                        ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+                    else:
+                        UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
+                        ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
 
 
 
