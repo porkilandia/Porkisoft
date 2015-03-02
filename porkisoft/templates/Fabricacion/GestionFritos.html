@@ -49,6 +49,9 @@
                 <td>
                 <a id="costearFrito" onclick="CostearFrito({{ frito.id }})" href="#">Costear</a>
                 <a id="guardarFrito" onclick="GuardarFrito({{ frito.id }})" href="#">Guardar</a>
+                {% if frito.guardado == False %}
+                <a href="{% url 'Fabricacion.views.borrarFrito' frito.id %}">Borrar</a>
+                {% endif %}
             </td>
             {% endif %}
             

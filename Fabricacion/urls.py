@@ -34,6 +34,7 @@ urlpatterns = patterns('',
     url(r'^fritos/$',GestionFrito),
     url(r'^costearFritos/$',CostearFrito),
     url(r'^guardarFritos/$',GuardarFrito),
+    url(r'^borrarFrito/(?P<idFrito>\d+)',borrarFrito),
 
     url(r'^ensBola/$',GestionEnsBola),
     url(r'^costearEnsBola/$',CostearEnsBola),

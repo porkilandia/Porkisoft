@@ -2460,6 +2460,11 @@ def GestionFrito(request):
     return render_to_response('Fabricacion/GestionFritos.html',{'plantilla':plantilla,'formulario':formulario,'fritos':fritos },
                               context_instance = RequestContext(request))
 
+def borrarFrito(request,idFrito):
+    frito = TallerFrito.objects.get(pk = idFrito)
+    frito.delete()
+    return HttpResponseRedirect('/fabricacion/fritos')
+
 def CostearFrito(request):
     idFrito = request.GET.get('idFrito')
     frito = TallerFrito.objects.get(pk = int(idFrito))
