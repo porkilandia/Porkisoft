@@ -346,7 +346,7 @@ def GestionGanado(request,idcompra):
 def GestionCompra(request):
     usuario = request.user
     emp = Empleado.objects.get(usuario = usuario.username)
-    fechainicio = date.today() - timedelta(days=30)
+    fechainicio = date.today() - timedelta(days=15)
     fechafin = date.today()
     if usuario.is_staff:
         compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
