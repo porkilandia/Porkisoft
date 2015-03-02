@@ -9,7 +9,7 @@ from Ventas.models import *
 class PedidoForm(ModelForm):
     class Meta:
         model = Pedido
-        exclude = ('TotalVenta','descuento','NombreCliente',)
+        exclude = ('TotalVenta','descuento','NombreCliente','nitCliente',)
 
 class DetallePedidoForm(ModelForm):
     def __init__(self, *args, **kwargs):
