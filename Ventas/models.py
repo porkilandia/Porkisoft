@@ -70,6 +70,7 @@ class Pedido(models.Model):
     listaPrecioPedido = models.ForeignKey(ListaDePrecios,verbose_name='Lista Precios')
     cliente = models.ForeignKey(Cliente)
     NombreCliente = models.CharField(max_length=100,default=0)
+    nitCliente = models.CharField(max_length=50,default=0)
     empleado = models.ForeignKey(Empleado)
     bodega = models.ForeignKey(Bodega)
     TotalVenta = models.IntegerField(verbose_name='Total Venta',default=0)

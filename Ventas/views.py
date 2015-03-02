@@ -84,6 +84,13 @@ def GestionPedidos(request,idcliente):
     emp = Empleado.objects.get(usuario = usuario)
     cliente = Cliente.objects.get(pk = idcliente)
 
+    pedidos = Pedido.objects.all()
+
+    for pedido in pedidos:
+        pedido.nitCliente = pedido.cliente.nit
+        pedido.save()
+
+
     usuario = request.user
     if usuario.is_staff:
         pedidos = Pedido.objects.filter(cliente = idcliente).filter(fechaPedido__range =(fechainicio,fechafin))
