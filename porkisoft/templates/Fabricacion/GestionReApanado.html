@@ -45,6 +45,9 @@
             {% else %}
                 <td>
                 <a id="guardarReApanado" onclick="GuardarreApanado({{ re.id }})" href="#">Guardar</a>
+                {% if re.guardado == False %}
+                <a href="{% url 'Fabricacion.views.borrarReapanado' re.id %}">Borrar</a>
+                {% endif %}
             </td>
             {% endif %}
             

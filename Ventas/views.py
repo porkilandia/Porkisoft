@@ -98,6 +98,7 @@ def GestionPedidos(request,idcliente):
         if formulario.is_valid():
             dato = formulario.save()
             dato.NombreCliente = dato.cliente.nombreCliente
+            dato.nitCliente = dato.cliente.nit
             dato.save()
 
 

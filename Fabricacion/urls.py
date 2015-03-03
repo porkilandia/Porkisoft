@@ -96,7 +96,7 @@ urlpatterns = patterns('',
 
     url(r'^tallerReApanado/$',GestionReApanado),
     url(r'^guardarReApanado/$',GuardarReApanado),
-
+    url(r'^borraReapanado/(?P<idReApanado>\d+)',borrarReapanado),
 
     url(r'^conversiones/$',GestionConversiones),
     url(r'^Guardaconversiones/$',GuardarConversion),

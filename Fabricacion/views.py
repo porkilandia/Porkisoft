@@ -2844,6 +2844,11 @@ def GestionReApanado(request):
     return render_to_response('Fabricacion/GestionReApanado.html',{'plantilla':plantilla,'formulario':formulario,'reApanado':reApanado },
                               context_instance = RequestContext(request))
 
+def borrarReapanado(request,idReApanado):
+    reApanado = TallerReapanado.objects.select_related().get(pk = idReApanado)
+    reApanado.delete()
+    return HttpResponseRedirect('/fabricacion/tallerReApanado')
+
 def GuardarReApanado(request):
     idReApanado = request.GET.get('idReApanado')
     reApanado = TallerReapanado.objects.get(pk = int(idReApanado))
