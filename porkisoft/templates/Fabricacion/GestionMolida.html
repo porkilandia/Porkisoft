@@ -45,6 +45,9 @@
                 <td>
                 <a onclick="CostearMolido({{ molido.id }})" href="#">Costear</a>
                 <a onclick="GuardarMolido({{ molido.id }})" href="#">Guardar</a>
+                {% if molido.guardado == False %}
+                    <a href="{% url 'Fabricacion.views.borrarMolida' molido.id %}">Borrar</a>
+                {% endif %}
             </td>
             {% endif %}
 

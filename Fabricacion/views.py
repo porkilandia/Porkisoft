@@ -395,6 +395,12 @@ def GestionVerduras(request):
 
     return render_to_response('Fabricacion/GestionVerduras.html',{'formulario':formulario,'verduras':verduras},
                               context_instance = RequestContext(request))
+
+def borrarVerduras(request,idVerduras):
+    verduras = LimpiezaVerduras.objects.select_related().get(pk = idVerduras)
+    verduras.delete()
+    return HttpResponseRedirect('/fabricacion/verduras/')
+
 def ValorVerduras(request):
     idCompra = request.GET.get('idCompra')
     idProducto = request.GET.get('idProducto')
@@ -910,6 +916,12 @@ def GestionMolido(request):
 
     return render_to_response('Fabricacion/GestionMolida.html',{'formulario':formulario,'molidos':molidos },
                               context_instance = RequestContext(request))
+
+def borrarMolida(request,idMolido):
+    molido = Molida.objects.select_related().get(pk = idMolido)
+    molido.delete()
+    return HttpResponseRedirect('/fabricacion/molida')
+
 def GuardarMolido(request):
     idMolido = request.GET.get('idMolido')
     molido = Molida.objects.get(pk = int(idMolido))

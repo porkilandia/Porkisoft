@@ -41,6 +41,7 @@
             <td>
                 <a onclick="CostearVerduras({{ verdura.id }})" href="#">Costear</a>
                 <a onclick="GuardarVerduras({{ verdura.id }})" href="#">Guardar</a>
+                <a href="{% url 'Fabricacion.views.borrarVerduras' verdura.id %}">Borrar</a>
             </td>
 
         </tr>
