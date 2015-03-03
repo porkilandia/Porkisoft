@@ -107,20 +107,16 @@ def GestionCanal(request,idrecepcion):
                 deguello = 48200 * cantidad
                 pesoPorkilandia = Decimal(request.POST.get('pesoPorkilandia'))
                 cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gt = 0)# busca registros que el peso sea mayor o igual a 150
-                #cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gte = 200)# busca registros que el peso sea mayor o igual a 150
-                #cantidadCanalCerdasChicas = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__lte = 199)# busca registros que el peso sea menor o igual a 150
 
                 incrementoCG = 32 * cantidadCanalCerdasGrandes.count()
-                #incrementoCP = 32 * cantidadCanalCerdasChicas.count()
 
                 if pesoPorkilandia >= 0:
                     incrementoCG += 32
-                #else:
-                    #incrementoCP += 32
-                if pesoCanales == 0:#para cuando se ingresa la primera vez
-                    pesoCanales = 1000
 
-                pesoPie = pesoCanales + pesoPorkilandia + incrementoCG # + incrementoCP
+                if pesoCanales == 0:#para cuando se ingresa la primera vez
+                    pesoCanales = 1
+
+                pesoPie = pesoCanales -1 + pesoPorkilandia# + incrementoCG # + incrementoCP
                 vrFactura = pesoPie * ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas').valorKiloPie
                 costoCanales = (vrFactura + deguello + transporte) - menudo
                 vrKiloCanal = ceil(costoCanales / (pesoCanales + pesoPorkilandia))
