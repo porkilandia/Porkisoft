@@ -116,7 +116,7 @@ def GestionCanal(request,idrecepcion):
                 if pesoCanales == 0:#para cuando se ingresa la primera vez
                     pesoCanales = 1
 
-                pesoPie = pesoCanales -1 + pesoPorkilandia# + incrementoCG # + incrementoCP
+                pesoPie = pesoCanales + pesoPorkilandia + incrementoCG # + incrementoCP
                 vrFactura = pesoPie * ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas').valorKiloPie
                 costoCanales = (vrFactura + deguello + transporte) - menudo
                 vrKiloCanal = ceil(costoCanales / (pesoCanales + pesoPorkilandia))
