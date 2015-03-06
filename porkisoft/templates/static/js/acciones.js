@@ -118,6 +118,7 @@ $(document).on('ready', inicio);
      //var tablaEmpacado = $('#tablaEmpacado tr');
      //tablaEmpacado.on('click',maneja);
      //$('#TablaPuntoNorte').dataTable();
+
      $('#tablaAjustes').dataTable();
      $('#canalPendiente').dataTable();
      $('#tablaenTajados').dataTable();
@@ -547,12 +548,22 @@ function ReporteVentaDiaria()
         var bodega = $('#bodega').val();
         var tablaRepDiario =  $("#tablaRepDiario");
         var totalrango = 0;
+        var tipoReporte = '';
+
+        if($("#ventas").is(':checked')) {
+               tipoReporte = 'ventas';
+
+        }
+        else if($("#pedidos").is(':checked')) {
+               tipoReporte = 'pedidos';
+        }
+
 
     $.ajax({
             url: '/ventas/reporteVentaDiaria/',
             dataType: "json",
             type: "get",
-            data: {'inicio': inicio, 'fin': fin,'bodega':bodega},
+            data: {'inicio': inicio, 'fin': fin,'bodega':bodega,'tipoReporte':tipoReporte},
             success: function (respuesta) {
 
                 tablaRepDiario.find("tr:gt(0)").remove();

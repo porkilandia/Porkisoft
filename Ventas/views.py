@@ -1047,7 +1047,7 @@ def TemplateReporteVentaDiaria(request):
                               context_instance = RequestContext(request))
 
 def ReporteVentaDiaria(request):
-
+    tipoReporte = request.GET.get('tipoReporte')
     inicio = request.GET.get('inicio')
     fin = request.GET.get('fin')
     bodega = request.GET.get('bodega')
@@ -1063,17 +1063,23 @@ def ReporteVentaDiaria(request):
     totalDia = {}
 
     ventas = DetalleVentaPunto.objects.select_related().\
-        filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega))
+        filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega)).order_by('venta__fechaVenta')
+    pedidos = Pedido.objects.select_related().filter(fechaPedido__range = (finicio,ffin),bodega = int(bodega))
 
-    for venta in ventas:
-        totalDia[str(venta.venta.fechaVenta)] = 0
+    if tipoReporte == 'pedidos':
+        for pedido in pedidos:
+            totalDia[str(pedido.fechaPedido)] = 0
 
-    for venta in ventas:
-        totalDia[str(venta.venta.fechaVenta)] += venta.vrTotalPunto
+        for pedido in pedidos:
+            totalDia[str(pedido.fechaPedido)] += pedido.TotalVenta
+    else:
+        for venta in ventas:
+            totalDia[str(venta.venta.fechaVenta)] = 0
 
+        for venta in ventas:
+            totalDia[str(venta.venta.fechaVenta)] += venta.vrTotalPunto
 
     listas = {'totalDia':totalDia}
-    print(listas)
     respuesta = json.dumps(listas)
 
     return HttpResponse(respuesta,mimetype='application/json')
