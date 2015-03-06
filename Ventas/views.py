@@ -1068,10 +1068,12 @@ def ReporteVentaDiaria(request):
 
     if tipoReporte == 'pedidos':
         for pedido in pedidos:
-            totalDia[str(pedido.fechaPedido)] = 0
+            if pedido.cliente.nombreCliente != 'Jose Alomia':
+                totalDia[str(pedido.fechaPedido)] = 0
 
         for pedido in pedidos:
-            totalDia[str(pedido.fechaPedido)] += pedido.TotalVenta
+            if pedido.cliente.nombreCliente != 'Jose Alomia':
+                totalDia[str(pedido.fechaPedido)] += pedido.TotalVenta
     else:
         for venta in ventas:
             totalDia[str(venta.venta.fechaVenta)] = 0
