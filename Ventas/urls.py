@@ -54,6 +54,8 @@ urlpatterns = patterns('',
 
     url(r'^templateReporteVentaNorte/$',TemplateReporteVentaNorte),
     url(r'^reporteVentaNorte/$',ReporteVentaNorte),
+    url(r'^templateReporteVentaDiaria/$',TemplateReporteVentaDiaria),
+    url(r'^reporteVentaDiaria/$',ReporteVentaDiaria),
 
     url(r'^configPuntos/$',GestionConfigPuntos),
     url(r'^editaConfigPuntos/(?P<idConfig>\d+)',EditaConfigPuntos),

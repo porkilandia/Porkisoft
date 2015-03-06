@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Ventas Puntos::{% endblock titulo %}
+{% block mensajes %}
+Ventas Norte
+
+{% endblock mensajes %}
+{% block contenido %}
+
+    <div id="rango">
+
+     <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
+     <label for="fin">Fecha Final</label><input id="fin" type="text">
+     <label for="bodega">Punto</label><select id="bodega">
+        {% for bodega in bodegas %}
+            <option value='{{ bodega.codigoBodega }}'>{{ bodega.nombreBodega }}</option>
+        {% endfor %}
+     </select>
+     <a  onclick="ReporteVentaDiaria()" href="#"><input type="button" value="Consultar"></a>
+
+        <br/>
+        <br/>
+        <br/>
+    </div>
+
+<div id="progressbar"></div>
+<div id="acordeon">
+        <h3>Datos</h3>
+        <div>
+           <table id="tablaRepDiario" class="table-striped" style="width: 95%">
+
+                <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Total Venta</th>
+                </tr>
+                </thead>
+
+            </table>
+        </div>
+</div>
+<div id="progressbar"></div>
+{% endblock contenido %}
+<div id="progressbar"></div>

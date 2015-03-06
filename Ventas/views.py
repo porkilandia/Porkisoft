@@ -1041,6 +1041,44 @@ def ReporteVentaNorte(request):
 
     return HttpResponse(respuesta,mimetype='application/json')
 
+def TemplateReporteVentaDiaria(request):
+    bodegas = Bodega.objects.all()
+    return render_to_response('Ventas/TemplateRepoVentaDiaria.html',{'bodegas':bodegas},
+                              context_instance = RequestContext(request))
+
+def ReporteVentaDiaria(request):
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    bodega = request.GET.get('bodega')
+
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    totalDia = {}
+
+    ventas = DetalleVentaPunto.objects.select_related().\
+        filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega))
+
+    for venta in ventas:
+        totalDia[str(venta.venta.fechaVenta)] = 0
+
+    for venta in ventas:
+        totalDia[str(venta.venta.fechaVenta)] += venta.vrTotalPunto
+
+
+    listas = {'totalDia':totalDia}
+    print(listas)
+    respuesta = json.dumps(listas)
+
+    return HttpResponse(respuesta,mimetype='application/json')
+
+
 def GestionConfigPuntos(request):
     configuraciones = ConfiguracionPuntos.objects.all()
     if request.method =='POST':

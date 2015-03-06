@@ -540,6 +540,39 @@ function CantidadActual() {
 
 
 }
+function ReporteVentaDiaria()
+{
+        var inicio = $('#inicio').val();
+        var fin = $('#fin').val();
+        var bodega = $('#bodega').val();
+        var tablaRepDiario =  $("#tablaRepDiario");
+        var totalrango = 0;
+
+    $.ajax({
+            url: '/ventas/reporteVentaDiaria/',
+            dataType: "json",
+            type: "get",
+            data: {'inicio': inicio, 'fin': fin,'bodega':bodega},
+            success: function (respuesta) {
+
+                tablaRepDiario.find("tr:gt(0)").remove();
+
+                $.each(respuesta.totalDia,function(key,value){
+
+                    tablaRepDiario.append("<tr><td>" + key + "</td><td style='text-align: right'>"+ value + "</td></tr>");
+                    totalrango += value;
+                });
+
+            tablaRepDiario.append("<tr><th>"+'Total Rango '+"</th><th>"+ totalrango + "</th></tr>");
+
+
+            $( "#progressbar" ).hide();
+            }
+
+        });
+
+
+}
 function ReporteVentasNorte() {
     $( "#progressbar" ).show();
     var tipoReporte = '';
