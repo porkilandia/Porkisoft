@@ -408,11 +408,11 @@ fieldset {
 }
 #calculaVuelto
 {
-    width: 30%;
+    width: 21%;
     font-size: 1.1em;
     position: fixed;
-    right: -3em;
-    top: 35em;;
+    left: 10em;
+    top: 6em;
 }
 #tablaProductos
 {

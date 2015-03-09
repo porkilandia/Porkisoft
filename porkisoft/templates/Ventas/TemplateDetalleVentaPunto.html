@@ -7,8 +7,17 @@
         </div>
 {% endblock mensajes %}
 {% block contenido %}
-<a id="imprimeRecibo" onclick="ImprimirRecibo()" href="#"><input type="button" value="Imprimir" class="btn btn-success"></a><br/>
-<a  id="cobraVenta" onclick="Cobrar()" href="#"><input type="button" value="Cobrar" class="btn btn-warning"></a>
+    <!--<input type="button"  value="Imprimir" class="btn btn-success">
+    <input type="button" value="Cobrar" class="btn btn-warning">
+    -->
+<a id="imprimeRecibo" onclick="ImprimirRecibo()" href="#"><img src="{{ STATIC_URL }}img/printer1.png" alt="" /></a><br/>
+<a  id="cobraVenta" onclick="Cobrar()" href="#"><img src="{{ STATIC_URL }}img/dinero.png" alt="" /></a>
+
+    <div id="calculaVuelto">
+        <label for="totalCompra">Total Venta</label><input id="totalCompra" type="text"/>
+        <label for="efectivo">Efectivo</label><input id="efectivo" type="text"/>
+        <label for="regreso">Regreso</label><input id="regreso" type="text"/>
+    </div>
 
 <br/><br/><br/><br/>
     <table id="tablaVentaPunto" class="table-striped" >
@@ -86,11 +95,7 @@
         {% endfor %}
     </table>
         <br/><br/>
-    <div id="calculaVuelto">
-        <label for="totalCompra">Total Venta</label><input id="totalCompra" type="text"/>
-        <label for="efectivo">Efectivo</label><input id="efectivo" type="text"/>
-        <label for="regreso">Regreso</label><input id="regreso" type="text"/>
-    </div>
+
     <br/>
     <div id="piePagina"></div>
 
