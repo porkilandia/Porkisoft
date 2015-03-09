@@ -73,6 +73,7 @@
             <td>{{ detraslado.pesoLlegada }}</td>
             <td>
                 <a href="{% url 'Inventario.views.EditaDetalleTraslado' detraslado.id %}">Modificar</a>
+                <a href="{% url 'Inventario.views.borrarDetTraslado' detraslado.id %}">borrar</a>
             </td>
 
         </tr>

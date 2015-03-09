@@ -13,8 +13,6 @@ from Inventario.models import *
 
 from Fabricacion.Forms import *
 
-
-
 # Create your views here.
 
 def listaProvedoresAjax(request):
@@ -701,6 +699,11 @@ def EditaDetalleTraslado(request,idDettraslado):
     return render_to_response('Inventario/GestionDetalleTraslado.html',{'idtraslado':traslado.codigoTraslado,'formulario':formulario,
                                                          'traslado': traslado,'detraslados': detraslados},
                                                         context_instance = RequestContext(request))
+def borrarDetTraslado(request,idDetTraslado):
+    #Borra el detalle de los traslados
+    detalle = DetalleTraslado.objects.select_related().get(pk = idDetTraslado)
+    detalle.delete()
+    return HttpResponseRedirect('/inventario/dettraslado/'+ str(detalle.traslado.codigoTraslado))
 
 
 def GuardarTraslado(request):
