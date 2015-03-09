@@ -522,7 +522,6 @@ th {
     border-collapse: collapse !important;
   }
 
-  .table-bordered th,
   .table-bordered td {
     border: 1px solid #aeb0dd !important;
   }
