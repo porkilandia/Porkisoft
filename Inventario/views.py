@@ -703,26 +703,6 @@ def EditaDetalleTraslado(request,idDettraslado):
                                                         context_instance = RequestContext(request))
 
 
-
-'''def generar_pdf(html):
-    # Función para generar el archivo PDF y devolverlo mediante HttpResponse
-    result = StringIO.StringIO()
-    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
-    if not pdf.err:
-        return HttpResponse(result.getvalue(), mimetype='application/pdf')
-    return HttpResponse('Error al generar el PDF: %s' % cgi.escape(html))
-
-
-def ReporteTraslado(request,idTraslado):
-   # Reporte pdf de traslados
-
-    detalleTraslado = DetalleTraslado.objects.filter(traslado = idTraslado)
-    traslado = Traslado.objects.get(pk = idTraslado)
-
-    html = render_to_string('Fabricacion/ReporteTraslado.html', {'pagesize':'A4', 'detalleTraslado':detalleTraslado,'traslado':traslado},
-                            context_instance=RequestContext(request))
-    return generar_pdf(html)'''
-
 def GuardarTraslado(request):
 
     codigoTraslado = request.GET.get('codigoTraslado')
