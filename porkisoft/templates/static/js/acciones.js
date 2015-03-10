@@ -1398,7 +1398,8 @@ function ReporteFaltantes() {
     var bodega = $('#bodegaFaltantes option:selected');
     var CodigoBodega = bodega.val();
     var NombreBodega = bodega.text();
-    var productos = '';
+    var color = '';
+    var colorund = '';
 
    var tablaFaltante = $("#tablaReporteFaltante");
 
@@ -1414,18 +1415,53 @@ function ReporteFaltantes() {
                     for (var i=0;i<respuesta.length;i++)
                     {
 
-                        //if((respuesta[i].fields.pesoProductoStock != 0)||(respuesta[i].fields.unidadesStock != 0)){
+
+                        if((respuesta[i].fields.pesoProductoStock >= 1)&&(respuesta[i].fields.pesoProductoStock <= 1999))
+                             {
+                                    color = 'red';
+                             }
+                        else if((respuesta[i].fields.pesoProductoStock >= 2000)&&(respuesta[i].fields.pesoProductoStock <= 20000))
+                            {
+                                    color = 'green';
+                            }
+                        else if((respuesta[i].fields.pesoProductoStock > 20000))
+                            {
+                                    color = 'orange';
+                            }
+                        else if(respuesta[i].fields.pesoProductoStock == 0)
+                        {
+                            color = 'white';
+                        }
+
+
+                        if((respuesta[i].fields.unidadesStock >= 1)&&(respuesta[i].fields.unidadesStock <= 5))
+                             {
+                                    colorund = 'red';
+                             }
+                        else if((respuesta[i].fields.unidadesStock >= 6)&&(respuesta[i].fields.unidadesStock <= 15))
+                            {
+                                    colorund = 'green';
+                            }
+                        else if((respuesta[i].fields.unidadesStock > 16))
+                            {
+                                    colorund = 'orange';
+                            }
+                        else if(respuesta[i].fields.pesoProductoStock == 0)
+                        {
+                            colorund = 'white';
+                        }
+
                             tablaFaltante.append(
-                                "<tr><td>" + respuesta[i].fields.producto +
+                                "<tr style= 'color: black'><td>" + respuesta[i].fields.producto +
                                 "</td><td>" + respuesta[i].fields.nombreProducto +
                                 "</td><td>" + NombreBodega +
-                                "</td><td>" +parseInt(respuesta[i].fields.pesoProductoStock) +
-                                "</td><td>" + parseInt(respuesta[i].fields.unidadesStock) +
+                                "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                "</td><td style= 'background:"+ colorund +" ; font-weight: bold' >" + parseInt(respuesta[i].fields.unidadesStock) +
                                 "</td><td>" + '.' +
                                 "</td><td>" + '.' +
                                 "</td></tr>");
 
-                        //}
+
 
 
                     }

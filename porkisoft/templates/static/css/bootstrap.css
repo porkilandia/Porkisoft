@@ -438,6 +438,15 @@ fieldset {
 {
     width: 70%;
 }
+#convensiones
+{
+
+    font-size: 1.2em;
+    position: fixed;
+    right: 7em;
+    top: 10em;
+    width: 10%;
+}
 #TablaPuntoNorte
 {
     width: 74%;
@@ -453,7 +462,7 @@ fieldset {
 #totalCompra
 {
     font-size: 2em;
-    color: red;
+    color: #620000;
 }
 legend {
     width: 30%;

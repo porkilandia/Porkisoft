@@ -23,31 +23,26 @@
         </tr>
         </thead>
         {% for venta in ventas %}
-            {% if venta.guardado == True %}
-                <tr style="color: green">
-            {% else %}
-                 <tr style="color: red">
-            {% endif %}
-
-            <td>{{ venta.numeroVenta }}</td>
-            <td>{{ venta.factura }}</td>
-            <td>{{ venta.fechaVenta }}</td>
-            <td>{{ venta.encargado }}</td>
-            <td>{{ venta.jornada }}</td>
-            <td>{{ venta.TotalVenta }}</td>
-            {% if venta.restaurante == True %}
-                <td>Si</td>
-            {% else %}
-                <td>No</td>
-            {% endif %}
-            {% if venta.guardado == True %}
-                <td>Si</td>
-            {% else %}
-                <td>No</td>
-            {% endif %}
-            <td>
-                <a href="{% url 'Ventas.views.DetallePuntoVenta' venta.numeroVenta %}">Adicionar Productos</a>
-            </td>
+            <tr style="color: red">
+                <td>{{ venta.numeroVenta }}</td>
+                <td>{{ venta.factura }}</td>
+                <td>{{ venta.fechaVenta }}</td>
+                <td>{{ venta.encargado }}</td>
+                <td>{{ venta.jornada }}</td>
+                <td>{{ venta.TotalVenta }}</td>
+                {% if venta.restaurante == True %}
+                    <td>Si</td>
+                {% else %}
+                    <td>No</td>
+                {% endif %}
+                {% if venta.guardado == True %}
+                    <td>Si</td>
+                {% else %}
+                    <td>No</td>
+                {% endif %}
+                <td>
+                    <a href="{% url 'Ventas.views.DetallePuntoVenta' venta.numeroVenta %}">Adicionar Productos</a>
+                </td>
 
         </tr>
             {% empty %}
