@@ -35,6 +35,7 @@
 
             <td style="font-weight: bold; text-align: center">
                 {% if compra.tipo.nombreGrupo == 'Cerdos' or compra.tipo.nombreGrupo == 'Cerdas' %}
+                    <a href="{% url 'Inventario.views.GestionDetalleCompra' compra.codigoCompra %}">Compras</a>
                     <a href="{% url 'Inventario.views.GestionPlanillaRecepcion' compra.codigoCompra %}">Recepcion</a>
                     <a href="{% url 'Inventario.views.ModificaCompra' compra.codigoCompra %}">Editar</a>
                     <a href="{% url 'Inventario.views.borrarCompra' compra.codigoCompra %}">Borrar</a>
