@@ -1158,21 +1158,26 @@ function ImprimirRecibo()
 function Cobrar()
 {
     var venta = $('#NumVenta').text();
+    if($('#totalVentaDet').text() != 0)
+    {
+        var opcion = confirm('Desea Cobrar esta Factura, recuerde que esto afectara el inventario.');
+        if (opcion == true) {
+            $.ajax({
+                url: '/ventas/cobrar/',
+                dataType: "json",
+                type: "get",
+                data: {'venta': venta},
+                success: function (respuesta) {
+                    var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
+                    location.reload();
 
-    var opcion = confirm('Desea Cobrar esta Factura, recuerde que esto afectara el inventario.');
-    if (opcion == true) {
-        $.ajax({
-            url: '/ventas/cobrar/',
-            dataType: "json",
-            type: "get",
-            data: {'venta': venta},
-            success: function (respuesta) {
-                var n = noty({text: respuesta, type: 'success', layout: 'bottom'});
-                location.reload();
+                }
 
-            }
-
-        });
+            });
+        }
+    }else
+    {
+        alert('Debe ingresar un producto primero antes de cobrar!!!');
     }
 
 }

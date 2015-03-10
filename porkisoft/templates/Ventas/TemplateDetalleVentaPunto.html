@@ -14,7 +14,7 @@
 <a  id="cobraVenta" onclick="Cobrar()" href="#"><img src="{{ STATIC_URL }}img/dinero.png" alt="" /></a>
 
     <div id="calculaVuelto">
-        <label for="totalCompra">Total Venta</label><input id="totalCompra" type="text"/>
+        <label for="totalCompra">Esta en Venta : </label><input id="totalCompra" type="text"/>
         <label for="efectivo">Efectivo</label><input id="efectivo" type="text"/>
         <label for="regreso">Regreso</label><input id="regreso" type="text"/>
     </div>
@@ -78,7 +78,7 @@
                 <td></td>
             {% else %}
                 <td>
-                <a href="{% url 'Ventas.views.EditaPuntoVenta' detventa.id %}">Editar</a>
+                <!--<a href="{% url 'Ventas.views.EditaPuntoVenta' detventa.id %}">Editar</a>-->
                 <a href="{% url 'Ventas.views.EliminaPuntoVenta' detventa.id %}" style="color: red">Borrar</a>
                 </td>
             {% endif %}

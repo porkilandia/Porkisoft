@@ -408,11 +408,25 @@ fieldset {
 }
 #calculaVuelto
 {
-    width: 21%;
-    font-size: 1.1em;
-    position: fixed;
-    left: 10em;
-    top: 6em;
+    font-size:1.1em;
+    left:23em;
+    position:fixed;
+    top:5em;
+    width:35%;
+}
+#calculaVuelto label
+{
+    font-size: 1.4em;
+    display: inline-block;
+    float:none;
+    font-weight:bold;
+    width:34%;
+}
+
+#calculaVuelto input
+{
+    width:33%;
+    text-align: center;
 }
 #tablaProductos
 {
@@ -429,6 +443,11 @@ fieldset {
 #progressbar
 {
    width: 35%;
+}
+#totalCompra
+{
+    font-size: 2em;
+    color: red;
 }
 legend {
     width: 30%;
