@@ -425,8 +425,14 @@ fieldset {
 
 #calculaVuelto input
 {
+
     width:33%;
     text-align: center;
+}
+#efectivo,#regreso
+{
+    font-size: 1.4em;
+    color: #289711;
 }
 #tablaProductos
 {
