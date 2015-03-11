@@ -1456,7 +1456,7 @@ function ReporteFaltantes() {
                                 "</td><td>" + respuesta[i].fields.nombreProducto +
                                 "</td><td>" + NombreBodega +
                                 "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
-                                "</td><td style= 'background:"+ colorund +" ; font-weight: bold' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
                                 "</td><td>" + '.' +
                                 "</td><td>" + '.' +
                                 "</td></tr>");

@@ -310,7 +310,7 @@ fieldset {
 #encabezado th
 {
     text-align: center;
-    padding: 0,5em;
+    padding: 0.5em;
 
 }
 #pie
@@ -1028,7 +1028,7 @@ kbd {
 }
 pre {
   display: block;
-  padding: 9,5px;
+  padding: 9px 5px;
   margin: 0 0 10px;
   font-size: 13px;
   line-height: 1.42857143;

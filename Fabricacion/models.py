@@ -361,9 +361,9 @@ class TallerCroquetas(models.Model):
     fechaCroqueta = models.DateField(verbose_name='Fecha')
     croqueta = models.DecimalField(verbose_name='Peso Croqueta', max_digits=9, decimal_places=3,default=0)
     condimento = models.DecimalField(verbose_name='Peso Condimento', max_digits=9, decimal_places=3,default=0)
+    pesoTotalCroqueta = models.DecimalField(verbose_name='Peso Total', max_digits=9, decimal_places=3,default=0)
     miga = models.DecimalField(verbose_name='Peso Miga', max_digits=9, decimal_places=3,default=0)
     puntoCroq = models.ForeignKey(Bodega)
-    pesoTotalCroqueta = models.DecimalField(verbose_name='Peso Total', max_digits=9, decimal_places=3,default=0)
     costoKiloCroqueta = models.IntegerField(verbose_name='Costo Kilo',default=0)
     guardado = models.BooleanField(default=False)
 
@@ -371,10 +371,10 @@ class TallerCroquetas(models.Model):
 class TallerReapanado(models.Model):
     fechaReApanado = models.DateField(verbose_name='Fecha')
     pesoChuleta = models.DecimalField(verbose_name='Peso Chuleta', max_digits=9, decimal_places=3,default=0)
+    pesoTotalReApanado = models.DecimalField(verbose_name='Peso ReApanado', max_digits=9, decimal_places=3,default=0)
     miga = models.DecimalField(verbose_name='Peso Miga', max_digits=9, decimal_places=3,default=0)
     chuelta = models.ForeignKey(Producto,verbose_name='Producto')
     puntoReApanado = models.ForeignKey(Bodega)
-    pesoTotalReApanado = models.DecimalField(verbose_name='Peso Total', max_digits=9, decimal_places=3,default=0)
     guardado = models.BooleanField(default=False)
 
 class Conversiones(models.Model):

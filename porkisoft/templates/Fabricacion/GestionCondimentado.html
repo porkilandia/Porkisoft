@@ -40,7 +40,8 @@
                     <td></td>
                 {% else %}
                     <td>
-                    <a onclick="GuardarCondimentado({{ condimentado.codigo }})" href="#">Guardar</a>
+                        <a onclick="GuardarCondimentado({{ condimentado.codigo }})" href="#">Guardar</a>
+                        <a href="{% url 'Fabricacion.views.borrarCondimentado' condimentado.codigo %}">Borrar</a>
                     </td>
                 {% endif %}
 

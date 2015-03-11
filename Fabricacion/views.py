@@ -1000,6 +1000,12 @@ def GestionCondimentado(request):
     return render_to_response('Fabricacion/GestionCondimentado.html',{'formulario':formulario,'condimentados':condimentados },
                               context_instance = RequestContext(request))
 
+def borrarCondimentado(request,idCondimentado):
+    condimentado = Condimentado.objects.get(pk = idCondimentado)
+    condimentado.delete()
+    return HttpResponseRedirect('/fabricacion/condimentado')
+
+
 def GuardarCondimentado(request):
     idCondimentado = request.GET.get('idCondimentado')
     condimentado = Condimentado.objects.get(pk = int(idCondimentado))
@@ -2607,7 +2613,10 @@ def CostearCarneCond(request):
     carne = TallerCarneCondimentada.objects.get(pk = int(idCarne))
     producto = Producto.objects.get(pk = carne.productoCond.codigoProducto)
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
-    carneCondimentada = Producto.objects.get(nombreProducto = 'Carne Condimentada')
+    if carne.productoCond.nombreProducto == 'Bola':
+        carneCondimentada = Producto.objects.get(nombreProducto = 'Carne Condimentada')
+    else:
+        carneCondimentada = carne.productoCond
 
     pesoProducto = carne.pesoProducto
     pesoCondimento = carne.condimento
@@ -2629,23 +2638,31 @@ def CostearCarneCond(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GuardarCarneCond(request):
-    idCarne = request.GET.get('idCarne')
-    carne = TallerCarneCondimentada.objects.get(pk = int(idCarne))
-    producto = Producto.objects.get(pk = carne.productoCond.codigoProducto)
-    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
-    carneCondimentada = Producto.objects.get(nombreProducto = 'Carne Condimentada')
 
-    bodegaProducto = ProductoBodega.objects.get(bodega = carne.puntoCond.codigoBodega,producto = producto.codigoProducto)
+    idCarne = request.GET.get('idCarne')
+    carne = TallerCarneCondimentada.objects.select_related().get(pk = int(idCarne))
+    #xproducto = Producto.objects.get(pk = carne.productoCond.codigoProducto)
+    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
+    if carne.productoCond.nombreProducto == 'Bola':
+        carneCondimentada = Producto.objects.get(nombreProducto = 'Carne Condimentada')
+    else:
+        carneCondimentada = carne.productoCond
+
+    # Quito el Producto utilizado
+
+    bodegaProducto = ProductoBodega.objects.get(bodega = carne.puntoCond.codigoBodega,producto = carne.productoCond.codigoProducto)
     bodegaProducto.pesoProductoStock -= carne.pesoProducto
     bodegaProducto.save()
 
     movimiento = Movimientos()
     movimiento.tipo = 'CCON%d'%(carne.id)
     movimiento.fechaMov = carne.fechaCarCond
-    movimiento.productoMov = producto
-    movimiento.nombreProd = producto.nombreProducto
+    movimiento.productoMov = carne.productoCond
+    movimiento.nombreProd = carne.productoCond.nombreProducto
     movimiento.salida = carne.pesoProducto
     movimiento.save()
+
+    #Quito el Condimento utilizado
 
     bodegaCondimento = ProductoBodega.objects.get(bodega = carne.puntoCond.codigoBodega,producto = condimento.codigoProducto)
     bodegaCondimento.pesoProductoStock -= carne.condimento
@@ -2725,13 +2742,13 @@ def CostearCroqueta(request):
 
     pesoCroqueta = regCroqueta.croqueta
     pesoCondimento = regCroqueta.condimento
-    pesoMiga = regCroqueta.miga
+    pesoMiga = regCroqueta.pesoTotalCroqueta - (pesoCroqueta + pesoCondimento)
 
     costoMiga = miga.costoProducto * (pesoMiga /1000)
     costoCroqueta = croquetaCocida.costoProducto * (pesoCroqueta/1000)
     costoCondimento = condimento.costoProducto * (pesoCondimento/1000)
 
-    pesoTotal = (pesoCondimento + pesoCroqueta + pesoMiga)/1000
+    pesoTotal = regCroqueta.pesoTotalCroqueta/1000
     costoTotal = costoMiga + costoCroqueta + costoCondimento
 
     costoKilo = costoTotal / pesoTotal
@@ -2740,7 +2757,7 @@ def CostearCroqueta(request):
     croquetaApanada.save()
 
     regCroqueta.costoKiloCroqueta = costoKilo
-    regCroqueta.pesoTotalCroqueta = pesoTotal * 1000
+    regCroqueta.miga = pesoMiga
     regCroqueta.save()
 
     msj = 'Costeado exitoso'
@@ -2863,7 +2880,7 @@ def GuardarReApanado(request):
     miga = Producto.objects.get(nombreProducto = 'Miga Preparada')
     chuletaCerdo = Producto.objects.get(nombreProducto = 'Filete Apanado Cerdo')
     chuletaPollo = Producto.objects.get(nombreProducto = 'Filete Apanado Pollo')
-    pesoMiga = reApanado.miga
+    pesoReapanado = reApanado.pesoTotalReApanado
     pesoChuleta = reApanado.pesoChuleta
 
     bodegaMiga = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = miga.codigoProducto)
@@ -2871,7 +2888,7 @@ def GuardarReApanado(request):
     bodegaChuletaCerdo = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = chuletaCerdo.codigoProducto)
     bodegaChuletaPollo = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = chuletaPollo  .codigoProducto)
 
-    chuletaReApanada = pesoMiga + pesoChuleta
+    migaUtilizada = pesoReapanado - pesoChuleta
 
     #bodegaChuleta.pesoProductoStock -= pesoChuleta
     #bodegaChuleta.save()
@@ -2884,44 +2901,45 @@ def GuardarReApanado(request):
     movimiento.desde = bodegaChuleta.bodega.nombreBodega
     movimiento.save()
 
-    bodegaMiga.pesoProductoStock -= reApanado.miga
+    bodegaMiga.pesoProductoStock -= migaUtilizada
     bodegaMiga.save()
+
     movimiento = Movimientos()
     movimiento.tipo = 'RAP%d'%(reApanado.id)
     movimiento.fechaMov = reApanado.fechaReApanado
     movimiento.productoMov = miga
     movimiento.nombreProd = miga.nombreProducto
     movimiento.desde = bodegaMiga.bodega.nombreBodega
-    movimiento.salida = reApanado.miga
+    movimiento.salida = migaUtilizada
     movimiento.save()
 
     if reApanado.chuelta.grupo.nombreGrupo == 'Cerdos':
 
         #entra
-        bodegaChuletaCerdo.pesoProductoStock += reApanado.miga
+        bodegaChuletaCerdo.pesoProductoStock += migaUtilizada
         bodegaChuletaCerdo.save()
         movimiento = Movimientos()
         movimiento.tipo = 'RAP%d'%(reApanado.id)
         movimiento.fechaMov = reApanado.fechaReApanado
         movimiento.productoMov = chuletaCerdo
         movimiento.nombreProd = chuletaCerdo.nombreProducto
-        movimiento.entrada = chuletaReApanada
+        movimiento.entrada = pesoReapanado
         movimiento.Hasta = bodegaChuletaCerdo.bodega.nombreBodega
         movimiento.save()
     else:
-        bodegaChuletaPollo.pesoProductoStock += reApanado.miga
+        bodegaChuletaPollo.pesoProductoStock += migaUtilizada
         bodegaChuletaPollo.save()
         movimiento = Movimientos()
         movimiento.tipo = 'RAP%d'%(reApanado.id)
         movimiento.fechaMov = reApanado.fechaReApanado
         movimiento.productoMov = chuletaPollo
         movimiento.nombreProd = chuletaPollo.nombreProducto
-        movimiento.entrada = chuletaReApanada
+        movimiento.entrada = pesoReapanado
         movimiento.Hasta = bodegaChuletaPollo.bodega.nombreBodega
         movimiento.save()
 
     reApanado.guardado = True
-    reApanado.pesoTotalReApanado = chuletaReApanada
+    reApanado.miga = migaUtilizada
     reApanado.save()
 
     msj = 'Guardado exitoso'

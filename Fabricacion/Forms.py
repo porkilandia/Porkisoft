@@ -214,7 +214,7 @@ class CarneCondForm(ModelForm):
 class CroquetaFrom(ModelForm):
     class Meta:
         model = TallerCroquetas
-        exclude = ("pesoTotalCond","costoKiloCond","guardado","pesoTotalCroqueta","costoKiloCroqueta",)
+        exclude = ("pesoTotalCond","costoKiloCond","guardado","miga","costoKiloCroqueta",)
 
 class ReapanadoForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -225,7 +225,7 @@ class ReapanadoForm(ModelForm):
         self.fields['chuelta'].queryset = q1 | q2 | q3
     class Meta:
         model = TallerReapanado
-        exclude = ("pesoTotalReApanado","guardado",)
+        exclude = ("miga","guardado",)
 
 class ConversionesForm(ModelForm):
 
