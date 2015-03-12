@@ -738,13 +738,14 @@ def VerificarPrecioPedido(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def TemplateAZ(request):
-    bodegas = Bodega.objects.all()
     usuario = request.user
     empleado = Empleado.objects.get(usuario = usuario.username)
 
     if usuario.is_staff:
         plantilla = 'base.html'
+        bodegas = Bodega.objects.all()
     else:
+        bodegas = Bodega.objects.filter(pk = empleado.punto.codigoBodega)
         plantilla = 'PuntoVentaNorte.html'
     return render_to_response('Ventas/TemplateAZ.html',{'empleado':empleado,'plantilla':plantilla,'bodegas':bodegas},context_instance = RequestContext(request))
 
@@ -813,7 +814,7 @@ def ReporteAZ(request):
                 elif detalle.productoVenta.excluido == True:
                     excluidos['Excluidos'] += detalle.vrTotalPunto
 
-    #inicializa = finaliza - cantVentas
+
     consecutivo.consecutivoZ += 1
     consecutivo.save()
 

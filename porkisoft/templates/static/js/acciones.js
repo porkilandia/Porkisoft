@@ -747,6 +747,8 @@ function consultaAZ() {
 
     var inicio = $('#inicio').val();
     var fechaFin = $('#fin').val();
+    var bod = $('#bodega option:selected');
+    var nombreBodega =bod.text();
     var bodega = $('#bodega').val();
     var jornada = $('#jornada').val();
     var gravados1= 0;
@@ -755,86 +757,90 @@ function consultaAZ() {
     var IvaGravados2= 0;
     var VentaTotal = 0;
 
+    var opcion = confirm('Se creara el reporte Z del : ' + inicio + ' en la jornada : '+ jornada +' del Punto : ' + nombreBodega +'.' );
+    if (opcion == true) {
 
-    $.ajax({
-            url: '/ventas/reporteAZ/',
-            dataType: "json",
-            type: "get",
-            data: {'bodega':bodega,'inicio': inicio,'fin':fechaFin,'jornada':jornada},
-            success: function (respuesta)
-            {
-                $("#TablaExcentos").find("tr:gt(0)").remove();
-                $("#TablaExcluidos").find("tr:gt(0)").remove();
-                $("#TablaGravados1").find("tr:gt(0)").remove();
-                $("#TablaGravados2").find("tr:gt(0)").remove();
+                $.ajax({
+                        url: '/ventas/reporteAZ/',
+                        dataType: "json",
+                        type: "get",
+                        data: {'bodega':bodega,'inicio': inicio,'fin':fechaFin,'jornada':jornada},
+                        success: function (respuesta)
+                        {
+                            $("#TablaExcentos").find("tr:gt(0)").remove();
+                            $("#TablaExcluidos").find("tr:gt(0)").remove();
+                            $("#TablaGravados1").find("tr:gt(0)").remove();
+                            $("#TablaGravados2").find("tr:gt(0)").remove();
 
-                $.each(respuesta.excentos,function(key,value){
+                            $.each(respuesta.excentos,function(key,value){
 
-                    $("#TablaExcentos").append("<tr><td>" + key + "</td><td style='text-align: right'>"+'$ '+ Math.ceil(value) + "</td></tr>");
+                                $("#TablaExcentos").append("<tr><td>" + key + "</td><td style='text-align: right'>"+'$ '+ Math.ceil(value) + "</td></tr>");
+                            });
+                            $.each(respuesta.excluidos,function(key,value){
+
+                                $("#TablaExcluidos").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
+                            });
+
+                            $.each(respuesta.gravados1,function(key,value){
+
+                                gravados1 = value;
+                                $("#TablaGravados1").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
+                            });
+                            $.each(respuesta.gravados2,function(key,value){
+                                gravados2 = value;
+                                $("#TablaGravados2").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
+                            });
+                            $.each(respuesta.totalVenta,function(key,value){
+
+                                $("#ventaTotal").append(' $ '+value);
+                            });
+                            /**************Reporte pesables y no pesables*******************/
+                            $.each(respuesta.PesoProductos,function(key,value){
+
+                                $("#TablaPesables").append("<tr><td>" + key + "</td><td style='text-align: right'>"+ Math.ceil(value)+' grs' + "</td></tr>");
+                            });
+                            $.each(respuesta.ValorProductos,function(key,value){
+
+                                $("#TablaValPesables").append("<tr><td>" + key + "</td><td style='text-align: right'>"+'$ ' + Math.ceil(value) + "</td></tr>");
+                            });
+                            $.each(respuesta.UdnProductos,function(key,value){
+
+                                $("#TablaNoPesables").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value)+' unds' + "</td></tr>");
+                            });
+                            $.each(respuesta.ValorUnds,function(key,value){
+
+                                $("#TablaValNoPesables").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
+                            });
+                            /**************************************************************************/
+
+                            $.each(respuesta.inicial,function(key,value){
+
+                                $("#inicioConsecVentas").append(' : '+ value);
+                            });
+                            $.each(respuesta.final,function(key,value){
+
+                                $("#finConsecVentas").append(' : '+ value);
+                            });
+                            $.each(respuesta.consec,function(key,value){
+
+                                $("#ConsecZ").append(' : '+ value);
+                            });
+
+                            var grav1 = gravados1 / 1.16;
+                            var grav2 = gravados2 / 1.16;
+                            IvaGravados1 = grav1 * 0.16;
+                            IvaGravados2 = grav2 * 0.16;
+                            $("#grav1").append(' $ '+Math.round(grav1));
+                            $("#grav2").append(' $ '+Math.round(grav2));
+                            $("#IvaGrav1").append(' $ '+Math.round(IvaGravados1));
+                            $("#IvaGrav2").append(' $ '+Math.round(IvaGravados2));
+
+
+                        }
+
                 });
-                $.each(respuesta.excluidos,function(key,value){
 
-                    $("#TablaExcluidos").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
-                });
-
-                $.each(respuesta.gravados1,function(key,value){
-
-                    gravados1 = value;
-                    $("#TablaGravados1").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
-                });
-                $.each(respuesta.gravados2,function(key,value){
-                    gravados2 = value;
-                    $("#TablaGravados2").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
-                });
-                $.each(respuesta.totalVenta,function(key,value){
-
-                    $("#ventaTotal").append(' $ '+value);
-                });
-                /**************Reporte pesables y no pesables*******************/
-                $.each(respuesta.PesoProductos,function(key,value){
-
-                    $("#TablaPesables").append("<tr><td>" + key + "</td><td style='text-align: right'>"+ Math.ceil(value)+' grs' + "</td></tr>");
-                });
-                $.each(respuesta.ValorProductos,function(key,value){
-
-                    $("#TablaValPesables").append("<tr><td>" + key + "</td><td style='text-align: right'>"+'$ ' + Math.ceil(value) + "</td></tr>");
-                });
-                $.each(respuesta.UdnProductos,function(key,value){
-
-                    $("#TablaNoPesables").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value)+' unds' + "</td></tr>");
-                });
-                $.each(respuesta.ValorUnds,function(key,value){
-
-                    $("#TablaValNoPesables").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
-                });
-                /**************************************************************************/
-
-                $.each(respuesta.inicial,function(key,value){
-
-                    $("#inicioConsecVentas").append(' : '+ value);
-                });
-                $.each(respuesta.final,function(key,value){
-
-                    $("#finConsecVentas").append(' : '+ value);
-                });
-                $.each(respuesta.consec,function(key,value){
-
-                    $("#ConsecZ").append(' : '+ value);
-                });
-
-                var grav1 = gravados1 / 1.16;
-                var grav2 = gravados2 / 1.16;
-                IvaGravados1 = grav1 * 0.16;
-                IvaGravados2 = grav2 * 0.16;
-                $("#grav1").append(' $ '+Math.round(grav1));
-                $("#grav2").append(' $ '+Math.round(grav2));
-                $("#IvaGrav1").append(' $ '+Math.round(IvaGravados1));
-                $("#IvaGrav2").append(' $ '+Math.round(IvaGravados2));
-
-
-            }
-
-    });
+        }
 }
 function CalculaTotalPedido() {
     var peso = $('#id_pesoPedido').val();
