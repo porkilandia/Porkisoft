@@ -16,6 +16,7 @@
         </tr>
         <tr>
             <th>Bodega</th>
+            <th>Tipo</th>
             <th>Producto</th>
             <th>Peso en Stock</th>
             <th>Unidades en stock</th>
@@ -26,6 +27,7 @@
 
         <tr>
             <td>{{ producto.bodega.nombreBodega }}</td>
+            <td>{{ producto.producto.grupo.nombreGrupo }}</td>
             <td>{{ producto.producto.nombreProducto }}</td>
             <td>{{ producto.pesoProductoStock|floatformat }}grs</td>
             <td>{{ producto.unidadesStock }}</td>
