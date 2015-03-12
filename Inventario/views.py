@@ -33,8 +33,7 @@ def home(request):
 
 #***************************************PRODUCTOS******************************************
 def listaProductos(request):
-    productos = Producto.objects.all().order_by('codigoProducto')
-
+    productos = Producto.objects.select_related().order_by('codigoProducto')
 
     #se actualiza el precio sugerido del producto
     '''for producto in productos:
