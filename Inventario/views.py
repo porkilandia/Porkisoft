@@ -26,8 +26,8 @@ def inicio(request):
     return render_to_response('Inicio.html',{},context_instance = RequestContext(request))
 
 def home(request):
-    productosBajoStock = ProductoBodega.objects.all().filter(pesoProductoStock__gt = 500).order_by('bodega')
-    costosProductos = Producto.objects.all().order_by('nombreProducto')
+    productosBajoStock = ProductoBodega.objects.objects.select_related().filter(pesoProductoStock__gt = 500).order_by('bodega')
+    costosProductos = Producto.objects.objects.select_related().order_by('nombreProducto')
     return render_to_response('Home.html',{'productosBajoStock':productosBajoStock,'costosProductos':costosProductos},
                               context_instance = RequestContext(request))
 
