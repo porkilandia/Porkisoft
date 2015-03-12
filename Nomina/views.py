@@ -99,7 +99,12 @@ def Login(request):
                     usuario = request.user
                     #empleado.cargo.nombreCargo == 'Cajero'
                     if usuario.is_staff:
-                        return render_to_response('Inicio.html',{},context_instance = RequestContext(request))
+                        if usuario.username == 'carmenescobar':
+                            productosBajoStock = ProductoBodega.objects.select_related().filter(pesoProductoStock__gt = 0).order_by('bodega')
+                            costosProductos = Producto.objects.all().order_by('nombreProducto')
+                            return render_to_response('Home.html',{'productosBajoStock':productosBajoStock,'costosProductos':costosProductos},context_instance = RequestContext(request))
+                        else:
+                            return render_to_response('Inicio.html',{},context_instance = RequestContext(request))
                     else:
                         valorInicial.jornada = request.POST['jornada']
                         valorInicial.save()
