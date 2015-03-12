@@ -12,11 +12,11 @@
         <thead>
 
         <tr>
-            <th colspan="4" style="text-align: center">Listado Bodegas con bajo Stock</th>
+            <th colspan="5" style="text-align: center">Listado Bodegas con bajo Stock</th>
         </tr>
         <tr>
             <th>Bodega</th>
-            <th>Tipo</th>
+            <th>Grupo</th>
             <th>Producto</th>
             <th>Peso en Stock</th>
             <th>Unidades en stock</th>
@@ -49,10 +49,11 @@
 
         <thead>
         <tr>
-            <th colspan="3" style="text-align: center">Listado de Costo por kilo de producto</th>
+            <th colspan="5" style="text-align: center">Listado de Costo por kilo de producto</th>
         </tr>
         <tr>
             <th>Codigo</th>
+            <th>Grupo</th>
             <th>Nombre</th>
             <th>Costo Kilo</th>
             <!--<th>Precio Sugerido</th>-->
@@ -63,9 +64,10 @@
         {% for costosProducto in costosProductos %}
         <tr>
             <td>{{ costosProducto.codigoProducto }}</td>
+            <td>{{ costosProducto.grupo.nombreGrupo }}</td>
             <td>{{ costosProducto.nombreProducto }}</td>
             <td>${{ costosProducto.costoProducto }}</td>
-            <td>{{ costosProducto.grupo }}</td>
+
 
 
         </tr>
