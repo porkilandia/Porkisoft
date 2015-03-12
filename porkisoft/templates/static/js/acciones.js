@@ -685,6 +685,8 @@ function ImprimirAZ()
                 pie.show();
                 $('#fechaAZ').append(': '+ inicio);
                 $('#jornadaAZ').append(': '+ jornada);
+                var direccion = $('#direccion').text();
+                var cabecera = $('#Cabecera');
 
                 tablaExcentos.addClass('recibo');
                 tablaExcluidos.addClass('recibo');
@@ -694,6 +696,17 @@ function ImprimirAZ()
                 TablaValorPesables.addClass('recibo');
                 tablaNoPesables.addClass('recibo');
                 tablaValorNoPesables.addClass('recibo');
+
+                cabecera.append(
+                                    "<table id='encabezado'>"+
+                                    "<tr><th>" + 'PORKILANDIA S.A.S.' + "</th></tr>"+
+                                    "<tr><th>" + 'Nit: 900606687-6' + "</th></tr>"+
+                                    "<tr><th>" + 'Regimen Comun' + "</th></tr>"+
+                                    "<tr><th>" + 'Resolucion : 140000039353'+ "</th></tr>"+
+                                    "<tr><th>" + 'Rango:000000 hasta 999999' + "</th></tr>"+
+                                    "<tr><th>" + 'Expedida el : 09-04-2013'+ "</th></tr>"+
+                                    "<tr><th>" + direccion +"</th></tr></table>"
+                );
 
                 $('#recibo').printArea();
                 encabezado.hide();

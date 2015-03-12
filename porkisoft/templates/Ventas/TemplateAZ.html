@@ -3,8 +3,9 @@
 
         {% block titulo %}::AZ::{% endblock titulo %}
     {% block mensajes %}
-    AZ
-
+    <div id="direccion">
+        Dir: {{ empleado.punto.direccionBodega }} Tel:{{ empleado.punto.telefonoBodega }}
+        </div>
     {% endblock mensajes %}
     {% block contenido %}
         {% if empleado.cargo.nombreCargo == 'Jefe de Punto' %}
@@ -30,7 +31,8 @@
                 <br/>
                 </div>
             <div id="recibo">
-                <table id="encabezado">
+                <div id="Cabecera"></div>
+                <!--<table id="encabezado">
                         <tr><th>PORKILANDIA S.A.S.</th></tr>
                         <tr><th>Nit: 900606687-6</th></tr>
                         <tr><th>Regimen Comun</th></tr>
@@ -48,7 +50,7 @@
                         <tr><th id="finConsecVentas" style="text-align: left">fin</th></tr>
                         <tr><th id="ConsecZ" style="text-align: left">Consecutivo</th></tr>
                         <tr><th style="font-size: 1.1em">__________________________________</th></tr>
-                    </table>
+                    </table>-->
 
                             <table id="TablaExcentos" class="table-striped" style="width: 25%"></table>
 
