@@ -686,6 +686,8 @@ function ImprimirAZ()
                 $('#fechaAZ').append(': '+ inicio);
                 $('#jornadaAZ').append(': '+ jornada);
                 var direccion = $('#direccion').text();
+                var punto = $('#bodega option:selected');
+                $('#lugar').append(': '+ punto.text())
                 var cabecera = $('#Cabecera');
 
                 tablaExcentos.addClass('recibo');
@@ -711,6 +713,7 @@ function ImprimirAZ()
                 $('#recibo').printArea();
                 encabezado.hide();
                 pie.hide();
+
 
                 tablaExcentos.removeClass('recibo');
                 tablaExcluidos.removeClass('recibo');
