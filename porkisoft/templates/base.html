@@ -104,14 +104,14 @@
                     </li>
                     <li><span id="talleres" tabindex="1">Res</span>
                         <ul>
-                            <li><a href="/fabricacion/desposte"><img src="{{ STATIC_URL }}img/item.png" alt="" />Desposte</a></li>
+                            <li><a href="{% url 'Fabricacion.views.GestionDesposte' 1 %}"><img src="{{ STATIC_URL }}img/item.png" alt="" />Desposte</a></li>
                             <li><a href="/fabricacion/molida"><img src="{{ STATIC_URL }}img/item.png" alt="" />Molida</a></li>
 
                         </ul>
                     </li>
                     <li><span id="talleres" tabindex="1">Cerda y Cerdo</span>
                         <ul>
-                            <li><a href="/fabricacion/desposte"><img src="{{ STATIC_URL }}img/item.png" alt="" />Desposte</a></li>
+                            <li><a href="{% url 'Fabricacion.views.GestionDesposte' 2 %}"><img src="{{ STATIC_URL }}img/item.png" />Desposte</a></li>
                             <li><a href="/fabricacion/descarne"><img src="{{ STATIC_URL }}img/item.png" alt="" />Descarne</a></li>
                             <li><a href="/fabricacion/tajado"><img src="{{ STATIC_URL }}img/item.png" alt="" />Tajado</a></li>
                             <li><a href="/fabricacion/ensalinados"><img src="{{ STATIC_URL }}img/item.png" alt="" />Ensalinado</a></li>

@@ -1328,10 +1328,21 @@ def ReporteListaDesposte(request):
     respuesta = serializers.serialize('json',desposte)
     return HttpResponse(respuesta,mimetype='application/json')
 
-def GestionDesposte(request):
-    fechainicio = date.today() - timedelta(days=20)
+def GestionDesposte(request,tipo):
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
-    despostes = PlanillaDesposte.objects.filter(fechaDesposte__range =(fechainicio,fechafin))
+    despostes = ''
+    if int(tipo) == 2:
+        q1 = despostes = PlanillaDesposte.objects.select_related().filter(fechaDesposte__range =(fechainicio,fechafin),tipoDesposte = 'Cerdos')
+        q2 = despostes = PlanillaDesposte.objects.select_related().filter(fechaDesposte__range =(fechainicio,fechafin),tipoDesposte = 'Cerdas')
+        q3 = despostes = PlanillaDesposte.objects.select_related().filter(fechaDesposte__range =(fechainicio,fechafin),tipoDesposte = '')
+        despostes = q1 | q2 | q3
+    elif int(tipo) == 1:
+        q1 = despostes = PlanillaDesposte.objects.select_related().filter(fechaDesposte__range =(fechainicio,fechafin),tipoDesposte = 'Reses')
+        q2 = despostes = PlanillaDesposte.objects.select_related().filter(fechaDesposte__range =(fechainicio,fechafin),tipoDesposte = '')
+        despostes = q1 | q2
+
+
     #despostes = PlanillaDesposte.objects.all()
 
     if request.method == 'POST':
@@ -1339,7 +1350,7 @@ def GestionDesposte(request):
         formulario = DesposteForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return HttpResponseRedirect('/fabricacion/desposte')
+            return HttpResponseRedirect('/fabricacion/desposte/'+tipo)
     else:
         formulario =DesposteForm()
 
