@@ -1712,7 +1712,7 @@ def GuardarDesposte(request):
         bodega = ProductoBodega.objects.get(bodega = 5,producto = producto.codigoProducto)
         # si el producto que esta en la lista para ser guardado estan los productos de sacrificio
         # entonces se deja e inventario tal cual estaba
-        if producto.nombreProducto == 'Cola':
+        '''if producto.nombreProducto == 'Cola':
             bodega.pesoProductoStock = bodega.pesoProductoStock
         elif producto.nombreProducto == 'Rinones':
             bodega.pesoProductoStock = bodega.pesoProductoStock
@@ -1723,16 +1723,18 @@ def GuardarDesposte(request):
         elif producto.nombreProducto == 'Recortes Sacrificio':
             bodega.pesoProductoStock = bodega.pesoProductoStock
         else:#Se guardan el peso y las unidades en inventario
-            bodega.pesoProductoStock += detalle.PesoProducto
-            bodega.unidadesStock += detalle.unidades
 
-            movimiento.tipo = 'DSP%d'%(desposte.codigoPlanilla)
-            movimiento.fechaMov = desposte.fechaDesposte
-            movimiento.productoMov = detalle.producto
-            movimiento.nombreProd = detalle.producto.nombreProducto
-            movimiento.Hasta = bodega.bodega.nombreBodega
-            movimiento.entrada = detalle.PesoProducto
-            movimiento.save()
+            '''
+        bodega.pesoProductoStock += detalle.PesoProducto
+        bodega.unidadesStock += detalle.unidades
+
+        movimiento.tipo = 'DSP%d'%(desposte.codigoPlanilla)
+        movimiento.fechaMov = desposte.fechaDesposte
+        movimiento.productoMov = detalle.producto
+        movimiento.nombreProd = detalle.producto.nombreProducto
+        movimiento.Hasta = bodega.bodega.nombreBodega
+        movimiento.entrada = detalle.PesoProducto
+        movimiento.save()
 
         bodega.save()
 
