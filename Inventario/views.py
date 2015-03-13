@@ -823,7 +823,7 @@ def ReporteFaltantes (request):
     idBodega = request.GET.get('bodega')
     bodega = Bodega.objects.get(pk = int(idBodega))
 
-    productoBodega = ProductoBodega.objects.filter(bodega = bodega.codigoBodega).filter(producto__numeroProducto__gt = 0).order_by('nombreProducto')
+    productoBodega = ProductoBodega.objects.filter(bodega = bodega.codigoBodega).filter(producto__numeroProducto__gt = 0).order_by('producto__numeroProducto')
 
     respuesta = serializers.serialize('json',productoBodega)
     return HttpResponse(respuesta,mimetype='application/json')

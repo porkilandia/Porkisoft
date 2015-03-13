@@ -40,7 +40,7 @@ class Producto(models.Model):
         return cadena
 
     class Meta:
-        ordering = ['nombreProducto']
+        ordering = ['numeroProducto']
 
 
 
