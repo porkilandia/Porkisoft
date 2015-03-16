@@ -48,6 +48,7 @@ Carne Condimentada
                 <td>
                 <a id="costearCond" onclick="CostearCarneCond({{ carne.id }})" href="#">Costear</a>
                 <a id="guardarCond" onclick="GuardarCarneCond({{ carne.id }})" href="#">Guardar</a>
+                    <a href="{% url 'Fabricacion.views.borrarTallerCondimentado' carne.id %}">Borrar</a>
             </td>
             {% endif %}
             

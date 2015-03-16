@@ -2620,6 +2620,11 @@ def GestionCarneCond(request):
 
     return render_to_response('Fabricacion/GestionCarneCond.html',{'plantilla':plantilla,'formulario':formulario,'carnes':carnes },
                               context_instance = RequestContext(request))
+def borrarTallerCondimentado(request,idCondimentado):
+    condimentado = TallerCarneCondimentada.objects.get(pk = idCondimentado)
+    condimentado.delete()
+    return HttpResponseRedirect('/fabricacion/carneCondimentada')
+
 
 def CostearCarneCond(request):
     idCarne = request.GET.get('idCarne')
