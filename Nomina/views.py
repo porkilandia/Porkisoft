@@ -95,7 +95,7 @@ def Login(request):
                 if acceso.is_active:
                     login(request,acceso)
                     empleado = Empleado.objects.get(usuario = usuario)
-                    valorInicial = ConfiguracionPuntos.objects.get(bodega = empleado.punto.codigoBodega)
+                    #valorInicial = ConfiguracionPuntos.objects.get(bodega = empleado.punto.codigoBodega)
                     usuario = request.user
                     #empleado.cargo.nombreCargo == 'Cajero'
                     if usuario.is_staff:
@@ -106,8 +106,8 @@ def Login(request):
                         else:
                             return render_to_response('Inicio.html',{},context_instance = RequestContext(request))
                     else:
-                        valorInicial.jornada = request.POST['jornada']
-                        valorInicial.save()
+                        #valorInicial.jornada = request.POST['jornada']
+                        #valorInicial.save()
                         return render_to_response('InicioVentas.html',{},context_instance = RequestContext(request))
 
                 else:

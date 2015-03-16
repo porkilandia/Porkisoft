@@ -7,7 +7,7 @@ from math import ceil
 from datetime import *
 from decimal import Decimal
 from django.core import serializers
-from django.db.models import Avg
+from django.db.models import Avg, Sum
 import json
 from django.template.loader import render_to_string
 from django.http import HttpResponse
@@ -390,11 +390,11 @@ def InicioVentas(request):
 @login_required()
 def PuntoVenta(request):
     usuario = request.user.username
-    emp = Empleado.objects.get(usuario = usuario)
+    emp = Empleado.objects.select_related().get(usuario = usuario)
     jornada = ConfiguracionPuntos.objects.get(bodega = emp.punto.codigoBodega).jornada
     punto = emp.punto.codigoBodega
     empleado = emp.codigoEmpleado
-    ventas = VentaPunto.objects.filter(fechaVenta = datetime.today()).filter(guardado = False,puntoVenta = emp.punto.codigoBodega)
+    ventas = VentaPunto.objects.select_related().filter(fechaVenta = datetime.today(),guardado = False,puntoVenta = emp.punto.codigoBodega)
     consecutivo = ConfiguracionPuntos.objects.get(bodega = emp.punto.codigoBodega)
 
     if request.method =='POST':
@@ -418,7 +418,7 @@ def PuntoVenta(request):
 def TipoProducto(request):
 
     idProducto = request.GET.get('producto')
-    producto = Producto.objects.get(pk = int(idProducto))
+    producto = Producto.objects.select_related().get(pk = int(idProducto))
 
     if producto.pesables == True:
         msj = 'pesable'
@@ -494,20 +494,20 @@ def EditaPuntoVenta(request,idDetVenta):
                               context_instance = RequestContext(request))
 
 def EliminaPuntoVenta(request,idDetVenta):
-    detVenta = DetalleVentaPunto.objects.get(pk = idDetVenta)
+    detVenta = DetalleVentaPunto.objects.select_related().get(pk = idDetVenta)
     detVentas = DetalleVentaPunto.objects.filter(venta = detVenta.venta.numeroVenta)
-    venta = VentaPunto.objects.get(pk = detVenta.venta.numeroVenta)
+    #venta = VentaPunto.objects.get(pk = detVenta.venta.numeroVenta)
     detVenta.delete()
 
-    totalFactura = 0
+    totalFactura =  0
 
     for detalle in detVentas:
         totalFactura += detalle.vrTotalPunto
 
-    venta.TotalVenta = totalFactura
-    venta.save()
+    detVenta.venta.TotalVenta = totalFactura
+    detVenta.venta.save()
 
-    return HttpResponseRedirect('/ventas/detalleVentaPunto/'+ str(venta.numeroVenta))
+    return HttpResponseRedirect('/ventas/detalleVentaPunto/'+ str(detVenta.venta.numeroVenta))
 
 def CobrarVenta(request):
 
@@ -764,7 +764,6 @@ def ReporteAZ(request):
 
     idBodega = request.GET.get('bodega')
 
-    #ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(jornada = jornada)
     ventas = VentaPunto.objects.filter(fechaVenta = finicio,jornada = jornada,puntoVenta = int(idBodega)).filter(anulado = False).order_by('factura')
     consecutivo = ConfiguracionPuntos.objects.get(bodega = int(idBodega))
 
@@ -814,7 +813,10 @@ def ReporteAZ(request):
                 elif detalle.productoVenta.excluido == True:
                     excluidos['Excluidos'] += detalle.vrTotalPunto
 
-
+    if jornada == 'AM':
+        consecutivo.jornada = 'PM'
+    else:
+        consecutivo.jornada = 'AM'
     consecutivo.consecutivoZ += 1
     consecutivo.save()
 
