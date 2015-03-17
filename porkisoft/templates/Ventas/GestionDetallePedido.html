@@ -90,14 +90,9 @@
             <td>{{ det.unidadesPedido }}</td>
             <td>{{ det.vrUnitario }}</td>
             <td>{{ det.vrTotalPedido }}</td>
-            {% if det.estado == False %}
-                <td>
-                <a href="#">pendiente</a>
+            <td><a href="{% url 'Ventas.views.BorrarDetallePedido' det.id %}">Borrar</a>
+                <a href="{% url 'Ventas.views.EditarDetallePedido' det.id %}">Editar</a>
             </td>
-            {% else %}
-                <td>  <a href="#">Entregado</a> </td>
-            {% endif %}
-            <td><a href="{% url 'Ventas.views.BorrarDetallePedido' det.id %}">Borrar</a></td>
 
         </tr>
 

@@ -140,6 +140,32 @@ def GestionDetallePedido(request,idpedido):
                                                                   'detPedido':detPedido,'vrPedido':vrPedido},
                               context_instance = RequestContext(request))
 
+def EditarDetallePedido(request,idDetpedido):
+    det = DetallePedido.objects.get(pk = idDetpedido)
+    pedido = Pedido.objects.get(pk = det.pedido.numeroPedido)
+    detPedido = DetallePedido.objects.filter(pedido = det.pedido.numeroPedido)
+    vrPedido = 0
+
+    for det in detPedido:
+        vrPedido += det.vrTotalPedido
+    pedido.TotalVenta = vrPedido
+    pedido.save()
+
+    if request.method =='POST':
+        formulario = DetallePedidoForm(request.POST,instance=det)
+        if formulario.is_valid():
+            detalle = formulario.save()
+            pedido.TotalVenta = vrPedido + detalle.vrTotalPedido
+            pedido.save()
+
+            return HttpResponseRedirect('/ventas/detallePedido/'+str(det.pedido.numeroPedido))
+    else:
+        formulario = DetallePedidoForm(initial={'pedido':det.pedido.numeroPedido},instance=det)
+
+    return render_to_response('Ventas/GestionDetallePedido.html',{'idPedido':det.pedido.numeroPedido,'formulario':formulario,'pedido':pedido,
+                                                                  'detPedido':detPedido,'vrPedido':vrPedido},
+                              context_instance = RequestContext(request))
+
 def BorrarDetallePedido(request,idpedido):
 
     detPedido = DetallePedido.objects.get(pk = idpedido)
@@ -895,7 +921,7 @@ def ReporteVentaNorte(request):
 
     if tipoReporte == 'ventas':
 
-        
+
         if jornada == 'Completa':
 
             ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega))
