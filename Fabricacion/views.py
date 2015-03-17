@@ -1465,7 +1465,7 @@ def GestionDesposteActualizado(request, idplanilla):
         vrCarnes4 = 0
         vrCostillas = ceil((vrTotalCanales * 12)/100)
         vrHuesos = ceil((vrTotalCanales *Decimal(2.5))/100)
-        vrsubProd = ceil((vrTotalCanales * Decimal(9.5))/100)
+        vrsubProd = ceil((vrTotalCanales * Decimal(8))/100)
         vrDesecho = ceil((vrTotalCanales * Decimal(1))/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
