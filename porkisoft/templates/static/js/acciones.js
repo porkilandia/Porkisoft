@@ -245,7 +245,7 @@ function ReporteTipoPedido() {
             success: function (respuesta) {
                     TablaPedidos.find("tr:gt(0)").remove();
                     TablaVentasClientes.find("tr:gt(0)").remove();
-                    ReporteTipoPedidoContado();
+                    //ReporteTipoPedidoContado();
 
                     for (var i=0;i<respuesta.length;i++) {
 
@@ -274,7 +274,9 @@ function ReporteTipoPedido() {
 
                     }
                     TablaPedidos.append("<tr><th>"+"Total Creditos"+
-                                        "</th><th>"+"$"+vrCredito+"</th></tr>");
+                                        "</th></tr><tr><th>"+"$"+vrCredito +
+                                        "</th></tr><tr><th>"+"Total Contados"+
+                                        "</th></tr><tr><th>"+"$"+vrContado+"</th></tr>");
                     }
 
         });
