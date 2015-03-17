@@ -114,7 +114,11 @@
     </thead>
     <tbody>
         {% for carne in carnes %}
-            <tr>
+            {% if carne.costoProducto > carne.costoAdtvo %}
+                <tr style="color: red">
+            {% else %}
+                <tr style="color: green">
+            {% endif %}
                 <td>{{ carne.producto.codigoProducto }}</td>
                 <td>{{ carne.producto }}</td>
                 <td>{{ carne.producto.grupo.nombreGrupo }}</td>
@@ -164,7 +168,11 @@
     </thead>
     <tbody>
         {% for carne2 in carnes2 %}
-            <tr>
+            {% if carne2.costoProducto > carne2.costoAdtvo %}
+                <tr style="color: red">
+            {% else %}
+                <tr style="color: green">
+            {% endif %}
                 <td>{{ carne2.producto.codigoProducto }}</td>
                 <td>{{ carne2.producto }}</td>
                 <td>{{ carne2.producto.grupo.nombreGrupo }}</td>
@@ -213,7 +221,11 @@
     </thead>
     <tbody>
         {% for carne3 in carnes3 %}
-            <tr>
+            {% if carne3.costoProducto > carne3.costoAdtvo %}
+                <tr style="color: red">
+            {% else %}
+                <tr style="color: green">
+            {% endif %}
                 <td>{{ carne3.producto.codigoProducto }}</td>
                 <td>{{ carne3.producto }}</td>
                 <td>{{ carne3.producto.grupo.nombreGrupo }}</td>
@@ -262,7 +274,11 @@
     </thead>
     <tbody>
         {% for carne4 in carnes4 %}
-            <tr>
+            {% if carne4.costoProducto > carne4.costoAdtvo %}
+                <tr style="color: red">
+            {% else %}
+                <tr style="color: green">
+            {% endif %}
                 <td>{{ carne4.producto.codigoProducto }}</td>
                 <td>{{ carne4.producto }}</td>
                 <td>{{ carne4.producto.grupo.nombreGrupo }}</td>
@@ -315,7 +331,11 @@
     </thead>
     <tbody>
         {% for costilla in costillas %}
-            <tr>
+            {% if costilla.costoProducto > costilla.costoAdtvo %}
+                <tr style="color: red">
+            {% else %}
+                <tr style="color: green">
+            {% endif %}
                 <td>{{ costilla.producto.codigoProducto }}</td>
                 <td>{{ costilla.producto }}</td>
                 <td>{{ costilla.producto.grupo.nombreGrupo }}</td>
@@ -362,7 +382,11 @@
     </thead>
     <tbody>
         {% for subp in subProductos %}
-            <tr>
+            {% if subp.costoProducto > subp.costoAdtvo %}
+                <tr style="color: red">
+            {% else %}
+                <tr style="color: green">
+            {% endif %}
                 <td>{{ subp.producto.codigoProducto }}</td>
                 <td>{{ subp.producto }}</td>
                 <td>{{ subp.producto.grupo.nombreGrupo }}</td>
@@ -410,7 +434,11 @@
     </thead>
     <tbody>
         {% for hueso in huesos %}
-            <tr>
+            {% if hueso.costoProducto > hueso.costoAdtvo %}
+                <tr style="color: red">
+            {% else %}
+                <tr style="color: green">
+            {% endif %}
                 <td>{{ hueso.producto.codigoProducto }}</td>
                 <td>{{ hueso.producto }}</td>
                 <td>{{ hueso.producto.grupo.nombreGrupo }}</td>
@@ -458,7 +486,11 @@
     </thead>
     <tbody>
         {% for desecho in desechos %}
-            <tr>
+            {% if desecho.costoProducto > desecho.costoAdtvo %}
+                <tr style="color: red">
+            {% else %}
+                <tr style="color: green">
+            {% endif %}
                 <td>{{ desecho.producto.codigoProducto }}</td>
                 <td>{{ desecho.producto }}</td>
                 <td>{{ desecho.producto.grupo.nombreGrupo }}</td>
