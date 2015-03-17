@@ -894,148 +894,125 @@ def ReporteVentaNorte(request):
     ValorUnds = {}
 
     if tipoReporte == 'ventas':
+
+        
         if jornada == 'Completa':
 
-            ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(puntoVenta = int(bodega))
+            ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega))
         else:
-            ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(jornada = jornada , puntoVenta = int(bodega))
+            ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__jornada = jornada , venta__puntoVenta = int(bodega))
 
-        for venta in ventas:
-            detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
-            for detalle in detalleVenta:
-                if detalle.productoVenta.pesables:
-                    PesoProductos[detalle.productoVenta.nombreProducto] = 0
-                    ValorProductos[detalle.productoVenta.nombreProducto] = 0
-                else:
-                    UdnProductos[detalle.productoVenta.nombreProducto] = 0
-                    ValorUnds[detalle.productoVenta.nombreProducto] = 0
 
-        for venta in ventas:
-            detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
-            for detalle in detalleVenta:
-                if detalle.productoVenta.pesables:
-                    PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                    ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
-                else:
-                    UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                    ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+        for detalle in ventas:
+            if detalle.productoVenta.pesables:
+                PesoProductos[detalle.productoVenta.nombreProducto] = 0
+                ValorProductos[detalle.productoVenta.nombreProducto] = 0
+            else:
+                UdnProductos[detalle.productoVenta.nombreProducto] = 0
+                ValorUnds[detalle.productoVenta.nombreProducto] = 0
+
+        for detalle in ventas:
+            if detalle.productoVenta.pesables:
+                PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+            else:
+                UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+
     elif tipoReporte == 'pedidos':
-        pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(bodega = int(bodega))
+        pedidos = DetallePedido.objects.select_related().filter(pedido__fechaPedido__range = (finicio,ffin),pedido__bodega = int(bodega))
 
-        for pedido in pedidos:
-            detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
-            for detalle in detallePedido:
-                if detalle.producto.pesables:
-                    PesoProductos[detalle.producto.nombreProducto] = 0
-                    ValorProductos[detalle.producto.nombreProducto] = 0
-                else:
-                    UdnProductos[detalle.producto.nombreProducto] = 0
-                    ValorUnds[detalle.producto.nombreProducto] = 0
+        for detalle in pedidos:
+            if detalle.producto.pesables:
+                PesoProductos[detalle.producto.nombreProducto] = 0
+                ValorProductos[detalle.producto.nombreProducto] = 0
+            else:
+                UdnProductos[detalle.producto.nombreProducto] = 0
+                ValorUnds[detalle.producto.nombreProducto] = 0
 
-        for pedido in pedidos:
-            detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
-            for detalle in detallePedido:
-                if detalle.producto.pesables:
-                    PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
-                    ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
-                else:
-                    UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
-                    ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+        for detalle in pedidos:
+            if detalle.producto.pesables:
+                PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
+                ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+            else:
+                UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
+                ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
 
     elif tipoReporte == 'clienteDetalle':
-        pedidos = Pedido.objects.filter(fechaPedido__range = (finicio,ffin)).filter(cliente = int(idCliente),bodega = int(bodega))
-        ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin)).filter(puntoVenta = int(bodega),cliente = int(idCliente) )
+        pedidos = DetallePedido.objects.select_related().filter(pedido__fechaPedido__range = (finicio,ffin),pedido__cliente = int(idCliente),pedido__bodega = int(bodega))
+        ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega),venta__cliente = int(idCliente) )
 
-        for venta in ventas:
-             detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
-             for detalle in detalleVenta:
-                 if detalle.productoVenta.pesables:
-                     PesoProductos[detalle.productoVenta.nombreProducto] = 0
-                     ValorProductos[detalle.productoVenta.nombreProducto] = 0
-                 else:
-                     UdnProductos[detalle.productoVenta.nombreProducto] = 0
-                     ValorUnds[detalle.productoVenta.nombreProducto] = 0
+        for detalle in ventas:
+            if detalle.productoVenta.pesables:
+                PesoProductos[detalle.productoVenta.nombreProducto] = 0
+                ValorProductos[detalle.productoVenta.nombreProducto] = 0
+            else:
+                UdnProductos[detalle.productoVenta.nombreProducto] = 0
+                ValorUnds[detalle.productoVenta.nombreProducto] = 0
 
-        for pedido in pedidos:
-            detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
-            for detalle in detallePedido:
-                if detalle.producto.pesables:
-                    PesoProductos[detalle.producto.nombreProducto] = 0
-                    ValorProductos[detalle.producto.nombreProducto] = 0
-                else:
-                    UdnProductos[detalle.producto.nombreProducto] = 0
-                    ValorUnds[detalle.producto.nombreProducto] = 0
+        for detalle in pedidos:
+            if detalle.producto.pesables:
+                PesoProductos[detalle.producto.nombreProducto] = 0
+                ValorProductos[detalle.producto.nombreProducto] = 0
+            else:
+                UdnProductos[detalle.producto.nombreProducto] = 0
+                ValorUnds[detalle.producto.nombreProducto] = 0
 
-        for pedido in pedidos:
-            detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
-            for detalle in detallePedido:
-                if detalle.producto.pesables:
-                    PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
-                    ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
-                else:
-                    UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
-                    ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+        for detalle in pedidos:
+            if detalle.producto.pesables:
+                PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
+                ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+            else:
+                UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
+                ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
 
-        for venta in ventas:
-             detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
-             for detalle in detalleVenta:
-                 if detalle.productoVenta.pesables:
-                     PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                     ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
-                 else:
-                     UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                     ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+        for detalle in ventas:
+            if detalle.productoVenta.pesables:
+                PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+            else:
+                UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
 
     else:
-         ventas = VentaPunto.objects.select_related().filter(fechaVenta__range = (finicio,ffin),puntoVenta = int(bodega))
-         pedidos = Pedido.objects.select_related().filter(fechaPedido__range = (finicio,ffin),bodega = int(bodega))
+         ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega))
+         pedidos = DetallePedido.objects.select_related().filter(pedido__fechaPedido__range = (finicio,ffin),pedido__bodega = int(bodega)).exclude(pedido__cliente__nombreCliente = 'Jose Alomia')
 
          #inicializamos los diccionarios con las dos consultas
 
-         for venta in ventas:
-             detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
-             for detalle in detalleVenta:
-                 if detalle.productoVenta.pesables:
-                     PesoProductos[detalle.productoVenta.nombreProducto] = 0
-                     ValorProductos[detalle.productoVenta.nombreProducto] = 0
-                 else:
-                     UdnProductos[detalle.productoVenta.nombreProducto] = 0
-                     ValorUnds[detalle.productoVenta.nombreProducto] = 0
+         for detalle in ventas:
+             if detalle.productoVenta.pesables:
+                 PesoProductos[detalle.productoVenta.nombreProducto] = 0
+                 ValorProductos[detalle.productoVenta.nombreProducto] = 0
+             else:
+                 UdnProductos[detalle.productoVenta.nombreProducto] = 0
+                 ValorUnds[detalle.productoVenta.nombreProducto] = 0
 
-         for pedido in pedidos:
-            if pedido.cliente.nombreCliente != 'Jose Alomia':
-                detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
-                for detalle in detallePedido:
-
-                    if detalle.producto.pesables:
-                        PesoProductos[detalle.producto.nombreProducto] = 0
-                        ValorProductos[detalle.producto.nombreProducto] = 0
-                    else:
-                        UdnProductos[detalle.producto.nombreProducto] = 0
-                        ValorUnds[detalle.producto.nombreProducto] = 0
+         for detalle in pedidos:
+             if detalle.producto.pesables:
+                 PesoProductos[detalle.producto.nombreProducto] = 0
+                 ValorProductos[detalle.producto.nombreProducto] = 0
+             else:
+                 UdnProductos[detalle.producto.nombreProducto] = 0
+                 ValorUnds[detalle.producto.nombreProducto] = 0
 
          # ahora poblamos los diccionarios con las consultas
 
-         for venta in ventas:
-             detalleVenta = DetalleVentaPunto.objects.filter(venta = venta.numeroVenta)
-             for detalle in detalleVenta:
-                 if detalle.productoVenta.pesables:
-                     PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                     ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
-                 else:
-                     UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                     ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+         for detalle in ventas:
+             if detalle.productoVenta.pesables:
+                 PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                 ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+             else:
+                 UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                 ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
 
-         for pedido in pedidos:
-            if pedido.cliente.nombreCliente != 'Jose Alomia':
-                detallePedido = DetallePedido.objects.filter(pedido = pedido.numeroPedido)
-                for detalle in detallePedido:
-                    if detalle.producto.pesables:
-                        PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
-                        ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
-                    else:
-                        UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
-                        ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+         for detalle in pedidos:
+             if detalle.producto.pesables:
+                 PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
+                 ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+             else:
+                 UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
+                 ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
 
 
 

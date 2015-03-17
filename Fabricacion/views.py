@@ -1464,7 +1464,7 @@ def GestionDesposteActualizado(request, idplanilla):
         vrCarnes3 = 0
         vrCarnes4 = 0
         vrCostillas = ceil((vrTotalCanales * 12)/100)
-        vrHuesos = ceil((vrTotalCanales * 4)/100)
+        vrHuesos = ceil((vrTotalCanales *Decimal(2.5))/100)
         vrsubProd = ceil((vrTotalCanales * Decimal(9.5))/100)
         vrDesecho = ceil((vrTotalCanales * Decimal(1))/100)
         pesoAsumido =Decimal(vrDesecho) + perdidaPeso
@@ -1483,10 +1483,10 @@ def GestionDesposteActualizado(request, idplanilla):
         vrCarnes =Decimal(vrCarnes) + pesoAsumido
     else:
         vrCarnes = ceil((vrTotalCanales * Decimal(7))/100)
-        vrCarnes2 = ceil((vrTotalCanales * Decimal(30.5))/100)
-        vrCarnes3 = ceil((vrTotalCanales * Decimal(31.5))/100)
+        vrCarnes2 = ceil((vrTotalCanales * Decimal(29))/100)
+        vrCarnes3 = ceil((vrTotalCanales * Decimal(32))/100)
         vrCarnes4 = ceil((vrTotalCanales * Decimal(7))/100)
-        vrCostillas = ceil((vrTotalCanales * 4)/100)
+        vrCostillas = ceil((vrTotalCanales * Decimal(2.5))/100)
         vrHuesos = ceil((vrTotalCanales * 11)/100)
         vrsubProd = ceil((vrTotalCanales * Decimal(1))/100)
         vrDesecho = ceil((vrTotalCanales * Decimal(0.5))/100)
