@@ -18,10 +18,10 @@ from Ventas.models import *
 #******************************************************CANAL***********************************************************
 def GestionCanal(request,idrecepcion):
 
-    canales = Canal.objects.filter(recepcion = idrecepcion).order_by('nroCanal')#para renderizar las listas
-    recepcion = PlanillaRecepcion.objects.get(pk = idrecepcion)
-    compra = Compra.objects.get(pk = recepcion.compra.codigoCompra)
-    sacrificio = Sacrificio.objects.get(recepcion = idrecepcion)
+    canales = Canal.objects.select_related().filter(recepcion = idrecepcion).order_by('nroCanal')#para renderizar las listas
+    recepcion = PlanillaRecepcion.objects.select_related().get(pk = idrecepcion)
+    #compra = Compra.objects.get(pk = recepcion.compra.codigoCompra)
+    #sacrificio = Sacrificio.objects.get(recepcion = idrecepcion)
     cantidad = canales.count() +1
     kiloCanal = 0
 
@@ -33,7 +33,7 @@ def GestionCanal(request,idrecepcion):
     canalMuestra = Canal.objects.filter(recepcion = idrecepcion)
     PesoTotalCanales= 0
 
-    for cnl in canalMuestra:
+    for cnl in canalMuestra:#Calcula en cada ingreso el peso total hasta el momento
         PesoTotalCanales += cnl.pesoPorkilandia
 
     recepcion.pesoCanales = PesoTotalCanales
@@ -51,7 +51,7 @@ def GestionCanal(request,idrecepcion):
             pesoPie = 0
             vrFactura = 0
 
-            for canale in canales:
+            for canale in canales:#Calcula en cada ingreso el peso total hasta el momento
                     pesoCanales += canale.pesoPorkilandia
 
             canal = Canal()
@@ -63,23 +63,32 @@ def GestionCanal(request,idrecepcion):
             canal.genero = request.POST.get('genero')
             canal.nroCanal = request.POST.get('nroCanal')
 
-            if compra.tipo.nombreGrupo == 'Reses':
+            #Se calculan datos adicionales para eliminar el sacrificio
+            #recepcion = PlanillaRecepcion.objects.get(pk = idrecepcion)
+            cantCabezas = recepcion.cantCabezas
+            menudo = cantCabezas * 90000
+            deguello = cantCabezas * 90150
+            if recepcion.transporte == 'Particular':
+                trans = 0
+            else:
+                trans = cantCabezas * 8000
 
-                vrKiloCanal = ((compra.vrCompra + sacrificio.vrDeguello + sacrificio.vrTransporte))/ (pesoCanales + Decimal(request.POST.get('pesoPorkilandia')))
+            if recepcion.compra.tipo.nombreGrupo == 'Reses':
+
+                vrKiloCanal = ((recepcion.compra.vrCompra + deguello + trans))/ (pesoCanales + Decimal(request.POST.get('pesoPorkilandia')))
 
                 vrArrobaCanal = vrKiloCanal * Decimal(12.5)
 
                 canal.vrKiloCanal = vrKiloCanal
                 canal.vrArrobaCanal= vrArrobaCanal
-                vrFactura = compra.vrCompra
+                vrFactura = recepcion.compra.vrCompra
+                transporte = trans
 
-                transporte = sacrificio.vrTransporte
-
-            elif compra.tipo.nombreGrupo == 'Cerdos':
+            elif recepcion.compra.tipo.nombreGrupo == 'Cerdos':
 
                 menudo = 7000 * cantidad
                 flete = 500000
-                transporte = sacrificio.vrTransporte * cantidad
+                transporte = trans * cantidad
                 deguello = 37000 * cantidad
 
                 if pesoCanales == 0:#para cuando se ingresa la primera vez
@@ -90,7 +99,6 @@ def GestionCanal(request,idrecepcion):
                 costoKilocerdo = ValoresCostos.objects.get(nombreCosto = 'Costo Cerdo')
                 vrFactura = (pesoCanales + pesoPorkilandia) * costoKilocerdo.valorKiloPie #--> 6050 es el valor establecido por granjas el paraiso
                 pesoPie = Decimal(ceil(pesoCanales + Decimal(request.POST.get('pesoPorkilandia')))) / (Decimal(0.82))
-                #KiloPie = vrFactPie / pesoPie
                 vrFactPie = (vrFactura - deguello - flete) + menudo
                 costoCanales = (vrFactPie + deguello + flete + transporte) - menudo
                 vrKiloCanal = ceil(costoCanales / (pesoCanales + pesoPorkilandia))
@@ -99,8 +107,6 @@ def GestionCanal(request,idrecepcion):
                 canal.vrKiloCanal = vrKiloCanal
                 canal.vrArrobaCanal= vrArrobaCanal
 
-                #encargado = Empleado.objects.get(pk = compra.encargado.codigoEmpleado)
-                #provedor = Proveedor.objects.get(pk = compra.proveedor.codigoProveedor)
             else:
                 menudo = 12000 * cantidad
                 transporte = 9000* cantidad
@@ -125,12 +131,12 @@ def GestionCanal(request,idrecepcion):
                 canal.vrKiloCanal = vrKiloCanal
                 canal.vrArrobaCanal= vrArrobaCanal
 
-            #Se ggraba el vr del transporte
+            #Se graba el vr del transporte
             recepcion.vrTransporte = transporte
 
             #se graba el valor de la factura
-            compra.vrCompra = vrFactura
-            compra.save()
+            recepcion.compra.vrCompra = vrFactura
+            recepcion.compra.save()
             # se guarda el canal
             canal.save()
 
@@ -139,7 +145,7 @@ def GestionCanal(request,idrecepcion):
             PesoTotalCanales = 0
             TotalPesoPie = 0
             canal = Canal.objects.filter(recepcion = idrecepcion)
-            detCompra = DetalleCompra.objects.filter(compra = compra.codigoCompra)
+            detCompra = DetalleCompra.objects.filter(compra = recepcion.compra.codigoCompra)
 
             if recepcion.tipoGanado == 'Mayor':
                 for det in detCompra:
