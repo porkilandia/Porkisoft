@@ -4,22 +4,8 @@
     <Meta charset="utf-8"/>
     <title>{% block titulo %}{% endblock titulo %}</title>
 
-    <!--
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/miCSS.css"/>
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery.alerts.css"/>
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery.dataTable_themeroller.css"/>
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/menu.css"/>
-     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery.dataTable.css"/>
-    <link type="text/css" rel="stylesheet" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css"/>
-    <link type="text/css" rel="stylesheet" href="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css"/>
-    <link type="text/css" rel="stylesheet" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css"/>
-    -->
-
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}jquery-ui-1.11.1/jquery-ui.css"/>
-
-
-
 
 </head>
 <body>
@@ -27,22 +13,22 @@
 
         <div id="nav">
            <ul>
-               <li><a href="/ventas/ventaPunto"><img src="{{ STATIC_URL }}img/item.png" alt="" />Venta Punto</a></li>
-               <li><a id="cerrarSesion" href="/nomina/logOut"><img src="{{ STATIC_URL }}img/item.png" alt="" />Cerrar Sesion / Usuario: {{ user.username|capfirst }}</a></li>
+               <li><a href="/ventas/ventaPunto"> Venta Punto</a></li>
+               <li><a id="cerrarSesion" href="/nomina/logOut"> Cerrar Sesion / Usuario: {{ user.username|capfirst }}</a></li>
                <li><span id="talleres" tabindex="1">Talleres de Puntos</span>
                         <ul>
-                            <li><a href="/fabricacion/fritos"><img src="{{ STATIC_URL }}img/item.png" alt="" />Taller Frito</a></li>
-                            <li><a href="/fabricacion/carneCondimentada"><img src="{{ STATIC_URL }}img/item.png" alt="" />Taller Carne Condimentada</a></li>
-                            <li><a href="/fabricacion/croquetas"><img src="{{ STATIC_URL }}img/item.png" alt="" />Taller Croquetas</a></li>
-                            <li><a href="/fabricacion/tallerReApanado"><img src="{{ STATIC_URL }}img/item.png" alt="" />Taller Reapanado</a></li>
-                            <li><a href="/fabricacion/conversiones"><img src="{{ STATIC_URL }}img/item.png" alt="" />Conversiones</a></li>
-                            <li><a href="/fabricacion/ensBola"><img src="{{ STATIC_URL }}img/item.png" alt="" />Bola Ensalinada</a></li>
-                            <li><a href="/inventario/compra"><img src="{{ STATIC_URL }}img/item.png" alt="" />Compra</a></li>
-                            <li><a href="/inventario/traslado"><img src="{{ STATIC_URL }}img/item.png" alt="" />Traslado</a></li>
-                            <li><a href="/telemercadeo/cliente/"><img src="{{ STATIC_URL }}img/item.png" alt="" />Pedidos y contratos</a></li>
-                            <li><a href="/ventas/retiro"><img src="{{ STATIC_URL }}img/item.png" alt="" />Retiro Efectivo</a></li>
-                            <li><a href="/ventas/devoluciones"><img src="{{ STATIC_URL }}img/item.png" alt="" />Devolucion Mercancia</a></li>
-                            <li><a href="/ventas/templateAZ"><img src="{{ STATIC_URL }}img/item.png" alt="" />Reporte Z</a></li>
+                            <li><a href="/fabricacion/fritos"> Taller Frito</a></li>
+                            <li><a href="/fabricacion/carneCondimentada"> Taller Carne Condimentada</a></li>
+                            <li><a href="/fabricacion/croquetas"> Taller Croquetas</a></li>
+                            <li><a href="/fabricacion/tallerReApanado"> Taller Reapanado</a></li>
+                            <li><a href="/fabricacion/conversiones"> Conversiones</a></li>
+                            <li><a href="/fabricacion/ensBola"> Bola Ensalinada</a></li>
+                            <li><a href="/inventario/compra"> Compra</a></li>
+                            <li><a href="/inventario/traslado"> Traslado</a></li>
+                            <li><a href="/telemercadeo/cliente/"> Pedidos y contratos</a></li>
+                            <li><a href="/ventas/retiro"> Retiro Efectivo</a></li>
+                            <li><a href="/ventas/devoluciones"> Devolucion Mercancia</a></li>
+                            <li><a href="/ventas/templateAZ"> Reporte Z</a></li>
                         </ul>
                </li>
 
@@ -78,28 +64,6 @@
             <script type="text/javascript" src="{{ STATIC_URL }}jquery-ui-1.11.1/jquery-ui.js"></script>
             <script type="text/javascript" src="{{ STATIC_URL }}js/acciones.js"></script>
             <script type="text/javascript" src="{{ STATIC_URL }}js/PrintArea.js"></script>
-
-
-        <!--
-        <script type="text/javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
-
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/noty/packaged/jquery.noty.packaged.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.alerts.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}jquery-ui-1.11.1/external/jquery/jquery.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bPopup.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}TableExporter/tableExport.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}TableExporter/jquery.base64.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}TableExporter/jspdf/libs/sprintf.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}TableExporter/jspdf/libs/base64.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}TableExporter/jspdf/jspdf.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}jtable/jquery.jtable.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
-        -->
-
-
 
 </body>
 </html>
