@@ -14,7 +14,6 @@
             <th>Codigo</th>
             <th>Tipo</th>
             <th>Bodega</th>
-            <th>Encargado</th>
             <th>Proveedor</th>
             <th>Fecha Compra</th>
             <th>Transporte</th>
@@ -27,23 +26,18 @@
             <td>{{ compra.codigoCompra }}</td>
             <td>{{ compra.tipo }}</td>
             <td>{{ compra.bodegaCompra }}</td>
-            <td>{{ compra.encargado }}</td>
             <td>{{ compra.proveedor }}</td>
             <td>{{ compra.fechaCompra }}</td>
             <td>{{ compra.vrTransporte }}</td>
             <td>${{ compra.vrCompra }}</td>
 
             <td style="font-weight: bold; text-align: center">
-                {% if compra.tipo.nombreGrupo == 'Cerdos' or compra.tipo.nombreGrupo == 'Cerdas' %}
+                {% if compra.tipo.nombreGrupo == 'Cerdos' or compra.tipo.nombreGrupo == 'Cerdas' or compra.tipo.nombreGrupo == 'Reses' %}
                     <a href="{% url 'Inventario.views.GestionDetalleCompra' compra.codigoCompra %}">Compras</a>
                     <a href="{% url 'Inventario.views.GestionPlanillaRecepcion' compra.codigoCompra %}">Recepcion</a>
                     <a href="{% url 'Inventario.views.ModificaCompra' compra.codigoCompra %}">Editar</a>
                     <a href="{% url 'Inventario.views.borrarCompra' compra.codigoCompra %}">Borrar</a>
-                {% elif compra.tipo.nombreGrupo == 'Reses' %}
-                    <a href="{% url 'Inventario.views.GestionDetalleCompra' compra.codigoCompra %}">Compras</a>
-                    <a href="{% url 'Inventario.views.GestionPlanillaRecepcion' compra.codigoCompra %}">Recepcion</a>
-                    <a href="{% url 'Inventario.views.ModificaCompra' compra.codigoCompra %}">Editar</a>
-                    <a href="{% url 'Inventario.views.borrarCompra' compra.codigoCompra %}">Borrar</a>
+
                 {% else %}
                     <a href="{% url 'Inventario.views.GestionDetalleCompra' compra.codigoCompra %}">Compras</a>
                     <a href="{% url 'Inventario.views.ModificaCompra' compra.codigoCompra %}">Editar</a>

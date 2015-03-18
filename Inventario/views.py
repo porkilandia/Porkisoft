@@ -343,14 +343,14 @@ def GestionGanado(request,idcompra):
 def GestionCompra(request):
     usuario = request.user
     emp = Empleado.objects.get(usuario = usuario.username)
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
     if usuario.is_staff:
-        compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
+        compras = Compra.objects.select_related().filter(fechaCompra__range =(fechainicio,fechafin))
         plantilla = 'base.html'
 
     else:
-        compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin)).filter(bodegaCompra = emp.punto.codigoBodega )
+        compras = Compra.objects.select_related().filter(fechaCompra__range =(fechainicio,fechafin),bodegaCompra = emp.punto.codigoBodega )
         plantilla = 'PuntoVentaNorte.html'
 
 
