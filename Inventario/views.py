@@ -560,9 +560,10 @@ def GestionTraslados(request):
         q1 = Traslado.objects.all().order_by('fechaTraslado').\
         filter(fechaTraslado__range = (fechainicio,fechafin))\
         .filter(bodegaActual = empleado.punto.codigoBodega)
+
         q2 = Traslado.objects.all().order_by('fechaTraslado').\
-        filter(fechaTraslado__range = (fechainicio,fechafin))\
-        .filter(bodegaDestino = empleado.punto.nombreBodega)
+            filter(fechaTraslado__range = (fechainicio,fechafin),
+                   bodegaDestino = empleado.punto.nombreBodega)
         traslados = q1|q2
 
     if request.method == 'POST':

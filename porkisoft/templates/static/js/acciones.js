@@ -2,6 +2,17 @@ $(document).on('ready', inicio);
 
  function inicio()
  {
+     /*Caracteristicas Traslados*/
+     if ($('#TrasladoGuardado').text() == 'Si')
+     {
+         $('#Guardatraslado').hide();
+         $('#nuevo').hide();
+     }
+     else
+     {
+         $('#Guardatraslado').show();
+         $('#nuevo').show();
+     }
      function guardarConfiguracion()
      {
          alert('')
