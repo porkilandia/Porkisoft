@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block titulo %} ::Configuracion Despostes::{% endblock titulo %}
+{% block mensajes %}
+    Configuracion Despostes
+{% endblock mensajes %}
+{% block contenido %}
+
+    <div id="rango">
+     <label for="tipoDesposte">Tipo de Desposte</label><select id="tipoDesposte">
+        {% for grupo in grupos %}
+            <option value={{ grupo.id }}>{{ grupo.nombreGrupo }}</option>
+        {% endfor %}
+    </select>
+     <a  onclick="guardarConfiguracion()" href="#"><input type="button" value="Consultar"></a>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+
+{% endblock contenido %}

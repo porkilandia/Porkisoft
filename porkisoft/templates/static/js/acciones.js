@@ -2,6 +2,10 @@ $(document).on('ready', inicio);
 
  function inicio()
  {
+     function guardarConfiguracion()
+     {
+         alert('')
+     }
 
     // oculta el boton de guardado en pedido en caso de que sea contado
      /************************************************Template Venta Norte*********************************************/
@@ -1379,43 +1383,6 @@ function Exportar()
 {
     $('#tablaApanados').tableExport({type:'pdf',escape:'false',pdfFontSize:8,ignoreColumn: [3,9,10]});
 }
-/*function maneja()
-{
-    //Funcion para recorrer una tabla de datos y guardar sus registros en variables
-    var a, b, c, d, f, g,h;
-    $(this).children("td").each(function(e) {
-
-        switch (e)
-        {
-            case 0:
-                a = $(this).text();
-                break;
-            case 1:
-                b = $(this).text();
-                break;
-            case 2:
-                c = $(this).text();
-                break;
-            case 3:
-                d = $(this).text();
-                break;
-            case 4:
-                f = $(this).text();
-                break;
-            case 5:
-                g = $(this).text();
-                break;
-            case 6:
-               h = $(this).text();
-                break;
-
-        }
-
-    });
-    alert(f);
-
-
-}*/
 
 function ReporteFaltantes() {
 
@@ -1752,6 +1719,7 @@ function consultaTraslados() {
                                 "</td><td>" + NombreProducto +
                                 "</td><td>" + respuesta[i].fields.pesoTraslado +
                                 "</td><td>" + respuesta[i].fields.unidadesTraslado +
+                                "</td><td>" + "<a target='_blank'' href='/inventario/dettraslado/"+ respuesta[i].fields.traslado + "'>"+'Detalles'+"</a>" +
                                 "</td></tr>");
                         TotalCompra += parseInt(respuesta[i].fields.pesoTraslado);
                         TotalUnds += parseInt(respuesta[i].fields.unidadesTraslado);

@@ -15,6 +15,14 @@ from Fabricacion.models import *
 from Inventario.models import *
 from Ventas.models import *
 
+def configuracionDesposteTemplate(request):
+    grupos = Grupo.objects.select_related()
+
+    return render_to_response('Fabricacion/configuracionDespostes.html',{'grupos':grupos},context_instance = RequestContext(request))
+
+def configuracionDespostes (request):
+    pass
+
 #******************************************************CANAL***********************************************************
 def GestionCanal(request,idrecepcion):
 
