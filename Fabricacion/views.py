@@ -1475,7 +1475,7 @@ def GestionDesposteActualizado(request, idplanilla):
     if tipoDesposte == 'Cerdos':
         vrCarnes = ceil((vrTotalCanales * Decimal(40))/100)
         vrCarnes2 = ceil((vrTotalCanales * Decimal(25.5))/100)
-        vrCarnes3 = 0#no se nececitan en cerdos
+        vrCarnes3 = 0
         vrCarnes4 = 0
         vrCostillas = ceil((vrTotalCanales * 15)/100)
         vrHuesos = ceil((vrTotalCanales *Decimal(2.5))/100)
