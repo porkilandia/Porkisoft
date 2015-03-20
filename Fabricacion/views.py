@@ -1473,8 +1473,8 @@ def GestionDesposteActualizado(request, idplanilla):
 
     # calculamos el valor de cada grupo multiplicando el %Grupo por el vrTotalCanales
     if tipoDesposte == 'Cerdos':
-        vrCarnes = ceil((vrTotalCanales * Decimal(40))/100)
-        vrCarnes2 = ceil((vrTotalCanales * Decimal(25.5))/100)
+        vrCarnes = ceil((vrTotalCanales * Decimal(35))/100)
+        vrCarnes2 = ceil((vrTotalCanales * Decimal(27))/100)
         vrCarnes3 = 0
         vrCarnes4 = 0
         vrCostillas = ceil((vrTotalCanales * 15)/100)
