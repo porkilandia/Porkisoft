@@ -1574,12 +1574,12 @@ def GestionDesposteActualizado(request, idplanilla):
                idRecepcion = candesp.recepcion.codigoRecepcion
            recepcion = PlanillaRecepcion.objects.get(pk = idRecepcion)
            cantReses = recepcion.cantCabezas
-           sacrificio = Sacrificio.objects.get(recepcion = recepcion.codigoRecepcion)
+           #sacrificio = Sacrificio.objects.get(recepcion = recepcion.codigoRecepcion)
            productoEntrante = int(request.POST.get('producto'))
            prodEnt = str(Producto.objects.get(pk = productoEntrante).nombreProducto)
            pesoProducto = Decimal(request.POST.get('PesoProducto'))
 
-           if prodEnt == 'Cola':
+           '''if prodEnt == 'Cola':
                detalles.PesoProducto = (sacrificio.cola / cantReses) * canales.count()
            elif prodEnt == 'Rinones':
                detalles.PesoProducto =(sacrificio.rinones / cantReses) * canales.count()
@@ -1589,8 +1589,8 @@ def GestionDesposteActualizado(request, idplanilla):
                detalles.PesoProducto =(sacrificio.recortes / cantReses) * canales.count()
            elif prodEnt == 'Ubre':
                detalles.PesoProducto =(sacrificio.ubre / cantReses) * canales.count()
-           else:
-               detalles.PesoProducto =pesoProducto
+           else:'''
+           detalles.PesoProducto =pesoProducto
 
            #guardamos todos los datos en el detalle del desposte
            detalles.vrKiloCarnes = vrKiloCarnes
