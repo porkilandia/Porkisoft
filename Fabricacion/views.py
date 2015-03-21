@@ -1589,7 +1589,7 @@ def GestionDesposteActualizado(request, idplanilla):
                detalles.PesoProducto =(sacrificio.recortes / cantReses) * canales.count()
            elif prodEnt == 'Ubre':
                detalles.PesoProducto =(sacrificio.ubre / cantReses) * canales.count()
-           else:'''
+           else:codigo de muestra'''
            detalles.PesoProducto =pesoProducto
 
            #guardamos todos los datos en el detalle del desposte
