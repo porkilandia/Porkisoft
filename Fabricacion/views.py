@@ -2762,7 +2762,7 @@ def CostearCroqueta(request):
     idCorqueta = request.GET.get('idCroqueta')
     regCroqueta = TallerCroquetas.objects.get(pk = int(idCorqueta))
 
-    if regCroqueta.puntoCroq == 'Norte':
+    if regCroqueta.puntoCroq.nombreBodega == 'Norte':
         croquetaApanada = Producto.objects.get(nombreProducto = 'Croqueta Apanada')
     else:
         croquetaApanada = Producto.objects.get(nombreProducto = 'Pollo Molido')
@@ -2802,7 +2802,7 @@ def GuardarCroqueta(request):
     idCorqueta = request.GET.get('idCroqueta')
     regCroqueta = TallerCroquetas.objects.get(pk = int(idCorqueta))
 
-    if regCroqueta.puntoCroq == 'Norte':
+    if regCroqueta.puntoCroq.nombreBodega == 'Norte':
         croquetaApanada = Producto.objects.get(nombreProducto = 'Croqueta Apanada')
     else:
         croquetaApanada = Producto.objects.get(nombreProducto = 'Pollo Molido')
