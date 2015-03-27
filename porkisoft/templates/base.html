@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <Meta charset="utf-8"/>
+    <title>{% block titulo %}{% endblock titulo %}</title>
+
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}jquery-ui-1.11.1/jquery-ui.css"/>
+
+</head>
+<body>
+<section>
+
+        <div id="nav">
+            <ul>
+                    <li><span id="general" tabindex="1">General</span>
+                        <ul>
+                            <li><a href="/infoGral/">Informacion General</a></li>
+                            <li><a href="/fabricacion/costos">Tabla de Costos</a></li>
+                            <li><a href="/fabricacion/canalPendiente">Canales Pendientes</a></li>
+                            <li><span id="ReporteTalleres" tabindex="1">Reporte Talleres</span>
+                                <ul>
+                                    <li><a href="/fabricacion/promedio">Reporte Desposte</a></li>
+                                    <li><a href="/fabricacion/TemplateCondPo">Reporte Apanados</a></li>
+                                    <li><a href="/fabricacion/TemplateInsumos">Reporte Miga/Condimento</a></li>
+                                    <li><a href="/fabricacion/TemplateDescarnes">Reporte Descarnes</a></li>
+                                    <li><a href="/fabricacion/templateTalleresPuntos">Reporte Talleres Puntos</a></li>
+                                </ul>
+                            </li>
+                            <li><span id="ReporteInv" tabindex="1"> Reporte Inventario</span>
+                                <ul>
+                                    <li><a href="/inventario/reporteCompras">Reporte Compras</a></li>
+                                    <li><a href="/fabricacion/templateTraslado">Reporte Traslados Prod</a></li>
+                                    <li><a href="/fabricacion/templateTrasladoBodega">Reporte Traslados Bodega</a></li>
+                                    <li><a href="/inventario/TemplatereporteFaltantes">Reporte Bodegas</a></li>
+                                    <li><a href="/inventario/TemplateMovimientos">Reporte Movimientos</a></li>
+                                    <li><a href="/fabricacion/templateUtilidad">Rendimiento Lote</a></li>
+                                    <li><a href="/fabricacion/templateListDesp">Listado Despostes</a></li>
+                                    <li><a href="/fabricacion/configuracionDesposte">Configuracion Desposte</a></li>
+
+                                </ul>
+                            </li>
+                            <li><span id="ReporteVentas" tabindex="1"> Reporte Ventas</span>
+                                <ul>
+
+                                    <li><a href="/ventas/templateReporteVentaNorte">Reporte Ventas</a></li>
+                                    <li><a href="/ventas/templateAZ">Reporte Z</a></li>
+                                    <li><a href="/ventas/configPuntos">Configuracion Puntos</a></li>
+                                    <li><a href="/ventas/TemplateListaVentaNorte">Reporte Listado Ventas</a></li>
+                                    <li><a href="/ventas/templateTipoPedido">Reporte Pedidos</a></li>
+                                    <li><a href="/ventas/templateReporteVentaDiaria">Reporte Venta Diaria</a></li>
+                                </ul>
+                            </li>
+
+
+
+
+
+                        </ul>
+                    </li>
+                    <li><span id="inventario" tabindex="1">Inventario</span>
+                        <ul>
+                            <li><a href="/inventario/listaProd"> Gestionar Producto</a></li>
+                            <li><a href="/inventario/compra"> Compra</a></li>
+                            <li><a href="/inventario/bodega"> Bodega</a></li>
+                            <li><a href="/inventario/traslado"> Traslado</a></li>
+                            <li><a href="/inventario/grupo"> Grupo</a></li>
+                            <li><a href="/ventas/ventas"> Ventas</a></li>
+                            <li><a href="/ventas/listaPrecios"> Listas De Precios</a></li>
+                            <li><a href="/inventario/movimiento"> Listas Movimientos</a></li>
+                            <li><a href="/inventario/ajustes"> Ajustes</a></li>
+                            <li><a href="/ventas/ventaPunto"> Venta Punto</a></li>
+                            <li><a href="/ventas/caja"> Caja</a></li>
+                            <li><a href="/ventas/retiro"> Retiro Efectivo</a></li>
+                            <li><a href="/ventas/devoluciones"> Devolucion Mercancia</a></li>
+                            <li><a href="/inventario/faltante"> Faltantes</a></li>
+                        </ul>
+                    </li>
+                    <li><span id="talleres" tabindex="1">Talleres</span>
+                        <ul>
+
+                            <li><a href="/fabricacion/condimento"> Condimento</a></li>
+                            <li><a href="/fabricacion/miga"> Miga</a></li>
+                            <li><a href="/fabricacion/menudos"> Menudos</a></li>
+                            <li><a href="/fabricacion/chicharrones"> Chicharron</a></li>
+                            <li><a href="/fabricacion/verduras"> Limpieza Verduras</a></li>
+
+                        </ul>
+                    </li>
+                    <li><span id="talleres" tabindex="1">Res</span>
+                        <ul>
+                            <li><a href="{% url 'Fabricacion.views.GestionDesposte' 1 %}"> Desposte</a></li>
+                            <li><a href="/fabricacion/molida"> Molida</a></li>
+
+                        </ul>
+                    </li>
+                    <li><span id="talleres" tabindex="1">Cerda y Cerdo</span>
+                        <ul>
+                            <li><a href="{% url 'Fabricacion.views.GestionDesposte' 2 %}">Desposte</a></li>
+                            <li><a href="/fabricacion/descarne"> Descarne</a></li>
+                            <li><a href="/fabricacion/tajado"> Tajado</a></li>
+                            <li><a href="/fabricacion/ensalinados"> Ensalinado</a></li>
+                            <li><a href="/fabricacion/condimentado"> Condimentado</a></li>
+                            <li><a href="/fabricacion/apanados"> Apanado</a></li>
+                            <li><a href="/fabricacion/empacadoApanado"> Empaque Apanados</a></li>
+
+
+                        </ul>
+                    </li>
+                    <li><span id="talleres" tabindex="1">Pollo</span>
+                        <ul>
+
+                            <li><a href="/fabricacion/tajado"> Tajado</a></li>
+                            <li><a href="/fabricacion/condimentado"> Condimentado</a></li>
+                            <li><a href="/fabricacion/apanados"> Apanado</a></li>
+                            <li><a href="/fabricacion/empacadoApanado"> Empaque Apanados</a></li>
+
+                        </ul>
+                    </li>
+                    <li><span id="talleres" tabindex="1">Talleres de Puntos</span>
+                        <ul>
+
+                            <li><a href="/fabricacion/fritos"> Taller Frito</a></li>
+                            <li><a href="/fabricacion/carneCondimentada"> Taller Carne Condimentada</a></li>
+                            <li><a href="/fabricacion/croquetas"> Taller Croquetas</a></li>
+                            <li><a href="/fabricacion/tallerReApanado"> Taller Reapanado</a></li>
+                            <li><a href="/fabricacion/conversiones"> Conversiones</a></li>
+                            <li><a href="/fabricacion/ensBola"> Bola Ensalinada</a></li>
+                        </ul>
+                    </li>
+                    <li><span id="personas" tabindex="1">Personas</span>
+                        <ul>
+                            <li><span id="empleado" tabindex="1"> Empleado</span>
+                                <ul>
+                                    <li><a href="/nomina/empleado/"> Empleados</a></li>
+                                    <li><a href="/nomina/cargo"> Cargos</a></li>
+                                    <li><a href="/nomina/usuarios"> Usuarios</a></li>
+                                    <li><a href="/nomina/login"> Iniciar Sesion</a></li>
+
+                                </ul>
+                            </li>
+                            <li><a href="/inventario/provedor"> Proveedor</a></li>
+                            <li><a href="/telemercadeo/cliente/"> Cliente</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a id="cerrarSesion" href="/nomina/logOut"> Cerrar Sesion / Usuario: {{ user.username|capfirst }}</a></li>
+                    <img class="close" src="images/spacer.gif" alt="" />
+
+                </ul>
+
+            </div>
+        <div id="mensaje">
+            {% block mensajes %}
+            {% endblock mensajes %}
+        </div>
+        <div class="container-fluid">
+
+        <section id="panel-central"  >
+
+
+            {% block contenido %}{% endblock contenido %}
+
+        </section>
+        </div>
+
+
+</section>
+
+        <!--CDN's -->
+            <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+            <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-noty/2.3.4/packaged/jquery.noty.packaged.min.js"></script>
+            <script type="text/javascript" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
+
+        <!--Locales -->
+
+            <script type="text/javascript" src="{{ STATIC_URL }}jquery-ui-1.11.1/jquery-ui.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/acciones.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/PrintArea.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}TableExporter/jspdf/libs/sprintf.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}TableExporter/tableExport.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}TableExporter/jquery.base64.js"></script>
+
+</body>
+</html>
