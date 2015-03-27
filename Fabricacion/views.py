@@ -122,7 +122,7 @@ def GestionCanal(request,idrecepcion):
                 pesoPorkilandia = Decimal(request.POST.get('pesoPorkilandia'))
                 cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gt = 0)# busca registros que el peso sea mayor o igual a 150
 
-                incrementoCG = 32 * cantidadCanalCerdasGrandes.count()
+                incrementoCG = 30 * cantidadCanalCerdasGrandes.count()
 
                 if pesoPorkilandia >= 0:
                     incrementoCG += 30
