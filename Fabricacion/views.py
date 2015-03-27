@@ -125,7 +125,7 @@ def GestionCanal(request,idrecepcion):
                 incrementoCG = 32 * cantidadCanalCerdasGrandes.count()
 
                 if pesoPorkilandia >= 0:
-                    incrementoCG += 32
+                    incrementoCG += 30
 
                 if pesoCanales == 0:#para cuando se ingresa la primera vez
                     pesoCanales = 1
