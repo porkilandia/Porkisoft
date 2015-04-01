@@ -3073,6 +3073,31 @@ def GuardarConversion(request):
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 
+def TemplateRepoConversiones(request):
+    bodegas = Bodega.objects.all()
+    return render_to_response('Fabricacion/TemplateRepoConversiones.html',{'bodegas':bodegas},context_instance = RequestContext(request))
+
+def RepoConversiones(request):
+    idPorducto = request.GET.get('producto')
+    idBodega = request.GET.get('bodega')
+
+    bodega = Bodega.objects.get(pk = int(idBodega))
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    conversiones = Conversiones.objects.select_related().filter(fechaConversion__range = (finicio,ffin) , puntoConversion = bodega.codigoBodega).order_by('productoUno')
+
+    respuesta = serializers.serialize('json',conversiones)
+
+    return HttpResponse(respuesta,mimetype='application/json')
 
 def TemplateTraslados(request):
     productos = Producto.objects.all()

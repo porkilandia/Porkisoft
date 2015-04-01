@@ -1590,6 +1590,71 @@ function ReportePesosLote()
         });
 
 }
+function RepoConversiones() {
+
+    var bodega = $('#bodegas option:selected');
+    //var producto = $('#productoTraslado option:selected');
+    var fechaInicio = $('#inicio').val();
+    var fechaFin = $('#fin').val();
+    var CodigoBodega = bodega.val();
+    var estadoConversion = '';
+    var color = '';
+
+    /*var CodigoProducto = producto.val();
+
+    var NombreBodega = bodega.text();
+    var NombreProducto = producto.text();
+
+    var TotalCompra = 0;
+    var TotalUnds = 0;*/
+
+    var TablaRepoConversiones = $("#TablaRepoConversiones");
+
+        $.ajax({
+
+            url: '/fabricacion/RepoConv/',
+            dataType: "json",
+            type: "get",
+            data: {'inicio': fechaInicio,'fin': fechaFin,'bodega': CodigoBodega},
+            success: function (respuesta) {
+                    TablaRepoConversiones.find("tr:gt(0)").remove();
+                    //$('#total').remove();
+                    for (var i=0;i<respuesta.length;i++)
+                    {
+                        if(respuesta[i].fields.costoP1 < respuesta[i].fields.costoP2)
+                        {
+                            estadoConversion = 'Ganancia';
+                            color = 'blue';
+                        }
+                        else
+                        {
+                             estadoConversion = 'Perdida';
+                             color = 'red';
+                        }
+                        TablaRepoConversiones.append(
+                                "<tr  style='color:" + color + "' ><td>" + respuesta[i].fields.fechaConversion +
+                                "</td><td>" + respuesta[i].fields.pesoConversion +
+                                "</td><td>" + respuesta[i].fields.productoUno +
+                                "</td><td>" + respuesta[i].fields.costoP1 +
+                                "</td><td>" + respuesta[i].fields.productoDos +
+                                "</td><td>" + respuesta[i].fields.costoP2 +
+                                "</td><td>" + estadoConversion +
+                                "</td></tr>");
+
+                    }
+                /*
+                * pesoConversion
+                * costoP1
+                * costoP2
+                * */
+
+                //var n = noty({text: respuesta, type:'success',layout: 'bottom'});
+                //"</td><td>" + "<a target='_blank'' href='/inventario/dettraslado/"+ respuesta[i].fields.traslado + "'>"+'Detalles'+"</a>" +
+                    }
+
+        });
+
+}
 function ReporteTelleresPuntos ()
 {
     $( "#progressbar" ).show();

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+    <div id="rango">
+        <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
+        <label for="fin">Fecha Final</label><input id="fin" type="text">
+
+        <label for="bodegas">Punto</label>
+        <select id="bodegas">
+            {% for bodega in bodegas %}
+                <option value="{{ bodega.codigoBodega }}">{{ bodega.nombreBodega }}</option>
+            {% endfor %}
+        </select>
+    <a  onclick="RepoConversiones()" href="#"><input type="button" value="Consultar"></a>
+    </div>
+    <br/><br/>
+
+<div>
+    <table id="TablaRepoConversiones" class="table-striped">
+        <thead>
+             <tr>
+                 <th>Fecha</th>
+                 <th>Peso</th>
+                 <th>Desde</th>
+                 <th>Costo</th>
+                 <th>Hasta</th>
+                 <th>Costo</th>
+                 <th>Estado</th>
+                 <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+
+
+    </table>
+</div>
+
+
+{% endblock %}
