@@ -2496,9 +2496,9 @@ def GestionFrito(request):
 
             return HttpResponseRedirect('/fabricacion/fritos')
     else:
-        formulario = FritoForm()
+        formulario = FritoForm(initial={'punto':emp.punto.codigoBodega})
 
-    return render_to_response('Fabricacion/GestionFritos.html',{'plantilla':plantilla,'formulario':formulario,'fritos':fritos },
+    return render_to_response('Fabricacion/GestionFritos.html',{'plantilla':plantilla,'formulario':formulario,'fritos':fritos},
                               context_instance = RequestContext(request))
 
 def borrarFrito(request,idFrito):
@@ -2630,7 +2630,7 @@ def GestionCarneCond(request):
 
             return HttpResponseRedirect('/fabricacion/carneCondimentada')
     else:
-        formulario = CarneCondForm()
+        formulario = CarneCondForm(initial={'puntoCond':emp.punto.codigoBodega})
 
     return render_to_response('Fabricacion/GestionCarneCond.html',{'plantilla':plantilla,'formulario':formulario,'carnes':carnes },
                               context_instance = RequestContext(request))
@@ -2748,7 +2748,7 @@ def GestionCroqueta(request):
 
             return HttpResponseRedirect('/fabricacion/croquetas')
     else:
-        formulario = CroquetaFrom()
+        formulario = CroquetaFrom(initial={'puntoCroq':emp.punto.codigoBodega})
 
     return render_to_response('Fabricacion/GestionCroquetas.html',{'plantilla':plantilla,'formulario':formulario,'croquetas':croquetas },
                               context_instance = RequestContext(request))
@@ -2878,7 +2878,7 @@ def GestionReApanado(request):
     fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
     usuario = request.user
-    emp = Empleado.objects.get(usuario = usuario.username)
+    emp = Empleado.objects.select_related().get(usuario = usuario.username)
     if usuario.is_staff:
         plantilla = 'base.html'
         reApanado = TallerReapanado.objects.filter(fechaReApanado__range =(fechainicio,fechafin))
@@ -2896,7 +2896,7 @@ def GestionReApanado(request):
 
             return HttpResponseRedirect('/fabricacion/tallerReApanado')
     else:
-        formulario = ReapanadoForm()
+        formulario = ReapanadoForm(initial={'puntoReApanado':emp.punto.codigoBodega})
 
     return render_to_response('Fabricacion/GestionReApanado.html',{'plantilla':plantilla,'formulario':formulario,'reApanado':reApanado },
                               context_instance = RequestContext(request))
@@ -2982,7 +2982,7 @@ def GestionConversiones(request):
     fechainicio = date.today() - timedelta(days=7)
     fechafin = date.today()
     usuario = request.user
-    emp = Empleado.objects.get(usuario = usuario.username)
+    emp = Empleado.objects.select_related().get(usuario = usuario.username)
     if usuario.is_staff:
         conversiones = Conversiones.objects.filter(fechaConversion__range =(fechainicio,fechafin))
         plantilla = 'base.html'
@@ -2998,7 +2998,7 @@ def GestionConversiones(request):
             formulario.save()
             return HttpResponseRedirect('/fabricacion/conversiones')
     else:
-        formulario = ConversionesForm()
+        formulario = ConversionesForm(initial={'puntoConversion':emp.punto.codigoBodega})
 
     return render_to_response('Fabricacion/GestionReConversiones.html',{'plantilla':plantilla,'formulario':formulario,'conversiones':conversiones },
                               context_instance = RequestContext(request))

@@ -199,7 +199,7 @@ class FritoForm(ModelForm):
 
     class Meta:
         model = TallerFrito
-        exclude = ("pesoTotalFrito","costoKiloFrito",)
+        exclude = ("pesoTotalFrito","costoKiloFrito","guardado",)
 class CarneCondForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(CarneCondForm,self).__init__(*args, **kwargs)
