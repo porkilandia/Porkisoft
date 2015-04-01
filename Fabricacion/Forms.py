@@ -241,10 +241,10 @@ class ConversionesForm(ModelForm):
         q4 = Producto.objects.filter(grupo__nombreGrupo = 'Compra/Venta')
         q5 = Producto.objects.filter(grupo__nombreGrupo = 'Desechos')
         q6 = Producto.objects.filter(grupo__nombreGrupo = 'Pollos')
-        q7 = Producto.objects.filter(grupo__nombreGrupo = 'Insumos')
+        #q7 = Producto.objects.filter(grupo__nombreGrupo = 'Insumos')
 
-        self.fields['productoUno'].queryset = q1 | q2 | q3 | q4 | q5 | q6 | q7
-        self.fields['productoDos'].queryset = q1 | q2 | q3 | q4 | q5 | q6 | q7
+        self.fields['productoUno'].queryset = q1 | q2 | q3 | q4 | q5 | q6 #| q7
+        self.fields['productoDos'].queryset = q1 | q2 | q3 | q4 | q5 | q6 #| q7
 
 
     class Meta:
