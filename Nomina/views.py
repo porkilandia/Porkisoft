@@ -102,7 +102,7 @@ def Login(request):
                         if usuario.username == 'carmenescobar':
                             productosBajoStock = ProductoBodega.objects.select_related().filter(pesoProductoStock__gt = 0).order_by('bodega')
                             costosProductos = Producto.objects.select_related().order_by('nombreProducto')
-                            return render_to_response('Home.html',{'productosBajoStock':productosBajoStock,'costosProductos':costosProductos},context_instance = RequestContext(request))
+                            return render_to_response('Inventario/ReporteFaltantes.html',{'productosBajoStock':productosBajoStock,'costosProductos':costosProductos},context_instance = RequestContext(request))
                         else:
                             return render_to_response('Inicio.html',{},context_instance = RequestContext(request))
                     else:
