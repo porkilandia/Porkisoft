@@ -817,7 +817,8 @@ def ReporteCompra(request):
 def TemplateReporteFaltantes (request):
     bodegas = Bodega.objects.all()
     hoy = datetime.today()
-    return render_to_response('Inventario/ReporteFaltantes.html',{'bodegas':bodegas,'hoy':hoy},
+    usuario = request.user
+    return render_to_response('Inventario/ReporteFaltantes.html',{'bodegas':bodegas,'hoy':hoy,'usuario':usuario},
                                                         context_instance = RequestContext(request))
 
 def ReporteFaltantes (request):
