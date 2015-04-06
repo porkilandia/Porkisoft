@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
@@ -100,9 +101,10 @@ def Login(request):
                     #empleado.cargo.nombreCargo == 'Cajero'
                     if usuario.is_staff:
                         if usuario.username == 'carmenescobar':
-                            productosBajoStock = ProductoBodega.objects.select_related().filter(pesoProductoStock__gt = 0).order_by('bodega')
-                            costosProductos = Producto.objects.select_related().order_by('nombreProducto')
-                            return render_to_response('Inventario/ReporteFaltantes.html',{'productosBajoStock':productosBajoStock,'costosProductos':costosProductos},context_instance = RequestContext(request))
+                            bodegas = Bodega.objects.all()
+                            hoy = datetime.today()
+                            return render_to_response('Inventario/ReporteFaltantes.html',{'bodegas':bodegas,'hoy':hoy,'usuario':usuario},
+                                                                                context_instance = RequestContext(request))
                         else:
                             return render_to_response('Inicio.html',{},context_instance = RequestContext(request))
                     else:
