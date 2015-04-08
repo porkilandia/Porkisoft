@@ -97,7 +97,7 @@ def GestionCanal(request,idrecepcion):
                 menudo = 7000 * cantidad
                 flete = 500000
                 transporte = trans * cantidad
-                deguello = 37000 * cantidad
+                deguello = 39500 * cantidad
 
                 if pesoCanales == 0:#para cuando se ingresa la primera vez
                     pesoCanales = 1000
@@ -118,7 +118,7 @@ def GestionCanal(request,idrecepcion):
             else:
                 menudo = 12000 * cantidad
                 transporte = 9000* cantidad
-                deguello = 48200 * cantidad
+                deguello = 51700 * cantidad
                 pesoPorkilandia = Decimal(request.POST.get('pesoPorkilandia'))
                 cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gt = 0)# busca registros que el peso sea mayor o igual a 150
 
