@@ -1143,9 +1143,9 @@ function ImprimirRecibo()
                                     "<tr><th>" + 'PORKILANDIA S.A.S.' + "</th></tr>"+
                                     "<tr><th>" + 'Nit: 900606687-6' + "</th></tr>"+
                                     "<tr><th>" + 'Regimen Comun' + "</th></tr>"+
-                                    "<tr><th>" + 'Resolucion : 140000039353'+ "</th></tr>"+
+                                    "<tr><th>" + 'Resolucion : 140000045556'+ "</th></tr>"+
                                     "<tr><th>" + 'Rango:000000 hasta 999999' + "</th></tr>"+
-                                    "<tr><th>" + 'Expedida el : 09-04-2013'+ "</th></tr>"+
+                                    "<tr><th>" + 'Expedida el : 09-04-2015'+ "</th></tr>"+
                                     "<tr><th>" + direccion +"</th></tr>"+
                                     "<tr><th style='font-size: 1.1em'>"+'__________________________________'+"</th></tr>"+
                                     "<tr><th style='text-align: left'>"+'Fecha : ' + fechaVenta + "</th></tr>"+
