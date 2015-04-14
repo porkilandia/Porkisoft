@@ -1002,7 +1002,7 @@ def ReporteVentaNorte(request):
 
     else:
          ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega))
-         pedidos = DetallePedido.objects.select_related().filter(pedido__fechaPedido__range = (finicio,ffin),pedido__bodega = int(bodega)).exclude(pedido__cliente__nombreCliente = 'Jose Alomia')
+         pedidos = DetallePedido.objects.select_related().filter(pedido__fechaPedido__range = (finicio,ffin),pedido__bodega = int(bodega))
 
          #inicializamos los diccionarios con las dos consultas
 
