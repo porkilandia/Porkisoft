@@ -1989,6 +1989,11 @@ def GuardaDescarne(request):
     respuesta  = json.dumps(msj)
 
     return HttpResponse(respuesta,mimetype='application/json')
+def borrarDescarne(request,idDesc):
+    descarne = DescarneCabeza.objects.get(pk = idDesc)
+    descarne.delete()
+    return HttpResponseRedirect('/fabricacion/descarne/')
+
 
 def GestionEmpacadoApanados(request):
     fechainicio = date.today() - timedelta(days=20)

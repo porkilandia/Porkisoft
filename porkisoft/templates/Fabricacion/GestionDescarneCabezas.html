@@ -51,7 +51,10 @@
             {% endif %}
 
 
-            <td><a id="guardarDescarne" onclick="GuardaDescarne({{ descarne.id }})" href="#">Guardar cant</a></td>
+            <td>
+                <a id="guardarDescarne" onclick="GuardaDescarne({{ descarne.id }})" href="#">Guardar cant</a>
+                <a href="{% url 'Fabricacion.views.borrarDescarne' descarne.id %}">Borrar</a>
+            </td>
         </tr>
             {% empty %}
             <tr>
