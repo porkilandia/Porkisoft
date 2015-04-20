@@ -973,10 +973,18 @@ def ReporteVentaNorte(request):
         for detalle in pedidos:
             if detalle.producto.pesables:
                 PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
-                ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+                if detalle.producto.gravado or detalle.producto.gravado2:
+                    ValorProductos[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
+                    ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
+                else:
+                    ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
             else:
                 UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
-                ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+                if detalle.producto.gravado or detalle.producto.gravado2:
+                    ValorUnds[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
+                    ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
+                else:
+                    ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
 
     elif tipoReporte == 'clienteDetalle':
         pedidos = DetallePedido.objects.select_related().filter(pedido__fechaPedido__range = (finicio,ffin),pedido__cliente = int(idCliente),pedido__bodega = int(bodega))
@@ -1001,18 +1009,34 @@ def ReporteVentaNorte(request):
         for detalle in pedidos:
             if detalle.producto.pesables:
                 PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
-                ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+                if detalle.producto.gravado or detalle.producto.gravado2:
+                    ValorProductos[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
+                    ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
+                else:
+                    ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
             else:
                 UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
-                ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+                if detalle.producto.gravado or detalle.producto.gravado2:
+                    ValorUnds[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
+                    ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
+                else:
+                    ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
 
         for detalle in ventas:
             if detalle.productoVenta.pesables:
                 PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+                if detalle.productoVenta.gravado or detalle.productoVenta.gravado2:
+                    ValorProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.vrTotalPunto / 1.16)
+                    ValorIva['Iva'] += detalle.vrTotalPunto - ceil(detalle.vrTotalPunto / 1.16)
+                else:
+                    ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
             else:
                 UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+                if detalle.productoVenta.gravado or detalle.productoVenta.gravado2:
+                    ValorUnds[detalle.productoVenta.nombreProducto] += ceil(detalle.vrTotalPunto / 1.16)
+                    ValorIva['Iva'] += detalle.vrTotalPunto - ceil(detalle.vrTotalPunto / 1.16)
+                else:
+                    ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
 
     else:
          ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega))
@@ -1039,20 +1063,36 @@ def ReporteVentaNorte(request):
          # ahora poblamos los diccionarios con las consultas
 
          for detalle in ventas:
-             if detalle.productoVenta.pesables:
-                 PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                 ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
-             else:
-                 UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                 ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+            if detalle.productoVenta.pesables:
+                PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                if detalle.productoVenta.gravado or detalle.productoVenta.gravado2:
+                    ValorProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.vrTotalPunto / 1.16)
+                    ValorIva['Iva'] += detalle.vrTotalPunto - ceil(detalle.vrTotalPunto / 1.16)
+                else:
+                    ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+            else:
+                UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
+                if detalle.productoVenta.gravado or detalle.productoVenta.gravado2:
+                    ValorUnds[detalle.productoVenta.nombreProducto] += ceil(detalle.vrTotalPunto / 1.16)
+                    ValorIva['Iva'] += detalle.vrTotalPunto - ceil(detalle.vrTotalPunto / 1.16)
+                else:
+                    ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
 
          for detalle in pedidos:
-             if detalle.producto.pesables:
-                 PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
-                 ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
-             else:
-                 UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
-                 ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+            if detalle.producto.pesables:
+                PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
+                if detalle.producto.gravado or detalle.producto.gravado2:
+                    ValorProductos[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
+                    ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
+                else:
+                    ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+            else:
+                UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
+                if detalle.producto.gravado or detalle.producto.gravado2:
+                    ValorUnds[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
+                    ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
+                else:
+                    ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
 
 
 
