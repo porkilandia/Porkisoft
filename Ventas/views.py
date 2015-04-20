@@ -922,6 +922,7 @@ def ReporteVentaNorte(request):
     if tipoReporte == 'ventas':
 
 
+
         if jornada == 'Completa':
 
             ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega))
@@ -940,10 +941,18 @@ def ReporteVentaNorte(request):
         for detalle in ventas:
             if detalle.productoVenta.pesables:
                 PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+                if detalle.productoVenta.gravado or detalle.productoVenta.gravado2:
+                    ValorProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.vrTotalPunto / 1.16)
+                else:
+                    ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
             else:
                 UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+                if detalle.productoVenta.gravado or detalle.productoVenta.gravado2:
+                    ValorUnds[detalle.productoVenta.nombreProducto] += ceil(detalle.vrTotalPunto / 1.16)
+                else:
+                    ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
+
+
 
     elif tipoReporte == 'pedidos':
         pedidos = DetallePedido.objects.select_related().filter(pedido__fechaPedido__range = (finicio,ffin),pedido__bodega = int(bodega))
