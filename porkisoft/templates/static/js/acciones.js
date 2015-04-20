@@ -628,6 +628,7 @@ function ReporteVentasNorte() {
         var bodega = $('#bodega').val();
         var sumatoria = $('#sumasTotales');
         var cliente = $('#cliente').val();
+        var iva = 0;
 
     $.ajax({
             url: '/ventas/reporteVentaNorte/',
@@ -661,6 +662,9 @@ function ReporteVentasNorte() {
                     totalVentaNoPesables += Math.ceil(value);
                     $("#tablaRepVCP").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) + "</td></tr>");
                 });
+                $.each(respuesta.ValorIva,function(key,value){
+                    iva = value;
+                });
 
                 var sumaTotal = totalVentaNoPesables + totalVentaPesables;
                 sumatoria.append("<tr><td>" + 'Pesables' +
@@ -669,6 +673,8 @@ function ReporteVentasNorte() {
                                  "<tr><td>" + 'No Pesables' +
                                  "</td><td>" + totalVentaNoPesables +
                                  "</td></tr>"+
+                                 "<tr><td>" + 'Total Iva' +
+                                 "</td><td>" +  iva +
                                  "<tr><td>" + 'Total' +
                                  "</td><td>" +  sumaTotal +
                                  "</td></tr>");

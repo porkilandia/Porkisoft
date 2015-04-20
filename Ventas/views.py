@@ -918,6 +918,8 @@ def ReporteVentaNorte(request):
     UdnProductos = {}
     ValorProductos = {}
     ValorUnds = {}
+    ValorIva = {}
+    ValorIva['Iva'] = 0
 
     if tipoReporte == 'ventas':
 
@@ -938,17 +940,20 @@ def ReporteVentaNorte(request):
                 UdnProductos[detalle.productoVenta.nombreProducto] = 0
                 ValorUnds[detalle.productoVenta.nombreProducto] = 0
 
+
         for detalle in ventas:
             if detalle.productoVenta.pesables:
                 PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
                 if detalle.productoVenta.gravado or detalle.productoVenta.gravado2:
                     ValorProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.vrTotalPunto / 1.16)
+                    ValorIva['Iva'] += detalle.vrTotalPunto - ceil(detalle.vrTotalPunto / 1.16)
                 else:
                     ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
             else:
                 UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
                 if detalle.productoVenta.gravado or detalle.productoVenta.gravado2:
                     ValorUnds[detalle.productoVenta.nombreProducto] += ceil(detalle.vrTotalPunto / 1.16)
+                    ValorIva['Iva'] += detalle.vrTotalPunto - ceil(detalle.vrTotalPunto / 1.16)
                 else:
                     ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
 
@@ -1051,7 +1056,7 @@ def ReporteVentaNorte(request):
 
 
 
-    listas = {'PesoProductos':PesoProductos,'ValorProductos':ValorProductos,'UdnProductos':UdnProductos,'ValorUnds':ValorUnds}
+    listas = {'PesoProductos':PesoProductos,'ValorProductos':ValorProductos,'UdnProductos':UdnProductos,'ValorUnds':ValorUnds,'ValorIva':ValorIva}
     respuesta = json.dumps(listas)
 
     return HttpResponse(respuesta,mimetype='application/json')
