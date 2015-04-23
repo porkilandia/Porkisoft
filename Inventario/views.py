@@ -887,7 +887,7 @@ def ReporteMovimientos(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionAjustes(request):
-    fechainicio = date.today() - timedelta(days=5)
+    fechainicio = date.today() - timedelta(days=1)
     fechafin = date.today()
     ajustes = Ajustes.objects.all().order_by('fechaAjuste').filter(fechaAjuste__range = (fechainicio,fechafin))
     if request.method == 'POST':
