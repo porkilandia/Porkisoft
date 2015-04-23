@@ -889,7 +889,7 @@ def ReporteMovimientos(request):
 def GestionAjustes(request):
     fechainicio = date.today() - timedelta(days=1)
     fechafin = date.today()
-    ajustes = Ajustes.objects.all().order_by('fechaAjuste').filter(fechaAjuste__range = (fechainicio,fechafin))
+    ajustes = Ajustes.objects.select_related().filter(fechaAjuste__range = (fechainicio,fechafin)).order_by('fechaAjuste')
     if request.method == 'POST':
 
         formulario = AjustesForm(request.POST)
