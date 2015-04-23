@@ -1400,7 +1400,18 @@ function Exportar()
 {
     $('#tablaApanados').tableExport({type:'pdf',escape:'false',pdfFontSize:8,ignoreColumn: [3,9,10]});
 }
+function conciliarFaltantes() {
 
+    var tablaReporteFaltante = $('#tablaReporteFaltante');
+
+
+    
+}
+
+function cambioRegistro() {
+    alert('paso');
+
+}
 function ReporteFaltantes() {
 
     var bodega = $('#bodegaFaltantes option:selected');
@@ -1459,14 +1470,16 @@ function ReporteFaltantes() {
                             colorund = 'white';
                         }
 
+
+
                             tablaFaltante.append(
                                 "<tr style= 'color: black'><td>" + respuesta[i].fields.producto +
                                 "</td><td>" + respuesta[i].fields.nombreProducto +
                                 "</td><td>" + NombreBodega +
                                 "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
                                 "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
-                                "</td><td>" + '0' +
-                                "</td><td>" + '0' +
+                                "</td><td  contenteditable='true' onchange='"+ cambioRegistro()+"'> "+
+                                "</td><td contenteditable='true'>" + '0' +
                                 "</td></tr>");
 
 
