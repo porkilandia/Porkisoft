@@ -1484,8 +1484,10 @@ function ReporteFaltantes() {
                         }
 
 
+                            if ((parseInt(respuesta[i].fields.pesoProductoStock)!= 0) || (parseInt(respuesta[i].fields.unidadesStock)))
+                            {
 
-                            tablaFaltante.append(
+                                tablaFaltante.append(
                                 "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
                                 "</td><td>" + respuesta[i].fields.nombreProducto +
                                 "</td><td>" + NombreBodega +
@@ -1495,10 +1497,7 @@ function ReporteFaltantes() {
                                 "</td><td>"+
                                 "</td><td><input type = 'checkbox' checked = 'checked'>"+
                                 "</td></tr>");
-
-
-
-
+                            }
                     }
 
                     }
