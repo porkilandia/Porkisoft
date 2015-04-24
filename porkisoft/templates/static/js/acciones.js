@@ -1404,9 +1404,22 @@ function conciliarFaltantes() {
 
     var tablaReporteFaltante = $('#tablaReporteFaltante');
 
-
-    
 }
+$('#tablaReporteFaltante').delegate('tr.pesos','change', function(){
+    var fisico = $(".actual",this).val();
+    var invSistema = parseInt($(this).find("td").eq(3).html());
+    var undSistema = parseInt($(this).find("td").eq(4).html());
+    var faltante = 0;
+    if (invSistema != 0)
+    {
+       faltante = fisico - invSistema;
+    }else
+    {
+      faltante = fisico - undSistema;
+    }
+
+    $(this).find("td").eq(6).html(faltante);
+});
 
 function cambioRegistro() {
     alert('paso');
@@ -1473,13 +1486,14 @@ function ReporteFaltantes() {
 
 
                             tablaFaltante.append(
-                                "<tr style= 'color: black'><td>" + respuesta[i].fields.producto +
+                                "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
                                 "</td><td>" + respuesta[i].fields.nombreProducto +
                                 "</td><td>" + NombreBodega +
                                 "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
                                 "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
-                                "</td><td  contenteditable='true' onchange='"+ cambioRegistro()+"'> "+
-                                "</td><td contenteditable='true'>" + '0' +
+                                "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                "</td><td>"+
+                                "</td><td><input type = 'checkbox' checked = 'checked'>"+
                                 "</td></tr>");
 
 
