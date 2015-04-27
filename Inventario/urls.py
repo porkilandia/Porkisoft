@@ -9,6 +9,7 @@ urlpatterns = patterns('',
 
     url(r'^TemplatereporteFaltantes/$', TemplateReporteFaltantes),
     url(r'^reporteFaltantes/$', ReporteFaltantes),
+    url(r'^conciliaInventario/$', ConciliaInventario),
 
     url(r'^TemplateMovimientos/$', TemplateMovimientos),
     url(r'^reporteMovimientos/$', ReporteMovimientos),

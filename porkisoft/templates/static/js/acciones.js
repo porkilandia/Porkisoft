@@ -1402,27 +1402,31 @@ function Exportar()
 }
 function conciliarFaltantes() {
 
-    $("#tabla tbody tr").each(function (index)
-        {
-            var campo1, campo2, campo3;
-            $(this).children("td").each(function (index2)
-            {
-                switch (index2)
-                {
-                    case 0: campo1 = $(this).text();
-                            break;
-                    case 1: campo2 = $(this).text();
-                            break;
-                    case 2: campo3 = $(this).text();
-                            break;
-                }
-                $(this).css("background-color", "#ECF8E0");
-            });
-            alert(campo1 + ' - ' + campo2 + ' - ' + campo3);
+     var table = $('#tablaReporteFaltante').tableToJSON({
+         onlyColumns:[0,2,6],
+         allowHTML : true
+     });
+    var datos = JSON.stringify(table);
+
+     //alert(JSON.stringify(table));
+
+     $.ajax({
+
+            url: '/inventario/conciliaInventario/',
+            dataType: "json",
+            type: "get",
+            data:{'datos' : datos},
+            success: function (respuesta) {
+                        alert(respuesta);
+                    }
+
         });
+
+
 }
 $('#tablaReporteFaltante').delegate('tr.pesos','change', function(){
     var fisico = $(".actual",this).val();
+    $(this).find("td").eq(6).html(fisico);
     var invSistema = parseInt($(this).find("td").eq(3).html());
     var undSistema = parseInt($(this).find("td").eq(4).html());
     var faltante = 0;
@@ -1434,13 +1438,10 @@ $('#tablaReporteFaltante').delegate('tr.pesos','change', function(){
       faltante = fisico - undSistema;
     }
 
-    $(this).find("td").eq(6).html(faltante);
+    $(this).find("td").eq(7).html(faltante);
 });
 
-function cambioRegistro() {
-    alert('paso');
 
-}
 function ReporteFaltantes() {
 
     var bodega = $('#bodegaFaltantes option:selected');
@@ -1510,6 +1511,7 @@ function ReporteFaltantes() {
                                 "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
                                 "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
                                 "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                 "</td><td>"+ '0' +
                                 "</td><td>"+
                                 "</td><td><input type = 'checkbox' checked = 'checked'>"+
                                 "</td></tr>");

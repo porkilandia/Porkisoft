@@ -830,6 +830,22 @@ def ReporteFaltantes (request):
     respuesta = serializers.serialize('json',productoBodega)
     return HttpResponse(respuesta,mimetype='application/json')
 
+def ConciliaInventario (request):
+
+    datos = request.GET.get('datos')
+    datosJson = json.loads(datos)
+    for dato in datosJson:
+
+        producto = ProductoBodega.objects.select_related().get(producto = dato['Codigo'],bodega__nombreBodega = dato['Bodega'])
+        if producto.producto.pesables:
+            producto.pesoProductoStock = Decimal(dato['Fisico'])
+        else:
+            producto.unidadesStock = int(dato['Fisico'])
+        producto.save()
+    msj =  'Exito'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
 def Deshidratacion(request):
     bodega = request.GET.get('bodega')
     cont = 0
