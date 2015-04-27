@@ -1403,8 +1403,7 @@ function Exportar()
 function conciliarFaltantes() {
 
      var table = $('#tablaReporteFaltante').tableToJSON({
-         onlyColumns:[0,2,6],
-         allowHTML : true
+         onlyColumns:[0,2,6]
      });
     var datos = JSON.stringify(table);
 
