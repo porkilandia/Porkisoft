@@ -1408,19 +1408,20 @@ function conciliarFaltantes() {
     var datos = JSON.stringify(table);
 
      //alert(JSON.stringify(table));
-
-     $.ajax({
+    var opcion = confirm('Desea ajustar los productos Seleccionados?');
+    if (opcion == true) {
+        $.ajax({
 
             url: '/inventario/conciliaInventario/',
             dataType: "json",
             type: "get",
-            data:{'datos' : datos},
+            data: {'datos': datos},
             success: function (respuesta) {
-                        alert(respuesta);
-                    }
+                alert(respuesta);
+            }
 
         });
-
+    }
 
 }
 $('#tablaReporteFaltante').delegate('tr.pesos','change', function(){
