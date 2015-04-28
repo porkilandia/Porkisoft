@@ -1424,18 +1424,21 @@ function conciliarFaltantes() {
 
 }
 $('#tablaReporteFaltante').delegate('tr.pesos','change', function(){
+
     var fisico = $(".actual",this).val();
-    $(this).find("td").eq(6).html(fisico);
+
+    if ($(".conciliar",this).attr('checked'))$(this).find("td").eq(6).html(fisico);
+    else $(this).find("td").eq(6).html(0);
+
     var invSistema = parseInt($(this).find("td").eq(3).html());
     var undSistema = parseInt($(this).find("td").eq(4).html());
+
+    if (invSistema < 0)invSistema = invSistema * (-1);
+    if (undSistema < 0)undSistema = undSistema * (-1);
+
     var faltante = 0;
-    if (invSistema != 0)
-    {
-       faltante = fisico - invSistema;
-    }else
-    {
-      faltante = fisico - undSistema;
-    }
+    if (invSistema != 0)faltante = fisico - invSistema;
+    else faltante = fisico - undSistema;
 
     $(this).find("td").eq(7).html(faltante);
 });
@@ -1512,7 +1515,7 @@ function ReporteFaltantes() {
                                 "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
                                  "</td><td>"+ '0' +
                                 "</td><td>"+
-                                "</td><td><input type = 'checkbox' checked = 'checked'>"+
+                                "</td><td><input type = 'checkbox' class = 'conciliar' checked = 'checked'>"+
                                 "</td></tr>");
                             }
                     }

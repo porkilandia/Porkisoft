@@ -836,12 +836,14 @@ def ConciliaInventario (request):
     datosJson = json.loads(datos)
     for dato in datosJson:
 
-        producto = ProductoBodega.objects.select_related().get(producto = dato['Codigo'],bodega__nombreBodega = dato['Bodega'])
-        if producto.producto.pesables:
-            producto.pesoProductoStock = Decimal(dato['Fisico'])
-        else:
-            producto.unidadesStock = int(dato['Fisico'])
-        producto.save()
+        if int(dato['Fisico']) != 0:
+            producto = ProductoBodega.objects.select_related().get(producto = dato['Codigo'],bodega__nombreBodega = dato['Bodega'])
+            if producto.producto.pesables:
+                producto.pesoProductoStock = Decimal(dato['Fisico'])
+            else:
+                producto.unidadesStock = int(dato['Fisico'])
+            producto.save()
+
     msj =  'Exito'
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
