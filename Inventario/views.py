@@ -834,17 +834,20 @@ def ConciliaInventario (request):
 
     datos = request.GET.get('datos')
     datosJson = json.loads(datos)
+    cont = 0
     for dato in datosJson:
 
         if int(dato['Fisico']) != 0:
             producto = ProductoBodega.objects.select_related().get(producto = dato['Codigo'],bodega__nombreBodega = dato['Bodega'])
+
             if producto.producto.pesables:
                 producto.pesoProductoStock = Decimal(dato['Fisico'])
             else:
                 producto.unidadesStock = int(dato['Fisico'])
+            cont +=1
             producto.save()
 
-    msj =  'Exito'
+    msj =  'Se conciliaron %d productos Exitosamente'%cont
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 
