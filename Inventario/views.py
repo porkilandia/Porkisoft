@@ -343,7 +343,7 @@ def GestionGanado(request,idcompra):
 def GestionCompra(request):
     usuario = request.user
     emp = Empleado.objects.get(usuario = usuario.username)
-    fechainicio = date.today() - timedelta(days=5)
+    fechainicio = date.today() - timedelta(days=2)
     fechafin = date.today()
     if usuario.is_staff:
         compras = Compra.objects.select_related().filter(fechaCompra__range =(fechainicio,fechafin))
@@ -376,7 +376,7 @@ def borrarCompra(request, idCompra):
 
 def ModificaCompra(request,idCompra):
     usuario = request.user
-    fechainicio = date.today() - timedelta(days=5)
+    fechainicio = date.today() - timedelta(days=2)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     compra = Compra.objects.get(pk = idCompra)
