@@ -343,7 +343,7 @@ def GestionGanado(request,idcompra):
 def GestionCompra(request):
     usuario = request.user
     emp = Empleado.objects.get(usuario = usuario.username)
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=5)
     fechafin = date.today()
     if usuario.is_staff:
         compras = Compra.objects.select_related().filter(fechaCompra__range =(fechainicio,fechafin))
@@ -376,7 +376,7 @@ def borrarCompra(request, idCompra):
 
 def ModificaCompra(request,idCompra):
     usuario = request.user
-    fechainicio = date.today() - timedelta(days=22)
+    fechainicio = date.today() - timedelta(days=5)
     fechafin = date.today()
     compras = Compra.objects.filter(fechaCompra__range =(fechainicio,fechafin))
     compra = Compra.objects.get(pk = idCompra)
@@ -549,7 +549,7 @@ def EditaCompra(request,idDetCompra):
 def GestionTraslados(request):
     usuario = request.user
     empleado = Empleado.objects.get(usuario = usuario.username)
-    fechainicio = date.today() - timedelta(days=11)
+    fechainicio = date.today() - timedelta(days=5)
     fechafin = date.today()
 
     if usuario.is_staff:
@@ -588,7 +588,7 @@ def EditaTraslados(request,idTraslado):
     trasladoEditar = Traslado.objects.get(pk = idTraslado)
     usuario = request.user
     empleado = Empleado.objects.get(usuario = usuario.username)
-    fechainicio = date.today() - timedelta(days=11)
+    fechainicio = date.today() - timedelta(days=5)
     fechafin = date.today()
 
     if usuario.is_staff:
@@ -989,7 +989,7 @@ def CantidadActual(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def EditarAjustes(request,idAjuste):
-    fechainicio = date.today() - timedelta(days=20)
+    fechainicio = date.today() - timedelta(days=1)
     fechafin = date.today()
     ajustes = Ajustes.objects.all().order_by('fechaAjuste').filter(fechaAjuste__range = (fechainicio,fechafin))
     ajuste = Ajustes.objects.get(pk = idAjuste)
