@@ -1827,7 +1827,9 @@ def EditaCostos(request,idcosto):
                               context_instance = RequestContext(request))
 
 def InformeCanalesPendientes(request):
-    canalPendiente = Canal.objects.filter(estado = False).order_by('codigoCanal')
+    fechainicio = date.today() - timedelta(days=40)
+    fechafin = date.today()
+    canalPendiente = Canal.objects.select_related().filter(estado = False, recepcion__compra__fechaCompra__range =(fechainicio,fechafin)).order_by('codigoCanal')
     return render_to_response('Fabricacion/InformeCanalesPendientes.html',{'canalesPendientes':canalPendiente},
                               context_instance = RequestContext(request))
 
