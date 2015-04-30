@@ -833,12 +833,13 @@ def ReporteFaltantes (request):
 def ConciliaInventario (request):
 
     datos = request.GET.get('datos')
+    bodega = request.GET.get('CodigoBodega')
     datosJson = json.loads(datos)
     cont = 0
     for dato in datosJson:
 
         if int(dato['Fisico']) != 0:
-            producto = ProductoBodega.objects.select_related().get(producto = dato['Codigo'],bodega__nombreBodega = dato['Bodega'])
+            producto = ProductoBodega.objects.select_related().get(producto = dato['Codigo'],bodega = int(bodega))
 
             if producto.producto.pesables:
                 producto.pesoProductoStock = Decimal(dato['Fisico'])

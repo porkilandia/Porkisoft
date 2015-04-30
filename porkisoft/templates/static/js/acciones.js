@@ -1403,9 +1403,11 @@ function Exportar()
 function conciliarFaltantes() {
 
      var table = $('#tablaReporteFaltante').tableToJSON({
-         onlyColumns:[0,2,6]
+         onlyColumns:[0,6]
      });
     var datos = JSON.stringify(table);
+    var bodega = $('#bodegaFaltantes option:selected');
+    var CodigoBodega = bodega.val();
 
      //alert(JSON.stringify(table));
     var opcion = confirm('Desea ajustar los productos Seleccionados?');
@@ -1416,7 +1418,7 @@ function conciliarFaltantes() {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             type: "get",
-            data: {'datos': datos},
+            data: {'datos': datos,'CodigoBodega':CodigoBodega},
             success: function (respuesta) {
                 alert(respuesta);
             }
