@@ -923,13 +923,11 @@ def ReporteVentaNorte(request):
 
     if tipoReporte == 'ventas':
 
-
-
         if jornada == 'Completa':
 
-            ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega))
+            ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega),venta__anulado = False)
         else:
-            ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__jornada = jornada , venta__puntoVenta = int(bodega))
+            ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__jornada = jornada , venta__puntoVenta = int(bodega),venta__anulado = False)
 
 
         for detalle in ventas:
@@ -988,7 +986,7 @@ def ReporteVentaNorte(request):
 
     elif tipoReporte == 'clienteDetalle':
         pedidos = DetallePedido.objects.select_related().filter(pedido__fechaPedido__range = (finicio,ffin),pedido__cliente = int(idCliente),pedido__bodega = int(bodega))
-        ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega),venta__cliente = int(idCliente) )
+        ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega),venta__cliente = int(idCliente),venta__anulado = False )
 
         for detalle in ventas:
             if detalle.productoVenta.pesables:
@@ -1039,7 +1037,7 @@ def ReporteVentaNorte(request):
                     ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
 
     else:
-         ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega))
+         ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega),venta__anulado = False )
          pedidos = DetallePedido.objects.select_related().filter(pedido__fechaPedido__range = (finicio,ffin),pedido__bodega = int(bodega))
 
          #inicializamos los diccionarios con las dos consultas
