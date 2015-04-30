@@ -1413,6 +1413,7 @@ function conciliarFaltantes() {
         $.ajax({
 
             url: '/inventario/conciliaInventario/',
+            contentType: "application/json; charset=utf-8",
             dataType: "json",
             type: "get",
             data: {'datos': datos},
