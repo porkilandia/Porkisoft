@@ -3476,7 +3476,7 @@ def ReporteTallerPunto(request):
 
 
 def GestionChicharron(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     chicharrones = TallerChicharron.objects.filter(fechaChicharron__range =(fechainicio,fechafin))
 
