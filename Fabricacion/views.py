@@ -911,7 +911,7 @@ def costeoApanado(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionMolido(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
     molidos = Molida.objects.filter(fechaMolido__range =(fechainicio,fechafin))
     #molidos = Molida.objects.all()
@@ -1839,7 +1839,7 @@ def verCanal(request,idCanal):
     return HttpResponseRedirect('/fabricacion/canal/'+ str(recepcion.codigoRecepcion))
 
 def GestionDescarneCabeza(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
     descarnes = DescarneCabeza.objects.filter(fecha__range =(fechainicio,fechafin))
     #descarnes = DescarneCabeza.objects.all()
