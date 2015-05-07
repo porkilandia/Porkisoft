@@ -235,12 +235,12 @@ class ConversionesForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(ConversionesForm,self).__init__(*args, **kwargs)
 
-        q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses')
-        q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos')
-        q3 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdas')
-        q4 = Producto.objects.filter(grupo__nombreGrupo = 'Compra/Venta')
-        q5 = Producto.objects.filter(grupo__nombreGrupo = 'Desechos')
-        q6 = Producto.objects.filter(grupo__nombreGrupo = 'Pollos')
+        q1 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Reses')
+        q2 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Cerdos')
+        q3 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Cerdas')
+        q4 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Compra/Venta')
+        q5 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Desechos')
+        q6 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Pollos')
         #q7 = Producto.objects.filter(grupo__nombreGrupo = 'Insumos')
 
         self.fields['productoUno'].queryset = q1 | q2 | q3 | q4 | q5 | q6 #| q7

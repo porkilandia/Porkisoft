@@ -14,10 +14,17 @@ class PedidoForm(ModelForm):
 class DetallePedidoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(DetallePedidoForm,self).__init__(*args, **kwargs)
-        self.fields['producto'].queryset = Producto.objects.all()
+
+        q1 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Reses",numeroProducto__gt = 0)
+        q2 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Cerdos",numeroProducto__gt = 0)
+        q3 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Cerdas",numeroProducto__gt = 0)
+        q4 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Pollos",numeroProducto__gt = 0)
+        q5 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Compra/Venta",numeroProducto__gt = 0)
+
+        self.fields['producto'].queryset = q1|q2|q3|q4|q5
     class Meta:
         model = DetallePedido
-        exclude = ('subproducto',)
+        exclude = ('subproducto','estado',)
 
 class VentaForm(ModelForm):
     class Meta:
