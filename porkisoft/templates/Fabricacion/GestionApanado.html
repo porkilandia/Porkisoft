@@ -47,11 +47,11 @@
                 <td>No</td>
             {% endif %}
             {% if apanado.guardado == True %}
-                <td></td>
+                <td><a onclick="CostearApanado({{ apanado.id }})" href="#">Costear</a></td>
             {% else %}
                 <td>
                 <a href="{% url 'Fabricacion.views.EditaApanado' apanado.id %}">Editar</a>
-                <a onclick="CostearApanado({{ apanado.id }})" href="#">Costear</a>
+                    <a onclick="CostearApanado({{ apanado.id }})" href="#">Costear</a>
                 <a onclick="GuardarApanado({{ apanado.id }})" href="#">Guardar</a>
             </td>
             {% endif %}
