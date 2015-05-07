@@ -1885,7 +1885,10 @@ def GestionDescarneCabeza(request):
 
 
                 costoProcesos = Decimal(0.69) * costoDescarne
-                vrKiloProcesos = ceil(Decimal(costoProcesos) / (descarne.procesos/1000))
+                if descarne.procesos == 0:
+                    vrKiloProcesos = 0
+                else:
+                    vrKiloProcesos = ceil(Decimal(costoProcesos) / (descarne.procesos/1000))
 
                  #Guardamos los costos en la tabla Producto
 
@@ -1920,7 +1923,10 @@ def GestionDescarneCabeza(request):
                 costoUnidad = costoRecorte / descarne.cantRecosrtes
 
                 costoProcesos = Decimal(0.70) * costoDescarne
-                vrKiloProcesos = ceil(Decimal(costoProcesos) / (descarne.procesos/1000))
+                if descarne.procesos == 0:
+                    vrKiloProcesos = 0
+                else:
+                    vrKiloProcesos = ceil(Decimal(costoProcesos) / (descarne.procesos/1000))
 
                 #Guardamos los costos en la tabla Producto
                 recorte = Producto.objects.get(nombreProducto = 'Recortes Cabeza Cerda')
