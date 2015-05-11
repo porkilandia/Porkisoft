@@ -920,147 +920,46 @@ def ReporteVentaNorte(request):
     ValorUnds = {}
     ValorIva = {}
     ValorIva['Iva'] = 0
+    ventas = {}
+    pedidos = {}
+
+
 
     if tipoReporte == 'ventas':
-
         if jornada == 'Completa':
-
             ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega),venta__anulado = False)
         else:
             ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__jornada = jornada , venta__puntoVenta = int(bodega),venta__anulado = False)
 
-
-        for detalle in ventas:
-            if detalle.productoVenta.pesables:
-                PesoProductos[detalle.productoVenta.nombreProducto] = 0
-                ValorProductos[detalle.productoVenta.nombreProducto] = 0
-            else:
-                UdnProductos[detalle.productoVenta.nombreProducto] = 0
-                ValorUnds[detalle.productoVenta.nombreProducto] = 0
-
-
-        for detalle in ventas:
-            if detalle.productoVenta.pesables:
-                PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                if detalle.productoVenta.gravado or detalle.productoVenta.gravado2:
-                    ValorProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.vrTotalPunto / 1.16)
-                    ValorIva['Iva'] += detalle.vrTotalPunto - ceil(detalle.vrTotalPunto / 1.16)
-                else:
-                    ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
-            else:
-                UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                if detalle.productoVenta.gravado or detalle.productoVenta.gravado2:
-                    ValorUnds[detalle.productoVenta.nombreProducto] += ceil(detalle.vrTotalPunto / 1.16)
-                    ValorIva['Iva'] += detalle.vrTotalPunto - ceil(detalle.vrTotalPunto / 1.16)
-                else:
-                    ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
-
-
-
     elif tipoReporte == 'pedidos':
         pedidos = DetallePedido.objects.select_related().filter(pedido__fechaPedido__range = (finicio,ffin),pedido__bodega = int(bodega))
-
-        for detalle in pedidos:
-            if detalle.producto.pesables:
-                PesoProductos[detalle.producto.nombreProducto] = 0
-                ValorProductos[detalle.producto.nombreProducto] = 0
-            else:
-                UdnProductos[detalle.producto.nombreProducto] = 0
-                ValorUnds[detalle.producto.nombreProducto] = 0
-
-        for detalle in pedidos:
-            if detalle.producto.pesables:
-                PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
-                if detalle.producto.gravado or detalle.producto.gravado2:
-                    ValorProductos[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
-                    ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
-                else:
-                    ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
-            else:
-                UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
-                if detalle.producto.gravado or detalle.producto.gravado2:
-                    ValorUnds[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
-                    ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
-                else:
-                    ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
 
     elif tipoReporte == 'clienteDetalle':
         pedidos = DetallePedido.objects.select_related().filter(pedido__fechaPedido__range = (finicio,ffin),pedido__cliente = int(idCliente),pedido__bodega = int(bodega))
         ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega),venta__cliente = int(idCliente),venta__anulado = False )
-
-        for detalle in ventas:
-            if detalle.productoVenta.pesables:
-                PesoProductos[detalle.productoVenta.nombreProducto] = 0
-                ValorProductos[detalle.productoVenta.nombreProducto] = 0
-            else:
-                UdnProductos[detalle.productoVenta.nombreProducto] = 0
-                ValorUnds[detalle.productoVenta.nombreProducto] = 0
-
-        for detalle in pedidos:
-            if detalle.producto.pesables:
-                PesoProductos[detalle.producto.nombreProducto] = 0
-                ValorProductos[detalle.producto.nombreProducto] = 0
-            else:
-                UdnProductos[detalle.producto.nombreProducto] = 0
-                ValorUnds[detalle.producto.nombreProducto] = 0
-
-        for detalle in pedidos:
-            if detalle.producto.pesables:
-                PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
-                if detalle.producto.gravado or detalle.producto.gravado2:
-                    ValorProductos[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
-                    ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
-                else:
-                    ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
-            else:
-                UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
-                if detalle.producto.gravado or detalle.producto.gravado2:
-                    ValorUnds[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
-                    ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
-                else:
-                    ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
-
-        for detalle in ventas:
-            if detalle.productoVenta.pesables:
-                PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                if detalle.productoVenta.gravado or detalle.productoVenta.gravado2:
-                    ValorProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.vrTotalPunto / 1.16)
-                    ValorIva['Iva'] += detalle.vrTotalPunto - ceil(detalle.vrTotalPunto / 1.16)
-                else:
-                    ValorProductos[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
-            else:
-                UdnProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
-                if detalle.productoVenta.gravado or detalle.productoVenta.gravado2:
-                    ValorUnds[detalle.productoVenta.nombreProducto] += ceil(detalle.vrTotalPunto / 1.16)
-                    ValorIva['Iva'] += detalle.vrTotalPunto - ceil(detalle.vrTotalPunto / 1.16)
-                else:
-                    ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
-
     else:
          ventas = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega),venta__anulado = False )
          pedidos = DetallePedido.objects.select_related().filter(pedido__fechaPedido__range = (finicio,ffin),pedido__bodega = int(bodega))
 
-         #inicializamos los diccionarios con las dos consultas
 
-         for detalle in ventas:
-             if detalle.productoVenta.pesables:
-                 PesoProductos[detalle.productoVenta.nombreProducto] = 0
-                 ValorProductos[detalle.productoVenta.nombreProducto] = 0
-             else:
-                 UdnProductos[detalle.productoVenta.nombreProducto] = 0
-                 ValorUnds[detalle.productoVenta.nombreProducto] = 0
+    for detalle in ventas:
+        if detalle.productoVenta.pesables:
+            PesoProductos[detalle.productoVenta.nombreProducto] = 0
+            ValorProductos[detalle.productoVenta.nombreProducto] = 0
+        else:
+            UdnProductos[detalle.productoVenta.nombreProducto] = 0
+            ValorUnds[detalle.productoVenta.nombreProducto] = 0
 
-         for detalle in pedidos:
-             if detalle.producto.pesables:
-                 PesoProductos[detalle.producto.nombreProducto] = 0
-                 ValorProductos[detalle.producto.nombreProducto] = 0
-             else:
-                 UdnProductos[detalle.producto.nombreProducto] = 0
-                 ValorUnds[detalle.producto.nombreProducto] = 0
+    for detalle in pedidos:
+        if detalle.producto.pesables:
+            PesoProductos[detalle.producto.nombreProducto] = 0
+            ValorProductos[detalle.producto.nombreProducto] = 0
+        else:
+            UdnProductos[detalle.producto.nombreProducto] = 0
+            ValorUnds[detalle.producto.nombreProducto] = 0
 
-         # ahora poblamos los diccionarios con las consultas
 
-         for detalle in ventas:
+    for detalle in ventas:
             if detalle.productoVenta.pesables:
                 PesoProductos[detalle.productoVenta.nombreProducto] += ceil(detalle.pesoVentaPunto)
                 if detalle.productoVenta.gravado or detalle.productoVenta.gravado2:
@@ -1076,22 +975,21 @@ def ReporteVentaNorte(request):
                 else:
                     ValorUnds[detalle.productoVenta.nombreProducto] += detalle.vrTotalPunto
 
-         for detalle in pedidos:
-            if detalle.producto.pesables:
-                PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
-                if detalle.producto.gravado or detalle.producto.gravado2:
-                    ValorProductos[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
-                    ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
-                else:
-                    ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+    for detalle in pedidos:
+        if detalle.producto.pesables:
+            PesoProductos[detalle.producto.nombreProducto] += ceil(detalle.pesoPedido)
+            if detalle.producto.gravado or detalle.producto.gravado2:
+                ValorProductos[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
+                ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
             else:
-                UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
-                if detalle.producto.gravado or detalle.producto.gravado2:
-                    ValorUnds[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
-                    ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
-                else:
-                    ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
-
+                ValorProductos[detalle.producto.nombreProducto] += detalle.vrTotalPedido
+        else:
+            UdnProductos[detalle.producto.nombreProducto] += ceil(detalle.unidadesPedido)
+            if detalle.producto.gravado or detalle.producto.gravado2:
+                ValorUnds[detalle.producto.nombreProducto] += ceil(detalle.vrTotalPedido / 1.16)
+                ValorIva['Iva'] += detalle.vrTotalPedido - ceil(detalle.vrTotalPedido / 1.16)
+            else:
+                ValorUnds[detalle.producto.nombreProducto] += detalle.vrTotalPedido
 
 
     listas = {'PesoProductos':PesoProductos,'ValorProductos':ValorProductos,'UdnProductos':UdnProductos,'ValorUnds':ValorUnds,'ValorIva':ValorIva}
@@ -1196,6 +1094,13 @@ def RepListVentasNorte(request):
 
     bodega = Bodega.objects.get(pk = int(idBodega))
     ventas = VentaPunto.objects.filter(fechaVenta__range = (finicio,ffin),puntoVenta = bodega.codigoBodega).filter(jornada = jornada).order_by('factura')
+    observacion = DetalleVentaPunto.objects.select_related().filter(venta__fechaVenta__range = (finicio,ffin),venta__jornada = jornada , venta__puntoVenta = bodega.codigoBodega,venta__anulado = False)
+
+    suma = 0
+    for venta in observacion:
+        suma += venta.vrTotalPunto
+    print(suma)
+
     respuesta = serializers.serialize('json',ventas)
 
     return HttpResponse(respuesta,mimetype='application/json')
