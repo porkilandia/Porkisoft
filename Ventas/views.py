@@ -1019,23 +1019,21 @@ def ReporteVentaDiaria(request):
     totalDia = {}
 
     ventas = DetalleVentaPunto.objects.select_related().\
-        filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega)).order_by('venta__fechaVenta')
+        filter(venta__fechaVenta__range = (finicio,ffin),venta__puntoVenta = int(bodega), venta__anulado = False).order_by('venta__fechaVenta')
     pedidos = Pedido.objects.select_related().filter(fechaPedido__range = (finicio,ffin),bodega = int(bodega))
 
     if tipoReporte == 'pedidos':
         for pedido in pedidos:
             if pedido.cliente.nombreCliente != 'Jose Alomia':
                 totalDia[str(pedido.fechaPedido)] = 0
-
         for pedido in pedidos:
             if pedido.cliente.nombreCliente != 'Jose Alomia':
                 totalDia[str(pedido.fechaPedido)] += pedido.TotalVenta
     else:
         for venta in ventas:
             totalDia[str(venta.venta.fechaVenta)] = 0
-
         for venta in ventas:
-            totalDia[str(venta.venta.fechaVenta)] += venta.vrTotalPunto
+            totalDia[str(venta.venta.fechaVenta)] += ceil(venta.vrTotalPunto/ 1.16)
 
     listas = {'totalDia':totalDia}
     respuesta = json.dumps(listas)

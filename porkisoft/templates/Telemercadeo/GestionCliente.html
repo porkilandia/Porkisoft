@@ -9,6 +9,7 @@
         <thead>
         <tr>
             <th>Codigo</th>
+            <th>Nit</th>
             <th>Nombre</th>
             <th>Telefono</th>
             <th>Direccion</th>
@@ -19,6 +20,7 @@
         {% for cliente in clientes %}
         <tr>
             <td>{{ cliente.codigoCliente }}</td>
+            <td>{{ cliente.nit }}</td>
             <td>{{ cliente.nombreCliente }}</td>
             <td>{{ cliente.telefonoCliente }}</td>
             <td>{{ cliente.direccionCliente }}</td>
