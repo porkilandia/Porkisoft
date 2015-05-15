@@ -836,19 +836,27 @@ def ConciliaInventario (request):
     bodega = request.GET.get('CodigoBodega')
     datosJson = json.loads(datos)
     cont = 0
+    msj = ''
     for dato in datosJson:
-
-        if int(dato['Fisico']) != 0:
+        if int(dato['Faltante']) != 0:
             producto = ProductoBodega.objects.select_related().get(producto = dato['Codigo'],bodega = int(bodega))
+            if (int(dato['Faltante']) >= -300) and (int(dato['Faltante']) <= 300):
+                if producto.producto.pesables:
+                    if producto.pesoProductoStock < 0:
+                        pesoActual = producto.pesoProductoStock * -1
+                        producto.pesoProductoStock = pesoActual + Decimal(dato['Faltante'])
+                    else:
+                        producto.pesoProductoStock += Decimal(dato['Faltante'])
+                else:
+                    producto.unidadesStock += int(dato['Faltante'])
 
-            if producto.producto.pesables:
-                producto.pesoProductoStock = Decimal(dato['Fisico'])
+                cont +=1
+                producto.save()
+                msj = 'Se conciliaron %d productos Exitosamente'%cont
             else:
-                producto.unidadesStock = int(dato['Fisico'])
-            cont +=1
-            producto.save()
+                msj = 'Los productos exceden el limite de conciliacion'
 
-    msj =  'Se conciliaron %d productos Exitosamente'%cont
+
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 

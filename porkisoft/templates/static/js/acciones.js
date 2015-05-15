@@ -1403,7 +1403,7 @@ function Exportar()
 function conciliarFaltantes() {
 
      var table = $('#tablaReporteFaltante').tableToJSON({
-         onlyColumns:[0,6]
+         onlyColumns:[0,7]
      });
     var datos = JSON.stringify(table);
     var bodega = $('#bodegaFaltantes option:selected');
@@ -1431,8 +1431,8 @@ $('#tablaReporteFaltante').delegate('tr.pesos','change', function(){
 
     var fisico = $(".actual",this).val();
 
-    if ($(".conciliar",this).attr('checked'))$(this).find("td").eq(6).html(fisico);
-    else $(this).find("td").eq(6).html(0);
+    if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    else $(this).find("td").eq(7).html(0);
 
     var invSistema = parseInt($(this).find("td").eq(3).html());
     var undSistema = parseInt($(this).find("td").eq(4).html());
@@ -1518,7 +1518,7 @@ function ReporteFaltantes() {
                                 "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
                                 "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
                                  "</td><td>"+ '0' +
-                                "</td><td>"+
+                                "</td><td>"+ '0' +
                                 "</td><td><input type = 'checkbox' class = 'conciliar' checked = 'checked'>"+
                                 "</td></tr>");
                             }
