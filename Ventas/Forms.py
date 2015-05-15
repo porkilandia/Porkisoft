@@ -15,11 +15,11 @@ class DetallePedidoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(DetallePedidoForm,self).__init__(*args, **kwargs)
 
-        q1 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Reses",numeroProducto__gt = 0)
-        q2 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Cerdos",numeroProducto__gt = 0)
-        q3 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Cerdas",numeroProducto__gt = 0)
-        q4 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Pollos",numeroProducto__gt = 0)
-        q5 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Compra/Venta",numeroProducto__gt = 0)
+        q1 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Reses")
+        q2 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Cerdos")
+        q3 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Cerdas")
+        q4 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Pollos")
+        q5 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Compra/Venta")
 
         self.fields['producto'].queryset = q1|q2|q3|q4|q5
     class Meta:
