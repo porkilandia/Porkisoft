@@ -840,7 +840,7 @@ def ConciliaInventario (request):
     for dato in datosJson:
         if int(dato['Faltante']) != 0:
             producto = ProductoBodega.objects.select_related().get(producto = dato['Codigo'],bodega = int(bodega))
-            if (int(dato['Faltante']) >= -300) and (int(dato['Faltante']) <= 300):
+            if (int(dato['Faltante']) >= -1000) and (int(dato['Faltante']) <= 2000):
                 if producto.producto.pesables:
                     if producto.pesoProductoStock < 0:
                         pesoActual = producto.pesoProductoStock * -1
