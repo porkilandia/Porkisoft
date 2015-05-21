@@ -21,6 +21,7 @@ def TemplateTipoPedido(request):
                               context_instance = RequestContext(request))
 
 def ReporteTipoPedido(request):
+    # genera el reporte de pedidos
 
     inicio = request.GET.get('inicio')
     fin = request.GET.get('fin')
