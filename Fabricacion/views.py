@@ -2658,8 +2658,10 @@ def CostearCarneCond(request):
     carne = TallerCarneCondimentada.objects.get(pk = int(idCarne))
     producto = Producto.objects.get(pk = carne.productoCond.codigoProducto)
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
-    if carne.productoCond.nombreProducto == 'Bola' or carne.productoCond.nombreProducto == 'Agujas Enteras' or carne.productoCond.nombreProducto == 'Brazos Enteros':
-        carneCondimentada = Producto.objects.get(nombreProducto = 'Carne Condimentada')
+    if carne.productoCond.nombreProducto == 'Bola':
+        carneCondimentada = Producto.objects.get(nombreProducto = 'Bola Condimentada')
+    if carne.productoCond.nombreProducto == 'Agujas' or carne.productoCond.nombreProducto == 'Brazos Enteros':
+        carneCondimentada = Producto.objects.get(nombreProducto = 'Aguja Condimentada')
     else:
         carneCondimentada = carne.productoCond
 
@@ -2688,8 +2690,11 @@ def GuardarCarneCond(request):
     carne = TallerCarneCondimentada.objects.select_related().get(pk = int(idCarne))
     #xproducto = Producto.objects.get(pk = carne.productoCond.codigoProducto)
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
-    if carne.productoCond.nombreProducto == 'Bola' or carne.productoCond.nombreProducto == 'Agujas Enteras'or carne.productoCond.nombreProducto == 'Brazos Enteros':
-        carneCondimentada = Producto.objects.get(nombreProducto = 'Carne Condimentada')
+
+    if carne.productoCond.nombreProducto == 'Bola':
+        carneCondimentada = Producto.objects.get(nombreProducto = 'Bola Condimentada')
+    if carne.productoCond.nombreProducto == 'Agujas' or carne.productoCond.nombreProducto == 'Brazos Enteros':
+        carneCondimentada = Producto.objects.get(nombreProducto = 'Aguja Condimentada')
     else:
         carneCondimentada = carne.productoCond
 
