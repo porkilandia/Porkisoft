@@ -29,6 +29,7 @@
 
         <thead >
         <tr>
+            <th>Codigo Venta</th>
             <th>Producto</th>
             <th>Costo Kilo</th>
             <th>Precio Venta</th>
@@ -42,7 +43,7 @@
         {% else %}
             <tr style="color: green">
         {% endif %}
-
+            <td>{{ detalle.productoLista.numeroProducto }}</td>
             <td>{{ detalle.productoLista }}</td>
             <td>{{ detalle.costoKilo }}</td>
             <td>{{ detalle.precioVenta }}</td>
