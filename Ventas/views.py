@@ -368,6 +368,10 @@ def GestionDetalleLista(request,idLista):
     lista = ListaDePrecios.objects.get(pk= idLista)
     detalleListas = DetalleLista.objects.filter(lista = lista.codigoLista)
 
+    for detalle in detalleListas:
+        detalle.costoKilo = detalle.productoLista.costoProducto
+        detalle.save()
+
     if request.method =='POST':
         formulario = DetalleListaForm(request.POST)
         if formulario.is_valid():
