@@ -1343,7 +1343,7 @@ def ReporteListaDesposte(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionDesposte(request,tipo):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=15)
     fechafin = date.today()
     despostes = ''
     if int(tipo) == 2:
