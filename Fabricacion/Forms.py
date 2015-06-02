@@ -151,7 +151,7 @@ class DetalleDesposteForm(ModelForm):
 class costoForm(ModelForm):
     class Meta:
         model = ValoresCostos
-        exclude = ("valorCif","valorMod",)
+        exclude = ("valorCif",)
 
 class DescarneForm(ModelForm):
     class Meta:

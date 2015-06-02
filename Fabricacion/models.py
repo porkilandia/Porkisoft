@@ -249,7 +249,7 @@ class ValoresCostos(models.Model):
     codigoCosto = models.AutoField(primary_key= True)
     nombreCosto = models.CharField(max_length=50,verbose_name='Nombre')
     valorCif = models.IntegerField(verbose_name='Valor Cif',default=0)
-    valorMod = models.IntegerField(verbose_name='Valor Mod',default=0)
+    valorMod = models.DecimalField(verbose_name='Incremento', max_digits=9, decimal_places=3,default=0)
     valorKiloPie = models.IntegerField(verbose_name='Valor Kilo en Pie',default=0)
     fecha = models.DateField(verbose_name='Fecha Actualizacion', auto_now=True)
 
