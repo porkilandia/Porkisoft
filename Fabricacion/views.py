@@ -2378,6 +2378,57 @@ def ReporteInsumos(request):
     respuesta = json.dumps(Listas)
     return HttpResponse(respuesta,mimetype='application/json')
 
+
+def TemplateMenChicharrones(request):
+    return render_to_response('Fabricacion/TemplateMenChicharrones.html',context_instance = RequestContext(request))
+
+def ReporteMenChicharrones(request):
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    ListaCantMenudo = {}
+    ListaCantMenudo['Menudo'] = 0
+    ListaCantChicharrones = {}
+    ListaCantChicharrones['Chicharrones'] = 0
+    ListaCantGrasa = {}
+    ListaCantGrasa['Grasa'] = 0
+
+
+    menudos = Menudos.objects.select_related().filter(fechaMenudo__range = (finicio,ffin))
+    promediomenudos = menudos.aggregate(Avg('costoKiloPicadillo'))
+
+    for menudo in menudos:
+        ListaCantMenudo['Menudo'] += ceil(menudo.pesoPicadillo)
+
+
+    chicharrones = TallerChicharron.objects.select_related().filter(fechaChicharron__range = (finicio,ffin))
+    promedioChicharrones = chicharrones.aggregate(Avg('costoUndChicharron'))
+    promedioGrasa = chicharrones.aggregate(Avg('costoUndGrasa'))
+
+    for chicharron in chicharrones:
+        ListaCantChicharrones['Chicharrones'] += chicharron.undChicharron
+
+    for grasas in chicharrones:
+       ListaCantGrasa['Grasa'] += grasas.undGrasa
+
+
+
+    Listas = {'promediomenudos':promediomenudos,'promedioChicharrones':promedioChicharrones,'promedioGrasa':promedioGrasa,
+              'ListaCantMenudo':ListaCantMenudo,'ListaCantChicharrones':ListaCantChicharrones,'ListaCantGrasa':ListaCantGrasa}
+
+    respuesta = json.dumps(Listas)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+
+
 def TemplateDescrnes(request):
     gcda = Grupo.objects.filter(nombreGrupo = 'Cerdas')
     gcdo = Grupo.objects.filter(nombreGrupo = 'Cerdos')
@@ -3429,6 +3480,8 @@ def ReporteTallerPunto(request):
 
     pesoMolida = {}
     pesoMolida['Carne Molida'] = 0
+
+
 
 
     fechaInicio = str(inicio)

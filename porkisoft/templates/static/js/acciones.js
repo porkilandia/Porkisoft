@@ -2331,6 +2331,61 @@ function consultaInsumos ()
 
         });
 }
+
+function consultaMenChicha ()
+{   $( "#progressbar" ).show();
+    var inicio = $('#inicio').val();
+    var fin = $('#fin').val();
+    var grupo = $('#grupo').val();
+
+
+    $.ajax({
+
+            url : '/fabricacion/reporteMenChich/',
+            dataType : "json",
+            type : "get",
+            data : {'inicio':inicio,'fin':fin,'grupo':grupo},
+            success : function(respuesta)
+            {
+
+                $("#tablaPromedioCostoMenudos").find("tr:gt(0)").remove();
+                $("#tablaPesoMenudos").find("tr:gt(0)").remove();
+                $("#tablaPromedioCostoChicharrones").find("tr:gt(0)").remove();
+                $("#tablaPesoChicharrones").find("tr:gt(0)").remove();
+                $("#tablaPromedioCostoGrasa").find("tr:gt(0)").remove();
+                $("#tablaPesoGrasa").find("tr:gt(0)").remove();
+
+                $.each(respuesta.promedioMiga,function(key,value){
+
+                    $("#tablaPromedioCostoMenudos").append("<tr><td>" + 'Menudo' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaCantMiga,function(key,value){
+
+                    $("#tablaPesoMenudos").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                });
+                $.each(respuesta.promedioCondimento,function(key,value){
+
+                    $("#tablaPromedioCostoChicharrones").append("<tr><td>" + 'Chicharrones' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaCantCond,function(key,value){
+
+                    $("#tablaPesoChicharrones").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                });
+
+                $.each(respuesta.promedioMolidas,function(key,value){
+
+                    $("#tablaPromedioCostoGrasa").append("<tr><td>" + 'Grasa' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaCantMolida,function(key,value){
+
+                    $("#tablaPesoGrasa").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                });
+                $( "#progressbar" ).hide();
+            }
+
+        });
+}
+
 function consultaPechugaCond ()
 {
     $( "#progressbar" ).show();
