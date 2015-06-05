@@ -2355,28 +2355,28 @@ function consultaMenChicha ()
                 $("#tablaPromedioCostoGrasa").find("tr:gt(0)").remove();
                 $("#tablaPesoGrasa").find("tr:gt(0)").remove();
 
-                $.each(respuesta.promedioMiga,function(key,value){
+                $.each(respuesta.promediomenudos,function(key,value){
 
                     $("#tablaPromedioCostoMenudos").append("<tr><td>" + 'Menudo' + "</td><td>" + Math.ceil(value) + "</td></tr>");
                 });
-                $.each(respuesta.ListaCantMiga,function(key,value){
+                $.each(respuesta.ListaCantMenudo,function(key,value){
 
                     $("#tablaPesoMenudos").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
                 });
-                $.each(respuesta.promedioCondimento,function(key,value){
+                $.each(respuesta.promedioChicharrones,function(key,value){
 
                     $("#tablaPromedioCostoChicharrones").append("<tr><td>" + 'Chicharrones' + "</td><td>" + Math.ceil(value) + "</td></tr>");
                 });
-                $.each(respuesta.ListaCantCond,function(key,value){
+                $.each(respuesta.ListaCantChicharrones,function(key,value){
 
                     $("#tablaPesoChicharrones").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
                 });
 
-                $.each(respuesta.promedioMolidas,function(key,value){
+                $.each(respuesta.promedioGrasa,function(key,value){
 
                     $("#tablaPromedioCostoGrasa").append("<tr><td>" + 'Grasa' + "</td><td>" + Math.ceil(value) + "</td></tr>");
                 });
-                $.each(respuesta.ListaCantMolida,function(key,value){
+                $.each(respuesta.ListaCantGrasa,function(key,value){
 
                     $("#tablaPesoGrasa").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
                 });
