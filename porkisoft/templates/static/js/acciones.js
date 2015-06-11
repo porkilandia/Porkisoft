@@ -2643,7 +2643,7 @@ function CostearMolido(idMolido)
 }
 function existenciasCarneAMoler()
 {
-    var producto = $('#id_productoMolido');
+    var producto = $('#id_productoMolido').val();
     var peso = $('#id_pesoAmoler').val();
     Existencias(producto,6,peso);
 
