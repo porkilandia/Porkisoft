@@ -207,7 +207,9 @@ class CarneCondForm(ModelForm):
         super(CarneCondForm,self).__init__(*args, **kwargs)
         q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses')
         q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos')
-        self.fields['productoCond'].queryset = q1 | q2
+        q3 = Producto.objects.select_related().get(nombreProducto = 'Pernil pollo')
+        q4 = Producto.objects.select_related().get(nombreProducto = 'Recortes de pollo')
+        self.fields['productoCond'].queryset = q1 | q2 | q3 | q4
 
     class Meta:
         model = TallerCarneCondimentada
