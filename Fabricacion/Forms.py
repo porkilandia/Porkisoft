@@ -105,12 +105,14 @@ class ApanadoForm(ModelForm):
 class CondimentadoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(CondimentadoForm,self).__init__(*args, **kwargs)
-        q1 = Producto.objects.filter(grupo__nombreGrupo ='Cerdos').filter(nombreProducto__contains = 'Filete de')
-        q2 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas').filter(nombreProducto__contains = 'Filete de')
-        q3 = Producto.objects.filter(grupo__nombreGrupo ='Pollos').filter(nombreProducto__contains = 'Filete de')
-        q4 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas').filter(nombreProducto__contains = 'Ensalinada')
-        q5 = Producto.objects.filter(grupo__nombreGrupo ='Cerdas').filter(nombreProducto__contains = 'Lomo')
-        self.fields['producto'].queryset = q1 | q2 | q3 | q4 |q5
+        q1 = Producto.objects.select_related().filter(grupo__nombreGrupo ='Cerdos').filter(nombreProducto__contains = 'Filete de')
+        q2 = Producto.objects.select_related().filter(grupo__nombreGrupo ='Cerdas').filter(nombreProducto__contains = 'Filete de')
+        q3 = Producto.objects.select_related().filter(grupo__nombreGrupo ='Pollos').filter(nombreProducto__contains = 'Filete de')
+        q4 = Producto.objects.select_related().filter(grupo__nombreGrupo ='Cerdas').filter(nombreProducto__contains = 'Ensalinada')
+        q5 = Producto.objects.select_related().filter(grupo__nombreGrupo ='Cerdas').filter(nombreProducto__contains = 'Lomo')
+        q6 = Producto.objects.select_related().get(nombreProducto = 'Pernil pollo')
+        q7 = Producto.objects.select_related().get(nombreProducto = 'Recortes de pollo')
+        self.fields['producto'].queryset = q1 | q2 | q3 | q4 |q5|q6|q7
     class Meta:
         model = Condimentado
 
