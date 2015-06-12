@@ -110,9 +110,8 @@ class CondimentadoForm(ModelForm):
         q3 = Producto.objects.select_related().filter(grupo__nombreGrupo ='Pollos').filter(nombreProducto__contains = 'Filete de')
         q4 = Producto.objects.select_related().filter(grupo__nombreGrupo ='Cerdas').filter(nombreProducto__contains = 'Ensalinada')
         q5 = Producto.objects.select_related().filter(grupo__nombreGrupo ='Cerdas').filter(nombreProducto__contains = 'Lomo')
-        q6 = Producto.objects.select_related().get(nombreProducto = 'Pernil pollo')
-        q7 = Producto.objects.select_related().get(nombreProducto = 'Recortes de pollo')
-        self.fields['producto'].queryset = q1 | q2 | q3 | q4 |q5|q6|q7
+
+        self.fields['producto'].queryset = q1 | q2 | q3 | q4 |q5
     class Meta:
         model = Condimentado
 
@@ -205,8 +204,8 @@ class FritoForm(ModelForm):
 class CarneCondForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(CarneCondForm,self).__init__(*args, **kwargs)
-        q1 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Reses')
-        q2 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Cerdos')
+        q1 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Reses',numeroProducto__gt = 0)
+        q2 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Cerdos',numeroProducto__gt = 0)
         q3 = Producto.objects.select_related().filter(nombreProducto = 'Pernil pollo')
         q4 = Producto.objects.select_related().filter(nombreProducto = 'Recortes de pollo')
         self.fields['productoCond'].queryset = q1 | q2 | q3 | q4
