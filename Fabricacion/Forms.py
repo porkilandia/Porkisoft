@@ -195,8 +195,8 @@ class MenudoForm(ModelForm):
 class FritoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(FritoForm,self).__init__(*args, **kwargs)
-        q1 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos')
-        q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdas')
+        q1 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Cerdos')
+        q2 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Cerdas')
         self.fields['productoFrito'].queryset = q1 | q2
 
     class Meta:
@@ -205,8 +205,8 @@ class FritoForm(ModelForm):
 class CarneCondForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(CarneCondForm,self).__init__(*args, **kwargs)
-        q1 = Producto.objects.filter(grupo__nombreGrupo = 'Reses')
-        q2 = Producto.objects.filter(grupo__nombreGrupo = 'Cerdos')
+        q1 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Reses')
+        q2 = Producto.objects.select_related().filter(grupo__nombreGrupo = 'Cerdos')
         q3 = Producto.objects.select_related().filter(nombreProducto = 'Pernil pollo')
         q4 = Producto.objects.select_related().filter(nombreProducto = 'Recortes de pollo')
         self.fields['productoCond'].queryset = q1 | q2 | q3 | q4

@@ -2745,7 +2745,7 @@ def GuardarCarneCond(request):
 
     if carne.productoCond.nombreProducto == 'Bola':
         carneCondimentada = Producto.objects.get(nombreProducto = 'Bola Condimentada')
-    if carne.productoCond.nombreProducto == 'Agujas' or carne.productoCond.nombreProducto == 'Brazos Enteros':
+    elif carne.productoCond.nombreProducto == 'Agujas' or carne.productoCond.nombreProducto == 'Brazos Enteros':
         carneCondimentada = Producto.objects.get(nombreProducto = 'Aguja Condimentada')
     else:
         carneCondimentada = carne.productoCond
