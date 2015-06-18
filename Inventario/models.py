@@ -15,7 +15,7 @@ class Bodega(models.Model):
     nombreBodega = models.CharField(max_length=50, verbose_name='Nombre')
     direccionBodega = models.CharField(max_length=50, verbose_name='Direccion')
     telefonoBodega = models.CharField(max_length=10,verbose_name='Telefono')
-
+    activo = models.BooleanField(default=True)
     def __unicode__(self):
         return self.nombreBodega
 

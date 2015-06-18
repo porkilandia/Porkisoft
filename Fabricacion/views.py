@@ -393,7 +393,9 @@ def GuardaEnsalinado(request):
 
 def GestionVerduras(request):
 
-    verduras = LimpiezaVerduras.objects.all()
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    verduras = LimpiezaVerduras.objects.filter(fechaLimpieza__range =(fechainicio,fechafin))
 
     if request.method == 'POST':
 
@@ -476,7 +478,10 @@ def GuardarVerduras(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionCondimento(request):
-    condimentos = Condimento.objects.all()
+
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    condimentos = Condimento.objects.filter(fecha__range =(fechainicio,fechafin))
 
     if request.method == 'POST':
 
@@ -590,7 +595,9 @@ def CostoCondimento(request,idcondimento):
 #******************************************************* MIGA***********************************************************
 
 def GestionMiga(request):
-    migas  = Miga.objects.all()
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    migas  = Miga.objects.filter(fechaFabricacion__range =(fechainicio,fechafin))
 
     if request.method == 'POST':
 
@@ -2485,7 +2492,10 @@ def ReporteDescarnes(request):
 
 def GestionMenudos(request):
 
-    menudos = Menudos.objects.all().order_by('fechaMenudo')
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    menudos = Menudos.objects.filter(fechaMenudo__range =(fechainicio,fechafin))
+
 
     if request.method == 'POST':
 
