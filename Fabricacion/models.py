@@ -414,4 +414,12 @@ class TallerChicharron(models.Model):
     cif = models.IntegerField(verbose_name='Cif',default=0)
     guardado = models.BooleanField(default=False)
 
+class TallerLenguas(models.Model):
+    fechaLenguas = models.DateField(verbose_name='Fecha')
+    pesoAntes = models.DecimalField(verbose_name='Antes', max_digits=9, decimal_places=3,default=0)
+    pesoDespues = models.DecimalField(verbose_name='Despues', max_digits=9, decimal_places=3,default=0)
+    costoKiloPicadillo = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    mod = models.IntegerField(verbose_name='Mod',default=0)
+    cif = models.IntegerField(verbose_name='Cif',default=0)
+    guardado = models.BooleanField(default=False)
 

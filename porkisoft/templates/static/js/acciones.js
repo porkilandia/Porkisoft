@@ -195,6 +195,7 @@ $(document).on('ready', inicio);
      $('#id_fechaPedido').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaLimpieza').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaChicharron').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaLenguas').datepicker({ dateFormat: "dd/mm/yy" });
 
      $( "#bodegaFaltantes" ).selectmenu({ width: 200 });
 
@@ -2201,7 +2202,26 @@ function GuardarPicadillo(idMenudo)
         });
     }
 }
+function GuardarLenguas(idLenguas)
+{
+    var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
+    if (opcion == true) {
+        $.ajax({
 
+            url: '/fabricacion/guardarLenguas/',
+            dataType: "json",
+            type: "get",
+            data: {'idLenguas': idLenguas},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                   var n = noty({text: respuesta, type:'success',layout: 'bottom'});
+                }
+
+            }
+
+        });
+    }
+}
 function consultaDescarnes ()
 {   $( "#progressbar" ).show();
     var inicio = $('#inicio').val();

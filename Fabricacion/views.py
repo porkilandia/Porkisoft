@@ -2489,6 +2489,87 @@ def ReporteDescarnes(request):
     respuesta = json.dumps(Listas)
     return HttpResponse(respuesta,mimetype='application/json')
 
+def GestionLenguas(request):
+
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    lenguas = TallerLenguas.objects.filter(fechaLenguas__range =(fechainicio,fechafin))
+
+    if request.method == 'POST':
+
+        formulario = LenguasForm(request.POST)
+        if formulario.is_valid():
+            datos = formulario.save()
+
+            pesoAntes = datos.pesoAntes
+            pesoDespues = datos.pesoDespues
+            costoLenguas = Producto.objects.select_related().get(nombreProducto = 'Lengua Cerdo').costoProducto
+            cif = datos.cif
+            mod = datos.mod
+            costoTotal = (costoLenguas * (pesoAntes/1000)) + cif + mod
+            costoKiloPicadillo = costoTotal /(pesoDespues/1000)
+            datos.costoKiloPicadillo = costoKiloPicadillo
+            datos.save()
+
+            picadillo = Producto.objects.get(nombreProducto = 'Picadillo')
+            costoAnterior = picadillo.costoProducto
+            picadillo.costoProducto = (costoKiloPicadillo + costoAnterior)/2
+            picadillo.save()
+
+            return HttpResponseRedirect('/fabricacion/lenguas')
+    else:
+        formulario = LenguasForm()
+
+    return render_to_response('Fabricacion/GestionLenguas.html',{'formulario':formulario,'lenguas':lenguas },
+                              context_instance = RequestContext(request))
+
+def GuardarLenguas(request):
+
+    idLenguas = request.GET.get('idLenguas')
+    lengua = TallerLenguas.objects.get(pk = int(idLenguas))
+    picadillo = Producto.objects.get(nombreProducto = 'Picadillo')
+    ProdLengua = Producto.objects.select_related().get(nombreProducto = 'Lengua Cerdo')
+
+    bodegaLengua = ProductoBodega.objects.get(bodega = 5,producto = ProdLengua.codigoProducto )
+    bodegaLengua.pesoProductoStock -= lengua.pesoAntes
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'LGA%d'%(lengua.id)
+    movimiento.fechaMov = lengua.fechaLenguas
+    movimiento.productoMov = ProdLengua
+    movimiento.nombreProd = ProdLengua.nombreProducto
+    movimiento.salida = lengua.pesoAntes
+
+    bodegaLengua.save()
+    movimiento.save()
+
+    bodegaPicadillo = ProductoBodega.objects.get(bodega = 5,producto = picadillo.codigoProducto )
+    bodegaPicadillo.pesoProductoStock += lengua.pesoDespues
+
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'LGA%d'%(lengua.id)
+    movimiento.fechaMov = lengua.fechaLenguas
+    movimiento.productoMov = picadillo
+    movimiento.nombreProd = picadillo.nombreProducto
+    movimiento.entrada = lengua.pesoDespues
+    movimiento.Hasta = bodegaPicadillo.bodega.nombreBodega
+
+    bodegaPicadillo.save()
+    movimiento.save()
+
+    lengua.guardado = True
+    lengua.save()
+
+    msj = 'Guardado exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def borrarLenguas(request,idLengua):
+    lengua = TallerLenguas.objects.get(pk = idLengua)
+    lengua.delete()
+    return HttpResponseRedirect('/fabricacion/lenguas')
+
 
 def GestionMenudos(request):
 
@@ -2514,8 +2595,6 @@ def GestionMenudos(request):
             picadillo = Producto.objects.get(nombreProducto = 'Picadillo')
             picadillo.costoProducto = costoKiloPicadillo
             picadillo.save()
-
-
 
             return HttpResponseRedirect('/fabricacion/menudos')
     else:

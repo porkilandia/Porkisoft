@@ -36,6 +36,10 @@ urlpatterns = patterns('',
     url(r'^menudos/$',GestionMenudos),
     url(r'^guardarMenudo/$',GuardarMenudos),
 
+    url(r'^lenguas/$',GestionLenguas),
+    url(r'^guardarLenguas/$',GuardarLenguas),
+    url(r'^borralengua/(?P<idLengua>\d+)',borrarLenguas),
+
     url(r'^fritos/$',GestionFrito),
     url(r'^costearFritos/$',CostearFrito),
     url(r'^guardarFritos/$',GuardarFrito),

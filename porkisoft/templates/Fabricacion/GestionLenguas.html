@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lenguas{% endblock titulo %}
+{% block mensajes %}
+
+        Menudos
+
+{% endblock mensajes %}
+{% block contenido %}
+<a id="nuevo" href="#"><input type="button" value="Nuevo" class="btn btn-primary"></a>
+    <br/><br/><br/>
+    <table id="tablaLenguas" class="table-striped" >
+
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Fecha</th>
+            <th>Peso Antes</th>
+            <th>Peso Despues</th>
+            <th>Costo Kilo</th>
+            <th>Mod</th>
+            <th>Cif</th>
+            <th>Guardado</th>
+            <th>Acciones</th>
+
+
+        </tr>
+        </thead>
+        {% for lengua in lenguas %}
+        {% if lengua.guardado == False %}
+        <tr style="color: red">
+        {% endif %}
+
+            <td>{{ lengua.id }}</td>
+            <td>{{ lengua.fechaLenguas }}</td>
+            <td>{{ lengua.pesoAntes }}</td>
+            <td>{{ lengua.pesoDespues }}</td>
+            <td>{{ lengua.costoKiloPicadillo }}</td>
+            <td>{{ lengua.mod }}</td>
+            <td>{{ lengua.cif }}</td>
+            {% if lengua.guardado == True %}
+                <td>Guardado</td>
+            {% else %}
+                <td>Sin guardar</td>
+            {% endif %}
+            
+            <td>
+                <a id="guardarPicadillo" onclick="GuardarLenguas({{ lengua.id }})" href="#">Guardar</a>
+                <a href="{% url 'Fabricacion.views.borrarLenguas' lengua.id %}">Borrar</a>
+            </td>
+
+
+        </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="10">
+                   Ningun producto para mostrar
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+
+    <form method="post" class="form-horizontal">{% csrf_token %}
+         <fieldset>
+             <legend>Nuevo Tajado<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
+             {{ formulario }}
+             <br/><br/>
+             <legend>Acciones</legend>
+             <input class="btn btn-primary" value="Guardar" type="submit">
+         </fieldset>
+    </form>
+
+{% endblock contenido %}

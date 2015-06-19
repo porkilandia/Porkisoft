@@ -263,3 +263,8 @@ class ChicharronForm(ModelForm):
     class Meta:
         model = TallerChicharron
         exclude = ("costoUndChicharron","costoUndGrasa","guardado",)
+
+class LenguasForm(ModelForm):
+    class Meta:
+        model = TallerLenguas
+        exclude = ("costoKiloPicadillo","guardado",)
