@@ -67,6 +67,7 @@ def listaProductos(request):
 
                     bodegaInicial.producto = producto
                     bodegaInicial.nombreProducto = producto.nombreProducto
+                    bodegaInicial.grupoProducto = producto.grupo.nombreGrupo
                     bodegaInicial.bodega = bodega
                     bodegaInicial.pesoProductoStock = 0
                     bodegaInicial.unidadesStock = 0
@@ -171,10 +172,10 @@ def borrarDetalleSp(request, idDetalle):
 
 def GestionBodega(request):
     bodegas = Bodega.objects.all()
-    prodBods = ProductoBodega.objects.all()
+    '''prodBods = ProductoBodega.objects.all()
 
-    '''for bodega in prodBods:
-        bodega.nombreProducto = bodega.producto.nombreProducto
+    for bodega in prodBods:
+        bodega.grupoProducto = bodega.producto.grupo.nombreGrupo
         bodega.save()'''
 
 
@@ -815,7 +816,8 @@ def ReporteCompra(request):
 
 
 def TemplateReporteFaltantes (request):
-    bodegas = Bodega.objects.all()
+
+    bodegas = Bodega.objects.select_related().filter(activo = True).order_by('nombreBodega')
     hoy = datetime.today()
     usuario = request.user.username
     return render_to_response('Inventario/ReporteFaltantes.html',{'bodegas':bodegas,'hoy':hoy,'usuario':usuario},

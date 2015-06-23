@@ -13,6 +13,7 @@
 
         <thead>
         <tr>
+            <th>Id</th>
             <th>Fecha</th>
             <th>Cantidad</th>
             <th>Costo Menudos</th>
@@ -32,6 +33,7 @@
         <tr style="color: red">
         {% endif %}
 
+            <td>{{ menudo.id }}</td>
             <td>{{ menudo.fechaMenudo }}</td>
             <td>{{ menudo.cantMenudos }}</td>
             <td>{{ menudo.costoMenudo }}</td>

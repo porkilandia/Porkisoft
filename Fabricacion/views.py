@@ -121,17 +121,18 @@ def GestionCanal(request,idrecepcion):
                 deguello = 51700 * cantidad
                 pesoPorkilandia = Decimal(request.POST.get('pesoPorkilandia'))
                 cantidadCanalCerdasGrandes = Canal.objects.filter(recepcion = idrecepcion,pesoPorkilandia__gt = 0)# busca registros que el peso sea mayor o igual a 150
+                costosCerdas = ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas')
 
-                incrementoCG = 30 * cantidadCanalCerdasGrandes.count()
+                incrementoCG = costosCerdas.valorMod * cantidadCanalCerdasGrandes.count()
 
                 if pesoPorkilandia >= 0:
-                    incrementoCG += 30
+                    incrementoCG += costosCerdas.valorMod
 
                 if pesoCanales == 0:#para cuando se ingresa la primera vez
                     pesoCanales = 1
 
-                pesoPie = pesoCanales + pesoPorkilandia + incrementoCG # + incrementoCP
-                vrFactura = pesoPie * ValoresCostos.objects.get(nombreCosto = 'Costos Cerdas').valorKiloPie
+                pesoPie = pesoCanales + pesoPorkilandia + Decimal(incrementoCG) # + incrementoCP
+                vrFactura = pesoPie * costosCerdas.valorKiloPie
                 costoCanales = (vrFactura + deguello + transporte) - menudo
                 vrKiloCanal = ceil(costoCanales / (pesoCanales + pesoPorkilandia))
                 vrArrobaCanal = vrKiloCanal * 12.5
@@ -392,7 +393,9 @@ def GuardaEnsalinado(request):
 
 def GestionVerduras(request):
 
-    verduras = LimpiezaVerduras.objects.all()
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    verduras = LimpiezaVerduras.objects.filter(fechaLimpieza__range =(fechainicio,fechafin))
 
     if request.method == 'POST':
 
@@ -475,7 +478,10 @@ def GuardarVerduras(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionCondimento(request):
-    condimentos = Condimento.objects.all()
+
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    condimentos = Condimento.objects.filter(fecha__range =(fechainicio,fechafin))
 
     if request.method == 'POST':
 
@@ -589,7 +595,9 @@ def CostoCondimento(request,idcondimento):
 #******************************************************* MIGA***********************************************************
 
 def GestionMiga(request):
-    migas  = Miga.objects.all()
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    migas  = Miga.objects.filter(fechaFabricacion__range =(fechainicio,fechafin))
 
     if request.method == 'POST':
 
@@ -2377,6 +2385,57 @@ def ReporteInsumos(request):
     respuesta = json.dumps(Listas)
     return HttpResponse(respuesta,mimetype='application/json')
 
+
+def TemplateMenChicharrones(request):
+    return render_to_response('Fabricacion/TemplateMenChicharrones.html',context_instance = RequestContext(request))
+
+def ReporteMenChicharrones(request):
+
+    inicio = request.GET.get('inicio')
+    fin = request.GET.get('fin')
+    fechaInicio = str(inicio)
+    fechaFin = str(fin)
+    formatter_string = "%d/%m/%Y"
+    fi = datetime.strptime(fechaInicio, formatter_string)
+    ff = datetime.strptime(fechaFin, formatter_string)
+    finicio = fi.date()
+    ffin = ff.date()
+
+    ListaCantMenudo = {}
+    ListaCantMenudo['Menudo'] = 0
+    ListaCantChicharrones = {}
+    ListaCantChicharrones['Chicharrones'] = 0
+    ListaCantGrasa = {}
+    ListaCantGrasa['Grasa'] = 0
+
+
+    menudos = Menudos.objects.select_related().filter(fechaMenudo__range = (finicio,ffin))
+    promediomenudos = menudos.aggregate(Avg('costoKiloPicadillo'))
+
+    for menudo in menudos:
+        ListaCantMenudo['Menudo'] += ceil(menudo.pesoPicadillo)
+
+
+    chicharrones = TallerChicharron.objects.select_related().filter(fechaChicharron__range = (finicio,ffin))
+    promedioChicharrones = chicharrones.aggregate(Avg('costoUndChicharron'))
+    promedioGrasa = chicharrones.aggregate(Avg('costoUndGrasa'))
+
+    for chicharron in chicharrones:
+        ListaCantChicharrones['Chicharrones'] += chicharron.undChicharron
+
+    for grasas in chicharrones:
+       ListaCantGrasa['Grasa'] += grasas.undGrasa
+
+
+
+    Listas = {'promediomenudos':promediomenudos,'promedioChicharrones':promedioChicharrones,'promedioGrasa':promedioGrasa,
+              'ListaCantMenudo':ListaCantMenudo,'ListaCantChicharrones':ListaCantChicharrones,'ListaCantGrasa':ListaCantGrasa}
+
+    respuesta = json.dumps(Listas)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+
+
 def TemplateDescrnes(request):
     gcda = Grupo.objects.filter(nombreGrupo = 'Cerdas')
     gcdo = Grupo.objects.filter(nombreGrupo = 'Cerdos')
@@ -2430,10 +2489,94 @@ def ReporteDescarnes(request):
     respuesta = json.dumps(Listas)
     return HttpResponse(respuesta,mimetype='application/json')
 
+def GestionLenguas(request):
+
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    lenguas = TallerLenguas.objects.filter(fechaLenguas__range =(fechainicio,fechafin))
+
+    if request.method == 'POST':
+
+        formulario = LenguasForm(request.POST)
+        if formulario.is_valid():
+            datos = formulario.save()
+
+            pesoAntes = datos.pesoAntes
+            pesoDespues = datos.pesoDespues
+            costoLenguas = Producto.objects.select_related().get(nombreProducto = 'Lengua Cerdo').costoProducto
+            cif = datos.cif
+            mod = datos.mod
+            costoTotal = (costoLenguas * (pesoAntes/1000)) + cif + mod
+            costoKiloPicadillo = costoTotal /(pesoDespues/1000)
+            datos.costoKiloPicadillo = costoKiloPicadillo
+            datos.save()
+
+            picadillo = Producto.objects.get(nombreProducto = 'Picadillo')
+            costoAnterior = picadillo.costoProducto
+            picadillo.costoProducto = (costoKiloPicadillo + costoAnterior)/2
+            picadillo.save()
+
+            return HttpResponseRedirect('/fabricacion/lenguas')
+    else:
+        formulario = LenguasForm()
+
+    return render_to_response('Fabricacion/GestionLenguas.html',{'formulario':formulario,'lenguas':lenguas },
+                              context_instance = RequestContext(request))
+
+def GuardarLenguas(request):
+
+    idLenguas = request.GET.get('idLenguas')
+    lengua = TallerLenguas.objects.get(pk = int(idLenguas))
+    picadillo = Producto.objects.get(nombreProducto = 'Picadillo')
+    ProdLengua = Producto.objects.select_related().get(nombreProducto = 'Lengua Cerdo')
+
+    bodegaLengua = ProductoBodega.objects.get(bodega = 5,producto = ProdLengua.codigoProducto )
+    bodegaLengua.pesoProductoStock -= lengua.pesoAntes
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'LGA%d'%(lengua.id)
+    movimiento.fechaMov = lengua.fechaLenguas
+    movimiento.productoMov = ProdLengua
+    movimiento.nombreProd = ProdLengua.nombreProducto
+    movimiento.salida = lengua.pesoAntes
+
+    bodegaLengua.save()
+    movimiento.save()
+
+    bodegaPicadillo = ProductoBodega.objects.get(bodega = 5,producto = picadillo.codigoProducto )
+    bodegaPicadillo.pesoProductoStock += lengua.pesoDespues
+
+
+    movimiento = Movimientos()
+    movimiento.tipo = 'LGA%d'%(lengua.id)
+    movimiento.fechaMov = lengua.fechaLenguas
+    movimiento.productoMov = picadillo
+    movimiento.nombreProd = picadillo.nombreProducto
+    movimiento.entrada = lengua.pesoDespues
+    movimiento.Hasta = bodegaPicadillo.bodega.nombreBodega
+
+    bodegaPicadillo.save()
+    movimiento.save()
+
+    lengua.guardado = True
+    lengua.save()
+
+    msj = 'Guardado exitoso'
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
+def borrarLenguas(request,idLengua):
+    lengua = TallerLenguas.objects.get(pk = idLengua)
+    lengua.delete()
+    return HttpResponseRedirect('/fabricacion/lenguas')
+
 
 def GestionMenudos(request):
 
-    menudos = Menudos.objects.all().order_by('fechaMenudo')
+    fechainicio = date.today() - timedelta(days=30)
+    fechafin = date.today()
+    menudos = Menudos.objects.filter(fechaMenudo__range =(fechainicio,fechafin))
+
 
     if request.method == 'POST':
 
@@ -2452,8 +2595,6 @@ def GestionMenudos(request):
             picadillo = Producto.objects.get(nombreProducto = 'Picadillo')
             picadillo.costoProducto = costoKiloPicadillo
             picadillo.save()
-
-
 
             return HttpResponseRedirect('/fabricacion/menudos')
     else:
@@ -2660,7 +2801,7 @@ def CostearCarneCond(request):
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
     if carne.productoCond.nombreProducto == 'Bola':
         carneCondimentada = Producto.objects.get(nombreProducto = 'Bola Condimentada')
-    if carne.productoCond.nombreProducto == 'Agujas' or carne.productoCond.nombreProducto == 'Brazos Enteros':
+    elif carne.productoCond.nombreProducto == 'Agujas' or carne.productoCond.nombreProducto == 'Brazos Enteros':
         carneCondimentada = Producto.objects.get(nombreProducto = 'Aguja Condimentada')
     else:
         carneCondimentada = carne.productoCond
@@ -2693,7 +2834,7 @@ def GuardarCarneCond(request):
 
     if carne.productoCond.nombreProducto == 'Bola':
         carneCondimentada = Producto.objects.get(nombreProducto = 'Bola Condimentada')
-    if carne.productoCond.nombreProducto == 'Agujas' or carne.productoCond.nombreProducto == 'Brazos Enteros':
+    elif carne.productoCond.nombreProducto == 'Agujas' or carne.productoCond.nombreProducto == 'Brazos Enteros':
         carneCondimentada = Producto.objects.get(nombreProducto = 'Aguja Condimentada')
     else:
         carneCondimentada = carne.productoCond
@@ -3428,6 +3569,8 @@ def ReporteTallerPunto(request):
 
     pesoMolida = {}
     pesoMolida['Carne Molida'] = 0
+
+
 
 
     fechaInicio = str(inicio)

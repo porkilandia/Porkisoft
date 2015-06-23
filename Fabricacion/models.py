@@ -249,7 +249,7 @@ class ValoresCostos(models.Model):
     codigoCosto = models.AutoField(primary_key= True)
     nombreCosto = models.CharField(max_length=50,verbose_name='Nombre')
     valorCif = models.IntegerField(verbose_name='Valor Cif',default=0)
-    valorMod = models.IntegerField(verbose_name='Valor Mod',default=0)
+    valorMod = models.DecimalField(verbose_name='Incremento', max_digits=9, decimal_places=3,default=0)
     valorKiloPie = models.IntegerField(verbose_name='Valor Kilo en Pie',default=0)
     fecha = models.DateField(verbose_name='Fecha Actualizacion', auto_now=True)
 
@@ -414,4 +414,12 @@ class TallerChicharron(models.Model):
     cif = models.IntegerField(verbose_name='Cif',default=0)
     guardado = models.BooleanField(default=False)
 
+class TallerLenguas(models.Model):
+    fechaLenguas = models.DateField(verbose_name='Fecha')
+    pesoAntes = models.DecimalField(verbose_name='Antes', max_digits=9, decimal_places=3,default=0)
+    pesoDespues = models.DecimalField(verbose_name='Despues', max_digits=9, decimal_places=3,default=0)
+    costoKiloPicadillo = models.IntegerField(verbose_name='Costo Kilo',default=0)
+    mod = models.IntegerField(verbose_name='Mod',default=0)
+    cif = models.IntegerField(verbose_name='Cif',default=0)
+    guardado = models.BooleanField(default=False)
 

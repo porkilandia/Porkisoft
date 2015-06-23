@@ -13,6 +13,7 @@
 
         <thead>
         <tr>
+            <th>Id</th>
             <th>Fecha</th>
             <th>Producto</th>
             <th>Peso Producto</th>
@@ -26,6 +27,8 @@
         </thead>
         {% for verdura in verduras %}
         <tr>
+
+            <td>{{ verdura.id }}</td>
             <td>{{ verdura.fechaLimpieza }}</td>
             <td>{{ verdura.productoLimpiar }}</td>
             <td>{{ verdura.pesoProducto | floatformat }}grs</td>

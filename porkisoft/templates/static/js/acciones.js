@@ -195,6 +195,7 @@ $(document).on('ready', inicio);
      $('#id_fechaPedido').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaLimpieza').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaChicharron').datepicker({ dateFormat: "dd/mm/yy" });
+     $('#id_fechaLenguas').datepicker({ dateFormat: "dd/mm/yy" });
 
      $( "#bodegaFaltantes" ).selectmenu({ width: 200 });
 
@@ -1457,6 +1458,11 @@ function ReporteFaltantes() {
     var colorund = '';
 
    var tablaFaltante = $("#tablaReporteFaltante");
+   var tablaCerdos = $("#tablaCerdos");
+    var tablaCerdas = $("#tablaCerdas");
+    var tablaPollos = $("#tablaPollos");
+    var tablaCompraventa = $("#tablaCompraventa");
+    var tablaVisceras = $("#tablaVisceras");
 
         $.ajax({
 
@@ -1466,6 +1472,11 @@ function ReporteFaltantes() {
             data: {'bodega': CodigoBodega},
             success: function (respuesta) {
                     tablaFaltante.find("tr:gt(0)").remove();
+                tablaCerdos.find("tr:gt(0)").remove();
+                tablaCerdas.find("tr:gt(0)").remove();
+                tablaPollos.find("tr:gt(0)").remove();
+                tablaCompraventa.find("tr:gt(0)").remove();
+                tablaVisceras.find("tr:gt(0)").remove();
 
                     for (var i=0;i<respuesta.length;i++)
                     {
@@ -1509,18 +1520,90 @@ function ReporteFaltantes() {
 
                             if ((parseInt(respuesta[i].fields.pesoProductoStock)!= 0) || (parseInt(respuesta[i].fields.unidadesStock)))
                             {
+                                if(respuesta[i].fields.grupoProducto == 'Reses')
+                                {
+                                    tablaFaltante.append(
+                                    "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                    "</td><td>" + respuesta[i].fields.nombreProducto +
+                                    "</td><td>" + NombreBodega +
+                                    "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                    "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                    "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                     "</td><td>"+ '0' +
+                                    "</td><td>"+ '0'+
+                                    "</td></tr>");
+                                }
+                                if(respuesta[i].fields.grupoProducto == 'Cerdos')
+                                {
+                                    tablaCerdos.append(
+                                    "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                    "</td><td>" + respuesta[i].fields.nombreProducto +
+                                    "</td><td>" + NombreBodega +
+                                    "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                    "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                    "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                     "</td><td>"+ '0' +
+                                    "</td><td>"+ '0'+
+                                    "</td></tr>");
+                                }
+                                 if(respuesta[i].fields.grupoProducto == 'Cerdas')
+                                {
+                                    tablaCerdas.append(
+                                    "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                    "</td><td>" + respuesta[i].fields.nombreProducto +
+                                    "</td><td>" + NombreBodega +
+                                    "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                    "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                    "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                     "</td><td>"+ '0' +
+                                    "</td><td>"+ '0'+
+                                    "</td></tr>");
+                                }
+                                 if(respuesta[i].fields.grupoProducto == 'Pollos')
+                                {
+                                    tablaPollos.append(
+                                    "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                    "</td><td>" + respuesta[i].fields.nombreProducto +
+                                    "</td><td>" + NombreBodega +
+                                    "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                    "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                    "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                     "</td><td>"+ '0' +
+                                    "</td><td>"+ '0'+
+                                    "</td></tr>");
+                                }
+                                if(respuesta[i].fields.grupoProducto == 'Compra/Venta')
+                                {
+                                    if ((parseInt(respuesta[i].fields.pesoProductoStock) == 0))
+                                    {
+                                         tablaCompraventa.append(
+                                        "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                        "</td><td>" + respuesta[i].fields.nombreProducto +
+                                        "</td><td>" + NombreBodega +
+                                        "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                        "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                        "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                         "</td><td>"+ '0' +
+                                        "</td><td>"+ '0'+
+                                        "</td></tr>");
+                                    }
+                                    else
+                                    {
+                                         tablaVisceras.append(
+                                        "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                        "</td><td>" + respuesta[i].fields.nombreProducto +
+                                        "</td><td>" + NombreBodega +
+                                        "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                        "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                        "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                         "</td><td>"+ '0' +
+                                        "</td><td>"+ '0'+
+                                        "</td></tr>");
+                                    }
 
-                                tablaFaltante.append(
-                                "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
-                                "</td><td>" + respuesta[i].fields.nombreProducto +
-                                "</td><td>" + NombreBodega +
-                                "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
-                                "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
-                                "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
-                                 "</td><td>"+ '0' +
-                                "</td><td>"+ '0' +
-                                "</td><td><input type = 'checkbox' class = 'conciliar' checked = 'checked'>"+
-                                "</td></tr>");
+                                }
+
+
                             }
                     }
 
@@ -2201,7 +2284,26 @@ function GuardarPicadillo(idMenudo)
         });
     }
 }
+function GuardarLenguas(idLenguas)
+{
+    var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
+    if (opcion == true) {
+        $.ajax({
 
+            url: '/fabricacion/guardarLenguas/',
+            dataType: "json",
+            type: "get",
+            data: {'idLenguas': idLenguas},
+            success: function (respuesta) {
+                if (respuesta != '') {
+                   var n = noty({text: respuesta, type:'success',layout: 'bottom'});
+                }
+
+            }
+
+        });
+    }
+}
 function consultaDescarnes ()
 {   $( "#progressbar" ).show();
     var inicio = $('#inicio').val();
@@ -2331,6 +2433,61 @@ function consultaInsumos ()
 
         });
 }
+
+function consultaMenChicha ()
+{   $( "#progressbar" ).show();
+    var inicio = $('#inicio').val();
+    var fin = $('#fin').val();
+    var grupo = $('#grupo').val();
+
+
+    $.ajax({
+
+            url : '/fabricacion/reporteMenChich/',
+            dataType : "json",
+            type : "get",
+            data : {'inicio':inicio,'fin':fin,'grupo':grupo},
+            success : function(respuesta)
+            {
+
+                $("#tablaPromedioCostoMenudos").find("tr:gt(0)").remove();
+                $("#tablaPesoMenudos").find("tr:gt(0)").remove();
+                $("#tablaPromedioCostoChicharrones").find("tr:gt(0)").remove();
+                $("#tablaPesoChicharrones").find("tr:gt(0)").remove();
+                $("#tablaPromedioCostoGrasa").find("tr:gt(0)").remove();
+                $("#tablaPesoGrasa").find("tr:gt(0)").remove();
+
+                $.each(respuesta.promediomenudos,function(key,value){
+
+                    $("#tablaPromedioCostoMenudos").append("<tr><td>" + 'Menudo' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaCantMenudo,function(key,value){
+
+                    $("#tablaPesoMenudos").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                });
+                $.each(respuesta.promedioChicharrones,function(key,value){
+
+                    $("#tablaPromedioCostoChicharrones").append("<tr><td>" + 'Chicharrones' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaCantChicharrones,function(key,value){
+
+                    $("#tablaPesoChicharrones").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                });
+
+                $.each(respuesta.promedioGrasa,function(key,value){
+
+                    $("#tablaPromedioCostoGrasa").append("<tr><td>" + 'Grasa' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.ListaCantGrasa,function(key,value){
+
+                    $("#tablaPesoGrasa").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
+                });
+                $( "#progressbar" ).hide();
+            }
+
+        });
+}
+
 function consultaPechugaCond ()
 {
     $( "#progressbar" ).show();
@@ -2588,7 +2745,7 @@ function CostearMolido(idMolido)
 }
 function existenciasCarneAMoler()
 {
-    var producto = $('#id_productoMolido');
+    var producto = $('#id_productoMolido').val();
     var peso = $('#id_pesoAmoler').val();
     Existencias(producto,6,peso);
 

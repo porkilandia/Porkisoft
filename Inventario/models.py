@@ -15,7 +15,7 @@ class Bodega(models.Model):
     nombreBodega = models.CharField(max_length=50, verbose_name='Nombre')
     direccionBodega = models.CharField(max_length=50, verbose_name='Direccion')
     telefonoBodega = models.CharField(max_length=10,verbose_name='Telefono')
-
+    activo = models.BooleanField(default=True)
     def __unicode__(self):
         return self.nombreBodega
 
@@ -69,6 +69,7 @@ class DetalleSubProducto(models.Model):
 
 class ProductoBodega(models.Model):
     producto = models.ForeignKey(Producto)
+    grupoProducto = models.CharField(blank=True,max_length=100)
     nombreProducto = models.CharField(blank=True,max_length=100)
     bodega = models.ForeignKey(Bodega)
     pesoProductoStock = models.DecimalField(max_digits=15,decimal_places=2,verbose_name='Peso en  Stock', default=0)

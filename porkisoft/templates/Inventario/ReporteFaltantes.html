@@ -24,16 +24,16 @@
 
 
    </div>
-    <div id="convensiones">
+ <!--   <div id="convensiones">
         <ul>
             <li style="color: orange">Exceso</li>
             <li style="color: red">Defecto</li>
             <li style="color: green">En el rango</li>
         </ul>
-    </div>
+    </div>-->
 <div id="areaImpresion">
     <br/><br/>
-    <table id="encabezado">
+<!--    <table id="encabezado">
         <tr>
             <th style="font-size: 1.5em">PORKILANDIA</th>
             <th>REPORTE DE INVENTARIO</th>
@@ -42,13 +42,15 @@
             <th style="font-size: 1.5em">SAS</th>
             <th>{{ hoy|date }}</th>
         </tr>
-    </table>
+    </table>-->
     <br/><br/>
-    <table id="tablaReporteFaltante" class="table-striped">
+<div id="homeAccordeon">
+    <h3>Res</h3>
+    <div>
+         <table id="tablaReporteFaltante" class="table-striped">
             <thead>
             <tr>
                 <th>Codigo</th>
-
                 <th>Producto</th>
                 <th >Bodega</th>
                 <th>Peso</th>
@@ -59,21 +61,103 @@
                 <th>Ajustar</th>
             </tr>
             </thead>
-            <tr>
-                <th>Responsable </th>
-                <th >Reviso</th>
-                <th>Aprobo</th>
-
-            </tr>
-            <tr>
-                <td > </td>
-                <td ></td>
-                <td></td>
-            </tr>
-
         </table>
-    <br/><br/>
-<table id="pie">
+        <div>
+            <input class="btn btn-success" type="button" value="Conciliar Res">
+        </div>
+    </div>
+    <h3>Cerdo</h3>
+    <div>
+        <table id="tablaCerdos" class="table-striped">
+            <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Producto</th>
+                <th >Bodega</th>
+                <th>Peso</th>
+                <th>Unidades</th>
+                <th >Actual</th>
+                <th >Fisico</th>
+                <th>Faltante</th>
+                <th>Ajustar</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <h3>Cerda</h3>
+    <div>
+        <table id="tablaCerdas" class="table-striped">
+            <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Producto</th>
+                <th >Bodega</th>
+                <th>Peso</th>
+                <th>Unidades</th>
+                <th >Actual</th>
+                <th >Fisico</th>
+                <th>Faltante</th>
+                <th>Ajustar</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <h3>Pollo</h3>
+    <div>
+        <table id="tablaPollos" class="table-striped">
+            <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Producto</th>
+                <th >Bodega</th>
+                <th>Peso</th>
+                <th>Unidades</th>
+                <th >Actual</th>
+                <th >Fisico</th>
+                <th>Faltante</th>
+                <th>Ajustar</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <h3>Visceras</h3>
+    <div>
+        <table id="tablaVisceras" class="table-striped">
+            <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Producto</th>
+                <th >Bodega</th>
+                <th>Peso</th>
+                <th>Unidades</th>
+                <th >Actual</th>
+                <th >Fisico</th>
+                <th>Faltante</th>
+                <th>Ajustar</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <h3>Compra Venta</h3>
+    <div>
+        <table id="tablaCompraventa" class="table-striped">
+            <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Producto</th>
+                <th >Bodega</th>
+                <th>Peso</th>
+                <th>Unidades</th>
+                <th >Actual</th>
+                <th >Fisico</th>
+                <th>Faltante</th>
+                <th>Ajustar</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+        <br/><br/>
+<!--<table id="pie">
         <tr>
             <th>Revisó</th>
             <th>Encargado</th>
@@ -83,7 +167,9 @@
             <th>______________________________</th>
             <th>______________________________</th>
         </tr>
-    </table>
+    </table>-->
+
+    </div>
 
 </div>
 
