@@ -67,6 +67,7 @@ def listaProductos(request):
 
                     bodegaInicial.producto = producto
                     bodegaInicial.nombreProducto = producto.nombreProducto
+                    bodegaInicial.grupoProducto = producto.grupo.nombreGrupo
                     bodegaInicial.bodega = bodega
                     bodegaInicial.pesoProductoStock = 0
                     bodegaInicial.unidadesStock = 0
@@ -173,9 +174,9 @@ def GestionBodega(request):
     bodegas = Bodega.objects.all()
     prodBods = ProductoBodega.objects.all()
 
-    '''for bodega in prodBods:
-        bodega.nombreProducto = bodega.producto.nombreProducto
-        bodega.save()'''
+    for bodega in prodBods:
+        bodega.grupoProducto = bodega.producto.grupo.nombreGrupo
+        bodega.save()
 
 
     if request.method == 'POST':
