@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block titulo %}::Reporte Insumos ::{% endblock titulo %}
+{% block mensajes %}
+Promedio de Insumos
+
+{% endblock mensajes %}
+{% block contenido %}
+
+    <div id="rango">
+     <label for="inicio">Fecha Inicio</label><input id="inicio" type="text">
+     <label for="fin">Fecha Final</label><input id="fin" type="text">
+
+     <a  onclick="consultaMenChicha()" href="#"><input type="button" value="Consultar"></a>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+<div id="acordeon">
+<h3>Menudos</h3>
+<div>
+   <table id="tablaPromedioCostoMenudos" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaPesoMenudos" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Peso</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+    <h3>Chicharrones</h3>
+<div>
+    <table id="tablaPromedioCostoChicharrones" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaPesoChicharrones" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Unidades</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+<h3>Grasa</h3>
+<div>
+    <table id="tablaPromedioCostoGrasa" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Costo Promedio</th>
+        </tr>
+        </thead>
+
+    </table>
+
+    <table id="tablaPesoGrasa" class="table-striped" style="width: 95%">
+
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Unidades</th>
+        </tr>
+        </thead>
+
+    </table>
+</div>
+
+
+</div>
+<div id="progressbar"></div>
+{% endblock contenido %}
+<div id="progressbar"></div>
