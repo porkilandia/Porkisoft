@@ -1428,13 +1428,99 @@ function conciliarFaltantes() {
     }
 
 }
+
+//*******************************************************************************************************************
+//*******************************************************************************************************************
 $('#tablaReporteFaltante').delegate('tr.pesos','change', function(){
 
     var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
+    var invSistema = parseInt($(this).find("td").eq(3).html());
+    var undSistema = parseInt($(this).find("td").eq(4).html());
 
-    if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
-    else $(this).find("td").eq(7).html(0);
+    if (invSistema < 0)invSistema = invSistema * (-1);
+    if (undSistema < 0)undSistema = undSistema * (-1);
 
+    var faltante = 0;
+    if (invSistema != 0)faltante = fisico - invSistema;
+    else faltante = fisico - undSistema;
+
+    $(this).find("td").eq(7).html(faltante);
+});
+$('#tablaCerdos').delegate('tr.pesos','change', function(){
+
+    var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
+    var invSistema = parseInt($(this).find("td").eq(3).html());
+    var undSistema = parseInt($(this).find("td").eq(4).html());
+
+    if (invSistema < 0)invSistema = invSistema * (-1);
+    if (undSistema < 0)undSistema = undSistema * (-1);
+
+    var faltante = 0;
+    if (invSistema != 0)faltante = fisico - invSistema;
+    else faltante = fisico - undSistema;
+
+    $(this).find("td").eq(7).html(faltante);
+});
+$('#tablaCerdas').delegate('tr.pesos','change', function(){
+
+    var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
+    var invSistema = parseInt($(this).find("td").eq(3).html());
+    var undSistema = parseInt($(this).find("td").eq(4).html());
+
+    if (invSistema < 0)invSistema = invSistema * (-1);
+    if (undSistema < 0)undSistema = undSistema * (-1);
+
+    var faltante = 0;
+    if (invSistema != 0)faltante = fisico - invSistema;
+    else faltante = fisico - undSistema;
+
+    $(this).find("td").eq(7).html(faltante);
+});
+$('#tablaPollos').delegate('tr.pesos','change', function(){
+
+    var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
+    var invSistema = parseInt($(this).find("td").eq(3).html());
+    var undSistema = parseInt($(this).find("td").eq(4).html());
+
+    if (invSistema < 0)invSistema = invSistema * (-1);
+    if (undSistema < 0)undSistema = undSistema * (-1);
+
+    var faltante = 0;
+    if (invSistema != 0)faltante = fisico - invSistema;
+    else faltante = fisico - undSistema;
+
+    $(this).find("td").eq(7).html(faltante);
+});
+$('#tablaVisceras').delegate('tr.pesos','change', function(){
+
+    var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
+    var invSistema = parseInt($(this).find("td").eq(3).html());
+    var undSistema = parseInt($(this).find("td").eq(4).html());
+
+    if (invSistema < 0)invSistema = invSistema * (-1);
+    if (undSistema < 0)undSistema = undSistema * (-1);
+
+    var faltante = 0;
+    if (invSistema != 0)faltante = fisico - invSistema;
+    else faltante = fisico - undSistema;
+
+    $(this).find("td").eq(7).html(faltante);
+});
+$('#tablaCompraventa').delegate('tr.pesos','change', function(){
+
+    var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
     var invSistema = parseInt($(this).find("td").eq(3).html());
     var undSistema = parseInt($(this).find("td").eq(4).html());
 
@@ -1448,7 +1534,8 @@ $('#tablaReporteFaltante').delegate('tr.pesos','change', function(){
     $(this).find("td").eq(7).html(faltante);
 });
 
-
+//*******************************************************************************************************************
+//*******************************************************************************************************************
 function ReporteFaltantes() {
 
     var bodega = $('#bodegaFaltantes option:selected');
