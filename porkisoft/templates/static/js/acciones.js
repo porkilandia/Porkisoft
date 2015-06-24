@@ -1550,6 +1550,7 @@ function ReporteFaltantes() {
     var tablaPollos = $("#tablaPollos");
     var tablaCompraventa = $("#tablaCompraventa");
     var tablaVisceras = $("#tablaVisceras");
+    var tablaInsumos = $("#tablaInsumos");
 
         $.ajax({
 
@@ -1564,6 +1565,7 @@ function ReporteFaltantes() {
                 tablaPollos.find("tr:gt(0)").remove();
                 tablaCompraventa.find("tr:gt(0)").remove();
                 tablaVisceras.find("tr:gt(0)").remove();
+                tablaInsumos.find("tr:gt(0)").remove();
 
                     for (var i=0;i<respuesta.length;i++)
                     {
@@ -1636,6 +1638,19 @@ function ReporteFaltantes() {
                                  if(respuesta[i].fields.grupoProducto == 'Cerdas')
                                 {
                                     tablaCerdas.append(
+                                    "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                    "</td><td>" + respuesta[i].fields.nombreProducto +
+                                    "</td><td>" + NombreBodega +
+                                    "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                    "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                    "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                     "</td><td>"+ '0' +
+                                    "</td><td>"+ '0'+
+                                    "</td></tr>");
+                                }
+                                if(respuesta[i].fields.grupoProducto == 'Insumos')
+                                {
+                                    tablaInsumos.append(
                                     "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
                                     "</td><td>" + respuesta[i].fields.nombreProducto +
                                     "</td><td>" + NombreBodega +
