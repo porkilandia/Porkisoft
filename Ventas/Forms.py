@@ -7,13 +7,24 @@ from django.db.models import F
 from Ventas.models import *
 
 class PedidoForm(ModelForm):
+
+    def __init__(self,idBodega,*args,**kwargs):
+        super(PedidoForm,self).__init__(*args,**kwargs)
+
+        self.fields['listaPrecioPedido'].queryset = ListaDePrecios.objects.select_related().filter(bodega = idBodega)
     class Meta:
         model = Pedido
-        exclude = ('TotalVenta','descuento','NombreCliente','nitCliente',)
+        exclude = ('TotalVenta','descuento','NombreCliente','nitCliente','guardado',)
 
 class DetallePedidoForm(ModelForm):
-    def __init__(self, *args, **kwargs):
+    def __init__(self,idPedido, *args, **kwargs):
         super(DetallePedidoForm,self).__init__(*args, **kwargs)
+
+        #SE LIMITA EL NUMERO DE REGISTROS QUE SE RENDERIZAN PARA AUMENTAR LA VELOCIDAD DE CARGA
+        Hoy = date.today()
+        pedido = Pedido.objects.select_related().get(pk = idPedido)
+        consulta = Pedido.objects.filter(fechaPedido = Hoy)
+        self.fields['pedido'].queryset = consulta
 
         q1 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Reses")
         q2 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Cerdos")

@@ -63,7 +63,9 @@ $(document).on('ready', inicio);
             $('#cobraVenta').hide();
 
         }
-    productoVenta.focus();
+     var productoPedido = $('#id_productoPedido');
+     productoVenta.focus();
+     productoPedido.focus();
 
     /******************************************************************************************************************/
 
@@ -208,6 +210,9 @@ $(document).on('ready', inicio);
 
      $("label[for=id_venta],#id_venta").hide();
      $("label[for=id_productoVenta]").hide();
+     $("label[for=id_pedido],#id_pedido").hide();
+     $("label[for=id_producto]").hide();
+     $("#id_producto").hide();
      $('#diagrama').hide();
      $('#totalCompra').val($('#totalVentaDet').text()).attr('disabled','-1');
      //fechaVenta.attr('disabled','-1');
@@ -900,7 +905,7 @@ function ExistenciasPedido() {
     var peso = $('#id_pesoPedido').val();
     var unidades = $('#id_unidadesPedido').val();
     var bodega = $('#bodegaPedido').text();
-    var producto = $('#id_producto').val();
+    var producto = $('#id_productoPedido').val();
     var Lista= $('#listaPrecios').text();
 
     Existencias(producto,bodega,peso);
@@ -1428,13 +1433,99 @@ function conciliarFaltantes() {
     }
 
 }
+
+//*******************************************************************************************************************
+//*******************************************************************************************************************
 $('#tablaReporteFaltante').delegate('tr.pesos','change', function(){
 
     var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
+    var invSistema = parseInt($(this).find("td").eq(3).html());
+    var undSistema = parseInt($(this).find("td").eq(4).html());
 
-    if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
-    else $(this).find("td").eq(7).html(0);
+    if (invSistema < 0)invSistema = invSistema * (-1);
+    if (undSistema < 0)undSistema = undSistema * (-1);
 
+    var faltante = 0;
+    if (invSistema != 0)faltante = fisico - invSistema;
+    else faltante = fisico - undSistema;
+
+    $(this).find("td").eq(7).html(faltante);
+});
+$('#tablaCerdos').delegate('tr.pesos','change', function(){
+
+    var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
+    var invSistema = parseInt($(this).find("td").eq(3).html());
+    var undSistema = parseInt($(this).find("td").eq(4).html());
+
+    if (invSistema < 0)invSistema = invSistema * (-1);
+    if (undSistema < 0)undSistema = undSistema * (-1);
+
+    var faltante = 0;
+    if (invSistema != 0)faltante = fisico - invSistema;
+    else faltante = fisico - undSistema;
+
+    $(this).find("td").eq(7).html(faltante);
+});
+$('#tablaCerdas').delegate('tr.pesos','change', function(){
+
+    var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
+    var invSistema = parseInt($(this).find("td").eq(3).html());
+    var undSistema = parseInt($(this).find("td").eq(4).html());
+
+    if (invSistema < 0)invSistema = invSistema * (-1);
+    if (undSistema < 0)undSistema = undSistema * (-1);
+
+    var faltante = 0;
+    if (invSistema != 0)faltante = fisico - invSistema;
+    else faltante = fisico - undSistema;
+
+    $(this).find("td").eq(7).html(faltante);
+});
+$('#tablaPollos').delegate('tr.pesos','change', function(){
+
+    var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
+    var invSistema = parseInt($(this).find("td").eq(3).html());
+    var undSistema = parseInt($(this).find("td").eq(4).html());
+
+    if (invSistema < 0)invSistema = invSistema * (-1);
+    if (undSistema < 0)undSistema = undSistema * (-1);
+
+    var faltante = 0;
+    if (invSistema != 0)faltante = fisico - invSistema;
+    else faltante = fisico - undSistema;
+
+    $(this).find("td").eq(7).html(faltante);
+});
+$('#tablaVisceras').delegate('tr.pesos','change', function(){
+
+    var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
+    var invSistema = parseInt($(this).find("td").eq(3).html());
+    var undSistema = parseInt($(this).find("td").eq(4).html());
+
+    if (invSistema < 0)invSistema = invSistema * (-1);
+    if (undSistema < 0)undSistema = undSistema * (-1);
+
+    var faltante = 0;
+    if (invSistema != 0)faltante = fisico - invSistema;
+    else faltante = fisico - undSistema;
+
+    $(this).find("td").eq(7).html(faltante);
+});
+$('#tablaCompraventa').delegate('tr.pesos','change', function(){
+
+    var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
     var invSistema = parseInt($(this).find("td").eq(3).html());
     var undSistema = parseInt($(this).find("td").eq(4).html());
 
@@ -1448,7 +1539,8 @@ $('#tablaReporteFaltante').delegate('tr.pesos','change', function(){
     $(this).find("td").eq(7).html(faltante);
 });
 
-
+//*******************************************************************************************************************
+//*******************************************************************************************************************
 function ReporteFaltantes() {
 
     var bodega = $('#bodegaFaltantes option:selected');
@@ -1458,6 +1550,12 @@ function ReporteFaltantes() {
     var colorund = '';
 
    var tablaFaltante = $("#tablaReporteFaltante");
+   var tablaCerdos = $("#tablaCerdos");
+    var tablaCerdas = $("#tablaCerdas");
+    var tablaPollos = $("#tablaPollos");
+    var tablaCompraventa = $("#tablaCompraventa");
+    var tablaVisceras = $("#tablaVisceras");
+    var tablaInsumos = $("#tablaInsumos");
 
         $.ajax({
 
@@ -1467,6 +1565,12 @@ function ReporteFaltantes() {
             data: {'bodega': CodigoBodega},
             success: function (respuesta) {
                     tablaFaltante.find("tr:gt(0)").remove();
+                tablaCerdos.find("tr:gt(0)").remove();
+                tablaCerdas.find("tr:gt(0)").remove();
+                tablaPollos.find("tr:gt(0)").remove();
+                tablaCompraventa.find("tr:gt(0)").remove();
+                tablaVisceras.find("tr:gt(0)").remove();
+                tablaInsumos.find("tr:gt(0)").remove();
 
                     for (var i=0;i<respuesta.length;i++)
                     {
@@ -1510,18 +1614,103 @@ function ReporteFaltantes() {
 
                             if ((parseInt(respuesta[i].fields.pesoProductoStock)!= 0) || (parseInt(respuesta[i].fields.unidadesStock)))
                             {
+                                if(respuesta[i].fields.grupoProducto == 'Reses')
+                                {
+                                    tablaFaltante.append(
+                                    "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                    "</td><td>" + respuesta[i].fields.nombreProducto +
+                                    "</td><td>" + NombreBodega +
+                                    "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                    "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                    "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                     "</td><td>"+ '0' +
+                                    "</td><td>"+ '0'+
+                                    "</td></tr>");
+                                }
+                                if(respuesta[i].fields.grupoProducto == 'Cerdos')
+                                {
+                                    tablaCerdos.append(
+                                    "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                    "</td><td>" + respuesta[i].fields.nombreProducto +
+                                    "</td><td>" + NombreBodega +
+                                    "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                    "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                    "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                     "</td><td>"+ '0' +
+                                    "</td><td>"+ '0'+
+                                    "</td></tr>");
+                                }
+                                 if(respuesta[i].fields.grupoProducto == 'Cerdas')
+                                {
+                                    tablaCerdas.append(
+                                    "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                    "</td><td>" + respuesta[i].fields.nombreProducto +
+                                    "</td><td>" + NombreBodega +
+                                    "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                    "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                    "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                     "</td><td>"+ '0' +
+                                    "</td><td>"+ '0'+
+                                    "</td></tr>");
+                                }
+                                if(respuesta[i].fields.grupoProducto == 'Insumos')
+                                {
+                                    tablaInsumos.append(
+                                    "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                    "</td><td>" + respuesta[i].fields.nombreProducto +
+                                    "</td><td>" + NombreBodega +
+                                    "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                    "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                    "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                     "</td><td>"+ '0' +
+                                    "</td><td>"+ '0'+
+                                    "</td></tr>");
+                                }
+                                 if(respuesta[i].fields.grupoProducto == 'Pollos')
+                                {
+                                    tablaPollos.append(
+                                    "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                    "</td><td>" + respuesta[i].fields.nombreProducto +
+                                    "</td><td>" + NombreBodega +
+                                    "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                    "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                    "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                     "</td><td>"+ '0' +
+                                    "</td><td>"+ '0'+
+                                    "</td></tr>");
+                                }
+                                if(respuesta[i].fields.grupoProducto == 'Compra/Venta')
+                                {
+                                    if ((parseInt(respuesta[i].fields.pesoProductoStock) == 0))
+                                    {
+                                         tablaCompraventa.append(
+                                        "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                        "</td><td>" + respuesta[i].fields.nombreProducto +
+                                        "</td><td>" + NombreBodega +
+                                        "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                        "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                        "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                         "</td><td>"+ '0' +
+                                        "</td><td>"+ '0'+
+                                        "</td></tr>");
+                                    }
+                                    else
+                                    {
+                                         tablaVisceras.append(
+                                        "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                        "</td><td>" + respuesta[i].fields.nombreProducto +
+                                        "</td><td>" + NombreBodega +
+                                        "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                        "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                        "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                         "</td><td>"+ '0' +
+                                        "</td><td>"+ '0'+
+                                        "</td></tr>");
+                                    }
 
-                                tablaFaltante.append(
-                                "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
-                                "</td><td>" + respuesta[i].fields.nombreProducto +
-                                "</td><td>" + NombreBodega +
-                                "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
-                                "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
-                                "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
-                                 "</td><td>"+ '0' +
-                                "</td><td>"+ '0' +
-                                "</td><td><input type = 'checkbox' class = 'conciliar' checked = 'checked'>"+
-                                "</td></tr>");
+                                }
+
+
                             }
                     }
 

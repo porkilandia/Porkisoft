@@ -114,6 +114,7 @@ class CondimentadoForm(ModelForm):
         self.fields['producto'].queryset = q1 | q2 | q3 | q4 |q5
     class Meta:
         model = Condimentado
+        exclude = ( "guardado",)
 
 class DesposteForm(ModelForm):
     class Meta:
