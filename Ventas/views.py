@@ -82,9 +82,9 @@ def GestionPedidos(request,idcliente):
     fechainicio = date.today() - timedelta(days=8)
     fechafin = date.today()
     usuario = request.user.username
-    emp = Empleado.objects.get(usuario = usuario)
+    emp = Empleado.objects.select_related().get(usuario = usuario)
     cliente = Cliente.objects.get(pk = idcliente)
-
+    idBodega = emp.punto.codigoBodega
     usuario = request.user
     if usuario.is_staff:
         pedidos = Pedido.objects.filter(cliente = idcliente).filter(fechaPedido__range =(fechainicio,fechafin))
@@ -94,8 +94,10 @@ def GestionPedidos(request,idcliente):
         pedidos = Pedido.objects.filter(cliente = idcliente).filter(fechaPedido__range =(fechainicio,fechafin)).filter(bodega = emp.punto.codigoBodega)
         plantilla = 'PuntoVentaNorte.html'
 
+    #listaPrecios = ListaDePrecios.objects.select_related().get()
+
     if request.method =='POST':
-        formulario = PedidoForm(request.POST)
+        formulario = PedidoForm(idBodega,request.POST)
         if formulario.is_valid():
             dato = formulario.save()
             dato.NombreCliente = dato.cliente.nombreCliente
@@ -105,7 +107,7 @@ def GestionPedidos(request,idcliente):
 
             return HttpResponseRedirect('/ventas/pedido/'+idcliente)
     else:
-        formulario = PedidoForm(initial={'cliente':cliente})
+        formulario = PedidoForm(idBodega,initial={'cliente':cliente,'bodega':idBodega,'empleado':emp.codigoEmpleado})
 
     return render_to_response('Ventas/GestionPedido.html',{'plantilla':plantilla,'formulario':formulario,'pedidos':pedidos,'cliente':cliente},
                               context_instance = RequestContext(request))
@@ -120,24 +122,31 @@ def GestionDetallePedido(request,idpedido):
     detPedido = DetallePedido.objects.filter(pedido = idpedido)
     vrPedido = 0
 
+    ListadoPrecios = DetalleLista.objects.select_related().\
+        filter(lista__tipoLista = 'Punto',lista__bodega = pedido.bodega.codigoBodega).\
+        order_by('productoLista__numeroProducto')
+
     for det in detPedido:
         vrPedido += det.vrTotalPedido
     pedido.TotalVenta = vrPedido
     pedido.save()
 
     if request.method =='POST':
-        formulario = DetallePedidoForm(request.POST)
+        formulario = DetallePedidoForm(pedido.numeroPedido,request.POST)
         if formulario.is_valid():
             detalle = formulario.save()
-
+            producto = request.POST['productoPedido']
+            prodVenta = Producto.objects.select_related().get(pk = int(producto))
+            detalle.producto = prodVenta
             pedido.TotalVenta = vrPedido + detalle.vrTotalPedido
+            detalle.save()
             pedido.save()
 
             return HttpResponseRedirect('/ventas/detallePedido/'+idpedido)
     else:
-        formulario = DetallePedidoForm(initial={'pedido':idpedido})
+        formulario = DetallePedidoForm(pedido.numeroPedido,initial={'pedido':idpedido})
 
-    return render_to_response('Ventas/GestionDetallePedido.html',{'idPedido':idpedido,'formulario':formulario,'pedido':pedido,
+    return render_to_response('Ventas/GestionDetallePedido.html',{'ListadoPrecios':ListadoPrecios,'idPedido':idpedido,'formulario':formulario,'pedido':pedido,
                                                                   'detPedido':detPedido,'vrPedido':vrPedido},
                               context_instance = RequestContext(request))
 
@@ -486,7 +495,6 @@ def DetallePuntoVenta(request,idVenta):
         formulario = DetalleVentaPuntoForm(idVenta,request.POST)
         if formulario.is_valid():
             datos = formulario.save()
-            print(request.POST['ProductoVentaPunto'])
             producto = request.POST['ProductoVentaPunto']
             prodVenta = Producto.objects.select_related().get(pk = int(producto))
             datos.productoVenta = prodVenta

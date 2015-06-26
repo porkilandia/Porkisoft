@@ -2086,9 +2086,9 @@ def GuardarEmpacado(request):
 
     bodegaBandeja = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Bandeja')
     bodegaStiker = ProductoBodega.objects.get(bodega = 6,producto__nombreProducto = 'Stiker')
-    bodegaChuleta = ProductoBodega.objects.get(bodega = 6,producto = empaque.productoAEmpacar.codigoProducto)
-    bodegaChuletaEmpacadaPollo = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Chuleta Empacada Pollo')
-    bodegaChuletaEmpacadaCerdo = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Chuleta Empacada Cerdo')
+    #bodegaChuleta = ProductoBodega.objects.get(bodega = 6,producto = empaque.productoAEmpacar.codigoProducto)
+    #bodegaChuletaEmpacadaPollo = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Chuleta Empacada Pollo')
+    #bodegaChuletaEmpacadaCerdo = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Chuleta Empacada Cerdo')
 
     movimiento = Movimientos()
     movimiento.tipo = 'EMP%d'%(empaque.id)
@@ -2112,6 +2112,14 @@ def GuardarEmpacado(request):
     bodegaStiker.unidadesStock -= empaque.stikers
     bodegaStiker.save()
 
+    empaque.guardado = True
+    empaque.save()
+
+    msj = 'Guardado Exitoso'
+
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+'''
     movimiento = Movimientos()
     movimiento.tipo = 'EMP%d'%(empaque.id)
     movimiento.fechaMov = empaque.fechaEmpacado
@@ -2142,15 +2150,9 @@ def GuardarEmpacado(request):
         movimiento.productoMov = bodegaChuletaEmpacadaCerdo.producto
         movimiento.nombreProd = bodegaChuletaEmpacadaCerdo.producto.nombreProducto
         movimiento.entrada = empaque.pesoChuelta
-        movimiento.save()
+        movimiento.save()'''
 
-    empaque.guardado = True
-    empaque.save()
 
-    msj = 'Guardado Exitoso'
-
-    respuesta = json.dumps(msj)
-    return HttpResponse(respuesta,mimetype='application/json')
 
 def ConsultaCostoChuleta(request):
     idProduccion = request.GET.get('produccion')

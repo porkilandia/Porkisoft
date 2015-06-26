@@ -523,8 +523,8 @@ def EditaCompra(request,idDetCompra):
 
                 producto.costoProducto = datos.vrKiloDescongelado
                 producto.save()
-
-                bodega.pesoProductoStock += datos.pesoDescongelado
+                diferenciaDescongelado = datos.pesoProducto - datos.pesoDescongelado
+                bodega.pesoProductoStock -= diferenciaDescongelado
                 bodega.unidadesStock += datos.unidades
                 bodega.save()
 
@@ -533,7 +533,7 @@ def EditaCompra(request,idDetCompra):
                 movimiento.fechaMov = compra.fechaCompra
                 movimiento.productoMov = detcomp.producto
                 movimiento.nombreProd = detcomp.producto.nombreProducto
-                movimiento.entrada = datos.pesoDescongelado
+                movimiento.salida = diferenciaDescongelado
                 movimiento.Hasta = bodega.bodega.nombreBodega
                 movimiento.save()
 
