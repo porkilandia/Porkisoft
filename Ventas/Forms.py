@@ -32,7 +32,7 @@ class DetallePedidoForm(ModelForm):
         q4 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Pollos")
         q5 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Compra/Venta")
 
-        self.fields['producto'].queryset = q1|q2|q3|q4|q5
+        self.fields['productoPedido'].queryset = q1|q2|q3|q4|q5
     class Meta:
         model = DetallePedido
         exclude = ('subproducto','estado',)

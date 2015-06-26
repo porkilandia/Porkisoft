@@ -12,7 +12,10 @@
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/porkisoftdb</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>dfcbdfc6dfc3dfd9dfc5dfc4df98df9adf9adf93</user-password>
       <libraries />
     </data-source>
   </component>
 </project>
+

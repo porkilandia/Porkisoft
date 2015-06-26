@@ -211,8 +211,8 @@ $(document).on('ready', inicio);
      $("label[for=id_venta],#id_venta").hide();
      $("label[for=id_productoVenta]").hide();
      $("label[for=id_pedido],#id_pedido").hide();
-     //$("label[for=id_producto]").hide();
-     //$("#id_producto").hide();
+     $("label[for=id_productoPedido]").hide();
+     $("#id_productoPedido").hide();
      $('#diagrama').hide();
      $('#totalCompra').val($('#totalVentaDet').text()).attr('disabled','-1');
      //fechaVenta.attr('disabled','-1');
@@ -905,7 +905,7 @@ function ExistenciasPedido() {
     var peso = $('#id_pesoPedido').val();
     var unidades = $('#id_unidadesPedido').val();
     var bodega = $('#bodegaPedido').text();
-    var producto = $('#id_productoPedido').val();
+    var producto = $('#productoPedido').val();
     var Lista= $('#listaPrecios').text();
 
     Existencias(producto,bodega,peso);
