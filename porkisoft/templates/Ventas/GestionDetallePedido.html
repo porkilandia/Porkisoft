@@ -85,7 +85,7 @@
         </thead>
         {% for det  in detPedido %}
         <tr>
-            <td>{{ det.producto }}</td>
+            <td>{{ det.productoPedido }}</td>
             <td>{{ det.pesoPedido }}grs</td>
             <td>{{ det.unidadesPedido }}</td>
             <td>{{ det.vrUnitario }}</td>
@@ -110,7 +110,7 @@
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarBodega">
              <legend>Pedido<a id="cerrar" href="#"><img src="{{ STATIC_URL }}img/cerrar.png"/></a></legend>
-             <label for="productoPedido">Producto</label><select id="productoPedido" name="productoPedido">
+             <label for="productoPedido">Producto</label><select id="productoPedido" name="prodPedido">
                  {% for lista in ListadoPrecios %}
                      <option value="{{ lista.productoLista.codigoProducto }}">{{ lista.productoLista.numeroProducto }} --{{ lista.productoLista.nombreProducto }}</option>
                 {% endfor %}

@@ -132,19 +132,19 @@ def GestionDetallePedido(request,idpedido):
     pedido.save()
 
     if request.method =='POST':
-        formulario = DetallePedidoForm(pedido.numeroPedido,request.POST)
+        formulario = DetallePedidoForm(request.POST)
         if formulario.is_valid():
             detalle = formulario.save()
-            producto = request.POST['productoPedido']
+            producto = request.POST['prodPedido']
             prodVenta = Producto.objects.select_related().get(pk = int(producto))
-            detalle.producto = prodVenta
+            detalle.productoPedido = prodVenta
             pedido.TotalVenta = vrPedido + detalle.vrTotalPedido
             detalle.save()
             pedido.save()
 
             return HttpResponseRedirect('/ventas/detallePedido/'+idpedido)
     else:
-        formulario = DetallePedidoForm(pedido.numeroPedido,initial={'pedido':idpedido})
+        formulario = DetallePedidoForm(initial={'pedido':idpedido})
 
     return render_to_response('Ventas/GestionDetallePedido.html',{'ListadoPrecios':ListadoPrecios,'idPedido':idpedido,'formulario':formulario,'pedido':pedido,
                                                                   'detPedido':detPedido,'vrPedido':vrPedido},
@@ -742,7 +742,7 @@ def GuaradarPedido(request):
     detPedido = DetallePedido.objects.filter(pedido = int(idPedido))
 
     for det in detPedido:
-        bodega = ProductoBodega.objects.get(bodega = pedido.bodega.codigoBodega,producto = det.producto.codigoProducto)
+        bodega = ProductoBodega.objects.get(bodega = pedido.bodega.codigoBodega,producto = det.productoPedido.codigoProducto)
         bodega.pesoProductoStock -= det.pesoPedido
         bodega.unidadesStock -= det.unidadesPedido
         bodega.save()
@@ -750,8 +750,8 @@ def GuaradarPedido(request):
         movimiento = Movimientos()
         movimiento.tipo = 'PED%d'%(pedido.numeroPedido)
         movimiento.fechaMov = pedido.fechaPedido
-        movimiento.productoMov = det.producto
-        movimiento.nombreProd = det.producto.nombreProducto
+        movimiento.productoMov = det.productoPedido
+        movimiento.nombreProd = det.productoPedido.nombreProducto
         movimiento.desde = bodega.bodega.nombreBodega
 
         if det.pesoPedido == 0:

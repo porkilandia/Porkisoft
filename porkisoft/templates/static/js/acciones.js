@@ -63,7 +63,7 @@ $(document).on('ready', inicio);
             $('#cobraVenta').hide();
 
         }
-     var productoPedido = $('#id_productoPedido');
+     var productoPedido = $('#productoPedido');
      productoVenta.focus();
      productoPedido.focus();
 

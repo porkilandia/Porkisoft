@@ -17,12 +17,11 @@ class PedidoForm(ModelForm):
         exclude = ('TotalVenta','descuento','NombreCliente','nitCliente','guardado',)
 
 class DetallePedidoForm(ModelForm):
-    def __init__(self,idPedido, *args, **kwargs):
+    '''def __init__(self, *args, **kwargs):
         super(DetallePedidoForm,self).__init__(*args, **kwargs)
 
         #SE LIMITA EL NUMERO DE REGISTROS QUE SE RENDERIZAN PARA AUMENTAR LA VELOCIDAD DE CARGA
         Hoy = date.today()
-        pedido = Pedido.objects.select_related().get(pk = idPedido)
         consulta = Pedido.objects.filter(fechaPedido = Hoy)
         self.fields['pedido'].queryset = consulta
 
@@ -32,7 +31,7 @@ class DetallePedidoForm(ModelForm):
         q4 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Pollos")
         q5 = Producto.objects.select_related().filter(grupo__nombreGrupo = "Compra/Venta")
 
-        self.fields['productoPedido'].queryset = q1|q2|q3|q4|q5
+        self.fields['productoPedido'].queryset = q1|q2|q3|q4|q5'''
     class Meta:
         model = DetallePedido
         exclude = ('subproducto','estado',)
