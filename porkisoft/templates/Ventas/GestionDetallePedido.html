@@ -75,8 +75,7 @@
         <thead >
         <tr>
             <th>Producto</th>
-            <th>Peso</th>
-            <th>Unidades</th>
+            <th>Cantidad</th>
             <th>Vr.Unitario</th>
             <th>Vr. Total</th>
             <th>Accion</th>
@@ -86,8 +85,7 @@
         {% for det  in detPedido %}
         <tr>
             <td>{{ det.productoPedido }}</td>
-            <td>{{ det.pesoPedido }}grs</td>
-            <td>{{ det.unidadesPedido }}</td>
+            <td>{{ det.pesoPedido|floatformat }}</td>
             <td>{{ det.vrUnitario }}</td>
             <td>{{ det.vrTotalPedido }}</td>
             <td><a href="{% url 'Ventas.views.BorrarDetallePedido' det.id %}">Borrar</a>

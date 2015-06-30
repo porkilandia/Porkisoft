@@ -85,7 +85,7 @@ class DetallePedido (models.Model):
     pedido = models.ForeignKey(Pedido)
     productoPedido = models.ForeignKey(Producto,null=True,blank=True)
     subproducto = models.ForeignKey(SubProducto, null=True)
-    pesoPedido = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Peso(grs)',null= True,default=0)
+    pesoPedido = models.DecimalField(max_digits=9, decimal_places=3,verbose_name='Cantidad',null= True,default=0)
     unidadesPedido = models.IntegerField(verbose_name='Unidades',null= True,default=0)
     vrUnitario = models.IntegerField(verbose_name='Vr.Unitario', default=0)
     vrTotalPedido = models.IntegerField(verbose_name='Vr.Total',default=0)

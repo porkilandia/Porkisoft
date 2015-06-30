@@ -54,6 +54,34 @@ $(document).on('ready', inicio);
         });
 
      }
+     function calculoTotalPedido() {
+        var producto = productoPedido.val();
+        var vrUnitario =$('#id_vrUnitario').val();
+         var pesoPedido = $('#id_pesoPedido');
+
+         $.ajax({
+            url: '/ventas/tipoProducto/',
+            dataType: "json",
+            type: "get",
+            data: {'producto': producto},
+            success: function (respuesta) {
+
+                if (respuesta == 'pesable')
+                {
+                    total = (pesoPedido.val()/1000) * vrUnitario;
+                    $('#id_vrTotalPedido').val(Math.round(total));
+                }
+                else
+                {
+                    total = pesoPedido.val() * vrUnitario;
+                    $('#id_vrTotalPedido').val(total);
+                }
+
+            }
+
+        });
+
+     }
      pesoVentaPunto.on('change',calculoTotalVentaPunto);
 
 
@@ -75,7 +103,8 @@ $(document).on('ready', inicio);
      $('#pie').hide();
      $('#Retiro').hide();
      $('#tablaMovi').hide();
-
+     var idVrUnitario = $('#id_vrUnitario');
+     idVrUnitario.on('focus',calculoTotalPedido);
      $('#id_precioTotal').on('focus',calculoGanado);
      $('#id_difPesos').on('focus',calculoCanal);
      $('#id_vrCompraProducto').on('focus', calculoCompra);
@@ -87,9 +116,9 @@ $(document).on('ready', inicio);
      $('#costear').on('click',CostearDesposte);
      $('#costearTajado').on('click',CostearTajado);
      $('#guardar').on('click',GuardarDesposte);
-     $('#id_vrTotalPedido').on('focus',CalculaTotalPedido);
+     $('#id_vrTotalPedido').on('focus',calculoTotalPedido);
      //productoVenta.on('blur',consultaValorProducto);
-     $('#id_vrUnitario').on('focus',ExistenciasPedido);
+     idVrUnitario.on('focus',ExistenciasPedido);
      $('#id_vrTotal').on('focus',calculoValorProducto);
      $('#guardarVentas').on('click',GuardarVentas);
      $('#Guardatraslado').on('click',GuardarTraslado);
@@ -1406,7 +1435,8 @@ function Exportar()
 {
     $('#tablaApanados').tableExport({type:'pdf',escape:'false',pdfFontSize:8,ignoreColumn: [3,9,10]});
 }
-function conciliarFaltantes() {
+
+function conciliaRes() {
 
      var table = $('#tablaReporteFaltante').tableToJSON({
          onlyColumns:[0,7]
@@ -1415,7 +1445,86 @@ function conciliarFaltantes() {
     var bodega = $('#bodegaFaltantes option:selected');
     var CodigoBodega = bodega.val();
 
-     //alert(JSON.stringify(table));
+    conciliarFaltantes(datos,CodigoBodega)
+
+}
+function conciliaCerdo() {
+
+     var table = $('#tablaCerdos').tableToJSON({
+         onlyColumns:[0,7]
+     });
+    var datos = JSON.stringify(table);
+    var bodega = $('#bodegaFaltantes option:selected');
+    var CodigoBodega = bodega.val();
+
+    conciliarFaltantes(datos,CodigoBodega)
+
+}
+function conciliaCerda() {
+
+     var table = $('#tablaCerdas').tableToJSON({
+         onlyColumns:[0,7]
+     });
+    var datos = JSON.stringify(table);
+    var bodega = $('#bodegaFaltantes option:selected');
+    var CodigoBodega = bodega.val();
+
+    conciliarFaltantes(datos,CodigoBodega)
+
+}
+function conciliaPollo() {
+
+     var table = $('#tablaPollos').tableToJSON({
+         onlyColumns:[0,7]
+     });
+    var datos = JSON.stringify(table);
+    var bodega = $('#bodegaFaltantes option:selected');
+    var CodigoBodega = bodega.val();
+
+    conciliarFaltantes(datos,CodigoBodega)
+
+}
+function conciliaVisceras() {
+
+     var table = $('#tablaVisceras').tableToJSON({
+         onlyColumns:[0,7]
+     });
+    var datos = JSON.stringify(table);
+    var bodega = $('#bodegaFaltantes option:selected');
+    var CodigoBodega = bodega.val();
+
+    conciliarFaltantes(datos,CodigoBodega)
+
+}
+
+function conciliaCompraventa() {
+
+     var table = $('#tablaCompraventa').tableToJSON({
+         onlyColumns:[0,7]
+     });
+    var datos = JSON.stringify(table);
+    var bodega = $('#bodegaFaltantes option:selected');
+    var CodigoBodega = bodega.val();
+
+    conciliarFaltantes(datos,CodigoBodega)
+
+}
+function conciliaInsumos() {
+
+     var table = $('#tablaInsumos').tableToJSON({
+         onlyColumns:[0,7]
+     });
+    var datos = JSON.stringify(table);
+    var bodega = $('#bodegaFaltantes option:selected');
+    var CodigoBodega = bodega.val();
+
+    conciliarFaltantes(datos,CodigoBodega)
+
+}
+
+
+function conciliarFaltantes(datos,CodigoBodega) {
+
     var opcion = confirm('Desea ajustar los productos Seleccionados?');
     if (opcion == true) {
         $.ajax({
@@ -1433,6 +1542,7 @@ function conciliarFaltantes() {
     }
 
 }
+
 
 //*******************************************************************************************************************
 //*******************************************************************************************************************

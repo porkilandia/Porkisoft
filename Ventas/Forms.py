@@ -34,7 +34,7 @@ class DetallePedidoForm(ModelForm):
         self.fields['productoPedido'].queryset = q1|q2|q3|q4|q5'''
     class Meta:
         model = DetallePedido
-        exclude = ('subproducto','estado',)
+        exclude = ('subproducto','estado','unidadesPedido',)
 
 class VentaForm(ModelForm):
     class Meta:

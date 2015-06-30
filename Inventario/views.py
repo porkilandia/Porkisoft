@@ -840,20 +840,20 @@ def ConciliaInventario (request):
     cont = 0
     msj = ''
     for dato in datosJson:
-        if int(dato['Faltante']) != 0:
+        if int(dato['Diferencia']) != 0:
             producto = ProductoBodega.objects.select_related().get(producto = dato['Codigo'],bodega = int(bodega))
 
             if producto.producto.pesables:
-                if (int(dato['Faltante']) >= -700) and (int(dato['Faltante']) <= 2000):
+                if (int(dato['Diferencia']) >= -700) and (int(dato['Diferencia']) <= 2000):
                     if producto.pesoProductoStock < 0:
                         pesoActual = producto.pesoProductoStock * -1
-                        producto.pesoProductoStock = pesoActual + Decimal(dato['Faltante'])
+                        producto.pesoProductoStock = pesoActual + Decimal(dato['Diferencia'])
                     else:
-                        producto.pesoProductoStock += Decimal(dato['Faltante'])
+                        producto.pesoProductoStock += Decimal(dato['Diferencia'])
 
             else:
-                if (int(dato['Faltante']) > 0) and (int(dato['Faltante']) <= 2):
-                    producto.unidadesStock += int(dato['Faltante'])
+                if (int(dato['Diferencia']) > 0) and (int(dato['Diferencia']) <= 2):
+                    producto.unidadesStock += int(dato['Diferencia'])
 
 
             cont +=1
@@ -877,10 +877,11 @@ def Deshidratacion(request):
             pesoProducto = producto.pesoProductoStock
             #Calculo de Deshidratacion
             deshidratacion = (pesoProducto * Decimal(0.8))/100
-            pesoAjustado = pesoProducto - Decimal(ceil(deshidratacion))
-            producto.pesoProductoStock = pesoAjustado
-            producto.save()
-            cont += 1
+            if pesoProducto > 0:
+                pesoAjustado = pesoProducto - Decimal(ceil(deshidratacion))
+                producto.pesoProductoStock = pesoAjustado
+                producto.save()
+                cont += 1
 
     msj = 'Deshidratacion aplicada correctamente a %d productos'%cont
     respuesta = json.dumps(msj)

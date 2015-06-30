@@ -743,9 +743,6 @@ def GuaradarPedido(request):
 
     for det in detPedido:
         bodega = ProductoBodega.objects.get(bodega = pedido.bodega.codigoBodega,producto = det.productoPedido.codigoProducto)
-        bodega.pesoProductoStock -= det.pesoPedido
-        bodega.unidadesStock -= det.unidadesPedido
-        bodega.save()
 
         movimiento = Movimientos()
         movimiento.tipo = 'PED%d'%(pedido.numeroPedido)
@@ -754,11 +751,14 @@ def GuaradarPedido(request):
         movimiento.nombreProd = det.productoPedido.nombreProducto
         movimiento.desde = bodega.bodega.nombreBodega
 
-        if det.pesoPedido == 0:
-            movimiento.salida = det.unidadesPedido
+        if det.productoPedido.pesables:
+            bodega.pesoProductoStock -= det.pesoPedido
+            movimiento.salida = det.pesoPedido
         else:
+            bodega.unidadesStock -= det.pesoPedido
             movimiento.salida = det.pesoPedido
 
+        bodega.save()
         movimiento.save()
 
     pedido.guardado = True
