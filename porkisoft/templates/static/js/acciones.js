@@ -2030,8 +2030,19 @@ function ReporteTelleresPuntos ()
                 $("#tablaPesoFrito").find("tr:gt(0)").remove();
                 $("#tablaCostoCroqueta").find("tr:gt(0)").remove();
                 $("#tablaPesoCroqueta").find("tr:gt(0)").remove();
-                $("#tablaCostoCarne").find("tr:gt(0)").remove();
-                $("#tablaPesoCarne").find("tr:gt(0)").remove();
+
+                $("#tablaCostoBolaC").find("tr:gt(0)").remove();
+                $("#tablaPesoBolaC").find("tr:gt(0)").remove();
+
+                $("#tablaCostoAguja").find("tr:gt(0)").remove();
+                $("#tablaPesoAguja").find("tr:gt(0)").remove();
+
+                $("#tablaCostoPernil").find("tr:gt(0)").remove();
+                $("#tablaPesoPernil").find("tr:gt(0)").remove();
+
+                $("#tablaCostoRecortes").find("tr:gt(0)").remove();
+                $("#tablaPesoRecortes").find("tr:gt(0)").remove();
+
                 $("#tablaCostoBola").find("tr:gt(0)").remove();
                 $("#tablaPesoBola").find("tr:gt(0)").remove();
                 $("#tablaCostoMolida").find("tr:gt(0)").remove();
@@ -2056,13 +2067,40 @@ function ReporteTelleresPuntos ()
                 });
 
                 /*******************************************************************************************************/
-                $.each(respuesta.promedioCarneCond,function(key,value){
+                $.each(respuesta.promedioBolaCond,function(key,value){
 
-                    $("#tablaCostoCarne").append("<tr><td>" + 'Carne Condimentada' + "</td><td style='text-align: right'>"+'$ '+ Math.ceil(value) + "</td></tr>");
+                    $("#tablaCostoBolaC").append("<tr><td>" + 'Bola Condimentada' + "</td><td style='text-align: right'>"+'$ '+ Math.ceil(value) + "</td></tr>");
                 });
-                $.each(respuesta.pesoCarneCond,function(key,value){
+                $.each(respuesta.pesoBolaCond,function(key,value){
 
-                    $("#tablaPesoCarne").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) +' grs'+ "</td></tr>");
+                    $("#tablaPesoBolaC").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) +' grs'+ "</td></tr>");
+                });
+
+                $.each(respuesta.promedioAgujaCond,function(key,value){
+
+                    $("#tablaCostoAguja").append("<tr><td>" + 'Aguja Condimentada' + "</td><td style='text-align: right'>"+'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.pesoAgujaCond,function(key,value){
+
+                    $("#tablaPesoAguja").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) +' grs'+ "</td></tr>");
+                });
+
+                $.each(respuesta.promedioPernilCond,function(key,value){
+
+                    $("#tablaCostoPernil").append("<tr><td>" + 'Pernil de pollo Condimentado' + "</td><td style='text-align: right'>"+'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.pesoPernilesPollo,function(key,value){
+
+                    $("#tablaPesoPernil").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) +' grs'+ "</td></tr>");
+                });
+
+                $.each(respuesta.promedioRecorteCond,function(key,value){
+
+                    $("#tablaCostoRecortes").append("<tr><td>" + 'Recorte de Pollo Condimentado' + "</td><td style='text-align: right'>"+'$ '+ Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.pesoRecortesPollo,function(key,value){
+
+                    $("#tablaPesoRecortes").append("<tr><td>" + key + "</td><td style='text-align: right'>" + Math.ceil(value) +' grs'+ "</td></tr>");
                 });
 
                 /*******************************************************************************************************/

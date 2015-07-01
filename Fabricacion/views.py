@@ -3563,8 +3563,17 @@ def ReporteTallerPunto(request):
     pesoCroqueta = {}
     pesoCroqueta['Croqueta Apanada'] = 0
 
-    pesoCarneCond = {}
-    pesoCarneCond['Carne Condimentada'] = 0
+    pesoBolaCond = {}
+    pesoBolaCond['Bola Condimentada'] = 0
+
+    pesoAgujaCond = {}
+    pesoAgujaCond['Aguja Condimentada'] = 0
+
+    pesoRecortesPollo = {}
+    pesoRecortesPollo['Recortes de Pollo'] = 0
+
+    pesoPernilesPollo = {}
+    pesoPernilesPollo['Perniles de Pollo'] = 0
 
     pesoBolaEns = {}
     pesoBolaEns['Carne Ensalinada'] = 0
@@ -3596,13 +3605,34 @@ def ReporteTallerPunto(request):
     for croqueta in croquetas:
         pesoCroqueta['Croqueta Apanada'] += ceil(croqueta.pesoTotalCroqueta)
 
+#************************************************************************************************
+    BolaCond = TallerCarneCondimentada.objects.select_related().filter(productoCond__nombreProducto = 'Bola Condimentada',fechaCarCond__range = (finicio,ffin), puntoCond = int(bodega))
+    promedioBolaCond = BolaCond.aggregate(Avg('costoKiloCond'))
 
-    carneCond = TallerCarneCondimentada.objects.filter(fechaCarCond__range = (finicio,ffin)).filter(puntoCond = int(bodega))
-    promedioCarneCond = carneCond.aggregate(Avg('costoKiloCond'))
+    for bCond in BolaCond:
+        pesoBolaCond['Bola Condimentada'] += ceil(bCond.pesoTotalCond)
 
-    for cCond in carneCond:
-        pesoCarneCond['Carne Condimentada'] += ceil(cCond.pesoTotalCond)
 
+    AgujaCond = TallerCarneCondimentada.objects.select_related().filter(productoCond__nombreProducto = 'Aguja Condimentada',fechaCarCond__range = (finicio,ffin), puntoCond = int(bodega))
+    promedioAgujaCond = BolaCond.aggregate(Avg('costoKiloCond'))
+
+    for aCond in AgujaCond:
+        pesoAgujaCond['Aguja Condimentada'] += ceil(aCond.pesoTotalCond)
+
+    RecortCond = TallerCarneCondimentada.objects.select_related().filter(productoCond__nombreProducto = 'Recortes de pollo',fechaCarCond__range = (finicio,ffin), puntoCond = int(bodega))
+    promedioRecorteCond = BolaCond.aggregate(Avg('costoKiloCond'))
+
+    for rCond in RecortCond:
+        pesoRecortesPollo['Recortes de Pollo'] += ceil(rCond.pesoTotalCond)
+
+
+    PernilCond = TallerCarneCondimentada.objects.select_related().filter(productoCond__nombreProducto = 'Pernil pollo',fechaCarCond__range = (finicio,ffin), puntoCond = int(bodega))
+    promedioPernilCond = BolaCond.aggregate(Avg('costoKiloCond'))
+
+    for pCond in PernilCond:
+        pesoPernilesPollo['Perniles de Pollo'] += ceil(pCond .pesoTotalCond)
+
+#************************************************************************************************
 
     bolaEns = TallerBolaEnsalinada.objects.filter(fechaBolaCondimentada__range = (finicio,ffin)).filter(puntoBodega = int(bodega))
     promedioBolaEns = bolaEns.aggregate(Avg('costoKiloEns'))
@@ -3622,7 +3652,11 @@ def ReporteTallerPunto(request):
 
 
     listas = {'promedioFrito':promedioFrito,'pesoFrito':pesoFrito,'promedioCroqueta':promedioCroqueta,
-              'pesoCroqueta':pesoCroqueta,'promedioCarneCond':promedioCarneCond,'pesoCarneCond':pesoCarneCond,
+              'pesoCroqueta':pesoCroqueta,
+              'promedioBolaCond':promedioBolaCond,'pesoBolaCond':pesoBolaCond,
+              'promedioAgujaCond':promedioAgujaCond,'pesoAgujaCond':pesoAgujaCond,
+              'promedioPernilCond':promedioPernilCond,'pesoPernilesPollo':pesoPernilesPollo,
+              'promedioRecorteCond':promedioRecorteCond,'pesoRecortesPollo':pesoRecortesPollo,
               'promedioBolaEns':promedioBolaEns,'pesoBolaEns':pesoBolaEns,'promedioMolida':promedioMolida,'pesoMolida':pesoMolida}
 
 
