@@ -3606,28 +3606,28 @@ def ReporteTallerPunto(request):
         pesoCroqueta['Croqueta Apanada'] += ceil(croqueta.pesoTotalCroqueta)
 
 #************************************************************************************************
-    BolaCond = TallerCarneCondimentada.objects.select_related().filter(productoCond__nombreProducto = 'Bola Condimentada',fechaCarCond__range = (finicio,ffin), puntoCond = int(bodega))
+    BolaCond = TallerCarneCondimentada.objects.select_related().filter(productoCond__nombreProducto = 'Bola',fechaCarCond__range = (finicio,ffin), puntoCond = int(bodega))
     promedioBolaCond = BolaCond.aggregate(Avg('costoKiloCond'))
 
     for bCond in BolaCond:
         pesoBolaCond['Bola Condimentada'] += ceil(bCond.pesoTotalCond)
 
 
-    AgujaCond = TallerCarneCondimentada.objects.select_related().filter(productoCond__nombreProducto = 'Aguja Condimentada',fechaCarCond__range = (finicio,ffin), puntoCond = int(bodega))
-    promedioAgujaCond = BolaCond.aggregate(Avg('costoKiloCond'))
+    AgujaCond = TallerCarneCondimentada.objects.select_related().filter(productoCond__nombreProducto = 'Aguja',fechaCarCond__range = (finicio,ffin), puntoCond = int(bodega))
+    promedioAgujaCond = AgujaCond.aggregate(Avg('costoKiloCond'))
 
     for aCond in AgujaCond:
         pesoAgujaCond['Aguja Condimentada'] += ceil(aCond.pesoTotalCond)
 
     RecortCond = TallerCarneCondimentada.objects.select_related().filter(productoCond__nombreProducto = 'Recortes de pollo',fechaCarCond__range = (finicio,ffin), puntoCond = int(bodega))
-    promedioRecorteCond = BolaCond.aggregate(Avg('costoKiloCond'))
+    promedioRecorteCond = RecortCond.aggregate(Avg('costoKiloCond'))
 
     for rCond in RecortCond:
         pesoRecortesPollo['Recortes de Pollo'] += ceil(rCond.pesoTotalCond)
 
 
     PernilCond = TallerCarneCondimentada.objects.select_related().filter(productoCond__nombreProducto = 'Pernil pollo',fechaCarCond__range = (finicio,ffin), puntoCond = int(bodega))
-    promedioPernilCond = BolaCond.aggregate(Avg('costoKiloCond'))
+    promedioPernilCond = PernilCond.aggregate(Avg('costoKiloCond'))
 
     for pCond in PernilCond:
         pesoPernilesPollo['Perniles de Pollo'] += ceil(pCond .pesoTotalCond)
