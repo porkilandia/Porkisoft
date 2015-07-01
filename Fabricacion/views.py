@@ -3613,7 +3613,7 @@ def ReporteTallerPunto(request):
         pesoBolaCond['Bola Condimentada'] += ceil(bCond.pesoTotalCond)
 
 
-    AgujaCond = TallerCarneCondimentada.objects.select_related().filter(productoCond__nombreProducto = 'Aguja',fechaCarCond__range = (finicio,ffin), puntoCond = int(bodega))
+    AgujaCond = TallerCarneCondimentada.objects.select_related().filter(productoCond__nombreProducto = 'Agujas',fechaCarCond__range = (finicio,ffin), puntoCond = int(bodega))
     promedioAgujaCond = AgujaCond.aggregate(Avg('costoKiloCond'))
 
     for aCond in AgujaCond:
