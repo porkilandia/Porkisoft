@@ -578,7 +578,7 @@ def CostoCondimento(request,idcondimento):
 
     condimento.costoLitroCondimento = costoLitroCond
     condimento.costoCondimento = ceil(costoCondProsecesado)
-
+    condimento.guardado = True
     condimento.save()
 
     producto = Producto.objects.get(nombreProducto = 'Condimento Natural')

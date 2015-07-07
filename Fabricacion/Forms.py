@@ -37,7 +37,7 @@ class LimpiezaVerdurasForm(ModelForm):
 class CondimentoForm(ModelForm):
     class Meta:
         model = Condimento
-        exclude = ('costoCondimento','costoLitroCondimento',)
+        exclude = ('costoCondimento','costoLitroCondimento','guardado',)
 
 class DetalleCondimentoForm(ModelForm):
 

@@ -14,6 +14,7 @@
             <th>Cif</th>
             <th>Mod</th>
             <th>Costo Total</th>
+            <th>Guardado</th>
 
         </tr>
         </thead>
@@ -27,6 +28,12 @@
                 <td>$ {{ condimento.cif }}</td>
                 <td>$ {{ condimento.mod }}</td>
                 <td>$ {{ condimento.costoCondimento|floatformat }}</td>
+                {% if condimento.guardado == True %}
+                    <td>Si</td>
+                {% else %}
+                    <td>No</td>
+                {% endif %}
+
             </tr>
         </tbody>
 
