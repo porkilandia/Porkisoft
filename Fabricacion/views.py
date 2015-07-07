@@ -1022,6 +1022,55 @@ def GestionCondimentado(request):
     return render_to_response('Fabricacion/GestionCondimentado.html',{'formulario':formulario,'condimentados':condimentados },
                               context_instance = RequestContext(request))
 
+
+def CostearCondimentado(request):
+    idCondimentado = request.GET.get('idCondimentado')
+    condimentado = Condimentado.objects.get(pk = int(idCondimentado))
+    condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
+    resPollo = Producto.objects.get(nombreProducto = 'Sabor pollo asado')
+    saborLonganiza = Producto.objects.get(nombreProducto = 'Sabor longaniza')
+    ablandacarnes = Producto.objects.get(nombreProducto = 'Ablandacarnes')
+
+    pesofilete = condimentado.pesoFileteCond
+    pesocondimento = condimentado.condimento
+    pesoresaltador = condimentado.resPollo
+    pesosaborlonganiza = condimentado.saborLonganiza
+    pesoablanda = condimentado.ablandaCarnes
+
+    costoFilete = condimentado.producto.costoProducto *  (pesofilete / 1000)
+    costoCondimento = condimento.costoProducto * (pesocondimento/1000)
+    costoResPollo = resPollo.costoProducto * (pesoresaltador / 1000)
+    costoSaborLonganiza = saborLonganiza.costoProducto * (pesosaborlonganiza / 1000)
+    costoAblanda = ablandacarnes.costoProducto * (pesoablanda / 1000)
+    mod = condimentado.mod
+    cif = condimentado.cif
+
+    costoParcial = costoFilete + costoCondimento + costoResPollo + costoSaborLonganiza + costoAblanda + mod +cif
+    costoKiloCondimentado = costoParcial /(condimentado.pesoFileteCond / 1000)
+
+    condimentado.costoFileteCond = costoKiloCondimentado
+    condimentado.save()
+
+    if condimentado.producto.grupo.nombreGrupo == 'Pollos':
+        FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de Pollo Condimentado')
+        FileteCondimentado.costoProducto = condimentado.costoFileteCond
+        msj ='Guardado exitoso!!'
+
+    elif condimentado.producto.grupo.nombreGrupo == 'Cerdos':
+        FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de cerdo Condimentado')
+        FileteCondimentado.costoProducto = condimentado.costoFileteCond
+        msj ='Guardado exitoso!!'
+
+    else:
+        FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de cerda Condimentado')
+        FileteCondimentado.costoProducto = condimentado.costoFileteCond
+        msj ='Guardado exitoso!!'
+
+    FileteCondimentado.save()
+
+    respuesta = json.dumps(msj)
+    return HttpResponse(respuesta,mimetype='application/json')
+
 def borrarCondimentado(request,idCondimentado):
     condimentado = Condimentado.objects.get(pk = idCondimentado)
     condimentado.delete()

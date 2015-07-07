@@ -3100,6 +3100,23 @@ function GuardarEnsalinado(idEnsalinado)
     }
 
 }
+function CostearCondimentado(idCondimentado)
+{
+
+        $.ajax({
+
+            url : '/fabricacion/costearCondimentado/',
+            dataType : "json",
+            type : "get",
+            data : {'idCondimentado':idCondimentado},
+            success : function(respuesta)
+            {
+                    var n = noty({text: respuesta, type:'success',layout: 'bottom'});
+
+            }
+
+        });
+}
 function GuardarCondimentado(idCondimentado)
 {
     var opcion = confirm('Desea guardar este Registro?');
@@ -3139,7 +3156,10 @@ function calculaPesoCondimentado()
 {
     var pesoFilete = parseInt($('#id_pesoACondimentar').val());
     var condimento = parseInt($('#id_condimento').val());
-    var totalCondimentado = pesoFilete + condimento;
+    var resPollo = parseInt($('#id_resPollo').val());
+    var saborLonganiza = parseInt($('#id_saborLonganiza').val());
+    var ablandaCarne = parseInt($('#id_ablandaCarnes').val());
+    var totalCondimentado = pesoFilete + condimento + resPollo + saborLonganiza + ablandaCarne;
     $('#id_pesoFileteCond').val(totalCondimentado);
 
 

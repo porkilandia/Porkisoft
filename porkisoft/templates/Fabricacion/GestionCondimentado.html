@@ -17,7 +17,7 @@
             <th>Peso a Condimentar</th>
             <th>Condimento</th>
             <th>CostoFilete</th>
-            <th>COsto Cond.</th>
+            <th>Costo Cond.</th>
             <th>Peso Condimetado</th>
             <th>Costo</th>
             <th>Acciones</th>
@@ -40,6 +40,7 @@
                     <td></td>
                 {% else %}
                     <td>
+                        <a onclick="CostearCondimentado({{ condimentado.codigo }})" href="#">Costear</a>
                         <a onclick="GuardarCondimentado({{ condimentado.codigo }})" href="#">Guardar</a>
                         <a href="{% url 'Fabricacion.views.borrarCondimentado' condimentado.codigo %}">Borrar</a>
                     </td>
