@@ -1117,7 +1117,7 @@ def GuardarCondimentado(request):
             #guardamos las cantidades producidas
     if condimentado.producto.grupo.nombreGrupo == 'Pollos':
         FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de Pollo Condimentado')
-        FileteCondimentado.costoProducto = condimentado.costoFileteCond
+        #FileteCondimentado.costoProducto = condimentado.costoFileteCond
         bodegaFileteCond = ProductoBodega.objects.get(bodega = 5,producto = FileteCondimentado.codigoProducto)
         bodegaFileteCond.pesoProductoStock += condimentado.pesoFileteCond
         bodegaFileteCond.save()
@@ -1125,7 +1125,7 @@ def GuardarCondimentado(request):
 
     elif condimentado.producto.grupo.nombreGrupo == 'Cerdos':
         FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de cerdo Condimentado')
-        FileteCondimentado.costoProducto = condimentado.costoFileteCond
+        #FileteCondimentado.costoProducto = condimentado.costoFileteCond
         bodegaFileteCond = ProductoBodega.objects.get(bodega = 5,producto = FileteCondimentado.codigoProducto)
         bodegaFileteCond.pesoProductoStock += condimentado.pesoFileteCond
         bodegaFileteCond.save()
@@ -1133,7 +1133,7 @@ def GuardarCondimentado(request):
 
     else:
         FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de cerda Condimentado')
-        FileteCondimentado.costoProducto = condimentado.costoFileteCond
+        #FileteCondimentado.costoProducto = condimentado.costoFileteCond
         bodegaFileteCond = ProductoBodega.objects.get(bodega = 5,producto = FileteCondimentado.codigoProducto)
         bodegaFileteCond.pesoProductoStock += condimentado.pesoFileteCond
         bodegaFileteCond.save()
@@ -1150,7 +1150,7 @@ def GuardarCondimentado(request):
 
     condimentado.guardado = True
     condimentado.save()
-    FileteCondimentado.save()
+    #FileteCondimentado.save()
 
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
