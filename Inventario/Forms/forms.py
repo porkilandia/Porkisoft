@@ -45,7 +45,7 @@ class CompraForm(ModelForm):
     tipo = forms.ModelChoiceField(queryset = Grupo.objects.all())
     class Meta:
         model = Compra
-        exclude = ("vrCompra","cantCabezas",)
+        exclude = ("vrCompra","cantCabezas","vrTransporte","guardado",)
 
 class DetalleCompraForm(ModelForm):
 
@@ -55,6 +55,12 @@ class DetalleCompraForm(ModelForm):
 
         if compra.tipo.nombreGrupo == 'Insumos':
             self.fields['producto'].queryset = Producto.objects.filter(grupo = 6)
+        elif compra.tipo.nombreGrupo == 'Reses':
+            self.fields['producto'].queryset = Producto.objects.filter(grupo = 1)
+        elif compra.tipo.nombreGrupo == 'Cerdos':
+            self.fields['producto'].queryset = Producto.objects.filter(grupo = 2)
+        elif compra.tipo.nombreGrupo == 'Cerdas':
+            self.fields['producto'].queryset = Producto.objects.filter(grupo = 3)
         elif compra.tipo.nombreGrupo == 'Verduras':
             self.fields['producto'].queryset = Producto.objects.filter(grupo = 7)
         elif compra.tipo.nombreGrupo == 'Compra/Venta':

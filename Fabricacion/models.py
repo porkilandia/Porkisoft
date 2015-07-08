@@ -346,7 +346,7 @@ class TallerFrito(models.Model):
     pesoProducto = models.DecimalField(verbose_name='Peso Producto', max_digits=9, decimal_places=3,default=0)
     condimento = models.DecimalField(verbose_name='Peso Condimento', max_digits=9, decimal_places=3,default=0)
     punto = models.ForeignKey(Bodega)
-    productoFrito = models.ForeignKey(Producto)
+    productoFrito = models.ForeignKey(Producto,verbose_name='Producto')
     pesoTotalFrito = models.DecimalField(verbose_name='Peso Total', max_digits=9, decimal_places=3,default=0)
     costoKiloFrito = models.IntegerField(verbose_name='Costo Kilo Frito',default=0)
     guardado = models.BooleanField(default=False)

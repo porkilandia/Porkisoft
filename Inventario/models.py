@@ -132,12 +132,12 @@ class Proveedor (models.Model):
 class Compra(models.Model):
 
     codigoCompra = models.AutoField(primary_key=True)
+    fechaCompra = models.DateField(verbose_name='Fecha',blank=True,null=True)
     tipo = models.ForeignKey(Grupo)
     bodegaCompra = models.ForeignKey(Bodega,blank=True,default=5)
     #encargado = models.ForeignKey(Empleado)
     proveedor = models.ForeignKey(Proveedor)
     cantCabezas = models.IntegerField(verbose_name='# Cabezas', default=0)
-    fechaCompra = models.DateField(verbose_name='Fecha',blank=True,null=True)
     vrCompra = models.IntegerField(verbose_name='Valor Compra', default=0)
     vrTransporte = models.IntegerField(verbose_name='Transporte',default= 0)
     guardado = models.BooleanField(default=False)
