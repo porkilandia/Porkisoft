@@ -1081,6 +1081,9 @@ def GuardarCondimentado(request):
     idCondimentado = request.GET.get('idCondimentado')
     condimentado = Condimentado.objects.get(pk = int(idCondimentado))
     condimento = Producto.objects.get(nombreProducto = 'Condimento Natural')
+    resPollo = Producto.objects.get(nombreProducto = 'Sabor pollo asado')
+    saborLonganiza = Producto.objects.get(nombreProducto = 'Sabor longaniza')
+    ablandacarnes = Producto.objects.get(nombreProducto = 'Ablandacarnes')
 
     #******************************SALIDA PRODUCTO**********************************************
 
@@ -1112,6 +1115,41 @@ def GuardarCondimentado(request):
     movimientos.salida = condimentado.condimento
     movimientos.save()
 
+    bodegaResPollo = ProductoBodega.objects.get(bodega = 5,producto = resPollo.codigoProducto)
+    bodegaResPollo.pesoProductoStock -= condimentado.resPollo
+    bodegaResPollo.save()
+
+    movimientos = Movimientos()
+    movimientos.tipo = 'CND%d'%(condimentado.codigo)
+    movimientos.fechaMov = condimentado.fecha
+    movimientos.productoMov = resPollo
+    movimientos.nombreProd = resPollo.nombreProducto
+    movimientos.salida = condimentado.resPollo
+    movimientos.save()
+
+    bodegaSaborLong = ProductoBodega.objects.get(bodega = 5,producto = saborLonganiza.codigoProducto)
+    bodegaSaborLong.pesoProductoStock -= condimentado.saborLonganiza
+    bodegaSaborLong.save()
+
+    movimientos = Movimientos()
+    movimientos.tipo = 'CND%d'%(condimentado.codigo)
+    movimientos.fechaMov = condimentado.fecha
+    movimientos.productoMov = saborLonganiza
+    movimientos.nombreProd = saborLonganiza.nombreProducto
+    movimientos.salida = condimentado.saborLonganiza
+    movimientos.save()
+
+    bodegaAblanda = ProductoBodega.objects.get(bodega = 5,producto = ablandacarnes.codigoProducto)
+    bodegaAblanda.pesoProductoStock -= condimentado.ablandaCarnes
+    bodegaAblanda.save()
+
+    movimientos = Movimientos()
+    movimientos.tipo = 'CND%d'%(condimentado.codigo)
+    movimientos.fechaMov = condimentado.fecha
+    movimientos.productoMov = ablandacarnes
+    movimientos.nombreProd = ablandacarnes.nombreProducto
+    movimientos.salida = condimentado.ablandaCarnes
+    movimientos.save()
 
 
             #guardamos las cantidades producidas

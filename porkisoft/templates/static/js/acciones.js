@@ -1521,6 +1521,18 @@ function conciliaInsumos() {
     conciliarFaltantes(datos,CodigoBodega)
 
 }
+function conciliaVerduras() {
+
+     var table = $('#tablaVerduras').tableToJSON({
+         onlyColumns:[0,7]
+     });
+    var datos = JSON.stringify(table);
+    var bodega = $('#bodegaFaltantes option:selected');
+    var CodigoBodega = bodega.val();
+
+    conciliarFaltantes(datos,CodigoBodega)
+
+}
 
 
 function conciliarFaltantes(datos,CodigoBodega) {
@@ -1648,6 +1660,40 @@ $('#tablaCompraventa').delegate('tr.pesos','change', function(){
 
     $(this).find("td").eq(7).html(faltante);
 });
+$('#tablaInsumos').delegate('tr.pesos','change', function(){
+
+    var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
+    var invSistema = parseInt($(this).find("td").eq(3).html());
+    var undSistema = parseInt($(this).find("td").eq(4).html());
+
+    if (invSistema < 0)invSistema = invSistema * (-1);
+    if (undSistema < 0)undSistema = undSistema * (-1);
+
+    var faltante = 0;
+    if (invSistema != 0)faltante = fisico - invSistema;
+    else faltante = fisico - undSistema;
+
+    $(this).find("td").eq(7).html(faltante);
+});
+$('#tablaVerduras').delegate('tr.pesos','change', function(){
+
+    var fisico = $(".actual",this).val();
+    //if ($(".conciliar",this).attr('checked')){}//$(this).find("td").eq(7).html(fisico);
+    //else $(this).find("td").eq(7).html(0);
+    var invSistema = parseInt($(this).find("td").eq(3).html());
+    var undSistema = parseInt($(this).find("td").eq(4).html());
+
+    if (invSistema < 0)invSistema = invSistema * (-1);
+    if (undSistema < 0)undSistema = undSistema * (-1);
+
+    var faltante = 0;
+    if (invSistema != 0)faltante = fisico - invSistema;
+    else faltante = fisico - undSistema;
+
+    $(this).find("td").eq(7).html(faltante);
+});
 
 //*******************************************************************************************************************
 //*******************************************************************************************************************
@@ -1661,11 +1707,12 @@ function ReporteFaltantes() {
 
    var tablaFaltante = $("#tablaReporteFaltante");
    var tablaCerdos = $("#tablaCerdos");
-    var tablaCerdas = $("#tablaCerdas");
-    var tablaPollos = $("#tablaPollos");
-    var tablaCompraventa = $("#tablaCompraventa");
-    var tablaVisceras = $("#tablaVisceras");
-    var tablaInsumos = $("#tablaInsumos");
+   var tablaCerdas = $("#tablaCerdas");
+   var tablaPollos = $("#tablaPollos");
+   var tablaCompraventa = $("#tablaCompraventa");
+   var tablaVisceras = $("#tablaVisceras");
+   var tablaInsumos = $("#tablaInsumos");
+   var tablaVerduras = $("#tablaVerduras");
 
         $.ajax({
 
@@ -1681,6 +1728,7 @@ function ReporteFaltantes() {
                 tablaCompraventa.find("tr:gt(0)").remove();
                 tablaVisceras.find("tr:gt(0)").remove();
                 tablaInsumos.find("tr:gt(0)").remove();
+                tablaVerduras.find("tr:gt(0)").remove();
 
                     for (var i=0;i<respuesta.length;i++)
                     {
@@ -1789,6 +1837,19 @@ function ReporteFaltantes() {
                                     "</td><td>"+ '0'+
                                     "</td></tr>");
                                 }
+                                if(respuesta[i].fields.grupoProducto == 'Verduras')
+                                {
+                                    tablaVerduras.append(
+                                    "<tr style= 'color: black' class = 'pesos'><td>" + respuesta[i].fields.producto +
+                                    "</td><td>" + respuesta[i].fields.nombreProducto +
+                                    "</td><td>" + NombreBodega +
+                                    "</td><td style= 'background:"+ color +" ; font-weight: bold'>" +parseInt(respuesta[i].fields.pesoProductoStock) +
+                                    "</td><td style= 'background:"+ colorund +" ; font-weight: bold ' >" + parseInt(respuesta[i].fields.unidadesStock) +
+                                    "</td><td><input  class='actual' type = 'text' style='text-align: center'>"+
+                                     "</td><td>"+ '0' +
+                                    "</td><td>"+ '0'+
+                                    "</td></tr>");
+                                }
                                 if(respuesta[i].fields.grupoProducto == 'Compra/Venta')
                                 {
                                     if ((parseInt(respuesta[i].fields.pesoProductoStock) == 0))
@@ -1819,7 +1880,6 @@ function ReporteFaltantes() {
                                     }
 
                                 }
-
 
                             }
                     }
