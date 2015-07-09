@@ -1993,9 +1993,9 @@ function ReportePesosLote()
                     tablaCosto.append("<tr><td>" + 'Total Operacion' + "</td><td style='text-align: right' >"+'$ ' + costo + "</td></tr>");
 
 
-                    tablaCosto.append("<tr><td>" + 'Total Venta Estimada' + "</td><td style='text-align: right' >" +'$ '+ Math.round(TotalVenta) + "</td></tr>");
+                    /*tablaCosto.append("<tr><td>" + 'Total Venta Estimada' + "</td><td style='text-align: right' >" +'$ '+ Math.round(TotalVenta) + "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'Utilidad Estimada' + "</td><td style='text-align: right' >" +'$ '+ Math.round(gananciaEstimada) + "</td></tr>");
-                    tablaCosto.append("<tr><td>" + 'Utilidad' + "</td><td style='text-align: right' >" + Math.round(utilidad) +' %'+ "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'Utilidad' + "</td><td style='text-align: right' >" + Math.round(utilidad) +' %'+ "</td></tr>");*/
                     tablaCosto.append("<tr><td>" + 'perdida de Pie a Canal' + "</td><td style='text-align: right' >" + perdida +' %'+ "</td></tr>");
 
                 /*******************************************************************************************************/
