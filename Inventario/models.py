@@ -134,7 +134,7 @@ class Compra(models.Model):
     codigoCompra = models.AutoField(primary_key=True)
     fechaCompra = models.DateField(verbose_name='Fecha',blank=True,null=True)
     tipo = models.ForeignKey(Grupo)
-    bodegaCompra = models.ForeignKey(Bodega,blank=True,default=5)
+    bodegaCompra = models.ForeignKey(Bodega,blank=True,default=5,verbose_name='Punto')
     #encargado = models.ForeignKey(Empleado)
     proveedor = models.ForeignKey(Proveedor)
     cantCabezas = models.IntegerField(verbose_name='# Cabezas', default=0)

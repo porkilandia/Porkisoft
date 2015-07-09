@@ -122,8 +122,7 @@ def GestionDetallePedido(request,idpedido):
     detPedido = DetallePedido.objects.filter(pedido = idpedido)
     vrPedido = 0
 
-    ListadoPrecios = DetalleLista.objects.select_related().\
-        filter(lista__tipoLista = 'Punto',lista__bodega = pedido.bodega.codigoBodega).\
+    ListadoPrecios = DetalleLista.objects.select_related().filter(lista__codigoLista = pedido.listaPrecioPedido.codigoLista).\
         order_by('productoLista__numeroProducto')
 
     for det in detPedido:
