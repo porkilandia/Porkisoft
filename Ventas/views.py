@@ -84,15 +84,16 @@ def GestionPedidos(request,idcliente):
     usuario = request.user.username
     emp = Empleado.objects.select_related().get(usuario = usuario)
     cliente = Cliente.objects.get(pk = idcliente)
-    idBodega = emp.punto.codigoBodega
     usuario = request.user
     if usuario.is_staff:
         pedidos = Pedido.objects.filter(cliente = idcliente).filter(fechaPedido__range =(fechainicio,fechafin))
         plantilla = 'base.html'
+        idBodega = 0
 
     else:
         pedidos = Pedido.objects.filter(cliente = idcliente).filter(fechaPedido__range =(fechainicio,fechafin)).filter(bodega = emp.punto.codigoBodega)
         plantilla = 'PuntoVentaNorte.html'
+        idBodega = emp.punto.codigoBodega
 
     #listaPrecios = ListaDePrecios.objects.select_related().get()
 

@@ -10,8 +10,11 @@ class PedidoForm(ModelForm):
 
     def __init__(self,idBodega,*args,**kwargs):
         super(PedidoForm,self).__init__(*args,**kwargs)
+        if idBodega != 0:
+            self.fields['listaPrecioPedido'].queryset = ListaDePrecios.objects.select_related().filter(bodega = idBodega)
+        else:
+            self.fields['listaPrecioPedido'].queryset = ListaDePrecios.objects.select_related().all()
 
-        self.fields['listaPrecioPedido'].queryset = ListaDePrecios.objects.select_related().filter(bodega = idBodega)
     class Meta:
         model = Pedido
         exclude = ('TotalVenta','descuento','NombreCliente','nitCliente','guardado',)
