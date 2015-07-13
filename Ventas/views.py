@@ -434,7 +434,7 @@ def PuntoVenta(request):
     jornada = ConfiguracionPuntos.objects.get(bodega = emp.punto.codigoBodega).jornada
     punto = emp.punto.codigoBodega
     empleado = emp.codigoEmpleado
-    ventas = VentaPunto.objects.select_related().filter(fechaVenta = datetime.today(),guardado = False,puntoVenta = emp.punto.codigoBodega)
+    ventas = VentaPunto.objects.select_related().filter(fechaVenta = datetime.today(),guardado = False,puntoVenta = emp.punto.codigoBodega,anulado = False)
     consecutivo = ConfiguracionPuntos.objects.get(bodega = emp.punto.codigoBodega)
 
     if request.method =='POST':
