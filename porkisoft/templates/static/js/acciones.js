@@ -274,6 +274,7 @@ function ReporteTipoPedido() {
     var TablaVentasClientes = $('#TablaVentasClientes');
     var filtrpedido = '';
     var bodega = $('#bodega').val();
+    var color = "";
 
     if($("#porFecha").is(':checked')) {
             filtrpedido = 'fecha';
@@ -309,9 +310,17 @@ function ReporteTipoPedido() {
                             contado = 'Si';
                             vrContado += respuesta[i].fields.TotalVenta;
                         }
+                        if(respuesta[i].fields.guardado)
+                        {
+                            color = "green";
+                        }
+                        else
+                        {
+                            color = "red";
+                        }
 
                         TablaPedidos.append(
-                                "<tr><td>" + respuesta[i].pk +
+                                "<tr style='color:"+ color + "' ><td>" + respuesta[i].pk +
                                 "</td><td>" + respuesta[i].fields.fechaPedido +
                                 "</td><td>" + respuesta[i].fields.numeroFactura +
                                 "</td><td>" + respuesta[i].fields.nitCliente +
