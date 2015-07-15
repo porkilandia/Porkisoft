@@ -944,8 +944,14 @@ def GuardarMolido(request):
     idMolido = request.GET.get('idMolido')
     molido = Molida.objects.get(pk = int(idMolido))
     bodegaProductoAMoler = ProductoBodega.objects.get(bodega = 5,producto = molido.productoMolido.codigoProducto)
-    bodegaProductoMolido = ProductoBodega.objects.get(bodega = 5,producto__nombreProducto = 'Carne Molida')
+
     carneMolida = Producto.objects.get(nombreProducto = 'Carne Molida')
+    carneMolidaCerdo = Producto.objects.get(nombreProducto = 'Carne molida cerdo')
+    carneMolidaCerda = Producto.objects.get(nombreProducto = 'Carne molida cerda')
+
+    bodegaProductoMolido = ProductoBodega.objects.get(bodega = 5,producto = carneMolida.codigoProducto)
+    bodegaProductoMolidoCerdo = ProductoBodega.objects.get(bodega = 5,producto = carneMolidaCerdo.codigoProducto)
+    bodegaProductoMolidoCerda = ProductoBodega.objects.get(bodega = 5,producto = carneMolidaCerda.codigoProducto)
 
     movimiento = Movimientos()
     movimiento.tipo = 'MOL%d'%(molido.id)
@@ -958,19 +964,36 @@ def GuardarMolido(request):
 
     bodegaProductoAMoler.pesoProductoStock -= molido.pesoAmoler
 
-    bodegaProductoMolido.pesoProductoStock += molido.totalMolido
     movimiento = Movimientos()
     movimiento.tipo = 'MOL%d'%(molido.id)
     movimiento.fechaMov = molido.fechaMolido
-    movimiento.productoMov = carneMolida
-    movimiento.nombreProd = carneMolida.nombreProducto
-    movimiento.Hasta = bodegaProductoMolido.bodega.nombreBodega
-    movimiento.entrada = molido.totalMolido
+
+    if(molido.productoMolido.grupo.nombreGrupo == 'Cerdos'):
+        bodegaProductoMolidoCerdo.pesoProductoStock +=  molido.totalMolido
+        movimiento.productoMov = carneMolidaCerdo
+        movimiento.nombreProd =carneMolidaCerdo.nombreProducto
+        movimiento.Hasta = bodegaProductoMolidoCerdo.bodega.nombreBodega
+        movimiento.entrada = molido.totalMolido
+        bodegaProductoMolidoCerdo.save()
+
+    elif(molido.productoMolido.grupo.nombreGrupo == 'Cerdas'):
+        bodegaProductoMolidoCerda.pesoProductoStock +=  molido.totalMolido
+        movimiento.productoMov = carneMolida
+        movimiento.nombreProd = carneMolidaCerda.nombreProducto
+        movimiento.Hasta = bodegaProductoMolidoCerda.bodega.nombreBodega
+        movimiento.entrada = molido.totalMolido
+        bodegaProductoMolidoCerda.save()
+
+    else:
+        bodegaProductoMolido.pesoProductoStock += molido.totalMolido
+        movimiento.productoMov = carneMolida
+        movimiento.nombreProd = carneMolida.nombreProducto
+        movimiento.Hasta = bodegaProductoMolido.bodega.nombreBodega
+        movimiento.entrada = molido.totalMolido
+        bodegaProductoMolido.save()
+
     movimiento.save()
-
     bodegaProductoAMoler.save()
-    bodegaProductoMolido.save()
-
     molido.guardado = True
     molido.save()
 
@@ -986,14 +1009,26 @@ def costeoMolido(request):
     mod = molido.mod
     cif = molido.cif
     productoAMoler = Producto.objects.get(pk = molido.productoMolido.codigoProducto)
+
     carneMolida = Producto.objects.get(nombreProducto = 'Carne Molida')
+    carneMolidaCerdo = Producto.objects.get(nombreProducto = 'Carne molida cerdo')
+    carneMolidaCerda = Producto.objects.get(nombreProducto = 'Carne molida cerda')
 
     costoProducto = (molido.pesoAmoler / 1000) * productoAMoler.costoProducto
     costoTotal = costoProducto + cif + mod
     costoKiloMolida = costoTotal / (molido.totalMolido / 1000)
 
-    carneMolida.costoProducto = costoKiloMolida
-    carneMolida.save()
+    if(molido.productoMolido.grupo.nombreGrupo == 'Cerdos'):
+        carneMolidaCerdo.costoProducto = costoKiloMolida
+        carneMolidaCerdo.save()
+
+    elif(molido.productoMolido.grupo.nombreGrupo == 'Cerdas'):
+        carneMolidaCerda.costoProducto = costoKiloMolida
+        carneMolidaCerda.save()
+    else:
+        carneMolida.costoProducto = costoKiloMolida
+        carneMolida.save()
+
     molido.costoKilo = productoAMoler.costoProducto
     molido.costoKiloMolido = costoKiloMolida
     molido.save()

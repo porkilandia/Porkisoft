@@ -53,6 +53,7 @@ def listaProductos(request):
 
                 bodegaInicial.producto = producto
                 bodegaInicial.nombreProducto = producto.nombreProducto
+                bodegaInicial.grupoProducto = producto.grupo.nombreGrupo
                 bodegaInicial.bodega = bodega
                 bodegaInicial.pesoProductoStock = 0
                 bodegaInicial.unidadesStock = 0
