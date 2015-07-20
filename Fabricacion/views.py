@@ -3508,7 +3508,7 @@ def ReporteUtilidadPorLote(request):
             recepcion = PlanillaRecepcion.objects.get(pk = canal.recepcion.codigoRecepcion)
             perdidaPC = recepcion.difPieCanal
             cont = 0
-            pesoCanal['Peso Canales'] += canal.pesoPorkilandia
+            pesoCanal['Peso Canales'] += ceil(canal.pesoPorkilandia)
             if planillaAnterior != planillaActual:
 
                 pln = PlanillaDesposte.objects.get(pk = planillaActual)

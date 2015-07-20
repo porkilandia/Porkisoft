@@ -2003,7 +2003,7 @@ function ReportePesosLote()
                     var costo = TotalCompra + modCif;
                     var gananciaEstimada = TotalVenta - costo;
                     var utilidad = (gananciaEstimada * 100)/TotalVenta;
-                    rendimiento = (totalDespostado * 100)/pesoCanal
+                    rendimiento = ((totalDespostado/1000) * 100)/pesoCanal;
 
                     tablaCosto.append("<tr><td>" + 'Total Compra' + "</td><td style='text-align: right' >" +'$ '+ TotalCompra + "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'Costo Operacion' + "</td><td style='text-align: right' >"+'$ ' + modCif + "</td></tr>");
