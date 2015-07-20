@@ -1932,7 +1932,7 @@ function ReportePesosLote()
                     if(value != 0)
                     {
                         $("#tablaPesoLote").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) + "</td></tr>");
-                        totalDespostado += Math.ceil(value);
+
 
                     }
                     });
@@ -1999,6 +1999,9 @@ function ReportePesosLote()
                     $.each(respuesta.pesoCanal,function(key,value){
                         pesoCanal = value;
                     });
+                    $.each(respuesta.TotalDespostadoSinDesecho,function(key,value){
+                        totalDespostado += Math.ceil(value);
+                    });
 
                     var costo = TotalCompra + modCif;
                     var gananciaEstimada = TotalVenta - costo;
@@ -2008,9 +2011,9 @@ function ReportePesosLote()
                     tablaCosto.append("<tr><td>" + 'Total Compra' + "</td><td style='text-align: right' >" +'$ '+ TotalCompra + "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'Costo Operacion' + "</td><td style='text-align: right' >"+'$ ' + modCif + "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'Total Operacion' + "</td><td style='text-align: right' >"+'$ ' + costo + "</td></tr>");
-                    tablaCosto.append("<tr><td>" + 'Total Canales' + "</td><td style='text-align: right' >" + Math.round(pesoCanal) + "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'Total Canales' + "</td><td style='text-align: right' >" + Math.round(pesoCanal * 1000) + "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'Total Despostado' + "</td><td style='text-align: right' >" + Math.round(totalDespostado) + "</td></tr>");
-                    tablaCosto.append("<tr><td>" + 'Rendimiento' + "</td><td style='text-align: right' >" +'% '+ rendimiento + "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'Rendimiento' + "</td><td style='text-align: right' >" + rendimiento.toFixed(2) + '% '+"</td></tr>");
 
                     /*tablaCosto.append("<tr><td>" + 'Total Venta Estimada' + "</td><td style='text-align: right' >" +'$ '+ Math.round(TotalVenta) + "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'Utilidad Estimada' + "</td><td style='text-align: right' >" +'$ '+ Math.round(gananciaEstimada) + "</td></tr>");

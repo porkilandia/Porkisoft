@@ -3473,6 +3473,8 @@ def ReporteUtilidadPorLote(request):
     ListaVenta = {}
     costoOperativo = {}
     pesoCanal = {}
+    TotalDespostadoSinDesecho = {}
+    TotalDespostadoSinDesecho['Total despostado'] = 0
     pesoCanal['Peso Canales'] = 0
     costoOperativo['Costo Operativo'] = 0
 
@@ -3543,6 +3545,7 @@ def ReporteUtilidadPorLote(request):
 
     subproductos = subproductos - tocino
     TotalDespostado = carnes + costillas + subproductos + huesos + tocino + desechos
+    TotalDespostadoSinDesecho['Total despostado'] = carnes + costillas + subproductos + huesos + tocino
 
     adicionales = {}
     adicionales['Carne'] = (carnes * 100)/TotalDespostado
@@ -3559,7 +3562,7 @@ def ReporteUtilidadPorLote(request):
     compras['Total Compra'] = vrCompra
 
 
-    listas = {'pesoCanal':pesoCanal,'costoOperativo':costoOperativo,'Pesos':ListaPesos,'adicionales':adicionales,'perdida':perdida,
+    listas = {'TotalDespostadoSinDesecho':TotalDespostadoSinDesecho,'pesoCanal':pesoCanal,'costoOperativo':costoOperativo,'Pesos':ListaPesos,'adicionales':adicionales,'perdida':perdida,
               'costo':ListaCosto,'compras':compras,'ListaVenta':ListaVenta}
 
     print(costoOperativo)
