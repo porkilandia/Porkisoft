@@ -3472,6 +3472,8 @@ def ReporteUtilidadPorLote(request):
     ListaCosto = {}
     ListaVenta = {}
     costoOperativo = {}
+    pesoCanal = {}
+    pesoCanal['Peso Canales'] = 0
     costoOperativo['Costo Operativo'] = 0
 
     vrCompra = compra.vrCompra
@@ -3497,6 +3499,8 @@ def ReporteUtilidadPorLote(request):
     planillaActual = 0
     cont = 0
     perdidaPC = 0
+
+
     for canal in canales:
         if canal.planilla != '' and canal.planilla != None:
             planillaActual = canal.planilla.codigoPlanilla
@@ -3504,8 +3508,9 @@ def ReporteUtilidadPorLote(request):
             recepcion = PlanillaRecepcion.objects.get(pk = canal.recepcion.codigoRecepcion)
             perdidaPC = recepcion.difPieCanal
             cont = 0
+            pesoCanal['Peso Canales'] += canal.pesoPorkilandia
             if planillaAnterior != planillaActual:
-                print(planillaActual)
+
                 pln = PlanillaDesposte.objects.get(pk = planillaActual)
                 costoOperativo['Costo Operativo'] += (pln.mod + pln.cif)
                 for detalle in detalleDespostes:
@@ -3554,7 +3559,7 @@ def ReporteUtilidadPorLote(request):
     compras['Total Compra'] = vrCompra
 
 
-    listas = {'costoOperativo':costoOperativo,'Pesos':ListaPesos,'adicionales':adicionales,'perdida':perdida,
+    listas = {'pesoCanal':pesoCanal,'costoOperativo':costoOperativo,'Pesos':ListaPesos,'adicionales':adicionales,'perdida':perdida,
               'costo':ListaCosto,'compras':compras,'ListaVenta':ListaVenta}
 
     print(costoOperativo)
