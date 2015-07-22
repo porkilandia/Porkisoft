@@ -3539,7 +3539,7 @@ def ReporteUtilidadPorLote(request):
     tocino = 0
 
     for key ,value in ListaPesos.items():
-        if key == 'Tocino' or key == 'Tocino Cerda' :
+        if key == 'Tocino' or key == 'Tocino Cerda':
             tocino = value
 
 

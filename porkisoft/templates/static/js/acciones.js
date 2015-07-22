@@ -1914,7 +1914,6 @@ function ReportePesosLote()
     var totalDespostado = 0;
     var rendimiento = 0;
 
-
     $.ajax({
 
             url: '/fabricacion/utilidadReses/',

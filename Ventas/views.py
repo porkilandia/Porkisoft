@@ -125,7 +125,7 @@ def GestionDetallePedido(request,idpedido):
 
     ListadoPrecios = DetalleLista.objects.select_related().filter(lista__codigoLista = pedido.listaPrecioPedido.codigoLista).\
         order_by('productoLista__numeroProducto')
-
+    #se filtr por tipo de usuario
     usuario = request.user
 
     if usuario.is_staff:
