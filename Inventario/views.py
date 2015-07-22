@@ -384,6 +384,7 @@ def ModificaCompra(request,idCompra):
     compra = Compra.objects.get(pk = idCompra)
     #compras= Compra.objects.all()
 
+
     if request.method == 'POST':
         formulario = CompraForm(request.POST,instance=compra)
         if formulario.is_valid():
@@ -452,6 +453,12 @@ def EditaDetalleCompra(request,idDetCompra):
     totalCompra  = 0
     totalPeso = 0
 
+    usuario = request.user
+    if usuario.is_staff:
+        plantilla = 'base.html'
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+
     # clacular los totales de la lista de detalles de subproducto
     for dcmp in detcompras:
         totalCompra += dcmp.subtotal
@@ -470,7 +477,7 @@ def EditaDetalleCompra(request,idDetCompra):
     else:
         formulario = DetalleCompraForm(str(compra.codigoCompra),initial={'compra':compra.codigoCompra},instance=detCompra)
 
-    return render_to_response('Inventario/GestionDetalleCompra.html',{'formulario':formulario,
+    return render_to_response('Inventario/GestionDetalleCompra.html',{'plantilla':plantilla,'formulario':formulario,
                                                          'compra': compra,'detcompras': detcompras,
                                                          'totalCompra':totalCompra,'totalPeso':totalPeso},
                                                         context_instance = RequestContext(request))
@@ -699,7 +706,12 @@ def EditaDetalleTraslado(request,idDettraslado):
     det = DetalleTraslado.objects.get(pk = idDettraslado)
     traslado = Traslado.objects.get(pk = det.traslado.codigoTraslado)
     detraslados = DetalleTraslado.objects.filter(traslado = traslado.codigoTraslado)
+    usuario = request.user
 
+    if usuario.is_staff:
+        plantilla = 'base.html'
+    else:
+        plantilla = 'PuntoVentaNorte.html'
 
     if request.method == 'POST':
         formulario = DetalleTrasladoForm(request.POST, instance=det)
@@ -711,7 +723,7 @@ def EditaDetalleTraslado(request,idDettraslado):
         formulario = DetalleTrasladoForm(initial={'traslado':traslado.codigoTraslado},instance=det)
 
 
-    return render_to_response('Inventario/GestionDetalleTraslado.html',{'idtraslado':traslado.codigoTraslado,'formulario':formulario,
+    return render_to_response('Inventario/GestionDetalleTraslado.html',{'plantilla':plantilla,'idtraslado':traslado.codigoTraslado,'formulario':formulario,
                                                          'traslado': traslado,'detraslados': detraslados},
                                                         context_instance = RequestContext(request))
 def borrarDetTraslado(request,idDetTraslado):

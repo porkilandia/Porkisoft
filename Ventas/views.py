@@ -164,6 +164,13 @@ def EditarDetallePedido(request,idDetpedido):
     detPedido = DetallePedido.objects.filter(pedido = det.pedido.numeroPedido)
     vrPedido = 0
 
+    usuario = request.user
+
+    if usuario.is_staff:
+        plantilla = 'base.html'
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+
     for det in detPedido:
         vrPedido += det.vrTotalPedido
     pedido.TotalVenta = vrPedido
@@ -180,7 +187,7 @@ def EditarDetallePedido(request,idDetpedido):
     else:
         formulario = DetallePedidoForm(initial={'pedido':det.pedido.numeroPedido},instance=det)
 
-    return render_to_response('Ventas/GestionDetallePedido.html',{'idPedido':det.pedido.numeroPedido,'formulario':formulario,'pedido':pedido,
+    return render_to_response('Ventas/GestionDetallePedido.html',{'plantilla':plantilla,'idPedido':det.pedido.numeroPedido,'formulario':formulario,'pedido':pedido,
                                                                   'detPedido':detPedido,'vrPedido':vrPedido},
                               context_instance = RequestContext(request))
 
