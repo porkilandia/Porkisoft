@@ -421,6 +421,12 @@ def GestionDetalleCompra(request,idcompra):
     for dcmp in detcompras:
         totalPeso += dcmp.pesoProducto
 
+    usuario = request.user
+    if usuario.is_staff:
+        plantilla = 'base.html'
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+
     compra.vrCompra = totalCompra
     compra.save()
 
@@ -433,7 +439,7 @@ def GestionDetalleCompra(request,idcompra):
     else:
         formulario = DetalleCompraForm(idcompra,initial={'compra':idcompra })
 
-    return render_to_response('Inventario/GestionDetalleCompra.html',{'formulario':formulario,
+    return render_to_response('Inventario/GestionDetalleCompra.html',{'plantilla':plantilla,'formulario':formulario,
                                                          'compra': compra,'detcompras': detcompras,
                                                          'totalCompra':totalCompra,'totalPeso':totalPeso},
                                                         context_instance = RequestContext(request))

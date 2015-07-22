@@ -126,6 +126,14 @@ def GestionDetallePedido(request,idpedido):
     ListadoPrecios = DetalleLista.objects.select_related().filter(lista__codigoLista = pedido.listaPrecioPedido.codigoLista).\
         order_by('productoLista__numeroProducto')
 
+    usuario = request.user
+
+    if usuario.is_staff:
+        plantilla = 'base.html'
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+
+
     for det in detPedido:
         vrPedido += det.vrTotalPedido
     pedido.TotalVenta = vrPedido
@@ -146,7 +154,7 @@ def GestionDetallePedido(request,idpedido):
     else:
         formulario = DetallePedidoForm(initial={'pedido':idpedido})
 
-    return render_to_response('Ventas/GestionDetallePedido.html',{'ListadoPrecios':ListadoPrecios,'idPedido':idpedido,'formulario':formulario,'pedido':pedido,
+    return render_to_response('Ventas/GestionDetallePedido.html',{'plantilla':plantilla,'ListadoPrecios':ListadoPrecios,'idPedido':idpedido,'formulario':formulario,'pedido':pedido,
                                                                   'detPedido':detPedido,'vrPedido':vrPedido},
                               context_instance = RequestContext(request))
 
