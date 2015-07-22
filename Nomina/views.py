@@ -107,9 +107,9 @@ def Login(request):
                             return render_to_response('Inventario/ReporteFaltantes.html',{'bodegas':bodegas,'hoy':hoy,'usuario':usuario},
                                                                                 context_instance = RequestContext(request))
                         else:
-                            plantilla = 'PuntoVentaNorte.html'
                             return render_to_response('Inicio.html',{'plantilla':plantilla},context_instance = RequestContext(request))
                     else:
+
                         #valorInicial.jornada = request.POST['jornada']
                         #valorInicial.save()
                         return render_to_response('InicioVentas.html',{},context_instance = RequestContext(request))
