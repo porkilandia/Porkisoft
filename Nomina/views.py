@@ -100,13 +100,15 @@ def Login(request):
                     usuario = request.user
                     #empleado.cargo.nombreCargo == 'Cajero'
                     if usuario.is_staff:
+                        plantilla = 'base.html'
                         if usuario.username == 'carmenescobar':
                             bodegas = Bodega.objects.all()
                             hoy = datetime.today()
                             return render_to_response('Inventario/ReporteFaltantes.html',{'bodegas':bodegas,'hoy':hoy,'usuario':usuario},
                                                                                 context_instance = RequestContext(request))
                         else:
-                            return render_to_response('Inicio.html',{},context_instance = RequestContext(request))
+                            plantilla = 'PuntoVentaNorte.html'
+                            return render_to_response('Inicio.html',{'plantilla':plantilla},context_instance = RequestContext(request))
                     else:
                         #valorInicial.jornada = request.POST['jornada']
                         #valorInicial.save()
