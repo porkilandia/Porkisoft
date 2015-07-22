@@ -675,6 +675,13 @@ def GestionDetalleTraslado(request,idtraslado):
 
     exito = False
 
+    usuario = request.user
+
+    if usuario.is_staff:
+        plantilla = 'base.html'
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+
     if request.method == 'POST':
         formulario = DetalleTrasladoForm(request.POST)
         if formulario.is_valid():
@@ -685,7 +692,7 @@ def GestionDetalleTraslado(request,idtraslado):
         formulario = DetalleTrasladoForm(initial={'traslado':idtraslado})
 
 
-    return render_to_response('Inventario/GestionDetalleTraslado.html',{'idtraslado':idtraslado,'exito':exito,'formulario':formulario,
+    return render_to_response('Inventario/GestionDetalleTraslado.html',{'plantilla':plantilla,'idtraslado':idtraslado,'exito':exito,'formulario':formulario,
                                                          'traslado': traslado,'detraslados': detraslados},
                                                         context_instance = RequestContext(request))
 def EditaDetalleTraslado(request,idDettraslado):
