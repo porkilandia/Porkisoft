@@ -566,9 +566,9 @@ def EditaCompra(request,idDetCompra):
                 detcompra.save()
             return HttpResponseRedirect('/inventario/detcompra/'+ str(compra.codigoCompra))
     else:
-        formulario = DetalleCompraForm(compra.codigoCompra,initial={'plantilla':plantilla,'compra':compra.codigoCompra },instance=detcompra)
+        formulario = DetalleCompraForm(compra.codigoCompra,initial={'compra':compra.codigoCompra },instance=detcompra)
 
-    return render_to_response('Inventario/GestionDetalleCompra.html',{'formulario':formulario,'compra': compra,
+    return render_to_response('Inventario/GestionDetalleCompra.html',{'plantilla':plantilla,'formulario':formulario,'compra': compra,
                                                          'detcompras': detcompras},
                                                         context_instance = RequestContext(request))
 #********************************************TRASLADOS******************************************************
