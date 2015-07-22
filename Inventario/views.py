@@ -531,6 +531,12 @@ def EditaCompra(request,idDetCompra):
     compra = Compra.objects.get(pk = detcompra.compra.codigoCompra)
     detcompras = DetalleCompra.objects.filter(compra = compra.codigoCompra)
 
+    usuario = request.user
+    if usuario.is_staff:
+        plantilla = 'base.html'
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+
     if request.method == 'POST':
         formulario = DetalleCompraForm(compra.codigoCompra,request.POST,instance=detcompra)
         if formulario.is_valid():
@@ -560,7 +566,7 @@ def EditaCompra(request,idDetCompra):
                 detcompra.save()
             return HttpResponseRedirect('/inventario/detcompra/'+ str(compra.codigoCompra))
     else:
-        formulario = DetalleCompraForm(compra.codigoCompra,initial={'compra':compra.codigoCompra },instance=detcompra)
+        formulario = DetalleCompraForm(compra.codigoCompra,initial={'plantilla':plantilla,'compra':compra.codigoCompra },instance=detcompra)
 
     return render_to_response('Inventario/GestionDetalleCompra.html',{'formulario':formulario,'compra': compra,
                                                          'detcompras': detcompras},
