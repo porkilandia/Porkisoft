@@ -23,7 +23,12 @@ def listaProvedoresAjax(request):
 
 @login_required()
 def inicio(request):
-    return render_to_response('Inicio.html',{},context_instance = RequestContext(request))
+    usuario = request.user
+    if usuario.is_staff:
+        plantilla = 'base.html'
+    else:
+        plantilla = 'PuntoVentaNorte.html'
+    return render_to_response('Inicio.html',{'plantilla':plantilla},context_instance = RequestContext(request))
 
 def home(request):
     productosBajoStock = ProductoBodega.objects.select_related().filter(pesoProductoStock__gt = 500).order_by('bodega')
