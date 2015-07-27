@@ -3470,7 +3470,7 @@ def ReporteUtilidadPorLote(request):
     idCompra = request.GET.get('idCompra')
     idLista = request.GET.get('idLista')
     compra = Compra.objects.get(pk = int(idCompra))
-    canales = Canal.objects.filter(recepcion__compra = int(idCompra)).order_by('planilla')
+    canales = Canal.objects.select_related().filter(recepcion__compra = int(idCompra)).order_by('planilla')
     ListaPesos = {}
     ListaCosto = {}
     ListaVenta = {}
@@ -3519,7 +3519,7 @@ def ReporteUtilidadPorLote(request):
             perdidaPC = recepcion.difPieCanal
             cont = 0
             pesoCanal['Peso Canales'] += ceil(canal.pesoPorkilandia)
-            vrKiloCanal['Vr. Kilo Canal'] = canal.vrKiloCanal
+            vrKiloCanal['Vr. Kilo Canal'] = canal.recepcion.vrKiloCanal
 
             if planillaAnterior != planillaActual:
 
