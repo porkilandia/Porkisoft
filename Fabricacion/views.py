@@ -3480,6 +3480,8 @@ def ReporteUtilidadPorLote(request):
     TotalDespostadoSinDesecho['Total despostado'] = 0
     pesoCanal['Peso Canales'] = 0
     costoOperativo['Costo Operativo'] = 0
+    vrKiloCanal = {}
+    vrKiloCanal['Vr. Kilo Canal'] = 0
 
     vrCompra = compra.vrCompra
 
@@ -3514,6 +3516,7 @@ def ReporteUtilidadPorLote(request):
             perdidaPC = recepcion.difPieCanal
             cont = 0
             pesoCanal['Peso Canales'] += ceil(canal.pesoPorkilandia)
+            vrKiloCanal['Vr. Kilo Canal'] = canal.vrKiloCanal
             if planillaAnterior != planillaActual:
 
                 pln = PlanillaDesposte.objects.get(pk = planillaActual)
@@ -3565,7 +3568,7 @@ def ReporteUtilidadPorLote(request):
     compras['Total Compra'] = vrCompra
 
 
-    listas = {'TotalDespostadoSinDesecho':TotalDespostadoSinDesecho,'pesoCanal':pesoCanal,'costoOperativo':costoOperativo,'Pesos':ListaPesos,'adicionales':adicionales,'perdida':perdida,
+    listas = {'vrKiloCanal':vrKiloCanal,'TotalDespostadoSinDesecho':TotalDespostadoSinDesecho,'pesoCanal':pesoCanal,'costoOperativo':costoOperativo,'Pesos':ListaPesos,'adicionales':adicionales,'perdida':perdida,
               'costo':ListaCosto,'compras':compras,'ListaVenta':ListaVenta}
 
     print(costoOperativo)

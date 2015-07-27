@@ -1913,6 +1913,7 @@ function ReportePesosLote()
     var tablaCosto = $("#tablaCostoLote");
     var totalDespostado = 0;
     var rendimiento = 0;
+    var vrKiloCanal=0;
 
     $.ajax({
 
@@ -2001,6 +2002,9 @@ function ReportePesosLote()
                     $.each(respuesta.TotalDespostadoSinDesecho,function(key,value){
                         totalDespostado += Math.ceil(value);
                     });
+                    $.each(respuesta.vrKiloCanal,function(key,value){
+                        vrKiloCanal += value;
+                    });
 
                     var costo = TotalCompra + modCif;
                     var gananciaEstimada = TotalVenta - costo;
@@ -2010,6 +2014,7 @@ function ReportePesosLote()
                     tablaCosto.append("<tr><td>" + 'Total Compra' + "</td><td style='text-align: right' >" +'$ '+ TotalCompra + "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'Costo Operacion' + "</td><td style='text-align: right' >"+'$ ' + modCif + "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'Total Operacion' + "</td><td style='text-align: right' >"+'$ ' + costo + "</td></tr>");
+                    tablaCosto.append("<tr><td>" + 'Vr. Kilo Canal' + "</td><td style='text-align: right' >"+'$ ' + vrKiloCanal + "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'Total Canales' + "</td><td style='text-align: right' >" + Math.round(pesoCanal * 1000) + "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'Total Despostado' + "</td><td style='text-align: right' >" + Math.round(totalDespostado) + "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'Rendimiento' + "</td><td style='text-align: right' >" + rendimiento.toFixed(2) + '% '+"</td></tr>");
