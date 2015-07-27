@@ -3482,6 +3482,8 @@ def ReporteUtilidadPorLote(request):
     costoOperativo['Costo Operativo'] = 0
     vrKiloCanal = {}
     vrKiloCanal['Vr. Kilo Canal'] = 0
+    costoProducto = {}
+
 
     vrCompra = compra.vrCompra
 
@@ -3500,6 +3502,7 @@ def ReporteUtilidadPorLote(request):
                 ListaPesos[detalle.producto.nombreProducto] = 0
                 ListaCosto[detalle.producto.nombreProducto] = 0
                 ListaVenta[detalle.producto.nombreProducto] = 0
+                costoProducto[detalle.producto.nombreProducto] = 0
 
 
     planillaAnterior = 0
@@ -3517,13 +3520,14 @@ def ReporteUtilidadPorLote(request):
             cont = 0
             pesoCanal['Peso Canales'] += ceil(canal.pesoPorkilandia)
             vrKiloCanal['Vr. Kilo Canal'] = canal.vrKiloCanal
+
             if planillaAnterior != planillaActual:
 
                 pln = PlanillaDesposte.objects.get(pk = planillaActual)
                 costoOperativo['Costo Operativo'] += (pln.mod + pln.cif)
                 for detalle in detalleDespostes:
                     ListaPesos[detalle.producto.nombreProducto] += ceil(detalle.PesoProducto)
-
+                    costoProducto[detalle.producto.nombreProducto] = detalle.costoProducto
                     if cont == 0:
                         carnes += ceil(detalle.pesoCarne)
                         costillas += ceil(detalle.pesoCostilla)
@@ -3568,7 +3572,7 @@ def ReporteUtilidadPorLote(request):
     compras['Total Compra'] = vrCompra
 
 
-    listas = {'vrKiloCanal':vrKiloCanal,'TotalDespostadoSinDesecho':TotalDespostadoSinDesecho,'pesoCanal':pesoCanal,'costoOperativo':costoOperativo,'Pesos':ListaPesos,'adicionales':adicionales,'perdida':perdida,
+    listas = {'costoProducto':costoProducto,'vrKiloCanal':vrKiloCanal,'TotalDespostadoSinDesecho':TotalDespostadoSinDesecho,'pesoCanal':pesoCanal,'costoOperativo':costoOperativo,'Pesos':ListaPesos,'adicionales':adicionales,'perdida':perdida,
               'costo':ListaCosto,'compras':compras,'ListaVenta':ListaVenta}
 
     print(costoOperativo)
