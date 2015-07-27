@@ -1993,7 +1993,7 @@ function ReportePesosLote()
                     });
                     $.each(respuesta.costoProducto,function(key,value){
 
-                        tablaCosto.append("<tr><td>" + key + "</td><td style='text-align: right' >" +'$ '+ value + "</td></tr>");
+                        $("#tablaCosto").append("<tr><td>" + key + "</td><td style='text-align: right' >" +'$ '+ value + "</td></tr>");
                     });
                     $.each(respuesta.compras,function(key,value){
                         TotalCompra = value;
