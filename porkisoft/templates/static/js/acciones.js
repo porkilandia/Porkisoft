@@ -1926,6 +1926,7 @@ function ReportePesosLote()
                     $("#tablaPesoLote").find("tr:gt(0)").remove();
                     $("#tablaPesoCarne").find("tr:gt(0)").remove();
                     $("#tablaPorcentaje").find("tr:gt(0)").remove();
+                    $("#tablaCostoLote").find("tr:gt(0)").remove();
                     tablaCosto.find("tr:gt(0)").remove();
 
                     $.each(respuesta.Pesos,function(key,value){
@@ -1989,6 +1990,10 @@ function ReportePesosLote()
 
                     $.each(respuesta.costo,function(key,value){
                         TotalCosto += Math.ceil(value);
+                    });
+                    $.each(respuesta.costo,function(key,value){
+
+                        tablaCostoLote.append("<tr><td>" + key + "</td><td style='text-align: right' >" +'$ '+ value + "</td></tr>");
                     });
                     $.each(respuesta.compras,function(key,value){
                         TotalCompra = value;
