@@ -7,14 +7,13 @@
 {% endblock mensajes %}
 {% block contenido %}
 
-    <table id="tablaProductos" class="table-striped">
+     <table id="tablaProductos" class="table-striped">
 
         <thead>
         <tr>
             <th>Reg.</th>
             <th>Nombre</th>
             <th>Costo Kg</th>
-            <th>Precio Sugerido</th>
             <th>Grupo</th>
             <th>Codigo</th>
             <th>Categoria</th>
@@ -23,14 +22,11 @@
         </thead>
         <tbody>
         {% for producto in productos %}
-        <tr>
+
+         <tr>
             <td>{{ producto.codigoProducto }}</td>
             <td>{{ producto.nombreProducto }}</td>
-            {% if producto.costoProducto >= producto.precioSugerido %}
-                <td style="color: red">$ {{ producto.costoProducto }}</td>
-            {% else %}
-                <td>$ {{ producto.costoProducto }}</td>
-            {% endif %}
+
             <td>$ {{ producto.precioSugerido | floatformat }}</td>
             <td>{{ producto.grupo }}</td>
             <td>{{ producto.numeroProducto }}</td>
@@ -54,6 +50,8 @@
             </td>
 
         </tr>
+           
+
             {% empty %}
             <tr>
                 <td colspan="12">
@@ -64,6 +62,7 @@
         {% endfor %}
     </tbody>
     </table>
+
 
     <form method="post" class="form-horizontal">{% csrf_token %}
          <fieldset id="agregarProducto">

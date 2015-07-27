@@ -3455,9 +3455,12 @@ def ReporteTrasladosBodega(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def  TemplateUtilidadPorLote(request):
-    q1 = Compra.objects.filter(tipo__nombreGrupo = 'Reses').order_by('fechaCompra')
-    q2 = Compra.objects.filter(tipo__nombreGrupo = 'Cerdas').order_by('fechaCompra')
-    q3 = Compra.objects.filter(tipo__nombreGrupo = 'Cerdos').order_by('fechaCompra')
+    fechainicio = date.today() - timedelta(days=80)
+    fechafin = date.today()
+
+    q1 = Compra.objects.select_related().filter(tipo__nombreGrupo = 'Reses',bodegaCompra__nombreBodega = 'General',fechaCompra__range =(fechainicio,fechafin)).order_by('fechaCompra')
+    q2 = Compra.objects.select_related().filter(tipo__nombreGrupo = 'Cerdas',bodegaCompra__nombreBodega = 'General',fechaCompra__range =(fechainicio,fechafin)).order_by('fechaCompra')
+    q3 = Compra.objects.select_related().filter(tipo__nombreGrupo = 'Cerdos',bodegaCompra__nombreBodega = 'General',fechaCompra__range =(fechainicio,fechafin)).order_by('fechaCompra')
     compras = q1 | q2 | q3
 
     return render_to_response('Fabricacion/TemplateUtilidadPorLote.html',{'compras':compras},

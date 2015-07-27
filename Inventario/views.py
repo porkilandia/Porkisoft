@@ -108,7 +108,7 @@ def editar_producto(request, id_producto):
 #******************************************************************************************
 #***********************************SUBPRODUCTOS*******************************************
 
-def listaSubProductos(request):
+'''def listaSubProductos(request):
     subproductos = SubProducto.objects.all().order_by('nombreSubProducto')
     if request.method == 'POST':
 
@@ -172,7 +172,7 @@ def AgregarDetSubProducto(request,id_subproducto):
 def borrarDetalleSp(request, idDetalle):
     detsubproducto = DetalleSubProducto.objects.get(pk=idDetalle)
     detsubproducto.delete()
-    return  HttpResponseRedirect('/inventario/verSubProductos')
+    return  HttpResponseRedirect('/inventario/verSubProductos')'''
 
 #**************************************BODEGA****************************************************
 

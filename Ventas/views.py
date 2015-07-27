@@ -485,9 +485,9 @@ def TipoProducto(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def DetallePuntoVenta(request,idVenta):
-    detVentas =DetalleVentaPunto.objects.select_related('venta').filter(venta = idVenta)
+    detVentas =DetalleVentaPunto.objects.select_related().filter(venta = idVenta)
     venta = VentaPunto.objects.get(pk = idVenta)
-    consecutivo = ValoresCostos.objects.get(nombreCosto = 'Facturacion')
+    #consecutivo = ValoresCostos.objects.get(nombreCosto = 'Facturacion')
     ListadoPrecios = DetalleLista.objects.select_related().\
         filter(lista__tipoLista = 'Punto',lista__bodega = venta.puntoVenta.codigoBodega).\
         order_by('productoLista__numeroProducto')
@@ -520,7 +520,7 @@ def DetallePuntoVenta(request,idVenta):
         formulario = DetalleVentaPuntoForm(idVenta,initial={'venta':idVenta})
     return render_to_response('Ventas/TemplateDetalleVentaPunto.html',{'ListadoPrecios':ListadoPrecios,'totalGravado':totalGravado,'Hora':Hora,
                                                                        'venta':venta,'formulario':formulario,
-                                                                       'detVentas':detVentas,'consecutivo':consecutivo},
+                                                                       'detVentas':detVentas},
                               context_instance = RequestContext(request))
 
 def EditaPuntoVenta(request,idDetVenta):
