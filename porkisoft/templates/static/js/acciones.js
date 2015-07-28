@@ -2840,7 +2840,6 @@ function consultaPechugaCond ()
     var inicio = $('#inicio').val();
     var fin = $('#fin').val();
 
-
     $.ajax({
 
             url : '/fabricacion/promPechCondPo/',
@@ -2849,7 +2848,6 @@ function consultaPechugaCond ()
             data : {'inicio':inicio,'fin':fin},
             success : function(respuesta)
             {
-
 
                 $("#tablaPromedioCostoPollo").find("tr:gt(0)").remove();
                 $("#tablaPromedioCostoTajado").find("tr:gt(0)").remove();
@@ -2863,6 +2861,7 @@ function consultaPechugaCond ()
                 $("#tablaPesoChuletaPollo").find("tr:gt(0)").remove();
                 $("#tablaChuletasCerdo").find("tr:gt(0)").remove();
                 $("#tablaPesoChuletaCerdo").find("tr:gt(0)").remove();
+                $("#tablaMigaCond").find("tr:gt(0)").remove();
 
 
 
@@ -2916,6 +2915,14 @@ function consultaPechugaCond ()
 
 
                     $("#tablaPesoChuletaCerdo").append("<tr><td>" + 'Chuletas de Cerdo' + "</td><td>" + value +' grs'+ "</td></tr>");
+                });
+                $.each(respuesta.cantidadMiga,function(key,value){
+
+                    $("#tablaMigaCond").append("<tr><td>" + key + "</td><td>" + value +' grs'+ "</td></tr>");
+                });
+                $.each(respuesta.cantidadCondimento,function(key,value){
+
+                    $("#tablaMigaCond").append("<tr><td>" + key + "</td><td>" + value +' grs'+ "</td></tr>");
                 });
 
 

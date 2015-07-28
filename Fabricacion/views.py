@@ -2369,6 +2369,14 @@ def RepFiletePechugaCond(request):
     cantBandejasCerdo = {}
     pesoChuletaCerdo = {}
     pesoChuletaPollo = {}
+
+    cantidadMiga = {}
+    cantidadCondimento = {}
+    cantidadMiga['Miga Pollo'] = 0
+    cantidadCondimento['Condimento Pollo'] = 0
+    cantidadMiga['Miga Cerdo'] = 0
+
+
     pesoChuletaPollo['Chuleta Pollo'] = 0
     pesoChuletaCerdo['Chuleta Cerdo'] = 0
     ListaPesoFilete['Filete de Pollo Condimentado'] = 0
@@ -2391,6 +2399,7 @@ def RepFiletePechugaCond(request):
 
     for chuleta in chuletaCerdo:
         pesoChuletaCerdo['Chuleta Cerdo'] += ceil(chuleta.totalApanado)
+        cantidadMiga['Miga Cerdo'] += ceil(chuleta.miga)
 
 
     chuletaPollo = ProcesoApanado.objects.filter(fechaApanado__range = (finicio,ffin)).filter(productoApanado__grupo__nombreGrupo = 'Pollos' )
@@ -2398,7 +2407,7 @@ def RepFiletePechugaCond(request):
 
     for chPollo in chuletaPollo:
         pesoChuletaPollo['Chuleta Pollo'] += ceil(chPollo.totalApanado)
-
+        cantidadMiga['Miga Pollo'] += ceil(chPollo.miga)
 
 
     bandejasCerdo = EmpacadoApanados.objects.filter(fechaEmpacado__range = (finicio,ffin) ).filter(productoAEmpacar__grupo__nombreGrupo = 'Cerdos' )
@@ -2421,6 +2430,7 @@ def RepFiletePechugaCond(request):
 
     for cond in condimentado:
         ListaPesoFilete['Filete de Pollo Condimentado'] += ceil(cond.pesoFileteCond)
+        cantidadCondimento['Condimento Pollo'] += ceil(cond.condimento)
 
 
 
@@ -2449,7 +2459,8 @@ def RepFiletePechugaCond(request):
             ListaPeso[detalle.producto.nombreProducto] += ceil(detalle.pesoProducto)
 
 
-    listas = {'ListaPesoFilete':ListaPesoFilete,'Promedio':Promedio,'promedioBandejasPollo':promedioBandejasPollo,
+    listas = {'cantidadMiga':cantidadMiga,'ListaPesoFilete':ListaPesoFilete,'Promedio':Promedio,
+              'promedioBandejasPollo':promedioBandejasPollo,'cantidadCondimento':cantidadCondimento,
               'cantBandejas':cantBandejas,'ListaCosto':ListaCosto,'ListaPeso':ListaPeso,
               'promedioBandejasCerdo':promedioBandejasCerdo,'cantBandejasCerdo':cantBandejasCerdo,
               'promedioChuletasCerdo':promedioChuletasCerdo,'pesoChuletaCerdo':pesoChuletaCerdo,
