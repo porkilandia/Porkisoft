@@ -1098,7 +1098,11 @@ def EditaConfigPuntos(request,idConfig):
 
 def TemplateRepListVentasNorte(request):
     provedor = Proveedor.objects.all()
-    bodega = Bodega.objects.all()
+    bodega = Bodega.objects.select_related().filter(activo = True)
+    q1 = bodega.filter(nombreBodega = 'Norte')
+    q2 = bodega.filter(nombreBodega = 'Lorenzo')
+    q3 = bodega.filter(nombreBodega = 'Potrerillo')
+    bodega = q1|q2|q3
 
     return render_to_response('Ventas/TemplateRepListVentasNorte.html',{'provedor':provedor,'bodega':bodega},
                               context_instance = RequestContext(request))

@@ -2374,6 +2374,7 @@ def RepFiletePechugaCond(request):
     cantidadCondimento = {}
     cantidadMiga['Miga Pollo'] = 0
     cantidadCondimento['Condimento Pollo'] = 0
+    cantidadCondimento['Condimento Cerdo'] = 0
     cantidadMiga['Miga Cerdo'] = 0
 
 
@@ -2431,6 +2432,15 @@ def RepFiletePechugaCond(request):
     for cond in condimentado:
         ListaPesoFilete['Filete de Pollo Condimentado'] += ceil(cond.pesoFileteCond)
         cantidadCondimento['Condimento Pollo'] += ceil(cond.condimento)
+
+
+    q1 = Condimentado.objects.filter(fecha__range = (finicio,ffin) ).filter(producto__grupo__nombreGrupo = 'Cerdos' )
+    q2 = Condimentado.objects.filter(fecha__range = (finicio,ffin) ).filter(producto__grupo__nombreGrupo = 'Cerdas' )
+    condimentadoCerdo = q1 | q2
+
+
+    for cond in condimentadoCerdo:
+        cantidadCondimento['Condimento Cerdo'] += ceil(cond.condimento)
 
 
 
