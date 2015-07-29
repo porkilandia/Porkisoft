@@ -14,7 +14,7 @@ from Fabricacion.Forms import *
 from Fabricacion.models import *
 from Inventario.models import *
 from Ventas.models import *
-#comentario
+#comentario 2
 def configuracionDesposteTemplate(request):
     grupos = Grupo.objects.select_related()
 
