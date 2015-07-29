@@ -1,4 +1,4 @@
-    {% extends 'PuntoVentaNorte.html' %}
+{% extends 'PuntoVentaNorte.html' %}
 
 {% block titulo %}::Porkilandia::{% endblock titulo %}
 {% block mensajes %}
@@ -10,8 +10,10 @@
     <!--<input type="button"  value="Imprimir" class="btn btn-success">
     <input type="button" value="Cobrar" class="btn btn-warning">
     -->
-<a id="imprimeRecibo" onclick="ImprimirRecibo()" href="#"><img src="{{ STATIC_URL }}img/printer1.png" alt="" /></a><br/>
-<a  id="cobraVenta" onclick="Cobrar()" href="#"><img src="{{ STATIC_URL }}img/dinero.png" alt="" /></a>
+
+    <a id="imprimeRecibo" onclick="ImprimirRecibo()" href="#"><img src="{{ STATIC_URL }}img/printer1.png" alt="" /></a><br/>
+    <a id="cobraVenta" onclick="Cobrar()" href="#"><img src="{{ STATIC_URL }}img/dinero.png" alt="" /></a>
+
 
     <div id="calculaVuelto">
         <label for="totalCompra">Esta en Venta : </label><input id="totalCompra" type="text"/>

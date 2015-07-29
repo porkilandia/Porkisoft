@@ -3906,7 +3906,7 @@ def GuardarChicharron(request):
 
     BodegaSal = ProductoBodega.objects.get(bodega = 6,producto = sal.codigoProducto)
     BodegaTocino = ProductoBodega.objects.get(bodega = 5 , producto = tocino.codigoProducto)
-    BodegaTarrina = ProductoBodega.objects.get(bodega = 5 , producto = tarrina.codigoProducto)
+    BodegaTarrina = ProductoBodega.objects.get(bodega = 6 , producto = tarrina.codigoProducto)
     BodegagrasaEnTarro = ProductoBodega.objects.get(bodega = 5 , producto = grasaEnTarro.codigoProducto)
     BodegachicharronProd = ProductoBodega.objects.get(bodega = 5 , producto = chicharronProd.codigoProducto)
 
