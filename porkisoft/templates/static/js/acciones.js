@@ -2324,7 +2324,7 @@ function consultaCompras() {
                     $('#total').remove();
                     for (var i=0;i<respuesta.length;i++)
                     {
-                        if( (respuesta[i].fields.tipo == 2)||(respuesta[i].fields.tipo == 3) )
+                        /*if( (respuesta[i].fields.tipo == 2)||(respuesta[i].fields.tipo == 3) )
                             {
                                tablaCompra.append(
 
@@ -2337,7 +2337,7 @@ function consultaCompras() {
                                 "</td><td>" +"<a target='_blank'' href='/inventario/recepcion/"+ respuesta[i].pk + "'>"+'Recepcion'+"</a>" +
                                 "</td></tr>");
                             }else
-                                {
+                                {*/
                                     tablaCompra.append(
 
                                 "<tr><td>" + respuesta[i].pk +
@@ -2350,7 +2350,7 @@ function consultaCompras() {
                                     +"<a target='_blank'' href='/inventario/recepcion/"+ respuesta[i].pk + "'>"+'Recepcion'+"</a>" +
                                 "</td></tr>");
 
-                                }
+                                //}
                         //
 
                         TotalCompra += respuesta[i].fields.vrCompra;
