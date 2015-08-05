@@ -180,9 +180,9 @@ def GestionBodega(request):
     bodegas = Bodega.objects.all()
     prodBods = ProductoBodega.objects.all()
 
-    for bodega in prodBods:
+    '''for bodega in prodBods:
         bodega.grupoProducto = bodega.producto.grupo.nombreGrupo
-        bodega.save()
+        bodega.save()'''
 
 
     if request.method == 'POST':
@@ -1057,7 +1057,7 @@ def EditarAjustes(request,idAjuste):
                               context_instance = RequestContext(request))
 
 
-
+# Los metodos de aqui en adelante son funcionales pero no se utilizan en este momento.
 def GestionFaltante(request):
     faltantes = Faltantes.objects.all()
     if request.method == 'POST':

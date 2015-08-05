@@ -1,27 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1556120099">
-    <data-source source="LOCAL" name="PostgreSQL - porkisoftdb@localhost" uuid="58fa7e13-3b05-4be1-a531-c5c29184579a">
+  <component name="DataSourceManagerImpl" format="xml" hash="1549514678">
+    <data-source source="LOCAL" name="PostgreSQL - @localhost" uuid="dd31e923-48ef-4524-8c85-0c09a605b5cc">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/porkisoftdb</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>dfcbdfc6dfc3dfd9dfc5dfc4df98df9adf9adf93</user-password>
       <libraries />
     </data-source>
-    <data-source source="LOCAL" name="Django default" uuid="e6c5d31a-2a16-4f3d-a793-cda232fd9c2e">
+    <data-source source="LOCAL" name="Django default" uuid="ffdc993b-de66-4180-9e3a-18d0bce8748e">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/porkisoftdb</jdbc-url>
       <user-name>postgres</user-name>
       <user-password>dfcbdfc6dfc3dfd9dfc5dfc4df98df9adf9adf93</user-password>
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/postgresql-driver-license.txt</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/postgresql-9.4-1201.jdbc4.jar</url>
-        </library>
-      </libraries>
+      <libraries />
     </data-source>
   </component>
 </project>

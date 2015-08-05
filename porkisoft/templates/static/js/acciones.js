@@ -2,7 +2,9 @@ $(document).on('ready', inicio);
 
  function inicio()
  {
-     /*Caracteristicas Traslados*/
+     /*Caracteristicas Traslados,
+     * Verifica si el traslado fue guardado si es verdadero entonces desactiva los botones de guardar y nuevo registro de
+     * lo contrario los muestra*/
      if ($('#TrasladoGuardado').text() == 'Si')
      {
          $('#Guardatraslado').hide();
@@ -29,21 +31,22 @@ $(document).on('ready', inicio);
     pesoVentaPunto.on('change',calculoTotalVentaPunto);
 
      function calculoTotalVentaPunto() {
+         //Calcula el total de la venta en el modulo de ventas punto
         var producto = productoVenta.val();
         var vrUnitario =$('#id_vrUnitarioPunto').val();
-         $.ajax({
+         $.ajax({//se realiza la peticion al servidor
             url: '/ventas/tipoProducto/',
             dataType: "json",
             type: "get",
-            data: {'producto': producto},
+            data: {'producto': producto},// se envia el producto a consultar
             success: function (respuesta) {
 
-                if (respuesta == 'pesable')
+                if (respuesta == 'pesable')//si el producto es pesable se calcula el valor total en grs
                 {
                     total = (pesoVentaPunto.val()/1000) * vrUnitario;
                     $('#id_vrTotalPunto').val(Math.round(total));
                 }
-                else
+                else//si el producto es no pesable se calcula el valor total en unidades
                 {
                     total = pesoVentaPunto.val() * vrUnitario;
                     $('#id_vrTotalPunto').val(total);
@@ -66,12 +69,12 @@ $(document).on('ready', inicio);
             data: {'producto': producto},
             success: function (respuesta) {
 
-                if (respuesta == 'pesable')
+                if (respuesta == 'pesable')//si el producto es pesable se calcula el valor total en grs
                 {
                     total = (pesoPedido.val()/1000) * vrUnitario;
                     $('#id_vrTotalPedido').val(Math.round(total));
                 }
-                else
+                else//si el producto es no pesable se calcula el valor total en unidades
                 {
                     total = pesoPedido.val() * vrUnitario;
                     $('#id_vrTotalPedido').val(total);
@@ -86,6 +89,10 @@ $(document).on('ready', inicio);
 
 
     if (estado == 'Si')
+    /* valida si el estado de la venta es si(guardado)
+    se ocultan el formulario de adicion de productos y el
+    boton de cobrar.
+    */
         {
             $('#FormularioVentaPunto').hide();
             $('#cobraVenta').hide();
@@ -95,7 +102,7 @@ $(document).on('ready', inicio);
      productoVenta.focus();
      productoPedido.focus();
 
-    /******************************************************************************************************************/
+    /******************Configuracion de Encabezados y pie de pagina en los documentos imprimibles*****/
 
      $('#agregarProducto').show();
      $('#encabezado').addClass('ocultarRecibo');
@@ -103,6 +110,8 @@ $(document).on('ready', inicio);
      $('#pie').hide();
      $('#Retiro').hide();
      $('#tablaMovi').hide();
+
+     /******************Configuracion de EVENTOS y METODOS para toda la aplicacion*****/
      var idVrUnitario = $('#id_vrUnitario');
      idVrUnitario.on('focus',calculoTotalPedido);
      $('#id_precioTotal').on('focus',calculoGanado);
@@ -159,12 +168,7 @@ $(document).on('ready', inicio);
      $('#id_cantidadActual').on('focus',CantidadActual);
      $('#id_compra').on('change',ValorVerduras);
 
-
-
-     //var tablaEmpacado = $('#tablaEmpacado tr');
-     //tablaEmpacado.on('click',maneja);
-     //$('#TablaPuntoNorte').dataTable();
-
+    /***configuracion de DATA TABLES para toda la aplicacion ***/
      $('#tablaAjustes').dataTable();
      $('#canalPendiente').dataTable();
      $('#tablaenTajados').dataTable();
@@ -196,6 +200,8 @@ $(document).on('ready', inicio);
      $('#TablaMiga').dataTable();
      $('#tablaCaja').dataTable();
      $('#tablaMenudos').dataTable();
+
+  /** Configuracion de DATE PICKER en los selectores de fechas de los formularios **/
 
      $('#id_fecha').datepicker({ dateFormat: "dd/mm/yy" });
      $('#id_fechaCompra').datepicker({ dateFormat: "dd/mm/yy" });
@@ -229,10 +235,9 @@ $(document).on('ready', inicio);
      $('#id_fechaLenguas').datepicker({ dateFormat: "dd/mm/yy" });
 
      $( "#bodegaFaltantes" ).selectmenu({ width: 200 });
-
      $('#homeAccordeon').accordion({ heightStyle: "content" });
-     $('#acordeon').accordion({ heightStyle: "content" });
-     $( "#progressbar" ).progressbar({value: false}).hide();
+     $('#acordeon').accordion({ heightStyle: "content" });// se muestra un accordeon para organizar los datos de algunos reportes
+     $( "#progressbar" ).progressbar({value: false}).hide();//Se muestra una barra de progreso para la consulta de reportes.
      $('#FrmVenta').show();
      $('#FrmVentaPunto').show();
      $('#InicioSesion').show();
@@ -244,15 +249,12 @@ $(document).on('ready', inicio);
      $("#id_productoPedido").hide();
      $('#diagrama').hide();
      $('#totalCompra').val($('#totalVentaDet').text()).attr('disabled','-1');
-     //fechaVenta.attr('disabled','-1');
-     //$('#id_encargado').attr('disabled','-1');
-     //$('#id_jornada').attr('disabled','-1');
 
 }
 
 /**************************************************** METODOS *********************************************************/
 function deshidratacion() {
-
+    /* metodo que ejecuta la deshidratacion en los inventarios */
     var bodega = $('#bodegaFaltantes').val();
 
     $.ajax({
@@ -266,7 +268,7 @@ function deshidratacion() {
         });
 }
 function ReporteTipoPedido() {
-
+    /*ejecuta el reporte de pedidos*/
     var fechaInicio = $('#inicio').val();
     var fechaFin = $('#fin').val();
     var cliente = $('#cliente').val();
@@ -300,7 +302,7 @@ function ReporteTipoPedido() {
 
                     for (var i=0;i<respuesta.length;i++) {
 
-                        if (respuesta[i].fields.credito == true) {
+                        if (respuesta[i].fields.credito == true) {//si es credito...
                             credito = 'Si';
                             contado = 'No';
                             vrCredito += respuesta[i].fields.TotalVenta;
@@ -310,7 +312,7 @@ function ReporteTipoPedido() {
                             contado = 'Si';
                             vrContado += respuesta[i].fields.TotalVenta;
                         }
-                        if(respuesta[i].fields.guardado)
+                        if(respuesta[i].fields.guardado)// si el regitro esta guardado sera de color verde de lo contrario rojo
                         {
                             color = "green";
                         }
@@ -343,6 +345,8 @@ function ReporteTipoPedido() {
 
 }
 function ReporteTipoPedidoContado() {
+
+    //si los pedidos son de tipo contado se ejecurara este metodo
 
     var fechaInicio = $('#inicio').val();
     var fechaFin = $('#fin').val();
@@ -394,7 +398,7 @@ function ReporteTipoPedidoContado() {
 
 }
 function GuardarCompra() {
-
+//este metodo ejecuta el guardado de la compra y envia por ajax los datos
     var idCompra = $('#CodigoCompra').text();
 
     var opcion = confirm('Desea Guardar el registro ?');
@@ -411,7 +415,7 @@ function GuardarCompra() {
     }
 }
 function ValorVerduras() {
-
+//se envia a travez de ajax la peticion de consulta del valor de las verduras segun el id de compra
     var idProducto = $('#id_productoLimpiar').val();
     var idCompra = $('#id_compra').val();
 
@@ -433,7 +437,7 @@ function ValorVerduras() {
 }
 
 function CostearVerduras(idVerdura) {
-
+//se envia via ajax el id del taller de verdura para ser costeado.
     $.ajax({
             url: '/fabricacion/costearVerduras/',
             dataType: "json",
@@ -446,7 +450,7 @@ function CostearVerduras(idVerdura) {
 
 }
 function GuardarVerduras(idVerdura) {
-
+//se envia via ajax el id del taller de verdura para ser guardado.
    var opcion = confirm('Desea Guardar el registro ?');
     if (opcion == true) {
         $.ajax({
@@ -464,7 +468,7 @@ function GuardarVerduras(idVerdura) {
 
 
 function ReporteListaDesposte() {
-
+//se conulta via ajax los despostes segun fecha
     var grupo = $('#grupos option:selected');
     var CodigoGrupo = grupo.val();
     var NombreGrupo = grupo.text();
@@ -505,7 +509,7 @@ function ReporteListaDesposte() {
 
 }
 function AnularFactura(idFactura,numFactura) {
-
+//se envia via ajax el id la venta que se quiere anular.
     var opcion = confirm('Desea Anular la factura No.'+ numFactura +' ?');
     if (opcion == true) {
         $.ajax({
@@ -520,7 +524,7 @@ function AnularFactura(idFactura,numFactura) {
     }
 }
 function consultaListaVentas() {
-
+//se envia via ajax el los parametros para generar el reporte de lista de ventas segun la jornada el punto y la fecha.
     var bodega = $('#bodega').val();
     var fechaInicio = $('#inicio').val();
     var fechaFin = $('#fin').val();
@@ -580,6 +584,7 @@ function consultaListaVentas() {
 }
 
 function CantidadActual() {
+//este metodo envia por ajax la consulta del stock actual del producto seleccionado.
     var producto = $('#id_productoAjuste').val();
     var bodega = $('#id_bodegaAjuste').val();
 
@@ -603,6 +608,7 @@ function CantidadActual() {
 
 }
 function ReporteVentaDiaria()
+//envio de variables via ajax para el reporte de ventas diarias
 {
         var inicio = $('#inicio').val();
         var fin = $('#fin').val();
@@ -646,6 +652,7 @@ function ReporteVentaDiaria()
 
 }
 function ReporteVentasNorte() {
+//envio de variables via ajax para el reporte de ventas
     $( "#progressbar" ).show();
     var tipoReporte = '';
 
@@ -679,7 +686,8 @@ function ReporteVentasNorte() {
             dataType: "json",
             type: "get",
             data: {'cliente':cliente,'inicio': inicio, 'fin': fin,'jornada':jornada,'bodega':bodega,'tipoReporte':tipoReporte},
-            success: function (respuesta) {
+        //se enviasn criterios de filtro para el reporte
+        success: function (respuesta) {
 
                 $("#tablaRepPP").find("tr:gt(0)").remove();
                 $("#tablaRepVN").find("tr:gt(0)").remove();
@@ -733,6 +741,7 @@ function ReporteVentasNorte() {
 }
 function ImprimirAZ()
 {
+    //ejecuta configuraciones de pagina para la impresion del reporte Z
                 var encabezado = $('#encabezado');
                 var pie = $('#pieRecibo');
                 var tablaExcentos = $('#TablaExcentos');
@@ -754,7 +763,7 @@ function ImprimirAZ()
                 $('#jornadaAZ').append(': '+ jornada);
                 var direccion = $('#direccion').text();
                 var punto = $('#bodega option:selected');
-                $('#lugar').append(': '+ punto.text())
+                $('#lugar').append(': '+ punto.text());
                 var cabecera = $('#Cabecera');
 
                 tablaExcentos.addClass('recibo');
@@ -765,7 +774,7 @@ function ImprimirAZ()
                 TablaValorPesables.addClass('recibo');
                 tablaNoPesables.addClass('recibo');
                 tablaValorNoPesables.addClass('recibo');
-
+                //se adiciona una cabecera con infornmcion legal de la empresa.
                 cabecera.append(
                                     "<table id='encabezado'>"+
                                     "<tr><th>" + 'PORKILANDIA S.A.S.' + "</th></tr>"+
@@ -793,6 +802,7 @@ function ImprimirAZ()
 
 }
 function calculoDiferencia() {
+    //metodo que calcula la diferencia entre el inventario fisico y el virtual.
     var pesoActual = $('#id_pesoActual').val();
     var undActual = $('#id_unidadActual').val();
     var pesoFisico = $('#id_pesoFisico').val();
@@ -827,7 +837,7 @@ function GenerarReportFaltantes(idFaltante) {
     }
 }
 function consultaAZ() {
-
+//Metodo que ejecuta la consulta de el Reporte Z
     var inicio = $('#inicio').val();
     var fechaFin = $('#fin').val();
     var bod = $('#bodega option:selected');
@@ -894,7 +904,7 @@ function consultaAZ() {
 
                                 $("#TablaValNoPesables").append("<tr><td>" + key + "</td><td style='text-align: right'>" +'$ '+ Math.ceil(value) + "</td></tr>");
                             });
-                            /**************************************************************************/
+                            /*************************INFORMACION TRIBUTARIA***************************/
 
                             $.each(respuesta.inicial,function(key,value){
 
@@ -926,6 +936,7 @@ function consultaAZ() {
         }
 }
 function CalculaTotalPedido() {
+    //SIN USO ACTUALMENTE
     var peso = $('#id_pesoPedido').val();
     var unidades = $('#id_unidadesPedido').val();
     var vrUnitario = $('#id_vrUnitario').val();
@@ -940,6 +951,8 @@ function CalculaTotalPedido() {
     }
 }
 function ExistenciasPedido() {
+
+    // se envian paramertos de consulta de existencia de productos en el modulo pedidos.
     var peso = $('#id_pesoPedido').val();
     var unidades = $('#id_unidadesPedido').val();
     var bodega = $('#bodegaPedido').text();
@@ -953,7 +966,7 @@ function ExistenciasPedido() {
 
 }
 function VerificarPrecioPedido(idLista,idProducto) {
-
+//se envia via ajax la lista y el producto y devuelve el valor de venta del producto
         $.ajax({
             url: '/ventas/verificarPrecioPedido/',
             dataType: "json",
@@ -967,7 +980,7 @@ function VerificarPrecioPedido(idLista,idProducto) {
     });
 }
 function GuardarPedido(idPedido) {
-
+//Envia el id pedido para ser guardado por el servidor.
     var opcion = confirm('Desea Guardar este Registro?, tenga en cuenta que afectara el Inventario');
     if (opcion == true)
     {
@@ -986,6 +999,7 @@ function GuardarPedido(idPedido) {
 
 }
 function calculoRegreso() {
+    //calular el regreso en la venta del punto
     var efectivo = $('#efectivo').val();
     var totalCompra= $('#totalCompra').val();
 
@@ -994,6 +1008,7 @@ function calculoRegreso() {
 
 }
 function GuardarDevolucion() {
+    //METODO SIN USO ACTUALMENTE
     var idDetalleDev = $('#idDetDevolucion').text();
         var opcion = confirm('Desea Imprimir este Comprobante?');
     if (opcion == true)
@@ -1012,6 +1027,7 @@ function GuardarDevolucion() {
     }
 }
 function imprimirRetiro(idRetiro) {
+    //METODO SIN USO ACTUALMENTE
     var tablaRetiro = $('#Retiro');
 
     var opcion = confirm('Desea Imprimir este Comprobante?');
@@ -1053,7 +1069,7 @@ function imprimirRetiro(idRetiro) {
 
 }
 function GuardarChicharron(idChicharron) {
-
+//Metodo que envia el id chicharron para ser guardado en el servidor.
     $.ajax({
             url: '/fabricacion/guardarChicharrones/',
             dataType: "json",
@@ -1067,7 +1083,7 @@ function GuardarChicharron(idChicharron) {
 
 }
 function CostearChicharron(idChicharron) {
-
+//Metodo que envia el id chicharron para ser costeado en el servidor.
     $.ajax({
             url: '/fabricacion/costearChicharrones/',
             dataType: "json",
@@ -1081,6 +1097,7 @@ function CostearChicharron(idChicharron) {
 
 }
 function existenciasVenta()
+//verifica el tipo de producto (pesable , no pesable) y luego consulta el peso o las unidades
 {
     var idProducto = $('#id_productoVenta').val();
     var peso = $('#id_pesoVentaPunto').val();
@@ -1105,12 +1122,11 @@ function existenciasVenta()
 
         });
 
-
-    //ExistenciasUnd(idProducto,1,peso);
 }
 function traeValorVenta()
+//consulta el valor del producto que esta en venta
 {
-    var idProducto = $('#id_productoVenta').val();
+   var idProducto = $('#id_productoVenta').val();
     var peso = $('#id_pesoVentaPunto').val();
     var und = $('#id_unidades').val();
     var numVenta = $('#NumVenta').text();
@@ -1129,23 +1145,13 @@ function traeValorVenta()
 }
 function calculoTotalVenta()
 {
+    //calcula el valor de la venta del punto teniendo en cuenta si son pesables o no pesables.
     var peso = $('#id_pesoVentaPunto').val();
     //var und = $('#id_unidades').val();
     var total = 0;
     var vrUnitario = $('#id_vrUnitarioPunto').val();
     var producto = $('#id_productoVenta').val();
     peso = parseInt(peso);
-
-    /*if (peso == 0)
-    {
-        total = und * vrUnitario;
-        $('#id_vrTotalPunto').val(total);
-    }
-    else
-    {
-        total = (peso/1000) * vrUnitario;
-        $('#id_vrTotalPunto').val(Math.round(total));
-    }*/
 
     $.ajax({
             url: '/ventas/tipoProducto/',
@@ -1171,7 +1177,7 @@ function calculoTotalVenta()
 
 }
 function ImprimirRecibo()
-{
+{//configura y ejecuta la impresion del recibo de vaja de punto de venta.
                 var encabezado = $('#encabezado');
                 var pie = $('#pieRecibo');
                 var tablaDetVenta = $('#tablaDetalleVentaPunto');
@@ -1188,7 +1194,7 @@ function ImprimirRecibo()
                 var direccion = $('#direccion').text();
                 calculadora.hide();
                 encabezado.show();
-                cabecera.append(
+                cabecera.append(//se agrega infromacion legal de la empresa.
                                     "<table id='encabezado'>"+
                                     "<tr><th>" + 'PORKILANDIA S.A.S.' + "</th></tr>"+
                                     "<tr><th>" + 'Nit: 900606687-6' + "</th></tr>"+
@@ -1245,7 +1251,7 @@ function ImprimirRecibo()
 
 }
 function Cobrar()
-{
+{//Metodo que ejcuta el cobro de la factura de punto de venta.
     var venta = $('#NumVenta').text();
     if($('#totalVentaDet').text() != 0)
     {
@@ -1264,7 +1270,7 @@ function Cobrar()
 
             });
         }
-    }else
+    }else//si el total de la venta es 0 no prmitira el cobro de la misma.
     {
         alert('Debe ingresar un producto primero antes de cobrar!!!');
     }
@@ -1273,6 +1279,7 @@ function Cobrar()
 
 function imprimir()
 {
+    //METODO FUERA DE USO
     var encabezado = $('#encabezado');
     var pie = $('#pie');
     var tablaBodega = $('#tablaReporteFaltante');
@@ -1288,7 +1295,7 @@ function imprimir()
 }
 
 function VerificaBolaEns()
-{
+{//METODO FUERA DE USO
    var idBodega = $('#id_puntoBodega').val();
    var pesoBola = $('#id_pesoBola').val();
     var pesoSal = $('#id_sal').val();
@@ -1300,7 +1307,7 @@ function VerificaBolaEns()
 
 }
 function GuardarEnsBola(idEnsalinado)
-{
+{//METODO FUERA DE USO
     var opcion = confirm('Desea guardar este Ajuste, recuerde que esto afectara el inventario.');
     if (opcion == true) {
         $.ajax({
@@ -1317,7 +1324,7 @@ function GuardarEnsBola(idEnsalinado)
     }
 }
 function CostearEnsBola(idEnsalinado)
-{
+{//METODO FUERA DE USO
      $.ajax({
 
             url: '/fabricacion/costearEnsBola/',
@@ -1333,6 +1340,7 @@ function CostearEnsBola(idEnsalinado)
 }
 function GuardarAjuste(idAjuste)
 {
+    //envia a travez de ajax el id del ajuste para ser guardado.
     var opcion = confirm('Desea guardar este Ajuste, recuerde que esto afectara el inventario.');
     if (opcion == true) {
         $.ajax({
@@ -1350,7 +1358,7 @@ function GuardarAjuste(idAjuste)
 }
 
 function ImprimirMovimientos() {
-
+//METODO FUERA DE USO
                 var encabezado = $('#encabezado');
                 var pie = $('#pieRecibo');
                 var tablaRepoMovimientos = $('#tablaReporteMovimientos');
@@ -1376,6 +1384,7 @@ function ImprimirMovimientos() {
 
 function consultaMovimientos()
 {
+    //Ejecuta la consulta de los movimientos filtrados por fecha.
 
     if($("#porBodega").is(':checked')) {
             var bodega = $('#bodega').val();
@@ -1431,6 +1440,7 @@ function consultaMovimientos()
 }
 function PasaValorEnvio()
 {
+    //METODO FUERA DE USO
     var peso = $('#id_pesoTraslado').val();
     $('#id_pesoEnvio').val(peso);
 
@@ -1438,15 +1448,17 @@ function PasaValorEnvio()
 
 function ExportarFaltantes()
 {
+    //METODO FUERA DE USO
     $('#tablaReporteFaltante').tableExport({type:'excel',escape:'false',pdfFontSize:8});
 }
 function Exportar()
 {
+    //METODO FUERA DE USO
     $('#tablaApanados').tableExport({type:'pdf',escape:'false',pdfFontSize:8,ignoreColumn: [3,9,10]});
 }
 
 function conciliaRes() {
-
+//ejecuta la conciliacion del inventario grupo Reses
      var table = $('#tablaReporteFaltante').tableToJSON({
          onlyColumns:[0,7]
      });
@@ -1458,7 +1470,7 @@ function conciliaRes() {
 
 }
 function conciliaCerdo() {
-
+//ejecuta la conciliacion del inventario grupo Cerdos
      var table = $('#tablaCerdos').tableToJSON({
          onlyColumns:[0,7]
      });
@@ -1470,7 +1482,7 @@ function conciliaCerdo() {
 
 }
 function conciliaCerda() {
-
+//ejecuta la conciliacion del inventario grupo Cerdas
      var table = $('#tablaCerdas').tableToJSON({
          onlyColumns:[0,7]
      });
@@ -1482,7 +1494,7 @@ function conciliaCerda() {
 
 }
 function conciliaPollo() {
-
+//ejecuta la conciliacion del inventario grupo Pollos
      var table = $('#tablaPollos').tableToJSON({
          onlyColumns:[0,7]
      });
@@ -1494,7 +1506,7 @@ function conciliaPollo() {
 
 }
 function conciliaVisceras() {
-
+//ejecuta la conciliacion del inventario grupo Visceras
      var table = $('#tablaVisceras').tableToJSON({
          onlyColumns:[0,7]
      });
@@ -1507,7 +1519,7 @@ function conciliaVisceras() {
 }
 
 function conciliaCompraventa() {
-
+//ejecuta la conciliacion del inventario grupo Compraventa
      var table = $('#tablaCompraventa').tableToJSON({
          onlyColumns:[0,7]
      });
@@ -1519,7 +1531,7 @@ function conciliaCompraventa() {
 
 }
 function conciliaInsumos() {
-
+//ejecuta la conciliacion del inventario grupo insumos
      var table = $('#tablaInsumos').tableToJSON({
          onlyColumns:[0,7]
      });
@@ -1531,7 +1543,7 @@ function conciliaInsumos() {
 
 }
 function conciliaVerduras() {
-
+//ejecuta la conciliacion del inventario grupo verduras
      var table = $('#tablaVerduras').tableToJSON({
          onlyColumns:[0,7]
      });
@@ -1545,7 +1557,7 @@ function conciliaVerduras() {
 
 
 function conciliarFaltantes(datos,CodigoBodega) {
-
+ //METODO FUERA DE USO
     var opcion = confirm('Desea ajustar los productos Seleccionados?');
     if (opcion == true) {
         $.ajax({
@@ -1565,8 +1577,9 @@ function conciliarFaltantes(datos,CodigoBodega) {
 }
 
 
-//*******************************************************************************************************************
-//*******************************************************************************************************************
+/*******************************************************************************************************************
+ * metodos que detectan el ingreso de productos en fisico y calculan los faltantes o sobrantes para luego poder conciliar el inventrio
+********************************************************************************************************************/
 $('#tablaReporteFaltante').delegate('tr.pesos','change', function(){
 
     var fisico = $(".actual",this).val();
@@ -1707,7 +1720,7 @@ $('#tablaVerduras').delegate('tr.pesos','change', function(){
 //*******************************************************************************************************************
 //*******************************************************************************************************************
 function ReporteFaltantes() {
-
+//Metodo que llena la lista de reporte de Bodega con los productos y el stock actual.
     var bodega = $('#bodegaFaltantes option:selected');
     var CodigoBodega = bodega.val();
     var NombreBodega = bodega.text();
@@ -1901,6 +1914,7 @@ function ReporteFaltantes() {
 
 function ReportePesosLote()
 {
+    //Metodo que ejecuta el reporte de utilidades por lote
     $( "#progressbar" ).show();
     var idCompra = $('#compras').val();
     var idLista = $('#listaP').val();
@@ -1944,7 +1958,7 @@ function ReportePesosLote()
                     var Desecho =  $('#Desecho');
                     var Costilla =  $('#Costilla');
                     var Hueso =  $('#Hueso');
-
+                    //se rellena informacion de cada seccion del canal
                     $.each(respuesta.adicionales,function(key,value){
 
                         $("#tablaPesoCarne").append("<tr><td>" + key + "</td><td>" + Math.ceil(value) +' %'+ "</td></tr>");
@@ -2015,7 +2029,7 @@ function ReportePesosLote()
                     var gananciaEstimada = TotalVenta - costo;
                     var utilidad = (gananciaEstimada * 100)/TotalVenta;
                     rendimiento = ((totalDespostado/1000) * 100)/pesoCanal;
-
+                    //se muestra la informacion que se utiliza para analisis de rendimenito
                     tablaCosto.append("<tr><td>" + 'Total Compra' + "</td><td style='text-align: right' >" +'$ '+ TotalCompra + "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'Costo Operacion' + "</td><td style='text-align: right' >"+'$ ' + modCif + "</td></tr>");
                     tablaCosto.append("<tr><td>" + 'Total Operacion' + "</td><td style='text-align: right' >"+'$ ' + costo + "</td></tr>");
@@ -2038,7 +2052,7 @@ function ReportePesosLote()
 
 }
 function RepoConversiones() {
-
+//metodo que ejecuta el reporte de Conversiones
     var bodega = $('#bodegas option:selected');
     //var producto = $('#productoTraslado option:selected');
     var fechaInicio = $('#inicio').val();
@@ -2046,14 +2060,6 @@ function RepoConversiones() {
     var CodigoBodega = bodega.val();
     var estadoConversion = '';
     var color = '';
-
-    /*var CodigoProducto = producto.val();
-
-    var NombreBodega = bodega.text();
-    var NombreProducto = producto.text();
-
-    var TotalCompra = 0;
-    var TotalUnds = 0;*/
 
     var TablaRepoConversiones = $("#TablaRepoConversiones");
 
@@ -2068,6 +2074,7 @@ function RepoConversiones() {
                     //$('#total').remove();
                     for (var i=0;i<respuesta.length;i++)
                     {
+                        //compara los costos de los productos convertidos y los pinta de un color diferente
                         if(respuesta[i].fields.costoP1 < respuesta[i].fields.costoP2)
                         {
                             estadoConversion = 'Ganancia';
@@ -2089,21 +2096,14 @@ function RepoConversiones() {
                                 "</td></tr>");
 
                     }
-                /*
-                * pesoConversion
-                * costoP1
-                * costoP2
-                * */
-
-                //var n = noty({text: respuesta, type:'success',layout: 'bottom'});
-                //"</td><td>" + "<a target='_blank'' href='/inventario/dettraslado/"+ respuesta[i].fields.traslado + "'>"+'Detalles'+"</a>" +
-                    }
+                }
 
         });
 
 }
 function ReporteTelleresPuntos ()
 {
+    //Ejecuta el reporte de los talleres de puntos
     $( "#progressbar" ).show();
     var inicio = $('#inicio').val();
     var fin = $('#fin').val();
@@ -2219,7 +2219,7 @@ function ReporteTelleresPuntos ()
         });
 }
 function consultaTrasladosBodega ()
-{
+{//ejecuta la consulta de traslados por bodega
     $( "#progressbar" ).show();
     var inicio = $('#inicio').val();
     var fin = $('#fin').val();
@@ -2246,7 +2246,7 @@ function consultaTrasladosBodega ()
         });
 }
 function consultaTraslados() {
-
+//ejecuta la consulta de traslados por producto
     var bodega = $('#bodega option:selected');
     var producto = $('#productoTraslado option:selected');
 
@@ -2289,7 +2289,6 @@ function consultaTraslados() {
                 tablaReporteTraslado.append("<tr><th id = 'total' colspan='3' style='text-align: right'>" +
                     'Totales:'  +"</th><th>"+  +TotalCompra +"</th><th>"+ TotalUnds +"</th></tr>");
 
-                //var n = noty({text: respuesta, type:'success',layout: 'bottom'});
                     }
 
         });
@@ -2297,7 +2296,7 @@ function consultaTraslados() {
 }
 
 function consultaCompras() {
-
+//ejecuta la consulta de Compras
     var bodega = $('#bodega option:selected');
     var provedor = $('#provedor option:selected');
 
@@ -2365,6 +2364,7 @@ function consultaCompras() {
 
 }
 function VerificarConversiones () {
+    //consulta el stock de productos a convertir
    var idBodega = $('#id_puntoConversion').val();
    var peso = $('#id_pesoConversion').val();
    var prod1 = $('#id_productoUno').val();
@@ -2373,12 +2373,7 @@ function VerificarConversiones () {
 
 }
 function GuardarConversion(idConversion) {
-    //Funcion que costea el apanado actual
-
-    //var producto1 = $('#id_productoUno').val();
-    //var producto2 = $('#id_productoDos').val();
-
-
+   //envia el id de la conversion para ser guardada en el servidor
     var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
     if (opcion == true) {
         $.ajax({
@@ -2398,7 +2393,7 @@ function GuardarConversion(idConversion) {
     }
 }
 function GuardarMiga(IdMiga) {
-    //Funcion que costea el apanado actual
+    //envia el id de la Miga para ser guardada en el servidor
 
     var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
     if (opcion == true) {
@@ -2420,6 +2415,8 @@ function GuardarMiga(IdMiga) {
     }
 }
 function VerificarReApanados () {
+
+    //Consulta el stock actual del producto
    var idBodega = $('#id_puntoReApanado').val();
    var pesoMiga = $('#id_miga').val();
    var pesoChuleta = $('#id_pesoChuleta').val();
@@ -2429,7 +2426,7 @@ function VerificarReApanados () {
     Existencias(chuleta,idBodega,pesoChuleta);
 }
 function GuardarreApanado(idReApanado) {
-    //Funcion que costea el apanado actual
+    //envia el id del Reapanado para ser guardado en el servidor
     var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
     if (opcion == true) {
         $.ajax({
@@ -2449,6 +2446,7 @@ function GuardarreApanado(idReApanado) {
     }
 }
 function VerificarInsCroquetas () {
+      //Consulta el stock actual del producto
     var idBodega = $('#id_puntoCroq').val();
     var pesoCroqueta = $('#id_croqueta').val();
     var pesoCond = $('#id_condimento').val();
@@ -2460,7 +2458,7 @@ function VerificarInsCroquetas () {
 }
 
 function GuardarCroqueta(idCroqueta) {
-    //Funcion que costea el apanado actual
+   //envia el id del taller de croquets para ser guardado en el servidor
     var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
     if (opcion == true) {
         $.ajax({
@@ -2481,7 +2479,8 @@ function GuardarCroqueta(idCroqueta) {
 }
 function CostearCroqueta(idCroqueta)
 {
-    //Funcion que costea el apanado actual
+    //envia el id del taller de croquets para ser Costeado
+
     var opcion = confirm('Desea costear este Registro ?');
     if (opcion == true)
     {
@@ -2505,12 +2504,14 @@ function CostearCroqueta(idCroqueta)
 
 }
 function VerificarCondCarne () {
+    //verifica el stock de condimento para el taller de condimentado
    var idBodega = $('#id_puntoCond').val();
    var pesoCond = $('#id_condimento').val();
 
     Existencias(111,idBodega,pesoCond);
 }
 function VerificarProdCarne () {
+    //verifica el stock de producto a condimentar para el taller de condimentado
    var idBodega = $('#id_puntoCond').val();
    var pesoCarne = $('#id_pesoProducto').val();
    var producto = $('#id_productoCond').val();
@@ -2518,12 +2519,14 @@ function VerificarProdCarne () {
     Existencias(producto,idBodega,pesoCarne);
 }
 function VerificarCond () {
+    //verifica el stock de condimento para el taller de frito
    var idBodega = $('#id_punto').val();
    var pesoCond = $('#id_condimento').val();
 
     Existencias(111,idBodega,pesoCond);
 }
 function VerificarProdFrito () {
+     //verifica el stock de producto a condimentar para el taller de frito
    var idBodega = $('#id_punto').val();
    var pesoCarne = $('#id_pesoProducto').val();
    var producto = $('#id_productoFrito').val();
@@ -2532,6 +2535,7 @@ function VerificarProdFrito () {
 }
 function CostearCarneCond(idCarne)
 {
+    //Se envia el id del taller de carne condimentada para ser costeado.
     var opcion = confirm('Desea costear este Registro.');
     if (opcion == true) {
         $.ajax({
@@ -2552,6 +2556,7 @@ function CostearCarneCond(idCarne)
 }
 function GuardarCarneCond(idCarne)
 {
+    //Se envia el id del taller de carne condimentada para ser guardado.
     var opcion = confirm('Desea costear este Registro.');
     if (opcion == true) {
         $.ajax({
@@ -2571,7 +2576,7 @@ function GuardarCarneCond(idCarne)
     }
 }
 function CostearFrito(idFrito)
-{
+{//Se envia el id del taller de frito para ser costeado.
     var opcion = confirm('Desea costear este Registro.');
     if (opcion == true) {
         $.ajax({
@@ -2591,7 +2596,7 @@ function CostearFrito(idFrito)
     }
 }
 function GuardarFrito(idFrito)
-{
+{//Se envia el id del taller de frito para ser guardado.
     var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
     if (opcion == true) {
         $.ajax({
@@ -2611,7 +2616,7 @@ function GuardarFrito(idFrito)
     }
 }
 function GuardarPicadillo(idMenudo)
-{
+{//Se envia el id del taller de Menudo para ser guardado.
     var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
     if (opcion == true) {
         $.ajax({
@@ -2631,7 +2636,7 @@ function GuardarPicadillo(idMenudo)
     }
 }
 function GuardarLenguas(idLenguas)
-{
+{//Se envia el id del taller de Coccion de Lenguas para ser guardado.
     var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
     if (opcion == true) {
         $.ajax({
@@ -2651,6 +2656,8 @@ function GuardarLenguas(idLenguas)
     }
 }
 function consultaDescarnes ()
+
+//ACTUALMENTE FRUERA DE USO
 {   $( "#progressbar" ).show();
     var inicio = $('#inicio').val();
     var fin = $('#fin').val();
@@ -2727,6 +2734,7 @@ function consultaDescarnes ()
         });
 }
 function consultaInsumos ()
+//Ejecurta el reporte de insumos y carne molida
 {   $( "#progressbar" ).show();
     var inicio = $('#inicio').val();
     var fin = $('#fin').val();
@@ -2770,10 +2778,20 @@ function consultaInsumos ()
 
                     $("#tablaPromedioCostoMolida").append("<tr><td>" + 'Carne Molida' + "</td><td>" + Math.ceil(value) + "</td></tr>");
                 });
+                $.each(respuesta.promedioMolidasCerdo,function(key,value){
+
+                    $("#tablaPromedioCostoMolida").append("<tr><td>" + 'Carne Molida' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
+                $.each(respuesta.promedioMolidasCerda,function(key,value){
+
+                    $("#tablaPromedioCostoMolida").append("<tr><td>" + 'Carne Molida' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                });
                 $.each(respuesta.ListaCantMolida,function(key,value){
 
                     $("#tablaPesoMolida").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>");
                 });
+
+
                 $( "#progressbar" ).hide();
             }
 
@@ -2781,6 +2799,7 @@ function consultaInsumos ()
 }
 
 function consultaMenChicha ()
+//Ejecuta el reporte de menudo y chicharrones
 {   $( "#progressbar" ).show();
     var inicio = $('#inicio').val();
     var fin = $('#fin').val();
@@ -2835,7 +2854,7 @@ function consultaMenChicha ()
 }
 
 function consultaPechugaCond ()
-{
+{//Ejecuta el reporte de Apanados y condimentados(cerdo y pollo)
     $( "#progressbar" ).show();
     var inicio = $('#inicio').val();
     var fin = $('#fin').val();
@@ -2933,7 +2952,8 @@ function consultaPechugaCond ()
         });
 }
 function consultaPromedioPorFecha ()
-{   $( "#progressbar" ).show();
+{   //Ejecuta el reporte de desposte filtrado por fechas y con costo promedio
+    $( "#progressbar" ).show();
     var inicio = $('#inicio').val();
     var fin = $('#fin').val();
     var grupo = $('#grupo').val();
@@ -2975,6 +2995,7 @@ function consultaPromedioPorFecha ()
 }
 function CostoKiloChuleta()
 {
+    //ejecuta la consultadel costo del kilo de chuleta teniendo en cuenta la produccion en la que fue elaborada
      var produccion = $('#id_produccion').val();
 
     $.ajax({
@@ -2996,6 +3017,7 @@ function CostoKiloChuleta()
 }
 function CostoProdListaPrecios()
 {
+   //se ejecuta la consulta del costo del producto segun la lista de precios actual.
     var producto = $('#id_productoLista').val();
 
     $.ajax({
@@ -3018,6 +3040,7 @@ function CostoProdListaPrecios()
 
 function GuardarMolido(idMolido)
 {
+    //se envia el id del taller de molida para ser guardado
     var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
     if (opcion == true) {
         $.ajax({
@@ -3037,7 +3060,7 @@ function GuardarMolido(idMolido)
     }
 }
 function GuardarEmpaqueApanado(idEmpaque)
-{
+{//se envia el id del taller de Empaque de apanados para ser guardado
     var opcion = confirm('Desea costear este Registro ?');
     if (opcion == true) {
         $.ajax({
@@ -3058,6 +3081,7 @@ function GuardarEmpaqueApanado(idEmpaque)
 }
 function CostearEmpaqueApanado(idEmpaque)
 {
+    //se envia el id del taller de Empaque de apanados para ser costeado
     var opcion = confirm('Desea costear este Registro ?');
     if (opcion == true) {
         $.ajax({
@@ -3077,7 +3101,7 @@ function CostearEmpaqueApanado(idEmpaque)
     }
 }
 function CostearMolido(idMolido)
-{
+{//se envia el id del taller de Carne molida para ser guardado
     var opcion = confirm('Desea costear este Registro ?, recuerde Actualizar la tabla de costos.');
     if (opcion == true) {
         $.ajax({
@@ -3098,6 +3122,7 @@ function CostearMolido(idMolido)
 }
 function existenciasCarneAMoler()
 {
+    //Consulta el stock actual de producto a moler
     var producto = $('#id_productoMolido').val();
     var peso = $('#id_pesoAmoler').val();
     Existencias(producto,6,peso);
@@ -3105,13 +3130,14 @@ function existenciasCarneAMoler()
 }
 function calculoTotalApanado()
 {
+    //Calcula el total en gramos despues del proceso de apanado.
     var filete = parseInt($('#id_pesoFilete').val());
     var miga = parseInt($('#id_miga').val());
     var totalApanado = filete + miga;
     $('#id_totalApanado').val(totalApanado);
 }
 function GuardarApanado(idApanado) {
-    //Funcion que costea el apanado actual
+    //se envia el id del taller de apanados para ser guardado
     var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario.');
     if (opcion == true) {
         $.ajax({
@@ -3157,25 +3183,26 @@ function CostearApanado(idApanado)
 
 }
 function existenciasFileteCondimentado()
-{
+{//Verifica las existencias de filete condimentado
     var producto = $('#id_productoApanado').val();
     var peso= $('#id_pesoFilete').val();
     Existencias(producto,5,peso);
 }
 function ExistenciasApanado()
-{
+{//Verifica las existencias de filete Apanado
     var miga = $('#id_miga').val();
     // Miga Preparada 109
     Existencias(109,5,miga);
 }
 function TraecostoEnsalinado()
-{
+{//Consulta de stock de ensalinados
     var producto = $('#id_productoEnsalinado').val();
     var peso = $('#id_pesoProducto').val();
     Existencias(producto,5,peso);
 }
 function GuardarEnsalinado(idEnsalinado)
 {
+    //envia el id del taller de ensalinado para ser guardado
     var opcion = confirm('Desea guardar este Registro, recuerde que esto afectara el inventario');
     if (opcion == true)
     {
@@ -3200,7 +3227,7 @@ function GuardarEnsalinado(idEnsalinado)
 }
 function CostearCondimentado(idCondimentado)
 {
-
+//envia el id del taller de condimentado para ser Costeado
         $.ajax({
 
             url : '/fabricacion/costearCondimentado/',
@@ -3217,6 +3244,7 @@ function CostearCondimentado(idCondimentado)
 }
 function GuardarCondimentado(idCondimentado)
 {
+    //envia el id del taller de condimentado para ser Guardado
     var opcion = confirm('Desea guardar este Registro?');
     if (opcion == true)
     {
@@ -3238,6 +3266,7 @@ function GuardarCondimentado(idCondimentado)
 }
 function calculaCostoCondimentado()
 {
+    //Metodo que calcula el costo total del taller del condimentado
     var pesoFilete = parseInt($('#id_pesoACondimentar').val());
     var condimento = parseInt($('#id_condimento').val());
     var costoFilete = parseInt($('#id_costoFilete').val());
@@ -3252,6 +3281,7 @@ function calculaCostoCondimentado()
 }
 function calculaPesoCondimentado()
 {
+    //Metodo que calcula el Peso total del taller del condimentado
     var pesoFilete = parseInt($('#id_pesoACondimentar').val());
     var condimento = parseInt($('#id_condimento').val());
     var resPollo = parseInt($('#id_resPollo').val());
@@ -3264,6 +3294,7 @@ function calculaPesoCondimentado()
 }
 function traerCostoFilete()
 {
+    //Ejecuta la consulta de el costo del filete antes de ser condimentado.
     var producto = $('#id_producto').val();
 
     $.ajax({
@@ -3287,6 +3318,7 @@ function traerCostoFilete()
 }
 function calculoKiloDescongelado()
 {
+    //Calcula el valor del kilo de pechuga descongelada
     var vrFactura = $('#id_subtotal').val();
     var pesoDesc = $('#id_pesoDescongelado').val();
     var total = Math.round(vrFactura / (pesoDesc/1000));
@@ -3294,6 +3326,7 @@ function calculoKiloDescongelado()
 }
 function TraerCostoPollo()
 {
+    //Consulta el costo de la pechuga segun la compra realizada
     var compra = $('#id_polloHistorico').val();
     var producto = $('#id_producto').val();
 
@@ -3319,6 +3352,7 @@ function TraerCostoPollo()
 
 function TraerCosto()
 {
+    //Consulta el costo delproducto segun el desposte realizado
     var desposte = $('#id_desposteHistorico').val();
     var producto = $('#id_producto').val();
 
@@ -3343,7 +3377,7 @@ function TraerCosto()
 }
 function GuardaDescarne(idDescarne)
 {
-
+//METODO SIN USO ACTUALMENTE
    var opcion = confirm('Desea guardar el descarne No.'+ idDescarne + '?')
     if(opcion == true)
     {
@@ -3370,6 +3404,7 @@ function GuardaDescarne(idDescarne)
 
 function VerificarExistenciasMiga()
 {
+    //consulta el stock actual de miga preparada
     var id = $('#id_productoMiga').val();
     var peso = $('#id_PesoProducto').val();
     var pesoTotal = parseInt($('#cantFormulas').text());
@@ -3379,6 +3414,7 @@ function VerificarExistenciasMiga()
 }
 function VerificarExistencias()
 {
+    //consulta el stock actual de un producto cualquiera
     var id = $('#id_productoCondimento').val();
     var peso = $('#id_pesoProducto').val();
     var pesoTotal = parseInt($('#cantFormulasCond').text());
@@ -3412,7 +3448,7 @@ function Existencias(idProducto,idBodega,pesoProducto)
 }
 function ExistenciasUnd(idProducto,idBodega,unidades)
 {
-    /*Metodo para verificar el stock del producto seleccionado*/
+    /*Metodo para verificar el stock de unidades del producto seleccionado*/
 
     $.ajax({
 
@@ -3435,6 +3471,7 @@ function ExistenciasUnd(idProducto,idBodega,unidades)
 
 function ConsultaStock()
 {
+    //consulta el stock de un producto que sera trasladado
     var codigoTraslado = $('#codigoTraslado').text();
     var pesoTraslado = $('#id_pesoTraslado').val();
     var undTraslado = $('#id_unidadesTraslado').val();
@@ -3459,6 +3496,7 @@ function ConsultaStock()
 }
 function GuardarTraslado()
 {
+    //se envia el id del traslado para ser guardado
     var codigoTraslado = $('#codigoTraslado').text();
     var opcion = confirm('Desea guardar el traslado?');
 
@@ -3479,6 +3517,7 @@ function GuardarTraslado()
 }
 function GuardarVentas()
 {
+    //Se envia el id de la venta para ser guardada
     var opcion = confirm('Desea guardar los cambios, Recuerde que esto afectara el Inventario?');
     var idVenta = $('#codigoVenta').text();
     var peso = parseFloat($('#peso').text());
@@ -3500,6 +3539,7 @@ function GuardarVentas()
 
 function CostearDesposte()
 {
+    //Se envia informacion a ttravez de ajax para el costeo de la planilla de desposte
     var idDesposte = parseInt($('#codigoPlanilla').text());
     var pesoCanales = parseInt($('#pesoCanales').text());
     var kiloCarnes = parseInt($('#kiloCarnes').text());
@@ -3532,6 +3572,7 @@ function CostearDesposte()
 }
 function calculoValorProducto()
 {
+    //METODO SIN USO ACTUALMENTE
     var peso = $('#id_peso').val();
     var vrKilo = $('#id_vrUnitario').val();
     var unidades = $('#id_unidades').val();
@@ -3550,7 +3591,7 @@ function calculoValorProducto()
 }
 
 function consultaValorProducto()
-{
+{//METODO SIN USO ACTUALMENTE
     var combo = $('#id_productoVenta').val();
     var idVenta = $('#codigoVenta').text();
     var peso = $('#id_peso').val();
@@ -3581,7 +3622,7 @@ function consultaValorProducto()
 }
 
 function GuardarDesposte()
-{
+{//Se envia el id del desposte para ser guardado
     var idDesposte = parseInt($('#codigoPlanilla').text());
     var guardado = confirm('desea Guardad los productos en bodega ');
     if (guardado == true)
@@ -3600,7 +3641,7 @@ function GuardarDesposte()
 
 }
 function cargaDatos(datos)
-     {
+     {//METODO SIN USO ACTUALMENTE
          var $tabla  = $('#lista');
             $tabla.find("tr:gt(0)").remove();
              for (var indice in datos)
@@ -3616,7 +3657,7 @@ function cargaDatos(datos)
 
 
 function calculoGanado(){
-
+//calcula el precio total del ganado Res que se compra
 
          var pesoEnPie = $('#id_pesoEnPie').val();
          var vrKiloEnPie = $('#id_precioKiloEnPie').val();
@@ -3627,6 +3668,7 @@ function calculoGanado(){
 
 }
 function calculoCanal(){
+    //calcula la perdida de peso entre le peso frigovito y el peso porkilandia
 
          var pesoPorkilandia = $('#id_pesoPorkilandia').val();
          var pesoFrigovito = $('#id_pesoFrigovito').val();
@@ -3637,6 +3679,7 @@ function calculoCanal(){
 
 function calculoCompra()
 {
+    //Calcula el valor de la compra
     var unidades = $('#id_unidades').val();
     var pesoProducto = $('#id_pesoProducto').val();
     var subtotal = $('#id_subtotal').val();
@@ -3658,7 +3701,7 @@ function calculoCompra()
 
 function calculoEnsalinado()
 {
-    /* Metodo que verifica las existencias de sal y papaina */
+    /* Metodo que calcula el producto ensalinado */
 
     var pesoProducto = $('#id_pesoProducto').val();
     var pesoSal = $('#id_pesoSal').val();
@@ -3675,17 +3718,17 @@ function calculoEnsalinado()
  }
 
 function nuevoRegistro()
-     {
+     {//metodo que muestra u oculta cualquier fromulario del sistema
          $('fieldset').fadeIn();
          return false
      }
 
 function cerrarVentana()
-{
+{//Metodo que oculta el formulario luego de dar click en el boton Cerrar.
     $('fieldset').fadeOut();
 }
 
-function editaFilas()
+/*function editaFilas()
 {
     $('#tablaproveedor td').attr('contenteditable','true');
 
@@ -3697,13 +3740,13 @@ function eliminarFilas()
          * Si unicamente queda una columna, esta no sera eliminada
          */
     // Obtenemos el total de columnas (tr) del id "tabla"
-            var trs=$('tr', $("#tablaproveedor")).length;
+ /*           var trs=$('tr', $("#tablaproveedor")).length;
             if(trs>1)
             {
                 // Eliminamos la ultima columna
                 $("#tablaproveedor td:last").remove();
             }
-}
+}*/
 
 function modificaRegistro()
 {
@@ -3712,7 +3755,7 @@ function modificaRegistro()
 }
 
 function CostearTajado()
-
+//Metodo que envia el id del Tajado para ser costeado
 {
     var tipo = $('#tipo').text();
     var idTajado = $('#idTajado').text();
@@ -3732,6 +3775,7 @@ function CostearTajado()
 
 function GuardarTajado()
 {
+    //Metodo que envia el id del Tajado para ser guardado
     var idTajado = $('#idTajado').text();
     var opcion = confirm('Desea guardar el tajado?')
     if (opcion == true)

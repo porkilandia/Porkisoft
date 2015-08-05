@@ -16,11 +16,13 @@ from Inventario.models import *
 from Ventas.models import *
 #comentario 2
 def configuracionDesposteTemplate(request):
+    #pendiente por implementacion para configurar los porcentajes de desposte
     grupos = Grupo.objects.select_related()
 
     return render_to_response('Fabricacion/configuracionDespostes.html',{'grupos':grupos},context_instance = RequestContext(request))
 
 def configuracionDespostes (request):
+    #pendiente por implementacion para configurar los porcentajes de desposte
     pass
 
 #******************************************************CANAL***********************************************************
@@ -28,8 +30,6 @@ def GestionCanal(request,idrecepcion):
 
     canales = Canal.objects.select_related().filter(recepcion = idrecepcion).order_by('nroCanal')#para renderizar las listas
     recepcion = PlanillaRecepcion.objects.select_related().get(pk = idrecepcion)
-    #compra = Compra.objects.get(pk = recepcion.compra.codigoCompra)
-    #sacrificio = Sacrificio.objects.get(recepcion = idrecepcion)
     cantidad = canales.count() +1
     kiloCanal = 0
 
@@ -53,8 +53,6 @@ def GestionCanal(request,idrecepcion):
         formulario = CanalForm(request.POST)
         if formulario.is_valid():
 
-            #planilla = PlanillaDesposte.objects.get(pk = request.POST.get('planilla'))
-            #canalesPlanilla = Canal.objects.filter(planilla = planilla.codigoPlanilla)# Canales por planilla
             pesoCanales = 0
             pesoPie = 0
             vrFactura = 0
@@ -64,7 +62,6 @@ def GestionCanal(request,idrecepcion):
 
             canal = Canal()
             canal.recepcion = recepcion
-            #canal.planilla = planilla
             canal.pesoFrigovito = request.POST.get('pesoFrigovito')
             canal.pesoPorkilandia = request.POST.get('pesoPorkilandia')
             canal.difPesos = request.POST.get('difPesos')
@@ -72,7 +69,7 @@ def GestionCanal(request,idrecepcion):
             canal.nroCanal = request.POST.get('nroCanal')
 
             #Se calculan datos adicionales para eliminar el sacrificio
-            #recepcion = PlanillaRecepcion.objects.get(pk = idrecepcion)
+
             cantCabezas = recepcion.cantCabezas
             menudo = cantCabezas * 90000
             deguello = cantCabezas * 90150
@@ -214,7 +211,6 @@ def GestionSacrificio(request,idrecepcion):
 
     for det in detCompra:
         ganado = Ganado.objects.get(pk = det.ganado.codigoGanado)
-        #totalPieles += ganado.piel
 
     if request.method == 'POST':
         formSacrificio = SacrificioForm(request.POST)
@@ -265,7 +261,6 @@ def GestionEnsalinado(request):
     fechainicio = date.today() - timedelta(days=10)
     fechafin = date.today()
     ensalinados = Ensalinado.objects.filter(fechaEnsalinado__range =(fechainicio,fechafin))
-    #ensalinados = Ensalinado.objects.all()
     if request.method == 'POST':
         formulario = EnsalinadoForm(request.POST)
 
@@ -314,7 +309,7 @@ def GuardaEnsalinado(request):
     costoPapaina = (ensalinado.pesoPapaina / 1000) * papaina.costoProducto
     costoProductoEnsalinado = (ensalinado.pesoProducto / 1000) * producto.costoProducto
     costoInsumos = costoSal + costoPapaina + costoProductoEnsalinado
-    #cif = 30 * (ensalinado.pesoProductoDespues / 1000)
+
     mod = ensalinado.mod
     costoTotal = mod + costoInsumos
     costoKilo = ceil(costoTotal / (ensalinado.pesoProductoDespues /1000))
@@ -2501,8 +2496,11 @@ def ReporteInsumos(request):
     ListaCantMiga['Miga Preparada'] = 0
     ListaCantCond = {}
     ListaCantCond['Condimento Preparado'] = 0
+
     ListaCantMolida = {}
     ListaCantMolida['Carne Molida'] = 0
+    ListaCantMolida['Carne Molida Cerdo'] = 0
+    ListaCantMolida['Carne Molida Cerda'] = 0
 
     migas = Miga.objects.filter(fechaFabricacion__range = (finicio,ffin))
     promedioMiga = migas.aggregate(Avg('costoKiloMigaProcesada'))
@@ -2517,15 +2515,34 @@ def ReporteInsumos(request):
     for cond in condimentos:
         ListaCantCond['Condimento Preparado'] += ceil(cond.pesoCondimento * 1000)
 
-
-    molidas = Molida.objects.filter(fechaMolido__range = (finicio,ffin))
+    #--------------Molida de res---------------------------------------------------
+    molidas = Molida.objects.filter(fechaMolido__range = (finicio,ffin),productoMolido__grupo__nombreGrupo = 'Reses')
     promedioMolidas = molidas.aggregate(Avg('costoKiloMolido'))
 
     for molido in molidas:
         ListaCantMolida['Carne Molida'] += ceil(molido.totalMolido)
 
+     #--------------Molida de Cerdo---------------------------------------------------
+    molidasCerdo = Molida.objects.filter(fechaMolido__range = (finicio,ffin),productoMolido__grupo__nombreGrupo = 'Cerdos')
+    promedioMolidasCerdo = molidasCerdo.aggregate(Avg('costoKiloMolido'))
+
+    for molido in molidas:
+        ListaCantMolida['Carne Molida Cerdo'] += ceil(molido.totalMolido)
+
+
+     #--------------Molida de Cerda---------------------------------------------------
+    molidasCerda = Molida.objects.filter(fechaMolido__range = (finicio,ffin),productoMolido__grupo__nombreGrupo = 'Cerdas')
+    promedioMolidasCerda = molidasCerda.aggregate(Avg('costoKiloMolido'))
+
+    for molido in molidas:
+        ListaCantMolida['Carne Molida Cerda'] += ceil(molido.totalMolido)
+
+
+
     Listas = {'promedioMiga':promedioMiga,'ListaCantMiga':ListaCantMiga,'promedioCondimento':promedioCondimento,
-              'ListaCantCond':ListaCantCond,'promedioMolidas':promedioMolidas,'ListaCantMolida':ListaCantMolida}
+              'ListaCantCond':ListaCantCond,'promedioMolidas':promedioMolidas,
+              'promedioMolidasCerdo':promedioMolidasCerdo,'promedioMolidasCerda':promedioMolidasCerda,
+              'ListaCantMolida':ListaCantMolida}
 
     respuesta = json.dumps(Listas)
     return HttpResponse(respuesta,mimetype='application/json')

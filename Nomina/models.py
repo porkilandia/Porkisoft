@@ -1,6 +1,8 @@
 from django.db import models
 from Inventario.models import *
 # Create your models here.
+
+
 class Cargo(models.Model):
     codigoCargo = models.AutoField(primary_key=True, verbose_name='Codigo Cargo')
     nombreCargo = models.CharField(max_length=50, verbose_name='Cargo')
