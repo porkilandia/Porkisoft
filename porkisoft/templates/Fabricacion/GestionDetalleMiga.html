@@ -16,7 +16,7 @@
             <th>Costo Formula Miga</th>
                 <th>Cif</th>
                 <th>Mod</th>
-            <th>Acciones</th>
+            <th>Guardado</th>
 
         </tr>
         </thead>
@@ -30,7 +30,11 @@
                 <td>${{ miga.costoFormulaMiga }}</td>
                 <td>${{ miga.cif }}</td>
                 <td>${{ miga.mod }}</td>
-
+                {% if miga.guardado == True %}
+                    <td>Si</td>
+                {% else %}
+                    <td>No</td>
+                {% endif %}
 
             </tr>
          </tbody>
