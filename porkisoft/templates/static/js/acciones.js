@@ -2776,15 +2776,15 @@ function consultaInsumos ()
 
                 $.each(respuesta.promedioMolidas,function(key,value){
 
-                    $("#tablaPromedioCostoMolida").append("<tr><td>" + 'Carne Molida' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                    $("#tablaPromedioCostoMolida").append("<tr><td>" + 'Carne Molida Res' + "</td><td>" + Math.ceil(value) + "</td></tr>");
                 });
                 $.each(respuesta.promedioMolidasCerdo,function(key,value){
 
-                    $("#tablaPromedioCostoMolida").append("<tr><td>" + 'Carne Molida' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                    $("#tablaPromedioCostoMolida").append("<tr><td>" + 'Carne Molida Cerdo' + "</td><td>" + Math.ceil(value) + "</td></tr>");
                 });
                 $.each(respuesta.promedioMolidasCerda,function(key,value){
 
-                    $("#tablaPromedioCostoMolida").append("<tr><td>" + 'Carne Molida' + "</td><td>" + Math.ceil(value) + "</td></tr>");
+                    $("#tablaPromedioCostoMolida").append("<tr><td>" + 'Carne Molida Cerda' + "</td><td>" + Math.ceil(value) + "</td></tr>");
                 });
                 $.each(respuesta.ListaCantMolida,function(key,value){
 

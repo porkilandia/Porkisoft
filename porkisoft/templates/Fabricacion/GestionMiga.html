@@ -22,6 +22,7 @@
             <th>Costo Formula Miga</th>
             <th>Cif</th>
             <th>Mod</th>
+            <th>Guardado</th>
             <th>Acciones</th>
 
         </tr>
@@ -36,6 +37,11 @@
             <td>${{ miga.costoFormulaMiga }}</td>
             <td>${{ miga.cif }}</td>
             <td>${{ miga.mod }}</td>
+            {% if miga.guardado == True %}
+                <td>Si</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
 
             <td>
                 <a href="{% url 'Fabricacion.views.GestionDetalleMiga' miga.codigoMiga %}">Detalle</a>

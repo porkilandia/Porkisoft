@@ -681,6 +681,9 @@ def GuardarMiga(request):
         movimientos.salida = detalle.PesoProducto
         movimientos.save()
 
+    miga.guardado =True
+    miga.save()
+
     msj = 'Guardado exitoso'
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
@@ -2498,7 +2501,7 @@ def ReporteInsumos(request):
     ListaCantCond['Condimento Preparado'] = 0
 
     ListaCantMolida = {}
-    ListaCantMolida['Carne Molida'] = 0
+    ListaCantMolida['Carne Molida Res'] = 0
     ListaCantMolida['Carne Molida Cerdo'] = 0
     ListaCantMolida['Carne Molida Cerda'] = 0
 
@@ -2520,7 +2523,7 @@ def ReporteInsumos(request):
     promedioMolidas = molidas.aggregate(Avg('costoKiloMolido'))
 
     for molido in molidas:
-        ListaCantMolida['Carne Molida'] += ceil(molido.totalMolido)
+        ListaCantMolida['Carne Molida Res'] += ceil(molido.totalMolido)
 
      #--------------Molida de Cerdo---------------------------------------------------
     molidasCerdo = Molida.objects.filter(fechaMolido__range = (finicio,ffin),productoMolido__grupo__nombreGrupo = 'Cerdos')

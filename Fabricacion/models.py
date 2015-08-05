@@ -181,6 +181,7 @@ class Miga(models.Model):
     costoKiloMigaProcesada = models.IntegerField(verbose_name='Costo Kilo',default=0)
     mod = models.IntegerField(verbose_name='Mod',default=0)
     cif = models.IntegerField(verbose_name='Cif',default=0)
+    guardado = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.codigoMiga
