@@ -120,7 +120,7 @@ $(document).on('ready', inicio);
      $('#id_pesoPapaina').on('blur', calculoEnsalinado);
      $('#nuevo').on('click',nuevoRegistro);
      $('#cerrar').on('click',cerrarVentana);
-     $('#editaFila').on('click',editaFilas);
+     //$('#editaFila').on('click',editaFilas);
      $('#modificar').on('click',modificaRegistro);
      $('#costear').on('click',CostearDesposte);
      $('#costearTajado').on('click',CostearTajado);
