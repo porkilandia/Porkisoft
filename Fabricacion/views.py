@@ -2529,7 +2529,7 @@ def ReporteInsumos(request):
     molidasCerdo = Molida.objects.filter(fechaMolido__range = (finicio,ffin),productoMolido__grupo__nombreGrupo = 'Cerdos')
     promedioMolidasCerdo = molidasCerdo.aggregate(Avg('costoKiloMolido'))
 
-    for molido in molidas:
+    for molido in molidasCerdo:
         ListaCantMolida['Carne Molida Cerdo'] += ceil(molido.totalMolido)
 
 
@@ -2537,7 +2537,7 @@ def ReporteInsumos(request):
     molidasCerda = Molida.objects.filter(fechaMolido__range = (finicio,ffin),productoMolido__grupo__nombreGrupo = 'Cerdas')
     promedioMolidasCerda = molidasCerda.aggregate(Avg('costoKiloMolido'))
 
-    for molido in molidas:
+    for molido in molidasCerda:
         ListaCantMolida['Carne Molida Cerda'] += ceil(molido.totalMolido)
 
 
