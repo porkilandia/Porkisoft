@@ -23,6 +23,7 @@ def configuracionDesposteTemplate(request):
 
 def configuracionDespostes (request):
     #pendiente por implementacion para configurar los porcentajes de desposte
+    #comentario nuevo
     pass
 
 #******************************************************CANAL***********************************************************
@@ -258,7 +259,7 @@ def GestionSacrificio(request,idrecepcion):
                               context_instance = RequestContext(request))
 
 def GestionEnsalinado(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     ensalinados = Ensalinado.objects.filter(fechaEnsalinado__range =(fechainicio,fechafin))
     if request.method == 'POST':
@@ -275,7 +276,7 @@ def GestionEnsalinado(request):
 
 def EditaEnsalinado(request,idEnsalinado):
 
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     ensalinados = Ensalinado.objects.filter(fechaEnsalinado__range =(fechainicio,fechafin))
     ensalinado = Ensalinado.objects.get(pk = idEnsalinado)
@@ -760,7 +761,7 @@ def existenciasUnd(request):
 
 def GestionApanado(request):
 
-    fechainicio = date.today() - timedelta(days=8)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     apanados = ProcesoApanado.objects.filter(fechaApanado__range =(fechainicio,fechafin))
     #apanados = ProcesoApanado.objects.all()
@@ -777,7 +778,7 @@ def GestionApanado(request):
                               context_instance = RequestContext(request))
 def EditaApanado(request,idApanado):
     apanado = ProcesoApanado.objects.get(pk = idApanado)
-    fechainicio = date.today() - timedelta(days=8)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     apanados = ProcesoApanado.objects.filter(fechaApanado__range =(fechainicio,fechafin))
     #apanados = ProcesoApanado.objects.all()
@@ -1038,7 +1039,7 @@ def costeoMolido(request):
 #**********************************************PROCESO CONDIMENTADO*****************************************************
 
 def GestionCondimentado(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     condimentados = Condimentado.objects.filter(fecha__range =(fechainicio,fechafin))
     #condimentados = Condimentado.objects.all()
@@ -1236,7 +1237,7 @@ def TraerCostoFilete(request):
 #**********************************************PROCESO TAJADO **********************************************************
 
 def GestionTajado(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     exito = True
     tajados = Tajado.objects.all().filter(fechaTajado__range = (fechainicio,fechafin))
@@ -1255,7 +1256,7 @@ def GestionTajado(request):
 
 def EditaTajado(request,idTajado):
     tajado = Tajado.objects.get(pk = idTajado)
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     exito = True
     tajados = Tajado.objects.all().filter(fechaTajado__range = (fechainicio,fechafin))
@@ -2132,7 +2133,7 @@ def borrarDescarne(request,idDesc):
 
 
 def GestionEmpacadoApanados(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     empaques  = EmpacadoApanados.objects.filter(fechaEmpacado__range =(fechainicio,fechafin))
     #empaques  = EmpacadoApanados.objects.all()
@@ -2152,7 +2153,7 @@ def GestionEmpacadoApanados(request):
 
 def EditaEmpacadoApanados(request,idEmpacado):
     empaque = EmpacadoApanados.objects.get(pk = idEmpacado)
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     empaques  = EmpacadoApanados.objects.filter(fechaEmpacado__range =(fechainicio,fechafin))
     #empaques  = EmpacadoApanados.objects.all()
@@ -2793,7 +2794,7 @@ def GuardarMenudos(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionFrito(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     usuario = request.user
     emp = Empleado.objects.get(usuario = usuario.username)
@@ -2929,7 +2930,7 @@ def GuardarFrito(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionCarneCond(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     usuario = request.user
     emp = Empleado.objects.get(usuario = usuario.username)
@@ -3052,7 +3053,7 @@ def GuardarCarneCond(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionCroqueta(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     usuario = request.user
     emp = Empleado.objects.get(usuario = usuario.username)
@@ -3199,7 +3200,7 @@ def GuardarCroqueta(request):
 
 def GestionReApanado(request):
 
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     usuario = request.user
     emp = Empleado.objects.select_related().get(usuario = usuario.username)
@@ -3625,7 +3626,7 @@ def ReporteUtilidadPorLote(request):
 
 
 def GestionEnsBola(request):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     ensBolas = TallerBolaEnsalinada.objects.filter(fechaBolaCondimentada__range =(fechainicio,fechafin))
     #conversiones = Conversiones.objects.all()
@@ -3641,7 +3642,7 @@ def GestionEnsBola(request):
     return render_to_response('Fabricacion/GestionEnsBola.html',{'formulario':formulario,'ensBolas':ensBolas },
                               context_instance = RequestContext(request))
 def EditaEnsBola(request,idEns):
-    fechainicio = date.today() - timedelta(days=10)
+    fechainicio = date.today() - timedelta(days=11)
     fechafin = date.today()
     ensBolas = TallerBolaEnsalinada.objects.filter(fechaBolaCondimentada__range =(fechainicio,fechafin))
     ensBola = TallerBolaEnsalinada.objects.get(pk = idEns)
