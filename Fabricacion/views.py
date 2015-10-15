@@ -586,8 +586,6 @@ def CostoCondimento(request,idcondimento):
                                                                    'detalleCondimentos':detalleCondimentos },
                               context_instance = RequestContext(request))
 
-
-
 #******************************************************* MIGA***********************************************************
 
 def GestionMiga(request):
@@ -761,7 +759,7 @@ def existenciasUnd(request):
 
 def GestionApanado(request):
 
-    fechainicio = date.today() - timedelta(days=11)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     apanados = ProcesoApanado.objects.filter(fechaApanado__range =(fechainicio,fechafin))
     #apanados = ProcesoApanado.objects.all()
@@ -778,7 +776,7 @@ def GestionApanado(request):
                               context_instance = RequestContext(request))
 def EditaApanado(request,idApanado):
     apanado = ProcesoApanado.objects.get(pk = idApanado)
-    fechainicio = date.today() - timedelta(days=11)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     apanados = ProcesoApanado.objects.filter(fechaApanado__range =(fechainicio,fechafin))
     #apanados = ProcesoApanado.objects.all()
@@ -866,7 +864,6 @@ def GuardarApanado(request):
     respuesta = json.dumps(msj)
 
     return HttpResponse(respuesta,mimetype='application/json')
-
 
 def costeoApanado(request):
     idApanado = request.GET.get('idApanado')
@@ -1039,7 +1036,7 @@ def costeoMolido(request):
 #**********************************************PROCESO CONDIMENTADO*****************************************************
 
 def GestionCondimentado(request):
-    fechainicio = date.today() - timedelta(days=11)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     condimentados = Condimentado.objects.filter(fecha__range =(fechainicio,fechafin))
     #condimentados = Condimentado.objects.all()
@@ -1088,17 +1085,17 @@ def CostearCondimentado(request):
     if condimentado.producto.grupo.nombreGrupo == 'Pollos':
         FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de Pollo Condimentado')
         FileteCondimentado.costoProducto = condimentado.costoFileteCond
-        msj ='Guardado exitoso!!'
+        msj ='Costeado exitoso!!'
 
     elif condimentado.producto.grupo.nombreGrupo == 'Cerdos':
         FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de cerdo Condimentado')
         FileteCondimentado.costoProducto = condimentado.costoFileteCond
-        msj ='Guardado exitoso!!'
+        msj ='Costeado exitoso!!'
 
     else:
         FileteCondimentado = Producto.objects.get(nombreProducto = 'Filete de cerda Condimentado')
         FileteCondimentado.costoProducto = condimentado.costoFileteCond
-        msj ='Guardado exitoso!!'
+        msj ='Costeado exitoso!!'
 
     FileteCondimentado.save()
 
@@ -1237,7 +1234,7 @@ def TraerCostoFilete(request):
 #**********************************************PROCESO TAJADO **********************************************************
 
 def GestionTajado(request):
-    fechainicio = date.today() - timedelta(days=11)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     exito = True
     tajados = Tajado.objects.all().filter(fechaTajado__range = (fechainicio,fechafin))
@@ -1256,7 +1253,7 @@ def GestionTajado(request):
 
 def EditaTajado(request,idTajado):
     tajado = Tajado.objects.get(pk = idTajado)
-    fechainicio = date.today() - timedelta(days=11)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     exito = True
     tajados = Tajado.objects.all().filter(fechaTajado__range = (fechainicio,fechafin))
@@ -1472,7 +1469,7 @@ def ReporteListaDesposte(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionDesposte(request,tipo):
-    fechainicio = date.today() - timedelta(days=15)
+    fechainicio = date.today() - timedelta(days=30)
     fechafin = date.today()
     despostes = ''
     if int(tipo) == 2:
@@ -2131,9 +2128,8 @@ def borrarDescarne(request,idDesc):
     descarne.delete()
     return HttpResponseRedirect('/fabricacion/descarne/')
 
-
 def GestionEmpacadoApanados(request):
-    fechainicio = date.today() - timedelta(days=11)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     empaques  = EmpacadoApanados.objects.filter(fechaEmpacado__range =(fechainicio,fechafin))
     #empaques  = EmpacadoApanados.objects.all()
@@ -2153,7 +2149,7 @@ def GestionEmpacadoApanados(request):
 
 def EditaEmpacadoApanados(request,idEmpacado):
     empaque = EmpacadoApanados.objects.get(pk = idEmpacado)
-    fechainicio = date.today() - timedelta(days=11)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     empaques  = EmpacadoApanados.objects.filter(fechaEmpacado__range =(fechainicio,fechafin))
     #empaques  = EmpacadoApanados.objects.all()
@@ -2273,8 +2269,6 @@ def GuardarEmpacado(request):
         movimiento.entrada = empaque.pesoChuelta
         movimiento.save()'''
 
-
-
 def ConsultaCostoChuleta(request):
     idProduccion = request.GET.get('produccion')
     produccion = ProcesoApanado.objects.get(pk = int(idProduccion)).costoKiloApanado
@@ -2287,8 +2281,6 @@ def promedioCostoProducto(request):
     gcdo = Grupo.objects.filter(nombreGrupo = 'Cerdos')
     grupos = gr | gcda | gcdo
     return render_to_response('Fabricacion/promedio.html',{'grupos':grupos},context_instance = RequestContext(request))
-
-
 
 def CalcularPromedio(request):
 
@@ -2355,7 +2347,6 @@ def CalcularPromedio(request):
 
 def TemplatePromedioPechugaCond(request):
     return render_to_response('Fabricacion/PromedioPechugaCondPollo.html',context_instance = RequestContext(request))
-
 
 def RepFiletePechugaCond(request):
 
@@ -2481,7 +2472,6 @@ def RepFiletePechugaCond(request):
 
     return HttpResponse(respuesta,mimetype='application/json')
 
-
 def TemplateInsumos(request):
     return render_to_response('Fabricacion/ReporteInsumos.html',context_instance = RequestContext(request))
 def ReporteInsumos(request):
@@ -2551,7 +2541,6 @@ def ReporteInsumos(request):
     respuesta = json.dumps(Listas)
     return HttpResponse(respuesta,mimetype='application/json')
 
-
 def TemplateMenChicharrones(request):
     return render_to_response('Fabricacion/TemplateMenChicharrones.html',context_instance = RequestContext(request))
 
@@ -2599,8 +2588,6 @@ def ReporteMenChicharrones(request):
 
     respuesta = json.dumps(Listas)
     return HttpResponse(respuesta,mimetype='application/json')
-
-
 
 def TemplateDescrnes(request):
     gcda = Grupo.objects.filter(nombreGrupo = 'Cerdas')
@@ -2736,7 +2723,6 @@ def borrarLenguas(request,idLengua):
     lengua.delete()
     return HttpResponseRedirect('/fabricacion/lenguas')
 
-
 def GestionMenudos(request):
 
     fechainicio = date.today() - timedelta(days=30)
@@ -2794,7 +2780,7 @@ def GuardarMenudos(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionFrito(request):
-    fechainicio = date.today() - timedelta(days=11)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     usuario = request.user
     emp = Empleado.objects.get(usuario = usuario.username)
@@ -2855,7 +2841,6 @@ def CostearFrito(request):
     msj = 'Costeo exitoso'
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
-
 
 def GuardarFrito(request):
     idFrito = request.GET.get('idFrito')
@@ -2930,7 +2915,7 @@ def GuardarFrito(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionCarneCond(request):
-    fechainicio = date.today() - timedelta(days=11)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     usuario = request.user
     emp = Empleado.objects.get(usuario = usuario.username)
@@ -3053,7 +3038,7 @@ def GuardarCarneCond(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 def GestionCroqueta(request):
-    fechainicio = date.today() - timedelta(days=11)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     usuario = request.user
     emp = Empleado.objects.get(usuario = usuario.username)
@@ -3120,8 +3105,6 @@ def CostearCroqueta(request):
     msj = 'Costeado exitoso'
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
-
-
 
 def GuardarCroqueta(request):
     idCorqueta = request.GET.get('idCroqueta')
@@ -3200,7 +3183,7 @@ def GuardarCroqueta(request):
 
 def GestionReApanado(request):
 
-    fechainicio = date.today() - timedelta(days=11)
+    fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
     usuario = request.user
     emp = Empleado.objects.select_related().get(usuario = usuario.username)
