@@ -371,7 +371,7 @@ def GestionCompra(request,tipoCompra):
         if formulario.is_valid():
             formulario.save()
 
-            return HttpResponseRedirect('/inventario/compra')
+            return HttpResponseRedirect('/inventario/compra/'+tipoCompra)
     else:
         formulario =CompraForm(tipoCompra,initial={'encargado':12951685,'bodegaCompra':emp.punto.codigoBodega})
 
