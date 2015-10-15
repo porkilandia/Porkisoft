@@ -227,7 +227,10 @@ class ReapanadoForm(ModelForm):
         q1 = Producto.objects.filter(nombreProducto__contains = 'Filete Apanado')
         q2 = Producto.objects.filter(nombreProducto__contains = 'Condimentado')
         q3 = Producto.objects.filter(nombreProducto__contains = 'Condimentada')
-        self.fields['chuelta'].queryset = q1 | q2 | q3
+        q4 = Producto.objects.filter(nombreProducto__contains = 'Croqueta Apanada')
+        q5 = Producto.objects.filter(nombreProducto__contains = 'Pollo Molido')
+
+        self.fields['chuelta'].queryset = q1 | q2 | q3 | q4 | q5
     class Meta:
         model = TallerReapanado
         exclude = ("miga","guardado",)

@@ -687,7 +687,6 @@ def GuardarMiga(request):
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 
-
 def CostoMiga(request,idmiga):
 
     miga = Miga.objects.get(pk = idmiga)
@@ -1034,7 +1033,6 @@ def costeoMolido(request):
     return HttpResponse(respuesta,mimetype='application/json')
 
 #**********************************************PROCESO CONDIMENTADO*****************************************************
-
 def GestionCondimentado(request):
     fechainicio = date.today() - timedelta(days=20)
     fechafin = date.today()
@@ -1052,7 +1050,6 @@ def GestionCondimentado(request):
 
     return render_to_response('Fabricacion/GestionCondimentado.html',{'formulario':formulario,'condimentados':condimentados },
                               context_instance = RequestContext(request))
-
 
 def CostearCondimentado(request):
     idCondimentado = request.GET.get('idCondimentado')
@@ -1106,7 +1103,6 @@ def borrarCondimentado(request,idCondimentado):
     condimentado = Condimentado.objects.get(pk = idCondimentado)
     condimentado.delete()
     return HttpResponseRedirect('/fabricacion/condimentado')
-
 
 def GuardarCondimentado(request):
     idCondimentado = request.GET.get('idCondimentado')
@@ -1224,7 +1220,6 @@ def GuardarCondimentado(request):
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 
-
 def TraerCostoFilete(request):
     idProducto = request.GET.get('producto')
     producto = Producto.objects.get(pk = int(idProducto)).costoProducto
@@ -1268,7 +1263,6 @@ def EditaTajado(request,idTajado):
 
     return render_to_response('Fabricacion/GestionTajado.html',{'exito':exito,'formulario':formulario,'tajados':tajados},
                               context_instance = RequestContext(request))
-
 
 def GestionDetalleTajado(request,idTajado):
     exito = True
@@ -1396,7 +1390,6 @@ def costearTajado(request):
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
 
-
 def GuardarTajado(request):
     idTajado = request.GET.get('idTajado')
     detTajado = DetalleTajado.objects.filter(tajado = int(idTajado))
@@ -1443,7 +1436,6 @@ def GuardarTajado(request):
 
     respuesta = json.dumps(msj)
     return HttpResponse(respuesta,mimetype='application/json')
-
 #***********************************************PLANILLA DESPOSTE*******************************************************
 def TemplateListaDesposte(request):
     grupos = Grupo.objects.all()
@@ -2944,7 +2936,6 @@ def borrarTallerCondimentado(request,idCondimentado):
     condimentado.delete()
     return HttpResponseRedirect('/fabricacion/carneCondimentada')
 
-
 def CostearCarneCond(request):
     idCarne = request.GET.get('idCarne')
     carne = TallerCarneCondimentada.objects.get(pk = int(idCarne))
@@ -3220,13 +3211,17 @@ def GuardarReApanado(request):
     miga = Producto.objects.get(nombreProducto = 'Miga Preparada')
     chuletaCerdo = Producto.objects.get(nombreProducto = 'Filete Apanado Cerdo')
     chuletaPollo = Producto.objects.get(nombreProducto = 'Filete Apanado Pollo')
+    croqueta = Producto.objects.get(nombreProducto = 'Croqueta Apanada')
+    pollomol = Producto.objects.get(nombreProducto = 'Pollo Molido')
     pesoReapanado = reApanado.pesoTotalReApanado
     pesoChuleta = reApanado.pesoChuleta
 
     bodegaMiga = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = miga.codigoProducto)
     bodegaChuleta = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = reApanado.chuelta.codigoProducto)
     bodegaChuletaCerdo = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = chuletaCerdo.codigoProducto)
-    bodegaChuletaPollo = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = chuletaPollo  .codigoProducto)
+    bodegaChuletaPollo = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = chuletaPollo.codigoProducto)
+    bodegaCroqueta = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = croqueta.codigoProducto)
+    bodegaPolloMolido = ProductoBodega.objects.get(bodega = reApanado.puntoReApanado.codigoBodega,producto = pollomol.codigoProducto)
 
     migaUtilizada = pesoReapanado - pesoChuleta
 
@@ -3267,15 +3262,38 @@ def GuardarReApanado(request):
         movimiento.Hasta = bodegaChuletaCerdo.bodega.nombreBodega
         movimiento.save()
     else:
-        bodegaChuletaPollo.pesoProductoStock += migaUtilizada
-        bodegaChuletaPollo.save()
+
+
         movimiento = Movimientos()
         movimiento.tipo = 'RAP%d'%(reApanado.id)
         movimiento.fechaMov = reApanado.fechaReApanado
-        movimiento.productoMov = chuletaPollo
-        movimiento.nombreProd = chuletaPollo.nombreProducto
+
+        if reApanado.chuelta.nombreProducto == croqueta.nombreProducto:
+
+            bodegaCroqueta.pesoProductoStock += migaUtilizada
+            bodegaCroqueta.save()
+
+            movimiento.productoMov = croqueta
+            movimiento.nombreProd = croqueta.nombreProducto
+            movimiento.Hasta = bodegaCroqueta.bodega.nombreBodega
+
+        elif reApanado.chuelta.nombreProducto == pollomol.nombreProducto:
+            bodegaPolloMolido.pesoProductoStock += migaUtilizada
+            bodegaPolloMolido.save()
+
+            movimiento.productoMov = pollomol
+            movimiento.nombreProd = pollomol.nombreProducto
+            movimiento.Hasta = bodegaPolloMolido.bodega.nombreBodega
+
+        else:
+            bodegaChuletaPollo.pesoProductoStock += migaUtilizada
+            bodegaChuletaPollo.save()
+
+            movimiento.productoMov = chuletaPollo
+            movimiento.nombreProd = chuletaPollo.nombreProducto
+            movimiento.Hasta = bodegaChuletaPollo.bodega.nombreBodega
+
         movimiento.entrada = pesoReapanado
-        movimiento.Hasta = bodegaChuletaPollo.bodega.nombreBodega
         movimiento.save()
 
     reApanado.guardado = True
