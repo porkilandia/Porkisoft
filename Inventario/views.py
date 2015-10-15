@@ -394,13 +394,13 @@ def ModificaCompra(request,idCompra):
 
 
     if request.method == 'POST':
-        formulario = CompraForm(request.POST,instance=compra)
+        formulario = CompraForm('2',request.POST,instance=compra)
         if formulario.is_valid():
             formulario.save()
 
             return HttpResponseRedirect('/inventario/compra/'+'2')
     else:
-        formulario = CompraForm(initial={'encargado':12951685},instance=compra)
+        formulario = CompraForm('2',initial={'encargado':12951685},instance=compra)
     plantilla = ''
     if usuario.is_staff:
         plantilla = 'base.html'
