@@ -65,7 +65,15 @@
                     <li><span id="inventario" tabindex="1">Inventario</span>
                         <ul>
                             <li><a href="/inventario/listaProd"> Gestionar Producto</a></li>
-                            <li><a href="/inventario/compra"> Compra</a></li>
+                            <li><span id="talleres" tabindex="1">Compras</span>
+                                <ul>
+
+                                    <li><a href="{% url 'Inventario.views.GestionCompra' 1 %}"> Ganado</a></li>
+                                    <li><a href="{% url 'Inventario.views.GestionCompra' 2 %}"> Varios</a></li>
+
+
+                                </ul>
+                            </li>
                             <li><a href="/inventario/traslado"> Traslado</a></li>
                             <li><a href="/inventario/bodega"> Bodega</a></li>
                             <li><a href="/inventario/grupo"> Grupo</a></li>

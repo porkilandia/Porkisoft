@@ -347,13 +347,16 @@ def GestionGanado(request,idcompra):
                               context_instance = RequestContext(request))
 
 #**********************************************************COMPRA*******************************************************
-def GestionCompra(request):
+def GestionCompra(request,tipoCompra):
     usuario = request.user
     emp = Empleado.objects.get(usuario = usuario.username)
     fechainicio = date.today() - timedelta(days=8)
     fechafin = date.today()
     if usuario.is_staff:
-        compras = Compra.objects.select_related().filter(fechaCompra__range =(fechainicio,fechafin))
+        if tipoCompra == '1':
+            compras = Compra.objects.select_related().filter(fechaCompra__range =(fechainicio,fechafin),bodegaCompra = 5)
+        else:
+            compras = Compra.objects.select_related().filter(fechaCompra__range =(fechainicio,fechafin)).exclude(bodegaCompra = 5)
         plantilla = 'base.html'
 
     else:
@@ -364,13 +367,13 @@ def GestionCompra(request):
     #compras= Compra.objects.all()
 
     if request.method == 'POST':
-        formulario = CompraForm(request.POST)
+        formulario = CompraForm(tipoCompra,request.POST)
         if formulario.is_valid():
             formulario.save()
 
             return HttpResponseRedirect('/inventario/compra')
     else:
-        formulario =CompraForm(initial={'encargado':12951685,'bodegaCompra':emp.punto.codigoBodega})
+        formulario =CompraForm(tipoCompra,initial={'encargado':12951685,'bodegaCompra':emp.punto.codigoBodega})
 
 
     return render_to_response('Inventario/GestionCompras.html',{'plantilla':plantilla,'formulario':formulario,'compras':compras },

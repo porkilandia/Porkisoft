@@ -43,6 +43,22 @@ class GanadoForm(ModelForm):
 
 class CompraForm(ModelForm):
     tipo = forms.ModelChoiceField(queryset = Grupo.objects.all())
+
+    def __init__(self,tipoCompra,*args,**kwargs):
+        super(CompraForm,self).__init__(*args,**kwargs)
+        print tipoCompra
+        if tipoCompra == '1':
+            self.fields['bodegaCompra'].queryset = Bodega.objects.filter(pk = 5)
+        elif tipoCompra == '2' :
+            q1 = Bodega.objects.filter(pk = 1)
+            q2 = Bodega.objects.filter(pk = 2)
+            q3 = Bodega.objects.filter(pk = 3)
+            q4 = Bodega.objects.filter(pk = 4)
+            q5 = Bodega.objects.filter(pk = 6)
+
+            self.fields['bodegaCompra'].queryset = q1|q2|q3|q4|q5
+
+
     class Meta:
         model = Compra
         exclude = ("vrCompra","cantCabezas","vrTransporte","guardado",)
