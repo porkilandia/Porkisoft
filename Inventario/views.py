@@ -382,7 +382,7 @@ def GestionCompra(request,tipoCompra):
 def borrarCompra(request, idCompra):
     compra = Compra.objects.get(pk = idCompra)
     compra.delete()
-    return HttpResponseRedirect('/inventario/compra')
+    return HttpResponseRedirect('/inventario/compra/'+ '2')
 
 def ModificaCompra(request,idCompra):
     usuario = request.user
@@ -398,7 +398,7 @@ def ModificaCompra(request,idCompra):
         if formulario.is_valid():
             formulario.save()
 
-            return HttpResponseRedirect('/inventario/compra')
+            return HttpResponseRedirect('/inventario/compra/'+'2')
     else:
         formulario = CompraForm(initial={'encargado':12951685},instance=compra)
     plantilla = ''
