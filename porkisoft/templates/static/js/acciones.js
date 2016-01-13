@@ -1229,6 +1229,18 @@ function ImprimirRecibo()
                                         "<th>"+'__________________________________'+"</th>"+
                                     "</tr>"+
                                     "<tr>"+
+                                        "<th>"+'No se admiten devoluciones despues de '+"</th>"+
+                                    "</tr>"+
+                                    "<tr>"+
+                                        "<th>"+'dos horas de entregado el producto'+"</th>"+
+                                    "</tr>"+
+                                    "<tr>"+
+                                        "<th>"+'y sin su respectiva factura'+"</th>"+
+                                    "</tr>"+
+                                    "<tr>"+
+                                        "<th>"+'__________________________________'+"</th>"+
+                                    "</tr>"+
+                                    "<tr>"+
                                         "<th>"+'!! GRACIAS POR SU COMPRA !!'+"</th>"+
                                     "</tr>"+
                                     "<tr>"+

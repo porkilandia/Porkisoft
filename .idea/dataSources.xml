@@ -6,18 +6,11 @@
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/porkisoftdb</jdbc-url>
-      <user-name>postgres</user-name>
-      <user-password>dfcbdfc6dfc3dfd9dfc5dfc4df98df9adf9adf93</user-password>
-      <libraries />
     </data-source>
     <data-source source="LOCAL" name="Django default" uuid="ffdc993b-de66-4180-9e3a-18d0bce8748e">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/porkisoftdb</jdbc-url>
-      <user-name>postgres</user-name>
-      <user-password>dfcbdfc6dfc3dfd9dfc5dfc4df98df9adf9adf93</user-password>
-      <libraries />
     </data-source>
   </component>
 </project>
-
