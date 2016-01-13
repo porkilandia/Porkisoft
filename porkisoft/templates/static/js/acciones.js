@@ -1238,7 +1238,7 @@ function ImprimirRecibo()
                                         "<th>"+'y sin su respectiva factura'+"</th>"+
                                     "</tr>"+
                                     "<tr>"+
-                                        "<th>"+'__________________________________'+"</th>"+
+                                        "<th>"+'_________________________________'+"</th>"+
                                     "</tr>"+
                                     "<tr>"+
                                         "<th>"+'!! GRACIAS POR SU COMPRA !!'+"</th>"+
