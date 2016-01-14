@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="PostgreSQL - @localhost" uuid="dd31e923-48ef-4524-8c85-0c09a605b5cc">
+      <secret-storage>memory</secret-storage>
+    </data-source>
+    <data-source name="Django default" uuid="ffdc993b-de66-4180-9e3a-18d0bce8748e">
+      <secret-storage>memory</secret-storage>
+      <user-name>postgres</user-name>
+    </data-source>
+  </component>
+</project>
